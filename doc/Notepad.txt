@@ -1,0 +1,66 @@
+
+   Notepad.
+
+ Request starts
+       |
+       |---> Request handler object
+       |         |
+       |         |----> Session manager
+       |         |            |
+       |         |   Restore/create session
+       |         |            |
+       |         |<-----------'
+       |         |  
+       |         |------> URI Handler
+       |         |            |
+       |         |        Parse URI:
+       |         |        - path hander
+       |         |        - path
+       |         |        - language
+       |         |        - protocol
+       |         |        - ...
+       |         |            |
+       |         |<-----------'
+       |         |  
+       |         |-----> Path handler object
+       |         |            |
+       |         |   Identify target object(s)
+       |         |            |
+       |         |<-----------'
+       |         |
+       |         |---> Protocol handler object
+       |         |            |
+       |         | Run action on main object
+       |         |            |
+       |         | Run action on aux objects
+       |         |   (only some handlers)
+       |         |            |
+       |         |  Select output handler
+       |         |            |
+       |         |<-----------'
+       |         |
+       |         |---> Output handler object
+       |         |            |
+       |         |    Define needed add-ons
+       |         |            |
+       |         |            |---> Add-on handler
+       |         |            |            |
+       |         |            |       Run add-ons
+       |         |            |            |
+       |         |            |<-----------'
+       |         |            |
+       |         |      Serialize data
+       |         |            |
+       |         |<-----------'
+       |         |
+       |         |----> Session manager
+       |         |            |
+       |         |       Store session
+       |         |            |
+       |         |<-----------'
+       |         |
+       |<--------'
+       |
+       v
+  Request ends
+

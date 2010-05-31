@@ -1,0 +1,32 @@
+
+    SLight Project ToDo
+
+    Milestone 1 - Concept - 2010-06-05
+
+[>] Write ToDo skeleton
+[ ] Organize a domain
+[ ] Upload a static Web page.
+[ ] Document the concepts
+[ ] Document directory structure
+[ ] Outline needed Perl OHandler modules (and list which CoMe modules they replace)
+
+    Milestone 2 - Self-hosting - 2010-06-12
+
+[ ] Core modules
+[ ]     Request handler
+[ ]     Web output handler + cgi
+[ ] API modules
+[ ]     URL handling (parsing and serializing)
+[ ]     Session handling
+[ ]     Page handling
+
+    Milestone 3 - Working CMS - 2010-06-19
+
+    Milestone 4 - User management - 2010-06-26
+
+    Milestone 5 - Forum - 2010-07-03
+
+    Milestone 6 - Initial AJAX support - 2010-07-10
+
+    Milestone 7 - Full AJAX support - 2010-07-17
+
