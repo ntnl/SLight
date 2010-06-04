@@ -3,30 +3,45 @@
 
     Milestone 1 - Concept - 2010-06-05
 
-[>] Write ToDo skeleton
+[X] Write ToDo skeleton
 [ ] Organize a domain
 [ ] Upload a static Web page.
-[ ] Document the concepts
-[ ] Document directory structure
-[ ] Outline needed Perl OHandler modules (and list which CoMe modules they replace)
+[X] Document the concepts
+[X] Document directory structure
+[>] Outline needed Perl OHandler modules (and list which CoMe modules they replace)
 
     Milestone 2 - Self-hosting - 2010-06-12
 
-[ ] Core modules
+[ ] Core
+[ ]     URI handling
 [ ]     Request handler
 [ ]     Web output handler + cgi
-[ ] API modules
+[ ] API
 [ ]     URL handling (parsing and serializing)
 [ ]     Session handling
-[ ]     Page handling
+[ ]     Page store and path handling
 
     Milestone 3 - Working CMS - 2010-06-19
 
+[ ] API
+[ ]     Object store
+[ ] HTML Output
+
     Milestone 4 - User management - 2010-06-26
+
+[ ] User API
+[ ] User-related OHandler objects
 
     Milestone 5 - Forum - 2010-07-03
 
+[ ] Forum-related OHandler objects
+
     Milestone 6 - Initial AJAX support - 2010-07-10
 
+[ ] AJAX Protocol object
+[ ] P.O.C. of some js/html changes
+
     Milestone 7 - Full AJAX support - 2010-07-17
+
+[ ] Upgrade all applicable functionality to support AJAX
 

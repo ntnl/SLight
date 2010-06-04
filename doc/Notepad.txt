@@ -1,9 +1,131 @@
 
    Notepad.
 
+Entities:
+
+    Account
+        Represents, describes and identifies site's User.
+        
+    Page
+        Page must have at least one object attached to it (the 'main' object)
+        Page defines what template is used to show it.
+        Pages form a tree-like structure.
+
+    Object
+        Can be attached to Pages.
+        Objects can have references between them. They will block deletion of an object, that is referred by others.
+        For example:
+            CMS::Proxy will refer to CMS::Entry, that it is pointing to.
+            Shop::Product will refer to Shop::Category, in which it was put into.
+        Objects can define (can be built-in or configurable), what other objects can become their children,
+        and what Objects can be their parents (where they can be put).
+
+    Object Specs
+        Provide most basic description of objects.
+
+    Asset
+        Can be attached to: Site, Page, Object or Comment.
+        Can refer to the entity as a whole, or just to one of it's fields.
+        Many assets can be attached to entity, but only one asset can be attached to one entity/field combination.
+
+    Comment
+        Can be attached to: Page, Object, Asset or Comment.
+
+    Tag
+        Can be attached to: Page, Object, Comment or Asset.
+
+Requirements/limitations:
+
+ o Single entity can be attached only to one other entity.
+
+
+Entity API schema:
+
+# Following interface should be exported by all Entity API modules:
+
+$id = add_ENTITY(
+    field_1 => $value_1,
+    field_2 => $value_2,
+    ...
+    field_n => $value_n,
+)
+
+update_ENTITY (
+    id => $id,
+
+    field_1 => $value_1,
+    field_2 => $value_2,
+    ...
+    field_n => $value_n,
+)
+update_ENTITYs (
+    id => \@id,
+
+    field_1 => $value_1,
+    field_2 => $value_2,
+    ...
+    field_n => $value_n,
+)
+
+delete_ENTITY($id)
+
+delete_ENTITYs(\@ids)
+
+\%entity = get_ENTITY($id)
+
+\@entities => get_ENTITYs(\@ids)
+
+\@entities => get_ENTITYs_where(
+    field_1 => $value_1,
+    field_2 => $value_2,
+    ...
+    field_n => $value_n,
+)
+
+\@entities => get_ENTITY_ids_where(
+    field_1 => $value_1,
+    field_2 => $value_2,
+    ...
+    field_n => $value_n,
+)
+
+\@entities => get_ENTITY_fields_where(
+    _fields => \@fields,
+
+    field_1 => $value_1,
+    field_2 => $value_2,
+    ...
+    field_n => $value_n,
+)
+
+attach_ENTITY_to(
+    id => $id,
+
+    page_id    => $page_id,
+    object_id  => $object_id,
+    asset_id   => $asset_id,
+    comment_id => $comment_id
+
+    field => $field
+)
+
+attach_ENTITYs_to(
+    id => \@ids,
+
+    page_id    => $page_id,
+    object_id  => $object_id,
+    asset_id   => $asset_id,
+    comment_id => $comment_id
+
+    field => $field
+)
+
+
+Request "flow" diagram:
+
  Request starts
        |
-       |---> Request handler object
+       |---> Request handler (object)
        |         |
        |         |----> Session manager
        |         |            |
@@ -22,34 +144,38 @@
        |         |            |
        |         |<-----------'
        |         |  
-       |         |-----> Path handler object
+       |         |-----> Path handler (object)
        |         |            |
        |         |   Identify target object(s)
        |         |            |
        |         |<-----------'
        |         |
-       |         |---> Protocol handler object
+       |         |---> Protocol handler (object)
        |         |            |
        |         | Run action on main object
        |         |            |
-       |         | Run action on aux objects
-       |         |   (only some handlers)
+       |         |            |---------------.
+       |         |            |               |
+       |         |            |    Run action on aux objects
+       |         |            |     (optionally, if needed)
+       |         |            |               |
+       |         |            |<--------------'
        |         |            |
        |         |  Select output handler
        |         |            |
-       |         |<-----------'
-       |         |
-       |         |---> Output handler object
-       |         |            |
-       |         |    Define needed add-ons
-       |         |            |
-       |         |            |---> Add-on handler
+       |         |            |---> Output handler (module)
        |         |            |            |
-       |         |            |       Run add-ons
+       |         |            |    Define needed add-ons
+       |         |            |            |
+       |         |            |            |---> Add-on handler
+       |         |            |            |            |
+       |         |            |            |       Run add-ons
+       |         |            |            |            |
+       |         |            |            |<-----------'
+       |         |            |            |
+       |         |            |      Serialize data
        |         |            |            |
        |         |            |<-----------'
-       |         |            |
-       |         |      Serialize data
        |         |            |
        |         |<-----------'
        |         |
@@ -64,3 +190,547 @@
        v
   Request ends
 
+Content creation:
+
+    Data structures
+          ||
+ (Data structure object)
+          \/
+      Data items
+          ||
+    (Output handler)
+          \/
+   Serialized content
+
+Data tokens:
+
+    String
+        # Single line of text
+        # Note, that text string IS a valid 'String' token.
+
+    Text
+        # Multi-line text block
+
+    Image
+        # Reference to an image
+
+    Link
+        # Reference to other page
+
+    Asset
+        # Reference to an asset, embedded into the page (usually using icon, thumbnail or some "player")
+
+    Embed
+        # Embedded object (like, for example: YouTube movie)
+
+    Table
+        # Contains rows of cells of data
+    
+    Form
+        # Contains rows of Form Elements
+        # Form element is one of:
+        - class
+        - rows
+        - href
+        - hidden
+
+    Container
+        - class
+        - label
+        - content
+        
+    StringInput
+
+    PasswordInput
+
+    TextInput
+
+    SelectInput
+
+    RadioList
+    
+    CheckList
+
+
+
+Recommended site directory structure:
+
+SLight
+    # Project files.
+    # May be shared among sites.
+
+SLight_Site
+    # Site files.
+    # May be shared among sites.
+
+    html
+        # HTML templates
+
+    email
+        # Email templates
+
+SLight_Data
+    # Site's data.
+    # This data applies to single site, thus can not be shared.
+    # Contents in this directory must be accessible (read/write) to UI process, for example the CGI process.
+
+    asset
+        # Assets handled by the site.
+
+    db
+        # Database files (if SQLite DB is used)
+
+    cache
+        # General-purpose cache (if file-based Cache is used)
+
+    users
+        # User accounts (if disk-based User storage used)
+
+    html_cache
+        # Cached pre-processed html templates
+
+    email_cache
+        # Cached, pre-processed email templates
+
+    l10n_cache
+        # Cached localization data.
+
+
+Project directory structure:
+
+data
+    # Data used by Slight.
+
+doc
+    # Overall documentation.
+    # Technical documentation (API, etc) is embedded in modules using POD.
+
+lib
+    # Perl modules, with built-in documentation.
+
+scripts
+    # Executable files, for both command line, CGI/FastCGI.
+
+releng
+    # Release-engineering scripts and data.
+    # For use by SLight developers, when new version is released.
+    # Development-only.
+
+sandbox
+    # Staging site, for use in testing and development.
+    # Development-only.
+
+t
+    # Automated test scripts.
+    # Development-only.
+
+t_data
+    # Data used in automated test scripts.
+    # Development-only.
+
+t_source
+    # Sources, from which test data is (re-)generated.
+    # Development-only.
+
+
+Perl directory structure:
+    API - SLightly API
+
+    Interface <-- provides an executable, that sets-up environment and runs request handler.
+        CGI
+        FastCGI
+        CommandLine
+        Test
+
+    Protocol
+        # Governs the actions being run, checks if their output is adequate.
+        # Defines which DataStructure it accepts.
+
+        Web
+            # Generate full Web pages.
+            # Extension: 'web'
+
+        AJAX
+            # Generate page parts and data for Web page use.
+            # Extension: 'ajax'
+
+        RSS
+            # Return news feeds, that can be aggregated.
+            # Extension: 'rss'
+
+    Output
+        # Serialize Data into strings.
+
+        HTML
+        JSON
+        XML
+
+    URIHandler
+        Page
+            # Default URI handler
+            # Looks up into Page storage to find which Objects/Actions should be invoked.
+
+        CMS
+            # Handling of User defined CMS Entry specs
+
+
+        MyData
+            # Handling of User's own data
+
+        Account
+            # Handling of user data, by others
+
+        Group
+            # Handling of group data, by others
+
+
+        Authentication
+            # Implements support for login/logout/register/password
+
+        Asset
+            # Asset management:
+            #   - serving assets
+
+        Test
+            # Aids testing
+
+        Devel
+            # Development aids (in separate package?)
+
+
+    URIHandlerBase
+        # Base code used by URIHandler objects.
+
+    DataStructure
+        Token <-- single data token
+        Embed  <-- embedded object (YouTube movie)
+        Table  <-- 
+        List
+            # General purpose list
+            
+            RSS
+                # Data feed for RSS
+
+        Form
+        Dialog
+            # General purpose, generic dialog box, with text and buttons
+            
+            Notification
+            # Dialog box with text and OK button
+
+            YesNo
+            # Dialog box with text, and set of buttons: 'Yes' and 'No'
+
+    OHandler - modules, that handle objects
+    OHandlerBase - 'base' modules, used by OHandlers
+
+    DataType <-- serialize/deserialize data items.
+    Validator <-- check data for errors
+    Addon
+        Core::PathBar
+        Core::MainMenu
+        Core::SubMenu
+        Core::Pager
+        Core::Toolbox
+        Core::SysInfo
+    AddonBase
+
+    Metadata <-- each package has to install it's metadata module here
+        CMS
+        Forum
+        Poll
+        Shop
+        BugTrack
+
+In separate packages: (?)
+    Devel - development tools
+
+OHandler objects (Object::Aspect::Action + steps)
+
+
+MyAccount::Data::Overview
+    view
+
+MyAccount::Data::Edit
+    view
+    save
+
+MyAccount::Password::Change
+    view
+    save
+
+MyAccount::Avatar::Change
+    view
+    upload
+
+MyAccount::Avatar::Delete
+    view
+    delete
+
+MyAccount::Avatar::Image
+    view
+
+Account::List::Overview
+    view
+
+Account::Data::Overview
+    view
+
+Account::Data::Edit
+    view
+    save
+
+Account::Password::Change
+    view
+    save
+
+Account::Avatar::Change
+    view
+    upload
+
+    # replaces:
+    User/Handler/User/Avatar.pm
+
+Account::Avatar::Delete
+    view
+    delete
+    
+    # replaces:
+    User/Handler/User/Avatardelete.pm
+
+Account::Avatar::Image
+    view
+    
+    # replaces:
+    User/Handler/User/Avatarimage.pm
+
+
+
+CMS::Spec::List
+    view
+
+    # replaces:
+    Content/Handler/Type/Overview.pm
+
+CMS::Spec::Add
+
+    # replaces:
+    Content/Handler/Type/New.pm
+
+CMS::Spec::Edit
+    Content/Handler/Type/Edit.pm
+
+CMS::Spec::Delete
+
+    # replaces:
+    Content/Handler/Type/Delete.pm
+
+CMS::SpecField::List
+    view
+
+CMS::SpecField::Add
+    view
+    save
+
+CMS::SpecField::Edit
+    view
+    save
+    move_down
+    move_up
+
+    # replaces: 
+    Content/Handler/Type/Mdown.pm
+    Content/Handler/Type/Mup.pm
+
+CMS::SpecField::Delete
+    view
+    delete
+
+
+
+
+    # replaces:
+    Content/Handler/Content/Attachment.pm
+
+    # replaces:
+    Content/Handler/Content/Attach.pm
+
+    # replaces:
+    Content/Handler/Content/Comment.pm
+
+    # replaces:
+    Content/Handler/Content/Delete.pm
+
+    # replaces:
+    Content/Handler/Content/Details.pm
+
+    # replaces:
+    Content/Handler/Content/Disable.pm
+
+    # replaces:
+    Content/Handler/Content/Edit.pm
+
+    # replaces:
+    Content/Handler/Content/Enable.pm
+
+    # replaces:
+    Content/Handler/Content/New.pm
+
+    # replaces:
+    Content/Handler/Content/Overview.pm
+
+    # replaces:
+    Content/Handler/Content/Translate.pm
+
+
+    # replaces:
+    Search/Handler/Search/Advanced.pm
+
+    # replaces:
+    Search/Handler/Search/Overview.pm
+
+
+    # replaces:
+    Test/Handler/Test/Overview.pm
+
+
+    # replaces:
+    User/Handler/Group/Delete.pm
+
+    # replaces:
+    User/Handler/Group/Disable.pm
+
+    # replaces:
+    User/Handler/Group/Edit.pm
+
+    # replaces:
+    User/Handler/Group/Enable.pm
+
+    # replaces:
+    User/Handler/Group/New.pm
+
+    # replaces:
+    User/Handler/Group/Overview.pm
+
+    # replaces:
+    User/Handler/Group/Permissions.pm
+
+    # replaces:
+    User/Handler/Group/Uadd.pm
+
+    # replaces:
+    User/Handler/Group/Uremove.pm
+
+    # replaces:
+    User/Handler/Group/Users.pm
+
+
+    # replaces:
+    User/Handler/User/Delete.pm
+
+    # replaces:
+    User/Handler/User/Details.pm
+
+    # replaces:
+    User/Handler/User/Disable.pm
+
+    # replaces:
+    User/Handler/User/Edit.pm
+
+    # replaces:
+    User/Handler/User/Enable.pm
+
+    # replaces:
+    User/Handler/User/Everify.pm
+
+    # replaces:
+    User/Handler/User/Login.pm
+
+    # replaces:
+    User/Handler/User/Logout.pm
+
+    # replaces:
+    User/Handler/User/New.pm
+
+    # replaces:
+    User/Handler/User/Overview.pm
+
+    # replaces:
+    User/Handler/User/Passwd.pm
+
+    # replaces:
+    User/Handler/User/Permissions.pm
+
+    # replaces:
+    User/Handler/User/Preset.pm
+
+    # replaces:
+    User/Handler/User/Register.pm
+
+    # replaces:
+    User/Handler/User/Revoke.pm
+
+
+    # replaces:
+    User/Handler/Users/Details.pm
+
+    # replaces:
+    User/Handler/Users/Overview.pm
+
+    # replaces:
+    User/Handler/Users/Queued.pm
+
+
+    # replaces:
+    Forum/Handler/Category/Delete.pm
+
+    # replaces:
+    Forum/Handler/Category/Edit.pm
+
+    # replaces:
+    Forum/Handler/Category/New.pm
+
+    # replaces:
+    Forum/Handler/Category/Overview.pm
+
+
+    # replaces:
+    Forum/Handler/Forum/Delete.pm
+
+    # replaces:
+    Forum/Handler/Forum/Edit.pm
+
+    # replaces:
+    Forum/Handler/Forum/New.pm
+
+    # replaces:
+    Forum/Handler/Forum/Overview.pm
+
+
+    # replaces:
+    Forum/Handler/Reply/Delete.pm
+
+    # replaces:
+    Forum/Handler/Reply/Edit.pm
+
+    # replaces:
+    Forum/Handler/Reply/New.pm
+
+    # replaces:
+    Forum/Handler/Reply/Overview.pm
+
+    # replaces:
+    Forum/Handler/Reply/Quote.pm
+
+
+    # replaces:
+    Forum/Handler/Thread/Delete.pm
+
+    # replaces:
+    Forum/Handler/Thread/Edit.pm
+
+    # replaces:
+    Forum/Handler/Thread/New.pm
+
+    # replaces:
+    Forum/Handler/Thread/Overview.pm
