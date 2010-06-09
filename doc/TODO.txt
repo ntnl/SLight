@@ -4,12 +4,12 @@
     Milestone 1 - Concept - 2010-06-012
 
 [X] Write ToDo skeleton
+[>] Upload a static Web page.
 [ ] Organize a domain
-[ ] Upload a static Web page.
 [X] Document the concepts
 [X] Document directory structure
 [X] Outline needed Perl Handler modules (and list which CoMe modules they replace)
-[>] Outline needed DataStructure modules (and list which CoMe modules they replace)
+[X] Outline needed DataStructure modules (and list which CoMe modules they replace)
 
     Milestone 2 - Self-hosting - 2010-06-19
 
