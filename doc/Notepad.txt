@@ -82,7 +82,7 @@ delete_ENTITYs(\@ids)
     field_n => $value_n,
 )
 
-\@entities => get_ENTITY_ids_where(
+\@ids => get_ENTITY_ids_where(
     field_1 => $value_1,
     field_2 => $value_2,
     ...
@@ -334,7 +334,7 @@ t_source
 
 
 Perl directory structure:
-    API - SLightly API
+    API - SLight API
 
     Interface <-- provides an executable, that sets-up environment and runs request handler.
         CGI
@@ -397,45 +397,70 @@ Perl directory structure:
         Devel
             # Development aids (in separate package?)
 
-
     URIHandlerBase
         # Base code used by URIHandler objects.
 
     DataStructure
-        Token <-- single data token
-        Embed  <-- embedded object (YouTube movie)
-        Table  <-- 
+        Token
+            # single data token
+
+        Embed
+            # embedded object (YouTube movie)
+
+        Table
+            # Tokens organized into rows and columns
+            # Replaces:
+            #   CoMe::Response::GenericTable
+            #   CoMe::Response::GenericProperties
+
         List
             # General purpose list
+            # Replaces:
+            #   CoMe::Response::GenericGrid
             
             RSS
                 # Data feed for RSS
 
         Form
+            # Replaces:
+            #   CoMe::Response::GenericForm
+            #   CoMe::Response::DiffForm
+
         Dialog
             # General purpose, generic dialog box, with text and buttons
             
             Notification
-            # Dialog box with text and OK button
+                # Dialog box with text and OK button
+                # Replaces:
+                #   CoMe::Response::GenericMessage
 
             YesNo
-            # Dialog box with text, and set of buttons: 'Yes' and 'No'
+                # Dialog box with text, and set of buttons: 'Yes' and 'No'
+                # Replaces:
+                #   CoMe::Response::YesNo
 
-    OHandler - modules, that handle objects
-    OHandlerBase - 'base' modules, used by OHandlers
+    Handler - modules, that handle objects
+    HandlerBase - 'base' modules, used by Handlers
 
     DataType <-- serialize/deserialize data items.
-    Validator <-- check data for errors
+    Validator
+        # Check data for errors
+        # Ported from CoMe as-is
+
     Addon
+        # They replace corresponding CoMe plug-ins
+
         Core::PathBar
         Core::MainMenu
         Core::SubMenu
         Core::Pager
         Core::Toolbox
         Core::SysInfo
+
     AddonBase
 
     Metadata <-- each package has to install it's metadata module here
+        Core
         CMS
         Forum
         Poll
@@ -445,13 +470,82 @@ Perl directory structure:
 In separate packages: (?)
     Devel - development tools
 
-OHandler objects (Object::Aspect::Action + steps)
+Handler objects (Object::Aspect::Action + steps)
 
 
-MyAccount::Data::Overview
+Core::Asset::Show
     view
 
-MyAccount::Data::Edit
+    # replaces:
+    Content/Handler/Content/Attachment.pm
+
+Core::Asset::List
+    view
+
+Core::Search::Search
+    view
+    advanced
+    query
+
+    # replaces:
+    Search/Handler/Search/Overview.pm
+    Search/Handler/Search/Advanced.pm
+
+
+
+Core::Authentication::Login
+
+    # replaces:
+    User/Handler/User/Login.pm
+
+Core::Authentication::Logout
+
+    # replaces:
+    User/Handler/User/Logout.pm
+
+Core::Authentication::Password
+    view
+    request
+    verify
+    change
+
+    # replaces:
+    User/Handler/User/Preset.pm
+
+Core::Authentication::Register
+    view
+    register
+    verify
+
+    # replaces:
+    User/Handler/User/Register.pm
+    User/Handler/User/Everify.pm
+
+# Empty page
+
+Core::Empty::Add
+    view
+    preview
+    save
+
+Core::Empty::Edit
+    view
+    preview
+    save
+
+Core::Empty::Move
+    view
+    move
+
+Core::Empty::Delete
+    view
+    delete
+
+
+MyAccount::MyData::Overview
+    view
+
+MyAccount::MyData::Edit
     view
     save
 
@@ -470,19 +564,56 @@ MyAccount::Avatar::Delete
 MyAccount::Avatar::Image
     view
 
+
 Account::List::Overview
     view
 
-Account::Data::Overview
+    # replaces:
+    User/Handler/Users/Overview.pm
+    User/Handler/Users/Queued.pm
+
+Account::Account::Delete
+    view
+    delete
+
+    # replaces:
+    User/Handler/User/Delete.pm
+
+Account::User::Overview
     view
 
-Account::Data::Edit
+    # replaces:
+    User/Handler/User/Overview.pm
+
+Account::User::New
     view
     save
+
+    # replaces:
+    User/Handler/User/New.pm
+
+Account::User::Edit
+    view
+    save
+
+    # replaces:
+    User/Handler/User/Edit.pm
+
+Account::User::Permissions
+    view
+    grant
+    revoke
+
+    # replaces:
+    User/Handler/User/Permissions.pm
+    User/Handler/User/Revoke.pm
 
 Account::Password::Change
     view
     save
+
+    # replaces:
+    User/Handler/User/Passwd.pm
 
 Account::Avatar::Change
     view
@@ -505,6 +636,64 @@ Account::Avatar::Image
     User/Handler/User/Avatarimage.pm
 
 
+Group::List::Overview
+    view
+
+    # replaces:
+    User/Handler/Group/Overview.pm
+
+Group::Group::New
+    view
+    add
+
+    # replaces:
+    User/Handler/Group/New.pm
+
+Group::Group::Edit
+    view
+    save
+
+    # replaces:
+    User/Handler/Group/Edit.pm
+    User/Handler/Group/Disable.pm
+    User/Handler/Group/Enable.pm
+
+Group::Group::Delete
+    view
+    delete
+
+    # replaces:
+    User/Handler/Group/Delete.pm
+
+Group::Group::Permissions
+    view
+    grant
+    revoke
+
+    # replaces:
+    User/Handler/Group/Permissions.pm
+
+Group::Users::List
+    view
+
+    # replaces:
+    User/Handler/Group/Users.pm
+
+Group::Users::Add
+    view
+    add
+
+    # replaces:
+    User/Handler/Group/Uadd.pm
+
+Group::Users::Remove
+    view
+    remove
+
+    # replaces:
+    User/Handler/Group/Uremove.pm
+
+
 
 CMS::Spec::List
     view
@@ -512,15 +701,23 @@ CMS::Spec::List
     # replaces:
     Content/Handler/Type/Overview.pm
 
-CMS::Spec::Add
+CMS::Spec::New
+    view
+    add
 
     # replaces:
     Content/Handler/Type/New.pm
 
 CMS::Spec::Edit
+    view
+    save
+
+    # replaces:
     Content/Handler/Type/Edit.pm
 
 CMS::Spec::Delete
+    view
+    delete
 
     # replaces:
     Content/Handler/Type/Delete.pm
@@ -548,189 +745,179 @@ CMS::SpecField::Delete
 
 
 
-
-    # replaces:
-    Content/Handler/Content/Attachment.pm
-
-    # replaces:
-    Content/Handler/Content/Attach.pm
-
-    # replaces:
-    Content/Handler/Content/Comment.pm
-
-    # replaces:
-    Content/Handler/Content/Delete.pm
-
-    # replaces:
-    Content/Handler/Content/Details.pm
-
-    # replaces:
-    Content/Handler/Content/Disable.pm
-
-    # replaces:
-    Content/Handler/Content/Edit.pm
-
-    # replaces:
-    Content/Handler/Content/Enable.pm
+CMS::Entry::Add
+    view
+    preview
+    save
 
     # replaces:
     Content/Handler/Content/New.pm
 
+CMS::Entry::Append
+    view
+    preview
+    save
+
+    # replaces:
+    Content/Handler/Content/New.pm
+
+CMS::Entry::Edit
+    view
+    preview
+    save
+
+    # replaces:
+    Content/Handler/Content/Edit.pm
+    Content/Handler/Content/Disable.pm
+    Content/Handler/Content/Enable.pm
+
+CMS::Entry::Asset
+    # Attach asset to the page
+
+    # replaces:
+    Content/Handler/Content/Attach.pm
+
+CMS::Entry::Comment
+    view
+    preview
+    save
+
+    # replaces:
+    Content/Handler/Content/Comment.pm
+
+CMS::Entry::Comment
+    view
+    delete
+
+    # replaces:
+    Content/Handler/Content/Delete.pm
+
+# Deleted
+
+    # replaces:
+    Content/Handler/Content/Details.pm
+
+CMS::Entry::View
+    view
+
     # replaces:
     Content/Handler/Content/Overview.pm
+
+CMS::Entry::Translate
+    view
 
     # replaces:
     Content/Handler/Content/Translate.pm
 
 
-    # replaces:
-    Search/Handler/Search/Advanced.pm
-
-    # replaces:
-    Search/Handler/Search/Overview.pm
-
+Test::Test::Test
+    view
 
     # replaces:
     Test/Handler/Test/Overview.pm
 
 
-    # replaces:
-    User/Handler/Group/Delete.pm
+# Deleted
 
-    # replaces:
-    User/Handler/Group/Disable.pm
-
-    # replaces:
-    User/Handler/Group/Edit.pm
-
-    # replaces:
-    User/Handler/Group/Enable.pm
-
-    # replaces:
-    User/Handler/Group/New.pm
-
-    # replaces:
-    User/Handler/Group/Overview.pm
-
-    # replaces:
-    User/Handler/Group/Permissions.pm
-
-    # replaces:
-    User/Handler/Group/Uadd.pm
-
-    # replaces:
-    User/Handler/Group/Uremove.pm
-
-    # replaces:
-    User/Handler/Group/Users.pm
-
-
-    # replaces:
-    User/Handler/User/Delete.pm
-
-    # replaces:
     User/Handler/User/Details.pm
 
-    # replaces:
+# Deleted
+
     User/Handler/User/Disable.pm
 
-    # replaces:
-    User/Handler/User/Edit.pm
+# Deleted
 
-    # replaces:
     User/Handler/User/Enable.pm
 
-    # replaces:
-    User/Handler/User/Everify.pm
+# Deleted
 
-    # replaces:
-    User/Handler/User/Login.pm
-
-    # replaces:
-    User/Handler/User/Logout.pm
-
-    # replaces:
-    User/Handler/User/New.pm
-
-    # replaces:
-    User/Handler/User/Overview.pm
-
-    # replaces:
-    User/Handler/User/Passwd.pm
-
-    # replaces:
-    User/Handler/User/Permissions.pm
-
-    # replaces:
-    User/Handler/User/Preset.pm
-
-    # replaces:
-    User/Handler/User/Register.pm
-
-    # replaces:
-    User/Handler/User/Revoke.pm
-
-
-    # replaces:
     User/Handler/Users/Details.pm
 
-    # replaces:
-    User/Handler/Users/Overview.pm
+
+
+Forum::Root::New
 
     # replaces:
-    User/Handler/Users/Queued.pm
+    Forum/Handler/Forum/New.pm
 
+Forum::Root::Edit
+
+    # replaces:
+    Forum/Handler/Forum/Edit.pm
+
+Forum::Root::Delete
+
+    # replaces:
+    Forum/Handler/Forum/Delete.pm
+
+# Deleted
+
+    Forum/Handler/Forum/Overview.pm
+
+
+Forum::Category::Delete
 
     # replaces:
     Forum/Handler/Category/Delete.pm
 
-    # replaces:
-    Forum/Handler/Category/Edit.pm
+Forum::Category::New
 
     # replaces:
     Forum/Handler/Category/New.pm
+
+Forum::Category::Edit
+
+    # replaces:
+    Forum/Handler/Category/Edit.pm
+
+Forum::Category::Threads
 
     # replaces:
     Forum/Handler/Category/Overview.pm
 
 
-    # replaces:
-    Forum/Handler/Forum/Delete.pm
-
-    # replaces:
-    Forum/Handler/Forum/Edit.pm
-
-    # replaces:
-    Forum/Handler/Forum/New.pm
-
-    # replaces:
-    Forum/Handler/Forum/Overview.pm
-
-
-    # replaces:
-    Forum/Handler/Reply/Delete.pm
-
-    # replaces:
-    Forum/Handler/Reply/Edit.pm
+Forum::Reply::New
 
     # replaces:
     Forum/Handler/Reply/New.pm
 
-    # replaces:
-    Forum/Handler/Reply/Overview.pm
+Forum::Reply::Quote
 
     # replaces:
     Forum/Handler/Reply/Quote.pm
 
+Forum::Replay::Edit
 
     # replaces:
-    Forum/Handler/Thread/Delete.pm
+    Forum/Handler/Reply/Edit.pm
+
+Forum::Reply::Delete
 
     # replaces:
-    Forum/Handler/Thread/Edit.pm
+    Forum/Handler/Reply/Delete.pm
+
+
+Forum::Thread::New
 
     # replaces:
     Forum/Handler/Thread/New.pm
 
+Forum::Thread::Edit
+
+    # replaces:
+    Forum/Handler/Thread/Edit.pm
+
+Forum::Thread::Overview
+    view
+
     # replaces:
     Forum/Handler/Thread/Overview.pm
+
+Forum::Thread::Delete
+    view
+    save
+
+    # replaces:
+    Forum/Handler/Thread/Delete.pm
+
+
