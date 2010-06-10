@@ -1,0 +1,25 @@
+--- 
+/home/natanael/Projekty/Perl/SLight/t/0-smoke/../../lib/SLight.pm: 
+  md5: 227d9a6df6730a861af76555394b5636
+  problems: []
+
+/home/natanael/Projekty/Perl/SLight/t/0-smoke/../../lib/SLight/Core/Config.pm: 
+  md5: 91a0a8e4b4787e847eeae45b483c94b5
+  problems: []
+
+/home/natanael/Projekty/Perl/SLight/t/0-smoke/../../lib/SLight/Core/IO.pm: 
+  md5: 1bd998bf9b5e03107663e3186d12b563
+  problems: []
+
+/home/natanael/Projekty/Perl/SLight/t/0-smoke/../../lib/SLight/Core/URL.pm: 
+  md5: ae098b471fbaea5ccf7758d26e9901bc
+  problems: []
+
+/home/natanael/Projekty/Perl/SLight/t/0-smoke/../../lib/SLight/Devel/SmokeTests.pm: 
+  md5: 7344b84c8db384ddd493fad6aeb6fe41
+  problems: []
+
+/home/natanael/Projekty/Perl/SLight/t/0-smoke/../../lib/SLight/PathHandler/Page.pm: 
+  md5: 38c7e43c8ebfc0ab4ddf3aa66314fc59
+  problems: []
+

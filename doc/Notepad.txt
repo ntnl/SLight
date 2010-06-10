@@ -133,9 +133,9 @@ Request "flow" diagram:
        |         |            |
        |         |<-----------'
        |         |  
-       |         |------> URI Handler
+       |         |------> Path Handler
        |         |            |
-       |         |        Parse URI:
+       |         |        Parse Path:
        |         |        - path hander
        |         |        - path
        |         |        - language
@@ -365,9 +365,9 @@ Perl directory structure:
         JSON
         XML
 
-    URIHandler
+    PathHandler
         Page
-            # Default URI handler
+            # Default Path handler
             # Looks up into Page storage to find which Objects/Actions should be invoked.
 
         CMS
@@ -397,8 +397,8 @@ Perl directory structure:
         Devel
             # Development aids (in separate package?)
 
-    URIHandlerBase
-        # Base code used by URIHandler objects.
+    PathHandlerBase
+        # Base code used by PathHandler objects.
 
     DataStructure
         Token

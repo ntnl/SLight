@@ -1,48 +1,87 @@
 
     SLight Project ToDo
 
-    Milestone 1 - Concept - 2010-06-012
+=--= Milestone 1 - Concept - 2010-06-012
 
 [X] Write ToDo skeleton
 [>] Upload a static Web page.
-[ ] Organize a domain
+[>] Organize a domain
 [X] Document the concepts
 [X] Document directory structure
 [X] Outline needed Perl Handler modules (and list which CoMe modules they replace)
 [X] Outline needed DataStructure modules (and list which CoMe modules they replace)
 
-    Milestone 2 - Self-hosting - 2010-06-19
+    Definition of done:
+    
+        SLight officially exists "on the internet"
 
-[ ] Core
-[ ]     URI handling
+=--= Milestone 2 - Self-hosting - 2010-06-19
+
+[>] Core
+[>]     URI handling
 [ ]     Request handler
-[ ]     Web output handler + cgi
+[ ]     Web output handler
 [ ] API
 [ ]     URL handling (parsing and serializing)
 [ ]     Session handling
 [ ]     Page store and path handling
+[ ] Interface
+[ ]     CGI
+[ ]     FCGI
+[ ] Releng
+[ ]     Package creator
+[ ]     Package instalator
 
-    Milestone 3 - Working CMS - 2010-06-26
+    Definition of done:
+
+        Pages are - in some way - server by SLight.
+
+=--= Milestone 3 - Working CMS - 2010-06-26
 
 [ ] API
 [ ]     Object store
+[ ]     ObjectSpec store
 [ ] HTML Output
 
-    Milestone 4 - User management - 2010-07-10
+    Definition of done:
+
+        Content can be managed (added, edited and deleted) trough browser.
+
+=--= Milestone 4 - User management - 2010-07-10
 
 [ ] User API
+[ ]     SLight::API::User
+[ ]     SLight::API::Group
 [ ] User-related Handler objects
 
-    Milestone 5 - Forum - 2010-07-03
+    Definition of done:
 
+        Users can create accounts, reset their passwords.
+        Groups can be managed.
+        Permissions can be managed.
+
+=--= Milestone 5 - Forum - 2010-07-03
+    
 [ ] Forum-related Handler objects
+    
+    Definition of done:
 
-    Milestone 6 - Initial AJAX support - 2010-07-17
+        Forum is complete.
+
+=--= Milestone 6 - Initial AJAX support - 2010-07-17
 
 [ ] AJAX Protocol object
 [ ] P.O.C. of some js/html changes
 
-    Milestone 7 - Full AJAX support - 2010-07-24
+    Definition of done:
 
+        At least one action works trough AJAX
+
+=--= Milestone 7 - Full AJAX support - 2010-07-24
+    
 [ ] Upgrade all applicable functionality to support AJAX
+
+    Definition of done:
+
+        Adding, Editing, Deleting, Posting threads, responding - all working trough AJAX
 
