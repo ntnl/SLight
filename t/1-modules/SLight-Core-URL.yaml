@@ -20,6 +20,7 @@ Path only x2 - parse:
   path_handler: Page
   protocol: web
   step: view
+Path with path handler - make: /_Bar/Foo/
 Path with path handler - parse: 
   action: Overview
   lang: ''
@@ -39,14 +40,23 @@ Root - parse:
   path_handler: Page
   protocol: web
   step: view
-Path with path handler - parse:
-  action: Overview
+Action only - parse:
+  action: Bar
   lang: ''
   page: 1
-  path: 
-    - Foo
-  path_handler: Bar
+  path: []
+  path_handler: Page
   protocol: web
   step: view 
-Path with path handler - make: /_Bar/Foo/
-Action only: /foo.web
+Action only - make: /Bar.web
+Everything - parse:
+  action: Aaa
+  lang: pl
+  page: 3
+  path: 
+   - Bar
+   - Baz
+  path_handler: Foo
+  protocol: ajax
+  step: bbb 
+Everything - make: http://localhost/_Foo/Bar/Baz/Aaa-bbb-pl-3.ajax?a=1&D=other_profile-test_profile&b=2

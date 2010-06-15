@@ -23,8 +23,9 @@
 [>]     URI handling
 [ ]     Request handler
 [ ]     Web output handler
+[ ]     DB abstraction module
+[ ]     SQLite DB driver
 [ ] API
-[ ]     URL handling (parsing and serializing)
 [ ]     Session handling
 [ ]     Page store and path handling
 [ ] Interface
@@ -35,7 +36,7 @@
 [ ]     Prepare TODO page (template)
 [ ]     Set-up CGI
 [>] Releng
-[>]     Packager based on Module::Build
+[X]     Packager based on Module::Build
 [ ]     Web page updater
 
     Definition of done:

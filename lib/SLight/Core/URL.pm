@@ -35,7 +35,7 @@ my $re_step        = qr{ ^ [a-z]{3,} $ }xs;
 
 # SLight Nice url:
 # 
-#   /_Page/bar/baz/action-step-pl-page.web
+#   /_Page/bar/baz/Action-step-pl-page.web
 #   |  1  |   2   |        3
 #
 #   1: Path Handler package
@@ -53,7 +53,7 @@ my $re_step        = qr{ ^ [a-z]{3,} $ }xs;
 #       Optional.
 #       Default: Overview.web
 #
-#       foo-bar-pl-1.web
+#       Foo-bar-pl-1.web
 #        |   |  |  |  '--- Protocol handler. Mandatory.
 #        |   |  |  '--- Optional. Page. Default: 1
 #        |   |  '--- Optional. Language. Default - first language from the config.
@@ -87,8 +87,8 @@ sub parse_url { # {{{
     #               2 ---.                          5 ---..--- 6
     #            1 ---.  |             3 ---..--- 4      ||         .--- 7
     #                 |  |                  ||           ||         |
-    if ($string =~ m{^(/_($re_perl_module))?((/[^/]+)*)}s) {
-#    if ($string =~ m{^(/_($re_perl_module))?((/[^/+?])*)/(([^\.]+)\.(\w+))?$}s) {
+#    if ($string =~ m{^(/_($re_perl_module))?((/[^/]+)*)}s) {
+    if ($string =~ m{^(/_($re_perl_module))?((/[^/]+)*)/(([^\.]+)\.([^\.]+))?$}s) {
 #        warn "1($1) 2(". ($2 or q{}) .") 3($3) 4(". ($4 or q{}) .") 5($5)";
 
         my %url_hash = (
@@ -139,9 +139,7 @@ sub parse_url { # {{{
         return \%url_hash;
     }
 
-    warn "No match!";
-
-    return;
+    return carp("Unable to parse URL: ". $string);
 } #  }}}
 
 # Return an URL, as a string, that is made from given options.
@@ -170,7 +168,7 @@ sub make_url { # {{{
     # Normally, hostname and protocol are not needed..
     my $base = q{};
     if ($P{'add_domain'}) {
-        $base = q{http://} . SLight::Core::Config::get_option('domain') .q{/};
+        $base = q{http://} . SLight::Core::Config::get_option('domain');
     }
 
     my $url = $base . SLight::Core::Config::get_option('web_root');

@@ -8,11 +8,11 @@
   problems: []
 
 /home/natanael/Projekty/Perl/SLight/t/0-smoke/../../lib/SLight/Core/IO.pm: 
-  md5: 1bd998bf9b5e03107663e3186d12b563
+  md5: 5f79198da125f5a22449c8fdd8280913
   problems: []
 
 /home/natanael/Projekty/Perl/SLight/t/0-smoke/../../lib/SLight/Core/URL.pm: 
-  md5: ae098b471fbaea5ccf7758d26e9901bc
+  md5: 41b597b909c26aaaeed363804e214fe0
   problems: []
 
 /home/natanael/Projekty/Perl/SLight/t/0-smoke/../../lib/SLight/Devel/SmokeTests.pm: 
