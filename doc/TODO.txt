@@ -4,8 +4,10 @@
 =--= Milestone 1 - Concept - 2010-06-012
 
 [X] Write ToDo skeleton
-[>] Upload a static Web page.
-[>] Organize a domain
+[X] Web page
+[X]     Make an initial web page
+[X]     Upload a static Web page.
+[X]     Organize a domain
 [X] Document the concepts
 [X] Document directory structure
 [X] Outline needed Perl Handler modules (and list which CoMe modules they replace)
@@ -28,9 +30,13 @@
 [ ] Interface
 [ ]     CGI
 [ ]     FCGI
-[ ] Releng
-[ ]     Package creator
-[ ]     Package instalator
+[ ] Web page
+[ ]     Prepare Authors page (template)
+[ ]     Prepare TODO page (template)
+[ ]     Set-up CGI
+[>] Releng
+[>]     Packager based on Module::Build
+[ ]     Web page updater
 
     Definition of done:
 

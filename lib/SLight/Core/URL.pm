@@ -13,6 +13,7 @@ package SLight::Core::URL;
 ################################################################################
 
 use strict; use warnings; # {{{
+use base 'Exporter';
 
 use SLight::Core::Config;
 
@@ -21,6 +22,11 @@ use URI::Escape;
 # }}}
 
 our $VERSION = '0.0.1';
+
+our @EXPORT_OK = qw(
+    parse_url
+    make_url
+);
 
 # Two no-critic's bellow are critic bugs :( there are no punctation vars, yet perlcritic sees them :(
 my $re_language    = qr{ ^ ( [a-z] [a-z] ( _ [a-z] [a-z] )? )? $ }xs;
@@ -78,15 +84,16 @@ sub parse_url { # {{{
     my $web_root = SLight::Core::Config::get_option('web_root');
     $string =~ s{^$web_root/?}{/}s;
 
-    #               2 ---.                       5 ---..--- 6
-    #            1 ---.  |          3 ---..--- 4      ||         .--- 7
-    #                 |  |               ||           ||         |
-    if ($string =~ m{^(/_($re_perl_module))?((/[^/+?])*)/(([^\.]+)\.(\w+))?$}s) {
+    #               2 ---.                          5 ---..--- 6
+    #            1 ---.  |             3 ---..--- 4      ||         .--- 7
+    #                 |  |                  ||           ||         |
+    if ($string =~ m{^(/_($re_perl_module))?((/[^/]+)*)}s) {
+#    if ($string =~ m{^(/_($re_perl_module))?((/[^/+?])*)/(([^\.]+)\.(\w+))?$}s) {
 #        warn "1($1) 2(". ($2 or q{}) .") 3($3) 4(". ($4 or q{}) .") 5($5)";
 
         my %url_hash = (
             path_handler => ( $2 or 'Page' ),
-            path         => $3,
+            path         => [ split /\//s, $3 ],
 
             # Defaults:
             action => 'Overview',
@@ -96,6 +103,7 @@ sub parse_url { # {{{
 
             protocol => ( $7 or 'web' ),
         );
+        shift @{ $url_hash{'path'} };
 
         if ($5) {
             my $action_part = $6;
@@ -131,6 +139,8 @@ sub parse_url { # {{{
         return \%url_hash;
     }
 
+    warn "No match!";
+
     return;
 } #  }}}
 
@@ -139,8 +149,8 @@ sub make_url { # {{{
     my %P = validate(
         @_,
         {
-            path_handler => { type=>SCALAR, optional=>1, default=>'Page' },
-            path         => { type=>ARRAYREF, optional=>1 },
+            path_handler => { type=>SCALAR,   optional=>1, default=>'Page' },
+            path         => { type=>ARRAYREF, optional=>1, default=>[] },
 
             action => { type=>SCALAR,  regex=>$re_perl_module, optional=>1, default=>'Overview'},
             step   => { type=>SCALAR,  regex=>$re_step,        optional=>1, default=>'view' },
@@ -160,16 +170,19 @@ sub make_url { # {{{
     # Normally, hostname and protocol are not needed..
     my $base = q{};
     if ($P{'add_domain'}) {
-        $base = q{http://} . SLight::Core::Config::get_option('domain');
+        $base = q{http://} . SLight::Core::Config::get_option('domain') .q{/};
     }
 
-    my $url = $base . SLight::Core::Config::get_option('web_root'). $P{'pkg'};
+    my $url = $base . SLight::Core::Config::get_option('web_root');
 
     if ($P{'path_handler'} and $P{'path_handler'} ne 'Page') {
-        $url .= q{_} . $P{'path_handler'};
+        $url .= q{_} . $P{'path_handler'} . q{/};
     }
     
-    $url .= q{/} . join q{/}, $P{'path'};
+    if (scalar @{ $P{'path'} }) {
+        $url .= join q{/}, @{ $P{'path'} };
+        $url .= q{/};
+    }
 
     my @file_parts;
     if ($P{'action'} and $P{'action'} ne 'Overview') {
@@ -213,7 +226,7 @@ sub make_url { # {{{
         }
 
         if (scalar @pairs) {
-            $url .= q{?}. join q{&}, @pairs;
+            $url .= q{?} . join q{&}, @pairs;
         }
     }
 

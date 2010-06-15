@@ -1,0 +1,16 @@
+Build.PL
+data/Logo.svg
+doc/Notepad.txt
+doc/TODO.txt
+lib/SLight.pm
+lib/SLight/Core/Config.pm
+lib/SLight/Core/IO.pm
+lib/SLight/Core/URL.pm
+lib/SLight/Devel/SmokeTests.pm
+lib/SLight/PathHandler/Page.pm
+MANIFEST			This list of files
+t/0-smoke/compile.t
+t/0-smoke/critic-cache.yaml
+t/0-smoke/critic.t
+t/1-modules/SLight-Core-URL.t
+t/1-modules/SLight-Core-URL.yaml

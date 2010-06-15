@@ -1,0 +1,52 @@
+--- 
+Path only - make: /Foo/
+Path only - parse: 
+  action: Overview
+  lang: ''
+  page: 1
+  path: 
+    - Foo
+  path_handler: Page
+  protocol: web
+  step: view
+Path only x2 - make: /Foo/Bar/
+Path only x2 - parse: 
+  action: Overview
+  lang: ''
+  page: 1
+  path: 
+    - Foo
+    - Bar
+  path_handler: Page
+  protocol: web
+  step: view
+Path with path handler - parse: 
+  action: Overview
+  lang: ''
+  page: 1
+  path: 
+    - Foo
+  path_handler: Bar
+  protocol: web
+  step: view
+Root - make: /
+Root - parse: 
+  action: Overview
+  lang: ''
+  page: 1
+  path: []
+
+  path_handler: Page
+  protocol: web
+  step: view
+Path with path handler - parse:
+  action: Overview
+  lang: ''
+  page: 1
+  path: 
+    - Foo
+  path_handler: Bar
+  protocol: web
+  step: view 
+Path with path handler - make: /_Bar/Foo/
+Action only: /foo.web

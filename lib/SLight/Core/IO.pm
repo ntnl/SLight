@@ -13,16 +13,19 @@ package SLight::Core::IO;
 ################################################################################
 use strict; use warnings; # {{{
 use base 'Exporter';
-our @EXPORT_OK = qw(
-    find_files
-    slurp_pipe
-    unique_id
-);
 
 use Carp::Assert::More qw( assert_defined );
 use English qw( -no_match_vars );
 use File::Slurp qw( read_dir );
 # }}}
+
+our $VERSION = '0.0.1';
+
+our @EXPORT_OK = qw(
+    find_files
+    slurp_pipe
+    unique_id
+);
 
 # Look for files in given path, and 'bellow' it.
 # Parameters:

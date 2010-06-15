@@ -1,2 +1,8 @@
 .*.swo
 .*.swp
+Build
+_build
+*.bak
+MYMETA.yml
+cover_db/
+
