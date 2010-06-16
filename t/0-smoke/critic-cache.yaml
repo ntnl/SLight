@@ -4,11 +4,23 @@
   problems: []
 
 /home/natanael/Projekty/Perl/SLight/t/0-smoke/../../lib/SLight/Core/Config.pm: 
-  md5: 91a0a8e4b4787e847eeae45b483c94b5
+  md5: 3329d887fc612341a20c66aa1647d415
+  problems: []
+
+/home/natanael/Projekty/Perl/SLight/t/0-smoke/../../lib/SLight/Core/DB.pm: 
+  md5: 008c49460ecb02a7c28d0f6b14529fd8
   problems: []
 
 /home/natanael/Projekty/Perl/SLight/t/0-smoke/../../lib/SLight/Core/IO.pm: 
   md5: 5f79198da125f5a22449c8fdd8280913
+  problems: []
+
+/home/natanael/Projekty/Perl/SLight/t/0-smoke/../../lib/SLight/Core/SQL.pm: 
+  md5: 839801e6d435280ec69fcc11a80d3f2d
+  problems: []
+
+/home/natanael/Projekty/Perl/SLight/t/0-smoke/../../lib/SLight/Core/SQLite.pm: 
+  md5: d806257c960fd574b21e34c717f8936b
   problems: []
 
 /home/natanael/Projekty/Perl/SLight/t/0-smoke/../../lib/SLight/Core/URL.pm: 

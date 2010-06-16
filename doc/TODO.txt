@@ -20,13 +20,13 @@
 =--= Milestone 2 - Self-hosting - 2010-06-19
 
 [>] Core
-[>]     URI handling
+[X]     URI handling
 [ ]     Request handler
 [ ]     Web output handler
-[ ]     DB abstraction module
-[ ]     SQLite DB driver
-[ ] API
-[ ]     Session handling
+[X]     DB abstraction module
+[X]     SQLite DB driver
+[>] API
+[>]     Session handling
 [ ]     Page store and path handling
 [ ] Interface
 [ ]     CGI
