@@ -55,14 +55,6 @@ sub initialize { # {{{
         push @INC, @{ $config{'lib'} };
     }
 
-    # Check, if 'packages' are configured. Autoconfigure, if not.
-    if (not $config{'packages'}) {
-        $config{'packages'} = _auto_detect_packages();
-    }
-
-    # Now, that We have packages - register them.
-    _register_packages($config{'packages'});
-
     return $initialized = 1;
 } # }}}
 
@@ -101,14 +93,14 @@ sub find_and_load { # {{{
 sub set_option { # {{{
     my ( $option, $value ) = @_;
 
-    confess_on_false( defined $config{$option}, "Option: $option is undefined!");
+    assert_defined( $config{$option}, "Option: $option is defined.");
 
     return $config{$option} = $value;
 } # }}}
 
 sub get_option { # {{{
     my ( $option ) = @_;
-    
+
     return $config{$option};
 } # }}}
 

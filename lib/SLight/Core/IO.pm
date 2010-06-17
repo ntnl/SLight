@@ -17,6 +17,7 @@ use base 'Exporter';
 use Carp::Assert::More qw( assert_defined );
 use English qw( -no_match_vars );
 use File::Slurp qw( read_dir );
+use YAML::Syck qw( DumpFile );
 # }}}
 
 our $VERSION = '0.0.1';
@@ -25,6 +26,7 @@ our @EXPORT_OK = qw(
     find_files
     slurp_pipe
     unique_id
+    safe_save_YAML
 );
 
 # Look for files in given path, and 'bellow' it.
@@ -103,6 +105,44 @@ sub unique_id { # {{{
     }
 
 	return $uuid_generator->to_string($uuid_generator->create());
+} # }}}
+
+# Safe write to YAML-based data files.
+# Implements:
+#   - atomic file write
+#   - file locking
+# Parameters:
+#   path : where to write - full path
+#   data : data to write
+sub safe_save_YAML { # {{{
+    my ( $filename, $data ) = @_;
+    
+    my $tmp_file_name = $filename ."-new-". $PID;
+
+    # Make sure, that we are the only ones writing to that file.
+    my $lockfile_handle;
+    assert_defined(
+        ( open $lockfile_handle, '>>', $filename .'-lock'), ## no critic qw(RequireCheckedOpen)
+        "Unable to open lock file ($filename-lock)!"
+    );
+    flock $lockfile_handle, 2;
+
+    # Dump data to the temporarly file.
+    # If something bad happens - original file remains intact.
+    assert_defined( DumpFile($tmp_file_name, $data), "Unable to write to: $tmp_file_name\n");
+
+    my $write_ok = 0;
+    if (-s $tmp_file_name > 0) {
+        # This operation should be atomic, so we avoid any 'Race condition'.
+        $write_ok = rename $tmp_file_name, $filename;
+    }
+    # At this point we can allow anyone to work on the file.
+    flock $lockfile_handle, 8;
+    close $lockfile_handle;
+
+    assert_defined($write_ok, "Detected problem when saving to: '$tmp_file_name' or while swapping files!");
+
+    return 1;
 } # }}}
 
 # vim: fdm=marker

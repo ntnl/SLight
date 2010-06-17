@@ -5,4 +5,4 @@ _build
 *.bak
 MYMETA.yml
 cover_db/
-
+critic-cache.yaml

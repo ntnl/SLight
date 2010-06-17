@@ -31,6 +31,7 @@ plan tests =>
     + 5 # is_valid_session_id
     + 1 # session_filename
     + 2 # validate_session
+    + 2 # drop
 ;
 
 SLight::Test::Site::prepare_empty(
@@ -40,6 +41,8 @@ SLight::Test::Site::prepare_empty(
 use SLight::Core::Session;
 
 is (SLight::Core::Session::session_id(), undef, 'get session id uninitialized');
+
+is (SLight::Core::Session::drop(), undef, 'drop session (noop if no session)');
 
 my $session = SLight::Core::Session::start();
 
@@ -103,7 +106,7 @@ is (SLight::Core::Session::part('foo'),        undef, 'part_reset ok');
 is (SLight::Core::Session::is_valid_session_id('379A7C9E-B1CD-11DD-88FF-FF22071AC5A9'), 1, 'is_valid_session_id GOOD');
 
 is (SLight::Core::Session::is_valid_session_id(''), undef, 'is_valid_session_id BAD (none)');
-is (Slight::Core::Session::is_valid_session_id('dsdsasdsadsdsadsadsadsadsadasdsasadadsadsadsadsadsadsadasdasdsadasdas'), undef, 'is_valid_session_id BAD (too long)');
+is (SLight::Core::Session::is_valid_session_id('dsdsasdsadsdsadsadsadsadsadasdsasadadsadsadsadsadsadsadasdasdsadasdas'), undef, 'is_valid_session_id BAD (too long)');
 is (SLight::Core::Session::is_valid_session_id('dsdsasd'), undef, 'is_valid_session_id BAD (too short)');
 is (SLight::Core::Session::is_valid_session_id('$%^TGBI*()N^&*H*()$#%%^'), undef, 'is_valid_session_id BAD (invalid chars)');
 
@@ -113,5 +116,10 @@ ok (-f SLight::Core::Session::session_filename(), 'session_filename');
 
 is (ref SLight::Core::Session::validate_session([]), 'HASH', "validate_session - must be a hash!");
 is (ref SLight::Core::Session::validate_session({ expires=>1234}), 'HASH', "validate_session - has expired!");
+
+# Drop session.
+SLight::Core::Session::drop();
+
+is (-f SLight::Core::Session::session_filename(), undef, 'drop() was successful');
 
 # vim: fdm=marker
