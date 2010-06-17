@@ -26,8 +26,8 @@
 [X]     DB abstraction module
 [X]     SQLite DB driver
 [>] API
-[>]     Session handling
-[ ]     Page store and path handling
+[X]     Session handling
+[>]     Page store and path handling
 [ ] Interface
 [ ]     CGI
 [ ]     FCGI
