@@ -25,9 +25,9 @@
 [ ]     Web output handler
 [X]     DB abstraction module
 [X]     SQLite DB driver
-[>] API
+[X] API
 [X]     Session handling
-[>]     Page store and path handling
+[X]     Page store and path handling
 [ ] Interface
 [ ]     CGI
 [ ]     FCGI
@@ -48,7 +48,39 @@
 [ ] API
 [ ]     Object store
 [ ]     ObjectSpec store
+[ ]     Asset store
+[ ]     Comment store
 [ ] HTML Output
+[ ] CMS Handler objects
+[ ]     SLight::Handler::Test::Test::Test
+[ ]     SLight::Handler::Core::Asset
+[ ]     SLight::Handler::Core::Asset::Show
+[ ]     SLight::Handler::Core::Asset::List
+[ ]     SLight::Handler::Core::Asset::List
+[ ]     SLight::Handler::Core::Empty
+[ ]         SLight::Handler::Core::Empty::Add
+[ ]         SLight::Handler::Core::Empty::Edit
+[ ]         SLight::Handler::Core::Empty::Move
+[ ]         SLight::Handler::Core::Empty::Delete
+[ ]     SLight::Handler::CMS::Spec
+[ ]         SLight::Handler::CMS::Spec::List
+[ ]         SLight::Handler::CMS::Spec::New
+[ ]         SLight::Handler::CMS::Spec::Edit
+[ ]         SLight::Handler::CMS::Spec::Delete
+[ ]     SLight::Handler::CMS::SpecField
+[ ]         SLight::Handler::CMS::SpecField::List
+[ ]         SLight::Handler::CMS::SpecField::Add
+[ ]         SLight::Handler::CMS::SpecField::Edit
+[ ]         SLight::Handler::CMS::SpecField::Delete
+[ ]     SLight::Handler::CMS::Entry
+[ ]         SLight::Handler::CMS::Entry::Add
+[ ]         SLight::Handler::CMS::Entry::Append
+[ ]         SLight::Handler::CMS::Entry::Edit
+[ ]         SLight::Handler::CMS::Entry::Asset
+[ ]         SLight::Handler::CMS::Entry::Comment
+[ ]         SLight::Handler::CMS::Entry::Comment
+[ ]         SLight::Handler::CMS::Entry::View
+[ ]         SLight::Handler::CMS::Entry::Translate
 
     Definition of done:
 
@@ -60,6 +92,38 @@
 [ ]     SLight::API::User
 [ ]     SLight::API::Group
 [ ] User-related Handler objects
+[ ]     SLight::Handler::Core::Authentication
+[ ]         SLight::Handler::Core::Authentication::Login
+[ ]         SLight::Handler::Core::Authentication::Logout
+[ ]         SLight::Handler::Core::Authentication::Password
+[ ]         SLight::Handler::Core::Authentication::Register
+[ ]     SLight::Handler::MyAccount
+[ ]         SLight::Handler::MyAccount::MyData::Overview
+[ ]         SLight::Handler::MyAccount::MyData::Edit
+[ ]         SLight::Handler::MyAccount::Password::Change
+[ ]         SLight::Handler::MyAccount::Avatar::Change
+[ ]         SLight::Handler::MyAccount::Avatar::Delete
+[ ]         SLight::Handler::MyAccount::Avatar::Image
+[ ]     SLight::Handler::Account
+[ ]         SLight::Handler::Account::List::Overview
+[ ]         SLight::Handler::Account::Account::Delete
+[ ]         SLight::Handler::Account::User::Overview
+[ ]         SLight::Handler::Account::User::New
+[ ]         SLight::Handler::Account::User::Edit
+[ ]         SLight::Handler::Account::User::Permissions
+[ ]         SLight::Handler::Account::Password::Change
+[ ]         SLight::Handler::Account::Avatar::Change
+[ ]         SLight::Handler::Account::Avatar::Delete
+[ ]         SLight::Handler::Account::Avatar::Image
+[ ]     SLight::Handler::Group
+[ ]         SLight::Handler::Group::List::Overview
+[ ]         SLight::Handler::Group::Group::New
+[ ]         SLight::Handler::Group::Group::Edit
+[ ]         SLight::Handler::Group::Group::Delete
+[ ]         SLight::Handler::Group::Group::Permissions
+[ ]         SLight::Handler::Group::Users::List
+[ ]         SLight::Handler::Group::Users::Add
+[ ]         SLight::Handler::Group::Users::Remove
 
     Definition of done:
 
@@ -70,6 +134,25 @@
 =--= Milestone 5 - Forum - 2010-07-03
     
 [ ] Forum-related Handler objects
+[ ]     SLight::Handler::Forum::Root
+[ ]         SLight::Handler::Forum::Root::New
+[ ]         SLight::Handler::Forum::Root::Edit
+[ ]         SLight::Handler::Forum::Root::Delete
+[ ]     SLight::Handler::Forum::Category
+[ ]         SLight::Handler::Forum::Category::Delete
+[ ]         SLight::Handler::Forum::Category::New
+[ ]         SLight::Handler::Forum::Category::Edit
+[ ]         SLight::Handler::Forum::Category::Threads
+[ ]     SLight::Handler::Forum::Reply
+[ ]         SLight::Handler::Forum::Reply::New
+[ ]         SLight::Handler::Forum::Reply::Quote
+[ ]         SLight::Handler::Forum::Replay::Edit
+[ ]         SLight::Handler::Forum::Reply::Delete
+[ ]     SLight::Handler::Forum::Thread
+[ ]         SLight::Handler::Forum::Thread::New
+[ ]         SLight::Handler::Forum::Thread::Edit
+[ ]         SLight::Handler::Forum::Thread::Overview
+[ ]         SLight::Handler::Forum::Thread::Delete
     
     Definition of done:
 
