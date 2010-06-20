@@ -11,12 +11,12 @@ package SLight::Core::URL;
 # More information on: http://slight-cms.org/
 # 
 ################################################################################
-
 use strict; use warnings; # {{{
 use base 'Exporter';
 
 use SLight::Core::Config;
 
+use Carp;
 use Params::Validate qw( :all );
 use URI::Escape;
 # }}}

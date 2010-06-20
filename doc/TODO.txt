@@ -21,16 +21,16 @@
 
 [>] Core
 [X]     URI handling
-[ ]     Request handler
-[ ]     Web output handler
+[>]     Request handler
+[>]     Web output handler
 [X]     DB abstraction module
 [X]     SQLite DB driver
 [X] API
 [X]     Session handling
 [X]     Page store and path handling
-[ ] Interface
-[ ]     CGI
-[ ]     FCGI
+[>] Interface
+[>]     CGI
+[X]     FCGI
 [ ] Web page
 [ ]     Prepare Authors page (template)
 [ ]     Prepare TODO page (template)
