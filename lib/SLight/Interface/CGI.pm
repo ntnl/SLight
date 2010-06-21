@@ -198,7 +198,6 @@ sub safe_main { # {{{
     my $request_result = $self->run_request(
         url          => $url_hash,
         options      => \%options,
-        output       => $output_type,
         interactive  => 1,
         default_lang => $default_language,
     );

@@ -19,7 +19,7 @@ plan tests =>
     + 1 # Test, if truncated form data will trigger error
 ;
 
-open STDIN, q{<}, $Bin .q{/../query_string.txt};
+open STDIN, q{<}, $Bin . q{/../query_string.txt};
 
 my $interface = SLight::Interface::CGI->new();
 

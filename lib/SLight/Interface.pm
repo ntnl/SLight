@@ -46,16 +46,18 @@ sub run_request { # {{{
         {
             url          => { type=>HASHREF },
             options      => { type=>HASHREF },
-            interactive  => { type=>SCALAR, optional=>1 },
             default_lang => { type=>SCALAR, optional=>1 },
         }
     );
     
     my $start_time = time;
 
-#    use Data::Dumper; warn "Running Request: ". Dumper \%P;
-
+    # Module is loaded at runtime. If it fails - interface handler can
+    # still return a nice error message.
+    # Even compilation errors can be handled this technique.
     require SLight::Core::Request;
+
+#    use Data::Dumper; warn "Running Request: ". Dumper \%P;
 
     # The fun begins now :)
     if (not $self->{'request'}) {

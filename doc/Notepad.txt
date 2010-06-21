@@ -44,7 +44,7 @@ Request "flow" diagram:
 
  Request starts
        |
-       |---> Request handler (object)
+       |---> Request handler (object) SLight::Core::Request
        |         |
        |         |----> Session manager
        |         |            |
@@ -52,7 +52,7 @@ Request "flow" diagram:
        |         |            |
        |         |<-----------'
        |         |  
-       |         |------> Path Handler
+       |         |------> Path Handler SLight::PathHandler::**
        |         |            |
        |         |        Parse Path:
        |         |        - path hander
@@ -61,15 +61,11 @@ Request "flow" diagram:
        |         |        - protocol
        |         |        - ...
        |         |            |
-       |         |<-----------'
-       |         |  
-       |         |-----> Path handler (object)
-       |         |            |
        |         |   Identify target object(s)
        |         |            |
        |         |<-----------'
        |         |
-       |         |---> Protocol handler (object)
+       |         |---> Protocol handler (object) SLight::ProtocolHandler::**
        |         |            |
        |         | Run action on main object
        |         |            |
