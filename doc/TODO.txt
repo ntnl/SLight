@@ -1,7 +1,7 @@
 
     SLight Project ToDo
 
-=--= Milestone 1 - Concept - 2010-06-012
+=--= Milestone 1 - Concept - 2010-06-12
 
 [X] Write ToDo skeleton
 [X] Web page
@@ -17,7 +17,7 @@
     
         SLight officially exists "on the internet"
 
-=--= Milestone 2 - Self-hosting - 2010-06-19
+=--= Milestone 2 - Self-hosting - (2010-06-19) 2010-06-26
 
 [>] Core
 [X]     URI handling
@@ -25,6 +25,7 @@
 [>]     Web output handler
 [X]     DB abstraction module
 [X]     SQLite DB driver
+[>]     HTML template support (minimal, just load file)
 [X] API
 [X]     Session handling
 [X]     Page store and path handling
@@ -43,8 +44,10 @@
 
         Pages are - in some way - server by SLight.
 
-=--= Milestone 3 - Working CMS - 2010-06-26
+=--= Milestone 3 - Working CMS - 2010-07-10
 
+[ ] Core
+[ ]     HTML Template support
 [ ] API
 [ ]     Object store
 [ ]     ObjectSpec store
@@ -81,12 +84,28 @@
 [ ]         SLight::Handler::CMS::Entry::Comment
 [ ]         SLight::Handler::CMS::Entry::View
 [ ]         SLight::Handler::CMS::Entry::Translate
+[ ] PathHandler ()
+[ ]     SLight::PathHandler::CMS
+[ ]     SLight::PathHandler::Test
+[ ] DataType
+[ ]     ...
+[ ] DataStructure
+[ ]     ...
+[ ] Validator
+[ ]     ...
+[ ] Addons
+[ ]     SLight::Addon::Core::PathBar
+[ ]     SLight::Addon::Core::MainMenu
+[ ]     SLight::Addon::Core::SubMenu
+[ ]     SLight::Addon::Core::Pager
+[ ]     SLight::Addon::Core::Toolbox
+[ ]     SLight::Addon::Core::SysInfo
 
     Definition of done:
 
         Content can be managed (added, edited and deleted) trough browser.
 
-=--= Milestone 4 - User management - 2010-07-10
+=--= Milestone 4 - User management - 2010-07-17
 
 [ ] User API
 [ ]     SLight::API::User
@@ -124,6 +143,12 @@
 [ ]         SLight::Handler::Group::Users::List
 [ ]         SLight::Handler::Group::Users::Add
 [ ]         SLight::Handler::Group::Users::Remove
+[ ] SLight::PathHandler (remaining)
+[ ]     SLight::Addon::MyData
+[ ]     SLight::Addon::Account
+[ ]     SLight::Addon::Group
+[ ]     SLight::Addon::Authentication
+[ ]     SLight::Addon::Asset
 
     Definition of done:
 
@@ -131,7 +156,7 @@
         Groups can be managed.
         Permissions can be managed.
 
-=--= Milestone 5 - Forum - 2010-07-03
+=--= Milestone 5 - Forum - 2010-07-24
     
 [ ] Forum-related Handler objects
 [ ]     SLight::Handler::Forum::Root
@@ -158,7 +183,7 @@
 
         Forum is complete.
 
-=--= Milestone 6 - Initial AJAX support - 2010-07-17
+=--= Milestone 6 - Initial AJAX support - 2010-07-31
 
 [ ] AJAX Protocol object
 [ ] P.O.C. of some js/html changes
@@ -167,7 +192,7 @@
 
         At least one action works trough AJAX
 
-=--= Milestone 7 - Full AJAX support - 2010-07-24
+=--= Milestone 7 - Full AJAX support - 2010-08-07
     
 [ ] Upgrade all applicable functionality to support AJAX
 
