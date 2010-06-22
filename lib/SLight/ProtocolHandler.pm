@@ -1,4 +1,4 @@
-package SLight::PathHandler::Page;
+package SLight::ProtocolFactory;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -11,22 +11,25 @@ package SLight::PathHandler::Page;
 # More information on: http://slight-cms.org/
 # 
 ################################################################################
-
 use strict; use warnings; # {{{
-use base q{SLight::PathHandler};
+use base q{SLight::Core::Factory};
 
-my $VERSION = '0.0.1';
-
+use Carp;
+use English qw( -no_match_vars );
+use Params::Validate qw( :all );
 # }}}
 
-sub analyze_path { # {{{
-    my ( $self, $path ) = @_;
+# Load an Interface object.
+sub make { # {{{
+    my $self = shift;
+    my %P = validate(
+        @_,
+        {
+            protocol => { type=>SCALAR },
+        }
+    );
 
-    assert_defined($path, "Path is defined");
-
-    # WIP!
-
-    return $self->response_content();
+    return $self->low_load( [ 'Protocol', $P{'protocol'} ] );
 } # }}}
 
 # vim: fdm=marker

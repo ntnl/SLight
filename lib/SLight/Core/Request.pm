@@ -26,8 +26,8 @@ use SLight::Common::TaskProfiler qw( task_starts task_ends task_switch );
 use SLight::Common::L10N qw( TR TF );
 
 # use CoMe::Common::Cache qw( Cache_Purge_Request );
-# use SLight::Common::TUI qw( confess_on_false carp_on_true );
 
+use Carp::Assert::More qw( assert_defined );
 use English qw( -no_match_vars );
 use Params::Validate qw( :all );
 # }}}
@@ -49,98 +49,111 @@ sub new { # {{{
 
     # Prototype of the object:
     my $self = {
-        pathhandler_factory => undef,
-        protocol_factory    => undef,
-        handler_factory     => undef,
-        plugin_factory      => undef,
+        path_handler_factory => undef,
+        protocol_factory     => undef,
+        handler_factory      => undef,
+        addon_factory        => undef,
     };
 
     bless $self, $class;
 
     # The fun begins now :)
 
-    $self->{'pathhandler_factory'} = CoMe::PathHandlerFactory->new();
-    $self->{'protocol_factory'}    = CoMe::ProtocolFactory->new();
-    $self->{'handler_factory'}     = CoMe::HandlerFactory->new();
-    $self->{'plugin_factory'}      = CoMe::PluginFactory->new();
+    $self->{'path_handler_factory'} = SLight::PathHandlerFactory->new();
+    $self->{'protocol_factory'}     = SLight::ProtocolFactory->new();
+    $self->{'handler_factory'}      = SLight::HandlerFactory->new();
+    $self->{'addon_factory'}        = SLight::AddonFactory->new();
 
     # Store in module's space, effectively making this object a singleton.
     return $_handler_object = $self;
 } # }}}
 
 # Main Request Pipeline:
-# o Make sure required Output module is loaded (load if necesairly)
-# o Create a request handler
-# o Run request handler
-# o Format output
-# o Return formated output
+#   Stage 1:
+#       Prepare Path Handler object
+#       Prepare Protocol object
+#   Stage 2:
+#       Find objects referenced by path
+#   Stage 3:
+#       Handle objects found in stage 3.
+#
+# Returns:
+#   $request_result = {
+#       response => CONTENT | ERROR | FILE | REDIRECT
+#
+#       content   => $data,      # Data to return.
+#       mime_type => $mime_type, # MIME type of the $data.
+#       path      => $file_path,
+#       debug     => $debug,     # Additional debuging information.
+#       location  => $url,       # Valid for redirect response.
+#   };
+#   # ERROR   - Problem description. Content is always plain text.
+#   # CONTENT - Data with well-defined mime-type.
+#   # FILE    - Date pointed by $file_path. Mime-type must be determined by interface.
 sub main { # {{{
     my $self = shift;
     my %P = validate(
         @_,
         {
+            session_id   => { type=>SCALAR | UNDEF },
             url          => { type=>HASHREF },
             options      => { type=>HASHREF },
-		    output       => { type=>SCALAR },
             interactive  => { type=>SCALAR, optional=>1, default=>0 },
             default_lang => { type=>SCALAR, optional=>1 },
         }
     );
 
-    Cache_Purge_Request();
-
-    my $access_granted = 0;
-    my $r_pkg     = q{};
-    my $r_handler = q{};
-    my $r_action  = q{};
-
-    my $output_object  = undef;
-    my $handler_object = undef;
-
-    my $user_hash = undef;
-
-    # There is no much sense in eval-ing this... if Reqest is unable to make an output object,
-    # it will have NO way of reporting the error either :(
-    $output_object = $self->{'output_factory'}->make(
-        type => $P{'output'}
-    );
+#    Cache_Purge_Request();
+    
+    if ($P{'session_id'}) {
+        SLight::Core::Session::restore($P{'session_id'});
+    }
+    else {
+        SLight::Core::Session::start();
+    }
 
     # Start session. This way any access (read/write) made trough the request will be atomic.
-    # ...and in the case of SQLite - faster.
-    CoMe::Core::DB::check();
-    CoMe::Core::DB::run_query( query=>'BEGIN TRANSACTION' ); # warn "B";
+    # ...and in the case of SQLite - probably faster.
+    SLight::Core::DB::check();
+    SLight::Core::DB::run_query( query=>'BEGIN TRANSACTION' );
     
     my $request_language = $P{'default_lang'};
 
+    my $path_handler_object;
+    my $protocol_object;
+    my $user_hash = undef;
+
     # Stage I, preparing for the request.
-    my $stage_1_ok = eval {
-        task_starts("CoMe::Core::Request factoring");
-        
-        $r_pkg     = $P{'url'}->{'pkg'};
-        $r_handler = $P{'url'}->{'handler'};
-        $r_action  = $P{'url'}->{'action'};
+    my $stage_1_complete = eval {
+        task_starts("SLight::Core::Request preparation");
+
+        my $r_path_handler = $P{'url'}->{'path_handler'};
+        my $r_path         = $P{'url'}->{'path'};
+        my $r_protocol     = $P{'url'}->{'protocol'};
 
         # Sanity checks.
-        confess_on_false( $r_pkg,     "Request aborted, Package missing.");
-        confess_on_false( $r_handler, "Request aborted, Handler missing.");
-        confess_on_false( $r_action,  "Request aborted, Action missing.");
+        assert_defined( $r_path_handler, "Path Handler - present");
+        assert_defined( $r_path,         "Path - present");
+        assert_defined( $r_protocol,     "Protocol - present");
+
         # Safety checks
-        confess_on_false( ($r_pkg     =~ m{^[a-zA-Z]+$}s), "Request aborted, Package contains unwelcome haracters.");
-        confess_on_false( ($r_handler =~ m{^[a-zA-Z]+$}s), "Request aborted, Handler contains unwelcome haracters.");
-        confess_on_false( ($r_action  =~ m{^[a-z\_]+$}s),  "Request aborted, Action contains unwelcome haracters.");
+        assert_like( $r_path_handler, qr{^[A-Z][a-zA-Z]+$}s, "Path Handler - sane");
+        assert_like( $r_protocol,     qr{^[A-Z][a-zA-Z]+$}s, "Protocol - sane");
 
 #        use Data::Dumper; warn 'Request.pm Url: '. Dumper $P{'url'};
 
-        # Check, if User is a Guest, or is a known User.
-        $user_hash = $self->make_user_hash();
+# Planed for M4
+#        # Check, if User is a Guest, or is a known User.
+#        $user_hash = $self->make_user_hash();
 
-        $access_granted = $self->check_grant(
-            user_hash => $user_hash,
-            pkg       => $r_pkg,
-            handler   => $r_handler,
-            action    => $r_action,
-            method    => $P{'url'}->{'method'},
-        );
+# Planed for M4
+#        $access_granted = $self->check_grant(
+#            user_hash => $user_hash,
+#            pkg       => $r_pkg,
+#            handler   => $r_handler,
+#            action    => $r_action,
+#            method    => $P{'url'}->{'method'},
+#        );
         
         # Language selection.
         # First: from URL
@@ -151,7 +164,7 @@ sub main { # {{{
 
             $user_hash->{'lang'} = $P{'url'}->{'lang'};
 
-            CoMe::Core::Session::part(
+            SLight::Core::Session::part(
                 'user',
                 $user_hash
             );
@@ -162,130 +175,95 @@ sub main { # {{{
         elsif (not $request_language) {
             # Default language was not supplied by the Interface.
             # Have to make a default by our own...
-            my $langs = CoMe::Core::Config::get_option('lang');
+            my $langs = SLight::Core::Config::get_option('lang');
 
             $request_language = $langs->[0];
         }
 
-        CoMe::Common::L10N::init(
-            CoMe::Core::Config::get_option(q{site_root}) .q{l10n/},
-            $request_language
+# Planed for M3
+#        SLight::Core::L10N::init(
+#            SLight::Core::Config::get_option(q{site_root}) .q{l10n/},
+#            $request_language
+#        );
+        
+        task_switch("SLight::Core::Request preparation", "SLight::Core::Request path handling");
+
+        $path_handler_object = $self->{'path_handler_factory'}->make(
+            handler => $P{'url'}->{'path_handler'}
         );
 
-        my %handler_factory_params = (
-            pkg     => $r_pkg,
-            handler => $r_handler,
-            action  => ucfirst $r_action,
+        task_switch("SLight::Core::Request path handling", "SLight::Core::Request protocol handling");
+
+        $protocol_object = $self->{'protocol_factory'}->make(
+            protocol => $P{'url'}->{'protocol'}
         );
-        $handler_object = $self->{'handler_factory'}->make(%handler_factory_params);
 
-        task_switch("CoMe::Core::Request factoring", "CoMe::Core::Request access");
+        task_ends("SLight::Core::Request protocol handling");
 
-        # Connect to database, or at least check, if there is a connection.
-        CoMe::Core::DB::check();
-
-        task_ends("CoMe::Core::Request access");
-
-        return 'ok';
+        return 1;
     };
 
-    my $output_data;
-    if ($EVAL_ERROR or not $stage_1_ok) {
+    if ($EVAL_ERROR or not $stage_1_complete) {
         # Request hit a failure :(
-        my $error_text = ( $EVAL_ERROR or 'none' );
+        my $debug_text = ( $EVAL_ERROR or 'none' );
 
-        print STDERR "Eval error (stage 1): ". $error_text ."\n";
+        print STDERR "Eval error (stage 1): ". $debug_text ."\n";
 
         # DB Session shoule be cancelled, as changes may be inconsistent.
-        CoMe::Core::DB::run_query( query=>'ROLLBACK' ); # warn "R";
+        SLight::Core::DB::run_query( query=>'ROLLBACK' ); # warn "R";
 
-        $output_data = $self->internal_error($error_text);
-    }
-    else {
-        # Request was properly initialized :)
-
-        # Can move to Stage II - response.
-
-        $output_data = eval {
-            if (not $access_granted) {
-                # Access to this was NOT granted!
-                return $self->access_denied_page();
-            }
-            else {
-                task_starts("CoMe::Core::Request running");
-
-                $output_data = $handler_object->run(
-                    options => $P{'options'},
-
-	            	path    => $P{'url'}->{'path'},
-                    method  => $P{'url'}->{'method'},
-	            	page    => $P{'url'}->{'page'},
-    
-                    user    => $user_hash,
-
-                    pkg     => $r_pkg,
-                    handler => $r_handler,
-                    action  => $r_action,
-
-                    lang => $request_language
-                );
-
-                task_ends("CoMe::Core::Request running");
-            }
-
-            return $output_data;
+        return {
+            response => 'ERROR',
+            content  => $self->internal_error(
+                TR(q{Internal error. Site is temporarly unavailable.}), # Fixme: write better text here
+                $debug_text
+            ),
         };
+    }
+    
+    # Request was properly initialized :)
+    # Can move to Stage II - what was requested?
+    my $response_content = eval {
+        return $path_handler_object->analyze_path($P{'url'}->{'path'});
+    };
 
-        if ($EVAL_ERROR or not $output_data) {
-            my $error_text = ( $EVAL_ERROR or 'none' );
+    if ($EVAL_ERROR or not $response_content) {
+        carp("Bad path!"); # Fixme!
+    }
+    
+    # Path seems to be fine.
+    # Can move to Stage III - produce response
 
-            # DB Session may be corrupt, and should be rolled-back.
-            CoMe::Core::DB::run_query( query=>'ROLLBACK' ); # warn "R2";
+    my $response_result = eval {
+        return $protocol_object->respond(
+            url => $P{'url'},
+        );
+    };
 
-            print STDERR "Eval error (stage 2): ". $error_text ."\n";
+    if ($EVAL_ERROR or not $response_result) {
+        # Request hit a failure :(
+        my $debug_text = ( $EVAL_ERROR or 'none' );
 
-            $output_data = $self->internal_error($error_text);
-        }
-        else {
-            # DB Session can be finished.
-            CoMe::Core::DB::run_query( query=>'COMMIT' ); # warn "E";
+        print STDERR "Eval error (stage 3): ". $debug_text ."\n";
 
-            if ($output_data->{'redirect'}) {
-                return {
-                    'location' => $output_data->{'redirect'}
-                };
-            }
-            elsif ($output_data->{'send_file'}) {
-                return {
-                    'send_file' => $output_data->{'send_file'}
-                };
-            }
+        # DB Session shoule be cancelled, as changes may be inconsistent.
+        SLight::Core::DB::run_query( query=>'ROLLBACK' ); # warn "R";
 
-            task_starts("CoMe::Core::Request plugins");
-
-            # Are we doing an interactive request?
-            # If so - we should ass some candy, so the User is happy :)
-            if ($P{'interactive'}) {
-                $output_data->{'plugins'} = $self->run_plugins(
-                    output  => $output_data,
-                    options => $P{'options'},
-                    url     => $P{'url'},
-                    user    => $user_hash,
-                    lang    => $request_language
-                );
-            }
-
-            task_ends("CoMe::Core::Request plugins");
-        }
+        return {
+            response => 'ERROR',
+            content  => $self->internal_error(
+                TR(q{Internal error. Site is temporarly unavailable.}), # Fixme: write better text here
+                $debug_text
+            ),
+        };
     }
 
-    task_starts("CoMe::Core::Request output");
+    SLight::Core::Session::save();
 
-    my $content = $output_object->process( $output_data );
+    # DB Session can be finished.
+    SLight::Core::DB::run_query( query=>'COMMIT' ); # warn "E";
 
-    task_ends("CoMe::Core::Request output");
-
-    return { content => $content };
+    return $response_result;
 } # }}}
 
 # Purpose:
@@ -293,10 +271,10 @@ sub main { # {{{
 sub make_user_hash { # {{{
     my ( $self ) = @_;
 
-    my $user_hash = CoMe::Core::Session::part( 'user' );
+    my $user_hash = SLight::Core::Session::part( 'user' );
     if ($user_hash) {
         if ($user_hash->{'login'}) {
-            my $user_data = CoMe::Core::User::get_data( user=>$user_hash->{'login'} );
+            my $user_data = SLight::Core::User::get_data( user=>$user_hash->{'login'} );
 
             $user_hash->{'email'} = $user_data->{'email'};
             $user_hash->{'name'}  = $user_data->{'name'};
@@ -339,12 +317,12 @@ sub check_grant { # {{{
 
     # In some tests, there is no need to check this...
     # Setting this variable will bypass authorization routines.
-    if ($ENV{'COME_SKIP_AUTH'}) {
+    if ($ENV{'SLIGHT_SKIP_AUTH'}) {
         return 1;
     }
 
     # At this point, grants must be checked.
-    my %grant = CoMe::Core::User::Access::get_effective_user_access_rights(
+    my %grant = SLight::Core::User::Access::get_effective_user_access_rights(
         login   => $P{'user_hash'}->{'login'},
 
         pkg     => $P{'pkg'},
@@ -440,35 +418,30 @@ sub access_denied_page { # {{{
     );
 } # }}}
 
+# Todo: Needs serious fixing!
 sub internal_error { # {{{
-    my ( $self, $error_text ) = @_;
+    my ( $self, $error_text, $debug_text ) = @_;
 
-    my $message = TR('Unhandled internal error has occured.');
-
-    if ($ENV{'REMOTE_ADDR'} and $ENV{'REMOTE_ADDR'} eq q{127.0.0.1}) {
-        my $debug = CoMe::Core::Config::get_option('debug');
-
-        $message .= qq{\n};
-        if ($debug) {
-            $message .= $error_text;
-        }
-        else {
-            $message .= TR("Enable 'debug' config option to see full error message");
-        }
-    }
-
-    # Load on demand. This IS risky, but benefits seems to be better.
-    require CoMe::Response::GenericMessage;
-
-    my $response = CoMe::Response::GenericMessage->new(
-        text  => $message,
-        class => 'CoMe_Internal_Error'
-    );
-
-    return $self->built_in_reply(
-        title    => TR('Internal error'),
-        response => $response->get_data(),
-    );
+    carp("Unimplemented!");
+    
+#    my $message = TR('Unhandled internal error has occured.');
+#
+#    if ($ENV{'REMOTE_ADDR'} and $ENV{'REMOTE_ADDR'} eq q{127.0.0.1}) {
+#        my $debug = SLight::Core::Config::get_option('debug');
+#
+#        $message .= qq{\n};
+#        if ($debug) {
+#            $message .= $error_text;
+#        }
+#        else {
+#            $message .= TR("Enable 'debug' config option to see full error message");
+#        }
+#    }
+#
+#    return $self->built_in_reply(
+#        title    => TR('Internal error'),
+#        response => $response->get_data(),
+#    );
 } # }}}
 
 # vim: fdm=marker

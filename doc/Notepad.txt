@@ -5,7 +5,7 @@ Entities:
 
     Account
         Represents, describes and identifies site's User.
-        
+
     Page
         Page must have at least one object attached to it (the 'main' object)
         Page defines what template is used to show it.
@@ -834,5 +834,4 @@ Forum::Thread::Delete
 
     # replaces:
     Forum/Handler/Thread/Delete.pm
-
 

@@ -27,7 +27,7 @@ my $interface = SLight::Interface::CGI->new();
 $ENV{'SLIGHT_SKIP_AUTH'} = 1;
 
 my $html = $interface->main(
-    url => '/Test/',
+    url => '/_Test/',
     bin => $Bin,
 );
 

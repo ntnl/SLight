@@ -1,4 +1,4 @@
-package SLight::PathHandler::Page;
+package SLight::PathHandler;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -13,20 +13,37 @@ package SLight::PathHandler::Page;
 ################################################################################
 
 use strict; use warnings; # {{{
-use base q{SLight::PathHandler};
 
 my $VERSION = '0.0.1';
 
 # }}}
 
-sub analyze_path { # {{{
-    my ( $self, $path ) = @_;
+# Make a new PathHandler object. Nothing fancy here.
+sub new { # {{{
+    my ( $class ) = @_;
 
-    assert_defined($path, "Path is defined");
+    my $self = {
+        template => undef,
 
-    # WIP!
+        objects => [],
+        addons  => [],
+    };
 
-    return $self->response_content();
+    bless $self, $class;
+
+    return $self;
+} # }}}
+
+sub response_content { # {{{
+    my ( $self ) = @_;
+
+    return {
+        template => $self->{'template'},
+        
+        objects => $self->{'objects'},
+        
+        addons => $self->{'addons'},
+    };
 } # }}}
 
 # vim: fdm=marker
