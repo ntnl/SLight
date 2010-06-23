@@ -13,21 +13,20 @@ package SLight::Core::Request;
 ################################################################################
 use strict; use warnings; # {{{
 
+use SLight::AddonFactory;
+use SLight::Core::DB;
+use SLight::Core::L10N qw( TR TF );
+use SLight::Core::Session;
+use SLight::Core::Profiler qw( task_starts task_ends task_switch );
+use SLight::HandlerFactory;
 use SLight::PathHandlerFactory;
 use SLight::ProtocolFactory;
-use SLight::HandlerFactory;
-use SLight::AddonFactory;
 
-use SLight::Core::Session;
-use SLight::Core::User;
-use SLight::Core::User::Access;
-
-use SLight::Common::TaskProfiler qw( task_starts task_ends task_switch );
-use SLight::Common::L10N qw( TR TF );
-
+# use SLight::Core::User;
+# use SLight::Core::User::Access;
 # use CoMe::Common::Cache qw( Cache_Purge_Request );
 
-use Carp::Assert::More qw( assert_defined );
+use Carp::Assert::More qw( assert_defined assert_like );
 use English qw( -no_match_vars );
 use Params::Validate qw( :all );
 # }}}
@@ -138,7 +137,7 @@ sub main { # {{{
 
         # Safety checks
         assert_like( $r_path_handler, qr{^[A-Z][a-zA-Z]+$}s, "Path Handler - sane");
-        assert_like( $r_protocol,     qr{^[A-Z][a-zA-Z]+$}s, "Protocol - sane");
+        assert_like( $r_protocol,     qr{^[a-z]+$}s,         "Protocol - sane");
 
 #        use Data::Dumper; warn 'Request.pm Url: '. Dumper $P{'url'};
 
@@ -204,21 +203,10 @@ sub main { # {{{
     };
 
     if ($EVAL_ERROR or not $stage_1_complete) {
-        # Request hit a failure :(
-        my $debug_text = ( $EVAL_ERROR or 'none' );
-
-        print STDERR "Eval error (stage 1): ". $debug_text ."\n";
-
-        # DB Session shoule be cancelled, as changes may be inconsistent.
-        SLight::Core::DB::run_query( query=>'ROLLBACK' ); # warn "R";
-
-        return {
-            response => 'ERROR',
-            content  => $self->internal_error(
-                TR(q{Internal error. Site is temporarly unavailable.}), # Fixme: write better text here
-                $debug_text
-            ),
-        };
+        return $self->stage_error(
+            stage => 1,
+            ee    => $EVAL_ERROR,
+        );
     }
     
     # Request was properly initialized :)
@@ -228,7 +216,10 @@ sub main { # {{{
     };
 
     if ($EVAL_ERROR or not $response_content) {
-        carp("Bad path!"); # Fixme!
+        return $self->stage_error(
+            stage => 2,
+            ee    => $EVAL_ERROR,
+        );
     }
     
     # Path seems to be fine.
@@ -236,26 +227,16 @@ sub main { # {{{
 
     my $response_result = eval {
         return $protocol_object->respond(
-            url => $P{'url'},
+            url  => $P{'url'},
+            page => $response_content,
         );
     };
 
     if ($EVAL_ERROR or not $response_result) {
-        # Request hit a failure :(
-        my $debug_text = ( $EVAL_ERROR or 'none' );
-
-        print STDERR "Eval error (stage 3): ". $debug_text ."\n";
-
-        # DB Session shoule be cancelled, as changes may be inconsistent.
-        SLight::Core::DB::run_query( query=>'ROLLBACK' ); # warn "R";
-
-        return {
-            response => 'ERROR',
-            content  => $self->internal_error(
-                TR(q{Internal error. Site is temporarly unavailable.}), # Fixme: write better text here
-                $debug_text
-            ),
-        };
+        return $self->stage_error(
+            stage => 3,
+            ee    => $EVAL_ERROR,
+        );
     }
 
     SLight::Core::Session::save();
@@ -418,12 +399,18 @@ sub access_denied_page { # {{{
     );
 } # }}}
 
-# Todo: Needs serious fixing!
-sub internal_error { # {{{
-    my ( $self, $error_text, $debug_text ) = @_;
+# Todo: Needs some love!
+sub stage_error { # {{{
+    my ( $self, %P ) = @_;
 
-    carp("Unimplemented!");
-    
+    print STDERR "Eval error (stage: " . $P{'stage'} . "): ". ( $P{'ee'} or 'none' ) ."\n";
+
+    # DB Session shoule be cancelled, as changes may be inconsistent.
+    SLight::Core::DB::run_query( query=>'ROLLBACK' ); # warn "R";
+
+#    warn "Stage: ". $P{'stage'};
+#    warn $P{'ee'};
+
 #    my $message = TR('Unhandled internal error has occured.');
 #
 #    if ($ENV{'REMOTE_ADDR'} and $ENV{'REMOTE_ADDR'} eq q{127.0.0.1}) {
@@ -442,6 +429,12 @@ sub internal_error { # {{{
 #        title    => TR('Internal error'),
 #        response => $response->get_data(),
 #    );
+
+    return {
+        response => 'ERROR',
+        content  => TR(q{Internal error. Site is temporarly unavailable.}), # Fixme: write better text here
+        debug    => $P{'ee'},
+    };
 } # }}}
 
 # vim: fdm=marker

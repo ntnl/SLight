@@ -54,8 +54,6 @@ sub make_site { # {{{
 
     $feedback_call->("Making sqlites...");
 
-#    warn ( -f $destination . q{db/slight.sqlite} );
-
     assert_is( -f $destination . q{db/slight.sqlite}, undef, "File: db/slight.sqlite does not exists.");
     my @init_files = (
 #        $sql_source . q{users.sql},

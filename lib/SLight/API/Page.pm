@@ -27,9 +27,9 @@ sub add_page { # {{{
     my %P = validate (
         @_,
         {
-            parent_id => { type=>SCALAR, optional=>1 },
+            parent_id => { type=>SCALAR | UNDEF },
             path      => { type=>SCALAR },
-            
+
             template => { type=>SCALAR, optional=>1 },
         }
     );
@@ -39,7 +39,7 @@ sub add_page { # {{{
 
         parent_id => $P{'parent_id'},
         path      => $P{'path'},
-            
+
         template => $P{'template'},
 
         _fields => $meta{'data_fields'},

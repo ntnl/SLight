@@ -26,7 +26,7 @@ sub new { # {{{
         {
         }
     );
-    
+
     # Prototype of the object:
     my $self = {
         request    => undef,
@@ -44,12 +44,13 @@ sub run_request { # {{{
     my %P = validate(
         @_,
         {
+            session_id   => { type=>SCALAR | UNDEF },
             url          => { type=>HASHREF },
             options      => { type=>HASHREF },
             default_lang => { type=>SCALAR, optional=>1 },
         }
     );
-    
+
     my $start_time = time;
 
     # Module is loaded at runtime. If it fails - interface handler can

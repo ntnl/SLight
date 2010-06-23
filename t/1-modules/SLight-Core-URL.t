@@ -37,6 +37,7 @@ plan tests =>
 dies_ok { # fixme - make that a throws_ok!
     parse_url(q{bla bla bla});
 } 'Trash - parse';
+
 dies_ok {
     make_url( foo=>'bar', 'baz' );
 } 'Trash - make';

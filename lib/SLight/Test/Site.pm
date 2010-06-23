@@ -92,7 +92,7 @@ sub prepare_fake { # {{{
 
     $test_dir = $P{'test_dir'};
 
-    my $src_dir = $test_dir .q{/../test_data/}. $P{'site'};
+    my $src_dir = $test_dir .q{/../t_data/}. $P{'site'};
     assert_defined(-d $src_dir, "Fake site ($src_dir) exist.");
 
     my $site_root = prepare_fake_dir();
@@ -102,12 +102,25 @@ sub prepare_fake { # {{{
         $site_root
     );
 
+    # Turn SQLite Dump into DB.
+
+    SLight::Test::Site::undump_db($site_root);
+
     fake_config($site_root);
 
     return $site_root;
 } # }}}
 
 # Internal subroutines.
+
+# Turn SQLite Dump into DB.
+sub undump_db { # {{{
+    my ( $site_root ) = @_;
+
+    system 'sqlite3', q{-batch}, q{-init}, $site_root .q{/db/slight.dump}, $site_root .q{/db/slight.sqlite}, q{/* */};
+
+    return;
+} # }}}
 
 # Clear fake directory, so it contains nothing.
 sub prepare_fake_dir { # {{{
@@ -124,7 +137,7 @@ sub prepare_fake_dir { # {{{
 
 # Fake options in the configuration.
 sub fake_config { # {{{
-    my $site_root = shift;
+    my ( $site_root ) = @_;
 
     SLight::Core::Config::set_option('domain',    q{foo.localdomain});
     SLight::Core::Config::set_option('web_root',  q{/});

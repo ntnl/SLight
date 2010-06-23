@@ -6,3 +6,4 @@ _build
 MYMETA.yml
 cover_db/
 critic-cache.yaml
+sandbox/*

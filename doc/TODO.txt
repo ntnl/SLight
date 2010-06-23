@@ -53,6 +53,7 @@
 [ ]     ObjectSpec store
 [ ]     Asset store
 [ ]     Comment store
+[ ]     Add 'title' and 'description' to Page, l10n-dependant
 [ ] HTML Output
 [ ] CMS Handler objects
 [ ]     SLight::Handler::Test::Test::Test

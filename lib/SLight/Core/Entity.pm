@@ -15,6 +15,7 @@ use strict; use warnings; # {{{
 
 use SLight::Core::DB;
 
+use Carp::Assert::More qw( assert_positive_integer );
 use Params::Validate qw( :all );
 # }}}
 
@@ -153,6 +154,8 @@ sub update_ENTITYs { # {{{
 sub get_ENTITY { # {{{
     my ( $id, $table, $fields ) = @_;
 
+    assert_positive_integer($id);
+
     SLight::Core::DB::check();
 
     my $sth = SLight::Core::DB::run_select(
@@ -193,7 +196,7 @@ sub get_ENTITY_ids_where { # {{{
         columns => [ 'id' ],
         from    => $P{'_table'},
         where   => $where,
-#        debug => 1
+        debug => 1
     );
 
     my @entity_ids;

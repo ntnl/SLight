@@ -13,6 +13,8 @@ package SLight::Core::DB;
 ################################################################################
 use strict; use warnings; # {{{
 
+use SLight::Core::Config;
+
 use Params::Validate qw{ :all };
 # }}}
 

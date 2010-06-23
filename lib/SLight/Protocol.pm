@@ -1,4 +1,4 @@
-package SLight::PathHandler;
+package SLight::Protocol;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -11,21 +11,22 @@ package SLight::PathHandler;
 # More information on: http://slight-cms.org/
 # 
 ################################################################################
-
 use strict; use warnings; # {{{
 
-my $VERSION = '0.0.1';
-
+use English qw( -no_match_vars );
+use Params::Validate qw( :all );
 # }}}
 
-# Make a new PathHandler object. Nothing fancy here.
 sub new { # {{{
-    my ( $class ) = @_;
+    my $class = shift;
+    my %P = validate(
+        @_,
+        {
+        }
+    );
 
+    # Prototype of the object:
     my $self = {
-        template => undef,
-
-        objects  => [],
     };
 
     bless $self, $class;
@@ -33,21 +34,17 @@ sub new { # {{{
     return $self;
 } # }}}
 
-sub set_template { # {{{
-    my ( $self, $template ) = @_;
-
-    return $self->{'template'} = $template;
-} # }}}
-
-sub response_content { # {{{
-    my ( $self ) = @_;
+sub response_CONTENT { # {{{
+    my ( $self, $content, $mime ) = @_;
 
     return {
-        template => $self->{'template'},
+        response => 'CONTENT',
 
-        objects => $self->{'objects'},
+        content   => $content,
+        mime_type => $mime,
     };
 } # }}}
 
 # vim: fdm=marker
 1;
+

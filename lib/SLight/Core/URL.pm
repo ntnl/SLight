@@ -139,7 +139,7 @@ sub parse_url { # {{{
         return \%url_hash;
     }
 
-    return carp("Unable to parse URL: ". $string);
+    return croak("Unable to parse URL: ". $string);
 } #  }}}
 
 # Return an URL, as a string, that is made from given options.

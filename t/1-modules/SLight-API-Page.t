@@ -22,7 +22,7 @@ use Test::More;
 # }}}
 
 plan tests =>
-    + 5 # add_page
+    + 6 # add_page
     + 1 # update_page
     + 1 # update_pages
     + 2 # delete_page (1x delete + 1x check)
@@ -42,35 +42,43 @@ SLight::Test::Site::prepare_empty(
 use SLight::API::Page;
 
 
-my $page_1_id = SLight::API::Page::add_page(
-    path => 'Foo',
+my $page_0_id = SLight::API::Page::add_page(
+    parent_id => undef,
+    path      => 'Foo',
 );
-is ($page_1_id, 1, "add_page (1/5)");
+is ($page_0_id, 1, "add_page (root)");
+
+my $page_1_id = SLight::API::Page::add_page(
+    parent_id => $page_0_id,
+    path      => 'Foo',
+);
+is ($page_1_id, 2, "add_page (1/5)");
 
 my $page_2_id = SLight::API::Page::add_page(
-    path      => 'Bar',
     parent_id => $page_1_id,
+    path      => 'Bar',
 );
-is ($page_2_id, 2, "add_page (2/5)");
+is ($page_2_id, 3, "add_page (2/5)");
 
 my $page_3_id = SLight::API::Page::add_page(
-    path     => 'Baz',
-    template => 'Light',
+    parent_id => $page_0_id,
+    path      => 'Baz',
+    template  => 'Light',
 );
-is ($page_3_id, 3, "add_page (3/5)");
+is ($page_3_id, 4, "add_page (3/5)");
 
 my $page_4_id = SLight::API::Page::add_page(
-    path      => 'Goo',
     parent_id => $page_3_id,
+    path      => 'Goo',
     template  => 'Haevy',
 );
-is ($page_4_id, 4, "add_page (4/5)");
+is ($page_4_id, 5, "add_page (4/5)");
 
 my $page_5_id = SLight::API::Page::add_page(
-    path      => 'Bzz',
     parent_id => $page_3_id,
+    path      => 'Bzz',
 );
-is ($page_5_id, 5, "add_page (5/5)");
+is ($page_5_id, 6, "add_page (5/5)");
 
 
 
@@ -78,7 +86,7 @@ is_deeply(
     SLight::API::Page::get_page($page_1_id),
     {
         id        => $page_1_id,
-        parent_id => undef,
+        parent_id => $page_0_id,
         path      => 'Foo',
         template  => undef,
     },
@@ -197,7 +205,7 @@ is_deeply(
     [
         {
             id        => $page_3_id,
-            parent_id => undef,
+            parent_id => $page_0_id,
             path      => 'Baz',
             template  => 'Light',
         },
@@ -228,7 +236,7 @@ is_deeply(
     [
         {
             id        => $page_3_id,
-            parent_id => undef,
+            parent_id => $page_0_id,
             path      => 'Baz',
             template  => 'Light',
         },
