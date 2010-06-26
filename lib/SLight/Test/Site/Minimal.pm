@@ -43,30 +43,30 @@ sub build { # {{{
 
     SLight::Test::Site::Builder::make_template(
         'Default',
-        q{<!doctype html>
-<html>
-<body>
-    <H1>Minimal test site</h1>
-</body>
-</html>}
+        qq{<!doctype html>\n}.
+        qq{<html>\n}.
+        qq{<body>\n}.
+        qq{    <H1>Minimal test site</h1>\n}.
+        qq{</body>\n}.
+        qq{</html>}
     );
     SLight::Test::Site::Builder::make_template(
         'Doc',
-        q{<!doctype html>
-<html>
-<body>
-    <H1>Minimal test site - documentation</h1>
-</body>
-</html>}
+        q{<!doctype html>\n}.
+        qq{<html>\n}.
+        qq{<body>\n}.
+        qq{    <H1>Minimal test site - documentation</h1>\n}.
+        qq{</body>\n}.
+        qq{</html>}
     );
     SLight::Test::Site::Builder::make_template(
         'Error',
-        q{<!doctype html>
-<html>
-<body>
-    <H1>Minimal test site - Error!</h1>
-</body>
-</html>}
+        q{<!doctype html>\n}.
+        qq{<html>\n}.
+        qq{<body>\n}.
+        qq{    <H1>Minimal test site - Error!</h1>\n}.
+        qq{</body>\n}.
+        qq{</html>}
     );
 
     return;

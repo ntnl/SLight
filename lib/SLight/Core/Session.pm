@@ -194,7 +194,7 @@ sub is_valid_session_id { # {{{
 
 # Returns path for the file, in which session is stored.
 sub session_filename { # {{{
-    return SLight::Core::Config::get_option('site_root') .'/sessions/'. $session_id .'.yaml';
+    return SLight::Core::Config::get_option('data_root') .q{/sessions/}. $session_id .q{.yaml};
 } # }}}
 
 # Reset session module before it can handle session in another request.

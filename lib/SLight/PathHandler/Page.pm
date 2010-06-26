@@ -11,7 +11,6 @@ package SLight::PathHandler::Page;
 # More information on: http://slight-cms.org/
 # 
 ################################################################################
-
 use strict; use warnings; # {{{
 use base q{SLight::PathHandler};
 

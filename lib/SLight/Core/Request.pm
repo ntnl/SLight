@@ -136,8 +136,8 @@ sub main { # {{{
         assert_defined( $r_protocol,     "Protocol - present");
 
         # Safety checks
-        assert_like( $r_path_handler, qr{^[A-Z][a-zA-Z]+$}s, "Path Handler - sane");
-        assert_like( $r_protocol,     qr{^[a-z]+$}s,         "Protocol - sane");
+        assert_like( $r_path_handler, qr{^[A-Z][a-zA-Z]+$}s, "Path Handler - sane"); ## no critic qw(Variables::ProhibitPunctuationVars)
+        assert_like( $r_protocol,     qr{^[a-z]+$}s,         "Protocol - sane"); ## no critic qw(Variables::ProhibitPunctuationVars)
 
 #        use Data::Dumper; warn 'Request.pm Url: '. Dumper $P{'url'};
 

@@ -19,26 +19,23 @@
 
 =--= Milestone 2 - Self-hosting - (2010-06-19) 2010-06-26
 
-[>] Core
+[X] Core
 [X]     URI handling
-[>]     Request handler
-[>]     Web output handler
+[X]     Request handler
+[X]     Web output handler
 [X]     DB abstraction module
 [X]     SQLite DB driver
-[>]     HTML template support (minimal, just load file)
+[X]     HTML template support (minimal, just load file)
 [X] API
 [X]     Session handling
 [X]     Page store and path handling
-[>] Interface
-[>]     CGI
+[X] Interface
+[X]     CGI
 [X]     FCGI
-[ ] Web page
-[ ]     Prepare Authors page (template)
-[ ]     Prepare TODO page (template)
-[ ]     Set-up CGI
-[>] Releng
-[X]     Packager based on Module::Build
-[ ]     Web page updater
+[X] Web page
+[X]     Prepare "templates"
+[X]     Set-up CGI
+[X] Packager based on Module::Build
 
     Definition of done:
 
@@ -46,15 +43,21 @@
 
 =--= Milestone 3 - Working CMS - 2010-07-10
 
-[ ] Core
-[ ]     HTML Template support
+[ ] Validator
+[ ]     SLight::Validator.pm
+[ ]     SLight::Validator::Disk.pm
+[ ]     SLight::Validator::Net.pm
+[ ]     SLight::Validator::Simple.pm
+[ ]     SLight::Validator::User.pm
 [ ] API
 [ ]     Object store
 [ ]     ObjectSpec store
 [ ]     Asset store
 [ ]     Comment store
 [ ]     Add 'title' and 'description' to Page, l10n-dependant
-[ ] HTML Output
+[ ] PathHandler ()
+[ ]     SLight::PathHandler::CMS
+[ ]     SLight::PathHandler::Test
 [ ] CMS Handler objects
 [ ]     SLight::Handler::Test::Test::Test
 [ ]     SLight::Handler::Core::Asset
@@ -85,15 +88,18 @@
 [ ]         SLight::Handler::CMS::Entry::Comment
 [ ]         SLight::Handler::CMS::Entry::View
 [ ]         SLight::Handler::CMS::Entry::Translate
-[ ] PathHandler ()
-[ ]     SLight::PathHandler::CMS
-[ ]     SLight::PathHandler::Test
-[ ] DataType
-[ ]     ...
+[ ] Core
+[ ]     HTML Template support
+[ ] HTML Output
 [ ] DataStructure
-[ ]     ...
-[ ] Validator
-[ ]     ...
+[ ]     SLight::DataStructure
+[ ]     SLight::DataStructure::Token
+[ ]     SLight::DataStructure::Table
+[ ]     SLight::DataStructure::List
+[ ]     SLight::DataStructure::Form
+[ ]     SLight::DataStructure::Dialog
+[ ]     SLight::DataStructure::Dialog::Notification
+[ ]     SLight::DataStructure::Dialog::YesNo
 [ ] Addons
 [ ]     SLight::Addon::Core::PathBar
 [ ]     SLight::Addon::Core::MainMenu

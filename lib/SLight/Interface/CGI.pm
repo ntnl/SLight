@@ -209,7 +209,7 @@ sub safe_main { # {{{
 
     # And finally: run request.
     my $request_result = $self->run_request(
-        session_id   => $self->{'CGI'}->{'got_cookies'}->{$session_cookie},
+        session_id   => $self->{'CGI'}->{'got_cookies'}->{$session_cookie}->{'value'},
         url          => $url_hash,
         options      => \%options,
         default_lang => $default_language,

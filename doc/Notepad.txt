@@ -319,9 +319,6 @@ Perl directory structure:
         Token
             # single data token
 
-        Embed
-            # embedded object (YouTube movie)
-
         Table
             # Tokens organized into rows and columns
             # Replaces:
