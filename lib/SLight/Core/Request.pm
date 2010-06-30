@@ -24,7 +24,7 @@ use SLight::ProtocolFactory;
 
 # use SLight::Core::User;
 # use SLight::Core::User::Access;
-# use CoMe::Common::Cache qw( Cache_Purge_Request );
+# use SLight::Core::Cache qw( Cache_Purge_Request );
 
 use Carp::Assert::More qw( assert_defined assert_like );
 use English qw( -no_match_vars );
@@ -320,44 +320,6 @@ sub check_grant { # {{{
     return 0;
 } # }}}
 
-sub run_plugins { # {{{
-    my $self = shift;
-    my %P = validate(
-        @_,
-        {
-            output   => { type=>HASHREF },
-            options  => { type=>HASHREF },
-            url      => { type=>HASHREF },
-            user     => { type=>HASHREF },
-            lang     => { type=>SCALAR },
-        }
-    );
-
-    my %plugins_data;
-
-    my $response = CoMe::Response->new();
-
-    foreach my $plugin (qw( ContentMenu ContentSubMenu PathBar Notification Toolbox Language Handlers Output UserPanel SysInfo Pager )) {
-        # Error in a single plugin should not take the whole subsystem down.
-        $plugins_data{$plugin} = eval {
-            my $plugin_object = $self->{'plugin_factory'}->make(
-                type => $plugin
-            );
-
-            return $plugin_object->process(
-                %P,
-                response => $response,
-            );
-        };
-
-        carp_on_true($EVAL_ERROR, "Plugin error: ". $EVAL_ERROR);
-    }
-
-#    use Data::Dumper; warn "Plugin Data: ". Dumper \%plugins_data;
-
-    return \%plugins_data;
-} # }}}
-
 # Standard, built-in, replies.
 
 sub built_in_reply { # {{{
@@ -383,21 +345,22 @@ sub built_in_reply { # {{{
     };
 } # }}}
 
-sub access_denied_page { # {{{
-    my $self = shift;
-
-    require CoMe::Response::GenericMessage;
-
-    my $response = CoMe::Response::GenericMessage->new(
-        text  => TR('You are not permited to enter this part of the page.'),
-        class => 'CoMe_Access_Error'
-    );
-
-    return $self->built_in_reply(
-        title    => TR('Access denied'),
-        response => $response->get_data(),
-    );
-} # }}}
+# Fixme!
+#sub access_denied_page { # {{{
+#    my $self = shift;
+#
+#    require CoMe::Response::GenericMessage;
+#
+#    my $response = CoMe::Response::GenericMessage->new(
+#        text  => TR('You are not permited to enter this part of the page.'),
+#        class => 'CoMe_Access_Error'
+#    );
+#
+#    return $self->built_in_reply(
+#        title    => TR('Access denied'),
+#        response => $response->get_data(),
+#    );
+#} # }}}
 
 # Todo: Needs some love!
 sub stage_error { # {{{

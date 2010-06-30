@@ -43,12 +43,12 @@
 
 =--= Milestone 3 - Working CMS - 2010-07-10
 
-[ ] Validator
-[ ]     SLight::Validator.pm
-[ ]     SLight::Validator::Disk.pm
-[ ]     SLight::Validator::Net.pm
-[ ]     SLight::Validator::Simple.pm
-[ ]     SLight::Validator::User.pm
+[>] Validator
+[X]     SLight::Validator.pm
+[X]     SLight::Validator::Disk.pm
+[X]     SLight::Validator::Net.pm
+[X]     SLight::Validator::Simple.pm
+[>]     SLight::Validator::User.pm
 [ ] API
 [ ]     Object store
 [ ]     ObjectSpec store

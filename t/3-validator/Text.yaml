@@ -1,0 +1,7 @@
+--- 
+Cointains tab. FAIL: 
+  foo: Contains some not allowed unprintable characters.
+Cointains zero-byte. FAIL: 
+  foo: Contains some not allowed unprintable characters.
+Empty string. OK: ~
+Typical string. OK: ~

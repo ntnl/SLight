@@ -1,0 +1,10 @@
+--- 
+1 digit. OK: ~
+2 digits with "+". OK: ~
+2 digits with "-". OK: ~
+2 digits. OK: ~
+3 digits. OK: ~
+Float. FAIL: 
+  foo: Not an integer
+String. FAIL: 
+  foo: Not an integer

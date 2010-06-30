@@ -1,4 +1,4 @@
-package SLight::ProtocolFactory;
+package SLight::Validator::Disk;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -12,24 +12,19 @@ package SLight::ProtocolFactory;
 # 
 ################################################################################
 use strict; use warnings; # {{{
-use base q{SLight::Core::Factory};
 
-use Carp;
-use English qw( -no_match_vars );
-use Params::Validate qw( :all );
+use SLight::Core::L10N qw( TR TF );
 # }}}
 
-# Load an Interface object.
-sub make { # {{{
-    my $self = shift;
-    my %P = validate(
-        @_,
-        {
-            protocol => { type=>SCALAR },
-        }
-    );
+# Accept characters, that can be used as file or directory name.
+sub v_FileName { # {{{
+    my ( $value ) = @_;
+    
+    if ($value =~ m{[^A-Za-z0-9\-\_\.]}s) {
+        return TR("Contains some not allowed characters.");
+    }
 
-    return $self->low_load( [ 'Protocol', $P{'protocol'} ] );
+    return;
 } # }}}
 
 # vim: fdm=marker

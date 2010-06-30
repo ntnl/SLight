@@ -1,0 +1,15 @@
+--- 
+Cointains c.return. FAIL: 
+  foo: Only numbers and English letters are allowed.
+Cointains newline. FAIL: 
+  foo: Only numbers and English letters are allowed.
+Cointains punctation. FAIL: 
+  foo: Only numbers and English letters are allowed.
+Cointains space. FAIL: 
+  foo: Only numbers and English letters are allowed.
+Cointains tab. FAIL: 
+  foo: Only numbers and English letters are allowed.
+Cointains zero-byte. FAIL: 
+  foo: Only numbers and English letters are allowed.
+Empty string. OK: ~
+Typical string. OK: ~

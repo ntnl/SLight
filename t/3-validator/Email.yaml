@@ -1,0 +1,10 @@
+--- 
+Bad domain. FAIL: 
+  foo: Server name seems broken.
+Bad username. FAIL: 
+  foo: Account name seems broken.
+Minus and underscore in user and domain. OK: ~
+Simple email. OK: ~
+String. FAIL: 
+  foo: Does not look line an Email address
+User with dots. OK: ~

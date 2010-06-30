@@ -49,7 +49,7 @@ sub send_to_email { # {{{
 #    utf8::encode($P{'text'});
 
 	my $lite_message = MIME::Lite->new(
-		From    => 'mailer@'. CoMe::Core::Config::get_option('domain'),
+		From    => 'mailer@'. SLight::Core::Config::get_option('domain'),
 		To      => encode('utf8', $P{'email'}),
 		Subject => encode('utf8', $P{'title'}),
 		Type    => 'multipart/mixed'
@@ -165,7 +165,7 @@ sub send_notification { # {{{
 sub _load_template { # {{{
     my ($name) = @_;
 
-    my $text = decode('utf8', read_file(CoMe::Core::Config::get_option('site_root') . q{email/} . $name . q{.txt}));
+    my $text = decode('utf8', read_file(SLight::Core::Config::get_option('site_root') . q{email/} . $name . q{.txt}));
 
     return $text;
 } # }}}

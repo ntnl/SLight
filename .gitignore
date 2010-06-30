@@ -7,3 +7,4 @@ MYMETA.yml
 cover_db/
 critic-cache.yaml
 sandbox/*
+t/*/*-result.yaml

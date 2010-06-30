@@ -1,0 +1,6 @@
+--- 
+Optional data: 
+  bar: This field may not be empty.
+This will pass: ~
+Too much characters: 
+  foo: Maximum number of chacters (3) has been exceeded

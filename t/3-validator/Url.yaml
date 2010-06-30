@@ -1,0 +1,6 @@
+--- 
+Domain and URI. OK: ~
+Domain only. OK: ~
+Domain tailed with "/". OK: ~
+String. FAIL: 
+  foo: Does not look line an URL

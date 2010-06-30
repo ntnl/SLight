@@ -1,0 +1,8 @@
+--- 
+Letters and digits. OK: ~
+Letters with some punctation. OK: ~
+Letters. OK: ~
+Slash. FAIL: 
+  file: Contains some not allowed characters.
+Spaces. FAIL: 
+  file: Contains some not allowed characters.
