@@ -13,18 +13,119 @@ package SLight::Core::Email;
 ################################################################################
 use strict; use warnings; # {{{
 
-use SLight::Core::L10N qw( TR );
 use SLight::Core::Config;
+use SLight::Core::DB;
+use SLight::Core::L10N qw( TR );
 
+use Carp;
 use Encode qw( decode encode );
 use File::Slurp qw( read_file );
 use MIME::Lite;
 use Params::Validate qw( :all );
+use YAML::Syck qw( DumpFile LoadFile );
 # }}}
 
 # Purpose:
-#   Send textual message to given email address (wrapper for MIME::Lite, for internal use).
+#   SLight's internal Email address handling and Email sending.
+
+################################################################################
+#                       Email ID support functions                             #
+################################################################################
+
+# Purpose:
+#   Get email and login, using Email_id.
+#   If login is not defined, it means that it belongs to some un-registered Guest.
+sub get_by_id { # {{{
+    my ( $Email_id ) = @_;
+
+    my $sth = SLight::Core::DB::run_query(
+        query => [ 'SELECT email, login FROM Email LEFT JOIN User_Entity ON User_Entity.email_id = Email.id WHERE Email.id = ', $Email_id ],
+        debug => 0,
+    );
+    if (my ($email, $login) = $sth->fetchrow_array()) {
+        return ($email, $login);
+    }
+
+    return;
+} # }}}
+
+# Purpose:
+#   Return email's ID asociated to some email address,
+#   or 'undef' if email address is not yet known in the system.
 #
+#   Optionally, entry might be auto-created on demand,
+#   if email is not found.
+sub get_email_id { # {{{
+    my ( $email, $auto_create ) = @_;
+
+    my $sth = SLight::Core::DB::run_query(
+        query => ['SELECT id FROM Email WHERE email=', $email],
+        debug => 0,
+    );
+
+    my $email_id = $sth->fetchrow_array();
+
+    if (not $email_id and $auto_create) {
+        return add_email($email);
+    }
+
+    return $email_id;
+} # }}}
+
+# Purpose:
+#   Return login of the User owning given email.
+#   If given email is not known in the system or it is not attached to any User,
+#   'undef' will be returned.
+sub get_user { # {{{
+    my ( $email, $auto_create ) = @_;
+
+    my $sth = SLight::Core::DB::run_query(
+        query => ['SELECT login FROM Email, User_Entity WHERE Email.id=User_Entity.email_id AND email=', $email],
+        debug => 0,
+    );
+    return $sth->fetchrow_array();
+} # }}}
+
+# Purpose:
+#   Return user logins for given list of emails.
+#   If some emails are not known, or they are not attached to any Users,
+#   they will not be returned in the hash.
+#
+# Returns:
+#   hashref with emails as keys and user logins as values.
+sub get_email_login_map { # {{{
+    my ( @emails ) = @_;
+    
+    my $sth = SLight::Core::DB::run_query(
+        query => [ 'SELECT email, login FROM Email, User_Entity WHERE Email.id=User_Entity.email_id AND email IN ', \@emails ],
+        debug => 0,
+    );
+    my %email_login_map;
+    while (my ($email, $login) = $sth->fetchrow_array()) {
+        $email_login_map{$email} = $login;
+    }
+
+    return \%email_login_map;
+} # }}}
+
+# Purpose:
+#   Add email to the Email dictionary.
+#   Will die, if email already exists!
+#
+# Returns:
+#   Email's ID
+sub add_email { # {{{
+    my ( $email ) = @_;
+
+    SLight::Core::DB::run_query(
+        query => ['INSERT INTO Email (email, status) VALUES (', $email, q{, }, 'A', q{)}],
+        debug => 0,
+    );
+
+    return SLight::Core::DB::last_insert_id();
+} # }}}
+
+=todo
 # Parameters:
 #   email : Email address
 #   title : Message title
@@ -67,108 +168,12 @@ sub send_to_email { # {{{
 
 #    warn "Sending mail to: $P{'email'}\n";
 
-#    warn $lite_message->as_string();
+    warn $lite_message->as_string();
 
     return send_lite($lite_message);
 } # }}}
 
-# Purpose:
-#   Send message, which is used to validate email address, before it can be used elsewhere.
-#   This applies to situations, where already registered user wants to change it's email addres.
-sub send_confirmation { # {{{
-    my %P = validate(
-        @_,
-        {
-            email             => { type=>SCALAR },
-            name              => { type=>SCALAR },
-            confirmation_link => { type=>SCALAR },
-        }
-    );
-
-    my $text = _load_template(q{confirmation});
-
-    foreach my $field (qw( email name confirmation_link )) {
-        my $value = $P{$field};
-
-        $text =~ s{~~$field~~}{$value}sg;
-    }
-
-    return send_to_email(
-        email => $P{'email'},
-        title => TR(q{Confirm email account}),
-        text  => $text,
-    );
-} # }}}
-
-# Purpose:
-#   Send message, which is used to check email addres of an User, that want's to create an account.
-sub send_registration { # {{{
-    my %P = validate(
-        @_,
-        {
-            email             => { type=>SCALAR },
-            domain            => { type=>SCALAR },
-            name              => { type=>SCALAR },
-            confirmation_link => { type=>SCALAR },
-        }
-    );
-
-    my $text = _load_template(q{registration});
-
-    foreach my $field (qw( email domain name confirmation_link )) {
-        my $value = $P{$field};
-
-        $text =~ s{~~$field~~}{$value}sg;
-    }
-
-    return send_to_email(
-        email => $P{'email'},
-        title => TR(q{Confirm account registration}),
-        text  => $text,
-    );
-} # }}}
-
-# Purpose:
-#   Send generic notifications, such as:
-#       - "someone posted a comment"
-#       - "someone replied to Your comment"
-#       - "server is low on disk space"
-sub send_notification { # {{{
-    my %P = validate(
-        @_,
-        {
-            email         => { type=>SCALAR },
-            name          => { type=>SCALAR },
-            notifications => { type=>ARRAYREF },
-        }
-    );
-    
-    my $text = _load_template(q{notification});
-
-    $P{'notifications'} = join "\n", @{ $P{'notifications'} };
-
-    foreach my $field (qw( email name notifications )) {
-        my $value = $P{$field};
-
-        $text =~ s{~~$field~~}{$value}sg;
-    }
-
-    return send_to_email(
-        email => $P{'email'},
-        title => TR(q{Notification}),
-        text  => $text,
-    );
-} # }}}
-
-# Purpose:
-#   Load specified email template.
-sub _load_template { # {{{
-    my ($name) = @_;
-
-    my $text = decode('utf8', read_file(SLight::Core::Config::get_option('site_root') . q{email/} . $name . q{.txt}));
-
-    return $text;
-} # }}}
+=cut
 
 #                           Guts.
 
@@ -204,7 +209,20 @@ sub send_lite { # {{{
     return;
 } # }}}
 
+# Purpose:
+#   Assign User ID to an email.
+sub set_user_id { # {{{
+    my ( $email, $user_id ) = @_;
 
+    SLight::Core::DB::run_query(
+        query => ['UPDATE Email SET user_id = ', $user_id, ' WHERE email = ', $email ],
+        debug => 0,
+    );
+
+    # Fixme: would be nice, to actually check if We did anything ;)
+
+    return;
+} # }}}
 
 # vim: fdm=marker
 1;

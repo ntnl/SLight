@@ -41,23 +41,25 @@
 
         Pages are - in some way - server by SLight.
 
-=--= Milestone 3 - Working CMS - 2010-07-10
+=--= Milestone 3 - Working CMS - ....-..-..
 
 [>] Validator
 [X]     SLight::Validator.pm
 [X]     SLight::Validator::Disk.pm
 [X]     SLight::Validator::Net.pm
 [X]     SLight::Validator::Simple.pm
-[>]     SLight::Validator::User.pm
-[ ] API
-[ ]     Object store
+[X]     SLight::Validator::User.pm
+[>] API
+[>]     Object store
 [ ]     ObjectSpec store
 [ ]     Asset store
 [ ]     Comment store
 [ ]     Add 'title' and 'description' to Page, l10n-dependant
 [ ] PathHandler ()
+[ ]     Test Framework
 [ ]     SLight::PathHandler::CMS
 [ ]     SLight::PathHandler::Test
+[ ] Handler Object Test Framework
 [ ] CMS Handler objects
 [ ]     SLight::Handler::Test::Test::Test
 [ ]     SLight::Handler::Core::Asset
@@ -112,7 +114,7 @@
 
         Content can be managed (added, edited and deleted) trough browser.
 
-=--= Milestone 4 - User management - 2010-07-17
+=--= Milestone 4 - User management - ....-..-..
 
 [ ] User API
 [ ]     SLight::API::User
@@ -163,7 +165,7 @@
         Groups can be managed.
         Permissions can be managed.
 
-=--= Milestone 5 - Forum - 2010-07-24
+=--= Milestone 5 - Forum - ....-..-..
     
 [ ] Forum-related Handler objects
 [ ]     SLight::Handler::Forum::Root
@@ -190,7 +192,7 @@
 
         Forum is complete.
 
-=--= Milestone 6 - Initial AJAX support - 2010-07-31
+=--= Milestone 6 - Initial AJAX support - 
 
 [ ] AJAX Protocol object
 [ ] P.O.C. of some js/html changes
@@ -199,11 +201,15 @@
 
         At least one action works trough AJAX
 
-=--= Milestone 7 - Full AJAX support - 2010-08-07
+=--= Milestone 7 - Full AJAX support - ....-..-..
     
 [ ] Upgrade all applicable functionality to support AJAX
 
     Definition of done:
 
         Adding, Editing, Deleting, Posting threads, responding - all working trough AJAX
+
+=--= Future ideas:
+
+[ ] ...
 

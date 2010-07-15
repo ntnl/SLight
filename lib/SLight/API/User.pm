@@ -21,21 +21,21 @@ use Params::Validate qw( :all );
 # }}}
 
 my %meta = (
-    all_fields  => [qw( id login name pass email )],
-    data_fields => [qw(    login name      email )],
+    all_fields  => [qw( id login status name pass email_id )],
+    data_fields => [qw(    login status name      email_id )],
 );
 
 my %status_set = (
-    'Disabled',
+    'Disabled' => 1,
         # User account exists, but is not usable
         # This User can not log in.
         #
-    'Guest',
+    'Guest' => 2,
         # User account exists, but must be verified before it becomes fully usable
         # This User can log in, but is othervise same as Guest (hence the name)
         # Does not have to enter his Email all the time, as normal guests do.
         #
-    'Enabled',
+    'Enabled' => 3,
         # Fully-usable User account.
 );
 
@@ -48,27 +48,25 @@ sub add_user { # {{{
             pass   => { type=>SCALAR },
             status => { type=>SCALAR },
 
-            email     => { type=>SCALAR },
-            email_key => { type=>SCALAR, optional=>1 },
+            email => { type=>SCALAR },
         }
     );
 
     assert_exists(\%status_set, $P{'status'}, 'Status is supported');
 
     # Encrypt password, before putting it into DB.
-    my $pass_enc = sha512_hex($P{'pass');
+    my $pass_enc = sha512_hex($P{'pass'});
 
     # Get or assign ID of the email:
-    my $email_id = ...
+    my $email_id = SLight::Core::Email::get_email_id($P{'email'}, 1);
 
     return SLight::Core::Entity::add_ENTITY(
         id => $P{'id'},
 
         login  => $P{'login'},
         status => $P{'status'},
-        
+
         name      => $P{'name'},
-        email_key => $P{'email_key'},
 
         pass_enc => $pass_enc,
         email_id => $email_id,
@@ -76,6 +74,16 @@ sub add_user { # {{{
         _fields => $meta{'data_fields'},
         _table  => 'User_Entity',
     );
+} # }}}
+
+sub is_registered { # {{{
+    my ( $login ) = @_;
+
+    if (SLight::Core::Entity::count_ENTITYs_where( login=>$login, _table=>'User_Entity')) {
+        return 1;
+    }
+
+    return
 } # }}}
 
 # vim: fdm=marker

@@ -17,7 +17,6 @@ use lib $Bin . q{/../../lib/};
 
 use SLight::Test::Validator;
 use SLight::Test::Site;
-use SLight::Test::User;
 # }}}
 
 my $site_root = SLight::Test::Site::prepare_fake(
@@ -58,12 +57,12 @@ my @tests = (
     },
     {
         name   => 'Already taken. FAIL',
-        data   => { foo => 'UserA' },
+        data   => { foo => 'wanda' },
         meta   => { foo => { type=>'NewLogin' } },
     },
 );
 
-CoMe::Test::Validator::run_tests(
+SLight::Test::Validator::run_tests(
     tests  => \@tests,
 );
 

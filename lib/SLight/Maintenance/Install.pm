@@ -56,10 +56,8 @@ sub make_site { # {{{
 
     assert_is( -f $destination . q{db/slight.sqlite}, undef, "File: db/slight.sqlite does not exists.");
     my @init_files = (
-#        $sql_source . q{users.sql},
-#        $sql_source . q{groups.sql},
     	$sql_source . q{content.sql},
-#        $sql_source . q{access.sql},
+        $sql_source . q{auth.sql},
     );
     foreach my $file (@init_files) {
         assert_defined( -f $file, "Source file ($file) exists");

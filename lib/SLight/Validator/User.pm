@@ -13,7 +13,7 @@ package SLight::Validator::User;
 ################################################################################
 use strict; use warnings; # {{{
 
-use SLight::Core::User;
+use SLight::API::User;
 
 use SLight::Core::L10N qw( TR TF );
 # }}}
@@ -30,7 +30,7 @@ sub v_NewLogin { # {{{
         return TF("Too short, must have at least %d characters.", undef, 4);
     }
     
-    if (SLight::Core::User::is_registered($value) ) {
+    if (SLight::API::User::is_registered($value) ) {
         return TR("Account with such ID already exists.");
     }
 

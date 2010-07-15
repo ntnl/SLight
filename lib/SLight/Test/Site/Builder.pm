@@ -24,7 +24,8 @@ use File::Slurp qw( write_file );
 # }}}
 
 my %sites = (
-    'Minimal' => 1,
+    'Minimal' => [qw( Minimal )],
+    'Users'   => [qw( Users )],
 );
 
 my $_site_root;

@@ -187,6 +187,27 @@ sub get_ENTITYs { # {{{
     return \@entities;
 } # }}}
 
+sub count_ENTITYs_where { # {{{
+    my %P = @_;
+    
+    # YES, this IS stupid, but should work... will refactor later.
+
+    my $where = _make_where(%P);
+
+    my $sth = SLight::Core::DB::run_select(
+        columns => [ 'id' ],
+        from    => $P{'_table'},
+        where   => $where,
+        debug => 0
+    );
+
+    my @entity_ids;
+    while (my ( $id ) = $sth->fetchrow_array()) {
+        push @entity_ids, $id;
+    }
+    return scalar @entity_ids;
+} # }}}
+
 sub get_ENTITY_ids_where { # {{{
     my %P = @_;
     
@@ -196,7 +217,7 @@ sub get_ENTITY_ids_where { # {{{
         columns => [ 'id' ],
         from    => $P{'_table'},
         where   => $where,
-        debug => 1
+        debug => 0
     );
 
     my @entity_ids;
