@@ -1,5 +1,7 @@
 -- Tables needed for authentication and authorization
 
+PRAGMA foreign_keys = ON;
+
 CREATE TABLE Email (
 	`id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it
 
