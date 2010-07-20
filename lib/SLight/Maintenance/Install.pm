@@ -55,9 +55,11 @@ sub make_site { # {{{
     $feedback_call->("Making sqlites...");
 
     assert_is( -f $destination . q{db/slight.sqlite}, undef, "File: db/slight.sqlite does not exists.");
+    # Fixme: this array should be filled automatically
     my @init_files = (
     	$sql_source . q{content.sql},
         $sql_source . q{auth.sql},
+        $sql_source . q{cache.sql},
     );
     foreach my $file (@init_files) {
         assert_defined( -f $file, "Source file ($file) exists");
