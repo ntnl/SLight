@@ -85,29 +85,69 @@ Following interface should be exported by all Entity API modules:
 
 =cut
 
-sub add_ENTITY { # {{{
-    my %P = @_;
+# Purpose:
+#   Create and return handler object for some entities.
+sub new { # {{{
+    my ( $class, %P ) = @_;
 
-    my %values;
-    foreach my $field (@{ $P{'_fields'} }) {
-        $values{$field} = $P{$field};
+    my $self = {
+        base_table  => $P{'base_table'},
+        field_table => $P{'child_table'},
+            # Will be undef, if the table has no fields
+
+        is_a_tree => $P{'is_a_tree'},
+
+        has_metadata => $P{'has_metadata'},
+            # Rows from main table contain 'metadata' column
+
+        is_signed => $P{'is_signed'},
+            # Rows from main table are signed with Email_id
+
+        data_fields => $P{'data_fields'}
+            # Other (not natively supported) data fields.
+    };
+
+    $self->{'_all_fields'} = [ @{ $P{'data_fields'} } ];
+    if ($self->{'is_a_tree'}) {
+        push @{ $self->{'_all_fields'} }, 'parent_id';
     }
+    if ($self->{'has_metadata'}) {
+        push @{ $self->{'_all_fields'} }, 'metadata';
+    }
+    
+    $self->{'_really_all_fields'} = [ 'id', @{ $self->{'_all_fields'} } ];
+
+    bless $self, $class;
+
+    return $self;
+} # }}}
+
+sub add_ENTITY { # {{{
+    my ( $self, %P ) = @_;
+
+#    my %values;
+#    foreach my $field (@{ $self->{'_all_fields'} }) {
+#        $values{$field} = $P{$field};
+#    }
 
     SLight::Core::DB::check();
 
     SLight::Core::DB::run_insert(
-        'into'   => $P{'_table'},
-        'values' => \%values,
+        'into'   => $self->{'base_table'},
+        'values' => \%P,
+#        debug    => 1, 
     );
 
     return SLight::Core::DB::last_insert_id();
 } # }}}
 
 sub update_ENTITY { # {{{
-    my %P = @_;
+    my ( $self, %P ) = @_;
+
+    assert_positive_integer($P{'id'});
 
     my %values;
-    foreach my $field (@{ $P{'_fields'} }) {
+    foreach my $field (@{ $self->{'_all_fields'} }) {
         if ($P{$field}) {
             $values{$field} = $P{$field};
         }
@@ -116,7 +156,7 @@ sub update_ENTITY { # {{{
     SLight::Core::DB::check();
 
     SLight::Core::DB::run_update(
-        'table' => $P{'_table'},
+        'table' => $self->{'base_table'},
         'set'   => \%values,
         'where' => [
             'id = ', $P{'id'},
@@ -128,10 +168,10 @@ sub update_ENTITY { # {{{
 } # }}}
 
 sub update_ENTITYs { # {{{
-    my %P = @_;
+    my ( $self, %P ) = @_;
 
     my %values;
-    foreach my $field (@{ $P{'_fields'} }) {
+    foreach my $field (@{ $self->{'_all_fields'} }) {
         if ($P{$field}) {
             $values{$field} = $P{$field};
         }
@@ -140,7 +180,7 @@ sub update_ENTITYs { # {{{
     SLight::Core::DB::check();
 
     SLight::Core::DB::run_update(
-        'table' => $P{'_table'},
+        'table' => $self->{'base_table'},
         'set'   => \%values,
         'where' => [
             'id IN ', $P{'ids'},
@@ -152,15 +192,15 @@ sub update_ENTITYs { # {{{
 } # }}}
 
 sub get_ENTITY { # {{{
-    my ( $id, $table, $fields ) = @_;
+    my ( $self, $id ) = @_;
 
     assert_positive_integer($id);
 
     SLight::Core::DB::check();
 
     my $sth = SLight::Core::DB::run_select(
-        columns => $fields,
-        from    => $table,
+        columns => $self->{'_really_all_fields'},
+        from    => $self->{'base_table'},
         where   => [ 'id = ', $id ],
 #        debug => 1
     );
@@ -169,13 +209,13 @@ sub get_ENTITY { # {{{
 } # }}}
 
 sub get_ENTITYs { # {{{
-    my ( $ids, $table, $fields ) = @_;
+    my ( $self, $ids ) = @_;
 
     SLight::Core::DB::check();
 
     my $sth = SLight::Core::DB::run_select(
-        columns => $fields,
-        from    => $table,
+        columns => $self->{'_really_all_fields'},
+        from    => $self->{'base_table'},
         where   => [ 'id IN ', $ids ],
 #        debug => 1
     );
@@ -188,17 +228,17 @@ sub get_ENTITYs { # {{{
 } # }}}
 
 sub count_ENTITYs_where { # {{{
-    my %P = @_;
+    my ( $self, %P ) = @_;
     
     # YES, this IS stupid, but should work... will refactor later.
 
-    my $where = _make_where(%P);
+    my $where = $self->_make_where(%P);
 
     my $sth = SLight::Core::DB::run_select(
         columns => [ 'id' ],
-        from    => $P{'_table'},
+        from    => $self->{'base_table'},
         where   => $where,
-        debug => 0
+#        debug => 1
     );
 
     my @entity_ids;
@@ -209,15 +249,15 @@ sub count_ENTITYs_where { # {{{
 } # }}}
 
 sub get_ENTITY_ids_where { # {{{
-    my %P = @_;
+    my ( $self, %P ) = @_;
     
-    my $where = _make_where(%P);
+    my $where = $self->_make_where(%P);
 
     my $sth = SLight::Core::DB::run_select(
         columns => [ 'id' ],
-        from    => $P{'_table'},
+        from    => $self->{'base_table'},
         where   => $where,
-        debug => 0
+#        debug   => 1
     );
 
     my @entity_ids;
@@ -228,15 +268,15 @@ sub get_ENTITY_ids_where { # {{{
 } # }}}
 
 sub get_ENTITY_fields_where { # {{{
-    my %P = @_;
+    my ( $self, %P ) = @_;
 
     SLight::Core::DB::check();
 
-    my $where = _make_where(%P);
+    my $where = $self->_make_where(%P);
 
     my $sth = SLight::Core::DB::run_select(
         columns => $P{'_fields'},
-        from    => $P{'_table'},
+        from    => $self->{'base_table'},
         where   => $where,
 #        debug => 1
     );
@@ -249,49 +289,46 @@ sub get_ENTITY_fields_where { # {{{
 } # }}}
 
 sub _make_where { # {{{
-    my %P = @_;
+    my ( $self, %P ) = @_;
 
     my @where;
     my $glue = q{};
-    foreach my $field (keys %P) {
-        if ($field eq '_table') {
-            next;
-        }
-        if ($field eq '_fields') {
-            next;
-        }
+    foreach my $field (@{ $self->{'_all_fields'} }) {
+        if (exists $P{$field}) {
+            push @where, $glue . $field . q{ = }, $P{$field};
 
-        push @where, $glue . $field . q{ = }, $P{$field};
-
-        $glue = ' AND ';
+            $glue = ' AND ';
+        }
     }
 
     return \@where;
 } # }}}
 
 sub delete_ENTITYs { # {{{
-    my ( $ids, $table ) = @_;
+    my ( $self, $ids ) = @_;
 
     my $deleted_count = scalar @{ $ids };
 
     SLight::Core::DB::check();
 
-    # Get childs...
-    my $sth = SLight::Core::DB::run_select(
-        columns => [qw( id )],
-        from    => $table,
-        where   => [ 'parent_id IN ', $ids ],
-    );
-    my @child_ids;
-    while (my ( $child_id ) = $sth->fetchrow_array()) {
-        push @child_ids, $child_id;
-    }
-    if (scalar @child_ids) {
-        $deleted_count += delete_ENTITYs(\@child_ids, $table);
+    if ($self->{'is_a_tree'}) {
+        # Get childs...
+        my $sth = SLight::Core::DB::run_select(
+            columns => [qw( id )],
+            from    => $self->{'base_table'},
+            where   => [ 'parent_id IN ', $ids ],
+        );
+        my @child_ids;
+        while (my ( $child_id ) = $sth->fetchrow_array()) {
+            push @child_ids, $child_id;
+        }
+        if (scalar @child_ids) {
+            $deleted_count += $self->delete_ENTITYs(\@child_ids, $self->{'base_table'});
+        }
     }
 
     SLight::Core::DB::run_delete(
-        from  => $table,
+        from  => $self->{'base_table'},
         where => [ 'id IN ', $ids ],
     );
 

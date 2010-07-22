@@ -18,10 +18,13 @@ use SLight::Core::Entity;
 use Params::Validate qw( :all );
 # }}}
 
-my %meta = (
-    all_fields  => [qw( id parent_id path template )],
-    data_fields => [qw(    parent_id path template )],
-);
+my $_handler = SLight::Core::Entity->new( # {{{
+    base_table  => 'Page_Entity',
+
+    data_fields => [qw( path template )],
+
+    is_a_tree => 1,
+); # }}}
 
 sub add_page { # {{{
     my %P = validate (
@@ -34,16 +37,11 @@ sub add_page { # {{{
         }
     );
 
-    return SLight::Core::Entity::add_ENTITY(
-        id => $P{'id'},
-
+    return $_handler->add_ENTITY(
         parent_id => $P{'parent_id'},
-        path      => $P{'path'},
 
+        path     => $P{'path'},
         template => $P{'template'},
-
-        _fields => $meta{'data_fields'},
-        _table  => 'Page_Entity',
     );
 } # }}}
 
@@ -60,16 +58,13 @@ sub update_page { # {{{
         }
     );
 
-    return SLight::Core::Entity::update_ENTITY(
+    return $_handler->update_ENTITY(
         id => $P{'id'},
 
         parent_id => $P{'parent_id'},
-        path      => $P{'path'},
-            
-        template => $P{'template'},
 
-        _fields => $meta{'data_fields'},
-        _table  => 'Page_Entity',
+        path     => $P{'path'},
+        template => $P{'template'},
     );
 } # }}}
 
@@ -86,55 +81,46 @@ sub update_pages { # {{{
         }
     );
 
-    return SLight::Core::Entity::update_ENTITYs(
+    return $_handler->update_ENTITYs(
         ids => $P{'ids'},
 
         parent_id => $P{'parent_id'},
-        path      => $P{'path'},
-            
-        template => $P{'template'},
 
-        _fields => $meta{'data_fields'},
-        _table  => 'Page_Entity',
+        path     => $P{'path'},
+        template => $P{'template'},
     );
 } # }}}
 
 sub delete_page { # {{{
     my ( $id ) = @_;
 
-    return SLight::Core::Entity::delete_ENTITYs( [ $id ], 'Page_Entity');
+    return $_handler->delete_ENTITYs( [ $id ] );
 } # }}}
 
 sub delete_pages { # {{{
     my ( $ids ) = @_;
 
-    return SLight::Core::Entity::delete_ENTITYs($ids, 'Page_Entity');
+    return $_handler->delete_ENTITYs( $ids );
 } # }}}
 
 sub get_page { # {{{
     my ( $id ) = @_;
 
-    return SLight::Core::Entity::get_ENTITY($id, 'Page_Entity', $meta{'all_fields'});
+    return $_handler->get_ENTITY($id);
 } # }}}
 
 sub get_pages { # {{{
     my ( $ids ) = @_;
 
-    return SLight::Core::Entity::get_ENTITYs($ids, 'Page_Entity', $meta{'all_fields'});
+    return $_handler->get_ENTITYs($ids);
 } # }}}
 
 sub get_page_ids_where { # {{{
-    return SLight::Core::Entity::get_ENTITY_ids_where(
-        @_,
-        _table => 'Page_Entity',
-    );
+    return $_handler->get_ENTITY_ids_where(@_);
 } # }}}
 
 sub get_page_fields_where { # {{{
-    return SLight::Core::Entity::get_ENTITY_fields_where(
-        @_,
-        _table => 'Page_Entity',
-    );
+    return $_handler->get_ENTITY_fields_where(@_);
 } # }}}
 
 # sub attach_page_to_page { # {{{
