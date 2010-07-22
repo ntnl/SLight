@@ -19,13 +19,13 @@ CREATE UNIQUE INDEX Email_email ON Email (email);
 CREATE TABLE Email_Verification_Keys (
 	`id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it
 
-    `email_id`  INTEGER      NOT NULL,
+    `Email_id`  INTEGER      NOT NULL,
     `key`       VARCHAR(128) NOT NULL,  -- 'secret' key, known only to email owner
 
     `handler`   VARCHAR(128) NOT NULL,  -- module, that will do the verification
     `params`    VARCHAR(255) NOT NULL,  -- parameters passed to the module
 
-    FOREIGN KEY(`email_id`) REFERENCES Email(`id`)
+    FOREIGN KEY(`Email_id`) REFERENCES Email(`id`)
 );
 
 CREATE TABLE User_Entity (
@@ -39,11 +39,11 @@ CREATE TABLE User_Entity (
     `name`      VARCHAR(128),
 
     `pass_enc` VARCHAR(512),
-    `email_id` INTEGER NOT NULL,
+    `Email_id` INTEGER NOT NULL,
         -- Primary email owned and used by the User.
 
-    FOREIGN KEY(`email_id`) REFERENCES Email(`id`)
+    FOREIGN KEY(`Email_id`) REFERENCES Email(`id`)
 );
 CREATE UNIQUE INDEX User_Entity_login ON User_Entity (login);
-CREATE        INDEX User_Entity_email ON User_Entity (email_id);
+CREATE        INDEX User_Entity_email ON User_Entity (Email_id);
 

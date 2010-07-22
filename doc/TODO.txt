@@ -49,9 +49,11 @@
 [X]     SLight::Validator::Net.pm
 [X]     SLight::Validator::Simple.pm
 [X]     SLight::Validator::User.pm
+[X] Core
+[X]     Cache
 [>] API
-[>]     Object store
-[ ]     ObjectSpec store
+[>]     ObjectSpec store
+[ ]     Object store
 [ ]     Asset store
 [ ]     Comment store
 [ ]     Add 'title' and 'description' to Page, l10n-dependant
@@ -63,9 +65,10 @@
 [ ] CMS Handler objects
 [ ]     SLight::Handler::Test::Test::Test
 [ ]     SLight::Handler::Core::Asset
-[ ]     SLight::Handler::Core::Asset::Show
 [ ]     SLight::Handler::Core::Asset::List
-[ ]     SLight::Handler::Core::Asset::List
+[ ]     SLight::Handler::Core::Asset::Asset
+[ ]     SLight::Handler::Core::Asset::Internal
+[ ]     SLight::Handler::Core::Asset::Dynamic
 [ ]     SLight::Handler::Core::Empty
 [ ]         SLight::Handler::Core::Empty::Add
 [ ]         SLight::Handler::Core::Empty::Edit
