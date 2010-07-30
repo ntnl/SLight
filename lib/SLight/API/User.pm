@@ -39,6 +39,17 @@ my %status_set = (
         # Fully-usable User account.
 );
 
+my $_handler = SLight::Core::Entity->new( # {{{
+    base_table => 'User_Entity',
+
+    data_fields => [qw( login status name pass_enc )],
+
+    has_metadata => 1,
+    has_owner    => 1,
+    has_assets   => 1,
+    has_comments => 1,
+); # }}}
+
 sub add_user { # {{{
     my %P = validate (
         @_,
@@ -60,7 +71,7 @@ sub add_user { # {{{
     # Get or assign ID of the email:
     my $email_id = SLight::Core::Email::get_email_id($P{'email'}, 1);
 
-    return SLight::Core::Entity::add_ENTITY(
+    return $_handler->add_ENTITY(
         id => $P{'id'},
 
         login  => $P{'login'},
@@ -70,16 +81,13 @@ sub add_user { # {{{
 
         pass_enc => $pass_enc,
         email_id => $email_id,
-
-        _fields => $meta{'data_fields'},
-        _table  => 'User_Entity',
     );
 } # }}}
 
 sub is_registered { # {{{
     my ( $login ) = @_;
 
-    if (SLight::Core::Entity::count_ENTITYs_where( login=>$login, _table=>'User_Entity')) {
+    if ($_handler->count_ENTITYs_where( login=>$login )) {
         return 1;
     }
 

@@ -12,6 +12,7 @@ package SLight::API::Page;
 # 
 ################################################################################
 use strict; use warnings; # {{{
+use base 'Exporter';
 
 use SLight::Core::Entity;
 
@@ -25,6 +26,8 @@ my $_handler = SLight::Core::Entity->new( # {{{
 
     is_a_tree => 1,
 ); # }}}
+
+# Fixme: It should be: 'add_Page', not: 'add_page', and so on...
 
 sub add_page { # {{{
     my %P = validate (

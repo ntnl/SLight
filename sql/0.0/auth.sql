@@ -16,7 +16,7 @@ CREATE TABLE Email (
 );
 CREATE UNIQUE INDEX Email_email ON Email (email);
 
-CREATE TABLE Email_Verification_Keys (
+CREATE TABLE Email_Verification_Key (
 	`id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it
 
     `Email_id`  INTEGER      NOT NULL,

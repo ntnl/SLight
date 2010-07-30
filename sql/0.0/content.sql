@@ -6,6 +6,7 @@ CREATE TABLE Page_Entity (
 	`id`       INTEGER PRIMARY KEY,
 
     `parent_id` INTEGER,
+		-- our parent, or NULL on top-level comments.
 
 	`path`      VARCHAR(127) NOT NULL,
 
@@ -23,8 +24,11 @@ CREATE TABLE Content_Spec (
 	`caption`	VARCHAR(128) NOT NULL,
 		-- This will be a textual description, visible only to Site owner.
 
-    `owning_module` VARCHAR(128),
+    `owning_module` VARCHAR(128) NOT NULL,
         -- Which module created this Spec and should be use to handle Entities derived from it.
+
+	`version` SMALLINT NOT NULL DEFAULT 0,
+		-- In case the same module can handle different versions of the content type...
 
     `metadata` TEXT
         -- Serialized with YAML.
@@ -40,15 +44,35 @@ CREATE TABLE Content_Spec_Field (
         -- Points to Content_Spec that owns this field.
 
 	`class`	VARCHAR(64) NOT NULL,
-        -- Field class, textual code-name.
-
-	`order`		SMALLINT NOT NULL,
-
-	`datatype`  VARCHAR(64)  NOT NULL,
+        -- Textual identifiers, made by the User.
+		-- Must be unique in the scope of the single Type
+        -- This is used to identify fields in CSS, HTML, XML and JSON
 
 	`caption`   VARCHAR(128) NOT NULL,
         -- This will be a textual description, intended for Site owner.
         -- SLight will push it trough L10N sub-system, each time it will output it.
+
+	`order`		SMALLINT NOT NULL,
+
+	`datatype`  VARCHAR(64)  NOT NULL,
+		-- One of:
+		--	Date
+		--	Time
+		--	DateTime
+		--
+		--	Email
+		--	Link
+		--
+		--	Int
+		--	Money
+		--
+		--	String
+		--	Text
+		--
+		--  Image
+		--	Asset
+		--
+		--	Test
 
 	`default`   VARCHAR(255) NOT NULL,
         -- Default value used to initialize the Add form.
@@ -90,7 +114,8 @@ CREATE TABLE Content_Spec_Field (
 	
     FOREIGN KEY(`Content_Spec_id`) REFERENCES Content_Spec(`id`)
 );
-CREATE INDEX Content_Spec_Field_Content_Spec_id ON Content_Spec_Field (Content_Spec_id);
+CREATE        INDEX Content_Spec_Field_Content_Spec_id ON Content_Spec_Field (Content_Spec_id);
+CREATE UNIQUE INDEX Content_Spec_Field_class           ON Content_Spec_Field (Content_Spec_id, class);
 
 -- Content system
 
@@ -129,7 +154,7 @@ CREATE TABLE Content_Entity (
 	`modified_time`	TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		-- Time, when this entry had it's most recent change.
 
-    `metadata` TEXT
+    `metadata` TEXT,
         -- Serialized with YAML.
         -- A place where modules can put 'their' stuff.
 
@@ -150,9 +175,9 @@ CREATE TABLE Content_Entity_Data (
 	`value`	TEXT NOT NULL,
 
 	FOREIGN KEY(`Content_Entity_id`)     REFERENCES Content_Entity(`id`),
-    FOREIGN KEY(`Content_Type_Field_id`) REFERENCES Content_Type_Field(`id`)
+    FOREIGN KEY(`Content_Spec_Field_id`) REFERENCES Content_Spec_Field(`id`)
 );
-CREATE UNIQUE INDEX Content_Entity_Data_index ON Content_Entity_Data (Content_Entry_id, Content_Spec_Field_id, language);
+CREATE UNIQUE INDEX Content_Entity_Data_index ON Content_Entity_Data (Content_Entity_id, Content_Spec_Field_id, language);
 
 -- This table will tend to grow, thus it's indexes may be sub-optimal.
 -- It should not be a problem, as it should not be used on regular basis.
@@ -174,6 +199,102 @@ CREATE TABLE Content_Entity_Data_History (
         -- Time when given value was set.
 
 	FOREIGN KEY(`Content_Entity_id`)     REFERENCES Content_Entity(`id`),
-    FOREIGN KEY(`Content_Type_Field_id`) REFERENCES Content_Type_Field(`id`)
+    FOREIGN KEY(`Content_Spec_Field_id`) REFERENCES Content_Type_Field(`id`)
 );
+
+CREATE TABLE Comment_Entity (
+	`id` INTEGER PRIMARY KEY,
+
+	`parent_id` INTEGER,
+		-- our parent, or NULL on top-level comments.
+
+    `Email_id` INTEGER,
+        -- User's Email ID.
+		-- This in turn will lead to an user account, or not (if the comment was written by guest)
+
+	`added`	    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+	`status` VARCHAR(64) NOT NULL,
+		-- visible / hidden / email_pending
+
+	`title`	VARCHAR(255),
+	`text`	TEXT,
+
+    FOREIGN KEY (`parent_id`) REFERENCES Comment_Entity (`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`Email_id`)  REFERENCES Email(`id`)
+);
+CREATE INDEX Comment_Entity_parent ON Comment_Entity (`parent_id`);
+CREATE INDEX Comment_Entity_email  ON Comment_Entity (`Email_id`);
+
+CREATE TABLE Asset_Entity (
+	`id` INTEGER PRIMARY KEY,
+
+	`added` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    `Email_id` INTEGER,
+        -- User's Email ID.
+		-- This in turn will lead to an user account, or not (if the comment was written by guest)
+
+	`filename`	VARCHAR(255), -- original file name.
+	`byte_size`	INTEGER,
+    `mime_type` VARCHAR(128),
+
+	`summary`	VARCHAR(255), -- summary entered by the uploader
+
+	FOREIGN KEY(`Email_id`) REFERENCES Email(`id`)
+);
+CREATE INDEX Asset_Entity_email ON Asset_Entity (`Email_id`);
+
+
+
+CREATE TABLE Comment_to_Content (
+    Content_Entity_id INTEGER NOT NULL,
+    Comment_Entity_id INTEGER NOT NULL,
+
+    FOREIGN KEY (`Content_Entity_id`) REFERENCES Content_Entity (`id`),
+    FOREIGN KEY (`Comment_Entity_id`) REFERENCES Comment_Entity (`id`)
+);
+CREATE UNIQUE INDEX Comment_to_Content_index ON Comment_to_Content (Content_Entity_id, Comment_Entity_id);
+
+CREATE TABLE Comment_to_User (
+    `User_Entity_id`    INTEGER NOT NULL,
+    `Comment_Entity_id` INTEGER NOT NULL,
+
+    FOREIGN KEY (`User_Entity_id`)    REFERENCES User_Entity (`id`),
+    FOREIGN KEY (`Comment_Entity_id`) REFERENCES Comment_Entity (`id`)
+);
+CREATE UNIQUE INDEX Comment_to_User_index ON Comment_to_User (User_Entity_id, Comment_Entity_id);
+
+CREATE TABLE Comment_to_Asset (
+    `Asset_Entity_id`   INTEGER NOT NULL,
+    `Comment_Entity_id` INTEGER NOT NULL,
+
+    FOREIGN KEY (`Asset_Entity_id`)   REFERENCES Asset_Entity   (`id`),
+    FOREIGN KEY (`Comment_Entity_id`) REFERENCES Comment_Entity (`id`)
+);
+CREATE UNIQUE INDEX Comment_to_Asset_index ON Comment_to_Asset (Asset_Entity_id, Comment_Entity_id);
+
+
+
+CREATE TABLE Asset_to_Content (
+    `Comment_Entity_id` INTEGER NOT NULL,
+    `Asset_Entity_id`   INTEGER NOT NULL,
+
+    `Content_Spec_Field_id` INTEGER,
+
+    FOREIGN KEY (`Comment_Entity_id`) REFERENCES Comment_Entity (`id`),
+    FOREIGN KEY (`Asset_Entity_id`)   REFERENCES Asset_Entity   (`id`)
+);
+CREATE UNIQUE INDEX Asset_to_Content_index ON Comment_to_Content (Content_Entity_id, Comment_Entity_id);
+
+CREATE TABLE Asset_to_User (
+    `User_Entity_id`  INTEGER NOT NULL,
+    `Asset_Entity_id` INTEGER NOT NULL,
+
+    `field` VARCHAR(64) NOT NULL,
+
+    FOREIGN KEY (`User_Entity_id`)  REFERENCES User_Entity (`id`),
+    FOREIGN KEY (`Asset_Entity_id`) REFERENCES Asset_Entity (`id`)
+);
+CREATE UNIQUE INDEX Asset_to_User_index ON Comment_to_User (User_Entity_id, Comment_Entity_id);
 

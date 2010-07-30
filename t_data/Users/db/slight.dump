@@ -4,11 +4,242 @@ CREATE TABLE Page_Entity (
 	`id`       INTEGER PRIMARY KEY,
 
     `parent_id` INTEGER,
+		-- our parent, or NULL on top-level comments.
+
 	`path`      VARCHAR(127) NOT NULL,
 
     `template` VARCHAR(128),
 
     FOREIGN KEY (`parent_id`) REFERENCES Page_Entity (`id`) ON DELETE CASCADE
+);
+CREATE TABLE Content_Spec (
+	`id`     	INTEGER PRIMARY KEY,
+
+	`caption`	VARCHAR(128) NOT NULL,
+		-- This will be a textual description, visible only to Site owner.
+
+    `owning_module` VARCHAR(128) NOT NULL,
+        -- Which module created this Spec and should be use to handle Entities derived from it.
+
+	`version` SMALLINT NOT NULL DEFAULT 0,
+		-- In case the same module can handle different versions of the content type...
+
+    `metadata` TEXT
+        -- Serialized with YAML.
+        -- A place where modules can put 'their' stuff.
+
+);
+CREATE TABLE Content_Spec_Field (
+	`id`		INTEGER PRIMARY KEY,
+
+    `Content_Spec_id` INTEGER,
+        -- Points to Content_Spec that owns this field.
+
+	`class`	VARCHAR(64) NOT NULL,
+        -- Textual identifiers, made by the User.
+        -- This is used to identify fields in CSS, HTML, XML and JSON
+
+	`caption`   VARCHAR(128) NOT NULL,
+        -- This will be a textual description, intended for Site owner.
+        -- SLight will push it trough L10N sub-system, each time it will output it.
+
+	`order`		SMALLINT NOT NULL,
+
+	`datatype`  VARCHAR(64)  NOT NULL,
+
+	`default`   VARCHAR(255) NOT NULL,
+        -- Default value used to initialize the Add form.
+
+	`translate` SMALLINT NOT NULL,
+        -- 0 : Not translatable
+        -- 1 : This field is translatable
+
+    `display_on_page` SMALLINT NOT NULL DEFAULT 2,
+        -- If/how to display on page
+        --  0 - Do not display
+        --  1 - Display as summary
+        --  2 - Display in full form
+
+    `display_on_list` SMALLINT NOT NULL DEFAULT 2,
+        -- If/how to display on lists
+        --  0 - Do not display
+        --  1 - Display as summary
+        --  2 - Display in full form
+
+    `display_label` SMALLINT NOT NULL DEFAULT 1,
+        -- Controls, where a label should be shown, when the field data is shown.
+        -- 0 - display on pages and on lists.
+        -- 1 - only on lists.
+        -- 2 - only on pages.
+        -- 3 - do not display (only on forms)
+
+    `optional` SMALLINT NOT NULL DEFAULT 1,
+        -- Controls, if filling this field will be optional
+        -- 0 - no, it is always required
+        -- 1 - yes, it is optional, it may be empty.
+
+    `max_length` INTEGER NOT NULL DEFAULT 100,
+        -- Controls the maximal number of characters, a field can accept.
+        -- This is the number of UTF-8 characters, not bytes!
+        --
+        -- This value will be used to determine maximal size of file uploads too.
+        -- But, for uploads - it's bytes, since files tend to be binary ;)
+	
+    FOREIGN KEY(`Content_Spec_id`) REFERENCES Content_Spec(`id`)
+);
+CREATE TABLE Content_Entity (
+    `id` INTEGER PRIMARY KEY,
+
+    `Content_Spec_id` INTEGER NOT NULL,
+        -- Which type describes this one.
+
+    `Email_id` INTEGER,
+        -- Owner's Email ID.
+		-- This may lead to an User account if the entity was written by a User
+
+	`status` CHAR(1) NOT NULL,
+		-- V = visible
+        -- A = archived (does not appear on lists, but is otherwise fully accessible)
+        -- H = hidden (only visible to owner)
+
+	`comment_write_policy` SMALLINT NOT NULL DEFAULT 0,
+		-- Defines policy for making comments (replies, opinions, etc):
+        --  0 - disabled
+        --  1 - by registered users only (moderated)
+        --  2 - by registered users only
+        --  3 - by all users (moderated)
+        --  4 - by all users 
+
+    `comment_read_policy` SMALLINT NOT NULL DEFAULT 0,
+		-- Defines policy for making comments (replies, opinions, etc):
+        --  0 - comments are hidden
+        --  1 - visible to registered users only
+        --  2 - visible to everyone
+
+	`added_time`	TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		-- Time, when this entry was added.
+
+	`modified_time`	TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		-- Time, when this entry had it's most recent change.
+
+    `metadata` TEXT,
+        -- Serialized with YAML.
+        -- A place where modules can put 'their' stuff.
+
+    FOREIGN KEY(`Email_id`)        REFERENCES Email(`id`),
+	FOREIGN KEY(`Content_Spec_id`) REFERENCES Content_Spec(`id`)
+);
+CREATE TABLE Content_Entity_Data (
+	`Content_Entity_id` INTEGER NOT NULL,
+
+    `Content_Spec_Field_id` INTEGER NOT NULL,
+		-- this is the primary index column from Content_Spec_Field.
+
+	`language` CHAR(5) NOT NULL,
+        -- 2 (pl) or 5 (pl_pl) character language code, if the field is translatable.
+        -- * if the field is not translatable.
+
+	`value`	TEXT NOT NULL,
+
+	FOREIGN KEY(`Content_Entity_id`)     REFERENCES Content_Entity(`id`),
+    FOREIGN KEY(`Content_Spec_Field_id`) REFERENCES Content_Spec_Field(`id`)
+);
+CREATE TABLE Content_Entity_Data_History (
+    `id` INTEGER PRIMARY KEY,
+
+	`Content_Entity_id` INTEGER NOT NULL,
+
+    `Content_Spec_Field_id` INTEGER NOT NULL,
+		-- this is the primary index column from Content_Spec_Field.
+
+	`language` CHAR(5) NOT NULL,
+        -- 2 (pl) or 5 (pl_pl) character language code, if the field is translatable.
+        -- * if the field is not translatable.
+
+	`value`	TEXT NOT NULL,
+	
+    `event_time`	TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        -- Time when given value was set.
+
+	FOREIGN KEY(`Content_Entity_id`)     REFERENCES Content_Entity(`id`),
+    FOREIGN KEY(`Content_Spec_Field_id`) REFERENCES Content_Type_Field(`id`)
+);
+CREATE TABLE Comment_Entity (
+	`id` INTEGER PRIMARY KEY,
+
+	`parent_id` INTEGER,
+		-- our parent, or NULL on top-level comments.
+
+    `Email_id` INTEGER,
+        -- User's Email ID.
+		-- This in turn will lead to an user account, or not (if the comment was written by guest)
+
+	`added`	    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+	`status` VARCHAR(64) NOT NULL,
+		-- visible / hidden / email_pending
+
+	`title`	VARCHAR(255),
+	`text`	TEXT,
+
+    FOREIGN KEY (`parent_id`) REFERENCES Comment_Entity (`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`Email_id`)  REFERENCES Email(`id`)
+);
+CREATE TABLE Asset_Entity (
+	`id` INTEGER PRIMARY KEY,
+
+	`added` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    `Email_id` INTEGER,
+        -- User's Email ID.
+		-- This in turn will lead to an user account, or not (if the comment was written by guest)
+
+	`filename`	VARCHAR(255), -- original file name.
+	`byte_size`	INTEGER,
+    `mime_type` VARCHAR(128),
+
+	`summary`	VARCHAR(255), -- summary entered by the uploader
+
+	FOREIGN KEY(`Email_id`) REFERENCES Email(`id`)
+);
+CREATE TABLE Comment_to_Content (
+    Content_Entity_id INTEGER NOT NULL,
+    Comment_Entity_id INTEGER NOT NULL,
+
+    FOREIGN KEY (`Content_Entity_id`) REFERENCES Content_Entity (`id`),
+    FOREIGN KEY (`Comment_Entity_id`) REFERENCES Comment_Entity (`id`)
+);
+CREATE TABLE Comment_to_User (
+    `User_Entity_id`    INTEGER NOT NULL,
+    `Comment_Entity_id` INTEGER NOT NULL,
+
+    FOREIGN KEY (`User_Entity_id`)    REFERENCES User_Entity (`id`),
+    FOREIGN KEY (`Comment_Entity_id`) REFERENCES Comment_Entity (`id`)
+);
+CREATE TABLE Comment_to_Asset (
+    `Asset_Entity_id`   INTEGER NOT NULL,
+    `Comment_Entity_id` INTEGER NOT NULL,
+
+    FOREIGN KEY (`Asset_Entity_id`)   REFERENCES Asset_Entity   (`id`),
+    FOREIGN KEY (`Comment_Entity_id`) REFERENCES Comment_Entity (`id`)
+);
+CREATE TABLE Asset_to_Content (
+    `Comment_Entity_id` INTEGER NOT NULL,
+    `Asset_Entity_id`   INTEGER NOT NULL,
+
+    `Content_Spec_Field_id` INTEGER,
+
+    FOREIGN KEY (`Comment_Entity_id`) REFERENCES Comment_Entity (`id`),
+    FOREIGN KEY (`Asset_Entity_id`)   REFERENCES Asset_Entity   (`id`)
+);
+CREATE TABLE Asset_to_User (
+    `User_Entity_id`  INTEGER NOT NULL,
+    `Asset_Entity_id` INTEGER NOT NULL,
+
+    `field` VARCHAR(64) NOT NULL,
+
+    FOREIGN KEY (`User_Entity_id`)  REFERENCES User_Entity (`id`),
+    FOREIGN KEY (`Asset_Entity_id`) REFERENCES Asset_Entity (`id`)
 );
 CREATE TABLE Email (
 	`id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it
@@ -27,16 +258,16 @@ INSERT INTO "Email" VALUES(2,'A','beata@test.test',NULL);
 INSERT INTO "Email" VALUES(3,'A','ela@test.test',NULL);
 INSERT INTO "Email" VALUES(4,'A','natka@test.test',NULL);
 INSERT INTO "Email" VALUES(5,'A','wanda@test.test',NULL);
-CREATE TABLE Email_Verification_Keys (
+CREATE TABLE Email_Verification_Key (
 	`id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it
 
-    `email_id`  INTEGER      NOT NULL,
+    `Email_id`  INTEGER      NOT NULL,
     `key`       VARCHAR(128) NOT NULL,  -- 'secret' key, known only to email owner
 
     `handler`   VARCHAR(128) NOT NULL,  -- module, that will do the verification
     `params`    VARCHAR(255) NOT NULL,  -- parameters passed to the module
 
-    FOREIGN KEY(`email_id`) REFERENCES Email(`id`)
+    FOREIGN KEY(`Email_id`) REFERENCES Email(`id`)
 );
 CREATE TABLE User_Entity (
 	`id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it
@@ -49,19 +280,42 @@ CREATE TABLE User_Entity (
     `name`      VARCHAR(128),
 
     `pass_enc` VARCHAR(512),
-    `email_id` INTEGER NOT NULL,
+    `Email_id` INTEGER NOT NULL,
         -- Primary email owned and used by the User.
 
-    FOREIGN KEY(`email_id`) REFERENCES Email(`id`)
+    FOREIGN KEY(`Email_id`) REFERENCES Email(`id`)
 );
-INSERT INTO "User_Entity" VALUES(1,'aga','Enabled','Agnieszka',NULL,1);
-INSERT INTO "User_Entity" VALUES(2,'beti','Enabled','Beata',NULL,2);
-INSERT INTO "User_Entity" VALUES(3,'ela','Enabled','Elżbieta',NULL,3);
-INSERT INTO "User_Entity" VALUES(4,'nataly','Guest','Natalia',NULL,4);
-INSERT INTO "User_Entity" VALUES(5,'wanda','Disabled','Wanda L.',NULL,5);
+INSERT INTO "User_Entity" VALUES(1,'aga','Enabled','Agnieszka','d27d225b94bf7be57d1c3d4d73f96fc0fd3c57d89d175ce336c226b0f27e9f27fed2dc7a7c6324228ff40a25e8fbef49f7cfb8656d0074a6d1c6c901406aa53e',1);
+INSERT INTO "User_Entity" VALUES(2,'beti','Enabled','Beata','9983885b17ec71fc68184d464d99150f38eeb542cc94be3f348cd202a4b19cdf25b8de3e20d5eb670851ba76ebe8b11a559cdd0e0fdd54a8716e62fcab6344f5',2);
+INSERT INTO "User_Entity" VALUES(3,'ela','Enabled','Elżbieta','4d0146efcd56c02c2d2d0cf587974b0427715d9bcf0bd79bed0a76d7e691654cd8200d2ba60481bb5a481e37911f35be31204ecdcac7bd1ba440e36fc77bad04',3);
+INSERT INTO "User_Entity" VALUES(4,'nataly','Guest','Natalia','e212af1edb9a37b6deb062f4864bc31d654173b4c551bd8d0875aa283fa12994e26d944722f95ed2c1098b107c3135330e98f6375b91311f26b61c39557cada3',4);
+INSERT INTO "User_Entity" VALUES(5,'wanda','Disabled','Wanda L.','e8d42198a43571d76bf2999e39c4a817fe83caef95e4c36ad1304b08270b065eece36ce313066702ccd507b2d3a743bfae99630cb351052a70d835d00a5016d7',5);
+CREATE TABLE Cache_Reference (
+    id INTEGER NOT NULL,
+        -- Referenced (numerical) ID.
+
+    namespace VARCHAR(255) NOT NULL,
+        -- Namespace name
+
+    key VARCHAR(255) NOT NULL
+        -- Key.
+);
 CREATE UNIQUE INDEX Page_Entity_id   ON Page_Entity (id);
 CREATE UNIQUE INDEX Page_Entity_path ON Page_Entity (parent_id, path);
+CREATE INDEX Content_Spec_module ON Content_Spec (owning_module);
+CREATE INDEX Content_Spec_Field_Content_Spec_id ON Content_Spec_Field (Content_Spec_id);
+CREATE UNIQUE INDEX Content_Spec_Field_class           ON Content_Spec_Field (Content_Spec_id, class);
+CREATE UNIQUE INDEX Content_Entity_Data_index ON Content_Entity_Data (Content_Entity_id, Content_Spec_Field_id, language);
+CREATE INDEX Comment_Entity_parent ON Comment_Entity (`parent_id`);
+CREATE INDEX Comment_Entity_email  ON Comment_Entity (`Email_id`);
+CREATE INDEX Asset_Entity_email ON Asset_Entity (`Email_id`);
+CREATE UNIQUE INDEX Comment_to_Content_index ON Comment_to_Content (Content_Entity_id, Comment_Entity_id);
+CREATE UNIQUE INDEX Comment_to_User_index ON Comment_to_User (User_Entity_id, Comment_Entity_id);
+CREATE UNIQUE INDEX Comment_to_Asset_index ON Comment_to_Asset (Asset_Entity_id, Comment_Entity_id);
+CREATE UNIQUE INDEX Asset_to_Content_index ON Comment_to_Content (Content_Entity_id, Comment_Entity_id);
+CREATE UNIQUE INDEX Asset_to_User_index ON Comment_to_User (User_Entity_id, Comment_Entity_id);
 CREATE UNIQUE INDEX Email_email ON Email (email);
 CREATE UNIQUE INDEX User_Entity_login ON User_Entity (login);
-CREATE INDEX User_Entity_email ON User_Entity (email_id);
+CREATE INDEX User_Entity_email ON User_Entity (Email_id);
+CREATE INDEX Cache_Reference_id ON Cache_Reference (id);
 COMMIT;

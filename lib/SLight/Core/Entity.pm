@@ -14,6 +14,7 @@ package SLight::Core::Entity;
 use strict; use warnings; # {{{
 
 use SLight::Core::DB;
+use SLight::Core::Cache qw( Cache_get Cache_put Cache_invalidate Cache_invalidate_referenced );
 
 use Carp::Assert::More qw( assert_positive_integer );
 use Params::Validate qw( :all );
@@ -28,6 +29,13 @@ Following interface should be exported by all Entity API modules:
      field_2 => $value_2,
      ...
      field_n => $value_n,
+
+     _data => {
+        $data_id_1 => \%value_1,
+        $data_id_2 => \%value_2,
+        ...
+        $data_id_n => \%value_n,
+     }
  )
 
  update_ENTITY (
@@ -37,6 +45,14 @@ Following interface should be exported by all Entity API modules:
      field_2 => $value_2,
      ...
      field_n => $value_n,
+
+     _data => {
+        $data_id_1 => \%value_1,
+        $data_id_2 => \%value_2,
+        ...
+        $data_id_n => \%value_n,
+     },
+     _data_field => $data_field, # if given, \%value_n should be replaced to $value_n
  )
 
  update_ENTITYs (
@@ -46,6 +62,14 @@ Following interface should be exported by all Entity API modules:
      field_2 => $value_2,
      ...
      field_n => $value_n,
+
+     _data => {
+        $data_id_1 => \%value_1,
+        $data_id_2 => \%value_2,
+        ...
+        $data_id_n => \%value_n,
+     },
+     _data_field => $data_field, # if given, \%value_n should be replaced to $value_n
  )
 
  delete_ENTITY($id)
@@ -53,6 +77,35 @@ Following interface should be exported by all Entity API modules:
  delete_ENTITYs(\@ids)
 
  \%entity = get_ENTITY($id)
+
+ %entity = (
+     field_1 => $value_1,
+     field_2 => $value_2,
+     ...
+     field_n => $value_n,
+
+    _parent => {
+        parent_field_1 => $parent_value_1,
+        parent_field_2 => $parent_value_2,
+        ...
+        parent_field_n => $parent_value_n,
+    },
+
+    # Present, when '_child_field' is used:
+    _$child_field => {
+        $child_key_1 => $child_val_1,
+        $child_key_2 => $child_val_2,
+        ...
+        $child_key_n => $child_val_n,
+    },
+
+     _data => {
+        $data_id_1 => \%value_1,
+        $data_id_2 => \%value_2,
+        ...
+        $data_id_n => \%value_n,
+     }
+ );
 
  \@entities => get_ENTITYs(\@ids)
 
@@ -71,7 +124,10 @@ Following interface should be exported by all Entity API modules:
  )
 
  \@entities => get_ENTITY_fields_where(
-     _fields => \@fields,
+     _fields        => \@fields,
+     _data_field   => $field,
+     _data_fields  => \@child_fields,
+     _parent_fields => \@parent_fields
  
      field_1 => $value_1,
      field_2 => $value_2,
@@ -79,9 +135,13 @@ Following interface should be exported by all Entity API modules:
      field_n => $value_n,
  )
 
- attach_ENTITY_to_ENTITY($id, $to_id, $to_field)
+ attach_Comment_to_ENTITY($id, $to_id)
 
- attach_ENTITYs_to_ENTITY(\@ids, $to_ids, $to_field)
+ attach_Comment_to_ENTITY(\@ids, $to_ids)
+
+ attach_Asset_to_ENTITY($id, $to_id, $to_field)
+
+ attach_Assets_to_ENTITY(\@ids, $to_ids, $to_field)
 
 =cut
 
@@ -92,19 +152,40 @@ sub new { # {{{
 
     my $self = {
         base_table  => $P{'base_table'},
-        field_table => $P{'child_table'},
-            # Will be undef, if the table has no fields
+
+        child_table  => $P{'child_table'},
+        parent_table => $P{'parent_table'},
+            # Those might be undef, if the entity has no parents/childrens
+            # Note: Email/User/Comment handling support is build-in, it does not have to be defined.
 
         is_a_tree => $P{'is_a_tree'},
 
         has_metadata => $P{'has_metadata'},
             # Rows from main table contain 'metadata' column
 
-        is_signed => $P{'is_signed'},
-            # Rows from main table are signed with Email_id
+        has_comments => $P{'has_comments'},
+            # The entity can have comments assigned to it.
 
-        data_fields => $P{'data_fields'}
+        has_assets => $P{'has_comments'},
+            # The entity can have assets assigned to it.
+
+        has_owner => $P{'has_owner'},
+            # Entity is owned by signing them with Email_id
+
+        data_fields => $P{'data_fields'},
             # Other (not natively supported) data fields.
+
+        child_data_fields  => $P{'child_data_fields'},
+            # Data fields of parents records. Might be undef.
+
+        child_key => $P{'child_key'},
+            # Data fields of parents records. Might be undef.
+
+        child_df_data_field => undef,
+
+#        fetch_cb => $P{'get_cb'},
+#        store_cb => $P{'put_cb'},
+#            # Callbacks run when entries enter/leave the storage
     };
 
     $self->{'_all_fields'} = [ @{ $P{'data_fields'} } ];
@@ -122,6 +203,59 @@ sub new { # {{{
     return $self;
 } # }}}
 
+# Notes to self :)
+#
+#
+# Content Entity
+# {
+#   base_table   => 'Content_Entity',
+#   child_table  => 'Content_Entity_Data',
+#   parent_table => 'Content_Spec',
+#
+#   data_fields        => [qw( status comment_write_policy comment_read_policy added_time modified_time )],
+#   child_data_fields  => [qw( language value )],
+#   parent_data_fields => [qw( owning_module )],
+#
+#   child_key => 'Content_Spec_Field_id',
+#
+#   has_metadata => 1,
+#   has_owner    => 1,
+#   has_assets   => 1,
+#   has_comments => 1,
+# }
+#
+# Comment
+# {
+#   base_table => 'Comment_Entity',
+#
+#   data_fields        => [qw( added status title text )],
+#
+#   is_a_tree => 1,
+#   has_owner    => 1,
+#   has_assets   => 1,
+# }
+#
+# User
+# {
+#   base_table => 'User_Entity',
+#
+#   data_fields => [qw( login status name pass_enc )],
+#
+#   has_metadata => 1,
+#   has_owner    => 1,
+#   has_assets   => 1,
+#   has_comments => 1,
+# }
+#
+# Email Verification Key (EVK)
+# {
+#   base_table => 'Email_Verification_Key',
+#
+#   data_fields => [qw( key handler params )],
+#
+#   has_owner => 1,
+# }
+
 sub add_ENTITY { # {{{
     my ( $self, %P ) = @_;
 
@@ -132,13 +266,35 @@ sub add_ENTITY { # {{{
 
     SLight::Core::DB::check();
 
+    my $data_hash = delete $P{'_data'};
+
     SLight::Core::DB::run_insert(
         'into'   => $self->{'base_table'},
         'values' => \%P,
 #        debug    => 1, 
     );
 
-    return SLight::Core::DB::last_insert_id();
+    my $entity_id = SLight::Core::DB::last_insert_id();
+
+    if ($data_hash) {
+        foreach my $field (keys %{ $data_hash }) {
+            my $field_data = $data_hash->{$field};
+
+            SLight::Core::DB::run_insert(
+                'into'   => $self->{'child_table'},
+                'values' => {
+                    %{ $field_data },
+
+                    $self->{'base_table'} . q{_id} => $entity_id,
+
+                    $self->{'child_key'} => $field,
+                },
+                debug    => 1, 
+            );
+        }
+    }
+
+    return $entity_id;
 } # }}}
 
 sub update_ENTITY { # {{{
@@ -337,3 +493,8 @@ sub delete_ENTITYs { # {{{
 
 # vim: fdm=marker
 1;
+
+
+
+
+
