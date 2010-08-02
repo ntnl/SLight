@@ -54,6 +54,10 @@ Following interface should be exported by all Entity API modules:
      },
      _data_field => $data_field, # if given, \%value_n should be replaced to $value_n
  )
+    # To delete a '_data' item, set it's key to undef - and do not use '_data_field'.
+    # If '_data_field' is used, and data item is undef, then the routine will put NULL in the coresponding column.
+    #
+    # Data items not given in '_data' hash are not altered - not updated, and not deleted - simply ignored.
 
  update_ENTITYs (
      id => \@id,
@@ -123,10 +127,10 @@ Following interface should be exported by all Entity API modules:
      field_n => $value_n,
  )
 
- \@entities => get_ENTITY_fields_where(
+ \@entities => get_ENTITYs_fields_where(
      _fields        => \@fields,
-     _data_field   => $field,
-     _data_fields  => \@child_fields,
+     _data_field    => $field,
+     _data_fields   => \@child_fields,
      _parent_fields => \@parent_fields
  
      field_1 => $value_1,
@@ -289,7 +293,7 @@ sub add_ENTITY { # {{{
 
                     $self->{'child_key'} => $field,
                 },
-                debug    => 1, 
+#                debug    => 1, 
             );
         }
     }
@@ -311,6 +315,8 @@ sub update_ENTITY { # {{{
 
     SLight::Core::DB::check();
 
+    my $data_hash = delete $P{'_data'};
+
     SLight::Core::DB::run_update(
         'table' => $self->{'base_table'},
         'set'   => \%values,
@@ -319,6 +325,23 @@ sub update_ENTITY { # {{{
         ],
 #        debug => 1, 
     );
+
+    if ($data_hash) {
+        foreach my $field (keys %{ $data_hash }) {
+            my $field_data = $data_hash->{$field};
+
+            SLight::Core::DB::run_update(
+                'table' => $self->{'child_table'},
+                'set'   => $field_data,
+                'where' => [
+                    $self->{'base_table'} . q{_id = }, $P{'id'},
+
+                    q{ AND } . $self->{'child_key'} . q{ = }, $field
+                ],
+#                debug => 1, 
+            );
+        }
+    }
 
     return;
 } # }}}
@@ -361,7 +384,28 @@ sub get_ENTITY { # {{{
 #        debug => 1
     );
     
-    return $sth->fetchrow_hashref();
+    my $entity = $sth->fetchrow_hashref();
+
+    # Nothing found in DB? Exis ASAP...
+    if (not $entity) {
+        return;
+    }
+
+    if ($self->{'child_table'}) {
+        $self->_add_data_to_entities( { $id => $entity } );
+    }
+
+    # Metadata field support.
+    if ($self->{'has_metadata'}) {
+        if ($entity->{'metadata'}) {
+            $entity->{'metadata'} = Load($entity->{'metadata'});
+        }
+        else {
+            $entity->{'metadata'} = {};
+        }
+    }
+
+    return $entity;
 } # }}}
 
 sub get_ENTITYs { # {{{
@@ -423,25 +467,85 @@ sub get_ENTITY_ids_where { # {{{
     return \@entity_ids;
 } # }}}
 
-sub get_ENTITY_fields_where { # {{{
+sub get_ENTITYs_where { # {{{
+    my ( $self, %P ) = @_;
+    
+    my $where = $self->_make_where(%P);
+
+    my $sth = SLight::Core::DB::run_select(
+        columns => $self->{'_really_all_fields'},
+        from    => $self->{'base_table'},
+        where   => $where,
+#        debug   => 1
+    );
+
+    my %entities;
+    while (my $entity = $sth->fetchrow_hashref()) {
+        $entities{ $entity->{'id'} } = $entity;
+
+        if ($self->{'has_metadata'}) {
+            if ($entity->{'metadata'}) {
+                $entity->{'metadata'} = Load($entity->{'metadata'});
+            }
+            else {
+                $entity->{'metadata'} = {};
+            }
+        }
+    }
+
+    if (not scalar keys %entities) {
+        return [];
+    }
+
+    if ($self->{'child_table'}) {
+        $self->_add_data_to_entities(\%entities);
+    }
+
+#    use Data::Dumper; warn Dumper \%entities;
+
+    return [ values %entities ];
+} # }}}
+
+# Note:
+#   Function uses 'id' column internally, thus this column is returned, even if not asked for.
+sub get_ENTITYs_fields_where { # {{{
     my ( $self, %P ) = @_;
 
     SLight::Core::DB::check();
 
+    my %entities;
     my $where = $self->_make_where(%P);
 
+    my %fields = map { $_ => 1 } @{ $P{'_fields'} or [] };
+    $fields{'id'} = 1;
+
     my $sth = SLight::Core::DB::run_select(
-        columns => $P{'_fields'},
+        columns => [ keys %fields ],
         from    => $self->{'base_table'},
         where   => $where,
 #        debug => 1
     );
 
-    my @entities;
     while (my $entity = $sth->fetchrow_hashref()) {
-        push @entities, $entity;
+        $entity->{'id'};
+
+        $entities{ $entity->{'id'} } = $entity;
+
+        if ($self->{'has_metadata'} and $fields{'metadata'}) {
+            if ($entity->{'metadata'}) {
+                $entity->{'metadata'} = Load($entity->{'metadata'});
+            }
+            else {
+                $entity->{'metadata'} = {};
+            }
+        }
     }
-    return \@entities;
+
+    if ($self->{'child_table'} and $P{'_data_fields'}) {
+        $self->_add_data_to_entities( \%entities, $P{'_data_fields'} );
+    }
+
+    return [ values %entities ];
 } # }}}
 
 sub _make_where { # {{{
@@ -458,6 +562,41 @@ sub _make_where { # {{{
     }
 
     return \@where;
+} # }}}
+
+sub _add_data_to_entities { # {{{
+    my ( $self, $entities, $fields ) = @_;
+
+    my $sth = SLight::Core::DB::run_select(
+        columns => [
+            @{ $fields or $self->{'child_data_fields'} },
+
+            $self->{'base_table'} . q{_id},
+            $self->{'child_key'},
+        ],
+        from    => $self->{'child_table'},
+        where   => [
+            $self->{'base_table'} . q{_id IN }, [ keys %{ $entities } ]
+        ],
+#        debug => 1
+    );
+
+        while (my $row = $sth->fetchrow_hashref()) {
+            my $key = delete $row->{ $self->{'child_key'} };
+            my $eid = delete $row->{ $self->{'base_table'} . q{_id} };
+
+            $entities->{$eid}->{'_data'}->{ $key } = $row;
+        }
+
+    return;
+} # }}}
+
+sub delete_ENTITY { # {{{
+    my ( $self, $id ) = @_;
+
+    # To refactor this, or not to refactor - this is the question?
+    
+    return $self->delete_ENTITYs( [$id] );
 } # }}}
 
 sub delete_ENTITYs { # {{{
@@ -482,6 +621,14 @@ sub delete_ENTITYs { # {{{
             $deleted_count += $self->delete_ENTITYs(\@child_ids, $self->{'base_table'});
         }
     }
+    
+    # Before deleting main rows, thrit coresponding child rows must be deleted.
+    if ($self->{'child_table'}) {
+        SLight::Core::DB::run_delete(
+            from  => $self->{'child_table'},
+            where => [ $self->{'base_table'} . q{_id IN }, $ids ],
+        );
+    }
 
     SLight::Core::DB::run_delete(
         from  => $self->{'base_table'},
@@ -493,8 +640,3 @@ sub delete_ENTITYs { # {{{
 
 # vim: fdm=marker
 1;
-
-
-
-
-

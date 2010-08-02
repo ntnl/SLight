@@ -24,17 +24,20 @@ use Test::More;
 plan tests =>
     + 4 # add_ContentSpec
 
-#    + 2 # update_ContentSpec (core only)
-#    + 2 # update_ContentSpec (with data)
+    + 2 # update_ContentSpec (core only)
+    + 2 # update_ContentSpec (with data)
 
-#    + 2 # get_ContentSpec
-#    + 2 # get_ContentSpecs_where
-#    + 2 # get_ContentSpecs_ids_where
-#    + 2 # get_ContentSpecs_fields_where
+    + 2 # get_ContentSpec
+    + 2 # get_ContentSpecs_where
+    + 2 # get_ContentSpecs_ids_where
+    + 2 # get_ContentSpecs_fields_where
 
-#    + 2 # delete_ContentSpec
-#    + 2 # delete_ContentSpecs
+    + 2 # delete_ContentSpec
+    + 2 # delete_ContentSpecs
 ;
+
+# ToDo:
+#   - test 'metadata' support!
 
 my $site_root = SLight::Test::Site::prepare_fake(
     test_dir => $Bin . q{/../},
@@ -43,9 +46,20 @@ my $site_root = SLight::Test::Site::prepare_fake(
 
 use SLight::API::ContentSpec qw(
     add_ContentSpec
+    update_ContentSpec
+    get_ContentSpec
+    get_ContentSpecs_where
+    get_ContentSpec_ids_where
+    get_ContentSpecs_fields_where
+    delete_ContentSpec
+    delete_ContentSpecs
 );
 
 SLight::Core::DB::check();
+
+#
+# run: add_ContentSpec
+#
 
 my ($t1, $t2, $t3, $t4);
 is (
@@ -63,40 +77,12 @@ is (
         caption       => 'Folder',
         owning_module => 'CMS::Entry',
         version       => 0,
+        #                '-- later changed to '2'
 
         _data => {
-            label => {
-                datatype => q{},
-                caption  => q{},
-
-                order => 1,
-
-                default    => q{},
-                max_length => 128,
-
-                translate => 1,
-                optional  => 0,
-
-                display_on_page => 1,
-                display_on_list => 1,
-                display_label   => 1,
-            },
-            summary => {
-                datatype => q{},
-                caption  => q{},
-
-                order => 1,
-
-                default    => q{},
-                max_length => 128,
-
-                translate => 1,
-                optional  => 0,
-
-                display_on_page => 1,
-                display_on_list => 1,
-                display_label   => 1,
-            },
+            label   => { datatype => q{String}, caption => q{Label},   order => 1, default => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+            summary => { datatype => q{Text},   caption => q{Summary}, order => 2, default => q{},           max_length => 987, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
+            #                                                  '--- later changed to 'Overview'.                            '--- later changed to '789'
         }
     ),
     2,
@@ -108,12 +94,9 @@ is (
         owning_module => 'CMS::Entry',
 
         _data => {
-            brand => {
-            },
-            model => {
-            },
-            bps => {
-            },
+            brand => { datatype => q{String}, caption => q{Brand},          order => 1, default => q{}, max_length => 75, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 0 },
+            model => { datatype => q{String}, caption => q{Model},          order => 2, default => q{}, max_length => 75, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 0 },
+            bps   => { datatype => q{Int},    caption => q{Balls per sec.}, order => 3, default => q{}, max_length => 50, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
         },
     ),
     3,
@@ -126,522 +109,208 @@ is (
         version       => 0,
 
         _data => {
-            name => {
-            },
-            chest_size => {
-            },
-            waist_size => {
-            },
-            hips_size => {
-            },
-            cup_size => {
-            },
+            name       => { datatype => q{String}, caption => q{Name},       order => 1, default => q{},   max_length =>  75, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+            chest_size => { datatype => q{Int},    caption => q{Chest (cm)}, order => 2, default => q{90}, max_length => 250, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+            waist_size => { datatype => q{Int},    caption => q{Waist (cm)}, order => 3, default => q{60}, max_length => 250, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+            hips_size  => { datatype => q{Int},    caption => q{Hips (cm)},  order => 4, default => q{90}, max_length => 250, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+            cup_size   => { datatype => q{String}, caption => q{Cup size},   order => 5, default => q{A},  max_length =>   1, translate => 0, optional => 0, display_on_page => 1, display_on_list => 0, display_label => 1 },
         },
     ),
     4,
     'add_ContentSpec (4/4)'
 );
 
-exit(); # SLight ends here!
+#
+# run: update_ContentSpec
+#
 
-ok (
-    SLight::API::ContentSpec::set_one(
-        caption => 'Paintball gun',
-        status  => 'visible',
-        fields  => {
-            marker => {
-                caption    => 'Marker Brand',
-                datatype   => 'String',
-                default    => '',
-                translate  => 0,
-                display    => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-            balls  => {
-                caption   => 'Paintballs',
-                datatype  => 'String',
-                default   => '',
-                translate => 0,
-                display   => 1,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-            air    => {
-                caption   => 'Gass type',
-                datatype  => 'String',
-                default   => 'HP',
-                translate => 1,
-                display   => 2,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-            bps    =>{
-                caption   => 'Balls Per Second',
-                datatype  => 'Int',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-        },
-        fields_order => [qw{ marker bps air balls }],
-        role => {
-            'title' => 'marker',
-            'sort'  => 'bps',
+is (
+    update_ContentSpec(
+        id => 123456,
+
+        caption => q{This change will be ignored},
+    ),
+    undef,
+    'update_ContentSpec - core, nonexisting ID'
+);
+is (
+    update_ContentSpec(
+        id => $t1,
+
+        version => 2,
+    ),
+    undef,
+    'update_ContentSpec - core, existing ID'
+);
+is (
+    update_ContentSpec(
+        id => 123456,
+
+        _data => {
+            summary => { caption => q{This change will be ignored}, max_length => 787 },
         }
     ),
-    'set_one - adding'
+    undef,
+    'update_ContentSpec - data, nonexisting ID'
 );
-ok (
-    SLight::API::ContentSpec::set_one(
-        caption => 'Woman',
-        status  => 'hidden',
-        fields  => {
-            chest => {
-                caption   => 'Chest',
-                datatype  => 'Int',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-            waist => {
-                caption   => 'Waist',
-                datatype  => 'Int',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-            hips  => {
-                caption   => 'Hips',
-                datatype  => 'Int',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-        },
-        fields_order => [qw{ chest waist hips }],
-        role => {
-            'title' => '',
-            'sort'  => '',
+is (
+    update_ContentSpec(
+        id => $t1,
+
+        _data => {
+            summary => { caption => q{Overview}, max_length => 789 },
         }
     ),
-    'set_one - adding another'
+    undef,
+    'update_ContentSpec - data, existing ID'
 );
-ok (
-    SLight::API::ContentSpec::set_one(
-        id      => 2,
-        caption => 'Beautifull łoman', # Ł sounds in polish similarry to english 'w' 
-        status  => 'hidden',
-        fields  => {
-            tits => {
-                caption   => 'Chest',
-                datatype  => 'Int',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-            waist => {
-                caption   => 'Waist',
-                datatype  => 'Int',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-            hips  => {
-                caption   => 'Hips',
-                datatype  => 'Int',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-            cup => {
-                caption   => 'Cup size',
-                datatype  => 'String',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
+
+#
+# run: get_ContentSpec
+#
+
+is (
+    ( get_ContentSpec(123456) ),
+    undef,
+    'get_ContentSpec - nonexisting id'
+);
+
+is_deeply (
+    get_ContentSpec($t1),
+    {
+        id            => $t1,
+        caption       => 'Folder',
+        owning_module => 'CMS::Entry',
+        version       => 2,
+
+        _data => {
+            label   => { datatype => q{String}, caption => q{Label},    order => 1, default => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+            summary => { datatype => q{Text},   caption => q{Overview}, order => 2, default => q{},           max_length => 789, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
         },
-        fields_order => [qw{ tits waist hips cup }],
-        role => {
-            'title' => '',
-            'sort'  => 'cup',
-        }
+
+        metadata => {},
+    },
+    'get_ContentSpec - existing id'
+);
+
+#
+# run: get_ContentSpecs_where
+#
+
+is_deeply(
+    get_ContentSpecs_where(
+        version => 5,
     ),
-    'set_one - editing another'
+    [],
+    'get_ContentSpecs_where - false condition'
 );
-ok (
-    SLight::API::ContentSpec::set_one(
-        id      => 2,
-        caption => 'Beautifull łoman',
-        status  => 'hidden',
-        fields  => {
-            chest => {
-                caption   => 'Chest',
-                datatype  => 'Int',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-            waist => {
-                caption   => 'Waist',
-                datatype  => 'Int',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-            hips  => {
-                caption   => 'Hips',
-                datatype  => 'Int',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-            cup => {
-                caption   => 'Cup size',
-                datatype  => 'String',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-        },
-        fields_order => [qw{ chest waist hips cup }],
-        role => {
-            'title' => '',
-            'sort'  => 'cup',
-        }
+
+is_deeply(
+    get_ContentSpecs_where(
+        version => 2,
     ),
-    'set_one - nothign needed'
-);
-
-is_deeply (
-    { SLight::API::ContentSpec::get_one( id => 1 ) },
-    {
-        id      => 1,
-        caption => 'Paintball gun',
-        status  => 'visible',
-        fields  => {
-            marker => {
-                caption   => 'Marker Brand',
-                datatype  => 'String',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-            balls  => {
-                caption   => 'Paintballs',
-                datatype  => 'String',
-                default   => '',
-                translate => 0,
-                display   => 1,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-            air    => {
-                caption   => 'Gass type',
-                datatype  => 'String',
-                default   => 'HP',
-                translate => 1,
-                display   => 2,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-            bps    =>{
-                caption   => 'Balls Per Second',
-                datatype  => 'Int',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-        },
-        fields_order => [qw{ marker bps air balls }],
-        role => {
-            'title' => 'marker',
-            'sort'  => 'bps',
-        }
-    },
-    'Get a Paintball gun (hash context)'
-);
-is_deeply (
-    scalar SLight::API::ContentSpec::get_one( id => 2 ),
-    {
-        id      => 2,
-        caption => 'Beautifull łoman',
-        status  => 'hidden',
-        fields  => {
-            chest => {
-                caption   => 'Chest',
-                datatype  => 'Int',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-            waist => {
-                caption   => 'Waist',
-                datatype  => 'Int',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-            hips  => {
-                caption   => 'Hips',
-                datatype  => 'Int',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-            cup => {
-                caption   => 'Cup size',
-                datatype  => 'String',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-        },
-        fields_order => [qw{ chest waist hips cup }],
-        role => {
-            'title' => 'chest', # This was set to '', but get_one will return first field from fields_order
-            'sort'  => 'cup',
-        }
-    },
-    'Get a Beautifull woman (scalar context)'
-);
-
-my $list = [
-    {
-        id      => 1,
-        caption => 'Paintball gun',
-        status  => 'visible',
-        fields  => {
-            marker => {
-                caption   => 'Marker Brand',
-                datatype  => 'String',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-            balls  => {
-                caption   => 'Paintballs',
-                datatype  => 'String',
-                default   => '',
-                translate => 0,
-                display   => 1,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-            air    => {
-                caption   => 'Gass type',
-                datatype  => 'String',
-                default   => 'HP',
-                translate => 1,
-                display   => 2,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-            bps    =>{
-                caption   => 'Balls Per Second',
-                datatype  => 'Int',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-        },
-        fields_order => [qw{ marker bps air balls }],
-        role => {
-            'title' => 'marker',
-            'sort'  => 'bps',
-        }
-    },
-    {
-        id      => 2,
-        caption => 'Beautifull łoman',
-        status  => 'hidden',
-        fields  => {
-            chest => {
-                caption   => 'Chest',
-                datatype  => 'Int',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-            waist => {
-                caption   => 'Waist',
-                datatype  => 'Int',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-            hips  => {
-                caption   => 'Hips',
-                datatype  => 'Int',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-            cup => {
-                caption   => 'Cup size',
-                datatype  => 'String',
-                default   => '',
-                translate => 0,
-                display   => 0,
-                use_label  => 0,
-                optional   => 0,
-                max_length => 64,
-            },
-        },
-        fields_order => [qw{ chest waist hips cup }],
-        role => {
-            'title' => 'chest',
-            'sort'  => 'cup',
-        }
-    },
-];
-
-is_deeply (
-    [ SLight::API::ContentSpec::get_list( ) ],
-    $list,
-    'get_list in list context'
-);
-is_deeply (
-    scalar SLight::API::ContentSpec::get_list( ),
-    $list,
-    'get_list in scalar context'
-);
-
-ok ( SLight::API::ContentSpec::del_one( id=>2 ), 'del_one - no woman');
-is_deeply (
-    scalar SLight::API::ContentSpec::get_list( ),
     [
         {
-            id      => 1,
-            caption => 'Paintball gun',
-            status  => 'visible',
-            fields  => {
-                marker => {
-                    caption   => 'Marker Brand',
-                    datatype  => 'String',
-                    default   => '',
-                    translate => 0,
-                    display   => 0,
-                    use_label  => 0,
-                    optional   => 0,
-                    max_length => 64,
-                },
-                balls  => {
-                    caption   => 'Paintballs',
-                    datatype  => 'String',
-                    default   => '',
-                    translate => 0,
-                    display   => 1,
-                    use_label  => 0,
-                    optional   => 0,
-                    max_length => 64,
-                },
-                air    => {
-                    caption   => 'Gass type',
-                    datatype  => 'String',
-                    default   => 'HP',
-                    translate => 1,
-                    display   => 2,
-                    use_label  => 0,
-                    optional   => 0,
-                    max_length => 64,
-                },
-                bps    =>{
-                    caption   => 'Balls Per Second',
-                    datatype  => 'Int',
-                    default   => '',
-                    translate => 0,
-                    display   => 0,
-                    use_label  => 0,
-                    optional   => 0,
-                    max_length => 64,
-                },
+            id            => $t1,
+            caption       => 'Folder',
+            owning_module => 'CMS::Entry',
+            version       => 2,
+
+            _data => {
+                label   => { datatype => q{String}, caption => q{Label},    order => 1, default => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+                summary => { datatype => q{Text},   caption => q{Overview}, order => 2, default => q{},           max_length => 789, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
             },
-            fields_order => [qw{ marker bps air balls }],
-            role => {
-                'title' => 'marker',
-                'sort'  => 'bps',
-            }
-        },
+
+            metadata => {},            
+        }
     ],
-    'del_one check - no woman, no cry :)'
+    'get_ContentSpecs_where - correcct condition'
 );
-    
+
+#
+# run: get_ContentSpecs_ids_where
+#
+
+is_deeply(
+    get_ContentSpec_ids_where(
+        version => 5,
+    ),
+    [],
+    'get_ContentSpec_ids_where - false condition'
+);
+
+is_deeply(
+    get_ContentSpec_ids_where(
+        version => 2,
+    ),
+    [ $t1 ],
+    'get_ContentSpec_ids_where - correcct condition'
+);
+
+#
+# run: get_ContentSpecs_fields_where
+#
+
+is_deeply(
+    get_ContentSpecs_fields_where(
+        version => 5,
+    ),
+    [],
+    'get_ContentSpecs_fields_where - false condition'
+);
+
+is_deeply(
+    get_ContentSpecs_fields_where(
+        version => 2,
+
+        _fields      => [qw( caption )],
+        _data_fields => [qw( caption order )],
+    ),
+    [
+        {
+            id => 2,
+
+            caption       => 'Folder',
+
+            _data => {
+                label   => { caption => q{Label},    order => 1 },
+                summary => { caption => q{Overview}, order => 2 },
+            },
+        }
+    ],
+    'get_ContentSpecs_fields_where - correcct condition'
+);
+
+#
+# run: delete_ContentSpec
+#
+
+is (
+    delete_ContentSpec(1234),
+    1,
+    'delete_ContentSpec - nonexisting id'
+);
+
+is (
+    delete_ContentSpec($t1),
+    1,
+    'delete_ContentSpec - existing id'
+);
+
+#
+# run: delete_ContentSpecs
+#
+
+is (
+    delete_ContentSpecs([ 123, 456 ]),
+    2,
+    'delete_ContentSpecs - nonexisting ids'
+);
+
+is (
+    delete_ContentSpecs([ $t3, $t4 ]),
+    2,
+    'delete_ContentSpecs - existing ids'
+);
+
 # vim: fdm=marker

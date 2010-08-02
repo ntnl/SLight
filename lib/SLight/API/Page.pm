@@ -123,7 +123,7 @@ sub get_page_ids_where { # {{{
 } # }}}
 
 sub get_page_fields_where { # {{{
-    return $_handler->get_ENTITY_fields_where(@_);
+    return $_handler->get_ENTITYs_fields_where(@_);
 } # }}}
 
 # sub attach_page_to_page { # {{{

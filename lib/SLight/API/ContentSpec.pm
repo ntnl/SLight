@@ -21,6 +21,13 @@ use Params::Validate qw( :all );
 
 our @EXPORT_OK = qw(
     add_ContentSpec
+    update_ContentSpec
+    get_ContentSpec
+    get_ContentSpec_ids_where
+    get_ContentSpecs_where
+    get_ContentSpecs_fields_where
+    delete_ContentSpec
+    delete_ContentSpecs
 );
 our %EXPORT_TAGS = ( 'all' => [ @EXPORT_OK ] );
 
@@ -43,6 +50,49 @@ sub add_ContentSpec { # {{{
 
     return $_handler->add_ENTITY(%P);
 } # }}}
+
+sub update_ContentSpec { # {{{
+    my %P = @_; # Fixme: use Params::Validate here!
+
+    return $_handler->update_ENTITY(%P);
+} # }}}
+
+sub get_ContentSpec { # {{{
+    my ( $id ) = @_; # Fixme: use Params::Validate here!
+
+    return $_handler->get_ENTITY($id);
+} # }}}
+
+sub get_ContentSpecs_where { # {{{
+    my %P = @_; # Fixme: use Params::Validate here!
+
+    return $_handler->get_ENTITYs_where(%P);
+} # }}}
+
+sub get_ContentSpecs_fields_where { # {{{
+    my %P = @_; # Fixme: use Params::Validate here!
+
+    return $_handler->get_ENTITYs_fields_where(%P);
+} # }}}
+
+sub get_ContentSpec_ids_where { # {{{
+    my %P = @_; # Fixme: use Params::Validate here!
+
+    return $_handler->get_ENTITY_ids_where(%P);
+} # }}}
+
+sub delete_ContentSpec { # {{{
+    my ( $id ) = @_; # Fixme: use Params::Validate here!
+
+    return $_handler->delete_ENTITY($id);
+} # }}}
+
+sub delete_ContentSpecs { # {{{
+    my ( $ids ) = @_; # Fixme: use Params::Validate here!
+
+    return $_handler->delete_ENTITYs($ids);
+} # }}}
+
 
 # vim: fdm=marker
 1;

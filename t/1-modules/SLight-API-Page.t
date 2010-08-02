@@ -176,11 +176,15 @@ is_deeply(
 );
 
 is_deeply(
-    SLight::API::Page::get_page_fields_where(
-        template => 'Altered',
+    [
+        sort {$a->{'id'} <=> $b->{'id'}} @{
+            SLight::API::Page::get_page_fields_where(
+                template => 'Altered',
 
-        _fields  => [qw( id path )],
-    ),
+                _fields  => [qw( id path )],
+            )
+        }
+    ],
     [
         {
             id        => $page_4_id,
