@@ -52,10 +52,11 @@
 [X] Core
 [X]     Cache
 [>] API
-[>]     ObjectSpec store
-[ ]     Object store
-[ ]     Asset store
+[X]     ContentSpec store
+[>]     Content store
 [ ]     Comment store
+[ ]     Asset store
+[ ]     Page API refactoring ('page' to 'Page')
 [ ]     Add 'title' and 'description' to Page, l10n-dependant
 [ ] PathHandler ()
 [ ]     Test Framework
