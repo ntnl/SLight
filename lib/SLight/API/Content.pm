@@ -14,15 +14,11 @@ package SLight::API::Content;
 use strict; use warnings; # {{{
 use utf8;
 
-use CoMe::Core::Config;
-use CoMe::Core::DB;
-use CoMe::Core::Email;
-use CoMe::Core::Attachment;
-use CoMe::Core::Cache qw( Cache_get Cache_put Cache_invalidate Cache_invalidate_referenced );
-use CoMe::Core::Cache::Util;
-use CoMe::Core::Comment;
-
-use CoMe::Common::TUI qw( confess_on_false );
+use SLight::Core::Config;
+use SLight::Core::DB;
+use SLight::Core::Email;
+#use SLight::Core::Cache qw( Cache_get Cache_put Cache_invalidate Cache_invalidate_referenced );
+#use SLight::Core::Cache::Util;
 
 use Carp;
 use Params::Validate qw{ :all };

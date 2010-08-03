@@ -12,18 +12,29 @@
 # 
 ################################################################################
 use strict; use warnings; # {{{
-use FindBin qw{ $Bin };
-use lib $Bin .'/../../lib/';
+use FindBin qw( $Bin );
+use lib $Bin . q{/../../lib/};
 
-use CoMe::Test::Site;
-use CoMe::API::ContentType;
+use SLight::Test::Site;
+use SLight::API::ContentSpec;
 
-use English qw{ -no_match_vars };
+use English qw( -no_match_vars );
 use Test::More;
 use Test::Exception;
 # }}}
 
 plan tests =>
+    + 4 # add_Content
+    + 2 # update_Content (miss-id and actual update)
+    + 2 # update_Contents
+    + 4 # get_Content
+    + 2 # get_Contents
+    + 2 # count_Contents_where
+    + 2 # get_Content_ids_where
+    + 2 # get_Contents_where
+    + 2 # get_Contents_fields_where
+    + 4 # delete_Content
+    + 2 # delete_Contents
 ;
 
 my $site_root = SLight::Test::Site::prepare_fake(
@@ -32,6 +43,7 @@ my $site_root = SLight::Test::Site::prepare_fake(
 );
 
 use SLight::API::Content;
+
 
 # SLight ends here!
 
