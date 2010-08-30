@@ -254,7 +254,7 @@ sub sql_build_query { # {{{
         {
             'dbh'      => { type=>OBJECT },
 		    'type'     => { type=>SCALAR },
-		    'table'    => { type=>SCALAR },
+		    'table'    => { type=>SCALAR|ARRAYREF },
 
 		    'values'   => { type=>HASHREF, optional=>1 },
 		    'set'      => { type=>HASHREF, optional=>1 },
@@ -268,16 +268,16 @@ sub sql_build_query { # {{{
     );
 
     my %types = (
-        select => {
+        'select' => {
             table => ' FROM',
         },
-        insert => {
+        'insert' => {
             table => ' INTO',
         },
-        update => {
+        'update' => {
             table => q{},
         },
-        delete => {
+        'delete' => {
             table => ' FROM',
         }
     );
@@ -294,7 +294,15 @@ sub sql_build_query { # {{{
     }
 
     if ($P{'table'}) {
-        $query[-1] .= $types{ $P{'type'} }->{'table'} .q{ }. $P{'table'};
+        my $table_string;
+        if (ref $P{'table'}) {
+            $table_string = join q{ }, @{ $P{'table'} };
+        }
+        else {
+            $table_string = $P{'table'};
+        }
+
+        $query[-1] .= $types{ $P{'type'} }->{'table'} .q{ }. $table_string;
 
         if ($P{'values'}) {
             my (@fields, @values);

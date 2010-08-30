@@ -36,7 +36,7 @@ use SLight::Core::SQL qw(
 plan tests =>
     + 1 # sql_connect
 
-    + 4 # sql_build_query
+    + 5 # sql_build_query
 
     + 4 # sql_query
 
@@ -79,6 +79,17 @@ is_deeply(
     ),
     [ "SELECT `col1`, `col2` FROM Foo WHERE col1 = ", 42, " GROUP BY col3, col4 ORDER BY col2 DESC, col1" ],
     'sql_build_query - select (with where)'
+);
+is_deeply(
+    sql_build_query(
+        'dbh'      => $dbh,
+        'type'     => 'select',
+        'table'    => [ 'Foo', 'LEFT JOIN', 'Bar', 'ON', 'Foo.id=Bar.Foo_id' ],
+        'columns'  => [qw{ col1 Bar.col2 }],
+        'where'    => [ "col1 = ", 42 ],
+    ),
+    [ "SELECT `col1`, `Bar.col2` FROM Foo LEFT JOIN Bar ON Foo.id=Bar.Foo_id WHERE col1 = ", 42 ],
+    'sql_build_query - select (with join)'
 );
 is_deeply(
     sql_build_query(
@@ -199,7 +210,7 @@ $sth = sql_select(
     'where'    => [ 'bar =', 3 ],
     'group_by' => [ 'bar' ],
     'order_by' => [ 'bar' ],
-    'debug'    => 1,
+    'debug'    => 1, # Due to this, a message on STDERR will appear. Harmless, ignore.
 );
 my $result = $sth->fetchall_arrayref({});
 is_deeply(

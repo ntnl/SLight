@@ -184,8 +184,8 @@ is_deeply (
         version       => 2,
 
         _data => {
-            label   => { datatype => q{String}, caption => q{Label},    order => 1, default => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
-            summary => { datatype => q{Text},   caption => q{Overview}, order => 2, default => q{},           max_length => 789, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
+            label   => { id=>2, datatype => q{String}, caption => q{Label},    order => 1, default => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+            summary => { id=>1, datatype => q{Text},   caption => q{Overview}, order => 2, default => q{},           max_length => 789, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
         },
 
         metadata => {},
@@ -217,8 +217,8 @@ is_deeply(
             version       => 2,
 
             _data => {
-                label   => { datatype => q{String}, caption => q{Label},    order => 1, default => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
-                summary => { datatype => q{Text},   caption => q{Overview}, order => 2, default => q{},           max_length => 789, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
+                label   => { id=>2, datatype => q{String}, caption => q{Label},    order => 1, default => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+                summary => { id=>1, datatype => q{Text},   caption => q{Overview}, order => 2, default => q{},           max_length => 789, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
             },
 
             metadata => {},            

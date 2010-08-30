@@ -18,6 +18,7 @@ use SLight::Core::Cache qw( Cache_get Cache_put Cache_invalidate Cache_invalidat
 
 use Carp::Assert::More qw( assert_positive_integer );
 use Params::Validate qw( :all );
+use YAML::Syck;
 # }}}
 
 =head1 Entity API schema
@@ -184,8 +185,10 @@ sub new { # {{{
 
         child_key => $P{'child_key'},
             # Data fields of parents records. Might be undef.
-
-        child_df_data_field => undef,
+        
+        child_has_language => $P{'child_has_language'},
+            # If defined, means that '_data' items are based on key AND 'language' column.
+            # In this case, '_data_lang' is mandatory.
 
 #        fetch_cb => $P{'get_cb'},
 #        store_cb => $P{'put_cb'},
@@ -199,7 +202,11 @@ sub new { # {{{
     if ($self->{'has_metadata'}) {
         push @{ $self->{'_all_fields'} }, 'metadata';
     }
-    
+
+    if (not ref $self->{'child_key'}) {
+        $self->{'child_key'} = [ $self->{'child_key'} ];
+    }
+
     $self->{'_really_all_fields'} = [ 'id', @{ $self->{'_all_fields'} } ];
 
     bless $self, $class;
@@ -210,29 +217,11 @@ sub new { # {{{
 # Notes to self :)
 #
 #
-# Content Entity
-# {
-#   base_table   => 'Content_Entity',
-#   child_table  => 'Content_Entity_Data',
-#   parent_table => 'Content_Spec',
-#
-#   data_fields        => [qw( status comment_write_policy comment_read_policy added_time modified_time )],
-#   child_data_fields  => [qw( language value )],
-#   parent_data_fields => [qw( owning_module )],
-#
-#   child_key => 'Content_Spec_Field_id',
-#
-#   has_metadata => 1,
-#   has_owner    => 1,
-#   has_assets   => 1,
-#   has_comments => 1,
-# }
-#
 # Comment
 # {
 #   base_table => 'Comment_Entity',
 #
-#   data_fields        => [qw( added status title text )],
+#   data_fields => [qw( added status title text )],
 #
 #   is_a_tree => 1,
 #   has_owner    => 1,
@@ -281,17 +270,20 @@ sub add_ENTITY { # {{{
     my $entity_id = SLight::Core::DB::last_insert_id();
 
     if ($data_hash) {
-        foreach my $field (keys %{ $data_hash }) {
-            my $field_data = $data_hash->{$field};
+        my @data_values = $self->_data_values($data_hash);
+
+        foreach my $data_entry (@data_values) {
+            my $data = $data_entry->{'data'};
+            if (not ref $data) {
+                $data = { value=>$data };
+            }
 
             SLight::Core::DB::run_insert(
                 'into'   => $self->{'child_table'},
                 'values' => {
-                    %{ $field_data },
-
+                    %{ $data_entry->{'keys'} },
+                    %{ $data },
                     $self->{'base_table'} . q{_id} => $entity_id,
-
-                    $self->{'child_key'} => $field,
                 },
 #                debug    => 1, 
             );
@@ -327,17 +319,17 @@ sub update_ENTITY { # {{{
     );
 
     if ($data_hash) {
-        foreach my $field (keys %{ $data_hash }) {
-            my $field_data = $data_hash->{$field};
+        my @data_values = $self->_data_values($data_hash);
+        foreach my $data_entry (@data_values) {
+            my @where = ( $self->{'base_table'} . q{_id = }, $P{'id'} );
+            foreach my $key_column (keys %{ $data_entry->{'keys'} }) {
+                push @where, ' AND '. $key_column .' = ', $data_entry->{'keys'}->{$key_column};
+            }
 
             SLight::Core::DB::run_update(
                 'table' => $self->{'child_table'},
-                'set'   => $field_data,
-                'where' => [
-                    $self->{'base_table'} . q{_id = }, $P{'id'},
-
-                    q{ AND } . $self->{'child_key'} . q{ = }, $field
-                ],
+                'set'   => $data_entry->{'data'},
+                'where' => \@where,
 #                debug => 1, 
             );
         }
@@ -469,7 +461,7 @@ sub get_ENTITY_ids_where { # {{{
 
 sub get_ENTITYs_where { # {{{
     my ( $self, %P ) = @_;
-    
+
     my $where = $self->_make_where(%P);
 
     my $sth = SLight::Core::DB::run_select(
@@ -527,8 +519,6 @@ sub get_ENTITYs_fields_where { # {{{
     );
 
     while (my $entity = $sth->fetchrow_hashref()) {
-        $entity->{'id'};
-
         $entities{ $entity->{'id'} } = $entity;
 
         if ($self->{'has_metadata'} and $fields{'metadata'}) {
@@ -546,6 +536,90 @@ sub get_ENTITYs_fields_where { # {{{
     }
 
     return [ values %entities ];
+} # }}}
+
+# Purpose:
+#   Process _data hashes, before then can be used to insert or update data.
+#   Turn things like:
+#   {
+#       q{*} => {
+#           foo => { start => 1, end => 2 },
+#           bar => { start => 3, end => 5 },
+#       }
+#   }
+#   ...into:
+#   [
+#       { keys => { id1 => q{*}, id2 => 'foo', }, data => { start => 1, end => 2 } },
+#       { keys => { id1 => q{*}, id2 => 'bar', }, data => { start => 3, end => 5 } },
+#   ]
+#
+#   For above example, there will be the following calls:
+#   ->_data_values(
+#       {
+#           q{*} => {
+#               foo => { start => 1, end => 2 },
+#               bar => { start => 3, end => 5 },
+#           }
+#       }
+#   );
+#   ->_data_values(
+#       {
+#           foo => { start => 1, end => 2 },
+#           bar => { start => 3, end => 5 },
+#       },
+#       id1,
+#       q{*},
+#   )
+sub _data_values { # {{{
+    my ( $self, $data_hash, %_keys ) = @_;
+
+    # When called by *_ENTRY* functions, _keys is not defined.
+    if (not %_keys) {
+        %_keys  = ();
+    }
+    
+    use Data::Dumper; warn "Input: " . Dumper [ $data_hash, \%_keys ];
+
+    my @values;
+    my $k_index = scalar keys %_keys;
+
+    use Data::Dumper; warn "Selector: " . Dumper { k_index => $k_index, k_ => $self->{'child_key'}->[ $k_index ] };
+
+    if (1 + $k_index == scalar @{ $self->{'child_key'} }) {
+        # Fetch data values.
+        foreach my $key_value (keys %{ $data_hash }) {
+            if (not ref $data_hash->{ $key_value }) {
+                $data_hash->{ $key_value } = { value => $data_hash->{ $key_value } };
+            }
+
+            my $entry = {
+                keys => {
+                    %_keys,
+                
+                    $self->{'child_key'}->[$k_index] => $key_value
+                },
+                data => $data_hash->{ $key_value },
+            };
+
+            use Data::Dumper; warn "Entry: ". Dumper $entry;
+
+            push @values, $entry;
+        }
+    }
+    else {
+        warn "Digging...\n";
+
+        # Dig deeper... (into hash)
+        foreach my $key_value (keys %{ $data_hash }) {
+            warn 'Key ('. $self->{'child_key'}->[ $k_index ] .') value: '. $key_value;
+
+            $_keys{ $self->{'child_key'}->[ $k_index ] } = $key_value;
+
+            push @values, $self->_data_values($data_hash->{$key_value}, %_keys);
+        }
+    }
+
+    return @values;
 } # }}}
 
 sub _make_where { # {{{
@@ -572,7 +646,8 @@ sub _add_data_to_entities { # {{{
             @{ $fields or $self->{'child_data_fields'} },
 
             $self->{'base_table'} . q{_id},
-            $self->{'child_key'},
+
+            @{ $self->{'child_key'} },
         ],
         from    => $self->{'child_table'},
         where   => [
@@ -582,13 +657,44 @@ sub _add_data_to_entities { # {{{
     );
 
         while (my $row = $sth->fetchrow_hashref()) {
-            my $key = delete $row->{ $self->{'child_key'} };
-            my $eid = delete $row->{ $self->{'base_table'} . q{_id} };
+            my $e_id = delete $row->{ $self->{'base_table'} . q{_id} };
 
-            $entities->{$eid}->{'_data'}->{ $key } = $row;
+            if (not $entities->{$e_id}->{'_data'}) {
+                $entities->{$e_id}->{'_data'} = {};
+            }
+
+            $self->_attach_data_row($entities->{$e_id}->{'_data'}, $row);
         }
 
     return;
+} # }}}
+
+# Purpose:
+#   Attach single '_data' item to it's hash.
+#
+#   This is a generic method, it can be overloaded if needed (eg. to improve performance!).
+sub _attach_data_row {
+    my ($self, $_data_hash, $_data_row) = @_;
+
+#    use Data::Dumper; warn "_attach_data_row:\n" . Dumper $_data_hash, $_data_row;
+
+    # Descend into _data_hash
+    foreach my $key (@{ $self->{'child_key'} }) {
+        my $column = delete $_data_row->{$key};
+        if (not $_data_hash->{ $column }) {
+            $_data_hash->{ $column } = {};
+        }
+
+        $_data_hash = $_data_hash->{ $column };
+    }
+    
+    foreach my $column (keys %{ $_data_row }) {
+        $_data_hash->{$column} = $_data_row->{$column};
+    }
+
+#    use Data::Dumper; warn "_data_hash:\n" . Dumper $_data_hash;
+
+    return $_data_hash;
 } # }}}
 
 sub delete_ENTITY { # {{{
