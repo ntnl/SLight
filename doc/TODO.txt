@@ -53,13 +53,14 @@
 [X]     Cache
 [>] API
 [X]     ContentSpec store
-[>]     Content store
+[X]     Content store
 [ ]     Comment store
 [ ]     Asset store
 [ ]     Page API refactoring ('page' to 'Page')
 [ ]     Add 'title' and 'description' to Page, l10n-dependant
-[ ] PathHandler ()
-[ ]     Test Framework
+[>] PathHandler ()
+[>]     Test Framework
+[>]     SLight::PathHandler::ContentSpec
 [ ]     SLight::PathHandler::CMS
 [ ]     SLight::PathHandler::Test
 [ ] Handler Object Test Framework
@@ -96,7 +97,7 @@
 [ ]         SLight::Handler::CMS::Entry::Translate
 [ ] Core
 [ ]     HTML Template support
-[ ] HTML Output
+[ ]     HTML Output
 [ ] DataStructure
 [ ]     SLight::DataStructure
 [ ]     SLight::DataStructure::Token

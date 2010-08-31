@@ -44,9 +44,9 @@ our %EXPORT_TAGS = ( 'all' => [ @EXPORT_OK ] );
 my $_handler = SLight::Core::Entity->new( # {{{
     base_table       => 'Content_Entity',
     child_table      => 'Content_Entity_Data',
-    parent_table     => 'Content_Spec',
 
-    data_fields        => [qw( status comment_write_policy comment_read_policy added_time modified_time )],
+# Fixme: add added_time and modified_time to the list: (they are dynamically created, therefore tricky!
+    data_fields        => [qw( status comment_write_policy comment_read_policy Content_Spec_id )],
     child_data_fields  => [qw( value )],
     parent_data_fields => [qw( owning_module )],
 

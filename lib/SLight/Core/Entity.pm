@@ -261,6 +261,10 @@ sub add_ENTITY { # {{{
 
     my $data_hash = delete $P{'_data'};
 
+    if ($self->{'has_metadata'} and defined $P{'metadata'}) {
+        $P{'metadata'} = Dump($P{'metadata'});
+    }
+
     SLight::Core::DB::run_insert(
         'into'   => $self->{'base_table'},
         'values' => \%P,
@@ -309,6 +313,10 @@ sub update_ENTITY { # {{{
 
     my $data_hash = delete $P{'_data'};
 
+    if ($self->{'has_metadata'} and defined $values{'metadata'}) {
+        $values{'metadata'} = Dump($values{'metadata'});
+    }
+
     SLight::Core::DB::run_update(
         'table' => $self->{'base_table'},
         'set'   => \%values,
@@ -346,6 +354,10 @@ sub update_ENTITYs { # {{{
         if ($P{$field}) {
             $values{$field} = $P{$field};
         }
+    }
+    
+    if ($self->{'has_metadata'} and defined $values{'metadata'}) {
+        $values{'metadata'} = Dump($values{'metadata'});
     }
 
     SLight::Core::DB::check();
@@ -397,6 +409,8 @@ sub get_ENTITY { # {{{
         }
     }
 
+#    use Data::Dumper; warn Dumper $entity;
+
     return $entity;
 } # }}}
 
@@ -412,11 +426,19 @@ sub get_ENTITYs { # {{{
 #        debug => 1
     );
 
-    my @entities;
-    while (my $entity = $sth->fetchrow_hashref()) {
-        push @entities, $entity;
+    my %entities = $self->_slurp_entities($sth);
+
+    if (not scalar keys %entities) {
+        return [];
     }
-    return \@entities;
+
+    if ($self->{'child_table'}) {
+        $self->_add_data_to_entities(\%entities);
+    }
+
+#    use Data::Dumper; warn Dumper \%entities;
+
+    return [ values %entities ];
 } # }}}
 
 sub count_ENTITYs_where { # {{{
@@ -456,6 +478,7 @@ sub get_ENTITY_ids_where { # {{{
     while (my ( $id ) = $sth->fetchrow_array()) {
         push @entity_ids, $id;
     }
+
     return \@entity_ids;
 } # }}}
 
@@ -471,19 +494,7 @@ sub get_ENTITYs_where { # {{{
 #        debug   => 1
     );
 
-    my %entities;
-    while (my $entity = $sth->fetchrow_hashref()) {
-        $entities{ $entity->{'id'} } = $entity;
-
-        if ($self->{'has_metadata'}) {
-            if ($entity->{'metadata'}) {
-                $entity->{'metadata'} = Load($entity->{'metadata'});
-            }
-            else {
-                $entity->{'metadata'} = {};
-            }
-        }
-    }
+    my %entities = $self->_slurp_entities($sth);
 
     if (not scalar keys %entities) {
         return [];
@@ -505,7 +516,6 @@ sub get_ENTITYs_fields_where { # {{{
 
     SLight::Core::DB::check();
 
-    my %entities;
     my $where = $self->_make_where(%P);
 
     my %fields = map { $_ => 1 } @{ $P{'_fields'} or [] };
@@ -518,10 +528,29 @@ sub get_ENTITYs_fields_where { # {{{
 #        debug => 1
     );
 
+    my %entities = $self->_slurp_entities($sth);
+
+    if (not scalar keys %entities) {
+        return [];
+    }
+
+    if ($self->{'child_table'}) {
+        $self->_add_data_to_entities(\%entities);
+    }
+
+#    use Data::Dumper; warn Dumper \%entities;
+
+    return [ values %entities ];
+} # }}}
+
+sub _slurp_entities { # {{{
+    my ( $self, $sth) = @_;
+
+    my %entities;
     while (my $entity = $sth->fetchrow_hashref()) {
         $entities{ $entity->{'id'} } = $entity;
 
-        if ($self->{'has_metadata'} and $fields{'metadata'}) {
+        if ($self->{'has_metadata'}) {
             if ($entity->{'metadata'}) {
                 $entity->{'metadata'} = Load($entity->{'metadata'});
             }
@@ -531,11 +560,7 @@ sub get_ENTITYs_fields_where { # {{{
         }
     }
 
-    if ($self->{'child_table'} and $P{'_data_fields'}) {
-        $self->_add_data_to_entities( \%entities, $P{'_data_fields'} );
-    }
-
-    return [ values %entities ];
+    return %entities;
 } # }}}
 
 # Purpose:
@@ -578,12 +603,12 @@ sub _data_values { # {{{
         %_keys  = ();
     }
     
-    use Data::Dumper; warn "Input: " . Dumper [ $data_hash, \%_keys ];
+#    use Data::Dumper; warn "Input: " . Dumper [ $data_hash, \%_keys ];
 
     my @values;
     my $k_index = scalar keys %_keys;
 
-    use Data::Dumper; warn "Selector: " . Dumper { k_index => $k_index, k_ => $self->{'child_key'}->[ $k_index ] };
+#    use Data::Dumper; warn "Selector: " . Dumper { k_index => $k_index, k_ => $self->{'child_key'}->[ $k_index ] };
 
     if (1 + $k_index == scalar @{ $self->{'child_key'} }) {
         # Fetch data values.
@@ -601,17 +626,17 @@ sub _data_values { # {{{
                 data => $data_hash->{ $key_value },
             };
 
-            use Data::Dumper; warn "Entry: ". Dumper $entry;
+#            use Data::Dumper; warn "Entry: ". Dumper $entry;
 
             push @values, $entry;
         }
     }
     else {
-        warn "Digging...\n";
+#        warn "Digging...\n";
 
         # Dig deeper... (into hash)
         foreach my $key_value (keys %{ $data_hash }) {
-            warn 'Key ('. $self->{'child_key'}->[ $k_index ] .') value: '. $key_value;
+#            warn 'Key ('. $self->{'child_key'}->[ $k_index ] .') value: '. $key_value;
 
             $_keys{ $self->{'child_key'}->[ $k_index ] } = $key_value;
 
@@ -679,17 +704,27 @@ sub _attach_data_row {
 #    use Data::Dumper; warn "_attach_data_row:\n" . Dumper $_data_hash, $_data_row;
 
     # Descend into _data_hash
+    my $last_data_hash;
+    my $last_column;
     foreach my $key (@{ $self->{'child_key'} }) {
         my $column = delete $_data_row->{$key};
         if (not $_data_hash->{ $column }) {
             $_data_hash->{ $column } = {};
         }
 
+        $last_data_hash = $_data_hash;
+        $last_column    = $column;
+
         $_data_hash = $_data_hash->{ $column };
     }
-    
-    foreach my $column (keys %{ $_data_row }) {
-        $_data_hash->{$column} = $_data_row->{$column};
+
+    if (scalar @{ $self->{'child_data_fields'} } == 1) {
+        $last_data_hash->{$last_column} = $_data_row->{ $self->{'child_data_fields'}->[0] };
+    }
+    else {
+        foreach my $column (keys %{ $_data_row }) {
+            $_data_hash->{$column} = $_data_row->{$column};
+        }
     }
 
 #    use Data::Dumper; warn "_data_hash:\n" . Dumper $_data_hash;

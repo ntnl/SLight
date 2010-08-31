@@ -268,14 +268,16 @@ is(
 # run: get_Content
 #
 is_deeply(
-    { get_Content(1234) },
-    undef,
-    q{get_Content (1/2)}
+    [ get_Content(1234) ],
+    [ ],
+    q{get_Content (1/2) non-existing ID}
 );
 is_deeply(
     get_Content($c2),
     {
-        Content_Spec_id => $ContentSpec_2{'id'},
+        id => $c2,
+
+        Content_Spec_id => $ContentSpec_1{'id'},
 
         status => q{V},
 
@@ -296,14 +298,14 @@ is_deeply(
         comment_write_policy => 0,
         comment_read_policy  => 0,
 
-        added_time    => q{},
-        modified_time => q{},
+#        added_time    => q{},
+#        modified_time => q{},
 
         metadata => {
             note_to_self => "Second entry",
         }
     },
-    q{get_Content (2/2)}
+    q{get_Content (2/2) - existing ID}
 );
 
 #
@@ -312,11 +314,38 @@ is_deeply(
 is_deeply(
     get_Contents( [123, 456] ),
     [],
-    q{get_Contents (1/2)}
+    q{get_Contents (1/2) - non-existing IDs}
 );
 is_deeply(
     get_Contents( [$c2, $c3] ),
     [
+        {
+            id => $c3,
+
+            Content_Spec_id => $ContentSpec_2{'id'},
+
+            status => q{V},
+
+            _data => {
+                q{*} => {
+                    $f_name  => q{Agnes},
+                    $f_chest => q{88},
+                    $f_waist => q{54},
+                    $f_hips  => q{85},
+                    $f_cup   => q{C},
+                }
+            },
+            
+            comment_write_policy => 0,
+            comment_read_policy  => 0,
+
+#            added_time    => q{},
+#            modified_time => q{},
+
+            metadata => {
+                note_to_self => "Third entry - updated",
+            }
+        },
         {
             id => $c2,
 
@@ -341,36 +370,15 @@ is_deeply(
             comment_write_policy => 0,
             comment_read_policy  => 0,
 
-            added_time    => q{},
-            modified_time => q{},
+#            added_time    => q{},
+#            modified_time => q{},
 
             metadata => {
                 note_to_self => "Second entry",
             },
         },
-        {
-            id => $c3,
-
-            Content_Spec_id => $ContentSpec_2{'id'},
-
-            status => q{H},
-
-            _data => {
-                q{*} => {
-                    $f_name  => q{Agnes},
-                    $f_chest => q{90},
-                    $f_waist => q{60},
-                    $f_hips  => q{90},
-                    $f_cup   => q{C},
-                }
-            },
-
-            metadata => {
-                note_to_self => "Third entry",
-            }
-        },
     ],
-    q{get_Contents (2/2)}
+    q{get_Contents (2/2) - existing IDs}
 );
 
 #
@@ -398,14 +406,18 @@ is_deeply(
     get_Content_ids_where(
         status => q{A},
     ),
-    0,
+    [ ],
     q{get_Contents_ids_where (1/2) - miss}
 );
 is_deeply(
-    get_Content_ids_where(
-        status => q{V},
-    ),
-    3,
+    [
+        sort @{
+            get_Content_ids_where(
+                status => q{V},
+            )
+        }
+    ],
+    [ $c1, $c2, $c3 ],
     q{get_Contents_ids_where (2/2) - hit}
 );
 
@@ -413,23 +425,19 @@ is_deeply(
 # run: get_Contents_where
 #
 is_deeply(
-    [
-        get_Contents_where(
-            status => q{A},
-        )
-    ],
-    undef,
+    get_Contents_where(
+        status => q{A},
+    ),
+    [],
     q{get_Contents_where (1/2) - miss}
 );
 is_deeply(
-    [
-        get_Contents_where(
-            status => q{H},
-        )
-    ],
+    get_Contents_where(
+        status => q{H},
+    ),
     [
         {
-            id => $c3,
+            id => $c4,
 
             Content_Spec_id => $ContentSpec_2{'id'},
 
@@ -437,16 +445,19 @@ is_deeply(
 
             _data => {
                 q{*} => {
-                    $f_name  => q{Agnes},
-                    $f_chest => q{90},
-                    $f_waist => q{60},
-                    $f_hips  => q{90},
-                    $f_cup   => q{C},
+                    $f_name  => q{Wanda},
+                    $f_chest => q{85},
+                    $f_waist => q{65},
+                    $f_hips  => q{85},
+                    $f_cup   => q{B},
                 }
             },
 
+            comment_write_policy => 0,
+            comment_read_policy  => 0,
+
             metadata => {
-                note_to_self => "Third entry",
+                note_to_self => "Fourth entry",
             }
         }
     ],
@@ -457,43 +468,41 @@ is_deeply(
 # run: get_Contents_fields_where
 #
 is_deeply(
-    [
-        get_Contents_fields_where(
-            status => q{A},
+    get_Contents_fields_where(
+        status => q{A},
 
-            _fields => [ qw( status ) ],
+        _fields => [ qw( status ) ],
 
-            _data_lang => q{en},
-        )
-    ],
-    undef,
+        _data_lang => q{en},
+    ),
+    [],
     q{get_Contents_fields_where (1/2) - miss}
 );
 is_deeply(
-    [
-        get_Contents_fields_where(
-            status => q{H},
+    get_Contents_fields_where(
+        status => q{H},
 
-            _fields => [ qw( status ) ],
+        _fields => [ qw( status ) ],
 
-            _data_lang => q{en},
-        )
-    ],
+        _data_lang => q{en},
+    ),
     [
         {
-            id => $c3,
+            id => $c4,
 
             status => q{H},
 
             _data => {
                 q{*} => {
-                    $f_name  => q{Agnes},
-                    $f_chest => q{90},
-                    $f_waist => q{60},
-                    $f_hips  => q{90},
-                    $f_cup   => q{C},
+                    $f_name  => q{Wanda},
+                    $f_chest => q{85},
+                    $f_waist => q{65},
+                    $f_hips  => q{85},
+                    $f_cup   => q{B},
                 }
             },
+
+            metadata => {},
         }
     ],
     q{get_Contents_fields_where (2/2) - hit}

@@ -118,7 +118,11 @@ is(
 );
 
 is_deeply(
-    SLight::API::Page::get_pages( [$page_1_id, $page_4_id] ),
+    [
+        sort {$a->{'id'} <=> $b->{'id'}} @{
+            SLight::API::Page::get_pages( [$page_1_id, $page_4_id] )
+        }
+    ],
     [
         {
             id        => $page_1_id,
@@ -146,7 +150,11 @@ is(
     'update_pages()'
 );
 is_deeply(
-    SLight::API::Page::get_pages( [$page_4_id, $page_5_id] ),
+    [
+        sort {$a->{'id'} <=> $b->{'id'}} @{
+            SLight::API::Page::get_pages( [$page_4_id, $page_5_id] )
+        }
+    ],
     [
         {
             id        => $page_4_id,
