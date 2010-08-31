@@ -180,15 +180,5 @@ sub delete_Contents { # {{{
 #    return $P{'status'};
 #} # }}}
 
-# Entity handler callbacks.
-
-# Process data, as it enters Entity.pm routines.
-sub _data_in_cb { # {{{
-} # }}}
-
-# Process data, as it leaves Entity.pm routines.
-sub _data_out_cb { # {{{
-} # }}}
-
 # vim: fdm=marker
 1;

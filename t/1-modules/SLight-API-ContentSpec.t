@@ -270,12 +270,14 @@ is_deeply(
         {
             id => 2,
 
-            caption       => 'Folder',
+            caption => 'Folder',
 
             _data => {
                 label   => { caption => q{Label},    order => 1 },
                 summary => { caption => q{Overview}, order => 2 },
             },
+
+            metadata => {},
         }
     ],
     'get_ContentSpecs_fields_where - correcct condition'

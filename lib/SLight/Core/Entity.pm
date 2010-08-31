@@ -535,7 +535,7 @@ sub get_ENTITYs_fields_where { # {{{
     }
 
     if ($self->{'child_table'}) {
-        $self->_add_data_to_entities(\%entities);
+        $self->_add_data_to_entities(\%entities, $P{'_data_fields'});
     }
 
 #    use Data::Dumper; warn Dumper \%entities;
