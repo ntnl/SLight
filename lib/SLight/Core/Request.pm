@@ -211,7 +211,7 @@ sub main { # {{{
     
     # Request was properly initialized :)
     # Can move to Stage II - what was requested?
-    my $response_content = eval {
+    my $page_content = eval {
         return $path_handler_object->analyze_path($P{'url'}->{'path'});
     };
 
@@ -228,7 +228,7 @@ sub main { # {{{
     my $response_result = eval {
         return $protocol_object->respond(
             url  => $P{'url'},
-            page => $response_content,
+            page => $page_content,
         );
     };
 
@@ -331,6 +331,8 @@ sub built_in_reply { # {{{
             response => { type=>HASHREF },
         }
     );
+
+    # One big FIXME?!?
 
     return {
         meta => {

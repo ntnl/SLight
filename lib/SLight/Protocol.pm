@@ -27,14 +27,51 @@ sub new { # {{{
 
     # Prototype of the object:
     my $self = {
+        output_factory => undef,
     };
 
     bless $self, $class;
 
+    $self->{'output_factory'} = SLight::OutputFactory->new();
+
     return $self;
 } # }}}
 
-sub response_CONTENT { # {{{
+# Super (S) methods - to be called by child classes.
+
+# Purpose:
+#   Indicate, that response generation has started.
+sub S_begin_response { # {{{
+    my ( $self, %P ) = @_;
+
+    assert_defined($P{'page'}, 'Page defined');
+    assert_defined($P{'url'},  'URL defined');
+
+    assert_defined($P{'page'}->{'template'}, 'Template (in page) defined');
+
+    assert_defined($P{'page'}->{'objects'},      'Objects (in page) defined');
+    assert_defined($P{'page'}->{'object_order'}, 'Object order (in page) defined');
+    assert_defined($P{'page'}->{'main_object'},  'Main object (in page) defined');
+
+    return;
+} # }}}
+
+# Purpose:
+#   Indicate, that response generation has been prematurely generated - but it was not due to an error.
+#   For example - this routine will be used when main object handler decides to return a redirection.
+sub S_abort_response { # {{{
+
+    return;
+} # }}}
+
+# Purpose:
+#   Indicate, that response generation has finished.
+sub S_end_response { # {{{
+
+    return;
+} # }}}
+
+sub S_response_CONTENT { # {{{
     my ( $self, $content, $mime ) = @_;
 
     return {

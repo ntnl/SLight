@@ -25,16 +25,43 @@ use Params::Validate qw( :all );
 sub respond { # {{{
     my ( $self, %P ) = @_;
 
-    assert_defined($P{'page'}, 'Page defined');
-    assert_defined($P{'url'},  'URL defined');
+    $self->_begin_response(%P);
 
-    my $template_file = SLight::Core::Config::get_option('site_root') . q{/html/} . $P{'page'}->{'template'} . q{.html};
+    my $output_object = $self->{'output_factory'}->make(
+        output => 'HTML', # Hard-coded for now, FIXME later.
+    );
 
-    my $template = read_file($template_file);
+# Move to SLight::Output::HTML
+#    my $template_file = SLight::Core::Config::get_option('site_root') . q{/html/} . $P{'page'}->{'template'} . q{.html};
+#
+#    my $template = read_file($template_file);
 
-    return $self->response_CONTENT(
-        $template,
-        q{text/html; character-set: utf-8}
+    # Process on-page objects - start with main object.
+    my $response = $self->S_process_object($P{'page'}->{'objects'}->{ $P{'page'}->{'main_object'} });
+
+    # Process aux objects now...
+    foreach my $object_key (@{ $P{'page'}->{'object_order'} }) {
+        if ($object_key eq $P{'page'}->{'main_object'}) {
+            # Skip main object, it has already been processed.
+            next;
+        }
+
+        my $response = $self->S_process_object($P{'page'}->{'objects'}->{ $object_key });
+
+        $output_object->queue_object_data($object_key, $response);
+    }
+
+    $output_object->serialize_queued_data(
+        object_order => $P{'page'}->{'object_order'},
+    );
+
+    $self->S_end_response();
+
+    return $self->S_response_CONTENT(
+        $output_object->return_response(),
+# The above should return:
+#       $template
+#        q{text/html; character-set: utf-8}
     );
 } # }}}
 

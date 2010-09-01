@@ -67,16 +67,20 @@ Request "flow" diagram:
        |         |
        |         |---> Protocol handler (object) SLight::ProtocolHandler::**
        |         |            |
+       |         |  Select output handler
+       |         |            |
        |         | Run action on main object
+       |         |            |
+       |         |    Queue main content
        |         |            |
        |         |            |---------------.
        |         |            |               |
        |         |            |    Run action on aux objects
        |         |            |     (optionally, if needed)
        |         |            |               |
+       |         |            |    Queue aux content
+       |         |            |               |
        |         |            |<--------------'
-       |         |            |
-       |         |  Select output handler
        |         |            |
        |         |            |---> Output handler (module)
        |         |            |            |
@@ -88,9 +92,11 @@ Request "flow" diagram:
        |         |            |            |            |
        |         |            |            |<-----------'
        |         |            |            |
-       |         |            |      Serialize data
+       |         |            |     Queue add-on data
        |         |            |            |
        |         |            |<-----------'
+       |         |            |
+       |         | Serialize queued data
        |         |            |
        |         |<-----------'
        |         |
@@ -285,7 +291,7 @@ Perl directory structure:
             # Default Path handler
             # Looks up into Page storage to find which Objects/Actions should be invoked.
 
-        CMS
+        CMS_Spec
             # Handling of User defined CMS Entry specs
 
 

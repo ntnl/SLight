@@ -25,7 +25,31 @@ sub new { # {{{
     my $self = {
         template => undef,
 
-        objects  => [],
+        objects => {},
+            # Objects, that should appear on the page.
+            # Key should is used only internally, by the Request Handler.
+            # Value should be a hash, similar to this one:
+            #   {
+            #       class => 'SLight::Handler::Core::Empty',
+            #           # Class, that will handle the object.
+            #
+            #       oid => '123',
+            #           # Object ID, that the Class has to handle.
+            #
+            #       metadata => {},
+            #           # Optional - depends on Class.
+            #           # Stuff, that PageHandler would like to pass to the Class handler.
+            #           # It can be used to pass data, that PageHandled has fetched, that
+            #           # would otherwise had to be fetched again by the Class itself.
+            #   }
+        object_order => [],
+            # Order in which objects appear on the page.
+        main_object => undef,
+            # Key name of primary object.
+            # This one is always handled first, as it can return redirection,
+            # that will block processing of other (aux) object.
+            #
+            # Usually, this is the object directly associated to the page URL.
     };
 
     bless $self, $class;
@@ -45,7 +69,9 @@ sub response_content { # {{{
     return {
         template => $self->{'template'},
 
-        objects => $self->{'objects'},
+        objects      => $self->{'objects'},
+        object_order => $self->{'object_order'},
+        main_object  => $self->{'main_object'},
     };
 } # }}}
 

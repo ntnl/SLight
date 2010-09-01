@@ -60,8 +60,7 @@
 [ ]     Add 'title' and 'description' to Page, l10n-dependant
 [>] PathHandler ()
 [>]     Test Framework
-[>]     SLight::PathHandler::ContentSpec
-[ ]     SLight::PathHandler::CMS
+[>]     SLight::PathHandler::CMS_Spec
 [ ]     SLight::PathHandler::Test
 [ ] Handler Object Test Framework
 [ ] CMS Handler objects
@@ -76,13 +75,15 @@
 [ ]         SLight::Handler::Core::Empty::Edit
 [ ]         SLight::Handler::Core::Empty::Move
 [ ]         SLight::Handler::Core::Empty::Delete
+[ ]     SLight::Handler::CMS::SpecList
+[ ]         SLight::Handler::CMS::SpecList::View
 [ ]     SLight::Handler::CMS::Spec
-[ ]         SLight::Handler::CMS::Spec::List
+[ ]         SLight::Handler::CMS::Spec::View
 [ ]         SLight::Handler::CMS::Spec::New
 [ ]         SLight::Handler::CMS::Spec::Edit
 [ ]         SLight::Handler::CMS::Spec::Delete
 [ ]     SLight::Handler::CMS::SpecField
-[ ]         SLight::Handler::CMS::SpecField::List
+[ ]         SLight::Handler::CMS::SpecField::View
 [ ]         SLight::Handler::CMS::SpecField::Add
 [ ]         SLight::Handler::CMS::SpecField::Edit
 [ ]         SLight::Handler::CMS::SpecField::Delete
@@ -95,9 +96,12 @@
 [ ]         SLight::Handler::CMS::Entry::Comment
 [ ]         SLight::Handler::CMS::Entry::View
 [ ]         SLight::Handler::CMS::Entry::Translate
-[ ] Core
+[>] Output:
+[X]     SLight::OutputFactory
+[>]     SLight::Output
+[>]     SLight::Output::HTML (just pass template)
+[>]     SLight::Output::TEST
 [ ]     HTML Template support
-[ ]     HTML Output
 [ ] DataStructure
 [ ]     SLight::DataStructure
 [ ]     SLight::DataStructure::Token
