@@ -1,4 +1,4 @@
-package SLight::Handler::CMS::SpecList::View;
+package SLight::Handler::Test::Foo::View;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.

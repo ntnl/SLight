@@ -71,9 +71,9 @@ sub S_begin_response { # {{{
 sub S_process_object { # {{{
     my ( $self, $object, $action ) = @_;
 
-    $self->D_Dump($object, $action);
+#    $self->D_Dump($object, $action);
 
-    my ($pkg, $handler) = ( $object->{'class'} =~ m{^(.+?)::(.+?)$} );
+    my ($pkg, $handler) = ( $object->{'class'} =~ m{^(.+?)::(.+?)$}s );
 
     my $handler_object = $self->{'handler_factory'}->make(pkg => $pkg, handler => $handler, action => $action );
 

@@ -107,7 +107,7 @@ sub do_spec { # {{{
 
     my $content_spec = SLight::API::ContentSpec::get_ContentSpec($id);
 
-    $self->D_Dump($content_spec);
+#    $self->D_Dump($content_spec);
 
     $self->set_objects( \%objects );
 

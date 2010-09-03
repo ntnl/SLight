@@ -29,7 +29,7 @@ sub D_Dump { # {{{
 
     require Data::Dumper;
 
-    warn Data::Dumper::Dumper(@stuff);
+    print STDERR Data::Dumper::Dumper(@stuff);
 
     return;
 } # }}}
