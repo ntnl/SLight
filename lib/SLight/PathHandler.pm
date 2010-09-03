@@ -16,6 +16,7 @@ use strict; use warnings; # {{{
 
 my $VERSION = '0.0.1';
 
+use Carp::Assert::More qw( assert_listref assert_hashref assert_defined );
 # }}}
 
 # Make a new PathHandler object. Nothing fancy here.
@@ -61,6 +62,30 @@ sub set_template { # {{{
     my ( $self, $template ) = @_;
 
     return $self->{'template'} = $template;
+} # }}}
+
+sub set_objects { # {{{
+    my ( $self, $objects ) = @_;
+
+    assert_hashref($objects, 'Objects is an hashref');
+
+    return $self->{'objects'} = $objects;
+} # }}}
+
+sub set_main_object { # {{{
+    my ( $self, $main_object ) = @_;
+
+    assert_defined( $main_object, 'Object defined');
+
+    return $self->{'main_object'} = $main_object;
+} # }}}
+
+sub set_object_order { # {{{
+    my ( $self, $object_order ) = @_;
+
+    assert_listref($object_order, 'Objects is an array');
+
+    return $self->{'object_order'} = $object_order;
 } # }}}
 
 sub response_content { # {{{

@@ -43,19 +43,27 @@ sub new { # {{{
 } # }}}
 
 sub queue_object_data { # {{{
+    my ( $self, $data_structure ) = @_;
+
+    # use process_object_data!
+
     return;
 } # }}}
 
 sub serialize_queued_data { # {{{
-    my ( $self ) = @_;
+    my ( $self, %P ) = @_;
 
-    ($self->{'final_data'}, $self->{'final_mime'}) = $self->_serialize($self->{'object_data'}, $self->{'object_order'});
+    # P should contain: template and object_order (check this/FIXME!)
+
+    ($self->{'final_data'}, $self->{'final_mime'}) = $self->serialize($self->{'object_data'}, $P{'object_order'}, $P{'template'});
 
     return;
 } # }}}
 
 sub return_response { # {{{
-    return;
+    my ( $self ) = @_;
+
+    return ( $self->{'final_data'}, $self->{'final_mime'} );
 } # }}}
 
 # vim: fdm=marker

@@ -22,12 +22,23 @@ use File::Slurp qw( read_file );
 use Params::Validate qw( :all );
 # }}}
 
-sub _process_object_data { # {{{
+sub process_object_data { # {{{
+    my ( $self ) = @_;
+
     return;
 } # }}}
 
-sub _serialize { # {{{
-    return;
+sub serialize { # {{{
+    my ( $self, $object_data, $object_order, $template_code ) = @_;
+
+    my $template_file = SLight::Core::Config::get_option('site_root') . q{/html/} . $template_code . q{.html};
+
+    my $template = read_file($template_file);
+
+    return (
+       $template,
+        q{text/html; character-set: utf-8}
+    );
 } # }}}
 
 # vim: fdm=marker

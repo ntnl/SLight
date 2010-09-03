@@ -31,7 +31,9 @@ my $html = $interface->main(
     bin => $Bin,
 );
 
-ok($html, 'html was generated');
+# warn $html;
+
+like($html, qr{Minimal test site}, 'html was generated (sane URL)');
 
 # From this point CGI will analize language configuration sent from browser.
 $ENV{'HTTP_ACCEPT_LANGUAGE'} = q{foo,bar-baz;q=0.7,en;q=0.3};

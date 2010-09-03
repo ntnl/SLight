@@ -59,6 +59,10 @@ sub analyze_path { # {{{
     if ($page_id) {
         my $page = SLight::API::Page::get_page($page_id);
 
+        # Todo: get actual objects...
+        # For now, assume the page is empty.
+        $self->page_is_empty();
+
         $self->set_template( ($page->{'template'} or 'Default') );
 
         # Future: get objects (class + id, with proper order) from Object store
@@ -70,6 +74,25 @@ sub analyze_path { # {{{
     }
 
     return $self->response_content();
+} # }}}
+
+sub page_is_empty { # {{{
+    my ( $self ) = @_;
+
+    $self->set_objects(
+        {
+            e1 => {
+                class    => 'Core::Empty',
+                oid      => undef,
+            },
+        },
+    );
+
+    $self->set_object_order([qw( e1 )]);
+
+    $self->set_main_object('e1');
+
+    return;
 } # }}}
 
 # vim: fdm=marker

@@ -13,6 +13,9 @@ package SLight::Protocol;
 ################################################################################
 use strict; use warnings; # {{{
 
+use SLight::OutputFactory;
+
+use Carp::Assert::More qw( assert_defined );
 use English qw( -no_match_vars );
 use Params::Validate qw( :all );
 # }}}
@@ -27,12 +30,16 @@ sub new { # {{{
 
     # Prototype of the object:
     my $self = {
-        output_factory => undef,
+        output_factory  => undef,
+        handler_factory => undef,
+        addon_factory   => undef,
     };
 
     bless $self, $class;
 
-    $self->{'output_factory'} = SLight::OutputFactory->new();
+    $self->{'output_factory'}  = SLight::OutputFactory->new();
+    $self->{'handler_factory'} = SLight::HandlerFactory->new();
+    $self->{'addon_factory'}   = SLight::AddonFactory->new();
 
     return $self;
 } # }}}
@@ -54,6 +61,16 @@ sub S_begin_response { # {{{
     assert_defined($P{'page'}->{'main_object'},  'Main object (in page) defined');
 
     return;
+} # }}}
+
+# Purpose:
+#   Load and run (Object)Handler, as described in the given object hash.
+sub S_process_object { # {{{
+    my ( $self, $object ) = @_;
+
+    
+
+    return '...';
 } # }}}
 
 # Purpose:

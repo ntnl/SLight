@@ -22,11 +22,15 @@ use File::Slurp qw( read_file );
 use Params::Validate qw( :all );
 # }}}
 
-sub _process_object_data { # {{{
+sub process_object_data { # {{{
+    my ( $self ) = @_;
+
     return;
 } # }}}
 
-sub _serialize { # {{{
+sub serialize { # {{{
+    my ( $self ) = @_;
+
     return;
 } # }}}
 

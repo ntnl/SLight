@@ -50,8 +50,6 @@ sub new { # {{{
     my $self = {
         path_handler_factory => undef,
         protocol_factory     => undef,
-        handler_factory      => undef,
-        addon_factory        => undef,
     };
 
     bless $self, $class;
@@ -60,8 +58,6 @@ sub new { # {{{
 
     $self->{'path_handler_factory'} = SLight::PathHandlerFactory->new();
     $self->{'protocol_factory'}     = SLight::ProtocolFactory->new();
-    $self->{'handler_factory'}      = SLight::HandlerFactory->new();
-    $self->{'addon_factory'}        = SLight::AddonFactory->new();
 
     # Store in module's space, effectively making this object a singleton.
     return $_handler_object = $self;
@@ -215,7 +211,9 @@ sub main { # {{{
         return $path_handler_object->analyze_path($P{'url'}->{'path'});
     };
 
-    if ($EVAL_ERROR or not $response_content) {
+#    use Data::Dumper; warn Dumper $page_content;
+
+    if ($EVAL_ERROR or not $page_content) {
         return $self->stage_error(
             stage => 2,
             ee    => $EVAL_ERROR,

@@ -25,16 +25,11 @@ use Params::Validate qw( :all );
 sub respond { # {{{
     my ( $self, %P ) = @_;
 
-    $self->_begin_response(%P);
+    $self->S_begin_response(%P);
 
     my $output_object = $self->{'output_factory'}->make(
         output => 'HTML', # Hard-coded for now, FIXME later.
     );
-
-# Move to SLight::Output::HTML
-#    my $template_file = SLight::Core::Config::get_option('site_root') . q{/html/} . $P{'page'}->{'template'} . q{.html};
-#
-#    my $template = read_file($template_file);
 
     # Process on-page objects - start with main object.
     my $response = $self->S_process_object($P{'page'}->{'objects'}->{ $P{'page'}->{'main_object'} });
@@ -46,12 +41,14 @@ sub respond { # {{{
             next;
         }
 
-        my $response = $self->S_process_object($P{'page'}->{'objects'}->{ $object_key });
-
-        $output_object->queue_object_data($object_key, $response);
+        $output_object->queue_object_data(
+            $object_key,
+            $self->S_process_object($P{'page'}->{'objects'}->{ $object_key })
+        );
     }
 
     $output_object->serialize_queued_data(
+        template     => $P{'page'}->{'template'},
         object_order => $P{'page'}->{'object_order'},
     );
 
@@ -59,9 +56,6 @@ sub respond { # {{{
 
     return $self->S_response_CONTENT(
         $output_object->return_response(),
-# The above should return:
-#       $template
-#        q{text/html; character-set: utf-8}
     );
 } # }}}
 
