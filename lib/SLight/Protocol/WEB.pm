@@ -32,7 +32,10 @@ sub respond { # {{{
     );
 
     # Process on-page objects - start with main object.
-    my $response = $self->S_process_object($P{'page'}->{'objects'}->{ $P{'page'}->{'main_object'} });
+    my $response = $self->S_process_object(
+        $P{'page'}->{'objects'}->{ $P{'page'}->{'main_object'} },
+        $P{'url'}->{'action'}
+    );
 
     # Process aux objects now...
     foreach my $object_key (@{ $P{'page'}->{'object_order'} }) {
@@ -41,9 +44,14 @@ sub respond { # {{{
             next;
         }
 
+#        $self->D_Dump('P', \%P);
+
         $output_object->queue_object_data(
             $object_key,
-            $self->S_process_object($P{'page'}->{'objects'}->{ $object_key })
+            $self->S_process_object(
+                $P{'page'}->{'objects'}->{ $object_key },
+                $P{'url'}->{'action'}
+            )
         );
     }
 

@@ -1,7 +1,7 @@
 --- 
 Path only - make: /Foo/
 Path only - parse: 
-  action: Overview
+  action: View
   lang: ''
   page: 1
   path: 
@@ -11,7 +11,7 @@ Path only - parse:
   step: view
 Path only x2 - make: /Foo/Bar/
 Path only x2 - parse: 
-  action: Overview
+  action: View
   lang: ''
   page: 1
   path: 
@@ -22,7 +22,7 @@ Path only x2 - parse:
   step: view
 Path with path handler - make: /_Bar/Foo/
 Path with path handler - parse: 
-  action: Overview
+  action: View
   lang: ''
   page: 1
   path: 
@@ -32,7 +32,7 @@ Path with path handler - parse:
   step: view
 Root - make: /
 Root - parse: 
-  action: Overview
+  action: View
   lang: ''
   page: 1
   path: []

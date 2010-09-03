@@ -12,6 +12,7 @@ package SLight::Protocol;
 # 
 ################################################################################
 use strict; use warnings; # {{{
+use base q{SLight::BaseClass};
 
 use SLight::OutputFactory;
 
@@ -60,17 +61,25 @@ sub S_begin_response { # {{{
     assert_defined($P{'page'}->{'object_order'}, 'Object order (in page) defined');
     assert_defined($P{'page'}->{'main_object'},  'Main object (in page) defined');
 
+#    $self->D_Dump($P{'url'});
+
     return;
 } # }}}
 
 # Purpose:
 #   Load and run (Object)Handler, as described in the given object hash.
 sub S_process_object { # {{{
-    my ( $self, $object ) = @_;
+    my ( $self, $object, $action ) = @_;
 
-    
+    $self->D_Dump($object, $action);
 
-    return '...';
+    my ($pkg, $handler) = ( $object->{'class'} =~ m{^(.+?)::(.+?)$} );
+
+    my $handler_object = $self->{'handler_factory'}->make(pkg => $pkg, handler => $handler, action => $action );
+
+    # FIXME! eval it, or something...
+
+    return $handler_object->handle( $object->{'oid'}, $object->{'metadata'} );
 } # }}}
 
 # Purpose:

@@ -30,7 +30,7 @@ our @EXPORT_OK = qw(
 
 # Two no-critic's bellow are critic bugs :( there are no punctation vars, yet perlcritic sees them :(
 my $re_language    = qr{ ^ ( [a-z] [a-z] ( _ [a-z] [a-z] )? )? $ }xs;
-my $re_perl_module = qr{ [A-Z] [a-z] [A-Za-z]+ }xs;
+my $re_perl_module = qr{ [A-Z] [A-Za-z\_]+ }xs;
 my $re_step        = qr{ ^ [a-z]{3,} $ }xs;
 
 # SLight Nice url:
@@ -51,7 +51,7 @@ my $re_step        = qr{ ^ [a-z]{3,} $ }xs;
 #
 #   3: Page component
 #       Optional.
-#       Default: Overview.web
+#       Default: View.web
 #
 #       Foo-bar-pl-1.web
 #        |   |  |  |  '--- Protocol handler. Mandatory.
@@ -96,7 +96,7 @@ sub parse_url { # {{{
             path         => [ split /\//s, $3 ],
 
             # Defaults:
-            action => 'Overview',
+            action => 'View',
             step   => 'view',
             lang   => q{},
             page   => 1,
@@ -150,7 +150,7 @@ sub make_url { # {{{
             path_handler => { type=>SCALAR,   optional=>1, default=>'Page' },
             path         => { type=>ARRAYREF, optional=>1, default=>[] },
 
-            action => { type=>SCALAR,  regex=>$re_perl_module, optional=>1, default=>'Overview'},
+            action => { type=>SCALAR,  regex=>$re_perl_module, optional=>1, default=>'View'},
             step   => { type=>SCALAR,  regex=>$re_step,        optional=>1, default=>'view' },
             lang    => { type=>SCALAR, regex=>$re_language,    optional=>1 },
             page    => { type=>SCALAR, regex=>qr{^\d+$}s,      optional=>1 }, ## no critic qw(Variables::ProhibitPunctuationVars)
@@ -183,7 +183,7 @@ sub make_url { # {{{
     }
 
     my @file_parts;
-    if ($P{'action'} and $P{'action'} ne 'Overview') {
+    if ($P{'action'} and $P{'action'} ne 'View') {
         push @file_parts, $P{'action'};
     }
 
@@ -199,7 +199,7 @@ sub make_url { # {{{
         push @file_parts, $P{'page'};
     }
 
-    my $file_string = 'Overview';
+    my $file_string = 'View';
     if (scalar @file_parts) {
         $file_string = join q{-}, @file_parts;
     }
@@ -208,7 +208,7 @@ sub make_url { # {{{
 
     $file_string .= lc $P{'protocol'};
 
-    if ($file_string ne 'Overview.web') {
+    if ($file_string ne 'View.web') {
         $url .= $file_string;
     }
 
