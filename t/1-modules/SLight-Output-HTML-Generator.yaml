@@ -1,0 +1,25 @@
+--- 
+"structure_to_html: 'undef' handling": ''
+"structure_to_html: One paragraph with two lines": "<p>foo<br>\nbar</p>"
+"structure_to_html: One simple line": <p>foo</p>
+"structure_to_html: One simple paragtaph": <p>foo</p>
+"structure_to_html: Single token": <a href="http://www.foo.com/index.html" class=BBC_Url>www.foo.com</a>
+"structure_to_html: Two simple paragtaphs": <p>foo</p><p>bar</p>
+"structure_to_html: string handling": Foo - the test string of tommorow
+"token_to_html: String": Foo
+"token_to_html: Two strings in array": FooBar
+"token_to_html: Undef": ''
+"token_to_html: unit test: b": <b class=BBC_Bold>Lorem Ipsum</b>
+"token_to_html: unit test: br": "<br>\n"
+"token_to_html: unit test: code": <pre class=BBC_Code>$foo = $bar + 1;</pre>
+"token_to_html: unit test: color": "<span style=\"color: blue\">Lorem Ipsum</span>"
+"token_to_html: unit test: i": <i class=BBC_Italic>Lorem Ipsum</i>
+"token_to_html: unit test: img (content)": <img src="http://foo.com/img.gif" class=BBC_Img>
+"token_to_html: unit test: img (value)": <img src="http://foo.com/img.gif" class=BBC_Img>
+"token_to_html: unit test: quote": <blockquote class=BBC_Quote>Lorem ipsum lorem est</blockquote>
+"token_to_html: unit test: s": <span class=BBC_Strike>Lorem Ipsum</span>
+"token_to_html: unit test: separate": <hr class=BBC_Separate>\n
+"token_to_html: unit test: size": "<span style=\"font-size: 100%;\">Lorem Ipsum</span>"
+"token_to_html: unit test: u": <span class=BBC_Underline>Lorem Ipsum</span>
+"token_to_html: unit test: url (content)": <a href="http://bar.baz/" class=BBC_Url>http://bar.baz/</a>
+"token_to_html: unit test: url (value)": <a href="http://bar.baz/" class=BBC_Url>Bar homepage</a>

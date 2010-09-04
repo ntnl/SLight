@@ -61,7 +61,7 @@
 [>] PathHandler ()
 [>]     Test Framework
 [>]     SLight::PathHandler::CMS_Spec
-[ ]     SLight::PathHandler::Test
+[>]     SLight::PathHandler::Test
 [ ] Handler Object Test Framework
 [ ] CMS Handler objects
 [ ]     SLight::Handler::Test::Test::Test
@@ -98,6 +98,7 @@
 [ ]         SLight::Handler::CMS::Entry::Translate
 [>] Output:
 [X]     SLight::OutputFactory
+[>]     HTML Template/Generator libraries
 [>]     SLight::Output
 [>]     SLight::Output::HTML (just pass template)
 [>]     SLight::Output::TEST
