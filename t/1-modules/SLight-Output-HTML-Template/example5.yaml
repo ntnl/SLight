@@ -1,0 +1,93 @@
+--- 
+has_block: {}
+
+has_form: {}
+
+has_grid: {}
+
+has_list: {}
+
+has_var: {}
+
+index: 
+  - 
+    html: "<html>\n    <head><title>TRUE/FALSE</title></head>\n    <body>\n"
+    type: TEXT
+  - 
+    name: value1-TRUE
+    template: 
+      has_block: {}
+
+      has_form: {}
+
+      has_grid: {}
+
+      has_list: {}
+
+      has_var: {}
+
+      index: 
+        - 
+          html: Value 1 is true.
+          type: TEXT
+    type: BLOCK
+  - 
+    name: value1-FALSE
+    template: 
+      has_block: {}
+
+      has_form: {}
+
+      has_grid: {}
+
+      has_list: {}
+
+      has_var: {}
+
+      index: 
+        - 
+          html: Value 1 is false.
+          type: TEXT
+    type: BLOCK
+  - 
+    html: "\n"
+    type: TEXT
+  - 
+    name: value2-TRUE
+    template: 
+      has_block: {}
+
+      has_form: {}
+
+      has_grid: {}
+
+      has_list: {}
+
+      has_var: {}
+
+      index: 
+        - 
+          html: Value 2 is true.
+          type: TEXT
+    type: BLOCK
+  - 
+    name: value2-FALSE
+    template: 
+      has_block: {}
+
+      has_form: {}
+
+      has_grid: {}
+
+      has_list: {}
+
+      has_var: {}
+
+      index: 
+        - 
+          html: Value 2 is false.
+          type: TEXT
+    type: BLOCK
+  - 
+    html: "\n    </body>\n</html>\n"
+    type: TEXT

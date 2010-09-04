@@ -1,0 +1,15 @@
+--- 
+has_block: {}
+
+has_form: {}
+
+has_grid: {}
+
+has_list: {}
+
+has_var: {}
+
+index: 
+  - 
+    html: "Small Addition.\n"
+    type: TEXT

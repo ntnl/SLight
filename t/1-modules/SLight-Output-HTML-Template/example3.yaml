@@ -1,0 +1,15 @@
+--- 
+has_block: {}
+
+has_form: {}
+
+has_grid: {}
+
+has_list: {}
+
+has_var: {}
+
+index: 
+  - 
+    html: "<html>\n    <head><title>Static HTML</title></head>\n    <body>There are no dynamic parts here.</body>\n</html>\n"
+    type: TEXT

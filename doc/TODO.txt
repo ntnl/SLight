@@ -98,7 +98,7 @@
 [ ]         SLight::Handler::CMS::Entry::Translate
 [>] Output:
 [X]     SLight::OutputFactory
-[>]     HTML Template/Generator libraries
+[X]     HTML Template/Generator libraries
 [>]     SLight::Output
 [>]     SLight::Output::HTML (just pass template)
 [>]     SLight::Output::TEST

@@ -1,0 +1,207 @@
+--- 
+has_block: {}
+
+has_form: {}
+
+has_grid: {}
+
+has_list: {}
+
+has_var: {}
+
+index: 
+  - 
+    html: "Addition starts here.\n\n"
+    type: TEXT
+  - 
+    name: block1
+    template: 
+      has_block: {}
+
+      has_form: {}
+
+      has_grid: {}
+
+      has_list: {}
+
+      has_var: {}
+
+      index: 
+        - 
+          html: "    This is block 1.\n\n    "
+          type: TEXT
+        - 
+          name: block1
+          type: PLACEHOLDER
+        - 
+          html: "\n"
+          type: TEXT
+    type: BLOCK
+  - 
+    html: "\n"
+    type: TEXT
+  - 
+    name: block2
+    template: 
+      has_block: {}
+
+      has_form: {}
+
+      has_grid: {}
+
+      has_list: {}
+
+      has_var: {}
+
+      index: 
+        - 
+          html: "    This is block 2.\n    \n    "
+          type: TEXT
+        - 
+          name: block2
+          type: PLACEHOLDER
+        - 
+          html: "\n"
+          type: TEXT
+    type: BLOCK
+  - 
+    html: "\nBlock 1: "
+    type: TEXT
+  - 
+    name: block1
+    type: PLACEHOLDER
+  - 
+    html: "\nBlock 2: "
+    type: TEXT
+  - 
+    name: block2
+    type: PLACEHOLDER
+  - 
+    html: "\n\nNested blocks:\n\n"
+    type: TEXT
+  - 
+    name: nest
+    template: 
+      has_block: {}
+
+      has_form: {}
+
+      has_grid: {}
+
+      has_list: {}
+
+      has_var: {}
+
+      index: 
+        - 
+          html: "    "
+          type: TEXT
+        - 
+          name: bird
+          template: 
+            has_block: {}
+
+            has_form: {}
+
+            has_grid: {}
+
+            has_list: {}
+
+            has_var: {}
+
+            index: 
+              - 
+                html: "        There is a bird.\n    "
+                type: TEXT
+          type: BLOCK
+        - 
+          html: "    "
+          type: TEXT
+        - 
+          name: bird-TRUE
+          template: 
+            has_block: {}
+
+            has_form: {}
+
+            has_grid: {}
+
+            has_list: {}
+
+            has_var: {}
+
+            index: 
+              - 
+                html: "        True: There is a bird.\n    "
+                type: TEXT
+          type: BLOCK
+        - 
+          html: "    "
+          type: TEXT
+        - 
+          name: bird-FALSE
+          template: 
+            has_block: {}
+
+            has_form: {}
+
+            has_grid: {}
+
+            has_list: {}
+
+            has_var: {}
+
+            index: 
+              - 
+                html: "        False: There is a bird.\n    "
+                type: TEXT
+          type: BLOCK
+        - 
+          html: "\n    "
+          type: TEXT
+        - 
+          name: dog
+          template: 
+            has_block: {}
+
+            has_form: {}
+
+            has_grid: {}
+
+            has_list: {}
+
+            has_var: {}
+
+            index: 
+              - 
+                html: "        There is a dog.\n    "
+                type: TEXT
+          type: BLOCK
+        - 
+          html: "    "
+          type: TEXT
+        - 
+          name: dog-TRUE
+          template: 
+            has_block: {}
+
+            has_form: {}
+
+            has_grid: {}
+
+            has_list: {}
+
+            has_var: {}
+
+            index: 
+              - 
+                html: "        True: There is a dog.\n    "
+                type: TEXT
+          type: BLOCK
+        - 
+          html: "    <!--bird-FALSE-->\n        False: There is a dog.\n    <!--/dog-FALSE-->\n"
+          type: TEXT
+    type: BLOCK
+  - 
+    html: "\nAddtion ends here.\n"
+    type: TEXT

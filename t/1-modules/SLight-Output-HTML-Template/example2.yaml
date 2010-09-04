@@ -1,0 +1,60 @@
+--- 
+has_block: {}
+
+has_form: {}
+
+has_grid: {}
+
+has_list: {}
+
+has_var: {}
+
+index: 
+  - 
+    html: "<html>\n    <head>\n        <title>"
+    type: TEXT
+  - 
+    name: title
+    type: PLACEHOLDER
+  - 
+    html: "</title>\n    </head>\n    <body>\n\n    "
+    type: TEXT
+  - 
+    name: addition_2_template
+    template: 
+      has_block: {}
+
+      has_form: {}
+
+      has_grid: {}
+
+      has_list: {}
+
+      has_var: {}
+
+      index: 
+        - 
+          html: "Small Addition.\n"
+          type: TEXT
+    type: TEMPLATE
+  - 
+    html: "\n\n    Small placeholders: "
+    type: TEXT
+  - 
+    name: A
+    type: PLACEHOLDER
+  - 
+    html: "\n    "
+    type: TEXT
+  - 
+    name: B
+    type: PLACEHOLDER
+  - 
+    html: "\n    "
+    type: TEXT
+  - 
+    name: C
+    type: PLACEHOLDER
+  - 
+    html: "\n\n    </body>\n</html>\n"
+    type: TEXT
