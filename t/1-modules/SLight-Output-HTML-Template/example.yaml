@@ -20,7 +20,7 @@ index:
     html: "</title>\n    </head>\n    <body>\n\n    "
     type: TEXT
   - 
-    name: addition_template
+    name: addition_part
     template: 
       has_block: {}
 

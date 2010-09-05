@@ -151,6 +151,7 @@ sub new { # {{{
     return $self;
 } # }}}
 
+# Internal method (rename to _* / FIXME)
 # Load and analize a HTML template file.
 sub load_and_parse { # {{{
     my $self = shift;
@@ -307,7 +308,7 @@ sub extract_placeholders { # {{{
     while (my $placeholder = shift @parts) {
         # First - check some special placeholders.
         my $token;
-        if ($placeholder =~ m{^(.+?)_template$}s) {
+        if ($placeholder =~ m{^(.+?)_part$}s) {
             my $sub_template = $self->load_and_parse( name=>$placeholder );
 
             assert_defined ($sub_template, "Sub template: $placeholder found.");
