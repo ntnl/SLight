@@ -24,7 +24,9 @@ use Params::Validate qw( :all );
 # }}}
 
 sub process_object_data { # {{{
-    my ( $self ) = @_;
+    my ( $self, $oid, $data_structure ) = @_;
+
+    $self->{'HTML'}->{$oid} = $data_structure;
 
     return;
 } # }}}
@@ -42,6 +44,20 @@ sub serialize { # {{{
     );
 
     # If no template has been loaded, "do something" (FIXME) maybe auto-generate a template?
+
+    my @main_page_content;
+    foreach my $oid (@{ $object_order }) {
+        push @main_page_content, $self->{'HTML'}->{$oid};
+    }
+    
+    $template->set_layout(
+        'content',
+        {
+            type    => 'Content',
+            class   => 'SLight_Content',
+            content => \@main_page_content
+        }
+    );
 
     return (
        $template->render(),

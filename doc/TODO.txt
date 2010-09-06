@@ -103,15 +103,17 @@
 [>]     SLight::Output::HTML (just pass template)
 [>]     SLight::Output::TEST
 [ ]     HTML Template support
-[ ] DataStructure
-[ ]     SLight::DataStructure
-[ ]     SLight::DataStructure::Token
-[ ]     SLight::DataStructure::Table
-[ ]     SLight::DataStructure::List
-[ ]     SLight::DataStructure::Form
-[ ]     SLight::DataStructure::Dialog
-[ ]     SLight::DataStructure::Dialog::Notification
-[ ]     SLight::DataStructure::Dialog::YesNo
+[>] DataStructure
+[>]     SLight::DataStructure
+[>]     SLight::DataStructure::Token (new!)
+[ ]     SLight::DataStructure::List (ex CoMe...GenericGrid)
+[ ]     SLight::DataStructure::Table (ex CoMe...GenericTable)
+[ ]     SLight::DataStructure::Table::Properties (ex CoMe...GenericProperties)
+[ ]     SLight::DataStructure::Form (ex CoMe...GenericForm)
+[ ]     SLight::DataStructure::Form::Diff (CoMe...DiffForm)
+[ ]     SLight::DataStructure::Dialog (new!)
+[ ]     SLight::DataStructure::Dialog::Notification (ex CoMe...GenericMessage)
+[ ]     SLight::DataStructure::Dialog::YesNo (ex. CoMe...YesNo)
 [ ] Addons
 [ ]     SLight::Addon::Core::PathBar
 [ ]     SLight::Addon::Core::MainMenu

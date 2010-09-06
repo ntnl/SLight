@@ -56,11 +56,6 @@ use SLight::API::Content qw(
     delete_Contents
 );
 
-#CoMe::Core::DB::run_query( query=>'BEGIN TRANSACTION' );
-
-#CoMe::Core::DB::run_query( query=>'END' );
-
-
 # Prepare some Content Specs, on which we can work :)
 my %ContentSpec_1 = (
     caption => 'Paintball gun',

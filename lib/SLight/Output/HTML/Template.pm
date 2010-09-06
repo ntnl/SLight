@@ -16,7 +16,7 @@ package SLight::Output::HTML::Template;
 use strict; use warnings; # {{{
 
 use SLight::Output::HTML::Generator;
-#use CoMe::Common::Cache qw( Cache_Fetch_File Cache_Fetch_YAML );
+#use Co\Me::Common::Cache qw( Cache_Fetch_File Cache_Fetch_YAML );
 
 use Carp::Assert::More qw( assert_defined );
 use File::Slurp qw( read_file );

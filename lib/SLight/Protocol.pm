@@ -79,7 +79,11 @@ sub S_process_object { # {{{
 
     # FIXME! eval it, or something...
 
-    return $handler_object->handle( $object->{'oid'}, $object->{'metadata'} );
+    my $data_structure = $handler_object->handle( $object->{'oid'}, $object->{'metadata'} );
+
+    # Fixme! actually check, if this is a derivative from SLight::DataStructure (!)
+
+    return $data_structure->get_data();
 } # }}}
 
 # Purpose:

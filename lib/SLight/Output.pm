@@ -43,7 +43,7 @@ sub new { # {{{
 } # }}}
 
 sub queue_object_data { # {{{
-    my ( $self, $data_structure ) = @_;
+    my ( $self, $oid, $data_structure ) = @_;
 
     # use process_object_data!
 

@@ -1,4 +1,4 @@
-package SLight::Handler::CMS::SpecList::View;
+package SLight::Handler::Core::Empty::View;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -24,16 +24,7 @@ sub handle { # {{{
 
 #    warn ":)";
 
-    use SLight::DataStructure::Token;
-
-    my $token = SLight::DataStructure::Token->new(
-        token => {
-            type => q{Label},
-            text => q{Works!},
-        }
-    );
-
-    return $token;
+    return;
 } # }}}
 
 # vim: fdm=marker
