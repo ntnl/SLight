@@ -26,6 +26,8 @@ use Params::Validate qw( :all );
 sub process_object_data { # {{{
     my ( $self, $oid, $data_structure ) = @_;
 
+#    use Data::Dumper; warn Dumper $oid, $data_structure;
+
     $self->{'HTML'}->{$oid} = $data_structure;
 
     return;
@@ -50,10 +52,12 @@ sub serialize { # {{{
         push @main_page_content, $self->{'HTML'}->{$oid};
     }
     
+#    use Data::Dumper; warn Dumper \@main_page_content;
+
     $template->set_layout(
         'content',
         {
-            type    => 'Content',
+            type    => 'Container',
             class   => 'SLight_Content',
             content => \@main_page_content
         }

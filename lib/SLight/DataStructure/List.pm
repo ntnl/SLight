@@ -18,7 +18,7 @@ use base 'SLight::DataStructure';
 use Params::Validate qw( :all );
 # }}}
 
-# Initialize the GenericGrid.
+# Initialize the Generic List.
 # Columns: [
 #   {
 #       caption => text,

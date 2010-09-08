@@ -14,6 +14,10 @@ package SLight::Handler::CMS::SpecList::View;
 use strict; use warnings; # {{{
 use base q{SLight::Handler};
 
+use SLight::API::ContentSpec qw( get_all_ContentSpecs );
+use SLight::DataStructure::Token;
+use SLight::DataToken qw( mk_Label_token );
+
 use Carp;
 use English qw( -no_match_vars );
 use Params::Validate qw( :all );
@@ -22,15 +26,14 @@ use Params::Validate qw( :all );
 sub handle { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
+    my $specs = get_all_ContentSpecs();
+
 #    warn ":)";
 
-    use SLight::DataStructure::Token;
-
     my $token = SLight::DataStructure::Token->new(
-        token => {
-            type => q{Label},
+        token => mk_Label_token(
             text => q{Works!},
-        }
+        ),
     );
 
     return $token;

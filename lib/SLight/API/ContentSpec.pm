@@ -26,6 +26,7 @@ our @EXPORT_OK = qw(
     get_ContentSpec_ids_where
     get_ContentSpecs_where
     get_ContentSpecs_fields_where
+    get_all_ContentSpecs
     delete_ContentSpec
     delete_ContentSpecs
 );
@@ -79,6 +80,10 @@ sub get_ContentSpec_ids_where { # {{{
     my %P = @_; # Fixme: use Params::Validate here!
 
     return $_handler->get_ENTITY_ids_where(%P);
+} # }}}
+
+sub get_all_ContentSpecs { # {{{
+    return $_handler->get_all_ENTITYs();
 } # }}}
 
 sub delete_ContentSpec { # {{{

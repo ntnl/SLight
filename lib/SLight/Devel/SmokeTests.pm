@@ -101,7 +101,7 @@ sub perl_critic_test { # {{{
     plan tests => scalar @files;
 
     # Initialize critic:
-    my @excluded = qw{
+    my @excluded = qw(
         RequireCheckedClose
         RequireExtendedFormatting
         RequireLineBoundaryMatching
@@ -110,10 +110,11 @@ sub perl_critic_test { # {{{
         RequireVersionVar
         RequireArgUnpacking
         RequireBriefOpen
+        Subroutines::ProhibitUnusedPrivateSubroutines
         Variables::RequireLocalizedPunctuationVars
 
         ProhibitMagicNumbers
-    };
+    );
     my $critic = Perl::Critic->new(-severity => 2, -exclude => \@excluded);
 
     # Initialize cache:

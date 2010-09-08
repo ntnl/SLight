@@ -35,6 +35,8 @@ sub _new { # {{{
         }
     );
 
+    # Todo: make header!
+
     $self->{'TableContent'} = [];
 
     $self->{'Columns'} = $P{'columns'};

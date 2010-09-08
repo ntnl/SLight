@@ -12,11 +12,14 @@ package SLight::DataStructure::Form::Diff;
 # 
 ################################################################################
 
-# DiffForm Response.
+# Diff Form Response.
+#
 # An 'upgrade' to Genericform, that allows to display two columns of editable controls.
 # Ideal for making 'diff'-like screens, or for other convertion/translation forms.
 use strict; use warnings; # {{{
 use base 'SLight::DataStructure::Form';
+
+use SLight::DataToken qw( mk_Label_token mk_Entry_token mk_Container_token mk_TextEntry_token );
 
 use Params::Validate qw( :all );
 # }}}
@@ -40,35 +43,35 @@ sub add_Entry { # {{{
     );
 
     my @content = (
-        $self->make_Label(
+        mk_Label_token(
             class => 'Name',
             text  => $P{'caption'},
         ),
-        $self->make_Entry(
+        mk_Entry_token(
             class => 'ValueA',
             name  => $P{'name_a'},
             value => $P{'value_a'},
         ),
-        $self->make_Entry(
+        mk_Entry_token(
             class => 'ValueB',
             name  => $P{'name_b'},
             value => $P{'value_b'},
         ),
     );
     if ($P{'error_a'}) {
-        push @content, $self->make_Label(
+        push @content, mk_Label_token(
             class => 'ErrorA',
             text  => $P{'error_a'},
         );
     }
     if ($P{'error_b'}) {
-        push @content, $self->make_Label(
+        push @content, mk_Label_token(
             class => 'ErrorB',
             text  => $P{'error_b'},
         );
     }
     
-    push @{ $self->{'FormContent'} }, $self->make_Container(
+    push @{ $self->{'FormContent'} }, mk_Container_token(
         class   => $P{'name'},
         content => \@content,
     );
@@ -99,35 +102,35 @@ sub add_TextEntry { # {{{
     );
 
     my @content = (
-        $self->make_Label(
+        mk_Label_token(
             class => 'name',
             text  => $P{'caption'},
         ),
-        $self->make_TextEntry(
+        mk_TextEntry_token(
             class => 'ValueA',
             name  => $P{'name_a'},
             value => $P{'value_a'},
         ),
-        $self->make_TextEntry(
+        mk_TextEntry_token(
             class => 'ValueB',
             name  => $P{'name_b'},
             value => $P{'value_b'},
         ),
     );
     if ($P{'error_a'}) {
-        push @content, $self->make_Label(
+        push @content, mk_Label_token(
             class => 'ErrorA',
             text  => $P{'error_a'},
         ),
     }
     if ($P{'error_b'}) {
-        push @content, $self->make_Label(
+        push @content, mk_Label_token(
             class => 'ErrorB',
             text  => $P{'error_b'},
         ),
     }
 
-    push @{ $self->{'FormContent'} }, $self->make_Container(
+    push @{ $self->{'FormContent'} }, mk_Container_token(
         class   => $P{'name'},
         content => \@content,
     );

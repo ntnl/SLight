@@ -409,6 +409,8 @@ sub set_layout { # {{{
 
     $self->validate_name($name);
 
+#    use Data::Dumper; warn Dumper $value;
+
     return $self->{'layout_data'}->{$name} = $value;
 } # }}}
 
@@ -672,12 +674,15 @@ my %layout_elements = (
 );
 sub process_layout_element { # {{{
     my ( $self, $definition, $element ) = @_;
-    
+
 #    warn "Definitions: ". Dump $definition;
 #    warn "Element: ". Dump $element;
 #    warn "Definition: ". Dump $definition->{ $element->{'type'} };
 
-    if (not $element->{'type'} or not $definition->{ $element->{'type'} }) {
+    assert_defined($element->{'type'}, 'Type of the element is known');
+
+    if (not $definition->{ $element->{'type'} }) {
+        print STDERR "Layout element (". $element->{'type'} .") not defined in template!";
         return q{};
     }
 
@@ -691,7 +696,7 @@ sub process_layout_element { # {{{
             $element_variables{'Content'} .= $self->process_layout_element($definition, $child_element);
         }
     }
-    
+
     my $html = $self->process_block($definition->{ $element->{'type'} }, { var_data=>\%element_variables }, 1);
 
 #    warn "Generated HTML: ". $html;
@@ -767,6 +772,8 @@ sub process_element_Radio { # {{{
 } # }}}
 sub process_element_Label { # {{{
     my ( $data ) = @_;
+
+    assert_defined($data->{'text'}, 'Text is defined.');
 
     return (
         Text => SLight::Output::HTML::Generator::token_to_html($data->{'text'})

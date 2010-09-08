@@ -75,8 +75,8 @@
 [ ]         SLight::Handler::Core::Empty::Edit
 [ ]         SLight::Handler::Core::Empty::Move
 [ ]         SLight::Handler::Core::Empty::Delete
-[ ]     SLight::Handler::CMS::SpecList
-[ ]         SLight::Handler::CMS::SpecList::View
+[>]     SLight::Handler::CMS::SpecList
+[>]         SLight::Handler::CMS::SpecList::View
 [ ]     SLight::Handler::CMS::Spec
 [ ]         SLight::Handler::CMS::Spec::View
 [ ]         SLight::Handler::CMS::Spec::New
@@ -99,14 +99,13 @@
 [>] Output:
 [X]     SLight::OutputFactory
 [X]     HTML Template/Generator libraries
-[>]     SLight::Output
-[>]     SLight::Output::HTML (just pass template)
+[X]     SLight::Output
+[X]     SLight::Output::HTML
 [>]     SLight::Output::TEST
-[ ]     HTML Template support
 [>] DataStructure
 [>]     SLight::DataStructure
-[>]     SLight::DataStructure::Token (new!)
-[ ]     SLight::DataStructure::List (ex CoMe...GenericGrid)
+[X]     SLight::DataStructure::Token (new!)
+[>]     SLight::DataStructure::List (ex CoMe...GenericGrid)
 [ ]     SLight::DataStructure::Table (ex CoMe...GenericTable)
 [ ]     SLight::DataStructure::Table::Properties (ex CoMe...GenericProperties)
 [ ]     SLight::DataStructure::Form (ex CoMe...GenericForm)

@@ -36,6 +36,10 @@ sub respond { # {{{
         $P{'page'}->{'objects'}->{ $P{'page'}->{'main_object'} },
         $P{'url'}->{'action'}
     );
+    $output_object->queue_object_data(
+        $P{'page'}->{'main_object'},
+        $response,
+    );
 
     # Process aux objects now...
     foreach my $object_key (@{ $P{'page'}->{'object_order'} }) {

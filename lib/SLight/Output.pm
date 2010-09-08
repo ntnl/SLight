@@ -45,9 +45,7 @@ sub new { # {{{
 sub queue_object_data { # {{{
     my ( $self, $oid, $data_structure ) = @_;
 
-    # use process_object_data!
-
-    return;
+    return $self->process_object_data($oid, $data_structure);
 } # }}}
 
 sub serialize_queued_data { # {{{

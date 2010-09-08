@@ -14,11 +14,11 @@
 
 # Check if all code passes PerlCritic level 2 (with some exceptions)
 use FindBin qw( $Bin );
-use lib $Bin .'/../../lib/';
+use lib $Bin . q{/../../lib/};
 
 use SLight::Devel::SmokeTests;
 
-my $path = $Bin .'/../../lib';
+my $path = $Bin . q{/../../lib};
 
 if ($ENV{'COVERAGE_RUN'}) {
     # Just for the module's test..

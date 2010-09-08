@@ -12,9 +12,11 @@ package SLight::DataStructure::Form;
 # 
 ################################################################################
 
-# GenericForm Response.
+# Generic Form DataStructure.
 use strict; use warnings; # {{{
 use base 'SLight::DataStructure';
+
+use SLight::DataToken qw( mk_Form_token mk_Label_token mk_Entry_token mk_Container_token mk_TextEntry_token );
 
 use Params::Validate qw( :all );
 # }}}
@@ -35,7 +37,7 @@ sub _new { # {{{
     $self->{'FormContent'} = [];
 
     $self->set_data(
-        $self->make_Form(
+        mk_Form_token(
             class   => $P{'class'},
             hidden  => $P{'hidden'},
             action  => $P{'action'},

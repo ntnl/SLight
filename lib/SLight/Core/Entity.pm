@@ -414,6 +414,32 @@ sub get_ENTITY { # {{{
     return $entity;
 } # }}}
 
+sub get_all_ENTITYs { # {{{
+    my ( $self ) = @_;
+
+    SLight::Core::DB::check();
+
+    my $sth = SLight::Core::DB::run_select(
+        columns => $self->{'_really_all_fields'},
+        from    => $self->{'base_table'},
+#        debug => 1
+    );
+
+    my %entities = $self->_slurp_entities($sth);
+
+    if (not scalar keys %entities) {
+        return [];
+    }
+
+    if ($self->{'child_table'}) {
+        $self->_add_data_to_entities(\%entities);
+    }
+
+#    use Data::Dumper; warn Dumper \%entities;
+
+    return [ values %entities ];
+} # }}}
+
 sub get_ENTITYs { # {{{
     my ( $self, $ids ) = @_;
 
@@ -698,7 +724,7 @@ sub _add_data_to_entities { # {{{
 #   Attach single '_data' item to it's hash.
 #
 #   This is a generic method, it can be overloaded if needed (eg. to improve performance!).
-sub _attach_data_row {
+sub _attach_data_row { # {{{
     my ($self, $_data_hash, $_data_row) = @_;
 
 #    use Data::Dumper; warn "_attach_data_row:\n" . Dumper $_data_hash, $_data_row;
