@@ -34,7 +34,7 @@ sub process_object_data { # {{{
 } # }}}
 
 sub serialize { # {{{
-    my ( $self, $object_data, $object_order, $template_code ) = @_;
+    my ( $self, $object_order, $template_code ) = @_;
 
 #    my $template_file = SLight::Core::Config::get_option('site_root') . q{/html/} . $template_code . q{.html};
 #

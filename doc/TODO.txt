@@ -62,7 +62,7 @@
 [>]     Test Framework
 [>]     SLight::PathHandler::CMS_Spec
 [>]     SLight::PathHandler::Test
-[ ] Handler Object Test Framework
+[X] Handler Object Test Framework
 [ ] CMS Handler objects
 [ ]     SLight::Handler::Test::Test::Test
 [ ]     SLight::Handler::Core::Asset

@@ -15,6 +15,8 @@ package SLight::DataStructure::Dialog::Notification;
 use strict; use warnings; # {{{
 use base 'SLight::DataStructure';
 
+use SLight::DataToken qw( mk_Label_token );
+
 use Params::Validate qw( :all );
 # }}}
 
@@ -29,7 +31,7 @@ sub _new { # {{{
     );
 
     $self->set_data(
-        $self->make_Label(
+        mk_Label_token(
             class => $P{'class'},
             text  => $P{'text'},
         ),

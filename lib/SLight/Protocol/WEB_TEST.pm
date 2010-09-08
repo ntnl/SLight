@@ -1,4 +1,4 @@
-package SLight::Output::TEST;
+package SLight::Protocol::WEB_TEST;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -12,32 +12,18 @@ package SLight::Output::TEST;
 # 
 ################################################################################
 use strict; use warnings; # {{{
-use base q{SLight::Output};
+use base q{SLight::Protocol::WEB};
 
 use SLight::Core::Config;
 
 use Carp::Assert::More qw( assert_defined );
 use English qw( -no_match_vars );
+use File::Slurp qw( read_file );
 use Params::Validate qw( :all );
-use YAML::Syck;
 # }}}
 
-sub process_object_data { # {{{
-    my ( $self, $oid, $data_structure ) = @_;
-
-    $self->{'TEST'}->{'objects'}->{$oid} = $data_structure; 
-
-    return;
-} # }}}
-
-sub serialize { # {{{
-    my ( $self, $object_order, $template_code ) = @_;
-
-    return {
-        'object_data'  => $self->{'TEST'}->{'objects'},
-        'object_order' => $object_order,
-        'template'     => $template_code,
-    };
+sub _output_type { # {{{
+    return 'TEST';
 } # }}}
 
 # vim: fdm=marker

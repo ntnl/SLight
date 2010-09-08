@@ -15,7 +15,9 @@ use strict; use warnings; # {{{
 use base q{SLight::Handler};
 
 use SLight::API::ContentSpec qw( get_all_ContentSpecs );
-use SLight::DataStructure::Token;
+use SLight::Core::L10N qw( TR );
+use SLight::DataStructure::List::Table;
+use SLight::DataStructure::Dialog::Notification;
 use SLight::DataToken qw( mk_Label_token );
 
 use Carp;
@@ -28,15 +30,48 @@ sub handle { # {{{
 
     my $specs = get_all_ContentSpecs();
 
-#    warn ":)";
+    if (not scalar @{ $specs }) {
+        return SLight::DataStructure::Dialog::Notification->new(
+            class => q{SLight_Notification},
+            text  => TR('No specs.'),
+        );
+    }
 
-    my $token = SLight::DataStructure::Token->new(
-        token => mk_Label_token(
-            text => q{Works!},
-        ),
+    my $table = SLight::DataStructure::List::Table->new(
+        columns => [
+            {
+                name  => 'caption',
+                class => 'SLight_main_name',
+                label => TR('Caption'),
+            },
+            {
+                name  => 'owning_module',
+                class => 'SLight_name',
+                label => TR('Owner'),
+            },
+            {
+                name  => 'version',
+                class => 'SLight_int',
+                label => TR('Version'),
+            },
+            {
+                name  => 'field_count',
+                class => 'SLight_int',
+                label => TR('Amount of fields'),
+            }
+        ]
     );
 
-    return $token;
+    foreach my $content_spec (@{ $specs }) {
+        $table->add_Row(
+            caption       => $content_spec->{'caption'},
+            owning_module => $content_spec->{'owning_module'},
+            version       => $content_spec->{'version'},
+            field_count   => scalar keys @{ $content_spec->{'_data'} },
+        );
+    }
+
+    return $table;
 } # }}}
 
 # vim: fdm=marker

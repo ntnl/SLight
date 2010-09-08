@@ -1,0 +1,14 @@
+---
+Empty list:
+  content:
+    object_data:
+      l1:
+        class: SLight_Notification
+        data:
+          text: No specs.
+        type: Label
+    object_order:
+    - l1
+    template: Default
+  mime_type: ~
+  response: CONTENT

@@ -167,16 +167,6 @@ sub mk_Status_token { # {{{
 
     return \%P;
 } # }}}
-# WIP
-#sub mk_Radio_token { # {{{
-#    my %P = validate(
-#        @_,
-#        {
-#        }
-#    );
-#
-#    return \%P;
-#} # }}}
 sub mk_Label_token { # {{{
     my %P = validate(
         @_,
@@ -224,16 +214,6 @@ sub mk_SelectEntry_token { # {{{
 
     return \%P;
 } # }}}
-# WIP
-#sub mk_Counter_token { # {{{
-#    my %P = validate(
-#        @_,
-#        {
-#        }
-#    );
-#
-#    return \%P;
-#} # }}}
 sub mk_Container_token { # {{{
     my %P = validate(
         @_,
@@ -317,16 +297,6 @@ sub mk_Image_token { # {{{
 
     return \%P;
 } # }}}
-# WIP:
-#sub mk_ProgressBar_token { # {{{
-#    my %P = validate(
-#        @_,
-#        {
-#        }
-#    );
-#
-#    return \%P;
-#} # }}}
 sub mk_Check_token { # {{{
     my %P = validate(
         @_,
@@ -401,6 +371,37 @@ sub mk_TableCell_token { # {{{
 
     return \%P;
 } # }}}
+
+# WIP
+#sub mk_Radio_token { # {{{
+#    my %P = validate(
+#        @_,
+#        {
+#        }
+#    );
+#
+#    return \%P;
+#} # }}}
+# WIP:
+#sub mk_ProgressBar_token { # {{{
+#    my %P = validate(
+#        @_,
+#        {
+#        }
+#    );
+#
+#    return \%P;
+#} # }}}
+# WIP
+#sub mk_Counter_token { # {{{
+#    my %P = validate(
+#        @_,
+#        {
+#        }
+#    );
+#
+#    return \%P;
+#} # }}}
 
 # vim: fdm=marker
 1;

@@ -15,6 +15,8 @@ package SLight::DataStructure::List;
 use strict; use warnings; # {{{
 use base 'SLight::DataStructure';
 
+use SLight::DataToken qw( mk_List_token );
+
 use Params::Validate qw( :all );
 # }}}
 
@@ -41,16 +43,22 @@ sub _new { # {{{
     $self->{'Columns'} = $P{'columns'};
 
     $self->set_data(
-        $self->make_Grid(
-            class   => $P{'class'},
-            content => $self->{'Items'},
-        )
+        $self->_make_container( $P{'class'}, $self->{'Items'} )
     );
 
     return;
 } # }}}
 
-sub add_Item { # {{{
+sub _make_container { # {{{
+    my ( $self, $class, $items ) = @_;
+
+    return mk_List_token(
+        class   => $class,
+        content => $items,
+    );
+} # }}}
+
+sub add_Row { # {{{
     my $self = shift;
     my %P = validate(
         @_,

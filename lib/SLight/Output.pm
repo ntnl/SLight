@@ -30,7 +30,6 @@ sub new { # {{{
 
     # Prototype of the object:
     my $self = {
-        object_data  => {},
         object_order => undef,
 
         final_data => undef,
@@ -53,7 +52,7 @@ sub serialize_queued_data { # {{{
 
     # P should contain: template and object_order (check this/FIXME!)
 
-    ($self->{'final_data'}, $self->{'final_mime'}) = $self->serialize($self->{'object_data'}, $P{'object_order'}, $P{'template'});
+    ($self->{'final_data'}, $self->{'final_mime'}) = $self->serialize($P{'object_order'}, $P{'template'});
 
     return;
 } # }}}

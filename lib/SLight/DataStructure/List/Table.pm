@@ -14,41 +14,18 @@ package SLight::DataStructure::List::Table;
 use strict; use warnings; # {{{
 use base 'SLight::DataStructure::List';
 
+use SLight::DataToken qw( mk_Table_token mk_TableRow_token mk_TableCell_token );
+
 use Params::Validate qw( :all );
 # }}}
 
-# Initialize the GenericTable.
-# Columns: [
-#   {
-#       caption => text,
-#       name    => text,
-#   },
-#   ...
-# ]
-sub _new { # {{{
-    my $self = shift;
-    my %P = validate(
-        @_,
-        {
-            class   => { type=>SCALAR, optional=>1, default=>'generic' },
-            columns => { type=>ARRAYREF },
-        }
+sub _make_container { # {{{
+    my ( $self, $class, $items ) = @_;
+
+    return mk_Table_token(
+        class   => $class,
+        content => $items,
     );
-
-    # Todo: make header!
-
-    $self->{'TableContent'} = [];
-
-    $self->{'Columns'} = $P{'columns'};
-
-    $self->set_data(
-        $self->make_Table(
-            class   => $P{'class'},
-            content => $self->{'TableContent'},
-        )
-    );
-
-    return;
 } # }}}
 
 sub add_Row { # {{{
@@ -67,16 +44,16 @@ sub add_Row { # {{{
     foreach my $column (@{ $self->{'Columns'} }) {
         my $content = $self->make_label_if_text(
             object => $P{'data'}->{ $column->{'name'} },
-            class  => $column->{'name'}
+            class  => $column->{'class'}
         );
 
-        push @columns, $self->make_TableCell(
-            class   => $column->{'name'},
+        push @columns, mk_TableCell_token(
+            class   => $column->{'class'},
             content => $content,
         );
     }
 
-    push @{ $self->{'TableContent'} }, $self->make_TableRow(
+    push @{ $self->{'Items'} }, mk_TableRow_token(
         class   => $P{'class'},
         content => \@columns,
     );

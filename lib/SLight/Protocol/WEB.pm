@@ -28,7 +28,7 @@ sub respond { # {{{
     $self->S_begin_response(%P);
 
     my $output_object = $self->{'output_factory'}->make(
-        output => 'HTML', # Hard-coded for now, FIXME later.
+        output => $self->_output_type(),
     );
 
     # Process on-page objects - start with main object.
@@ -69,6 +69,10 @@ sub respond { # {{{
     return $self->S_response_CONTENT(
         $output_object->return_response(),
     );
+} # }}}
+
+sub _output_type { # {{{
+    return 'HTML';
 } # }}}
 
 # vim: fdm=marker
