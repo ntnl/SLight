@@ -43,7 +43,7 @@
 
 =--= Milestone 3 - Working CMS - ....-..-..
 
-[>] Validator
+[X] Validator
 [X]     SLight::Validator.pm
 [X]     SLight::Validator::Disk.pm
 [X]     SLight::Validator::Net.pm
@@ -63,7 +63,7 @@
 [>]     SLight::PathHandler::CMS_Spec
 [>]     SLight::PathHandler::Test
 [X] Handler Object Test Framework
-[ ] CMS Handler objects
+[>] CMS Handler objects
 [ ]     SLight::Handler::Test::Test::Test
 [ ]     SLight::Handler::Core::Asset
 [ ]     SLight::Handler::Core::Asset::List
@@ -77,7 +77,7 @@
 [ ]         SLight::Handler::Core::Empty::Delete
 [>]     SLight::Handler::CMS::SpecList
 [>]         SLight::Handler::CMS::SpecList::View
-[ ]     SLight::Handler::CMS::Spec
+[>]     SLight::Handler::CMS::Spec
 [ ]         SLight::Handler::CMS::Spec::View
 [>]         SLight::Handler::CMS::Spec::New
 [ ]         SLight::Handler::CMS::Spec::Edit
@@ -96,30 +96,30 @@
 [ ]         SLight::Handler::CMS::Entry::Comment
 [ ]         SLight::Handler::CMS::Entry::View
 [ ]         SLight::Handler::CMS::Entry::Translate
-[>] Output:
+[X] Output:
 [X]     SLight::OutputFactory
 [X]     HTML Template/Generator libraries
 [X]     SLight::Output
 [X]     SLight::Output::HTML
-[>]     SLight::Output::TEST
+[X]     SLight::Output::TEST
 [>] DataStructure
 [>]     SLight::DataStructure
 [X]     SLight::DataStructure::Token (new!)
 [>]     SLight::DataStructure::List (ex CoMe...GenericGrid)
 [ ]     SLight::DataStructure::Table (ex CoMe...GenericTable)
 [ ]     SLight::DataStructure::Table::Properties (ex CoMe...GenericProperties)
-[ ]     SLight::DataStructure::Form (ex CoMe...GenericForm)
+[>]     SLight::DataStructure::Form (ex CoMe...GenericForm)
 [ ]     SLight::DataStructure::Form::Diff (CoMe...DiffForm)
 [ ]     SLight::DataStructure::Dialog (new!)
-[ ]     SLight::DataStructure::Dialog::Notification (ex CoMe...GenericMessage)
+[>]     SLight::DataStructure::Dialog::Notification (ex CoMe...GenericMessage)
 [ ]     SLight::DataStructure::Dialog::YesNo (ex. CoMe...YesNo)
-[>] Plugins
-[ ]     SLight::Plugin::Core::PathBar
-[ ]     SLight::Plugin::Core::MainMenu
-[ ]     SLight::Plugin::Core::SubMenu
-[ ]     SLight::Plugin::Core::Pager
-[>]     SLight::Plugin::Core::Toolbox
-[ ]     SLight::Plugin::Core::SysInfo
+[>] Addon
+[ ]     SLight::Addon::Core::PathBar
+[ ]     SLight::Addon::Core::MainMenu
+[ ]     SLight::Addon::Core::SubMenu
+[ ]     SLight::Addon::Core::Pager
+[X]     SLight::Addon::Core::Toolbox
+[ ]     SLight::Addon::Core::SysInfo
 
     Definition of done:
 
