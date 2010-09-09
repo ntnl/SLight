@@ -79,7 +79,7 @@
 [>]         SLight::Handler::CMS::SpecList::View
 [ ]     SLight::Handler::CMS::Spec
 [ ]         SLight::Handler::CMS::Spec::View
-[ ]         SLight::Handler::CMS::Spec::New
+[>]         SLight::Handler::CMS::Spec::New
 [ ]         SLight::Handler::CMS::Spec::Edit
 [ ]         SLight::Handler::CMS::Spec::Delete
 [ ]     SLight::Handler::CMS::SpecField
@@ -113,13 +113,13 @@
 [ ]     SLight::DataStructure::Dialog (new!)
 [ ]     SLight::DataStructure::Dialog::Notification (ex CoMe...GenericMessage)
 [ ]     SLight::DataStructure::Dialog::YesNo (ex. CoMe...YesNo)
-[ ] Addons
-[ ]     SLight::Addon::Core::PathBar
-[ ]     SLight::Addon::Core::MainMenu
-[ ]     SLight::Addon::Core::SubMenu
-[ ]     SLight::Addon::Core::Pager
-[ ]     SLight::Addon::Core::Toolbox
-[ ]     SLight::Addon::Core::SysInfo
+[>] Plugins
+[ ]     SLight::Plugin::Core::PathBar
+[ ]     SLight::Plugin::Core::MainMenu
+[ ]     SLight::Plugin::Core::SubMenu
+[ ]     SLight::Plugin::Core::Pager
+[>]     SLight::Plugin::Core::Toolbox
+[ ]     SLight::Plugin::Core::SysInfo
 
     Definition of done:
 

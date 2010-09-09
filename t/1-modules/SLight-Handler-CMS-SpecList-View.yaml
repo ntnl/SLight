@@ -1,6 +1,16 @@
 ---
 Empty list:
   content:
+    addon_data:
+      Toolbox:
+        class: SLight_Toolbox_Plugin
+        content:
+        - class: New
+          data:
+            caption: Add new Spec
+            href: /_CMS_Spec/New.web_test
+          type: Action
+        type: Container
     object_data:
       l1:
         class: SLight_Notification

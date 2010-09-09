@@ -31,15 +31,23 @@ sub respond { # {{{
         output => $self->_output_type(),
     );
 
+    my $main_meta_data;
+
     # Process on-page objects - start with main object.
     my $response = $self->S_process_object(
         $P{'page'}->{'objects'}->{ $P{'page'}->{'main_object'} },
-        $P{'url'}->{'action'}
+        $P{'url'}->{'action'},
+        $P{'url'}->{'step'}
     );
     $output_object->queue_object_data(
         $P{'page'}->{'main_object'},
-        $response,
+        $response->{'data'},
     );
+
+    use Data::Dumper; warn Dumper $response;
+
+    # Use 'meta' to prepare plugins...
+    # $output_object->add_metadata($response->{'meta'});
 
     # Process aux objects now...
     foreach my $object_key (@{ $P{'page'}->{'object_order'} }) {
@@ -50,12 +58,29 @@ sub respond { # {{{
 
 #        $self->D_Dump('P', \%P);
 
+        my $aux_response = $self->S_process_object(
+            $P{'page'}->{'objects'}->{ $object_key },
+            $P{'url'}->{'action'},
+            'view' # <-- aux objects always run in VIEW!
+        );
         $output_object->queue_object_data(
             $object_key,
-            $self->S_process_object(
-                $P{'page'}->{'objects'}->{ $object_key },
-                $P{'url'}->{'action'}
-            )
+            $aux_response->{'data'}
+        );
+    }
+
+    # Ask output object, about which addons are there...
+    my @addons = $output_object->list_addons();
+
+    foreach my $addon (@addons) {
+        warn "Adding $addon Addon!";
+
+        $output_object->queue_addon_data(
+            $addon,
+            $self->S_process_addon(
+                $addon,
+                $response->{'meta'}
+            ),
         );
     }
 

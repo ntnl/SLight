@@ -28,7 +28,17 @@ sub process_object_data { # {{{
 
 #    use Data::Dumper; warn Dumper $oid, $data_structure;
 
-    $self->{'HTML'}->{$oid} = $data_structure;
+    $self->{'HTML'}->{'objects'}->{$oid} = $data_structure;
+
+    return;
+} # }}}
+
+sub process_addon_data { # {{{
+    my ( $self, $addon, $data_structure ) = @_;
+
+#    use Data::Dumper; warn Dumper $oid, $data_structure;
+
+    $self->{'HTML'}->{'addons'}->{$addon} = $data_structure;
 
     return;
 } # }}}
@@ -49,7 +59,7 @@ sub serialize { # {{{
 
     my @main_page_content;
     foreach my $oid (@{ $object_order }) {
-        push @main_page_content, $self->{'HTML'}->{$oid};
+        push @main_page_content, $self->{'HTML'}->{'objects'}->{$oid};
     }
     
 #    use Data::Dumper; warn Dumper \@main_page_content;
@@ -62,6 +72,14 @@ sub serialize { # {{{
             content => \@main_page_content
         }
     );
+
+    # Process Plugins. Each has it's own Layout block.
+    foreach my $addon (keys %{ $self->{'HTML'}->{'addons'} }) {
+        $template->set_layout(
+            q{slight.} . lc($addon) .q{.plugin},
+            $self->{'HTML'}->{'addons'}->{$addon},
+        );
+    }
 
     return (
        $template->render(),

@@ -25,8 +25,20 @@ use English qw( -no_match_vars );
 use Params::Validate qw( :all );
 # }}}
 
-sub handle { # {{{
+sub handle_view { # {{{
     my ( $self, $oid, $metadata ) = @_;
+
+    $self->set_toolbox(
+        [
+            {
+                caption => TR('Add new Spec'),
+                action  => 'New',
+                path    => [
+                    'Spec'
+                ]
+            }
+        ]
+    );
 
     my $specs = get_all_ContentSpecs();
 

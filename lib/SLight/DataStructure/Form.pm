@@ -21,7 +21,7 @@ use SLight::DataToken qw( mk_Form_token mk_Label_token mk_Entry_token mk_Contain
 use Params::Validate qw( :all );
 # }}}
 
-# Initialize the GenericForm.
+# Initialize the generic Form.
 sub _new { # {{{
     my $self = shift;
     my %P = validate(

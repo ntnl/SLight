@@ -34,6 +34,9 @@ sub new { # {{{
         output_factory  => undef,
         handler_factory => undef,
         addon_factory   => undef,
+
+        url  => undef,
+        user => {},
     };
 
     bless $self, $class;
@@ -45,31 +48,12 @@ sub new { # {{{
     return $self;
 } # }}}
 
-# Super (S) methods - to be called by child classes.
-
-# Purpose:
-#   Indicate, that response generation has started.
-sub S_begin_response { # {{{
-    my ( $self, %P ) = @_;
-
-    assert_defined($P{'page'}, 'Page defined');
-    assert_defined($P{'url'},  'URL defined');
-
-    assert_defined($P{'page'}->{'template'}, 'Template (in page) defined');
-
-    assert_defined($P{'page'}->{'objects'},      'Objects (in page) defined');
-    assert_defined($P{'page'}->{'object_order'}, 'Object order (in page) defined');
-    assert_defined($P{'page'}->{'main_object'},  'Main object (in page) defined');
-
-#    $self->D_Dump($P{'url'});
-
-    return;
-} # }}}
+# Super (S) methods - to be called by child classes (only).
 
 # Purpose:
 #   Load and run (Object)Handler, as described in the given object hash.
 sub S_process_object { # {{{
-    my ( $self, $object, $action ) = @_;
+    my ( $self, $object, $action, $step ) = @_;
 
 #    $self->D_Dump($object, $action);
 
@@ -79,11 +63,58 @@ sub S_process_object { # {{{
 
     # FIXME! eval it, or something...
 
-    my $data_structure = $handler_object->handle( $object->{'oid'}, $object->{'metadata'} );
+    my $result = $handler_object->handle(
+        url      => $self->{'url'},
+        step     => $step,
+        oid      => $object->{'oid'},
+        metadata => $object->{'metadata'}
+    );
 
     # Fixme! actually check, if this is a derivative from SLight::DataStructure (!)
 
-    return $data_structure->get_data();
+    $result->{'data'} = $result->{'data'}->get_data();
+
+    return $result;
+} # }}}
+
+sub S_process_addon { # {{{
+    my ( $self, $addon, $metadata ) = @_;
+    
+    warn "Processing addon!";
+
+    use Data::Dumper; warn "addon meta: " . Dumper $metadata;
+
+    my $addon_object = $self->{'addon_factory'}->make(addon => $addon);
+
+    my $data = $addon_object->process(
+        url  => $self->{'url'},
+        user => $self->{'user'},
+        meta => $metadata,
+    );
+
+    return $data;
+} # }}}
+
+# Purpose:
+#   Indicate, that response generation has started.
+sub S_begin_response { # {{{
+    my ( $self, %P ) = @_;
+
+    assert_defined($P{'url'},  'URL defined');
+
+    assert_defined($P{'page'}, 'Page defined');
+
+    assert_defined($P{'page'}->{'template'}, 'Template (in page) defined');
+
+    assert_defined($P{'page'}->{'objects'},      'Objects (in page) defined');
+    assert_defined($P{'page'}->{'object_order'}, 'Object order (in page) defined');
+    assert_defined($P{'page'}->{'main_object'},  'Main object (in page) defined');
+
+    $self->{'url'} = $P{'url'};
+
+#    $self->D_Dump($P{'url'});
+
+    return;
 } # }}}
 
 # Purpose:
@@ -111,41 +142,6 @@ sub S_response_CONTENT { # {{{
         mime_type => $mime,
     };
 } # }}}
-
-#sub run_plugins { # {{{
-#    my $self = shift;
-#    my %P = validate(
-#        @_,
-#        {
-#            output   => { type=>HASHREF },
-#            options  => { type=>HASHREF },
-#            url      => { type=>HASHREF },
-#            user     => { type=>HASHREF },
-#            lang     => { type=>SCALAR },
-#        }
-#    );
-#
-#    my %plugins_data;
-#
-#    foreach my $plugin (qw( ContentMenu ContentSubMenu PathBar Notification Toolbox Language Handlers Output UserPanel SysInfo Pager )) {
-#        # Error in a single plugin should not take the whole subsystem down.
-#        $plugins_data{$plugin} = eval {
-#            my $plugin_object = $self->{'plugin_factory'}->make(
-#                type => $plugin
-#            );
-#
-#            return $plugin_object->process(
-#                %P,
-#            );
-#        };
-#
-#        carp_on_true($EVAL_ERROR, "Plugin error: ". $EVAL_ERROR);
-#    }
-#
-#    use Data::Dumper; warn "Plugin Data: ". Dumper \%plugins_data;
-#
-#    return \%plugins_data;
-#} # }}}
 
 
 # vim: fdm=marker

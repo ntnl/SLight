@@ -105,7 +105,9 @@ sub do_spec { # {{{
     );
     my @field_id_order;
 
-    my $content_spec = SLight::API::ContentSpec::get_ContentSpec($id);
+    if ($id) {
+        my $content_spec = SLight::API::ContentSpec::get_ContentSpec($id);
+    }
 
 #    $self->D_Dump($content_spec);
 

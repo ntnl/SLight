@@ -19,7 +19,7 @@ use English qw( -no_match_vars );
 use Params::Validate qw( :all );
 # }}}
 
-sub handle { # {{{
+sub handle_view { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
 #    warn ":)";

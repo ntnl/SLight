@@ -32,6 +32,8 @@ sub new { # {{{
     my $self = {
         object_order => undef,
 
+        metadata => undef,
+
         final_data => undef,
         final_mime => undef,
     };
@@ -39,6 +41,18 @@ sub new { # {{{
     bless $self, $class;
 
     return $self;
+} # }}}
+
+sub list_addons { # {{{
+    # Fixme: actually check in the template!
+    # Fixme: this should be implemented by the child classes, probably!
+    return qw( Toolbox );
+} # }}}
+
+sub queue_addon_data { # {{{
+    my ( $self, $addon, $data_structure ) = @_;
+
+    return $self->process_addon_data($addon, $data_structure);
 } # }}}
 
 sub queue_object_data { # {{{

@@ -1,4 +1,4 @@
-package SLight::Handler::Core::Empty::View;
+package SLight::Addon::Toolbox;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -12,19 +12,30 @@ package SLight::Handler::Core::Empty::View;
 # 
 ################################################################################
 use strict; use warnings; # {{{
-use base q{SLight::Handler};
+use base q{SLight::Addon};
 
-use Carp;
+use SLight::HandlerUtils::Toolbox;
+
 use English qw( -no_match_vars );
 use Params::Validate qw( :all );
 # }}}
 
-sub handle_view { # {{{
-    my ( $self, $oid, $metadata ) = @_;
+# Toolbox Plugin.
 
-#    warn ":)";
+sub _process { # {{{
+    my ( $self, %P ) = @_;
 
-    return;
+    if (not $self->{'meta'}->{'toolbox'}) {
+        return;
+    }
+
+    return SLight::HandlerUtils::Toolbox::make_toolbox(
+        %{ $self->{'url'} },
+        
+        class => 'SLight_Toolbox_Plugin',
+
+        urls => $self->{'meta'}->{'toolbox'}
+    );
 } # }}}
 
 # vim: fdm=marker
