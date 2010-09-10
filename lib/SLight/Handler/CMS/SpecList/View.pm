@@ -35,7 +35,7 @@ sub handle_view { # {{{
                 action  => 'New',
                 path    => [
                     'Spec'
-                ]
+                ],
             }
         ]
     );

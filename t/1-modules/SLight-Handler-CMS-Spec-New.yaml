@@ -1,0 +1,34 @@
+---
+New spec form:
+  content:
+    addon_data:
+      Toolbox: ~
+    object_data:
+      s1:
+        class: generic
+        content:
+        - class: caption
+          content:
+          - class: name
+            data:
+              text: Caption
+            type: Label
+          - class: value
+            data:
+              name: caption
+              value: ''
+            type: Entry
+          type: Container
+        data:
+          action: /_CMS_Spec/Spec/New-save.web
+          hidden: {}
+          submit: Add
+        type: Form
+    object_order:
+    - s1
+    template: Default
+  mime_type: ~
+  response: CONTENT
+Save new spec form:
+  location: /_CMS_Spec/Spec/1/
+  response: REDIRECT

@@ -35,8 +35,9 @@ sub new { # {{{
         handler_factory => undef,
         addon_factory   => undef,
 
-        url  => undef,
-        user => {},
+        url     => undef,
+        options => undef,
+        user    => {},
     };
 
     bless $self, $class;
@@ -65,12 +66,21 @@ sub S_process_object { # {{{
 
     my $result = $handler_object->handle(
         url      => $self->{'url'},
+        options  => $self->{'options'},
         step     => $step,
         oid      => $object->{'oid'},
         metadata => $object->{'metadata'}
     );
 
     # Fixme! actually check, if this is a derivative from SLight::DataStructure (!)
+
+    if ($result->{'data'}->isa('SLight::DataStructure::Redirect')) {
+        my $data = $result->{'data'}->get_data();
+
+        return {
+            redirect_href => $data->{'data'}->{'href'}
+        };
+    }
 
     $result->{'data'} = $result->{'data'}->get_data();
 
@@ -80,9 +90,7 @@ sub S_process_object { # {{{
 sub S_process_addon { # {{{
     my ( $self, $addon, $metadata ) = @_;
     
-    warn "Processing addon!";
-
-    use Data::Dumper; warn "addon meta: " . Dumper $metadata;
+#    use Data::Dumper; warn "addon meta: " . Dumper $metadata;
 
     my $addon_object = $self->{'addon_factory'}->make(addon => $addon);
 
@@ -102,6 +110,8 @@ sub S_begin_response { # {{{
 
     assert_defined($P{'url'},  'URL defined');
 
+    assert_defined($P{'options'},  'Options defined');
+
     assert_defined($P{'page'}, 'Page defined');
 
     assert_defined($P{'page'}->{'template'}, 'Template (in page) defined');
@@ -110,9 +120,11 @@ sub S_begin_response { # {{{
     assert_defined($P{'page'}->{'object_order'}, 'Object order (in page) defined');
     assert_defined($P{'page'}->{'main_object'},  'Main object (in page) defined');
 
-    $self->{'url'} = $P{'url'};
+    $self->{'url'}     = $P{'url'};
+    $self->{'options'} = $P{'options'};
 
 #    $self->D_Dump($P{'url'});
+#    $self->D_Dump($P{'options'});
 
     return;
 } # }}}
@@ -140,6 +152,15 @@ sub S_response_CONTENT { # {{{
 
         content   => $content,
         mime_type => $mime,
+    };
+} # }}}
+
+sub S_response_REDIRECT { # {{{
+    my ( $self, $href ) = @_;
+
+    return {
+        response => 'REDIRECT',
+        location => $href,
     };
 } # }}}
 

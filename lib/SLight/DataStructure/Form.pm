@@ -62,24 +62,24 @@ sub add_Entry { # {{{
     );
     
     my @content = (
-        $self->make_Label(
+        mk_Label_token(
             class => 'name',
             text  => $P{'caption'},
         ),
-        $self->make_Entry(
+        mk_Entry_token(
             class => 'value',
             name  => $P{'name'},
             value => $P{'value'},
         ),
     );
     if ($P{'error'}) {
-        push @content, $self->make_Label(
+        push @content, mk_Label_token(
             class => 'Error',
             text  => $P{'error'},
         ),
     }
     
-    push @{ $self->{'FormContent'} }, $self->make_Container(
+    push @{ $self->{'FormContent'} }, mk_Container_token(
         class   => $P{'name'},
         content => \@content,
     );

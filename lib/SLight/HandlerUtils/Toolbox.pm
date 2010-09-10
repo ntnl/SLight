@@ -65,7 +65,7 @@ sub make_toolbox { # {{{
         # Check access rights.
 
         my $caption = ( delete $url->{'caption'} or TR(ucfirst $url->{'action'} . q{#action}) );
-        my $class   = ( delete $url->{'class'}   or    ucfirst $url->{'action'} );
+        my $class   = ( delete $url->{'class'}   or q{SLight_} . ( ucfirst $url->{'action'} ) . q{_Action} );
 
         my $action_link = SLight::Core::URL::make_url(%{ $url });
 

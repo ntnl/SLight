@@ -50,15 +50,17 @@ sub handle { # {{{
     my %P = validate(
         @_,
         {
-            step => { type=>SCALAR },
-            url  => { type=>HASHREF },
+            step    => { type=>SCALAR },
+            url     => { type=>HASHREF },
+            options => { type=>HASHREF },
             
             oid      => { type=>SCALAR | UNDEF },
             metadata => { type=>HASHREF | UNDEF },
         }
     );
     
-    $self->{'url'} = $P{'url'};
+    $self->{'url'}     = $P{'url'};
+    $self->{'options'} = $P{'options'};
 
     my $method_name = 'handle_view';
     if ($P{'step'} ne 'view') {
@@ -67,10 +69,10 @@ sub handle { # {{{
 
 #    warn "Calling: $method_name";
 
-    my $data = $self->$method_name($P{'oid'}, $P{'metadata'});
+    my $data_structure = $self->$method_name($P{'oid'}, $P{'metadata'});
 
     return {
-        data => $data,
+        data => $data_structure,
         meta => $self->{'meta'},
     };
 } # }}}
@@ -206,7 +208,8 @@ sub build_url { # {{{
         {
             add_to_path => { type=>SCALAR, optional=>1 },
 
-            pkg     => { type=>SCALAR,  optional=>1 },
+            path_handler => { type=>SCALAR,  optional=>1 },
+            step         => { type=>SCALAR,  optional=>1 },
             handler => { type=>SCALAR,  optional=>1 },
             action  => { type=>SCALAR,  optional=>1 },
             path    => { type=>ARRAYREF, optional=>1 },
@@ -225,8 +228,10 @@ sub build_url { # {{{
 
     my %parts = (
 #        pkg     => ( $P{'pkg'}     or $self->{'params'}->{'pkg'} ),
-#        handler => ( $P{'handler'} or $self->{'params'}->{'handler'} ),
+        path_handler => ( $P{'path_handler'} or $self->{'url'}->{'path_handler'} ),
+
         action  => ( $P{'action'}  or lc $self->{'params'}->{'action'} ),
+        step    => $P{'step'},
 #        method  => ( $P{'method'}  or $self->{'params'}->{'method'} ),
         path    => ( $P{'path'}    or $self->{'url'}->{'path'} ),
         options => ( $P{'options'} or $self->{'url'}->{'options'} or {} ),

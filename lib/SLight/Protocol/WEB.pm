@@ -39,12 +39,19 @@ sub respond { # {{{
         $P{'url'}->{'action'},
         $P{'url'}->{'step'}
     );
+
+    if ($response->{'redirect_href'}) {
+        return $self->S_response_REDIRECT(
+            $response->{'redirect_href'},
+        );
+    }
+
     $output_object->queue_object_data(
         $P{'page'}->{'main_object'},
         $response->{'data'},
     );
 
-    use Data::Dumper; warn Dumper $response;
+#    use Data::Dumper; warn Dumper $response;
 
     # Use 'meta' to prepare plugins...
     # $output_object->add_metadata($response->{'meta'});
@@ -73,8 +80,6 @@ sub respond { # {{{
     my @addons = $output_object->list_addons();
 
     foreach my $addon (@addons) {
-        warn "Adding $addon Addon!";
-
         $output_object->queue_addon_data(
             $addon,
             $self->S_process_addon(

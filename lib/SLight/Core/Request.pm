@@ -99,7 +99,7 @@ sub main { # {{{
     );
 
 #    Cache_Purge_Request();
-    
+
     if ($P{'session_id'}) {
         SLight::Core::Session::restore($P{'session_id'});
     }
@@ -111,7 +111,7 @@ sub main { # {{{
     # ...and in the case of SQLite - probably faster.
     SLight::Core::DB::check();
     SLight::Core::DB::run_query( query=>'BEGIN TRANSACTION' );
-    
+
     my $request_language = $P{'default_lang'};
 
     my $path_handler_object;
@@ -225,8 +225,9 @@ sub main { # {{{
 
     my $response_result = eval {
         return $protocol_object->respond(
-            url  => $P{'url'},
-            page => $page_content,
+            url     => $P{'url'},
+            options => $P{'options'},
+            page    => $page_content,
         );
     };
 
