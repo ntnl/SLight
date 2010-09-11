@@ -16,6 +16,8 @@ package SLight::DataStructure::List::Table::Properties;
 use strict; use warnings; # {{{
 use base 'SLight::DataStructure::List::Table';
 
+use SLight::DataToken qw( mk_Label_token );
+
 use Params::Validate qw( :all );
 # }}}
 
@@ -41,7 +43,7 @@ sub _new { # {{{
     );
 
     if ($P{'caption'}) {
-        push @{ $self->{'rows'} }, $self->make_Label(
+        push @{ $self->{'rows'} }, mk_Label_token(
             class => 'caption',
             text  => $P{'caption'}
         );

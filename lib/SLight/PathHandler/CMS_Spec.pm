@@ -100,7 +100,7 @@ sub do_spec { # {{{
     my %objects = (
         s1 => {
             class => 'CMS::Spec',
-            oid   => undef,
+            oid   => $id,
         },
     );
     my @field_id_order;

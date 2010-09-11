@@ -18,7 +18,7 @@ use SLight::API::ContentSpec qw( get_all_ContentSpecs );
 use SLight::Core::L10N qw( TR );
 use SLight::DataStructure::List::Table;
 use SLight::DataStructure::Dialog::Notification;
-use SLight::DataToken qw( mk_Label_token );
+use SLight::DataToken qw( mk_Label_token mk_Link_token );
 
 use Carp;
 use English qw( -no_match_vars );
@@ -76,10 +76,19 @@ sub handle_view { # {{{
 
     foreach my $content_spec (@{ $specs }) {
         $table->add_Row(
-            caption       => $content_spec->{'caption'},
-            owning_module => $content_spec->{'owning_module'},
-            version       => $content_spec->{'version'},
-            field_count   => scalar keys @{ $content_spec->{'_data'} },
+            data => {
+                caption => [
+                    mk_Link_token(
+                        text => $content_spec->{'caption'},
+                        href => $self->build_url(
+                            path => [ 'Spec', $content_spec->{'id'}, ],
+                        ),
+                    ),
+                ],
+                owning_module => $content_spec->{'owning_module'},
+                version       => $content_spec->{'version'},
+                field_count   => scalar keys @{ $content_spec->{'_data'} },
+            },
         );
     }
 

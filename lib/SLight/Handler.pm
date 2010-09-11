@@ -208,14 +208,14 @@ sub build_url { # {{{
         {
             add_to_path => { type=>SCALAR, optional=>1 },
 
-            path_handler => { type=>SCALAR,  optional=>1 },
-            step         => { type=>SCALAR,  optional=>1 },
-            handler => { type=>SCALAR,  optional=>1 },
-            action  => { type=>SCALAR,  optional=>1 },
-            path    => { type=>ARRAYREF, optional=>1 },
-            page    => { type=>SCALAR,  optional=>1 },
-            options => { type=>HASHREF, optional=>1 },
-            method  => { type=>SCALAR,  optional=>1 },
+            path_handler => { type=>SCALAR,   optional=>1 },
+            step         => { type=>SCALAR,   optional=>1 },
+            handler      => { type=>SCALAR,   optional=>1 },
+            action       => { type=>SCALAR,   optional=>1 },
+            path         => { type=>ARRAYREF, optional=>1 },
+            page         => { type=>SCALAR,   optional=>1 },
+            options      => { type=>HASHREF,  optional=>1 },
+            method       => { type=>SCALAR,   optional=>1 },
 
             lang => { type=>SCALAR, optional=>1 },
         }
@@ -226,18 +226,18 @@ sub build_url { # {{{
     # This is, because User could want to send the link to someone.
     # User would probably expect, that the receiver gets the same language, as the User had.
 
+#    use Data::Dumper; warn Dumper $self->{'url'};
+
     my %parts = (
-#        pkg     => ( $P{'pkg'}     or $self->{'params'}->{'pkg'} ),
         path_handler => ( $P{'path_handler'} or $self->{'url'}->{'path_handler'} ),
 
-        action  => ( $P{'action'}  or lc $self->{'params'}->{'action'} ),
-        step    => $P{'step'},
-#        method  => ( $P{'method'}  or $self->{'params'}->{'method'} ),
+        action  => ( $P{'action'}  or $self->{'url'}->{'action'} ),
+        step    => ( $P{'step'}    or $self->{'url'}->{'step'} ),
         path    => ( $P{'path'}    or $self->{'url'}->{'path'} ),
         options => ( $P{'options'} or $self->{'url'}->{'options'} or {} ),
-        lang    => ( $P{'lang'}    or $self->{'user'}->{'lang'} or q{} ),
-        
+
         page    => ( $P{'page'}    or 1 ),
+        lang    => ( $P{'lang'}    or $self->{'user'}->{'lang'} or q{} ),
     );
 
     if ($P{'add_to_path'}) {

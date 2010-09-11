@@ -78,8 +78,8 @@
 [>]     SLight::Handler::CMS::SpecList
 [>]         SLight::Handler::CMS::SpecList::View
 [>]     SLight::Handler::CMS::Spec
-[ ]         SLight::Handler::CMS::Spec::View
-[>]         SLight::Handler::CMS::Spec::New
+[>]         SLight::Handler::CMS::Spec::View
+[X]         SLight::Handler::CMS::Spec::New
 [ ]         SLight::Handler::CMS::Spec::Edit
 [ ]         SLight::Handler::CMS::Spec::Delete
 [ ]     SLight::Handler::CMS::SpecField
