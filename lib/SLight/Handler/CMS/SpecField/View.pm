@@ -1,4 +1,4 @@
-package SLight::Handler::CMS::Spec::View;
+package SLight::Handler::CMS::SpecField::View;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -27,44 +27,15 @@ use Params::Validate qw( :all );
 sub handle_view { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
-    $self->set_toolbox(
-        [
-            {
-                caption => TR('Add new Spec'),
-                action  => 'New',
-                path    => [
-                    'Spec'
-                ],
-            },
-            {
-                caption => TR('Add new Field'),
-                action  => 'New',
-                path    => [
-                    'Field',
-                    $oid,
-                ],
-            },
-        ]
-    );
-    
-#    my $spec = get_ContentSpec($oid);
     my $spec = $metadata->{'spec'};
 
     my $properties = SLight::DataStructure::List::Table::Properties->new(
-        caption => TR(q{Content Entry specification:}),
+        caption => $spec->{'_data'}->{$spec}->{'caption'}
     );
     
     $properties->add_Property(
-        caption => TR("Caption") . q{:},
-        value   => $spec->{'caption'},
-    );
-    $properties->add_Property(
-        caption => TR("Handling module") . q{:},
-        value   => $spec->{'owning_module'},
-    );
-    $properties->add_Property(
-        caption => TR("Version") . q{:},
-        value   => $spec->{'version'},
+        caption => TR("Field type") . q{:},
+        value   => $spec->{'datatype'},
     );
 
     return $properties;

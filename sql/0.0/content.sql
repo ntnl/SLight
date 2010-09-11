@@ -102,6 +102,7 @@ CREATE TABLE Content_Spec_Field (
 
     `optional` SMALLINT NOT NULL DEFAULT 1,
         -- Controls, if filling this field will be optional
+        -- (Yes, after thinking it I also find this ridiculous)
         -- 0 - no, it is always required
         -- 1 - yes, it is optional, it may be empty.
 

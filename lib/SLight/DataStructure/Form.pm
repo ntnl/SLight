@@ -16,7 +16,7 @@ package SLight::DataStructure::Form;
 use strict; use warnings; # {{{
 use base 'SLight::DataStructure';
 
-use SLight::DataToken qw( mk_Form_token mk_Label_token mk_Entry_token mk_Container_token mk_TextEntry_token );
+use SLight::DataToken qw( mk_Form_token mk_Label_token mk_Entry_token mk_Container_token mk_TextEntry_token mk_SelectEntry_token );
 
 use Params::Validate qw( :all );
 # }}}
@@ -100,24 +100,24 @@ sub add_PasswordEntry { # {{{
     );
     
     my @content = (
-        $self->make_Label(
+        mk_Label_token(
             class => 'name',
             text  => $P{'caption'},
         ),
-        $self->make_PasswordEntry(
+        mk_PasswordEntry_token(
             class => 'value',
             name  => $P{'name'},
             value => $P{'value'},
         )
     );
     if ($P{'error'}) {
-        push @content, $self->make_Label(
+        push @content, mk_Label_token(
             class => 'Error',
             text  => $P{'error'},
         ),
     }
 
-    push @{ $self->{'FormContent'} }, $self->make_Container(
+    push @{ $self->{'FormContent'} }, mk_Container_token(
         class   => $P{'name'},
         content => \@content,
     );
@@ -138,24 +138,24 @@ sub add_TextEntry { # {{{
     );
 
     my @content = (
-        $self->make_Label(
+        mk_Label_token(
             class => 'name',
             text  => $P{'caption'},
         ),
-        $self->make_TextEntry(
+        mk_TextEntry_token(
             class => 'value',
             name  => $P{'name'},
             value => $P{'value'},
         ),
     );
     if ($P{'error'}) {
-        push @content, $self->make_Label(
+        push @content, mk_Label_token(
             class => 'Error',
             text  => $P{'error'},
         ),
     }
 
-    push @{ $self->{'FormContent'} }, $self->make_Container(
+    push @{ $self->{'FormContent'} }, mk_Container_token(
         class   => $P{'name'},
         content => \@content,
     );
@@ -177,11 +177,11 @@ sub add_SelectEntry { # {{{
     );
 
     my @content = (
-        $self->make_Label(
+        mk_Label_token(
             class => 'name',
             text  => $P{'caption'},
         ),
-        $self->make_SelectEntry(
+        mk_SelectEntry_token(
             class   => 'value',
             name    => $P{'name'},
             value   => $P{'value'},
@@ -189,13 +189,13 @@ sub add_SelectEntry { # {{{
         ),
     );
     if ($P{'error'}) {
-        push @content, $self->make_Label(
+        push @content, mk_Label_token(
             class => 'Error',
             text  => $P{'error'},
         ),
     }
 
-    push @{ $self->{'FormContent'} }, $self->make_Container(
+    push @{ $self->{'FormContent'} }, mk_Container_token(
         class   => $P{'name'},
         content => \@content,
     );
@@ -215,23 +215,23 @@ sub add_FileEntry { # {{{
     );
     
     my @content = (
-        $self->make_Label(
+        mk_Label_token(
             class => 'name',
             text  => $P{'caption'},
         ),
-        $self->make_FileEntry(
+        mk_FileEntry_token(
             class => 'value',
             name  => $P{'name'},
         ),
     );
     if ($P{'error'}) {
-        push @content, $self->make_Label(
+        push @content, mk_Label_token(
             class => 'Error',
             text  => $P{'error'},
         ),
     }
 
-    push @{ $self->{'FormContent'} }, $self->make_Container(
+    push @{ $self->{'FormContent'} }, mk_Container_token(
         class   => $P{'name'},
         content => \@content,
     );
@@ -252,24 +252,24 @@ sub add_Check { # {{{
     );
     
     my @content = (
-        $self->make_Check(
+        mk_Check_token(
             class   => 'check',
             name    => $P{'name'},
             checked => $P{'checked'},
         ),
-        $self->make_Label(
+        mk_Label_token(
             class => 'name',
             text  => $P{'caption'},
         ),
     );
 #    if ($P{'error'}) {
-#        push @content, $self->make_Label(
+#        push @content, mk_Label_token(
 #            class => 'Error',
 #            text  => $P{'error'},
 #        ),
 #    }
 
-    push @{ $self->{'FormContent'} }, $self->make_Container(
+    push @{ $self->{'FormContent'} }, mk_Container_token(
         class   => $P{'name'},
         content => \@content,
     );
@@ -287,9 +287,9 @@ sub add_Label { # {{{
         }
     );
 
-    push @{ $self->{'FormContent'} }, $self->make_Container(
+    push @{ $self->{'FormContent'} }, mk_Container_token(
         content => [
-            $self->make_Label(
+            $self->mk_Label_token(
                 class => $P{'class'},
                 text  => $P{'text'},
             ),
@@ -310,9 +310,9 @@ sub add_Action { # {{{
         }
     );
 
-    push @{ $self->{'FormContent'} }, $self->make_Container(
+    push @{ $self->{'FormContent'} }, mk_Container_token(
         content => [
-            $self->make_Action(
+            $self->mk_Action_token(
                 class   => $P{'class'},
                 caption => $P{'caption'},
                 href    => $P{'href'},

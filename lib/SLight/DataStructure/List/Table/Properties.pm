@@ -16,7 +16,7 @@ package SLight::DataStructure::List::Table::Properties;
 use strict; use warnings; # {{{
 use base 'SLight::DataStructure::List::Table';
 
-use SLight::DataToken qw( mk_Label_token );
+use SLight::DataToken qw( mk_Label_token mk_Container_token );
 
 use Params::Validate qw( :all );
 # }}}
@@ -27,7 +27,7 @@ sub _new { # {{{
         @_,
         {
             caption => { type=>SCALAR, optional=>1, },
-            class   => { type=>SCALAR, optional=>1, default=>'details', },
+            class   => { type=>SCALAR, optional=>1, default=>'SLight_Properties', },
         }
     );
 
@@ -52,12 +52,12 @@ sub _new { # {{{
     return;
 } # }}}
 
-sub add_property { # {{{
+sub add_Property { # {{{
     my $self = shift;
     my %P = validate(
         @_,
         {
-            class   => { type=>SCALAR, optional=>1, },
+            class   => { type=>SCALAR, optional=>1, default=>'default' },
             caption => { type=>SCALAR },
             value   => { type=>SCALAR, optional=>1, default=>q{} }, # In future, it should accept Widgets too :)
 
@@ -70,23 +70,23 @@ sub add_property { # {{{
 
     my @items;
 
-    push @items, $self->make_Label(
-        class => 'caption',
+    push @items, mk_Label_token(
+        class => 'SLight_Caption',
         text  => $P{'caption'}
     );
-    push @items, $self->make_Label(
-        class => 'value',
+    push @items, mk_Label_token(
+        class => 'SLight_Value',
         text  => $P{'value'}
     );
     if ($P{'extra_link'}) {
-        push @items, $self->make_Link(
+        push @items, mk_Link_token(
             class   => 'extra_link',
             text    => $P{'caption'},
             href    => $P{'extra_link'}
         );
     }
 
-    push @{ $self->{'rows'} }, $self->make_Container(
+    push @{ $self->{'rows'} }, mk_Container_token(
         class   => $P{'class'},
         content => \@items,
     );

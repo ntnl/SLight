@@ -98,7 +98,7 @@ sub set_meta_field { # {{{
 } # }}}
 
 # Purpose:
-#   This method sets the 'toolbox' urls for the Toolbox plugin.
+#   This method sets the page-wide 'toolbox' for the Toolbox plugin.
 #   This should be an ARRAY with actions that can be performed on current Handler and path.
 sub set_toolbox { # {{{
     my (

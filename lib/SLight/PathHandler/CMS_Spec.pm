@@ -36,7 +36,7 @@ Generates a page with single I<SLight::Handler::CMS::SpecList::*> object.
 Generates a page with single I<SLight::Handler::CMS::Spec::*> primary object
 and corresponding set of I<SLight::Handler::CMS::SpecField::Overview> aux objects.
 
-=item /_CMS_Spec/Field/$ID/*
+=item /_CMS_Spec/Field/$Spec_ID/$Field_ID/*
 
 Generates a page with single I<SLight::Handler::CMS::SpecField::*> primary object.
 
@@ -57,7 +57,7 @@ sub analyze_path { # {{{
             $self->do_spec($path->[1]);
         }
         elsif ($path->[0] eq 'Field') {
-            $self->do_field($path->[1]);
+            $self->do_field($path->[1], $path->[2]);
         }
         else {
             # FIXME! Bad URL - must report this fact. Somehow.
@@ -98,7 +98,7 @@ sub do_spec { # {{{
     my ( $self, $id ) = @_;
 
     my %objects = (
-        s1 => {
+        _spec => {
             class => 'CMS::Spec',
             oid   => $id,
         },
@@ -106,16 +106,36 @@ sub do_spec { # {{{
     my @field_id_order;
 
     if ($id) {
+        warn "Have ID!";
+
         my $content_spec = SLight::API::ContentSpec::get_ContentSpec($id);
+
+#        use Data::Dumper; warn "Content Spec: " . Dumper $content_spec;
+
+        $objects{_spec}->{'metadata'}->{'spec'} = $content_spec;
+
+        foreach my $field (sort {$content_spec->{'_data'}->{$a}->{'order'} <=> $content_spec->{'_data'}->{$b}->{'order'}} keys %{ $content_spec->{'_data'} }) {
+            push @field_id_order, $field;
+    
+            $objects{$field} = {
+                class    => 'CMS::SpecField',
+                oid      => $field,
+                metadata => {
+                    spec => $content_spec,
+                }
+            };
+        }
     }
 
 #    $self->D_Dump($content_spec);
 
     $self->set_objects( \%objects );
 
-    $self->set_object_order( [ 's1', @field_id_order ] );
+    $self->set_object_order( [ '_spec', @field_id_order ] );
 
-    $self->set_main_object('s1');
+    $self->set_main_object('_spec');
+
+#    use Data::Dumper; warn "Order and objects: " . Dumper \@field_id_order, \%objects;
 
     return;
 } # }}}
@@ -123,7 +143,25 @@ sub do_spec { # {{{
 # Purpose:
 #   Handle field.
 sub do_field { # {{{
-    my ( $self, $id ) = @_;
+    my ( $self, $spec_id, $field_id ) = @_;
+    
+    my $content_spec = SLight::API::ContentSpec::get_ContentSpec($spec_id);
+    
+    my %objects = (
+        # TODO: Add 'CMS::Spec' as well, for reference!
+        _field => {
+            class    => 'CMS::SpecField',
+            oid      => $field_id,
+            metadata => {
+                spec => $content_spec,
+            }
+        },
+    );
+    $self->set_objects( \%objects );
+
+    $self->set_object_order( [ '_field' ] );
+
+    $self->set_main_object('_field');
 
     return;
 } # }}}
