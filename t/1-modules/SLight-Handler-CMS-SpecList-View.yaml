@@ -13,10 +13,13 @@ Empty list:
         type: Container
     object_data:
       l1:
-        class: SLight_Notification
-        data:
-          text: No specs.
-        type: Label
+        class: SLight_Object
+        content:
+        - class: SLight_Notification
+          data:
+            text: No specs.
+          type: Label
+        type: Container
     object_order:
     - l1
     template: Default

@@ -26,7 +26,7 @@ use Params::Validate qw( :all );
 sub process_object_data { # {{{
     my ( $self, $oid, $data_structure ) = @_;
 
-#    use Data::Dumper; warn Dumper $oid, $data_structure;
+#    use Data::Dumper; warn q{process_object_data: } . Dumper $oid, $data_structure;
 
     $self->{'HTML'}->{'objects'}->{$oid} = $data_structure;
 
@@ -36,7 +36,7 @@ sub process_object_data { # {{{
 sub process_addon_data { # {{{
     my ( $self, $addon, $data_structure ) = @_;
 
-#    use Data::Dumper; warn Dumper $oid, $data_structure;
+#    use Data::Dumper; warn q{process_addon_data: } . Dumper $addon, $data_structure;
 
     $self->{'HTML'}->{'addons'}->{$addon} = $data_structure;
 
@@ -75,10 +75,12 @@ sub serialize { # {{{
 
     # Process Plugins. Each has it's own Layout block.
     foreach my $addon (keys %{ $self->{'HTML'}->{'addons'} }) {
-        $template->set_layout(
-            q{slight.} . lc($addon) .q{.plugin},
-            $self->{'HTML'}->{'addons'}->{$addon},
-        );
+        if ($self->{'HTML'}->{'addons'}->{$addon}) {
+            $template->set_layout(
+                q{slight.} . lc($addon) .q{.plugin},
+                $self->{'HTML'}->{'addons'}->{$addon},
+            );
+        }
     }
 
     return (

@@ -1,29 +1,31 @@
 ---
 New spec form:
   content:
-    addon_data:
-      Toolbox: ~
+    addon_data: ~
     object_data:
       _spec:
-        class: generic
+        class: SLight_Object
         content:
-        - class: caption
+        - class: generic
           content:
-          - class: name
-            data:
-              text: Caption
-            type: Label
-          - class: value
-            data:
-              name: caption
-              value: ''
-            type: Entry
-          type: Container
-        data:
-          action: /_CMS_Spec/Spec/New-save.web
-          hidden: {}
-          submit: Add
-        type: Form
+          - class: caption
+            content:
+            - class: name
+              data:
+                text: Caption
+              type: Label
+            - class: value
+              data:
+                name: caption
+                value: ''
+              type: Entry
+            type: Container
+          data:
+            action: /_CMS_Spec/Spec/New-save.web
+            hidden: {}
+            submit: Add
+          type: Form
+        type: Container
     object_order:
     - _spec
     template: Default

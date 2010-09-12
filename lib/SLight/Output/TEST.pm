@@ -22,20 +22,22 @@ use Params::Validate qw( :all );
 use YAML::Syck;
 # }}}
 
-sub process_addon_data { # {{{
-    my ( $self, $addon, $data_structure ) = @_;
+sub process_object_data { # {{{
+    my ( $self, $oid, $data_structure ) = @_;
 
-#    use Data::Dumper; warn '@process_addon_data: ' . $addon . q{: } . Dumper($data_structure);
+#    use Data::Dumper; warn q{process_object_data: } . Dumper $oid, $data_structure;
 
-    $self->{'TEST'}->{'addons'}->{$addon} = $data_structure; 
+    $self->{'TEST'}->{'objects'}->{$oid} = $data_structure; 
 
     return;
 } # }}}
 
-sub process_object_data { # {{{
-    my ( $self, $oid, $data_structure ) = @_;
+sub process_addon_data { # {{{
+    my ( $self, $addon, $data_structure ) = @_;
 
-    $self->{'TEST'}->{'objects'}->{$oid} = $data_structure; 
+#    use Data::Dumper; warn q{process_addon_data: } . Dumper $addon, $data_structure;
+
+    $self->{'TEST'}->{'addons'}->{$addon} = $data_structure; 
 
     return;
 } # }}}

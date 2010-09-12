@@ -83,13 +83,14 @@ sub respond { # {{{
     my @addons = $output_object->list_addons();
 
     foreach my $addon (@addons) {
-        $output_object->queue_addon_data(
+        my $addon_data = $self->S_process_addon(
             $addon,
-            $self->S_process_addon(
-                $addon,
-                $response->{'meta'}
-            ),
+            $response->{'meta'}
         );
+
+        if ($addon_data) {
+            $output_object->queue_addon_data( $addon, $addon_data );
+        }
     }
 
     $output_object->serialize_queued_data(

@@ -46,7 +46,7 @@ sub handle_view { # {{{
 
     $self->make_form($form);
 
-    return $form;
+    return $self->push_data($form);
 } # }}}
 
 sub handle_save { # {{{
@@ -69,12 +69,12 @@ sub handle_save { # {{{
 
     my $redirect_url = $self->save_form($oid, $metadata);
 
-    my $redirect = SLight::DataStructure::Redirect->new(
-        href => $redirect_url,
-        # Some caption/label maybe?
-    );
+#    my $redirect = SLight::DataStructure::Redirect->new( # FIXME: Deprecate SLight::DataStructure::Redirect !!!
+#        href => $redirect_url,
+#        # Some caption/label maybe?
+#    );
 
-    return $redirect;
+    return $self->redirect($redirect_url);
 } # }}}
 
 # vim: fdm=marker

@@ -32,7 +32,10 @@ sub new { # {{{
 
     # Prototype of the object:
     my $self = {
+        data => [],
         meta => {},
+
+        redirect => undef,
 
         read_only => 0,
 
@@ -69,12 +72,53 @@ sub handle { # {{{
 
 #    warn "Calling: $method_name";
 
-    my $data_structure = $self->$method_name($P{'oid'}, $P{'metadata'});
+    $self->$method_name($P{'oid'}, $P{'metadata'});
+
+#    use Data::Dumper; warn 'Final data/metadata from Handler object: '. Dumper {
+#        data => $self->{'data'},
+#        meta => $self->{'meta'},
+#    };
+
+    if ($self->{'redirect'}) {
+        return {
+            redirect => $self->{'redirect'}
+        };
+    }
 
     return {
-        data => $data_structure,
+        data => $self->{'data'},
         meta => $self->{'meta'},
     };
+} # }}}
+
+# Purpose:
+#   Append some data to the Handler's output.
+#   Data can be an DataStructure object or DataToken structure.
+sub push_data { # {{{
+    my ( $self, $data ) = @_;
+
+    assert_defined($data, 'Data must be defined');
+
+    # FIXME: make sure redirect was not set! If so, something is br0ken!
+    
+    if (ref $data eq 'HASH') {
+        push @{ $self->{'data'} }, $data;
+    }
+    elsif (eval { $data->isa('SLight::DataStructure'); }) { # If it's not object, it will not crash.
+        push @{ $self->{'data'} }, $data->get_data();
+    }
+
+    return;
+} # }}}
+
+sub redirect { # {{{
+    my ( $self, $redirect ) = @_;
+
+    # FIXME: make sure no data was set! If so, something is br0ken!
+    
+    $self->{'redirect'} = $redirect;
+
+    return;
 } # }}}
 
 sub set_meta_field { # {{{

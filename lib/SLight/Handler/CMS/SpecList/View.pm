@@ -43,10 +43,14 @@ sub handle_view { # {{{
     my $specs = get_all_ContentSpecs();
 
     if (not scalar @{ $specs }) {
-        return SLight::DataStructure::Dialog::Notification->new(
-            class => q{SLight_Notification},
-            text  => TR('No specs.'),
+        $self->push_data(
+            SLight::DataStructure::Dialog::Notification->new(
+                class => q{SLight_Notification},
+                text  => TR('No specs.'),
+            )
         );
+
+        return;
     }
 
     my $table = SLight::DataStructure::List::Table->new(
@@ -92,7 +96,9 @@ sub handle_view { # {{{
         );
     }
 
-    return $table;
+    $self->push_data($table);
+
+    return;
 } # }}}
 
 # vim: fdm=marker

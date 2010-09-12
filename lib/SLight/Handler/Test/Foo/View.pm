@@ -25,10 +25,14 @@ use Params::Validate qw( :all );
 sub handle_view { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
-    return SLight::DataStructure::Dialog::Notification->new(
-        class => q{SLight_Notification},
-        text  => TF(q{Diagnosting message: '%s'}, undef, ($metadata->{'msg'} or 'None') ),
+    $self->push_data(
+        SLight::DataStructure::Dialog::Notification->new(
+            class => q{SLight_Notification},
+            text  => TF(q{Diagnosting message: '%s'}, undef, ($metadata->{'msg'} or 'None') ),
+        )
     );
+
+    return;
 } # }}}
 
 # vim: fdm=marker

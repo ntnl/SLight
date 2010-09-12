@@ -15,6 +15,7 @@ use strict; use warnings; # {{{
 use base q{SLight::BaseClass};
 
 use SLight::OutputFactory;
+use SLight::DataToken qw( mk_Container_token );
 
 use Carp::Assert::More qw( assert_defined );
 use English qw( -no_match_vars );
@@ -74,18 +75,23 @@ sub S_process_object { # {{{
 
     # Fixme! actually check, if this is a derivative from SLight::DataStructure (!)
 
-    if ($result->{'data'}) {
-        if ($result->{'data'}->isa('SLight::DataStructure::Redirect')) {
-            my $data = $result->{'data'}->get_data();
+    if ($result) {
+#        use Data::Dumper; warn Dumper $result;
 
+        if ($result->{'redirect'}) {
             return {
-                redirect_href => $data->{'data'}->{'href'}
+                redirect_href => $result->{'redirect'}
             };
         }
 
-        $result->{'data'} = $result->{'data'}->get_data();
-
-        return $result;
+        return {
+            data => mk_Container_token(
+                # TODO: add 'id' property to it, so every object has unique ID!
+                class   => 'SLight_Object',
+                content => $result->{'data'}
+            ),
+            meta => $result->{'meta'}
+        };
     }
 
     return;
@@ -101,7 +107,7 @@ sub S_process_addon { # {{{
     my $data = $addon_object->process(
         url  => $self->{'url'},
         user => $self->{'user'},
-        meta => $metadata,
+        meta => ( $metadata or {} ),
     );
 
     return $data;

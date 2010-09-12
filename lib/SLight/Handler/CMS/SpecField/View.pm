@@ -47,7 +47,9 @@ sub handle_view { # {{{
         value   => $field->{'datatype'},
     );
 
-    return $properties;
+    $self->push_data($properties);
+
+    return;
 } # }}}
 
 # vim: fdm=marker

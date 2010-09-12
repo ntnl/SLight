@@ -353,7 +353,9 @@ sub validate_name { # {{{
 # Insert one variable into document.
 sub set_var { # {{{
     my ( $self, $name, $value ) = @_;
-    
+
+    assert_defined($value, "Define what you want to set");
+
     $self->validate_name($name);
 
     return $self->{'var_data'}->{$name} = $value;
@@ -406,6 +408,8 @@ sub set_list { # {{{
 # Insert layout into document
 sub set_layout { # {{{
     my ( $self, $name, $value ) = @_;
+
+    assert_defined($value, "Define what you want to set");
 
     $self->validate_name($name);
 

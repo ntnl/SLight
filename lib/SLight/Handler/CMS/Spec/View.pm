@@ -67,6 +67,8 @@ sub handle_view { # {{{
         value   => $spec->{'version'},
     );
 
+    $self->push_data($properties);
+    
     return $properties;
 } # }}}
 
