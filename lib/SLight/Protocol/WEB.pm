@@ -70,8 +70,8 @@ sub respond { # {{{
 
         my $aux_response = $self->S_process_object(
             $P{'page'}->{'objects'}->{ $object_key },
-            $P{'url'}->{'action'},
-            'view' # <-- aux objects always run in VIEW!
+            'View', # <-- aux objects always run in VIEW!
+            'view', # <-- aux objects always run in VIEW!
         );
         $output_object->queue_object_data(
             $object_key,

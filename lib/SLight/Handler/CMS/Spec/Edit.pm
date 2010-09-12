@@ -1,4 +1,4 @@
-package SLight::Handler::CMS::Spec::New;
+package SLight::Handler::CMS::Spec::Edit;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -14,7 +14,7 @@ package SLight::Handler::CMS::Spec::New;
 use strict; use warnings; # {{{
 use base q{SLight::HandlerBase::SimpleForm};
 
-use SLight::API::ContentSpec qw( add_ContentSpec );
+use SLight::API::ContentSpec qw( update_ContentSpec );
 use SLight::Core::L10N qw( TR );
 # }}}
 
@@ -22,15 +22,16 @@ sub form_spec { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
     return {
-        title  => TR(q{New content Spec}),
+        title  => TR(q{Edit content Spec}),
         action => $self->build_url(
-            action => 'New',
+            action => 'Edit',
             path   => [
-                'Spec'
+                'Spec',
+                $oid,
             ],
             step => 'save'
         ),
-        submit => TR('Add'),
+        submit => TR('Update'),
 
         validator_metadata => {
             'caption' => { type=>'String' },
@@ -44,7 +45,7 @@ sub make_form { # {{{
     $form->add_Entry(
         name    => 'caption',
         caption => TR('Caption'),
-        value   => q{},
+        value   => ( $self->{'options'}->{'caption'} or $metadata->{'spec'}->{'caption'} ),
     );
 
     return;
@@ -53,16 +54,16 @@ sub make_form { # {{{
 sub save_form { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
-    my $content_spec_id = add_ContentSpec(
-        caption       => $self->{'options'}->{'caption'},
-        owning_module => q{CMS::Entry},
+    update_ContentSpec(
+        id      => $oid,
+        caption => $self->{'options'}->{'caption'},
     );
 
     return $self->build_url(
         action => 'View',
         path   => [
             'Spec',
-            $content_spec_id,
+            $oid,
         ],
         step   => 'view'
     );

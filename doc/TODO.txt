@@ -64,7 +64,7 @@
 [>]     SLight::PathHandler::Test
 [X] Handler Object Test Framework
 [>] CMS Handler objects
-[ ]     SLight::Handler::Test::Test::Test
+[X]     SLight::Handler::Test::Foo
 [ ]     SLight::Handler::Core::Asset
 [ ]     SLight::Handler::Core::Asset::List
 [ ]     SLight::Handler::Core::Asset::Asset
@@ -80,7 +80,7 @@
 [>]     SLight::Handler::CMS::Spec
 [X]         SLight::Handler::CMS::Spec::View
 [X]         SLight::Handler::CMS::Spec::New
-[ ]         SLight::Handler::CMS::Spec::Edit
+[>]         SLight::Handler::CMS::Spec::Edit
 [ ]         SLight::Handler::CMS::Spec::Delete
 [>]     SLight::Handler::CMS::SpecField
 [X]         SLight::Handler::CMS::SpecField::View
@@ -88,8 +88,7 @@
 [ ]         SLight::Handler::CMS::SpecField::Edit
 [ ]         SLight::Handler::CMS::SpecField::Delete
 [ ]     SLight::Handler::CMS::Entry
-[ ]         SLight::Handler::CMS::Entry::Add
-[ ]         SLight::Handler::CMS::Entry::Append
+[ ]         SLight::Handler::CMS::Entry::New
 [ ]         SLight::Handler::CMS::Entry::Edit
 [ ]         SLight::Handler::CMS::Entry::Asset
 [ ]         SLight::Handler::CMS::Entry::Comment

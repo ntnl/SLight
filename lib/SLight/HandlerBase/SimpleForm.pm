@@ -44,7 +44,7 @@ sub handle_view { # {{{
         submit => $form_spec->{'submit'},
     );
 
-    $self->make_form($form);
+    $self->make_form($oid, $metadata, $form);
 
     return $self->push_data($form);
 } # }}}

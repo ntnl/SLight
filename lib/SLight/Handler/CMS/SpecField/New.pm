@@ -40,7 +40,7 @@ sub form_spec { # {{{
 } # }}}
 
 sub make_form { # {{{
-    my ( $self, $form ) = @_;
+    my ( $self, $oid, $metadata, $form ) = @_;
     
     $form->add_Entry(
         name    => 'class',

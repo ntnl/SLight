@@ -44,6 +44,22 @@ sub handle_view { # {{{
                     $oid,
                 ],
             },
+            {
+                caption => TR('Edit Spec'),
+                action  => 'Edit',
+                path    => [
+                    'Spec',
+                    $oid,
+                ],
+            },
+            {
+                caption => TR('Delete Spec'),
+                action  => 'Delete',
+                path    => [
+                    'Spec',
+                    $oid,
+                ],
+            },
         ]
     );
     
