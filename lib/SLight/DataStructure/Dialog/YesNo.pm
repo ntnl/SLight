@@ -16,7 +16,7 @@ package SLight::DataStructure::Dialog::YesNo;
 use strict; use warnings; # {{{
 use base 'SLight::DataStructure';
 
-use SLight::Core::L10N qw( TR TF );
+use SLight::Core::L10N qw( TR );
 
 use Params::Validate qw( :all );
 # }}}

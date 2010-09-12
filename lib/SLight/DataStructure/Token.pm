@@ -28,6 +28,8 @@ sub _new { # {{{
         }
     );
 
+    # TODO: Check if it is a valid one :)
+
     $self->set_data($P{'token'});
 
     return;

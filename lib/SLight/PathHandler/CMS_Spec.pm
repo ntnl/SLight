@@ -36,7 +36,7 @@ Generates a page with single I<SLight::Handler::CMS::SpecList::*> object.
 Generates a page with single I<SLight::Handler::CMS::Spec::*> primary object
 and corresponding set of I<SLight::Handler::CMS::SpecField::Overview> aux objects.
 
-=item /_CMS_Spec/Field/$Spec_ID/$Field_ID/*
+=item /_CMS_Spec/Field/$Spec_ID/$Field_CLASS/*
 
 Generates a page with single I<SLight::Handler::CMS::SpecField::*> primary object.
 
@@ -106,8 +106,6 @@ sub do_spec { # {{{
     my @field_id_order;
 
     if ($id) {
-        warn "Have ID!";
-
         my $content_spec = SLight::API::ContentSpec::get_ContentSpec($id);
 
 #        use Data::Dumper; warn "Content Spec: " . Dumper $content_spec;
@@ -143,7 +141,7 @@ sub do_spec { # {{{
 # Purpose:
 #   Handle field.
 sub do_field { # {{{
-    my ( $self, $spec_id, $field_id ) = @_;
+    my ( $self, $spec_id, $field_class ) = @_;
     
     my $content_spec = SLight::API::ContentSpec::get_ContentSpec($spec_id);
     
@@ -151,7 +149,7 @@ sub do_field { # {{{
         # TODO: Add 'CMS::Spec' as well, for reference!
         _field => {
             class    => 'CMS::SpecField',
-            oid      => $field_id,
+            oid      => $field_class,
             metadata => {
                 spec => $content_spec,
             }

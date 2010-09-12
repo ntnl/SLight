@@ -64,7 +64,15 @@ sub make_site { # {{{
     foreach my $file (@init_files) {
         assert_defined( -f $file, "Source file ($file) exists");
 
-        system q{sqlite3}, q{-init}, $file, $destination . q{db/slight.sqlite}, q{/* */};
+#        system q{sqlite3}, q{-init}, $file, $destination . q{db/slight.sqlite}, q{/* */};
+
+        my $fh;
+        if (open $fh, q{-|}, q{sqlite3 -init } . $file . q{ } . $destination . q{db/slight.sqlite '/* */' 2>&1}) {
+            while (my $msg = <$fh>) {
+                print "# " . $msg;
+            }
+            close $fh;
+        }
     }
 
     $feedback_call->("All done.");

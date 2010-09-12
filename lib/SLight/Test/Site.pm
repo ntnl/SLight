@@ -117,7 +117,13 @@ sub prepare_fake { # {{{
 sub undump_db { # {{{
     my ( $site_root ) = @_;
 
-    system 'sqlite3', q{-batch}, q{-init}, $site_root .q{/db/slight.dump}, $site_root .q{/db/slight.sqlite}, q{/* */};
+    my $fh;
+    if (open $fh, q{-|}, q{sqlite3 -batch -init } . $site_root . q{/db/slight.dump } . $site_root . q{/db/slight.sqlite '/* */' 2>&1}) {
+        while (my $msg = <$fh>) {
+            print "# " . $msg;
+        }
+        close $fh;
+    }
 
     return;
 } # }}}

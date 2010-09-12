@@ -51,14 +51,21 @@ sub make_form { # {{{
 } # }}}
 
 sub save_form { # {{{
-    my ( $self ) = @_;
+    my ( $self, $oid, $metadata ) = @_;
 
     my $content_spec_id = add_ContentSpec(
         caption       => $self->{'options'}->{'caption'},
         owning_module => q{CMS::Entry},
     );
 
-    return;
+    return $self->build_url(
+        action => 'View',
+        path   => [
+            'Spec',
+            $content_spec_id,
+        ],
+        step   => 'view'
+    );
 } # }}}
 
 # vim: fdm=marker

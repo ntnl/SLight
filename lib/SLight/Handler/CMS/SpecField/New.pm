@@ -44,22 +44,22 @@ sub make_form { # {{{
     
     $form->add_Entry(
         name    => 'class',
-        caption => TR('Class:'),
+        caption => TR('Class') . q{:},
         value   => q{},
     );
     $form->add_Entry(
         name    => 'caption',
-        caption => TR('Caption:'),
+        caption => TR('Caption') . q{:},
         value   => q{},
     );
     $form->add_Entry(
-        name    => 'Order',
-        caption => TR('Order:'),
+        name    => 'order',
+        caption => TR('Order') . q{:},
         value   => q{},
     );
     $form->add_SelectEntry(
         name    => 'datatype',
-        caption => TR('Data type:'),
+        caption => TR('Data type') . q{:},
         value   => q{},
         options => [
     		[ 'String', TR('String') ],
@@ -82,7 +82,7 @@ sub make_form { # {{{
 
     $form->add_SelectEntry(
         name    => 'translate',
-        caption => TR('Localization:'),
+        caption => TR('Localization') . q{:},
         value   => q{},
         options => [
             [ '0', TR('Not translatable'), ],
@@ -92,7 +92,7 @@ sub make_form { # {{{
 
     $form->add_SelectEntry(
         name    => 'display_on_page',
-        caption => TR('Display on page:'),
+        caption => TR('Display on page') . q{:},
         value   => q{},
         options => [
             [ '0', TR('Do not display'), ],
@@ -103,7 +103,7 @@ sub make_form { # {{{
 
     $form->add_SelectEntry(
         name    => 'display_on_list',
-        caption => TR('Display on list:'),
+        caption => TR('Display on list') . q{:},
         value   => q{},
         options => [
             [ '0', TR('Do not display'), ],
@@ -114,7 +114,7 @@ sub make_form { # {{{
 
     $form->add_SelectEntry(
         name    => 'display_label',
-        caption => TR('Display label:'),
+        caption => TR('Display label') . q{:},
         value   => q{},
         options => [
             [ '0', TR('display on pages and on lists.'), ],
@@ -126,7 +126,7 @@ sub make_form { # {{{
 
     $form->add_SelectEntry(
         name    => 'optional',
-        caption => TR('Is required:'),
+        caption => TR('Is required') . q{:},
         value   => q{},
         options => [
             [ '0', TR('Yes, it is always required'), ],
@@ -136,11 +136,44 @@ sub make_form { # {{{
 
     $form->add_Entry(
         name    => 'max_length',
-        caption => TR('Maximum length:'),
+        caption => TR('Maximum length') . q{:},
         value   => q{},
     );
 
     return;
+} # }}}
+
+sub save_form { # {{{
+    my ( $self, $oid, $metadata ) = @_;
+
+    update_ContentSpec(
+        id => $metadata->{'spec'}->{'id'},
+
+        _data => {
+            $self->{'options'}->{'class'} => {
+                caption         => $self->{'options'}->{'caption'},
+                order           => $self->{'options'}->{'order'},
+                datatype        => $self->{'options'}->{'datatype'},
+                default         => ( $self->{'options'}->{'default'} or q{} ),
+                translate       => $self->{'options'}->{'translate'},
+                display_on_page => $self->{'options'}->{'display_on_page'},
+                display_on_list => $self->{'options'}->{'display_on_list'},
+                display_label   => $self->{'options'}->{'display_label'},
+                optional        => $self->{'options'}->{'optional'},
+                max_length      => $self->{'options'}->{'max_length'},
+            },
+        }
+    );
+
+    return $self->build_url(
+        action => 'View',
+        path   => [
+            'Field',
+            $metadata->{'spec'}->{'id'},
+            $self->{'options'}->{'class'},
+        ],
+        step   => 'view'
+    );
 } # }}}
 
 # vim: fdm=marker

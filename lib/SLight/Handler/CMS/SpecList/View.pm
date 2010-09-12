@@ -87,7 +87,7 @@ sub handle_view { # {{{
                 ],
                 owning_module => $content_spec->{'owning_module'},
                 version       => $content_spec->{'version'},
-                field_count   => scalar keys @{ $content_spec->{'_data'} },
+                field_count   => scalar keys %{ $content_spec->{'_data'} },
             },
         );
     }

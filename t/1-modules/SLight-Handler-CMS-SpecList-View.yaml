@@ -5,10 +5,10 @@ Empty list:
       Toolbox:
         class: SLight_Toolbox_Plugin
         content:
-        - class: New
+        - class: SLight_New_Action
           data:
             caption: Add new Spec
-            href: /_CMS_Spec/New.web_test
+            href: /_CMS_Spec/Spec/New.web_test
           type: Action
         type: Container
     object_data:

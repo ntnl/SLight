@@ -74,17 +74,21 @@ sub S_process_object { # {{{
 
     # Fixme! actually check, if this is a derivative from SLight::DataStructure (!)
 
-    if ($result->{'data'}->isa('SLight::DataStructure::Redirect')) {
-        my $data = $result->{'data'}->get_data();
+    if ($result->{'data'}) {
+        if ($result->{'data'}->isa('SLight::DataStructure::Redirect')) {
+            my $data = $result->{'data'}->get_data();
 
-        return {
-            redirect_href => $data->{'data'}->{'href'}
-        };
+            return {
+                redirect_href => $data->{'data'}->{'href'}
+            };
+        }
+
+        $result->{'data'} = $result->{'data'}->get_data();
+
+        return $result;
     }
 
-    $result->{'data'} = $result->{'data'}->get_data();
-
-    return $result;
+    return;
 } # }}}
 
 sub S_process_addon { # {{{

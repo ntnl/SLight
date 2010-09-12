@@ -363,19 +363,19 @@ sub update_ENTITY { # {{{
             }
             else {
                 # Add this data value (is a new one)
-                my %values = (
+                my %insert_values = (
                     %{ $data_entry->{'data'} },
                 
                     $self->{'base_table'} . q{_id} => $P{'id'}
                 );
 
                 foreach my $key_column (keys %{ $data_entry->{'keys'} }) {
-                    $values{ $key_column } = $data_entry->{'keys'}->{$key_column};
+                    $insert_values{ $key_column } = $data_entry->{'keys'}->{$key_column};
                 }
 
                 push @inserts, {
                     'into'   => $self->{'child_table'},
-                    'values' => \%values,
+                    'values' => \%insert_values,
 #                    debug    => 1, 
                 };
             }

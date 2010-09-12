@@ -35,12 +35,12 @@ sub analyze_path { # {{{
             ob1 => {
                 class    => 'Test::Foo',
                 oid      => 1,
-                metadata => { 'msg' => 'Yes' },
+                metadata => { 'msg' => 'First test entry' },
             },
             ob2 => {
                 class    => 'Test::Foo',
                 oid      => 2,
-                metadata => { 'msg' => 'Yes' },
+                metadata => { 'msg' => 'Second test entry' },
             }
         },
     );

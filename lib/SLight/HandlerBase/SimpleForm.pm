@@ -67,17 +67,10 @@ sub handle_save { # {{{
 
 #    use Data::Dumper; warn 'Options: '. Dumper $self->{'options'};
 
-    $self->save_form();
+    my $redirect_url = $self->save_form($oid, $metadata);
 
     my $redirect = SLight::DataStructure::Redirect->new(
-        href => $self->build_url(
-            action => 'View',
-            path   => [
-                'Spec',
-                $content_spec_id,
-            ],
-            step   => 'view'
-        ),
+        href => $redirect_url,
         # Some caption/label maybe?
     );
 

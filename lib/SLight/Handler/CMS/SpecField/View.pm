@@ -29,13 +29,22 @@ sub handle_view { # {{{
 
     my $spec = $metadata->{'spec'};
 
+#    use Data::Dumper; warn Dumper $spec;
+
+    my $field = $spec->{'_data'}->{$oid};
+
     my $properties = SLight::DataStructure::List::Table::Properties->new(
-        caption => $spec->{'_data'}->{$spec}->{'caption'}
+        caption => TR(q{Field}) .q{:},
     );
     
     $properties->add_Property(
-        caption => TR("Field type") . q{:},
-        value   => $spec->{'datatype'},
+        caption => TR("Caption") . q{:},
+        value   => $field->{'caption'},
+    );
+
+    $properties->add_Property(
+        caption => TR("Data type") . q{:},
+        value   => $field->{'datatype'},
     );
 
     return $properties;

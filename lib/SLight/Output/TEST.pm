@@ -45,12 +45,16 @@ sub serialize { # {{{
 
 #    use Data::Dumper; warn 'SERIALIZE: '. Dumper $self->{'TEST'};
 
-    return {
+    my $out = {
         'object_data'  => $self->{'TEST'}->{'objects'},
         'object_order' => $object_order,
         'addon_data'   => $self->{'TEST'}->{'addons'},
         'template'     => $template_code,
     };
+
+    # Want to dump 'out'?
+
+    return $out;
 } # }}}
 
 # vim: fdm=marker

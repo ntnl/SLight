@@ -51,7 +51,7 @@ sub handle_view { # {{{
     my $spec = $metadata->{'spec'};
 
     my $properties = SLight::DataStructure::List::Table::Properties->new(
-        caption => TR(q{Content Entry specification:}),
+        caption => TR(q{Specification}) . q{:},
     );
     
     $properties->add_Property(

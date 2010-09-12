@@ -31,14 +31,17 @@ sub respond { # {{{
         output => $self->_output_type(),
     );
 
-    my $main_meta_data;
-
     # Process on-page objects - start with main object.
     my $response = $self->S_process_object(
         $P{'page'}->{'objects'}->{ $P{'page'}->{'main_object'} },
         $P{'url'}->{'action'},
         $P{'url'}->{'step'}
     );
+
+    if (not $response) {
+        # Module does not returned anything, ignore it then, maybe there's nothing to tell.
+        return q{};
+    }
 
     if ($response->{'redirect_href'}) {
         return $self->S_response_REDIRECT(
