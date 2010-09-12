@@ -27,7 +27,7 @@ plan tests =>
     + 2 # update_ContentSpec (core only)
     + 2 # update_ContentSpec (with data)
 
-    + 2 # get_ContentSpec
+    + 3 # get_ContentSpec
     + 2 # get_ContentSpecs_where
     + 2 # get_ContentSpecs_ids_where
     + 2 # get_ContentSpecs_fields_where
@@ -164,6 +164,21 @@ is (
     undef,
     'update_ContentSpec - data, existing ID'
 );
+is (
+    update_ContentSpec(
+        id => $t1,
+
+        _data => {
+            # This one will get deleted
+            label => undef,
+
+            # This will be added:
+            caption => { id=>2, datatype => q{String}, caption => q{Label}, order => 1, default => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+        }
+    ),
+    undef,
+    'update_ContentSpec - delete+add data entry'
+);
 
 #
 # run: get_ContentSpec
@@ -184,7 +199,7 @@ is_deeply (
         version       => 2,
 
         _data => {
-            label   => { id=>2, datatype => q{String}, caption => q{Label},    order => 1, default => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+            caption => { id=>2, datatype => q{String}, caption => q{Label},    order => 1, default => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
             summary => { id=>1, datatype => q{Text},   caption => q{Overview}, order => 2, default => q{},           max_length => 789, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
         },
 
@@ -217,7 +232,7 @@ is_deeply(
             version       => 2,
 
             _data => {
-                label   => { id=>2, datatype => q{String}, caption => q{Label},    order => 1, default => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+                caption => { id=>2, datatype => q{String}, caption => q{Label},    order => 1, default => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
                 summary => { id=>1, datatype => q{Text},   caption => q{Overview}, order => 2, default => q{},           max_length => 789, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
             },
 
@@ -273,7 +288,7 @@ is_deeply(
             caption => 'Folder',
 
             _data => {
-                label   => { caption => q{Label},    order => 1 },
+                caption => { caption => q{Label},    order => 1 },
                 summary => { caption => q{Overview}, order => 2 },
             },
 

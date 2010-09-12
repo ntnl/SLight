@@ -326,21 +326,67 @@ sub update_ENTITY { # {{{
 #        debug => 1, 
     );
 
-    if ($data_hash) {
+    my $current_data = $self->get_ENTITY($P{'id'});
+#    use Data::Dumper; warn 'current_entity: '. Dumper $current_data;
+
+    if ($data_hash and $current_data) {
+        my %current_data_values = map { $_->{'key_string'} => $_ } $self->_data_values( ($current_data->{'_data'} or {}) );
+#        use Data::Dumper; warn 'current_data: '. Dumper \%current_data_values;
+
+        my @inserts;
+
         my @data_values = $self->_data_values($data_hash);
         foreach my $data_entry (@data_values) {
-            my @where = ( $self->{'base_table'} . q{_id = }, $P{'id'} );
-            foreach my $key_column (keys %{ $data_entry->{'keys'} }) {
-                push @where, ' AND '. $key_column .' = ', $data_entry->{'keys'}->{$key_column};
-            }
+            # Check if that entry is already in DB (We will update it in this case)
+            if ($current_data_values{ $data_entry->{'key_string'} }) {
+                # Update the data value.
+                my @where = ( $self->{'base_table'} . q{_id = }, $P{'id'} );
+                foreach my $key_column (keys %{ $data_entry->{'keys'} }) {
+                    push @where, ' AND '. $key_column .' = ', $data_entry->{'keys'}->{$key_column};
+                }
 
-            SLight::Core::DB::run_update(
-                'table' => $self->{'child_table'},
-                'set'   => $data_entry->{'data'},
-                'where' => \@where,
-#                debug => 1, 
-            );
+                if (defined $data_entry->{'data'}) {
+                    SLight::Core::DB::run_update(
+                        'table' => $self->{'child_table'},
+                        'set'   => $data_entry->{'data'},
+                        'where' => \@where,
+#                        debug => 1, 
+                    );
+                }
+                else {
+                    SLight::Core::DB::run_delete(
+                        'from'  => $self->{'child_table'},
+                        'where' => \@where,
+#                        debug => 1, 
+                    );
+                }
+            }
+            else {
+                # Add this data value (is a new one)
+                my %values = (
+                    %{ $data_entry->{'data'} },
+                
+                    $self->{'base_table'} . q{_id} => $P{'id'}
+                );
+
+                foreach my $key_column (keys %{ $data_entry->{'keys'} }) {
+                    $values{ $key_column } = $data_entry->{'keys'}->{$key_column};
+                }
+
+                push @inserts, {
+                    'into'   => $self->{'child_table'},
+                    'values' => \%values,
+#                    debug    => 1, 
+                };
+            }
         }
+
+        if (scalar keys @inserts) {
+            foreach my $insert (@inserts) {
+                SLight::Core::DB::run_insert(%{ $insert });
+            }
+        }
+#        die();
     }
 
     return;
@@ -639,7 +685,7 @@ sub _data_values { # {{{
     if (1 + $k_index == scalar @{ $self->{'child_key'} }) {
         # Fetch data values.
         foreach my $key_value (keys %{ $data_hash }) {
-            if (not ref $data_hash->{ $key_value }) {
+            if ($data_hash->{ $key_value } and not ref $data_hash->{ $key_value }) {
                 $data_hash->{ $key_value } = { value => $data_hash->{ $key_value } };
             }
 
@@ -652,7 +698,11 @@ sub _data_values { # {{{
                 data => $data_hash->{ $key_value },
             };
 
-#            use Data::Dumper; warn "Entry: ". Dumper $entry;
+            my @key_values;
+            foreach my $kk (sort keys %{ $entry->{'keys'} }) {
+                push @key_values, $entry->{'keys'}->{$kk};
+            }
+            $entry->{'key_string'} = join "\0", @key_values;
 
             push @values, $entry;
         }
@@ -678,7 +728,7 @@ sub _make_where { # {{{
 
     my @where;
     my $glue = q{};
-    foreach my $field (@{ $self->{'_all_fields'} }) {
+    foreach my $field ('id', @{ $self->{'_all_fields'} }) {
         if (exists $P{$field}) {
             push @where, $glue . $field . q{ = }, $P{$field};
 
