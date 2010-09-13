@@ -30,6 +30,14 @@ CREATE TABLE Content_Spec (
 	`version` SMALLINT NOT NULL DEFAULT 0,
 		-- In case the same module can handle different versions of the content type...
 
+    `cms_usage` SMALLINT NOT NULL DEFAULT 0,
+        -- Can such objects be used by CMS sub-system?
+        -- One of:
+        --  0 : can not be used by CMS
+        --  1 : can be used by CMS (as page additions)
+        --  2 : can be used by CMS (as pages)
+        --  3 : can be used by CMS (as pages and page additions)
+
     `metadata` TEXT
         -- Serialized with YAML.
         -- A place where modules can put 'their' stuff.

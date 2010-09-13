@@ -24,6 +24,14 @@ CREATE TABLE Content_Spec (
 	`version` SMALLINT NOT NULL DEFAULT 0,
 		-- In case the same module can handle different versions of the content type...
 
+    `cms_usage` SMALLINT NOT NULL DEFAULT 0,
+        -- Can such objects be used by CMS sub-system?
+        -- One of:
+        --  0 : can not be used by CMS
+        --  1 : can be used by CMS (as page additions)
+        --  2 : can be used by CMS (as pages)
+        --  3 : can be used by CMS (as pages and page additions)
+
     `metadata` TEXT
         -- Serialized with YAML.
         -- A place where modules can put 'their' stuff.
@@ -37,6 +45,7 @@ CREATE TABLE Content_Spec_Field (
 
 	`class`	VARCHAR(64) NOT NULL,
         -- Textual identifiers, made by the User.
+		-- Must be unique in the scope of the single Type
         -- This is used to identify fields in CSS, HTML, XML and JSON
 
 	`caption`   VARCHAR(128) NOT NULL,
@@ -46,6 +55,24 @@ CREATE TABLE Content_Spec_Field (
 	`order`		SMALLINT NOT NULL,
 
 	`datatype`  VARCHAR(64)  NOT NULL,
+		-- One of:
+		--	Date
+		--	Time
+		--	DateTime
+		--
+		--	Email
+		--	Link
+		--
+		--	Int
+		--	Money
+		--
+		--	String
+		--	Text
+		--
+		--  Image
+		--	Asset
+		--
+		--	Test
 
 	`default`   VARCHAR(255) NOT NULL,
         -- Default value used to initialize the Add form.
@@ -75,6 +102,7 @@ CREATE TABLE Content_Spec_Field (
 
     `optional` SMALLINT NOT NULL DEFAULT 1,
         -- Controls, if filling this field will be optional
+        -- (Yes, after thinking it I also find this ridiculous)
         -- 0 - no, it is always required
         -- 1 - yes, it is optional, it may be empty.
 

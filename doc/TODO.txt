@@ -49,10 +49,12 @@
 [X]     SLight::Validator::Net.pm
 [X]     SLight::Validator::Simple.pm
 [X]     SLight::Validator::User.pm
-[X] Core
+[>] Core
 [X]     Cache
+[>]     DB - add support to 'IN' in 'where' parameter of sql_* functions
 [>] API
 [X]     ContentSpec store
+[X]         'cms_usage' column support
 [X]     Content store
 [ ]     Comment store
 [ ]     Asset store
@@ -70,23 +72,26 @@
 [ ]     SLight::Handler::Core::Asset::Asset
 [ ]     SLight::Handler::Core::Asset::Internal
 [ ]     SLight::Handler::Core::Asset::Dynamic
-[ ]     SLight::Handler::Core::Empty
+[>]     SLight::Handler::Core::Empty
+[>]         SLight::Handler::Core::Empty::View
 [ ]         SLight::Handler::Core::Empty::Add
 [ ]         SLight::Handler::Core::Empty::Edit
 [ ]         SLight::Handler::Core::Empty::Move
 [ ]         SLight::Handler::Core::Empty::Delete
+[>]     SLight::Handler::CMS::Welcome
+[>]         SLight::Handler::CMS::Welcome::View
 [X]     SLight::Handler::CMS::SpecList
 [X]         SLight::Handler::CMS::SpecList::View
 [>]     SLight::Handler::CMS::Spec
 [X]         SLight::Handler::CMS::Spec::View
 [X]         SLight::Handler::CMS::Spec::New
-[>]         SLight::Handler::CMS::Spec::Edit
-[ ]         SLight::Handler::CMS::Spec::Delete
+[X]         SLight::Handler::CMS::Spec::Edit
+[>]         SLight::Handler::CMS::Spec::Delete
 [>]     SLight::Handler::CMS::SpecField
 [X]         SLight::Handler::CMS::SpecField::View
 [X]         SLight::Handler::CMS::SpecField::New
-[ ]         SLight::Handler::CMS::SpecField::Edit
-[ ]         SLight::Handler::CMS::SpecField::Delete
+[>]         SLight::Handler::CMS::SpecField::Edit
+[>]         SLight::Handler::CMS::SpecField::Delete
 [ ]     SLight::Handler::CMS::Entry
 [ ]         SLight::Handler::CMS::Entry::New
 [ ]         SLight::Handler::CMS::Entry::Edit
@@ -111,7 +116,7 @@
 [ ]     SLight::DataStructure::Form::Diff (CoMe...DiffForm)
 [ ]     SLight::DataStructure::Dialog (new!)
 [X]     SLight::DataStructure::Dialog::Notification (ex CoMe...GenericMessage)
-[ ]     SLight::DataStructure::Dialog::YesNo (ex. CoMe...YesNo)
+[>]     SLight::DataStructure::Dialog::YesNo (ex. CoMe...YesNo)
 [>] Addon
 [ ]     SLight::Addon::Core::PathBar
 [ ]     SLight::Addon::Core::MainMenu

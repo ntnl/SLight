@@ -40,7 +40,7 @@ my $_handler = SLight::Core::Entity->new( # {{{
 
     has_metadata => 1,
 
-    data_fields       => [qw( caption owning_module version )],
+    data_fields       => [qw( caption owning_module cms_usage version )],
     child_data_fields => [qw( id class order datatype caption default translate display_on_page display_on_list display_label optional max_length )],
 
     cache_namespage => 'SLight::API::ContentType',

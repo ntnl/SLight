@@ -76,6 +76,7 @@ is (
     $t1 = add_ContentSpec(
         caption       => 'Folder',
         owning_module => 'CMS::Entry',
+        cms_usage     => 3,
         version       => 0,
         #                '-- later changed to '2'
 
@@ -92,6 +93,7 @@ is (
     $t2 = add_ContentSpec(
         caption       => 'Paintball gun',
         owning_module => 'CMS::Entry',
+        cms_usage     => 2,
 
         _data => {
             brand => { datatype => q{String}, caption => q{Brand},          order => 1, default => q{}, max_length => 75, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 0 },
@@ -107,6 +109,7 @@ is (
         caption       => 'Woman',
         owning_module => 'CMS::Entry',
         version       => 0,
+        cms_usage     => 1,
 
         _data => {
             name       => { datatype => q{String}, caption => q{Name},       order => 1, default => q{},   max_length =>  75, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
@@ -196,6 +199,7 @@ is_deeply (
         id            => $t1,
         caption       => 'Folder',
         owning_module => 'CMS::Entry',
+        cms_usage     => 3,
         version       => 2,
 
         _data => {
@@ -229,6 +233,7 @@ is_deeply(
             id            => $t1,
             caption       => 'Folder',
             owning_module => 'CMS::Entry',
+            cms_usage     => 3,
             version       => 2,
 
             _data => {
