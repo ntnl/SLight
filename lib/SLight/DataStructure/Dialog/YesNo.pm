@@ -38,6 +38,8 @@ sub _new { # {{{
         }
     );
 
+    # FIXME! yes_caption / no_caption have no defaults!
+
     # Check if captions have been given, if not, set defaults.
     if (not $P{'yes_caption'}) {
         $P{'yes_caption'} = TR('Yes');
@@ -46,33 +48,19 @@ sub _new { # {{{
         $P{'no_caption'} = TR('No');
     }
 
-    $self->set_data(
-        {
-            type    => 'Container',
-            data    => { },
-            content => [
-                $self->make_Label(
-                    text => $P{'message'}
-                ),
-                {
-                    type    => 'Container',
-                    data    => { },
-                    content => [
-                        $self->make_Action(
-                            class => 'yes',
-                                caption => $P{'yes_caption'},
-                                href    => $P{'yes_href'},
-                        ),
-                        $self->make_Action(
-                            class => 'no',
-                                caption => $P{'no_caption'},
-                                href    => $P{'no_href'},
-                        ),
-                    ],
-                },
-            ],
-            class => $P{'class'},
-        }
+    $self->init_dialog($P{'class'});
+
+    $self->set_text($P{'message'});
+
+    $self->add_button(
+        class   => 'Yes',
+        caption => $P{'yes_caption'},
+        href    => $P{'yes_href'},
+    );
+    $self->add_button(
+        class   => 'No',
+        caption => $P{'no_caption'},
+        href    => $P{'no_href'},
     );
 
     return;

@@ -12,34 +12,10 @@ package SLight::DataStructure::Dialog::Notification;
 # 
 ################################################################################
 
-use strict; use warnings; # {{{
-use base 'SLight::DataStructure';
+use strict; use warnings;
+use base 'SLight::DataStructure::Dialog';
 
-use SLight::DataToken qw( mk_Label_token );
-
-use Params::Validate qw( :all );
-# }}}
-
-sub _new { # {{{
-    my $self = shift;
-    my %P = validate(
-        @_,
-        {
-            text  => { type=>SCALAR },
-            class => { type=>SCALAR, optional=>1, default=>'Message' },
-        }
-    );
-
-    $self->set_data(
-        mk_Label_token(
-            class => $P{'class'},
-            text  => $P{'text'},
-        ),
-    );
-
-    return;
-} # }}}
+# FIXME: deprecate this file! It was replaced by Dialog!
 
 # vim: fdm=marker
 1;
-
