@@ -28,7 +28,7 @@ plan tests =>
     + 2 # update_ContentSpec (with data)
 
     + 3 # get_ContentSpec
-    + 2 # get_ContentSpecs_where
+    + 3 # get_ContentSpecs_where
     + 2 # get_ContentSpecs_ids_where
     + 2 # get_ContentSpecs_fields_where
 
@@ -245,6 +245,48 @@ is_deeply(
         }
     ],
     'get_ContentSpecs_where - correcct condition'
+);
+
+is_deeply(
+    [
+        sort { $a->{'id'} <=> $b->{'id'} } @{
+            get_ContentSpecs_where(
+                cms_usage => [3, 2],
+            )
+        }
+    ],
+    [
+        {
+            id            => $t1,
+            caption       => 'Folder',
+            owning_module => 'CMS::Entry',
+            cms_usage     => 3,
+            version       => 2,
+
+            _data => {
+                caption => { id=>2, datatype => q{String}, caption => q{Label},    order => 1, default => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+                summary => { id=>1, datatype => q{Text},   caption => q{Overview}, order => 2, default => q{},           max_length => 789, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
+            },
+
+            metadata => {},            
+        },
+        {
+            id            => $t2,
+            caption       => 'Paintball gun',
+            owning_module => 'CMS::Entry',
+            cms_usage     => 2,
+            version       => 0,
+
+            _data => {
+                brand => { id=>5, datatype => q{String}, caption => q{Brand},          order => 1, default => q{}, max_length => 75, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 0 },
+                model => { id=>4, datatype => q{String}, caption => q{Model},          order => 2, default => q{}, max_length => 75, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 0 },
+                bps   => { id=>3, datatype => q{Int},    caption => q{Balls per sec.}, order => 3, default => q{}, max_length => 50, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+            },
+
+            metadata => {},            
+        }
+    ],
+    'get_ContentSpecs_where - array in condition'
 );
 
 #

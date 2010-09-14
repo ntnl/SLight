@@ -730,7 +730,12 @@ sub _make_where { # {{{
     my $glue = q{};
     foreach my $field ('id', @{ $self->{'_all_fields'} }) {
         if (exists $P{$field}) {
-            push @where, $glue . $field . q{ = }, $P{$field};
+            if (ref $P{$field} eq 'ARRAY') {
+                push @where, $glue . $field . q{ IN }, $P{$field};
+            }
+            else {
+                push @where, $glue . $field . q{ = }, $P{$field};
+            }
 
             $glue = ' AND ';
         }

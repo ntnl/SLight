@@ -29,7 +29,7 @@ plan tests =>
     + 2 # delete_pages (1x delete + 1x check)
     + 2 # get_page
     + 2 # get_pages
-    + 1 # get_page_ids_where
+    + 2 # get_page_ids_where
     + 1 # get_page_fields_where
 # M2:   + 1 # attach_page_to_page
 # M2:   + 1 # attach_pages_to_page
