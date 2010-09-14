@@ -174,6 +174,17 @@ is_deeply(
 
 is_deeply(
     SLight::API::Page::get_page_ids_where(
+        path => [qw( Goo Bzz )],
+    ),
+    [
+        $page_4_id,
+        $page_5_id,
+    ],
+    "get_page_ids_where() using multiple paths"
+);
+
+is_deeply(
+    SLight::API::Page::get_page_ids_where(
         template => 'Altered',
     ),
     [
