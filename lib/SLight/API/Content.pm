@@ -46,7 +46,7 @@ my $_handler = SLight::Core::Entity->new( # {{{
     child_table      => 'Content_Entity_Data',
 
 # Fixme: add added_time and modified_time to the list: (they are dynamically created, therefore tricky!
-    data_fields        => [qw( status comment_write_policy comment_read_policy Content_Spec_id )],
+    data_fields        => [qw( status Page_Entity_id on_page_index comment_write_policy comment_read_policy Content_Spec_id )],
     child_data_fields  => [qw( value )],
     parent_data_fields => [qw( owning_module )],
 

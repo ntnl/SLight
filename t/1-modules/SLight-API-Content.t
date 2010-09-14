@@ -16,6 +16,7 @@ use FindBin qw( $Bin );
 use lib $Bin . q{/../../lib/};
 
 use SLight::Test::Site;
+use SLight::API::Page;
 use SLight::API::ContentSpec qw( add_ContentSpec );
 
 use English qw( -no_match_vars );
@@ -86,6 +87,19 @@ $ContentSpec_2{'id'} = add_ContentSpec(%ContentSpec_2); # 2
 
 my ($f_name, $f_chest, $f_waist, $f_hips, $f_cup ) = (50, 60, 70, 80, 90);
 
+my $p1 = SLight::API::Page::add_page(
+    parent_id => undef,
+    path      => 'root',
+);
+my $p2 = SLight::API::Page::add_page(
+    parent_id => $p1,
+    path      => 'Paintball',
+);
+my $p3 = SLight::API::Page::add_page(
+    parent_id => $p1,
+    path      => 'Gals',
+);
+
 #
 # run: add_Content
 #
@@ -95,6 +109,10 @@ is (
         Content_Spec_id => $ContentSpec_1{'id'},
 
         status => q{H},
+
+        Page_Entity_id => $p2,
+
+        on_page_index => 0,
 
         _data => {
             q{*} => {
@@ -123,6 +141,10 @@ is (
 
         status => q{H},
 
+        Page_Entity_id => $p2,
+
+        on_page_index => 1,
+
         _data => {
             q{*} => {
                 $f_marker => q{SP-1},
@@ -150,6 +172,10 @@ is (
 
         status => q{H},
 
+        Page_Entity_id => $p3,
+
+        on_page_index => -1,
+
         _data => {
             q{*} => {
                 $f_name  => q{Agnes},
@@ -172,6 +198,10 @@ is (
         Content_Spec_id => $ContentSpec_2{'id'},
 
         status => q{H},
+
+        Page_Entity_id => $p3,
+
+        on_page_index => 0,
 
         _data => {
             q{*} => {
@@ -276,6 +306,10 @@ is_deeply(
 
         status => q{V},
 
+        Page_Entity_id => $p2,
+
+        on_page_index => 1,
+
         _data => {
             q{*} => {
                 $f_marker => q{SP-1},
@@ -321,6 +355,10 @@ is_deeply(
 
             status => q{V},
 
+            Page_Entity_id => $p3,
+
+            on_page_index => -1,
+
             _data => {
                 q{*} => {
                     $f_name  => q{Agnes},
@@ -330,7 +368,7 @@ is_deeply(
                     $f_cup   => q{C},
                 }
             },
-            
+
             comment_write_policy => 0,
             comment_read_policy  => 0,
 
@@ -347,6 +385,10 @@ is_deeply(
             Content_Spec_id => $ContentSpec_1{'id'},
 
             status => q{V},
+
+            Page_Entity_id => $p2,
+
+            on_page_index => 1,
 
             _data => {
                 q{*} => {
@@ -437,6 +479,10 @@ is_deeply(
             Content_Spec_id => $ContentSpec_2{'id'},
 
             status => q{H},
+
+            Page_Entity_id => $p3,
+
+            on_page_index => 0,
 
             _data => {
                 q{*} => {

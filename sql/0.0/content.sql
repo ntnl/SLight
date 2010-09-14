@@ -33,7 +33,7 @@ CREATE TABLE Content_Spec (
     `cms_usage` SMALLINT NOT NULL DEFAULT 0,
         -- Can such objects be used by CMS sub-system?
         -- One of:
-        --  0 : can not be used by CMS
+        --  0 : can not be used by CMS (basically, means it's disabled)
         --  1 : can be used by CMS (as page additions)
         --  2 : can be used by CMS (as pages)
         --  3 : can be used by CMS (as pages and page additions)
@@ -41,7 +41,6 @@ CREATE TABLE Content_Spec (
     `metadata` TEXT
         -- Serialized with YAML.
         -- A place where modules can put 'their' stuff.
-
 );
 CREATE INDEX Content_Spec_module ON Content_Spec (owning_module);
 
@@ -143,6 +142,15 @@ CREATE TABLE Content_Entity (
         -- A = archived (does not appear on lists, but is otherwise fully accessible)
         -- H = hidden (only visible to owner)
 
+    `Page_Entity_id` INTEGER NOT NULL,
+        -- ID of Page on which this object is located.
+
+    `on_page_index` SMALLINT DEFAULT 0 NOT NULL,
+        -- Location on page.
+        --  <0 means that the object is BEFORE the main object
+        --   0 means, that this IS the main object
+        --  >0 means, that the object is AFTER the main object
+
 	`comment_write_policy` SMALLINT NOT NULL DEFAULT 0,
 		-- Defines policy for making comments (replies, opinions, etc):
         --  0 - disabled
@@ -167,9 +175,11 @@ CREATE TABLE Content_Entity (
         -- Serialized with YAML.
         -- A place where modules can put 'their' stuff.
 
-    FOREIGN KEY(`Email_id`)        REFERENCES Email(`id`),
-	FOREIGN KEY(`Content_Spec_id`) REFERENCES Content_Spec(`id`)
+    FOREIGN KEY (`Page_Entity_id`)  REFERENCES Page_Entity (`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`Email_id`)        REFERENCES Email(`id`),
+	FOREIGN KEY (`Content_Spec_id`) REFERENCES Content_Spec(`id`)
 );
+CREATE UNIQUE INDEX Content_Entity_Page_Stuff ON Content_Entity (Page_Entity_id, on_page_index);
 
 CREATE TABLE Content_Entity_Data (
 	`Content_Entity_id` INTEGER NOT NULL,
