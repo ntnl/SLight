@@ -84,7 +84,7 @@ is (
             label   => { datatype => q{String}, caption => q{Label},   order => 1, default => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
             summary => { datatype => q{Text},   caption => q{Summary}, order => 2, default => q{},           max_length => 987, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
             #                                                  '--- later changed to 'Overview'.                            '--- later changed to '789'
-        }
+        },
     ),
     2,
     'add_ContentSpec (2/4)'
@@ -206,6 +206,7 @@ is_deeply (
             caption => { id=>2, datatype => q{String}, caption => q{Label},    order => 1, default => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
             summary => { id=>1, datatype => q{Text},   caption => q{Overview}, order => 2, default => q{},           max_length => 789, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
         },
+        _data_order => [qw( caption summary )],
 
         metadata => {},
     },
@@ -240,6 +241,7 @@ is_deeply(
                 caption => { id=>2, datatype => q{String}, caption => q{Label},    order => 1, default => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
                 summary => { id=>1, datatype => q{Text},   caption => q{Overview}, order => 2, default => q{},           max_length => 789, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
             },
+            _data_order => [qw( caption summary )],
 
             metadata => {},            
         }
@@ -267,6 +269,7 @@ is_deeply(
                 caption => { id=>2, datatype => q{String}, caption => q{Label},    order => 1, default => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
                 summary => { id=>1, datatype => q{Text},   caption => q{Overview}, order => 2, default => q{},           max_length => 789, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
             },
+            _data_order => [qw( caption summary )],
 
             metadata => {},            
         },
@@ -282,6 +285,7 @@ is_deeply(
                 model => { id=>4, datatype => q{String}, caption => q{Model},          order => 2, default => q{}, max_length => 75, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 0 },
                 bps   => { id=>3, datatype => q{Int},    caption => q{Balls per sec.}, order => 3, default => q{}, max_length => 50, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
             },
+            _data_order => [qw( brand model bps )],
 
             metadata => {},            
         }
@@ -338,6 +342,7 @@ is_deeply(
                 caption => { caption => q{Label},    order => 1 },
                 summary => { caption => q{Overview}, order => 2 },
             },
+            _data_order => [qw( caption summary )],
 
             metadata => {},
         }

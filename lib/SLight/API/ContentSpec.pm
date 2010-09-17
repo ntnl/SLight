@@ -61,19 +61,33 @@ sub update_ContentSpec { # {{{
 sub get_ContentSpec { # {{{
     my ( $id ) = @_; # Fixme: use Params::Validate here!
 
-    return $_handler->get_ENTITY($id);
+    my $content_spec = $_handler->get_ENTITY($id);
+
+    return _fix_spec($content_spec);
 } # }}}
 
 sub get_ContentSpecs_where { # {{{
     my %P = @_; # Fixme: use Params::Validate here!
 
-    return $_handler->get_ENTITYs_where(%P);
+    my $content_specs = $_handler->get_ENTITYs_where(%P);
+
+    foreach my $content_spec (@{ $content_specs }) {
+        _fix_spec($content_spec);
+    }
+
+    return $content_specs;
 } # }}}
 
 sub get_ContentSpecs_fields_where { # {{{
     my %P = @_; # Fixme: use Params::Validate here!
 
-    return $_handler->get_ENTITYs_fields_where(%P);
+    my $content_specs = $_handler->get_ENTITYs_fields_where(%P);
+
+    foreach my $content_spec (@{ $content_specs }) {
+        _fix_spec($content_spec);
+    }
+
+    return $content_specs;
 } # }}}
 
 sub get_ContentSpec_ids_where { # {{{
@@ -83,7 +97,29 @@ sub get_ContentSpec_ids_where { # {{{
 } # }}}
 
 sub get_all_ContentSpecs { # {{{
-    return $_handler->get_all_ENTITYs();
+    my $content_specs = $_handler->get_all_ENTITYs();
+
+    foreach my $content_spec (@{ $content_specs }) {
+        _fix_spec($content_spec);
+    }
+
+    return $content_specs;
+} # }}}
+
+sub _fix_spec {  # {{{
+    my ( $content_spec ) = @_;
+
+    if (not $content_spec) {
+        return;
+    }
+
+    if ($content_spec->{'_data'}) {
+        $content_spec->{'_data_order'} = [
+            sort { $content_spec->{'_data'}->{$a}->{'order'} <=> $content_spec->{'_data'}->{$b}->{'order'} } keys %{ $content_spec->{'_data'} }
+        ];
+    }
+
+    return $content_spec;
 } # }}}
 
 sub delete_ContentSpec { # {{{
