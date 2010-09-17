@@ -56,6 +56,8 @@ sub save_form { # {{{
     my $content_spec_id = add_ContentSpec(
         caption       => $self->{'options'}->{'caption'},
         owning_module => q{CMS::Entry},
+
+        cms_usage => 3, # FIXME: should not be hard-coded.
     );
 
     return $self->build_url(

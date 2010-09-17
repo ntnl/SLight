@@ -48,6 +48,21 @@ sub respond { # {{{
             $response->{'redirect_href'},
         );
     }
+    elsif ($response->{'replace_with_object'}) {
+        # Internal redirect :) Cool :)
+        $response = $self->S_process_object(
+            $response->{'replace_with_object'},
+            $P{'url'}->{'action'},
+            $P{'url'}->{'step'}
+        );
+
+        if ($response->{'redirect_href'}) {
+            return $self->S_response_REDIRECT(
+                $response->{'redirect_href'},
+            );
+        }
+        # Yes... as soon as it proves to be working - REFACTOR! Messy! FIXME!
+    }
 
     $output_object->queue_object_data(
         $P{'page'}->{'main_object'},

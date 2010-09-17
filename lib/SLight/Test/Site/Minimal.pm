@@ -55,8 +55,8 @@ sub build { # {{{
         caption => 'Article',
 
         _data => {
-            title   => { id=>10, caption=>'Title',   datatype=>'String', order=>1, default => '', translate=>1, max_length=>128 },
-            article => { id=>11, caption=>'Article', datatype=>'Text',   order=>2, default => '', translate=>1, max_length=>1024 },
+            title   => { id=>10, caption=>'Title',   datatype=>'String', order=>1, default => q{}, translate=>1, max_length=>128 },
+            article => { id=>11, caption=>'Article', datatype=>'Text',   order=>2, default => q{}, translate=>1, max_length=>1024 },
         },
 
         owning_module => q{CMS::Entry},
@@ -65,8 +65,8 @@ sub build { # {{{
         caption => 'News',
 
         _data => {
-            title => { id=>20, caption=>'Title', datatype=>'String', order=>1, default => '', translate=>1, max_length=>128 },
-            news  => { id=>21, caption=>'News',  datatype=>'Text',   order=>2, default => '', translate=>1, max_length=>1024 },
+            title => { id=>20, caption=>'Title', datatype=>'String', order=>1, default => q{}, translate=>1, max_length=>128 },
+            news  => { id=>21, caption=>'News',  datatype=>'Text',   order=>2, default => q{}, translate=>1, max_length=>1024 },
         },
 
         owning_module => q{CMS::Entry},
@@ -75,18 +75,18 @@ sub build { # {{{
         caption => 'Gal',
 
         _data => {
-            name     => { id=>30, caption => 'Chest',      datatype => 'String', order=>1, default => '', translate => 0, optional => 0, max_length => 3 },
-            pic      => { id=>31, caption => 'Pic',        datatype => 'Image',  order=>2, default => '', translate => 0, optional => 0, max_length => 3 },
-            birth    => { id=>32, caption => 'Birth date', datatype => 'Date',   order=>3, default => '', translate => 0, optional => 0, max_length => 1 },
-            email    => { id=>33, caption => 'Email',      datatype => 'Email',  order=>4, default => '', translate => 0, optional => 0, max_length => 3 },
-            homepage => { id=>34, caption => 'Homepage',   datatype => 'Link',   order=>5, default => '', translate => 0, optional => 0, max_length => 3 },
+            name     => { id=>30, caption => 'Chest',      datatype => 'String', order=>1, default => q{}, translate => 0, optional => 0, max_length => 3 },
+            pic      => { id=>31, caption => 'Pic',        datatype => 'Image',  order=>2, default => q{}, translate => 0, optional => 0, max_length => 3 },
+            birth    => { id=>32, caption => 'Birth date', datatype => 'Date',   order=>3, default => q{}, translate => 0, optional => 0, max_length => 1 },
+            email    => { id=>33, caption => 'Email',      datatype => 'Email',  order=>4, default => q{}, translate => 0, optional => 0, max_length => 3 },
+            homepage => { id=>34, caption => 'Homepage',   datatype => 'Link',   order=>5, default => q{}, translate => 0, optional => 0, max_length => 3 },
 
-            chest => { id=>35, caption => 'Chest',      datatype => 'Int',    order=>6, default => '', translate => 0, optional => 0, max_length => 3 },
-            waist => { id=>36, caption => 'Waist',      datatype => 'Int',    order=>7, default => '', translate => 0, optional => 0, max_length => 3 },
-            hips  => { id=>37, caption => 'Hips',       datatype => 'Int',    order=>8, default => '', translate => 0, optional => 0, max_length => 3 },
-            cup   => { id=>38, caption => 'Cup size',   datatype => 'String', order=>9, default => '', translate => 0, optional => 0, max_length => 1 },
+            chest => { id=>35, caption => 'Chest',      datatype => 'Int',    order=>6, default => q{}, translate => 0, optional => 0, max_length => 3 },
+            waist => { id=>36, caption => 'Waist',      datatype => 'Int',    order=>7, default => q{}, translate => 0, optional => 0, max_length => 3 },
+            hips  => { id=>37, caption => 'Hips',       datatype => 'Int',    order=>8, default => q{}, translate => 0, optional => 0, max_length => 3 },
+            cup   => { id=>38, caption => 'Cup size',   datatype => 'String', order=>9, default => q{}, translate => 0, optional => 0, max_length => 1 },
             
-            about => { id=>39, caption => 'About', datatype => 'Text', order=>10, default => '', translate => 1, optional => 0, max_length => 1 },
+            about => { id=>39, caption => 'About', datatype => 'Text', order=>10, default => q{}, translate => 1, optional => 0, max_length => 1 },
         },
 
         owning_module => q{CMS::Entry},
@@ -101,15 +101,11 @@ sub build { # {{{
         _data => {
             pl => {
                 10 => q{Strona testowa zrobiona},
-                11 => q{---
- - Minimalna strona testowa, już nie taka minimalna ;)
-},
+                11 => qq{---\n - Minimalna strona testowa, już nie taka minimalna ;)\n},
             },
             en => {
                 10 => q{Test site is up},
-                11 => q{---
- - Minimal test site, not such minimal any more ;)
-},
+                11 => q{---\n - Minimal test site, not such minimal any more ;)\n},
             },
         }
     );

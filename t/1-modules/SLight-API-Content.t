@@ -298,7 +298,7 @@ is_deeply(
     q{get_Content (1/2) non-existing ID}
 );
 is_deeply(
-    get_Content($c2),
+    _date_is_sane(get_Content($c2)),
     {
         id => $c2,
 
@@ -327,8 +327,8 @@ is_deeply(
         comment_write_policy => 0,
         comment_read_policy  => 0,
 
-#        added_time    => q{},
-#        modified_time => q{},
+        added_time    => q{#DATE IS SANE#},
+        modified_time => q{#DATE IS SANE#},
 
         metadata => {
             note_to_self => "Second entry",
@@ -346,7 +346,7 @@ is_deeply(
     q{get_Contents (1/2) - non-existing IDs}
 );
 is_deeply(
-    get_Contents( [$c2, $c3] ),
+    _dates_are_sane(get_Contents( [$c2, $c3] ) ),
     [
         {
             id => $c3,
@@ -372,8 +372,8 @@ is_deeply(
             comment_write_policy => 0,
             comment_read_policy  => 0,
 
-#            added_time    => q{},
-#            modified_time => q{},
+            added_time    => q{#DATE IS SANE#},
+            modified_time => q{#DATE IS SANE#},
 
             metadata => {
                 note_to_self => "Third entry - updated",
@@ -407,8 +407,8 @@ is_deeply(
             comment_write_policy => 0,
             comment_read_policy  => 0,
 
-#            added_time    => q{},
-#            modified_time => q{},
+            added_time    => q{#DATE IS SANE#},
+            modified_time => q{#DATE IS SANE#},
 
             metadata => {
                 note_to_self => "Second entry",
@@ -469,8 +469,10 @@ is_deeply(
     q{get_Contents_where (1/2) - miss}
 );
 is_deeply(
-    get_Contents_where(
-        status => q{H},
+    _dates_are_sane(
+        get_Contents_where(
+            status => q{H},
+        )
     ),
     [
         {
@@ -496,6 +498,9 @@ is_deeply(
 
             comment_write_policy => 0,
             comment_read_policy  => 0,
+
+            added_time    => q{#DATE IS SANE#},
+            modified_time => q{#DATE IS SANE#},
 
             metadata => {
                 note_to_self => "Fourth entry",
@@ -576,5 +581,26 @@ is(
     2,
     q{delete_Contents (2/2) - hit}
 );
+
+sub _date_is_sane { # {{{
+    my ( $stuff ) = @_;
+
+    foreach my $field (qw( added_time modified_time )) {
+        if ($stuff->{$field}) {
+            $stuff->{$field} =~ s{\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d}{#DATE IS SANE#}sg;
+        }
+    }
+
+    return $stuff;
+} # }}}
+sub _dates_are_sane {
+    my ( $stuff ) = @_;
+
+    foreach my $s (@{ $stuff }) {
+        _date_is_sane($s);
+    }
+
+    return $stuff;
+} # }}}
 
 # vim: fdm=marker

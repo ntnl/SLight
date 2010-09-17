@@ -27,10 +27,11 @@ sub _new { # {{{
     my %P = validate(
         @_,
         {
-            action => { type=>SCALAR },
-            hidden => { type=>HASHREF },
-            submit => { type=>SCALAR },
-            class  => { type=>SCALAR, optional=>1, default=>'generic' },
+            action  => { type=>SCALAR },
+            hidden  => { type=>HASHREF },
+            submit  => { type=>SCALAR },
+            preview => { type=>SCALAR, optional=>1 },
+            class   => { type=>SCALAR, optional=>1, default=>'generic' },
         }
     );
 
@@ -289,7 +290,7 @@ sub add_Label { # {{{
 
     push @{ $self->{'FormContent'} }, mk_Container_token(
         content => [
-            $self->mk_Label_token(
+            mk_Label_token(
                 class => $P{'class'},
                 text  => $P{'text'},
             ),
@@ -312,7 +313,7 @@ sub add_Action { # {{{
 
     push @{ $self->{'FormContent'} }, mk_Container_token(
         content => [
-            $self->mk_Action_token(
+            mk_Action_token(
                 class   => $P{'class'},
                 caption => $P{'caption'},
                 href    => $P{'href'},

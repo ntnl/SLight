@@ -14,6 +14,8 @@ package SLight::Handler::Core::Empty::View;
 use strict; use warnings; # {{{
 use base q{SLight::Handler};
 
+use SLight::Core::L10N qw( TR );
+
 use Carp;
 use English qw( -no_match_vars );
 use Params::Validate qw( :all );
@@ -22,7 +24,18 @@ use Params::Validate qw( :all );
 sub handle_view { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
-#    warn ":)";
+    $self->set_toolbox(
+        [
+            {
+                caption => TR('Add content'),
+                action  => 'AddContent',
+            },
+            {
+                caption => TR('Delete'),
+                action  => 'Delete',
+            },
+        ]
+    );
 
     return;
 } # }}}

@@ -165,7 +165,7 @@ CREATE TABLE Content_Entity (
         --  1 - visible to registered users only
         --  2 - visible to everyone
 
-	`added_time`	TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`added_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		-- Time, when this entry was added.
 
 	`modified_time`	TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

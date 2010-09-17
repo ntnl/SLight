@@ -54,6 +54,7 @@ sub handle { # {{{
         @_,
         {
             step    => { type=>SCALAR },
+            page    => { type=>HASHREF },
             url     => { type=>HASHREF },
             options => { type=>HASHREF },
             
@@ -62,6 +63,7 @@ sub handle { # {{{
         }
     );
     
+    $self->{'page'}    = $P{'page'};
     $self->{'url'}     = $P{'url'};
     $self->{'options'} = $P{'options'};
 
@@ -82,6 +84,12 @@ sub handle { # {{{
     if ($self->{'redirect'}) {
         return {
             redirect => $self->{'redirect'}
+        };
+    }
+
+    if ($self->{'replace_with_object'}) {
+        return {
+            replace_with_object => $self->{'replace_with_object'}
         };
     }
 
@@ -117,6 +125,16 @@ sub redirect { # {{{
     # FIXME: make sure no data was set! If so, something is br0ken!
     
     $self->{'redirect'} = $redirect;
+
+    return;
+} # }}}
+
+sub replace_with_object { # {{{
+    my ( $self, %P ) = @_;
+
+    # FIXME: make sure that the %P contains the object data (class, oid, metadata)
+    
+    $self->{'replace_with_object'} = \%P;
 
     return;
 } # }}}
@@ -253,15 +271,19 @@ sub build_url { # {{{
             add_to_path => { type=>SCALAR, optional=>1 },
 
             path_handler => { type=>SCALAR,   optional=>1 },
-            step         => { type=>SCALAR,   optional=>1 },
-            handler      => { type=>SCALAR,   optional=>1 },
-            action       => { type=>SCALAR,   optional=>1 },
             path         => { type=>ARRAYREF, optional=>1 },
-            page         => { type=>SCALAR,   optional=>1 },
-            options      => { type=>HASHREF,  optional=>1 },
-            method       => { type=>SCALAR,   optional=>1 },
+            add_to_path  => { type=>ARRAYREF, optional=>1 },
+
+            step    => { type=>SCALAR,   optional=>1 },
+            handler => { type=>SCALAR,   optional=>1 },
+            action  => { type=>SCALAR,   optional=>1 },
+            page    => { type=>SCALAR,   optional=>1 },
+            options => { type=>HASHREF,  optional=>1 },
+            method  => { type=>SCALAR,   optional=>1 },
 
             lang => { type=>SCALAR, optional=>1 },
+        
+            add_domain => { type=>SCALAR, optional=>1 },
         }
     );
 
@@ -277,18 +299,19 @@ sub build_url { # {{{
 
         action  => ( $P{'action'}  or $self->{'url'}->{'action'} ),
         step    => ( $P{'step'}    or $self->{'url'}->{'step'} ),
-        path    => ( $P{'path'}    or $self->{'url'}->{'path'} ),
+        path    => ( $P{'path'}    or $self->{'url'}->{'path'} or [] ),
         options => ( $P{'options'} or $self->{'url'}->{'options'} or {} ),
 
         page    => ( $P{'page'}    or 1 ),
         lang    => ( $P{'lang'}    or $self->{'user'}->{'lang'} or q{} ),
+        
+        add_domain => ( $P{'add_domain'} or 0 ),
     );
 
     if ($P{'add_to_path'}) {
-        $parts{'path'} =~ s{/*$}{/}s;
-        $parts{'path'} .= $P{'add_to_path'} . q{/};
+        push @{ $parts{'path'} }, @{ $P{'add_to_path'} };
     }
-
+    
     my $url = SLight::Core::URL::make_url(%parts);
 
     return $url;

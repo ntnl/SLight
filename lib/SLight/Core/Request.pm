@@ -175,6 +175,11 @@ sub main { # {{{
             $request_language = $langs->[0];
         }
 
+        # Modifying URL's language has some advantages:
+        #   - no matter what, always on the URL's language (no matter, how it was set)
+        #   - once language is defined, URLs will have them (since new URLs are build using current one)
+        $P{'url'}->{'lang'} = $request_language;
+
 # Planed for M3
 #        SLight::Core::L10N::init(
 #            SLight::Core::Config::get_option(q{site_root}) .q{l10n/},

@@ -29,7 +29,7 @@ sub form_spec { # {{{
                 'Spec',
                 $oid,
             ],
-            step => 'save'
+            step => 'save',
         ),
         submit => TR('Update'),
 

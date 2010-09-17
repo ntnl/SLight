@@ -85,7 +85,7 @@ sub handle_view { # {{{
 
     $self->push_data($properties);
     
-    return $properties;
+    return;
 } # }}}
 
 # vim: fdm=marker

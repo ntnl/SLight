@@ -25,6 +25,7 @@ use SLight::Test::Runner qw( run_tests );
 
 use Carp::Assert::More qw( assert_defined );
 use Params::Validate qw( :all );
+use YAML::Syck qw( Dump Load );
 # }}}
 
 sub run_handler_tests { # {{{
@@ -36,6 +37,8 @@ sub run_handler_tests { # {{{
             call_before => { type=>CODEREF, optional=>1 },
             call_format => { type=>CODEREF, optional=>1 },
             call_result => { type=>CODEREF, optional=>1 },
+
+            strip_dates => { type=>SCALAR, optional=>1 },
         }
     );
 
@@ -45,7 +48,12 @@ sub run_handler_tests { # {{{
             name     => $t->{'name'},
             expect   => 'hashref',
             callback => \&_run_test,
-            args     => [ $t ]
+            args     => [
+                $t,
+                {
+                    strip_dates => ( delete $P{'strip_dates'} or 0 ),
+                }
+            ]
         );
 
         push @tests, \%runner_test;
@@ -59,7 +67,7 @@ sub run_handler_tests { # {{{
 } # }}}
 
 sub _run_test { # {{{
-    my ( $t ) = @_;
+    my ( $t, $opts ) = @_;
 
     # Drop any remainign connection.
     # Request has to be able to re-connect by itself.
@@ -89,7 +97,20 @@ sub _run_test { # {{{
         options    => ( $t->{'cgi'} or {} ),
     );
 
+    if ($opts->{'strip_dates'}) {
+        $result = _strip_dates($result);
+    }
+
     return $result;
+} # }}}
+
+sub _strip_dates { # {{{
+    my ( $results ) = @_;
+
+    # Fixme: this is a bit lame... but hey! It works, and I implemented it in 15 sec!
+    my $crap = Dump($results);
+    $crap =~ s{\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d}{##DATE(yyyy-mm-dd hh:mm:ss) IS SANE##}sg;
+    return Load($crap);
 } # }}}
 
 # vim: fdm=marker

@@ -46,7 +46,7 @@ my $_handler = SLight::Core::Entity->new( # {{{
     child_table      => 'Content_Entity_Data',
 
 # Fixme: add added_time and modified_time to the list: (they are dynamically created, therefore tricky!
-    data_fields        => [qw( status Page_Entity_id on_page_index comment_write_policy comment_read_policy Content_Spec_id )],
+    data_fields        => [qw( status Page_Entity_id on_page_index comment_write_policy comment_read_policy Content_Spec_id added_time modified_time )],
     child_data_fields  => [qw( value )],
     parent_data_fields => [qw( owning_module )],
 
@@ -57,14 +57,14 @@ my $_handler = SLight::Core::Entity->new( # {{{
     has_assets   => 1,
     has_comments => 1,
 
-#    # Yes, this implementation is not optimal, but will suit as a nice Proff Of Concept.
+#    # Yes, this implementation is not optimal, but will suit as a nice Proof Of Concept.
 #    # Once it setles, it can be refactored to address it's shortcommings.
 #    data_callback => {
 #        data_in  => \&_data_in_cb,
 #        data_out => \&_data_out_cb
 #    },
 
-    cache_namespage => 'CoMe::Core::Content'
+    cache_namespace => 'CoMe::Core::Content'
 ); # }}}
 
 sub add_Content { # {{{

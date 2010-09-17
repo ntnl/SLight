@@ -8,7 +8,7 @@ Empty list:
         - class: SLight_New_Action
           data:
             caption: Add new Spec
-            href: /_CMS_Spec/Spec/New.web_test
+            href: /_CMS_Spec/Spec/New-en.web_test
           type: Action
         type: Container
     object_data:
@@ -16,9 +16,18 @@ Empty list:
         class: SLight_Object
         content:
         - class: SLight_Notification
-          data:
-            text: No specs.
-          type: Label
+          content:
+          - class: Message
+            content:
+            - class: generic
+              data:
+                text: No specs.
+              type: Label
+            type: Container
+          - class: Buttons
+            content: []
+            type: Container
+          type: Container
         type: Container
     object_order:
     - l1

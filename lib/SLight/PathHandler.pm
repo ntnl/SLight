@@ -25,6 +25,8 @@ sub new { # {{{
     my ( $class ) = @_;
 
     my $self = {
+        page_id => undef,
+
         template => undef,
 
         objects => {},
@@ -44,8 +46,10 @@ sub new { # {{{
             #           # It can be used to pass data, that PageHandled has fetched, that
             #           # would otherwise had to be fetched again by the Class itself.
             #   }
+
         object_order => [],
             # Order in which objects appear on the page.
+
         main_object => undef,
             # Key name of primary object.
             # This one is always handled first, as it can return redirection,
@@ -57,6 +61,12 @@ sub new { # {{{
     bless $self, $class;
 
     return $self;
+} # }}}
+
+sub set_page_id { # {{{
+    my ( $self, $page_id ) = @_;
+
+    return $self->{'page_id'} = $page_id;
 } # }}}
 
 sub set_template { # {{{
@@ -93,6 +103,8 @@ sub response_content { # {{{
     my ( $self ) = @_;
 
     return {
+        page_id => $self->{'page_id'},
+
         template => $self->{'template'},
 
         objects      => $self->{'objects'},

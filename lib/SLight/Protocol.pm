@@ -36,6 +36,7 @@ sub new { # {{{
         handler_factory => undef,
         addon_factory   => undef,
 
+        page    => undef,
         url     => undef,
         options => undef,
         user    => {},
@@ -66,6 +67,7 @@ sub S_process_object { # {{{
     # FIXME! eval it, or something...
 
     my $result = $handler_object->handle(
+        page     => $self->{'page'},
         url      => $self->{'url'},
         options  => $self->{'options'},
         step     => $step,
@@ -81,6 +83,12 @@ sub S_process_object { # {{{
         if ($result->{'redirect'}) {
             return {
                 redirect_href => $result->{'redirect'}
+            };
+        }
+
+        if ($result->{'replace_with_object'}) {
+            return {
+                replace_with_object => $result->{'replace_with_object'}
             };
         }
 
@@ -131,6 +139,7 @@ sub S_begin_response { # {{{
     assert_defined($P{'page'}->{'main_object'},  'Main object (in page) defined');
 
     $self->{'url'}     = $P{'url'};
+    $self->{'page'}    = $P{'page'};
     $self->{'options'} = $P{'options'};
 
 #    $self->D_Dump($P{'url'});
