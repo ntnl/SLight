@@ -1,0 +1,65 @@
+---
+Root page:
+  content:
+    addon_data:
+      Toolbox:
+        class: SLight_Toolbox_Plugin
+        content:
+        - class: SLight_AddContent_Action
+          data:
+            caption: Add Content
+            href: /AddContent-en.web_test
+          type: Action
+        - class: SLight_Edit_Action
+          data:
+            caption: Edit
+            href: /Edit-en.web_test
+          type: Action
+        - class: SLight_Delete_Action
+          data:
+            caption: Delete
+            href: /Delete-en.web_test
+          type: Action
+        type: Container
+    object_data:
+      ob1:
+        class: SLight_Object
+        content:
+        - class: SLight_Notification
+          content:
+          - class: Message
+            content:
+            - class: generic
+              data:
+                text: This works!
+              type: Label
+            type: Container
+          - class: Buttons
+            content: []
+            type: Container
+          type: Container
+        - class: Core
+          content:
+          - class: V-title Value
+            data:
+              text: Test site is up
+            type: Label
+          - class: V-article Value
+            data:
+              text:
+              - Minimal test site, not such minimal any more ;)
+            type: Text
+          - class: SLight_Timebox
+            content:
+            - class: SLight_AddedTime
+              data:
+                text: 'Added: ##DATE(yyyy-mm-dd hh:mm:ss) IS SANE##'
+              type: Label
+            type: Container
+          type: Container
+        type: Container
+    object_order:
+    - ob1
+    template: Default
+  mime_type: ~
+  response: CONTENT
