@@ -31,15 +31,16 @@ plan tests =>
     + 2 # get_pages
     + 2 # get_page_ids_where
     + 1 # get_page_fields_where
-# M2:   + 1 # attach_page_to_page
-# M2:   + 1 # attach_pages_to_page
+    + 4 # get_Page_full_path
 ;
 
 SLight::Test::Site::prepare_empty(
     test_dir => $Bin .q{/../},
 );
 
-use SLight::API::Page;
+use SLight::API::Page qw(
+    get_Page_full_path
+);
 
 
 my $page_0_id = SLight::API::Page::add_page(
@@ -79,6 +80,29 @@ my $page_5_id = SLight::API::Page::add_page(
     path      => 'Bzz',
 );
 is ($page_5_id, 6, "add_page (5/5)");
+
+
+
+is_deeply(
+    get_Page_full_path(12345),
+    [],
+    'get_Page_full_path (1/4) non-existing page ID does not kill the function'
+);
+is_deeply(
+    get_Page_full_path($page_0_id),
+    [],
+    'get_Page_full_path (2/4) root path = empty list'
+);
+is_deeply(
+    get_Page_full_path($page_1_id),
+    [ 'Foo' ],
+    'get_Page_full_path (3/4) first level depth = one element list'
+);
+is_deeply(
+    get_Page_full_path($page_4_id),
+    [qw( Baz Goo )],
+    'get_Page_full_path (4/4) second level depth = two elements list'
+);
 
 
 
@@ -216,6 +240,10 @@ is_deeply(
     ],
     "get_page_fields_where() using template"
 );
+
+################################################################################
+#                   delete_* functions tests
+################################################################################
 
 is (
     SLight::API::Page::delete_page($page_1_id),

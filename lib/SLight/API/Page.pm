@@ -19,6 +19,11 @@ use SLight::Core::Entity;
 use Params::Validate qw( :all );
 # }}}
 
+our @EXPORT_OK = qw(
+    get_Page_full_path
+);
+our %EXPORT_TAGS = ( 'all' => [ @EXPORT_OK ] );
+
 my $_handler = SLight::Core::Entity->new( # {{{
     base_table  => 'Page_Entity',
 
@@ -126,16 +131,24 @@ sub get_page_fields_where { # {{{
     return $_handler->get_ENTITYs_fields_where(@_);
 } # }}}
 
-# sub attach_page_to_page { # {{{
-# } # }}}
+sub get_Page_full_path { # {{{
+    my ( $id ) = @_;
 
-# sub attach_pages_to_page { # {{{
-# } # }}}
+    my @path;
+    while ($id and my $page = $_handler->get_ENTITY($id)) {
+        if ($page->{'parent_id'}) {
+            unshift @path, $page->{'path'};
+        }
+
+        $id = $page->{'parent_id'};
+    }
+
+    return \@path;
+} # }}}
 
 # TODO:
 #
 # sub id_for_path
-# sub path_for_id
 
 # vim: fdm=marker
 1;
