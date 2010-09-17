@@ -838,3 +838,56 @@ Forum::Thread::Delete
     # replaces:
     Forum/Handler/Thread/Delete.pm
 
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    CMS objects handling.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Use cases:
+
+    1) Add very first (root) page
+        At "/", if there are no pages, SLight will display SLight::Handler::CMS::Welcome
+        If User does not want/need any page, He has to ass an 'Empty'
+
+    2) Adding sub-page
+
+    3) Appending stuff to a page
+
+    4) Displaying stuff from a page
+
+    5) Editing page
+
+    6) Editing stuff from a page
+
+    7) Deleting stuff from a page
+
+    8) Deleting page
+
+Bla bla bla...
+
+    - Use 'Add content'
+
+    - Page opens to SLight::Handler::Core::Empty::Add::handle_view
+
+    - Page shows:
+        SLight::Handler::Core::Empty               - Add as new page - Append to this page
+        SLight::Handler::CMS::Entry    /   Foo bar - Add as new page - Append to this page
+        SLight::Handler::Forum::Root               - Add as new page
+            |                                 |
+            |                                 '---( this is the 'caption', if the object has versions )
+            |
+            '---( this will be translated some time soon )
+
+    - Browser is redirected to chosen handler's 'New' action.
+      This action should be based on SLight::HandlerBase::Page::New.
+
+    - Metadata, about which Handler objects can be used on Pages (at all) + filter by that.
+
+    - Metadata, about what objects can be under and above given object + filter by that.
+
+    - New action defines the resulting object, which is then attached to a page (created, if needed).
+
+    - Stuff that can not be displayed as Page will not appear in 'MainMenu' nor 'SubMenu'.
+

@@ -39,7 +39,7 @@
 
     Definition of done:
 
-        Pages are - in some way - server by SLight.
+        Pages are - in some way - served by SLight.
 
 =--= Milestone 3 - Working CMS - ....-..-..
 
@@ -51,13 +51,13 @@
 [X]     SLight::Validator::User.pm
 [>] Core
 [X]     Cache
-[>]     DB - add support to 'IN' in 'where' parameter of sql_* functions
+[>]     Entity - add support to 'IN' in '*_where' functions
 [>] API
 [X]     ContentSpec store
 [X]         'cms_usage' column support
 [X]     Content store
 [ ]     Comment store
-[ ]     Asset store
+[X]     Asset store
 [ ]     Page API refactoring ('page' to 'Page')
 [ ]     Add 'title' and 'description' to Page, l10n-dependant
 [>] PathHandler ()
@@ -114,7 +114,7 @@
 [>]     SLight::DataStructure::Table::Properties (ex CoMe...GenericProperties)
 [>]     SLight::DataStructure::Form (ex CoMe...GenericForm)
 [ ]     SLight::DataStructure::Form::Diff (CoMe...DiffForm)
-[ ]     SLight::DataStructure::Dialog (new!)
+[X]     SLight::DataStructure::Dialog (new!)
 [X]     SLight::DataStructure::Dialog::Notification (ex CoMe...GenericMessage)
 [>]     SLight::DataStructure::Dialog::YesNo (ex. CoMe...YesNo)
 [>] Addon

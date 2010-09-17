@@ -248,11 +248,11 @@ CREATE INDEX Comment_Entity_email  ON Comment_Entity (`Email_id`);
 CREATE TABLE Asset_Entity (
 	`id` INTEGER PRIMARY KEY,
 
-	`added` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
     `Email_id` INTEGER,
         -- User's Email ID.
 		-- This in turn will lead to an user account, or not (if the comment was written by guest)
+
+	`added` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
 	`filename`	VARCHAR(255), -- original file name.
 	`byte_size`	INTEGER,
@@ -260,60 +260,30 @@ CREATE TABLE Asset_Entity (
 
 	`summary`	VARCHAR(255), -- summary entered by the uploader
 
-	FOREIGN KEY(`Email_id`) REFERENCES Email(`id`)
+	FOREIGN KEY (`Email_id`) REFERENCES Email(`id`)
 );
 CREATE INDEX Asset_Entity_email ON Asset_Entity (`Email_id`);
 
+CREATE TABLE Asset_2_Content (
+    `Asset_Entity_id` INTEGER,
 
+    `Content_Entity_id` INTEGER NOT NULL,
 
-CREATE TABLE Comment_to_Content (
-    Content_Entity_id INTEGER NOT NULL,
-    Comment_Entity_id INTEGER NOT NULL,
-
-    FOREIGN KEY (`Content_Entity_id`) REFERENCES Content_Entity (`id`),
-    FOREIGN KEY (`Comment_Entity_id`) REFERENCES Comment_Entity (`id`)
+    FOREIGN KEY (`Content_Entity_id`) REFERENCES Content_Entity (`id`)
 );
-CREATE UNIQUE INDEX Comment_to_Content_index ON Comment_to_Content (Content_Entity_id, Comment_Entity_id);
+CREATE UNIQUE INDEX Asset_2_Content_unique ON Asset_2_Content (`Asset_Entity_id`, `Content_Entity_id`);
+CREATE        INDEX Asset_2_Content_target ON Asset_2_Content (`Content_Entity_id`);
+CREATE TABLE Asset_2_Content_Field (
+    `Asset_Entity_id` INTEGER,
 
-CREATE TABLE Comment_to_User (
-    `User_Entity_id`    INTEGER NOT NULL,
-    `Comment_Entity_id` INTEGER NOT NULL,
-
-    FOREIGN KEY (`User_Entity_id`)    REFERENCES User_Entity (`id`),
-    FOREIGN KEY (`Comment_Entity_id`) REFERENCES Comment_Entity (`id`)
-);
-CREATE UNIQUE INDEX Comment_to_User_index ON Comment_to_User (User_Entity_id, Comment_Entity_id);
-
-CREATE TABLE Comment_to_Asset (
-    `Asset_Entity_id`   INTEGER NOT NULL,
-    `Comment_Entity_id` INTEGER NOT NULL,
-
-    FOREIGN KEY (`Asset_Entity_id`)   REFERENCES Asset_Entity   (`id`),
-    FOREIGN KEY (`Comment_Entity_id`) REFERENCES Comment_Entity (`id`)
-);
-CREATE UNIQUE INDEX Comment_to_Asset_index ON Comment_to_Asset (Asset_Entity_id, Comment_Entity_id);
-
-
-
-CREATE TABLE Asset_to_Content (
-    `Comment_Entity_id` INTEGER NOT NULL,
-    `Asset_Entity_id`   INTEGER NOT NULL,
-
+    `Content_Entity_id` INTEGER NOT NULL,
     `Content_Spec_Field_id` INTEGER,
 
-    FOREIGN KEY (`Comment_Entity_id`) REFERENCES Comment_Entity (`id`),
-    FOREIGN KEY (`Asset_Entity_id`)   REFERENCES Asset_Entity   (`id`)
+    FOREIGN KEY (`Content_Entity_id`)     REFERENCES Content_Entity (`id`),
+    FOREIGN KEY (`Content_Spec_Field_id`) REFERENCES Content_Spec_Field (`id`)
 );
-CREATE UNIQUE INDEX Asset_to_Content_index ON Comment_to_Content (Content_Entity_id, Comment_Entity_id);
-
-CREATE TABLE Asset_to_User (
-    `User_Entity_id`  INTEGER NOT NULL,
-    `Asset_Entity_id` INTEGER NOT NULL,
-
-    `field` VARCHAR(64) NOT NULL,
-
-    FOREIGN KEY (`User_Entity_id`)  REFERENCES User_Entity (`id`),
-    FOREIGN KEY (`Asset_Entity_id`) REFERENCES Asset_Entity (`id`)
-);
-CREATE UNIQUE INDEX Asset_to_User_index ON Comment_to_User (User_Entity_id, Comment_Entity_id);
+CREATE UNIQUE INDEX Asset_2_Content_Field_unique  ON Asset_2_Content_Field (`Asset_Entity_id`, `Content_Entity_id`, `Content_Spec_Field_id`);
+CREATE        INDEX Asset_2_Content_Field_target  ON Asset_2_Content_Field (`Content_Entity_id`, `Content_Spec_Field_id`);
+CREATE        INDEX Asset_2_Content_Field_targets ON Asset_2_Content_Field (`Content_Entity_id`);
+/* Add links to other stuff, as needed... */
 

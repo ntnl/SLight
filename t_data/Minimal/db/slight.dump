@@ -13,9 +13,10 @@ CREATE TABLE Page_Entity (
     FOREIGN KEY (`parent_id`) REFERENCES Page_Entity (`id`) ON DELETE CASCADE
 );
 INSERT INTO "Page_Entity" VALUES(1,NULL,'/','Default');
-INSERT INTO "Page_Entity" VALUES(2,1,'About','Doc');
+INSERT INTO "Page_Entity" VALUES(2,1,'About','Info');
 INSERT INTO "Page_Entity" VALUES(3,1,'Docs','Doc');
 INSERT INTO "Page_Entity" VALUES(4,1,'Download',NULL);
+INSERT INTO "Page_Entity" VALUES(5,2,'Authors',NULL);
 CREATE TABLE Content_Spec (
 	`id`     	INTEGER PRIMARY KEY,
 
@@ -40,6 +41,9 @@ CREATE TABLE Content_Spec (
         -- Serialized with YAML.
         -- A place where modules can put 'their' stuff.
 );
+INSERT INTO "Content_Spec" VALUES(1,'Article','CMS::Entry',0,0,NULL);
+INSERT INTO "Content_Spec" VALUES(2,'News','CMS::Entry',0,0,NULL);
+INSERT INTO "Content_Spec" VALUES(3,'Gal','CMS::Entry',0,0,NULL);
 CREATE TABLE Content_Spec_Field (
 	`id`		INTEGER PRIMARY KEY,
 
@@ -118,6 +122,20 @@ CREATE TABLE Content_Spec_Field (
 	
     FOREIGN KEY(`Content_Spec_id`) REFERENCES Content_Spec(`id`)
 );
+INSERT INTO "Content_Spec_Field" VALUES(10,1,'title','Title',1,'String','',1,2,2,1,1,128);
+INSERT INTO "Content_Spec_Field" VALUES(11,1,'article','Article',2,'Text','',1,2,2,1,1,1024);
+INSERT INTO "Content_Spec_Field" VALUES(20,2,'title','Title',1,'String','',1,2,2,1,1,128);
+INSERT INTO "Content_Spec_Field" VALUES(21,2,'news','News',2,'Text','',1,2,2,1,1,1024);
+INSERT INTO "Content_Spec_Field" VALUES(30,3,'name','Chest',1,'String','',0,2,2,1,0,3);
+INSERT INTO "Content_Spec_Field" VALUES(31,3,'pic','Pic',2,'Image','',0,2,2,1,0,3);
+INSERT INTO "Content_Spec_Field" VALUES(32,3,'birth','Birth date',3,'Date','',0,2,2,1,0,1);
+INSERT INTO "Content_Spec_Field" VALUES(33,3,'email','Email',4,'Email','',0,2,2,1,0,3);
+INSERT INTO "Content_Spec_Field" VALUES(34,3,'homepage','Homepage',5,'Link','',0,2,2,1,0,3);
+INSERT INTO "Content_Spec_Field" VALUES(35,3,'chest','Chest',6,'Int','',0,2,2,1,0,3);
+INSERT INTO "Content_Spec_Field" VALUES(36,3,'waist','Waist',7,'Int','',0,2,2,1,0,3);
+INSERT INTO "Content_Spec_Field" VALUES(37,3,'hips','Hips',8,'Int','',0,2,2,1,0,3);
+INSERT INTO "Content_Spec_Field" VALUES(38,3,'cup','Cup size',9,'String','',0,2,2,1,0,1);
+INSERT INTO "Content_Spec_Field" VALUES(39,3,'about','About',10,'Text','',1,2,2,1,0,1);
 CREATE TABLE Content_Entity (
     `id` INTEGER PRIMARY KEY,
 
@@ -170,6 +188,7 @@ CREATE TABLE Content_Entity (
     FOREIGN KEY (`Email_id`)        REFERENCES Email(`id`),
 	FOREIGN KEY (`Content_Spec_id`) REFERENCES Content_Spec(`id`)
 );
+INSERT INTO "Content_Entity" VALUES(1,1,NULL,'V',1,0,0,0,'2010-09-17 13:57:04','2010-09-17 13:57:04',NULL);
 CREATE TABLE Content_Entity_Data (
 	`Content_Entity_id` INTEGER NOT NULL,
 
@@ -185,6 +204,14 @@ CREATE TABLE Content_Entity_Data (
 	FOREIGN KEY(`Content_Entity_id`)     REFERENCES Content_Entity(`id`),
     FOREIGN KEY(`Content_Spec_Field_id`) REFERENCES Content_Spec_Field(`id`)
 );
+INSERT INTO "Content_Entity_Data" VALUES(1,11,'en','---
+ - Minimal test site, not such minimal any more ;)
+');
+INSERT INTO "Content_Entity_Data" VALUES(1,10,'en','Test site is up');
+INSERT INTO "Content_Entity_Data" VALUES(1,11,'pl','---
+ - Minimalna strona testowa, już nie taka minimalna ;)
+');
+INSERT INTO "Content_Entity_Data" VALUES(1,10,'pl','Strona testowa zrobiona');
 CREATE TABLE Content_Entity_Data_History (
     `id` INTEGER PRIMARY KEY,
 
@@ -229,11 +256,11 @@ CREATE TABLE Comment_Entity (
 CREATE TABLE Asset_Entity (
 	`id` INTEGER PRIMARY KEY,
 
-	`added` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
     `Email_id` INTEGER,
         -- User's Email ID.
 		-- This in turn will lead to an user account, or not (if the comment was written by guest)
+
+	`added` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
 	`filename`	VARCHAR(255), -- original file name.
 	`byte_size`	INTEGER,
@@ -241,46 +268,23 @@ CREATE TABLE Asset_Entity (
 
 	`summary`	VARCHAR(255), -- summary entered by the uploader
 
-	FOREIGN KEY(`Email_id`) REFERENCES Email(`id`)
+	FOREIGN KEY (`Email_id`) REFERENCES Email(`id`)
 );
-CREATE TABLE Comment_to_Content (
-    Content_Entity_id INTEGER NOT NULL,
-    Comment_Entity_id INTEGER NOT NULL,
+CREATE TABLE Asset_2_Content (
+    `Asset_Entity_id` INTEGER,
 
-    FOREIGN KEY (`Content_Entity_id`) REFERENCES Content_Entity (`id`),
-    FOREIGN KEY (`Comment_Entity_id`) REFERENCES Comment_Entity (`id`)
+    `Content_Entity_id` INTEGER NOT NULL,
+
+    FOREIGN KEY (`Content_Entity_id`) REFERENCES Content_Entity (`id`)
 );
-CREATE TABLE Comment_to_User (
-    `User_Entity_id`    INTEGER NOT NULL,
-    `Comment_Entity_id` INTEGER NOT NULL,
+CREATE TABLE Asset_2_Content_Field (
+    `Asset_Entity_id` INTEGER,
 
-    FOREIGN KEY (`User_Entity_id`)    REFERENCES User_Entity (`id`),
-    FOREIGN KEY (`Comment_Entity_id`) REFERENCES Comment_Entity (`id`)
-);
-CREATE TABLE Comment_to_Asset (
-    `Asset_Entity_id`   INTEGER NOT NULL,
-    `Comment_Entity_id` INTEGER NOT NULL,
-
-    FOREIGN KEY (`Asset_Entity_id`)   REFERENCES Asset_Entity   (`id`),
-    FOREIGN KEY (`Comment_Entity_id`) REFERENCES Comment_Entity (`id`)
-);
-CREATE TABLE Asset_to_Content (
-    `Comment_Entity_id` INTEGER NOT NULL,
-    `Asset_Entity_id`   INTEGER NOT NULL,
-
+    `Content_Entity_id` INTEGER NOT NULL,
     `Content_Spec_Field_id` INTEGER,
 
-    FOREIGN KEY (`Comment_Entity_id`) REFERENCES Comment_Entity (`id`),
-    FOREIGN KEY (`Asset_Entity_id`)   REFERENCES Asset_Entity   (`id`)
-);
-CREATE TABLE Asset_to_User (
-    `User_Entity_id`  INTEGER NOT NULL,
-    `Asset_Entity_id` INTEGER NOT NULL,
-
-    `field` VARCHAR(64) NOT NULL,
-
-    FOREIGN KEY (`User_Entity_id`)  REFERENCES User_Entity (`id`),
-    FOREIGN KEY (`Asset_Entity_id`) REFERENCES Asset_Entity (`id`)
+    FOREIGN KEY (`Content_Entity_id`)     REFERENCES Content_Entity (`id`),
+    FOREIGN KEY (`Content_Spec_Field_id`) REFERENCES Content_Spec_Field (`id`)
 );
 CREATE TABLE Email (
 	`id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it
@@ -341,11 +345,11 @@ CREATE UNIQUE INDEX Content_Entity_Data_index ON Content_Entity_Data (Content_En
 CREATE INDEX Comment_Entity_parent ON Comment_Entity (`parent_id`);
 CREATE INDEX Comment_Entity_email  ON Comment_Entity (`Email_id`);
 CREATE INDEX Asset_Entity_email ON Asset_Entity (`Email_id`);
-CREATE UNIQUE INDEX Comment_to_Content_index ON Comment_to_Content (Content_Entity_id, Comment_Entity_id);
-CREATE UNIQUE INDEX Comment_to_User_index ON Comment_to_User (User_Entity_id, Comment_Entity_id);
-CREATE UNIQUE INDEX Comment_to_Asset_index ON Comment_to_Asset (Asset_Entity_id, Comment_Entity_id);
-CREATE UNIQUE INDEX Asset_to_Content_index ON Comment_to_Content (Content_Entity_id, Comment_Entity_id);
-CREATE UNIQUE INDEX Asset_to_User_index ON Comment_to_User (User_Entity_id, Comment_Entity_id);
+CREATE UNIQUE INDEX Asset_2_Content_unique ON Asset_2_Content (`Asset_Entity_id`, `Content_Entity_id`);
+CREATE INDEX Asset_2_Content_target ON Asset_2_Content (`Content_Entity_id`);
+CREATE UNIQUE INDEX Asset_2_Content_Field_unique  ON Asset_2_Content_Field (`Asset_Entity_id`, `Content_Entity_id`, `Content_Spec_Field_id`);
+CREATE INDEX Asset_2_Content_Field_target  ON Asset_2_Content_Field (`Content_Entity_id`, `Content_Spec_Field_id`);
+CREATE INDEX Asset_2_Content_Field_targets ON Asset_2_Content_Field (`Content_Entity_id`);
 CREATE UNIQUE INDEX Email_email ON Email (email);
 CREATE UNIQUE INDEX User_Entity_login ON User_Entity (login);
 CREATE INDEX User_Entity_email ON User_Entity (Email_id);

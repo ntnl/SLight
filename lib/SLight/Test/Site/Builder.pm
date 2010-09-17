@@ -36,7 +36,14 @@ my $_site_root;
 sub build_site { # {{{
     my ( $base_dir, $sql_dir, $print_cb, $site_name ) = @_;
 
-    assert_defined($site_name, "Site name defined.");
+    if (not $site_name) {
+        foreach my $site (keys %sites) {
+            build_site($base_dir, $sql_dir, $print_cb, $site);
+        }
+
+        return;
+    }
+
     assert_exists(\%sites, $site_name, "Site configured.");
 
     $_site_root = $base_dir . q{/}. $site_name;
