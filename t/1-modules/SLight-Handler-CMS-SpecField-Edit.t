@@ -27,7 +27,10 @@ my $site_root = SLight::Test::Site::prepare_fake(
 );
 
 my @tests = (
-
+    {
+        'name' => q{Open form},
+        'url'  => q{/_CMS_Spec/Field/2/news/Edit.web},
+    },
 );
 
 run_handler_tests(

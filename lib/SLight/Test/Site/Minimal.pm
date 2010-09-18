@@ -24,7 +24,7 @@ sub build { # {{{
     # Add root page:
     my $p0_id = SLight::API::Page::add_page(
         parent_id => undef,
-        path      => q{/},
+        path      => q{},
         template  => q{Default},
     );
 
@@ -59,6 +59,8 @@ sub build { # {{{
             article => { id=>11, caption=>'Article', datatype=>'Text',   order=>2, default => q{}, translate=>1, max_length=>1024 },
         },
 
+        cms_usage => 3,
+
         owning_module => q{CMS::Entry},
     );
     my $spec2_id = add_ContentSpec(
@@ -68,6 +70,8 @@ sub build { # {{{
             title => { id=>20, caption=>'Title', datatype=>'String', order=>1, default => q{}, translate=>1, max_length=>128 },
             news  => { id=>21, caption=>'News',  datatype=>'Text',   order=>2, default => q{}, translate=>1, max_length=>1024 },
         },
+
+        cms_usage => 3,
 
         owning_module => q{CMS::Entry},
     );
@@ -89,6 +93,8 @@ sub build { # {{{
             about => { id=>39, caption => 'About', datatype => 'Text', order=>10, default => q{}, translate => 1, optional => 0, max_length => 1 },
         },
 
+        cms_usage => 1,
+
         owning_module => q{CMS::Entry},
     );
 
@@ -105,7 +111,7 @@ sub build { # {{{
             },
             en => {
                 10 => q{Test site is up},
-                11 => q{---\n - Minimal test site, not such minimal any more ;)\n},
+                11 => qq{---\n - Minimal test site, not such minimal any more ;)\n},
             },
         }
     );

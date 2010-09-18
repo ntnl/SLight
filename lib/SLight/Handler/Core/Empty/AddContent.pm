@@ -16,6 +16,7 @@ use base q{SLight::HandlerBase::ContentEntryForm};
 
 use SLight::API::Content qw( add_Content );
 use SLight::API::ContentSpec qw( get_ContentSpecs_where get_ContentSpec );
+use SLight::API::Page;
 use SLight::DataStructure::List::Table;
 use SLight::DataStructure::Form;
 use SLight::Core::L10N qw( TR );
@@ -165,7 +166,13 @@ sub handle_save { # {{{
 
     my $page_id;
     if ($self->{'options'}->{'target'} eq 'New') {
+        $page_id = SLight::API::Page::add_page(
+            template => $self->{'options'}->{'template'},
 
+            parent_id => $self->{'page'}->{'page_id'},
+
+            path => $self->{'page'}->{'path'},
+        );
     }
     else {
         $page_id = $self->{'page'}->{'page_id'};

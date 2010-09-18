@@ -1,0 +1,57 @@
+---
+Show field details:
+  content:
+    addon_data: ~
+    object_data:
+      _field:
+        class: SLight_Object
+        content:
+        - class: SLight_Properties
+          content:
+          - class: caption
+            data:
+              text: 'Field:'
+            type: Label
+          - class: default
+            content:
+            - class: SLight_Caption
+              data:
+                text: 'Caption:'
+              type: Label
+            - class: SLight_Value
+              data:
+                text: Title
+              type: Label
+            type: Container
+          - class: default
+            content:
+            - class: SLight_Caption
+              data:
+                text: 'Data type:'
+              type: Label
+            - class: SLight_Value
+              data:
+                text: String
+              type: Label
+            type: Container
+          data: {}
+          type: Container
+        - class: SLight_Toolbox
+          content:
+          - class: SLight_Edit_Action
+            data:
+              caption: Edit
+              href: /_CMS_Spec/Field/1/title/Edit-en.web_test
+            type: Action
+          - class: SLight_Delete_Action
+            data:
+              caption: Delete
+              href: /_CMS_Spec/Field/1/title/Delete-en.web_test
+            type: Action
+          type: Container
+        type: Container
+    object_order:
+    - _field
+    template: Default
+  mime_type: ~
+  response: CONTENT

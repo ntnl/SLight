@@ -12,7 +12,7 @@ CREATE TABLE Page_Entity (
 
     FOREIGN KEY (`parent_id`) REFERENCES Page_Entity (`id`) ON DELETE CASCADE
 );
-INSERT INTO "Page_Entity" VALUES(1,NULL,'/','Default');
+INSERT INTO "Page_Entity" VALUES(1,NULL,'','Default');
 INSERT INTO "Page_Entity" VALUES(2,1,'About','Info');
 INSERT INTO "Page_Entity" VALUES(3,1,'Docs','Doc');
 INSERT INTO "Page_Entity" VALUES(4,1,'Download',NULL);
@@ -41,9 +41,9 @@ CREATE TABLE Content_Spec (
         -- Serialized with YAML.
         -- A place where modules can put 'their' stuff.
 );
-INSERT INTO "Content_Spec" VALUES(1,'Article','CMS::Entry',0,0,NULL);
-INSERT INTO "Content_Spec" VALUES(2,'News','CMS::Entry',0,0,NULL);
-INSERT INTO "Content_Spec" VALUES(3,'Gal','CMS::Entry',0,0,NULL);
+INSERT INTO "Content_Spec" VALUES(1,'Article','CMS::Entry',0,3,NULL);
+INSERT INTO "Content_Spec" VALUES(2,'News','CMS::Entry',0,3,NULL);
+INSERT INTO "Content_Spec" VALUES(3,'Gal','CMS::Entry',0,1,NULL);
 CREATE TABLE Content_Spec_Field (
 	`id`		INTEGER PRIMARY KEY,
 
@@ -174,7 +174,7 @@ CREATE TABLE Content_Entity (
         --  1 - visible to registered users only
         --  2 - visible to everyone
 
-	`added_time`	TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`added_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		-- Time, when this entry was added.
 
 	`modified_time`	TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -188,7 +188,7 @@ CREATE TABLE Content_Entity (
     FOREIGN KEY (`Email_id`)        REFERENCES Email(`id`),
 	FOREIGN KEY (`Content_Spec_id`) REFERENCES Content_Spec(`id`)
 );
-INSERT INTO "Content_Entity" VALUES(1,1,NULL,'V',1,0,0,0,'2010-09-17 13:57:04','2010-09-17 13:57:04',NULL);
+INSERT INTO "Content_Entity" VALUES(1,1,NULL,'V',1,0,0,0,'2010-09-18 21:43:55','2010-09-18 21:43:55',NULL);
 CREATE TABLE Content_Entity_Data (
 	`Content_Entity_id` INTEGER NOT NULL,
 

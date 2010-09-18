@@ -30,7 +30,7 @@ my @tests = (
     {
         'name' => q{Ask for existing Spec},
         'url'  => q{/_CMS_Spec/Spec/1/Delete.web},
-    }
+    },
 );
 
 run_handler_tests(

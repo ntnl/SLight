@@ -1,0 +1,33 @@
+---
+Get the welcome message (note, that DB is empty):
+  content:
+    addon_data: ~
+    object_data:
+      e1:
+        class: SLight_Object
+        content:
+        - class: SLight_Dialog
+          content:
+          - class: Message
+            content:
+            - class: generic
+              data:
+                text: Welcome to SLight Content Management System. This instalation
+                  has no content.
+              type: Label
+            type: Container
+          - class: Buttons
+            content:
+            - class: generic
+              data:
+                caption: Start by adding Content specification.
+                href: /_CMS_Spec/
+              type: Action
+            type: Container
+          type: Container
+        type: Container
+    object_order:
+    - e1
+    template: Default
+  mime_type: ~
+  response: CONTENT

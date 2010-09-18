@@ -17,7 +17,7 @@ use base q{SLight::Handler};
 use SLight::DataStructure::Dialog::YesNo;
 
 use SLight::API::ContentSpec qw( update_ContentSpec );
-use SLight::Core::L10N qw( TR );
+use SLight::Core::L10N qw( TR TF );
 # }}}
 
 sub handle_view { # {{{

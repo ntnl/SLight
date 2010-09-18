@@ -24,6 +24,7 @@ use Params::Validate qw( :all );
 
 # Fixme:
 #   Rename 'attachments' to 'assets'!
+#   Change package to SLight::HandlerBase::CMS::EntryForm
 
 sub build_form_guts { # {{{
     my (  $self, %P ) = @_;
@@ -83,7 +84,7 @@ sub build_form_guts { # {{{
             $content,
             $P{'errors'},
             $field_name,
-            $spec->{'_data'}->{$lang}->{$field_name},
+            $field,
             ( $signatures_cache{ $field->{'datatype'} } or $signatures_cache{ $field->{'datatype'} } = SLight::DataType::signature(type=>$field->{'datatype'}) ),
             $form
         );
@@ -183,10 +184,12 @@ sub _add_field_to_form { # {{{
 
         my ( $field_lang, $lang_info );
         if ($field_spec->{'translate'}) {
-            $lang_info = $self->{'url'}->{'lang'};
+            $field_lang = $self->{'url'}->{'lang'};
+            $lang_info  = $self->{'url'}->{'lang'};
         }
         else {
-            $lang_info = TR("any language");
+            $field_lang = q{*};
+            $lang_info  = TR("any language");
         }
 
         # Value may come from various sources:
@@ -199,7 +202,7 @@ sub _add_field_to_form { # {{{
             # Value will be initialized from DB data.
             $entry_value = SLight::DataType::decode_data(
                 type   => $field_spec->{'datatype'},
-                value  => $content->{'_data'}->{$field_lang}->{$field_spec->{'id'}},
+                value  => ( $content->{'_data'}->{$field_lang}->{$field_spec->{'id'}} or q{} ),
                 format => q{},
                 target => 'FORM',
             );

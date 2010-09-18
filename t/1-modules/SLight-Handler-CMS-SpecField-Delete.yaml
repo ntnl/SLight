@@ -1,0 +1,37 @@
+---
+Ask for existing Spec:
+  content:
+    addon_data: ~
+    object_data:
+      _field:
+        class: SLight_Object
+        content:
+        - class: SLight_Delete_Dialog
+          content:
+          - class: Message
+            content:
+            - class: generic
+              data:
+                text: 'Do you want to delete CMS Spec Field: ''About''? Please confirm.'
+              type: Label
+            type: Container
+          - class: Buttons
+            content:
+            - class: Yes
+              data:
+                caption: Yes
+                href: /_CMS_Spec/Field/3/about/Delete-commit.web
+              type: Action
+            - class: No
+              data:
+                caption: No
+                href: /_CMS_Spec/Field/3/about/Delete.web
+              type: Action
+            type: Container
+          type: Container
+        type: Container
+    object_order:
+    - _field
+    template: Default
+  mime_type: ~
+  response: CONTENT

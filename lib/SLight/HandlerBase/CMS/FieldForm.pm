@@ -23,7 +23,7 @@ sub make_form { # {{{
 
     my $field_data = ( $metadata->{'spec'}->{'_data'}->{$oid} or {} );
 
-    use Data::Dumper; warn Dumper $field_data;
+#    use Data::Dumper; warn Dumper $field_data;
 
     $form->add_Entry(
         name    => 'class',

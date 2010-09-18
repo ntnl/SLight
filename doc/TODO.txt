@@ -49,9 +49,9 @@
 [X]     SLight::Validator::Net.pm
 [X]     SLight::Validator::Simple.pm
 [X]     SLight::Validator::User.pm
-[>] Core
+[X] Core
 [X]     Cache
-[>]     Entity - add support to 'IN' in '*_where' functions
+[X]     Entity - add support to 'IN' in '*_where' functions
 [>] API
 [X]     ContentSpec store
 [X]         'cms_usage' column support
@@ -59,46 +59,42 @@
 [ ]     Comment store
 [X]     Asset store
 [ ]     Page API refactoring ('page' to 'Page')
-[ ]     Add 'title' and 'description' to Page, l10n-dependant
 [>] PathHandler ()
 [>]     Test Framework
-[>]     SLight::PathHandler::CMS_Spec
-[>]     SLight::PathHandler::Test
+[X]     SLight::PathHandler::CMS_Spec
+[X]     SLight::PathHandler::Test
 [X] Handler Object Test Framework
 [>] CMS Handler objects
 [X]     SLight::Handler::Test::Foo
 [ ]     SLight::Handler::Core::Asset
-[ ]     SLight::Handler::Core::Asset::List
-[ ]     SLight::Handler::Core::Asset::Asset
-[ ]     SLight::Handler::Core::Asset::Internal
-[ ]     SLight::Handler::Core::Asset::Dynamic
+[ ]         SLight::Handler::Core::Asset::List
+[ ]         SLight::Handler::Core::Asset::Asset
+[ ]         SLight::Handler::Core::Asset::Internal
+[ ]         SLight::Handler::Core::Asset::Dynamic
 [>]     SLight::Handler::Core::Empty
-[>]         SLight::Handler::Core::Empty::View
-[ ]         SLight::Handler::Core::Empty::Add
-[ ]         SLight::Handler::Core::Empty::Edit
-[ ]         SLight::Handler::Core::Empty::Move
-[ ]         SLight::Handler::Core::Empty::Delete
-[>]     SLight::Handler::CMS::Welcome
-[>]         SLight::Handler::CMS::Welcome::View
+[X]         SLight::Handler::Core::Empty::View
+[X]         SLight::Handler::Core::Empty::AddContent
+[>]         SLight::Handler::Core::Empty::Delete
+[X]     SLight::Handler::CMS::Welcome
+[X]         SLight::Handler::CMS::Welcome::View
 [X]     SLight::Handler::CMS::SpecList
 [X]         SLight::Handler::CMS::SpecList::View
-[>]     SLight::Handler::CMS::Spec
+[X]     SLight::Handler::CMS::Spec
 [X]         SLight::Handler::CMS::Spec::View
 [X]         SLight::Handler::CMS::Spec::New
 [X]         SLight::Handler::CMS::Spec::Edit
-[>]         SLight::Handler::CMS::Spec::Delete
-[>]     SLight::Handler::CMS::SpecField
+[X]         SLight::Handler::CMS::Spec::Delete
+[X]     SLight::Handler::CMS::SpecField
 [X]         SLight::Handler::CMS::SpecField::View
 [X]         SLight::Handler::CMS::SpecField::New
-[>]         SLight::Handler::CMS::SpecField::Edit
-[>]         SLight::Handler::CMS::SpecField::Delete
-[ ]     SLight::Handler::CMS::Entry
-[ ]         SLight::Handler::CMS::Entry::New
-[ ]         SLight::Handler::CMS::Entry::Edit
+[X]         SLight::Handler::CMS::SpecField::Edit
+[X]         SLight::Handler::CMS::SpecField::Delete
+[>]     SLight::Handler::CMS::Entry
+[X]         SLight::Handler::CMS::Entry::New
+[X]         SLight::Handler::CMS::Entry::Edit
 [ ]         SLight::Handler::CMS::Entry::Asset
 [ ]         SLight::Handler::CMS::Entry::Comment
-[ ]         SLight::Handler::CMS::Entry::Comment
-[ ]         SLight::Handler::CMS::Entry::View
+[X]         SLight::Handler::CMS::Entry::View
 [ ]         SLight::Handler::CMS::Entry::Translate
 [X] Output:
 [X]     SLight::OutputFactory
@@ -116,7 +112,7 @@
 [ ]     SLight::DataStructure::Form::Diff (CoMe...DiffForm)
 [X]     SLight::DataStructure::Dialog (new!)
 [X]     SLight::DataStructure::Dialog::Notification (ex CoMe...GenericMessage)
-[>]     SLight::DataStructure::Dialog::YesNo (ex. CoMe...YesNo)
+[X]     SLight::DataStructure::Dialog::YesNo (ex. CoMe...YesNo)
 [>] Addon
 [ ]     SLight::Addon::Core::PathBar
 [ ]     SLight::Addon::Core::MainMenu
@@ -124,6 +120,9 @@
 [ ]     SLight::Addon::Core::Pager
 [X]     SLight::Addon::Core::Toolbox
 [ ]     SLight::Addon::Core::SysInfo
+[ ]     SLight::Addon::Core::Debug
+[ ] Development
+[ ]     Make a script, that creates fully usable sandbox from test site.
 
     Definition of done:
 

@@ -38,7 +38,7 @@ sub handle_view { # {{{
         $dialog->add_button(
             caption => TR("Start by adding Content specification."),
             href    => $self->build_url(
-                page_handler => q{CMS_Spec},
+                path_handler => q{CMS_Spec},
                 path         => [],
             )
         );

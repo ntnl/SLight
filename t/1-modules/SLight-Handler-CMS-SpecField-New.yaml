@@ -1,0 +1,197 @@
+---
+Get form:
+  content:
+    addon_data: ~
+    object_data:
+      _field:
+        class: SLight_Object
+        content:
+        - class: generic
+          content:
+          - class: F-class Entry
+            content:
+            - class: Label
+              data:
+                text: 'Class:'
+              type: Label
+            - class: Value
+              data:
+                name: class
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-caption Entry
+            content:
+            - class: Label
+              data:
+                text: 'Caption:'
+              type: Label
+            - class: Value
+              data:
+                name: caption
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-order Entry
+            content:
+            - class: Label
+              data:
+                text: 'Order:'
+              type: Label
+            - class: Value
+              data:
+                name: order
+                value: '0'
+              type: Entry
+            type: Container
+          - class: F-datatype SelectEntry
+            content:
+            - class: Label
+              data:
+                text: 'Data type:'
+              type: Label
+            - class: Value
+              data:
+                name: datatype
+                options:
+                - - String
+                  - String
+                - - Text
+                  - Text
+                - - Email
+                  - Email
+                - - Link
+                  - Link
+                - - Int
+                  - Integer
+                - - Money
+                  - Monetary value
+                - - Date
+                  - Date
+                - - Time
+                  - Time
+                - - DateTime
+                  - Date and time
+                - - Image
+                  - Image
+                - - Asset
+                  - Asset
+                value: ''
+              type: SelectEntry
+            type: Container
+          - class: F-translate SelectEntry
+            content:
+            - class: Label
+              data:
+                text: 'Localization:'
+              type: Label
+            - class: Value
+              data:
+                name: translate
+                options:
+                - - '0'
+                  - Not translatable
+                - - '1'
+                  - This field is translatable
+                value: ''
+              type: SelectEntry
+            type: Container
+          - class: F-display_on_page SelectEntry
+            content:
+            - class: Label
+              data:
+                text: 'Display on page:'
+              type: Label
+            - class: Value
+              data:
+                name: display_on_page
+                options:
+                - - '0'
+                  - Do not display
+                - - '1'
+                  - Display as summary
+                - - '2'
+                  - Display in full form
+                value: ''
+              type: SelectEntry
+            type: Container
+          - class: F-display_on_list SelectEntry
+            content:
+            - class: Label
+              data:
+                text: 'Display on list:'
+              type: Label
+            - class: Value
+              data:
+                name: display_on_list
+                options:
+                - - '0'
+                  - Do not display
+                - - '1'
+                  - Display as summary
+                - - '2'
+                  - Display in full form
+                value: ''
+              type: SelectEntry
+            type: Container
+          - class: F-display_label SelectEntry
+            content:
+            - class: Label
+              data:
+                text: 'Display label:'
+              type: Label
+            - class: Value
+              data:
+                name: display_label
+                options:
+                - - '0'
+                  - display on pages and on lists.
+                - - '1'
+                  - only on lists.
+                - - '2'
+                  - only on pages.
+                - - '3'
+                  - do not display (only on forms)
+                value: ''
+              type: SelectEntry
+            type: Container
+          - class: F-optional SelectEntry
+            content:
+            - class: Label
+              data:
+                text: 'Is required:'
+              type: Label
+            - class: Value
+              data:
+                name: optional
+                options:
+                - - '0'
+                  - Yes, it is always required
+                - - '1'
+                  - No, it is optional
+                value: ''
+              type: SelectEntry
+            type: Container
+          - class: F-max_length Entry
+            content:
+            - class: Label
+              data:
+                text: 'Maximum length:'
+              type: Label
+            - class: Value
+              data:
+                name: max_length
+                value: ''
+              type: Entry
+            type: Container
+          data:
+            action: /_CMS_Spec/Field/1/New-save.web
+            hidden: {}
+            submit: Add
+          type: Form
+        type: Container
+    object_order:
+    - _field
+    template: Default
+  mime_type: ~
+  response: CONTENT

@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+package SLight::Handler::CMS::Entry::AddContent;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -12,31 +12,14 @@
 # 
 ################################################################################
 use strict; use warnings; # {{{
-use FindBin qw( $Bin );
-use lib $Bin . q{/../../lib/};
-
-use SLight::Test::Site;
-use SLight::Test::Handler qw( run_handler_tests );
-
-use English qw( -no_match_vars );
+use base q{SLight::HandlerBase::ProxyAction};
 # }}}
 
-my $site_root = SLight::Test::Site::prepare_fake(
-    test_dir => $Bin . q{/../},
-    site     => 'Minimal'
-);
+# This is just a proxy action for SLight::Handler::Core::Empty::AddContent.
 
-my @tests = (
-    {
-        'name' => q{Show edit form},
-        'url'  => q{/_CMS_Spec/Spec/1/Edit.web},
-    }
-);
-
-run_handler_tests(
-    tests => \@tests,
-    
-    strip_dates => 1,
-);
+sub target_object { # {{{
+    return q{Core::Empty};
+} # }}}
 
 # vim: fdm=marker
+1;

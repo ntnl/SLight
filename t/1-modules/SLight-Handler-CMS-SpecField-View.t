@@ -27,7 +27,10 @@ my $site_root = SLight::Test::Site::prepare_fake(
 );
 
 my @tests = (
-
+    {
+        'name' => q{Show field details},
+        'url'  => q{/_CMS_Spec/Field/1/title/View.web},
+    },
 );
 
 run_handler_tests(
