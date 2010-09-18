@@ -8,13 +8,13 @@ New spec form:
         content:
         - class: generic
           content:
-          - class: caption
+          - class: F-caption Entry
             content:
-            - class: name
+            - class: Label
               data:
                 text: Caption
               type: Label
-            - class: value
+            - class: Value
               data:
                 name: caption
                 value: ''

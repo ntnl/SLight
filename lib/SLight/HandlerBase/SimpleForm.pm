@@ -30,7 +30,7 @@ use Params::Validate qw( :all );
 #   (like: property+value) kinds of forms.
 
 sub handle_view { # {{{
-    my ( $self, $oid, $metadata ) = @_;
+    my ( $self, $oid, $metadata, $errors ) = @_;
 
     my $form_spec = $self->form_spec($oid, $metadata);
 
@@ -44,7 +44,12 @@ sub handle_view { # {{{
         submit => $form_spec->{'submit'},
     );
 
-    $self->make_form($oid, $metadata, $form);
+    $self->make_form(
+        $oid,
+        $metadata,
+        $form,
+        ( $errors or {} )
+    );
 
     return $self->push_data($form);
 } # }}}
@@ -60,9 +65,7 @@ sub handle_save { # {{{
     );
 
     if ($errors) {
-        # FIXME: re-display form!
-#        use Data::Dumper; warn Dumper $errors;
-        confess("Re-displaying form with errors not implemented!");
+        return $self->handle_view($oid, $metadata, $errors);
     }
 
 #    use Data::Dumper; warn 'Options: '. Dumper $self->{'options'};

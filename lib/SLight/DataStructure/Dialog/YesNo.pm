@@ -14,7 +14,7 @@ package SLight::DataStructure::Dialog::YesNo;
 
 # Response made of a Yes/No dialog.
 use strict; use warnings; # {{{
-use base 'SLight::DataStructure';
+use base 'SLight::DataStructure::Dialog';
 
 use SLight::Core::L10N qw( TR );
 
@@ -50,7 +50,7 @@ sub _new { # {{{
 
     $self->init_dialog($P{'class'});
 
-    $self->set_text($P{'message'});
+    $self->add_text($P{'message'});
 
     $self->add_button(
         class   => 'Yes',

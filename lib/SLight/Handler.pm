@@ -119,6 +119,16 @@ sub push_data { # {{{
     return;
 } # }}}
 
+# Purpose:
+#   Add Toolbox to the object's output (so, not as part of the page, but a part of the object).
+sub push_toolbox { # {{{
+    my ( $self, %toolbox ) = @_;
+
+    return $self->push_data(
+        $self->make_toolbox(%toolbox)
+    );
+} # }}}
+
 sub redirect { # {{{
     my ( $self, $redirect ) = @_;
 
@@ -343,15 +353,15 @@ sub make_toolbox { # {{{
         {
             urls => { type=>ARRAYREF },
 
-            path_handler => { type=>SCALAR, optional=>1 },
-            path         => { type=>SCALAR, optional=>1 },
+            path_handler => { type=>SCALAR, optional=>1, default=>$self->{'url'}->{'path_handler'} },
+            path         => { type=>SCALAR, optional=>1, default=>$self->{'url'}->{'path'} },
 
-            action => { type=>SCALAR, optional=>1 },
-            step   => { type=>SCALAR, optional=>1 },
-            lang   => { type=>SCALAR, optional=>1 },
-            page   => { type=>SCALAR, optional=>1 },
+            action => { type=>SCALAR, optional=>1, default=>$self->{'url'}->{'action'} },
+            step   => { type=>SCALAR, optional=>1, default=>$self->{'url'}->{'step'} },
+            lang   => { type=>SCALAR, optional=>1, default=>$self->{'url'}->{'lang'} },
+            page   => { type=>SCALAR, optional=>1, default=>$self->{'url'}->{'page'} },
 
-            protocol => { type=>SCALAR, optional=>1 },
+            protocol => { type=>SCALAR, optional=>1, default=>$self->{'url'}->{'protocol'} },
         }
     );
 
@@ -360,9 +370,8 @@ sub make_toolbox { # {{{
         %P,
 
         class => 'SLight_Toolbox',
-        login => $self->{'user'}->{'login'},
 
-        lang => ( $self->{'user'}->{'lang'} or q{} ),
+#        login => $self->{'user'}->{'login'},
     );
 } # }}}
 

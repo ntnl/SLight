@@ -1,0 +1,133 @@
+---
+Ask for existing Spec:
+  content:
+    addon_data: ~
+    object_data:
+      _spec:
+        class: SLight_Object
+        content:
+        - class: SLight_Delete_Dialog
+          content:
+          - class: Message
+            content:
+            - class: generic
+              data:
+                text: 'Do you want to delete CMS Spec: ''Article''? Please confirm.'
+              type: Label
+            type: Container
+          - class: Buttons
+            content:
+            - class: Yes
+              data:
+                caption: Yes
+                href: /_CMS_Spec/Spec/1/Delete-commit.web
+              type: Action
+            - class: No
+              data:
+                caption: No
+                href: /_CMS_Spec/Spec/1/Delete.web
+              type: Action
+            type: Container
+          type: Container
+        type: Container
+      article:
+        class: SLight_Object
+        content:
+        - class: SLight_Properties
+          content:
+          - class: caption
+            data:
+              text: 'Field:'
+            type: Label
+          - class: default
+            content:
+            - class: SLight_Caption
+              data:
+                text: 'Caption:'
+              type: Label
+            - class: SLight_Value
+              data:
+                text: Article
+              type: Label
+            type: Container
+          - class: default
+            content:
+            - class: SLight_Caption
+              data:
+                text: 'Data type:'
+              type: Label
+            - class: SLight_Value
+              data:
+                text: Text
+              type: Label
+            type: Container
+          data: {}
+          type: Container
+        - class: SLight_Toolbox
+          content:
+          - class: SLight_Edit_Action
+            data:
+              caption: Edit
+              href: /_CMS_Spec/Field/1/article/Edit-en.web_test
+            type: Action
+          - class: SLight_Delete_Action
+            data:
+              caption: Delete
+              href: /_CMS_Spec/Field/1/article/Delete-en.web_test
+            type: Action
+          type: Container
+        type: Container
+      title:
+        class: SLight_Object
+        content:
+        - class: SLight_Properties
+          content:
+          - class: caption
+            data:
+              text: 'Field:'
+            type: Label
+          - class: default
+            content:
+            - class: SLight_Caption
+              data:
+                text: 'Caption:'
+              type: Label
+            - class: SLight_Value
+              data:
+                text: Title
+              type: Label
+            type: Container
+          - class: default
+            content:
+            - class: SLight_Caption
+              data:
+                text: 'Data type:'
+              type: Label
+            - class: SLight_Value
+              data:
+                text: String
+              type: Label
+            type: Container
+          data: {}
+          type: Container
+        - class: SLight_Toolbox
+          content:
+          - class: SLight_Edit_Action
+            data:
+              caption: Edit
+              href: /_CMS_Spec/Field/1/title/Edit-en.web_test
+            type: Action
+          - class: SLight_Delete_Action
+            data:
+              caption: Delete
+              href: /_CMS_Spec/Field/1/title/Delete-en.web_test
+            type: Action
+          type: Container
+        type: Container
+    object_order:
+    - _spec
+    - title
+    - article
+    template: Default
+  mime_type: ~
+  response: CONTENT

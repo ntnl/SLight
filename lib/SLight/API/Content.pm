@@ -16,12 +16,6 @@ use base 'Exporter';
 
 use SLight::Core::Entity;
 
-#use SLight::Core::Config;
-#use SLight::Core::DB;
-#use SLight::Core::Email;
-#use SLight::Core::Cache qw( Cache_get Cache_put Cache_invalidate Cache_invalidate_referenced );
-#use SLight::Core::Cache::Util;
-
 use Carp;
 use Params::Validate qw{ :all };
 # }}}

@@ -496,7 +496,7 @@ sub process_text { # {{{
 sub process_placeholder { # {{{
     my ( $self, $token, $data ) = @_;
 
-    return ( $data->{'var_data'}->{ $token->{'name'} } or q{} );
+    return $data->{'var_data'}->{ $token->{'name'} };
 } # }}}
 
 sub process_template { # {{{
@@ -747,9 +747,12 @@ sub process_element_Status { # {{{
 sub process_element_Entry { # {{{
     my ( $data ) = @_;
 
+    assert_defined($data->{'name'},  "Name defined"); # Name is mandatory for form entries. In most cases, at least.
+    assert_defined($data->{'value'}, "Value defined"); # Passing undef here is PROBABLY an error (typo in hash?).
+
     return (
-        Name  => ( $data->{'name'} or q{} ),
-        Value => ( $data->{'value'} or q{} ),
+        Name  => ( $data->{'name'} ),
+        Value => ( $data->{'value'} ),
     );
 } # }}}
 sub process_element_FileEntry { # {{{

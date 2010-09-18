@@ -61,14 +61,14 @@ sub add_Entry { # {{{
             error   => { type=>SCALAR | UNDEF, optional=>1 },
         }
     );
-    
+
     my @content = (
         mk_Label_token(
-            class => 'name',
+            class => 'Label',
             text  => $P{'caption'},
         ),
         mk_Entry_token(
-            class => 'value',
+            class => 'Value',
             name  => $P{'name'},
             value => $P{'value'},
         ),
@@ -81,7 +81,7 @@ sub add_Entry { # {{{
     }
     
     push @{ $self->{'FormContent'} }, mk_Container_token(
-        class   => $P{'name'},
+        class   => q{F-} . $P{'name'} . q{ Entry},
         content => \@content,
     );
 
@@ -102,11 +102,11 @@ sub add_PasswordEntry { # {{{
     
     my @content = (
         mk_Label_token(
-            class => 'name',
+            class => 'Label',
             text  => $P{'caption'},
         ),
         mk_PasswordEntry_token(
-            class => 'value',
+            class => 'Value',
             name  => $P{'name'},
             value => $P{'value'},
         )
@@ -119,7 +119,7 @@ sub add_PasswordEntry { # {{{
     }
 
     push @{ $self->{'FormContent'} }, mk_Container_token(
-        class   => $P{'name'},
+        class   => q{F-} . $P{'name'} . q{ PasswordEntry},
         content => \@content,
     );
 
@@ -140,11 +140,11 @@ sub add_TextEntry { # {{{
 
     my @content = (
         mk_Label_token(
-            class => 'name',
+            class => 'Label',
             text  => $P{'caption'},
         ),
         mk_TextEntry_token(
-            class => 'value',
+            class => 'Value',
             name  => $P{'name'},
             value => $P{'value'},
         ),
@@ -157,7 +157,7 @@ sub add_TextEntry { # {{{
     }
 
     push @{ $self->{'FormContent'} }, mk_Container_token(
-        class   => $P{'name'},
+        class   => q{F-} . $P{'name'} . q{ TextEntry},
         content => \@content,
     );
 
@@ -179,11 +179,11 @@ sub add_SelectEntry { # {{{
 
     my @content = (
         mk_Label_token(
-            class => 'name',
+            class => 'Label',
             text  => $P{'caption'},
         ),
         mk_SelectEntry_token(
-            class   => 'value',
+            class   => 'Value',
             name    => $P{'name'},
             value   => $P{'value'},
             options => $P{'options'},
@@ -197,7 +197,7 @@ sub add_SelectEntry { # {{{
     }
 
     push @{ $self->{'FormContent'} }, mk_Container_token(
-        class   => $P{'name'},
+        class   => q{F-} . $P{'name'} . q{ SelectEntry},
         content => \@content,
     );
 
@@ -217,11 +217,11 @@ sub add_FileEntry { # {{{
     
     my @content = (
         mk_Label_token(
-            class => 'name',
+            class => 'Label',
             text  => $P{'caption'},
         ),
         mk_FileEntry_token(
-            class => 'value',
+            class => 'Value',
             name  => $P{'name'},
         ),
     );
@@ -233,7 +233,7 @@ sub add_FileEntry { # {{{
     }
 
     push @{ $self->{'FormContent'} }, mk_Container_token(
-        class   => $P{'name'},
+        class   => q{F-} . $P{'name'} . q{ FileEntry},
         content => \@content,
     );
 
@@ -254,12 +254,12 @@ sub add_Check { # {{{
     
     my @content = (
         mk_Check_token(
-            class   => 'check',
+            class   => 'Check',
             name    => $P{'name'},
             checked => $P{'checked'},
         ),
         mk_Label_token(
-            class => 'name',
+            class => 'Label',
             text  => $P{'caption'},
         ),
     );
@@ -271,7 +271,7 @@ sub add_Check { # {{{
 #    }
 
     push @{ $self->{'FormContent'} }, mk_Container_token(
-        class   => $P{'name'},
+        class   => q{F-} . $P{'name'} . q{ Check},
         content => \@content,
     );
 
@@ -291,7 +291,7 @@ sub add_Label { # {{{
     push @{ $self->{'FormContent'} }, mk_Container_token(
         content => [
             mk_Label_token(
-                class => $P{'class'},
+                class => q{F-} . $P{'class'} . q{ Label},
                 text  => $P{'text'},
             ),
         ]
@@ -314,7 +314,7 @@ sub add_Action { # {{{
     push @{ $self->{'FormContent'} }, mk_Container_token(
         content => [
             mk_Action_token(
-                class   => $P{'class'},
+                class   => q{F-} . $P{'class'} . q{ Action},
                 caption => $P{'caption'},
                 href    => $P{'href'},
             ),

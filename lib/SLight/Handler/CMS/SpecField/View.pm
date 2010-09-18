@@ -49,6 +49,29 @@ sub handle_view { # {{{
 
     $self->push_data($properties);
 
+    $self->push_toolbox(
+        urls => [
+            {
+                caption => TR('Edit'),
+                action  => 'Edit',
+                path    => [
+                    'Field',
+                    $spec->{'id'},
+                    $oid,
+                ],
+            },
+            {
+                caption => TR('Delete'),
+                action  => 'Delete',
+                path    => [
+                    'Field',
+                    $spec->{'id'},
+                    $oid,
+                ],
+            },
+        ]
+    );
+
     return;
 } # }}}
 
