@@ -2,7 +2,7 @@
 Display Spec:
   content:
     addon_data:
-      Toolbox:
+      Core::Toolbox:
         class: SLight_Toolbox_Plugin
         content:
         - class: SLight_New_Action

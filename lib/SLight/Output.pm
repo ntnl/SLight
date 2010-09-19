@@ -46,7 +46,7 @@ sub new { # {{{
 sub list_addons { # {{{
     # Fixme: actually check in the template!
     # Fixme: this should be implemented by the child classes, probably!
-    return qw( Toolbox );
+    return qw( Core::Toolbox );
 } # }}}
 
 sub queue_addon_data { # {{{

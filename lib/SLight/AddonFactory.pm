@@ -25,11 +25,12 @@ sub make { # {{{
     my %P = validate(
         @_,
         {
+            pkg   => { type=>SCALAR },
             addon => { type=>SCALAR },
         }
     );
 
-    return $self->low_load( [ 'Addon', $P{'addon'} ] );
+    return $self->low_load( [ 'Addon', $P{'pkg'}, $P{'addon'} ] );
 } # }}}
 
 # vim: fdm=marker

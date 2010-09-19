@@ -1,4 +1,4 @@
-package SLight::Addon::Toolbox;
+package SLight::Addon::Core::Toolbox;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.

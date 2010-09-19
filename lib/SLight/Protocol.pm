@@ -106,17 +106,21 @@ sub S_process_object { # {{{
 } # }}}
 
 sub S_process_addon { # {{{
-    my ( $self, $addon, $metadata ) = @_;
+    my ( $self, $class, $metadata ) = @_;
     
 #    use Data::Dumper; warn "addon meta: " . Dumper $metadata;
+    
+    my ($pkg, $addon) = ( $class =~ m{^(.+?)::(.+?)$}s );
 
-    my $addon_object = $self->{'addon_factory'}->make(addon => $addon);
+    my $addon_object = $self->{'addon_factory'}->make(pkg => $pkg, addon => $addon);
 
     my $data = $addon_object->process(
         url  => $self->{'url'},
         user => $self->{'user'},
         meta => ( $metadata or {} ),
     );
+
+#    use Data::Dumper; warn "addon result: " . Dumper $data;
 
     return $data;
 } # }}}
