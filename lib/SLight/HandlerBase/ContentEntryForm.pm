@@ -160,7 +160,7 @@ sub _add_field_to_form { # {{{
             error   => $errors->{$cgi_field_name},
         );
         if ($content->{'id'}) {
-#            my $already_attached = CoMe::Core::Attachment::get_attachment_meta(
+#            my $already_attached = SLight::API::Asset::get_attachment_meta(
 #                parent  => 'content',
 #                object  => $self->{'ContentData'}->{'content_hash'}->{'id'},
 #                field   => $field_name,
@@ -355,7 +355,7 @@ sub process_field_attachments { # {{{
         if ($form_entry->{'data'}) {
             # Attachment was sent with form.
             # Put it on HDD :)
-#            CoMe::Core::Attachment::put_attachment(
+#            SLight::API::Asset::put_attachment(
 #                data => $form_entry->{'data'},
 #
 #                email => ( $self->{'params'}->{'user'}->{'email'} or $self->{'params'}->{'options'}->{'meta.email'} ),

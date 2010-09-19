@@ -58,7 +58,7 @@ my $_handler = SLight::Core::Entity->new( # {{{
 #        data_out => \&_data_out_cb
 #    },
 
-    cache_namespace => 'CoMe::Core::Content'
+    cache_namespace => 'SLight::Core::Content'
 ); # }}}
 
 sub add_Content { # {{{
@@ -131,17 +131,17 @@ sub delete_Contents { # {{{
 #sub _update_mtime { # {{{
 #    my ( $update_id ) = @_;
 #
-#    my $NOW = CoMe::Core::DB::NOW();
+#    my $NOW = SLight::Core::DB::NOW();
 #
 #    while ($update_id) {
 #        Cache_invalidate_referenced($CACHE_NAMESPACE, [$update_id]);
 #
-#        CoMe::Core::DB::run_query(
+#        SLight::Core::DB::run_query(
 #            query => [ "UPDATE ContentEntry SET `revision` = `revision` + 1, child_time = ", $NOW, " WHERE id = ", $update_id ],
 ##            debug => 1,
 #        );
 #
-#        my $sth = CoMe::Core::DB::run_query(
+#        my $sth = SLight::Core::DB::run_query(
 #            query => [ "SELECT ContentEntry_id FROM ContentEntry WHERE id = ", $update_id ],
 ##            debug => 1,
 #        );
@@ -161,7 +161,7 @@ sub delete_Contents { # {{{
 #        }
 #    );
 #
-#    CoMe::Core::DB::run_update(
+#    SLight::Core::DB::run_update(
 #        table => 'ContentEntry',
 #        set   => {
 #            status => $P{'status'},

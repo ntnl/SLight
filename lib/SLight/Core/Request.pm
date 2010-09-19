@@ -351,23 +351,6 @@ sub built_in_reply { # {{{
     };
 } # }}}
 
-# Fixme!
-#sub access_denied_page { # {{{
-#    my $self = shift;
-#
-#    require CoMe::Response::GenericMessage;
-#
-#    my $response = CoMe::Response::GenericMessage->new(
-#        text  => TR('You are not permited to enter this part of the page.'),
-#        class => 'CoMe_Access_Error'
-#    );
-#
-#    return $self->built_in_reply(
-#        title    => TR('Access denied'),
-#        response => $response->get_data(),
-#    );
-#} # }}}
-
 # Todo: Needs some love!
 sub stage_error { # {{{
     my ( $self, %P ) = @_;

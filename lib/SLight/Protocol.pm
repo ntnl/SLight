@@ -15,7 +15,8 @@ use strict; use warnings; # {{{
 use base q{SLight::BaseClass};
 
 use SLight::OutputFactory;
-use SLight::DataToken qw( mk_Container_token );
+use SLight::DataToken qw( mk_Container_token mk_Label_token );
+use SLight::Core::L10N qw( TR TF );
 
 use Carp::Assert::More qw( assert_defined );
 use English qw( -no_match_vars );
@@ -112,13 +113,35 @@ sub S_process_addon { # {{{
     
     my ($pkg, $addon) = ( $class =~ m{^(.+?)::(.+?)$}s );
 
-    my $addon_object = $self->{'addon_factory'}->make(pkg => $pkg, addon => $addon);
+    my $addon_object = eval {
+        $self->{'addon_factory'}->make(pkg => $pkg, addon => $addon);
+    };
+    if ($EVAL_ERROR or not $addon_object) {
+        printf STDERR "%s plugin failed to compile.\n", $pkg .q{.}. $addon;
+        print STDERR $EVAL_ERROR;
 
-    my $data = $addon_object->process(
-        url  => $self->{'url'},
-        user => $self->{'user'},
-        meta => ( $metadata or {} ),
-    );
+        return mk_Label_token(
+            class => 'SLight_Error',
+            text  => TF("%s plugin failed to compile.", undef, $pkg .q{.}. $addon),
+        );
+    }
+
+    my $data = eval {
+        $addon_object->process(
+            url  => $self->{'url'},
+            user => $self->{'user'},
+            meta => ( $metadata or {} ),
+        );
+    };
+    if ($EVAL_ERROR) {
+        printf STDERR "%s plugin failed to run.\n", $pkg .q{.}. $addon;
+        print STDERR $EVAL_ERROR;
+
+        return mk_Label_token(
+            class => 'SLight_Error',
+            text  => TF("%s plugin failed to run.", undef, $pkg .q{.}. $addon),
+        );
+    }
 
 #    use Data::Dumper; warn "addon result: " . Dumper $data;
 

@@ -52,6 +52,7 @@
 [X] Core
 [X]     Cache
 [X]     Entity - add support to 'IN' in '*_where' functions
+[ ]     Add per-page cache of it's title (long + short) set by object (during edit) or by one of it's sub-pages too :) Will be cool :)
 [>] API
 [X]     ContentSpec store
 [X]         'cms_usage' column support
@@ -96,6 +97,7 @@
 [ ]         SLight::Handler::CMS::Entry::Comment
 [X]         SLight::Handler::CMS::Entry::View
 [ ]         SLight::Handler::CMS::Entry::Translate
+[>] SLight::HandlerUtils::Pager
 [X] Output:
 [X]     SLight::OutputFactory
 [X]     HTML Template/Generator libraries
@@ -115,11 +117,10 @@
 [X]     SLight::DataStructure::Dialog::YesNo (ex. CoMe...YesNo)
 [>] Addon
 [X]     SLight::Addon::Core::Toolbox
-[>]     SLight::Addon::Core::PathBar
-[ ]     SLight::Addon::Core::Pager
-[ ]     SLight::Addon::Core::SysInfo
+[>]     SLight::Addon::Core::Path
+[>]     SLight::Addon::Core::Sysinfo
+[>]     SLight::Addon::Core::Language
 [ ]     SLight::Addon::Core::Debug
-[ ]     SLight::Addon::Core::Language
 [ ]     SLight::Addon::CMS::MainMenu
 [ ]     SLight::Addon::CMS::SubMenu
 [ ] Development
@@ -175,7 +176,7 @@
 [ ]     SLight::Addon::Authentication
 [ ]     SLight::Addon::Asset
 [ ] Addon
-[ ]     SLight::Addon::Core::Language
+[ ]     SLight::Addon::User::Panel
 
     Definition of done:
 
