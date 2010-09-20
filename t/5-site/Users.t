@@ -1,4 +1,4 @@
-package SLight::Handler::Core::Empty::AddContent;
+#!/usr/bin/perl
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -11,15 +11,16 @@ package SLight::Handler::Core::Empty::AddContent;
 # More information on: http://slight-cms.org/
 # 
 ################################################################################
-use strict; use warnings; # {{{
-use base q{SLight::HandlerBase::ProxyAction};
-# }}}
 
-# This is just a proxy action for SLight::Handler::CMS::Entry::AddContent.
+use FindBin qw( $Bin );
+use lib $Bin .q{/../../lib/};
 
-sub target_object { # {{{
-    return q{CMS::Entry};
-} # }}}
+use SLight::Test::Site::Builder::Test;
+
+SLight::Test::Site::Builder::Test::test_builder(
+    $Bin . q{/../../t_data/},
+    $Bin . q{/../../sql/0.0/},
+    'Users',
+);
 
 # vim: fdm=marker
-1;

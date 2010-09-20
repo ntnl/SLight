@@ -63,7 +63,7 @@ sub build_form_guts { # {{{
     # he must provide an email address, that will be used to sign this new entry.
     # Note/limitation:
     #   once created, this field can not be changed.
-    if (not $self->{'params'}->{'user'}->{'email'} and not $content->{'Email_id'}) {
+    if (not $content and not $self->{'params'}->{'user'}->{'email'} and not $content->{'Email_id'}) {
         $form->add_Entry(
             caption => TR('Email (internal use only)'),
             name    => 'meta.email',
@@ -235,6 +235,7 @@ sub slurp_content_form_data { # {{{
     my %P = validate(
         @_,
         {
+            content      => { type=>HASHREF, optional=>1, },
             content_spec => { type=>HASHREF },
         }
     );
@@ -250,9 +251,11 @@ sub slurp_content_form_data { # {{{
         $validator_metadata{'page.path'}     = { type=>'FileName' };
         $validator_metadata{'page.template'} = { type=>'FileName', optional=>1, };
     }
-    if (not $self->{'params'}->{'user'}->{'email'}) {
+    if (not $P{'content'} and not $self->{'params'}->{'user'}->{'email'}) {
         $validator_metadata{'meta.email'} = { type=>'Email', max_length=>1024 };
     }
+
+#    use Data::Dumper; warn Dumper \%validator_metadata;
 
     foreach my $field_name (keys %{ $P{'content_spec'}->{'_data'} }) {
         my $field = $P{'content_spec'}->{'_data'}->{$field_name};

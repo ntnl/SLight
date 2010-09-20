@@ -21,6 +21,8 @@ use SLight::DataToken qw( mk_Label_token mk_Container_token );
 use Params::Validate qw( :all );
 # }}}
 
+our $VERSION = '0.0.1';
+
 sub _process { # {{{
     my ( $self, %P ) = @_;
 
@@ -28,10 +30,9 @@ sub _process { # {{{
     
     # The string: $gen_item$ should be replaced by Interface,
     # the Interface knows how much time was actually needed.
-    my $item = mk_Label_token(
+    push @info_items, mk_Label_token(
         text => TR(q{Generated in:}). q{ $gen_time$s},
     );
-    push @info_items, $item;
 
     my $container = mk_Container_token(
         class   => 'SLight_Sysinfo_Addon',

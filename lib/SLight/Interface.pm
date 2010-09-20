@@ -68,11 +68,15 @@ sub run_request { # {{{
     # This is easy :)
     my $content = $self->{'request'}->main(%P);
 
-#    my $total_run_time = sprintf "%.2f", time - $start_time;
-#
-#    if ($content->{'content'}) {
-#        $content->{'content'} =~ s{\$gen_time\$}{$total_run_time}s;
-#    }
+    # Replace generated time placeholder with some real value, but only if We are doing some text-based response.
+    # Running regexp on some binary data could have bad consequences.
+    if ($content->{'mime_type'} =~ m{^text/}) {
+        my $total_run_time = sprintf "%.2f", time - $start_time;
+
+        if ($content->{'content'}) {
+            $content->{'content'} =~ s{\$gen_time\$}{$total_run_time}sg;
+        }
+    }
 
     return $content;
 } # }}}

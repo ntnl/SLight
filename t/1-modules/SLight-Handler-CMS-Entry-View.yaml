@@ -2,38 +2,6 @@
 Root page:
   content:
     addon_data:
-      Core::Language:
-        class: SLight_Language_Addon
-        content:
-        - class: en-Other
-          data:
-            href: /en.web_test
-            text: En
-          type: Link
-        - class: de-Other
-          data:
-            href: /de.web_test
-            text: De
-          type: Link
-        - class: fr-Other
-          data:
-            href: /fr.web_test
-            text: Fr
-          type: Link
-        - class: pl-Other
-          data:
-            href: /pl.web_test
-            text: Pl
-          type: Link
-        type: Container
-      Core::Sysinfo:
-        class: SLight_Sysinfo_Addon
-        content:
-        - class: generic
-          data:
-            text: 'Generated in: $gen_time$s'
-          type: Label
-        type: Container
       Core::Toolbox:
         class: SLight_Toolbox_Plugin
         content:

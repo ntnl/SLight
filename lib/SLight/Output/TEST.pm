@@ -22,6 +22,11 @@ use Params::Validate qw( :all );
 use YAML::Syck;
 # }}}
 
+sub list_addons { # {{{
+    # Fixme: tests should be able to overwrite this.
+    return qw( Core::Toolbox Core::Path );
+} # }}}
+
 sub process_object_data { # {{{
     my ( $self, $oid, $data_structure ) = @_;
 

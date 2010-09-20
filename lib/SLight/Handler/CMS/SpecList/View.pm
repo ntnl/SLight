@@ -41,7 +41,7 @@ sub handle_view { # {{{
     );
 
     $self->add_to_path_bar(
-        label => TR('Content Specification list'),
+        label => TR('Content Specs'),
         url   => {},
     );
 

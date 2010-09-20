@@ -52,7 +52,7 @@
 [X] Core
 [X]     Cache
 [X]     Entity - add support to 'IN' in '*_where' functions
-[ ]     Add per-page cache of it's title (long + short) set by object (during edit) or by one of it's sub-pages too :) Will be cool :)
+[>]     Add per-page cache of it's title (long + short) set by object (during edit) or by one of it's sub-pages too :) Will be cool :)
 [>] API
 [X]     ContentSpec store
 [X]         'cms_usage' column support
@@ -117,9 +117,9 @@
 [X]     SLight::DataStructure::Dialog::YesNo (ex. CoMe...YesNo)
 [>] Addon
 [X]     SLight::Addon::Core::Toolbox
-[>]     SLight::Addon::Core::Path
+[X]     SLight::Addon::Core::Path
 [>]     SLight::Addon::Core::Sysinfo
-[>]     SLight::Addon::Core::Language
+[X]     SLight::Addon::Core::Language
 [ ]     SLight::Addon::Core::Debug
 [ ]     SLight::Addon::CMS::MainMenu
 [ ]     SLight::Addon::CMS::SubMenu

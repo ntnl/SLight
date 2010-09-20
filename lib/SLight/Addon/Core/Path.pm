@@ -14,10 +14,13 @@ package SLight::Addon::Core::Path;
 use strict; use warnings; # {{{
 use base q{SLight::Addon};
 
+use SLight::Core::Config;
 use SLight::DataToken qw( mk_Link_token mk_Container_token );
 
 use Params::Validate qw( :all );
 # }}}
+
+our $VERSION = '0.0.1';
 
 sub _process { # {{{
     my ( $self, %P ) = @_;
@@ -26,7 +29,14 @@ sub _process { # {{{
         return;
     }
 
-    my @path_items;
+    my @path_items = (
+        mk_Link_token(
+            class => 'Root',
+            href  => SLight::Core::Config::get_option('web_root'),
+            text  => SLight::Core::Config::get_option('name'),
+        ),
+    );
+
     foreach my $pwd_bar_item (@{ $self->{'meta'}->{'path_bar'} }) {
         my $path_item = mk_Link_token(
             class => $pwd_bar_item->{'class'},

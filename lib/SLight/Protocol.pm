@@ -57,7 +57,7 @@ sub new { # {{{
 # Purpose:
 #   Load and run (Object)Handler, as described in the given object hash.
 sub S_process_object { # {{{
-    my ( $self, $object, $action, $step ) = @_;
+    my ( $self, $object, $action, $step, $is_main_object ) = @_;
 
 #    $self->D_Dump($object, $action);
 
@@ -73,7 +73,9 @@ sub S_process_object { # {{{
         options  => $self->{'options'},
         step     => $step,
         oid      => $object->{'oid'},
-        metadata => $object->{'metadata'}
+        metadata => $object->{'metadata'},
+
+        is_main_object => $is_main_object
     );
 
     # Fixme! actually check, if this is a derivative from SLight::DataStructure (!)

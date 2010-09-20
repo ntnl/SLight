@@ -25,7 +25,7 @@ Get Content Spec choice menu:
               - class: generic
                 data:
                   href: /AddContent-form.web?target=New&spec_id=1
-                  text: An sew page
+                  text: As new page
                 type: Link
               data:
                 colspan: '0'

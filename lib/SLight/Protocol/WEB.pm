@@ -35,7 +35,8 @@ sub respond { # {{{
     my $response = $self->S_process_object(
         $P{'page'}->{'objects'}->{ $P{'page'}->{'main_object'} },
         $P{'url'}->{'action'},
-        $P{'url'}->{'step'}
+        $P{'url'}->{'step'},
+        1,
     );
 
     if (not $response) {
@@ -53,7 +54,8 @@ sub respond { # {{{
         $response = $self->S_process_object(
             $response->{'replace_with_object'},
             $P{'url'}->{'action'},
-            $P{'url'}->{'step'}
+            $P{'url'}->{'step'},
+            1,
         );
 
         if ($response->{'redirect_href'}) {
@@ -87,6 +89,7 @@ sub respond { # {{{
             $P{'page'}->{'objects'}->{ $object_key },
             'View', # <-- aux objects always run in VIEW!
             'view', # <-- aux objects always run in VIEW!
+            0,
         );
         $output_object->queue_object_data(
             $object_key,

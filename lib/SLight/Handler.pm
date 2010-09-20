@@ -60,12 +60,16 @@ sub handle { # {{{
             
             oid      => { type=>SCALAR | UNDEF },
             metadata => { type=>HASHREF | UNDEF },
+            
+            is_main_object => { type=>SCALAR },
         }
     );
     
     $self->{'page'}    = $P{'page'};
     $self->{'url'}     = $P{'url'};
     $self->{'options'} = $P{'options'};
+
+    $self->{'is_main_object'} = $P{'is_main_object'};
 
     my $method_name = 'handle_view';
     if ($P{'step'} ne 'view') {
@@ -97,6 +101,12 @@ sub handle { # {{{
         data => $self->{'data'},
         meta => $self->{'meta'},
     };
+} # }}}
+
+sub is_main_object { # {{{
+    my ( $self ) = @_;
+
+    return $self->{'is_main_object'};
 } # }}}
 
 # Purpose:
@@ -200,7 +210,7 @@ sub add_to_path_bar { # {{{
         }
     );
 
-    warn "Adding to hap bar!";
+#    warn "Adding to hap bar!";
 
     if (not $self->{'meta'}->{'path_bar'}) {
         $self->{'meta'}->{'path_bar'} = [];

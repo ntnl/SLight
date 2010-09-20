@@ -2,6 +2,20 @@
 Empty list:
   content:
     addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        - class: Current
+          data:
+            href: /_CMS_Spec/
+            text: Content Specs
+          type: Link
+        type: Container
       Core::Toolbox:
         class: SLight_Toolbox_Plugin
         content:
