@@ -51,6 +51,8 @@ sub analyze_path { # {{{
 
     $self->set_template('Default');
 
+    $self->set_breadcrumb_path([]);
+
     if (scalar @{ $path }) {
         # OK... so We're actually showing something...
         if ($path->[0] eq 'Spec') {

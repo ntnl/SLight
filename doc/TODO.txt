@@ -52,10 +52,19 @@
 [X] Core
 [X]     Cache
 [X]     Entity - add support to 'IN' in '*_where' functions
-[>]     Add per-page cache of it's title (long + short) set by object (during edit) or by one of it's sub-pages too :) Will be cool :)
+[>]     Add per-page (object, actually) thingy of it's title (long + short) set by object (during edit) or by one of it's sub-pages too :) Will be cool :)
+[X]         Make Object/Action Handlers _append_ to the path, but _only_ one element.
+[>]         Make PathHandlers generate path for a page
+[ ]         Add 'order_by', 'use_as_title', 'use_as_summary', 'use_in_menu' and 'use_in_path' support to ContentSpec, so Page PathHandler knows what to use.
+[ ]             Fix SQL
+[ ]             Fix API
+[ ]             Fix CMS::SpecList (should display which fields are used for what purpose)
+[ ]             Fix CMS::Spec display and form (should display and allow to change roles)
+[ ]         Make Page PathHandler use 'use_as_title' and 'use_in_path'
 [>] API
-[X]     ContentSpec store
+[>]     ContentSpec store
 [X]         'cms_usage' column support
+[ ]         Add 'class' to Spec, so each SLight_Object can have a O-$class (so it's easyer to hack CSS)
 [X]     Content store
 [ ]     Comment store
 [X]     Asset store
@@ -93,10 +102,16 @@
 [>]     SLight::Handler::CMS::Entry
 [X]         SLight::Handler::CMS::Entry::New
 [X]         SLight::Handler::CMS::Entry::Edit
+[>]         SLight::Handler::CMS::Entry::Delete
 [ ]         SLight::Handler::CMS::Entry::Asset
 [ ]         SLight::Handler::CMS::Entry::Comment
 [X]         SLight::Handler::CMS::Entry::View
 [ ]         SLight::Handler::CMS::Entry::Translate
+[>]         SLight::Handler::CMS::Entry::AddContent
+[ ]             Display what handler owns the module type
+[ ]     SLight::Handler::Error
+[ ]         SLight::Handler::Error::NotFound
+[ ]         SLight::Handler::Error::InternalError
 [>] SLight::HandlerUtils::Pager
 [X] Output:
 [X]     SLight::OutputFactory
@@ -121,11 +136,14 @@
 [>]     SLight::Addon::Core::Sysinfo
 [X]     SLight::Addon::Core::Language
 [ ]     SLight::Addon::Core::Debug
-[ ]     SLight::Addon::CMS::MainMenu
-[ ]     SLight::Addon::CMS::SubMenu
+[>]     SLight::Addon::CMS::Menu
+[>]     SLight::Addon::CMS::Submenu
 [ ] Development
 [ ]     Make a script, that creates fully usable sandbox from test site.
 [ ]     Intercept STDERR (when enabled) and handle it to Debug Addon
+[ ]     Implement DB-schema-update utility.
+[ ] Bugs/Regressions
+[ ]     Template displays UTF incorrectly ("ł" in the footer is screwed) when there are UTF-8 characters IN content added to template.
 
     Definition of done:
 
@@ -169,6 +187,9 @@
 [ ]         SLight::Handler::Group::Users::List
 [ ]         SLight::Handler::Group::Users::Add
 [ ]         SLight::Handler::Group::Users::Remove
+[ ]     SLight::Handler::Error
+[ ]         SLight::Handler::Error::AuthRequired <-- You must log-in to access this page.
+[ ]         SLight::Handler::Error::AccessDenied <-- You can not do the stuff you intended.
 [ ] SLight::PathHandler (remaining)
 [ ]     SLight::Addon::MyData
 [ ]     SLight::Addon::Account
@@ -230,5 +251,6 @@
 
 =--= Future ideas:
 
+[ ] Fix CMS::SpecField form (should contain checkboxes for 'Use...' so User can do the choice directly from Field form)
 [ ] ...
 

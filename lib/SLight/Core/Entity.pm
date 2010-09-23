@@ -302,6 +302,8 @@ sub update_ENTITY { # {{{
 
     assert_positive_integer($P{'id'});
 
+#    $P{'debug'} = 1;
+
     my %values;
     foreach my $field (@{ $self->{'_all_fields'} }) {
         if ($P{$field}) {
@@ -323,7 +325,7 @@ sub update_ENTITY { # {{{
         'where' => [
             'id = ', $P{'id'},
         ],
-#        debug => 1, 
+        'debug' => $P{'debug'}, 
     );
 
     my $current_data = $self->get_ENTITY($P{'id'});
@@ -350,14 +352,14 @@ sub update_ENTITY { # {{{
                         'table' => $self->{'child_table'},
                         'set'   => $data_entry->{'data'},
                         'where' => \@where,
-#                        debug => 1, 
+                        'debug' => $P{'debug'}, 
                     );
                 }
                 else {
                     SLight::Core::DB::run_delete(
                         'from'  => $self->{'child_table'},
                         'where' => \@where,
-#                        debug => 1, 
+                        'debug' => $P{'debug'}, 
                     );
                 }
             }
@@ -365,8 +367,10 @@ sub update_ENTITY { # {{{
                 # Add this data value (is a new one)
                 my %insert_values = (
                     %{ $data_entry->{'data'} },
-                
-                    $self->{'base_table'} . q{_id} => $P{'id'}
+
+                    $self->{'base_table'} . q{_id} => $P{'id'},
+
+                    'debug' => $P{'debug'}, 
                 );
 
                 foreach my $key_column (keys %{ $data_entry->{'keys'} }) {
@@ -376,7 +380,7 @@ sub update_ENTITY { # {{{
                 push @inserts, {
                     'into'   => $self->{'child_table'},
                     'values' => \%insert_values,
-#                    debug    => 1, 
+                    'debug'  => $P{'debug'}, 
                 };
             }
         }
@@ -685,14 +689,14 @@ sub _data_values { # {{{
     if (1 + $k_index == scalar @{ $self->{'child_key'} }) {
         # Fetch data values.
         foreach my $key_value (keys %{ $data_hash }) {
-            if ($data_hash->{ $key_value } and not ref $data_hash->{ $key_value }) {
+            if (defined $data_hash->{ $key_value } and not ref $data_hash->{ $key_value }) {
                 $data_hash->{ $key_value } = { value => $data_hash->{ $key_value } };
             }
 
             my $entry = {
                 keys => {
                     %_keys,
-                
+
                     $self->{'child_key'}->[$k_index] => $key_value
                 },
                 data => $data_hash->{ $key_value },

@@ -123,11 +123,19 @@ sub ContentData_2_details { # {{{
 sub display_ContentData_for_page { # {{{
     my ( $self, $content, $item_path, $thumb_mode ) = @_;
 
-    my $content_spec = get_ContentSpec($content->{'id'});
+    my $content_spec = get_ContentSpec($content->{'Content_Spec_id'});
 
 #    use Data::Dumper; warn Dumper $content_spec;
 
     my @container_contents;
+
+    my @langs = (
+        $self->{'url'}->{'lang'},
+        ( keys %{ $content->{'_data'} } ),
+        q{*}
+    );
+
+#    use Data::Dumper; warn q{\@langs : }. Dumper \@langs;
 
     foreach my $field_name (@{ $content_spec->{'_data_order'} }) {
         my $field = $content_spec->{'_data'}->{$field_name};
@@ -159,27 +167,28 @@ sub display_ContentData_for_page { # {{{
             }
         }
         else {
-            my $field_lang = q{*};
-            if ($field->{'translate'}) {
-                $field_lang = $self->{'url'}->{'lang'};
-            }
-
 #            use Data::Dumper; warn q{$content->{'_data'} : }. Dumper $content->{'_data'};
-#            warn q{ lang / ID: } . $field_lang . q{ / } . $field->{'id'};
 
-            if (defined $content->{'_data'}->{$field_lang}->{ $field->{'id'} }) {
-                my $value = SLight::DataType::decode_data(
-                    type   => $field->{'datatype'},
-                    value  => $content->{'_data'}->{$field_lang}->{ $field->{'id'} },
-                    format => q{},
-                    target => 'MAIN',
-                );
+            # I think, that there is a better way to do this. Will refactor this, when the whole thing works. (small fixme)
+            foreach my $field_lang ( @langs ) {
+#                warn q{ lang / ID: } . $field_lang . q{ / } . $field->{'id'};
 
-                my $display_method_name = $display_methods{$signature->{'display'}};
-                assert_defined($display_method_name, q{Display method for '}. $signature->{'display'} .q{' is implemented});
-                $value = $self->$display_method_name($field_name, $value);
-            
-                push @inner_container_content, $value;
+                if (defined $content->{'_data'}->{$field_lang}->{ $field->{'id'} }) {
+                    my $value = SLight::DataType::decode_data(
+                        type   => $field->{'datatype'},
+                        value  => $content->{'_data'}->{$field_lang}->{ $field->{'id'} },
+                        format => q{},
+                        target => 'MAIN',
+                    );
+
+                    my $display_method_name = $display_methods{$signature->{'display'}};
+                    assert_defined($display_method_name, q{Display method for '}. $signature->{'display'} .q{' is implemented});
+                    $value = $self->$display_method_name($field_name, $value);
+
+                    push @inner_container_content, $value;
+
+                    last;
+                }
             }
         }
 

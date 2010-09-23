@@ -198,6 +198,13 @@ sub handle_save { # {{{
         comment_read_policy  => $self->{'options'}->{'meta.comment_read_policy'},
     );
 
+    if ($self->{'options'}->{'target'} eq 'New') {
+        $content{'on_page_index'} = 0;
+    }
+    else {
+        $content{'on_page_index'} = 1; # At the moment, it will just put the 'aux' content in the back.
+    }
+
     my $content_id = add_Content(%content);
 
     $self->process_field_attachments(

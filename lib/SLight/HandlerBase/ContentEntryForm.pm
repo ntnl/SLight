@@ -247,10 +247,11 @@ sub slurp_content_form_data { # {{{
         'meta.comment_write_policy' => { type=>'Integer' },
         'meta.comment_read_policy'  => { type=>'Integer' },
     );
-    if ($self->{'options'}->{'target'} eq 'New') {
+    if ($self->{'options'}->{'target'} and $self->{'options'}->{'target'} eq 'New') {
         $validator_metadata{'page.path'}     = { type=>'FileName' };
         $validator_metadata{'page.template'} = { type=>'FileName', optional=>1, };
     }
+
     if (not $P{'content'} and not $self->{'params'}->{'user'}->{'email'}) {
         $validator_metadata{'meta.email'} = { type=>'Email', max_length=>1024 };
     }

@@ -25,6 +25,8 @@ use Params::Validate qw( :all );
 sub respond { # {{{
     my ( $self, %P ) = @_;
 
+#    use Data::Dumper; warn Dumper \%P;
+
     $self->S_begin_response(%P);
 
     my $output_object = $self->{'output_factory'}->make(
@@ -73,8 +75,10 @@ sub respond { # {{{
 
 #    use Data::Dumper; warn Dumper $response;
 
-    # Use 'meta' to prepare plugins...
-    # $output_object->add_metadata($response->{'meta'});
+    $response->{'meta'}->{'path_bar'} = [
+        @{ ( $P{'page'}->{'breadcrumb_path'} or [] ) },
+        @{ ( $response->{'meta'}->{'path_bar'} or [] ) },
+    ];
 
     # Process aux objects now...
     foreach my $object_key (@{ $P{'page'}->{'object_order'} }) {

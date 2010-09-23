@@ -44,9 +44,9 @@ sub new { # {{{
 } # }}}
 
 sub list_addons { # {{{
-    # Fixme: actually check in the template!
-    # Fixme: this should be implemented by the child classes, probably!
-    return qw( Core::Toolbox Core::Path Core::Sysinfo Core::Language );
+    # FIXME: actually check in the template!
+    # FIXME: this should be implemented by the child classes, probably!
+    return qw( Core::Toolbox Core::Path Core::Sysinfo Core::Language CMS::Menu CMS::Submenu );
 } # }}}
 
 sub queue_addon_data { # {{{

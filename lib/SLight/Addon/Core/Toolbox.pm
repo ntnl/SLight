@@ -20,10 +20,10 @@ use English qw( -no_match_vars );
 use Params::Validate qw( :all );
 # }}}
 
-# Toolbox Plugin.
-
 sub _process { # {{{
-    my ( $self, %P ) = @_;
+    my ( $self ) = @_;
+
+#    use Data::Dumper; warn 'In-addon metadata: ' . Dumper $self->{'meta'};
 
     if (not $self->{'meta'}->{'toolbox'}) {
         return;

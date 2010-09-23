@@ -29,6 +29,8 @@ sub _process { # {{{
         return;
     }
 
+    use Data::Dumper; warn Dumper $self->{'meta'}->{'path_bar'};
+
     my @path_items = (
         mk_Link_token(
             class => 'Root',
@@ -39,7 +41,7 @@ sub _process { # {{{
 
     foreach my $pwd_bar_item (@{ $self->{'meta'}->{'path_bar'} }) {
         my $path_item = mk_Link_token(
-            class => $pwd_bar_item->{'class'},
+            class => $pwd_bar_item->{'class'}, # FIXME: Should be assigned here, not elsewhere!!!
             href  => $pwd_bar_item->{'href'},
             text  => $pwd_bar_item->{'label'},
         );

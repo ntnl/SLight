@@ -71,6 +71,8 @@ sub handle { # {{{
 
     $self->{'is_main_object'} = $P{'is_main_object'};
 
+#    use Data::Dumper; warn Dumper \%P;
+
     my $method_name = 'handle_view';
     if ($P{'step'} ne 'view') {
         $method_name = q{handle_} . $P{'step'};
@@ -130,6 +132,8 @@ sub push_data { # {{{
 } # }}}
 
 # Purpose:
+#   Utility method to save typing and keep the code clean.
+#
 #   Add Toolbox to the object's output (so, not as part of the page, but a part of the object).
 sub push_toolbox { # {{{
     my ( $self, %toolbox ) = @_;
@@ -267,8 +271,6 @@ sub build_url { # {{{
     my %P = validate(
         @_,
         {
-            add_to_path => { type=>SCALAR, optional=>1 },
-
             path_handler => { type=>SCALAR,   optional=>1 },
             path         => { type=>ARRAYREF, optional=>1 },
             add_to_path  => { type=>ARRAYREF, optional=>1 },
@@ -308,7 +310,10 @@ sub build_url { # {{{
     );
 
     if ($P{'add_to_path'}) {
-        push @{ $parts{'path'} }, @{ $P{'add_to_path'} };
+        $parts{'path'} = [
+            @{ $parts{'path'} },
+            @{ $P{'add_to_path'} }
+        ];
     }
     
     my $url = SLight::Core::URL::make_url(%parts);
@@ -344,6 +349,7 @@ sub make_toolbox { # {{{
 
             path_handler => { type=>SCALAR, optional=>1, default=>$self->{'url'}->{'path_handler'} },
             path         => { type=>SCALAR, optional=>1, default=>$self->{'url'}->{'path'} },
+            add_to_path  => { type=>ARRAYREF, optional=>1 },
 
             action => { type=>SCALAR, optional=>1, default=>$self->{'url'}->{'action'} },
             step   => { type=>SCALAR, optional=>1, default=>$self->{'url'}->{'step'} },

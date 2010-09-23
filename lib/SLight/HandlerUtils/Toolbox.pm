@@ -33,6 +33,7 @@ sub make_toolbox { # {{{
 
             path_handler => { type=>SCALAR, optional=>1 },
             path         => { type=>ARRAYREF, optional=>1 },
+            add_to_path  => { type=>ARRAYREF, optional=>1 },
 
             action => { type=>SCALAR, optional=>1 },
             step   => { type=>SCALAR, optional=>1 },
@@ -58,6 +59,13 @@ sub make_toolbox { # {{{
 
                 assert_defined($url->{$field}, $field . " configured");
             }
+        }
+
+        if ($P{'add_to_path'}) {
+            $url->{'path'} = [
+                @{ $P{'path'} },
+                @{ $P{'add_to_path'} },
+            ];
         }
 
         assert_defined($url->{'action'}, "action configured");

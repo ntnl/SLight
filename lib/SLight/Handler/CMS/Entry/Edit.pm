@@ -35,24 +35,7 @@ sub handle_view { # {{{
 
     my $content_spec = get_ContentSpec($content->{'Content_Spec_id'});
 
-    my $form = SLight::DataStructure::Form->new(
-        submit => TR('Update'),
-        action => $self->build_url(
-            step => 'save',
-        ),
-        hidden => {}
-    );
-
-    $self->build_form_guts(
-        form    => $form,
-        spec    => $content_spec,
-        errors  => {},
-        content => $content,
-    );
-
-    $self->push_data($form);
-
-    return;
+    return $self->_form($content, $content_spec, {});
 } # }}}
 
 sub handle_save { # {{{
@@ -70,27 +53,7 @@ sub handle_save { # {{{
 
     if (keys %{ $errors }) {
         # Re-display the form.
-    
-        my $form = SLight::DataStructure::Form->new(
-            submit => TR('Update'),
-            action => $self->build_url(
-                step => 'save',
-            ),
-            hidden => {}
-        );
-
-        use Data::Dumper; warn Dumper $errors;
-
-        $self->build_form_guts(
-            form    => $form,
-            spec    => $content_spec,
-            errors  => {},
-            content => $content,
-        );
-
-        $self->push_data($form);
-
-        return;
+        return $self->_form($content, $content_spec, $errors);
     }
 
     my $page_id = $self->{'page'}->{'page_id'};
@@ -98,7 +61,7 @@ sub handle_save { # {{{
 #    use Data::Dumper; warn Dumper $self->{'page'};
 
     my %content = (
-        id => $content->{'id'},
+        id => $oid,
 
         _data => $data,
 
@@ -106,10 +69,16 @@ sub handle_save { # {{{
         comment_read_policy  => $self->{'options'}->{'meta.comment_read_policy'},
     );
 
-    update_Content(%content);
+#    use Data::Dumper; die Dumper \%content;
+#    use Data::Dumper; warn Dumper \%content;
+
+    update_Content(
+        %content,
+        debug => 1,
+    );
 
     $self->process_field_attachments(
-        id          => $content->{'id'},
+        id          => $oid,
         attachments => $attachments,
     );
 
@@ -123,6 +92,34 @@ sub handle_save { # {{{
     $self->redirect( $self->build_url(%target_url) );
 
     return;
+} # }}}
+
+sub _form { # {{{
+    my ( $self, $content, $content_spec, $errors ) = @_;
+
+    my %url = (
+        step        => 'save',
+        add_to_path => [ q{-ob-} . $content->{'id'} ],
+    );
+
+    my $form = SLight::DataStructure::Form->new(
+        submit => TR('Update'),
+        action => $self->build_url(%url),
+        hidden => {}
+    );
+
+#    use Data::Dumper; warn Dumper $errors;
+
+    $self->build_form_guts(
+        form    => $form,
+        spec    => $content_spec,
+        errors  => {},
+        content => $content,
+    );
+
+    $self->push_data($form);
+
+    return $form;
 } # }}}
 
 # vim: fdm=marker

@@ -59,7 +59,7 @@ sub new { # {{{
 sub S_process_object { # {{{
     my ( $self, $object, $action, $step, $is_main_object ) = @_;
 
-#    $self->D_Dump($object, $action);
+    $self->D_Dump($object, $action);
 
     my ($pkg, $handler) = ( $object->{'class'} =~ m{^(.+?)::(.+?)$}s );
 
@@ -112,6 +112,7 @@ sub S_process_addon { # {{{
     my ( $self, $class, $metadata ) = @_;
     
 #    use Data::Dumper; warn "addon meta: " . Dumper $metadata;
+#    use Data::Dumper; warn "page: " . Dumper $self->{'page'};
     
     my ($pkg, $addon) = ( $class =~ m{^(.+?)::(.+?)$}s );
 
@@ -130,9 +131,10 @@ sub S_process_addon { # {{{
 
     my $data = eval {
         $addon_object->process(
-            url  => $self->{'url'},
-            user => $self->{'user'},
-            meta => ( $metadata or {} ),
+            page_id => ( $self->{'page'}->{'page_id'} or 0 ),
+            url     => $self->{'url'},
+            user    => $self->{'user'},
+            meta    => ( $metadata or {} ),
         );
     };
     if ($EVAL_ERROR) {

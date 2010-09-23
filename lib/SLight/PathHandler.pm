@@ -69,6 +69,14 @@ sub set_page_id { # {{{
     return $self->{'page_id'} = $page_id;
 } # }}}
 
+sub set_breadcrumb_path { # {{{
+    my ( $self, $breadcrumb_path ) = @_;
+
+    assert_listref($breadcrumb_path, 'Is a list');
+
+    return $self->{'breadcrumb_path'} = $breadcrumb_path;
+} # }}}
+
 sub set_template { # {{{
     my ( $self, $template ) = @_;
 
@@ -102,8 +110,12 @@ sub set_object_order { # {{{
 sub response_content { # {{{
     my ( $self ) = @_;
 
-    return {
+    # FIXME! Check, that Path handler returned what it should!
+
+    my $content_response = {
         page_id => $self->{'page_id'},
+        
+        breadcrumb_path => $self->{'breadcrumb_path'},
 
         template => $self->{'template'},
 
@@ -111,6 +123,10 @@ sub response_content { # {{{
         object_order => $self->{'object_order'},
         main_object  => $self->{'main_object'},
     };
+
+#    use Data::Dumper; warn Dumper $content_response;
+
+    return $content_response;
 } # }}}
 
 # vim: fdm=marker

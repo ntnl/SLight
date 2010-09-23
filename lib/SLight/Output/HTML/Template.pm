@@ -202,7 +202,7 @@ sub load_and_parse { # {{{
     my $html = read_file( $self->{'dir'} .q{/}. $P{'name'} .q{.html} );
 
     my $template = $self->process_html_template(
-        html  => $html,
+        html => $html,
     );
 
     # Save parsed data to cache.
@@ -212,6 +212,7 @@ sub load_and_parse { # {{{
     }
 
 #    warn "Template: ". Dump $template;
+#    use Data::Dumper; warn "Template: ". Dumper $template;
 
     return $template;
 } # }}}
@@ -477,14 +478,14 @@ sub render_template { # {{{
         BLOCK       => 'process_block',
     );
 
-    my $html = q{};
+    my @html,;
     foreach my $token (@{ $P{'template'}->{'index'} }) {
         my $handler = $handlers{ $token->{'type'} };
 
-        $html .= $self->$handler( $token, $P{'data'} );
+        push @html, $self->$handler( $token, $P{'data'} );
     }
     
-    return $html;
+    return join q{}, @html;
 } # }}}
 
 sub process_text { # {{{

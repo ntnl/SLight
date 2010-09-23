@@ -37,17 +37,18 @@ sub process { # {{{
     my %P = validate(
         @_,
         {
-            url  => { type=>HASHREF },
-            user => { type=>HASHREF },
-            meta => { type=>HASHREF },
+            page_id => { type=>SCALAR },
+            url     => { type=>HASHREF },
+            user    => { type=>HASHREF },
+            meta    => { type=>HASHREF },
         }
     );
 
-    foreach my $key (qw( url user meta )) {
+    foreach my $key (qw( url user meta page_id )) {
         $self->{$key} = $P{$key};
     }
 
-    return $self->_process(%P);
+    return $self->_process();
 } # }}}
 
 # vim: fdm=marker
