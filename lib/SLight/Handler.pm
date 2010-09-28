@@ -32,8 +32,9 @@ sub new { # {{{
 
     # Prototype of the object:
     my $self = {
-        data => [],
-        meta => {},
+        class => undef,
+        data  => [],
+        meta  => {},
 
         redirect => undef,
 
@@ -100,8 +101,9 @@ sub handle { # {{{
     }
 
     return {
-        data => $self->{'data'},
-        meta => $self->{'meta'},
+        class => $self->{'class'},
+        data  => $self->{'data'},
+        meta  => $self->{'meta'},
     };
 } # }}}
 
@@ -109,6 +111,14 @@ sub is_main_object { # {{{
     my ( $self ) = @_;
 
     return $self->{'is_main_object'};
+} # }}}
+
+# Purpose:
+#   Define object's class.
+sub set_class { # {{{
+    my ( $self, $class ) = @_;
+
+    return $self->{'class'} = $class;
 } # }}}
 
 # Purpose:

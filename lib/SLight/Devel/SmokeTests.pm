@@ -84,6 +84,35 @@ sub compilation_test_file { # {{{
     return 0;
 } # }}}
 
+# Purpose:
+#   Check if Perl modules have tests made just for them.
+#
+# Parameters:
+#   start_path : Start searching from this path
+sub per_class_test { # {{{
+    my ( $start_path, $test_basedir ) = @_;
+
+    # Get list of files that we will be testing.
+    my @files = find_files($start_path, '\.(pm)$', 'files');
+
+    plan tests => scalar @files;
+
+    my $failed = 0;
+    foreach my $file_path (@files) {
+        my ( $package ) = ( $file_path =~ m{(SLight[^.]*?)\.pm}s );
+
+        $package =~ s{/}{-}sg;
+
+        my $dedicated_test = $test_basedir .q{1-modules/}. $package . q{.t};
+
+#        warn $dedicated_test . "\n\n";
+
+        ok (-f $dedicated_test, q{Test exists: t/1-modules/} . $package . q{.t});
+    }
+
+    return $failed;
+} # }}}
+
 # Check if Perl files pass critic test.
 # Looks into every file bellow given path.
 # Parameters:

@@ -26,6 +26,8 @@ use Params::Validate qw( :all );
 sub handle_view { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
+    $self->set_class('Welcome');
+
     my $specs = get_ContentSpecs_where(
         cms_usage => [1, 2, 3],
     );

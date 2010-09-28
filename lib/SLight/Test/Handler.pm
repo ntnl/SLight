@@ -56,6 +56,10 @@ sub run_handler_tests { # {{{
             ]
         );
 
+        foreach my $cb_field (qw( call_before call_format call_result )) {
+            $runner_test{$cb_field} = $t->{$cb_field};
+        }
+
         push @tests, \%runner_test;
     }
 

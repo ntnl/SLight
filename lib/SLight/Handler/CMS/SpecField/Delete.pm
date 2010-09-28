@@ -23,6 +23,8 @@ use SLight::Core::L10N qw( TR TF );
 sub handle_view { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
+    $self->set_class('CMS_Spec_Field');
+
     my $spec = $metadata->{'spec'};
     
     my $field_data = $spec->{'_data'}->{$oid};
@@ -62,6 +64,8 @@ sub handle_view { # {{{
 
 sub handle_commit { # {{{
     my ( $self, $oid, $metadata ) = @_;
+
+    $self->set_class('CMS_Spec_Field');
 
     my $spec = $metadata->{'spec'};
 

@@ -31,6 +31,8 @@ use Params::Validate qw( :all );
 sub handle_view { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
+    $self->set_class('AddContent');
+
     assert_defined($self->{'page'}->{'page_id'}, 'ID (in page) defined');
 
     my $specs = get_ContentSpecs_where(
@@ -103,6 +105,8 @@ sub handle_view { # {{{
 sub handle_form { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
+    $self->set_class('AddContent');
+
     my $spec = get_ContentSpec($self->{'options'}->{'spec_id'});
 
     my $form = SLight::DataStructure::Form->new(
@@ -129,6 +133,8 @@ sub handle_form { # {{{
 
 sub handle_save { # {{{
     my ( $self, $oid, $metadata ) = @_;
+
+    $self->set_class('AddContent');
 
     my $content_spec = get_ContentSpec($self->{'options'}->{'spec_id'});
 

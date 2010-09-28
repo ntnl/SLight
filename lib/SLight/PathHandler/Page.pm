@@ -102,11 +102,9 @@ sub analyze_path { # {{{
 
     my $page = SLight::API::Page::get_page($page_id);
 
-    $self->set_template( ($page->{'template'} or 'Default') );
-
     # If there is no root page, return a nice 'Welcome' message :)
     if ($page_id == 1 and not $page) {
-        $self->cms_db_id_empty();
+        $self->cms_db_is_empty();
     }
     elsif ($aux_object_id) {
         my $objects = get_Contents_where(
@@ -192,11 +190,13 @@ sub analyze_path { # {{{
         # For now, assume the page is empty.
         $self->page_is_empty();
     }
+    
+    $self->set_template( ($page->{'template'} or 'Default') );
 
     return $self->response_content();
 } # }}}
 
-sub cms_db_id_empty { # {{{
+sub cms_db_is_empty { # {{{
     my ( $self ) = @_;
 
     $self->set_objects(

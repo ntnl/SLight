@@ -39,12 +39,12 @@ my %display_methods = (
 
 # Prepare detailed view of a Content element.
 sub ContentData_2_details { # {{{
-    my ( $self, $content ) = @_;
+    my ( $self, $content, $content_spec ) = @_;
 
     my $item_path = get_Page_full_path($content->{'Page_Entity_id'});
 
     my @container_contents = $self->display_ContentData_for_page(
-        $content,
+        $content, $content_spec,
         $item_path,
         0,            # thumb mode OFF
     );
@@ -121,9 +121,7 @@ sub ContentData_2_details { # {{{
 } # }}}
 
 sub display_ContentData_for_page { # {{{
-    my ( $self, $content, $item_path, $thumb_mode ) = @_;
-
-    my $content_spec = get_ContentSpec($content->{'Content_Spec_id'});
+    my ( $self, $content, $content_spec, $item_path, $thumb_mode ) = @_;
 
 #    use Data::Dumper; warn Dumper $content_spec;
 

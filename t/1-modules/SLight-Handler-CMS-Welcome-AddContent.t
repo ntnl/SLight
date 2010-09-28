@@ -31,6 +31,8 @@ my $site_root = SLight::Test::Site::prepare_fake(
 my $spec1_id = add_ContentSpec(
     caption => 'Article',
 
+    class => 'TestStuff',
+
     _data => {
         title   => { id=>10, caption=>'Title',   datatype=>'String', order=>1, default => q{}, translate=>1, max_length=>128 },
         article => { id=>11, caption=>'Article', datatype=>'Text',   order=>2, default => q{}, translate=>1, max_length=>1024 },

@@ -35,6 +35,8 @@ sub handle_view { # {{{
 
     my $content_spec = get_ContentSpec($content->{'Content_Spec_id'});
 
+    $self->set_class($content_spec->{'class'});
+
     return $self->_form($content, $content_spec, {});
 } # }}}
 
@@ -44,6 +46,8 @@ sub handle_save { # {{{
     my $content = get_Content($oid);
 
     my $content_spec = get_ContentSpec($content->{'Content_Spec_id'});
+
+    $self->set_class($content_spec->{'class'});
 
     # Get the data, that User sent us.
     my ( $errors, $warnings, $data, $attachments ) = $self->slurp_content_form_data(

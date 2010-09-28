@@ -60,6 +60,7 @@ use SLight::API::Content qw(
 # Prepare some Content Specs, on which we can work :)
 my %ContentSpec_1 = (
     caption => 'Paintball gun',
+    class   => 'TestStuff',
     _data   => { #      .-- usually this is not given, so DB creates it by itself...
         marker => { id=>10, caption => 'Marker Brand',     datatype  => 'String', order=>1, default => '', translate => 0, optional => 0, max_length => 250 },
         air    => { id=>20, caption => 'Gass type',        datatype  => 'String', order=>2, default => '', translate => 0, optional => 0, max_length => 250 },
@@ -74,6 +75,7 @@ my ($f_marker, $f_air, $f_bps, $f_note ) = (10, 20, 30, 40);
 
 my %ContentSpec_2 = (
     caption => 'Beautifull woman',
+    class   => 'TestStuff',
     _data   => {
         name  => { id=>50, caption => 'Chest',    datatype => 'String', order=>1, default => '', translate => 0, optional => 0, max_length => 3 },
         chest => { id=>60, caption => 'Chest',    datatype => 'Int',    order=>2, default => '', translate => 0, optional => 0, max_length => 3 },

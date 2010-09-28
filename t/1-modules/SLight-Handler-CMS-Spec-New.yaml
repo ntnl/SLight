@@ -1,7 +1,16 @@
 ---
 New spec form:
   content:
-    addon_data: ~
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
     object_data:
       _spec:
         class: SLight_Object

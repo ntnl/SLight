@@ -1,4 +1,4 @@
-package SLight;
+#!/usr/bin/perl
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -13,14 +13,20 @@ package SLight;
 ################################################################################
 
 use strict; use warnings; # {{{
+use FindBin qw( $Bin );
+use lib $Bin . q{/../../lib/};
 
-my $VERSION = '0.0.1';
+use SLight;
 
+use Test::More;
 # }}}
 
-sub version { # {{{
-    return $VERSION;
-} # }}}
+plan tests =>
+    1 # Version.
+;
+
+# Yes, redicolous :)
+
+is (SLight::version(), '0.0.1', 'Version is OK');
 
 # vim: fdm=marker
-1;

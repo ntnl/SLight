@@ -27,7 +27,7 @@ Empty list:
         type: Container
     object_data:
       l1:
-        class: SLight_Object
+        class: SLight_Object O-Generic
         content:
         - class: SLight_Notification
           content:
@@ -42,6 +42,139 @@ Empty list:
             content: []
             type: Container
           type: Container
+        type: Container
+    object_order:
+    - l1
+    template: Default
+  mime_type: ~
+  response: CONTENT
+One element list:
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        - class: Current
+          data:
+            href: /_CMS_Spec/
+            text: Content Specs
+          type: Link
+        type: Container
+      Core::Toolbox:
+        class: SLight_Toolbox_Plugin
+        content:
+        - class: SLight_New_Action
+          data:
+            caption: Add new Spec
+            href: /_CMS_Spec/Spec/New-en.web_test
+          type: Action
+        type: Container
+    object_data:
+      l1:
+        class: SLight_Object O-Generic
+        content:
+        - class: generic
+          content:
+          - class: generic
+            content:
+            - class: SLight_main_name
+              content:
+              - class: generic
+                data:
+                  href: /_CMS_Spec/Spec/1/
+                  text: Woman
+                type: Link
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            - class: SLight_name
+              content:
+              - class: SLight_name
+                data:
+                  text: CMS::Entry
+                type: Label
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            - class: SLight_name
+              content:
+              - class: SLight_name
+                data:
+                  text: Gal
+                type: Label
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            - class: SLight_int
+              content:
+              - class: SLight_int
+                data:
+                  text: 0
+                type: Label
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            - class: SLight_int
+              content:
+              - class: SLight_int
+                data:
+                  text: 6
+                type: Label
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            - class: SLight_name
+              content:
+              - class: SLight_name
+                data:
+                  text: 'Data field: Cup size'
+                type: Label
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            - class: SLight_name
+              content:
+              - class: SLight_name
+                data:
+                  text: 'Data field: Name'
+                type: Label
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            - class: SLight_name
+              content:
+              - class: SLight_name
+                data:
+                  text: 'Data field: Nick'
+                type: Label
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            - class: SLight_name
+              content:
+              - class: SLight_name
+                data:
+                  text: 'Data field: Nick'
+                type: Label
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            type: TableRow
+          type: Table
         type: Container
     object_order:
     - l1

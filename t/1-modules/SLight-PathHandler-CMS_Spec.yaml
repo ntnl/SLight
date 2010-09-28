@@ -1,0 +1,128 @@
+---
+Field page:
+  breadcrumb_path: []
+  main_object: _field
+  object_order:
+  - _field
+  objects:
+    _field:
+      class: CMS::SpecField
+      metadata:
+        spec:
+          _data:
+            article:
+              caption: Article
+              datatype: Text
+              default: ''
+              display_label: 1
+              display_on_list: 2
+              display_on_page: 2
+              id: 11
+              max_length: 1024
+              optional: 1
+              order: 2
+              translate: 1
+            title:
+              caption: Title
+              datatype: String
+              default: ''
+              display_label: 1
+              display_on_list: 2
+              display_on_page: 2
+              id: 10
+              max_length: 128
+              optional: 1
+              order: 1
+              translate: 1
+          _data_order:
+          - title
+          - article
+          caption: Article
+          class: Content
+          cms_usage: 3
+          id: 1
+          metadata: {}
+          order_by: ~
+          owning_module: CMS::Entry
+          use_as_title: ~
+          use_in_menu: ~
+          use_in_path: ~
+          version: 0
+      oid: title
+  page_id: ~
+  template: Default
+Root page:
+  breadcrumb_path: []
+  main_object: l1
+  object_order:
+  - l1
+  objects:
+    l1:
+      class: CMS::SpecList
+      oid: ~
+  page_id: ~
+  template: Default
+Spec page:
+  breadcrumb_path: []
+  main_object: _spec
+  object_order:
+  - _spec
+  - title
+  - article
+  objects:
+    _spec:
+      class: CMS::Spec
+      metadata:
+        spec: &1
+          _data:
+            article:
+              caption: Article
+              datatype: Text
+              default: ''
+              display_label: 1
+              display_on_list: 2
+              display_on_page: 2
+              id: 11
+              max_length: 1024
+              optional: 1
+              order: 2
+              translate: 1
+            title:
+              caption: Title
+              datatype: String
+              default: ''
+              display_label: 1
+              display_on_list: 2
+              display_on_page: 2
+              id: 10
+              max_length: 128
+              optional: 1
+              order: 1
+              translate: 1
+          _data_order:
+          - title
+          - article
+          caption: Article
+          class: Content
+          cms_usage: 3
+          id: 1
+          metadata: {}
+          order_by: ~
+          owning_module: CMS::Entry
+          use_as_title: ~
+          use_in_menu: ~
+          use_in_path: ~
+          version: 0
+      oid: '1'
+    article:
+      class: CMS::SpecField
+      metadata:
+        spec: *1
+      oid: article
+    title:
+      class: CMS::SpecField
+      metadata:
+        spec: *1
+      oid: title
+  page_id: ~
+  template: Default

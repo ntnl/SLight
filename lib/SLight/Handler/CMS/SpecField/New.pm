@@ -23,6 +23,8 @@ use Carp::Assert::More qw( assert_defined );
 sub form_spec { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
+    $self->set_class('CMS_Spec_Field');
+
     return {
         title  => TR(q{New field}),
         action => $self->build_url(
@@ -52,6 +54,8 @@ sub form_spec { # {{{
 
 sub save_form { # {{{
     my ( $self, $oid, $metadata ) = @_;
+
+    $self->set_class('CMS_Spec_Field');
 
     assert_defined($self->{'options'}->{'class'}, "Class MUST be defined");
 

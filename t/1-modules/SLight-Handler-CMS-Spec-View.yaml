@@ -2,6 +2,15 @@
 Display Spec:
   content:
     addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
       Core::Toolbox:
         class: SLight_Toolbox_Plugin
         content:
@@ -28,7 +37,7 @@ Display Spec:
         type: Container
     object_data:
       _spec:
-        class: SLight_Object
+        class: SLight_Object O-CMS_Spec
         content:
         - class: SLight_Properties
           content:
@@ -73,7 +82,7 @@ Display Spec:
           type: Container
         type: Container
       article:
-        class: SLight_Object
+        class: SLight_Object O-CMS_Spec_Field
         content:
         - class: SLight_Properties
           content:
@@ -120,7 +129,7 @@ Display Spec:
           type: Container
         type: Container
       title:
-        class: SLight_Object
+        class: SLight_Object O-CMS_Spec_Field
         content:
         - class: SLight_Properties
           content:

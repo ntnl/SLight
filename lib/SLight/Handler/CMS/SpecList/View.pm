@@ -15,7 +15,7 @@ use strict; use warnings; # {{{
 use base q{SLight::Handler};
 
 use SLight::API::ContentSpec qw( get_all_ContentSpecs );
-use SLight::Core::L10N qw( TR );
+use SLight::Core::L10N qw( TR TF );
 use SLight::DataStructure::List::Table;
 use SLight::DataStructure::Dialog::Notification;
 use SLight::DataToken qw( mk_Label_token mk_Link_token );
@@ -27,6 +27,8 @@ use Params::Validate qw( :all );
 
 sub handle_view { # {{{
     my ( $self, $oid, $metadata ) = @_;
+
+    $self->set_class('Generic');
 
     $self->set_toolbox(
         [
@@ -71,6 +73,11 @@ sub handle_view { # {{{
                 label => TR('Owner'),
             },
             {
+                name  => 'class',
+                class => 'SLight_name',
+                label => TR('Class'),
+            },
+            {
                 name  => 'version',
                 class => 'SLight_int',
                 label => TR('Version'),
@@ -79,7 +86,28 @@ sub handle_view { # {{{
                 name  => 'field_count',
                 class => 'SLight_int',
                 label => TR('Amount of fields'),
-            }
+            },
+            
+            {
+                name  => 'order_by',
+                class => 'SLight_name',
+                label => TR('Order field'),
+            },
+            {
+                name  => 'use_as_title',
+                class => 'SLight_name',
+                label => TR('Title field'),
+            },
+            {
+                name  => 'use_in_menu',
+                class => 'SLight_name',
+                label => TR('Menu field'),
+            },
+            {
+                name  => 'use_in_path',
+                class => 'SLight_name',
+                label => TR('Path field'),
+            },
         ]
     );
 
@@ -96,7 +124,14 @@ sub handle_view { # {{{
                 ],
                 owning_module => $content_spec->{'owning_module'},
                 version       => $content_spec->{'version'},
-                field_count   => scalar keys %{ $content_spec->{'_data'} },
+                class         => $content_spec->{'class'},
+
+                field_count => scalar keys %{ $content_spec->{'_data'} },
+
+                order_by     => $self->_make_field_label($content_spec, $content_spec->{'order_by'}),
+                use_as_title => $self->_make_field_label($content_spec, $content_spec->{'use_as_title'}),
+                use_in_menu  => $self->_make_field_label($content_spec, $content_spec->{'use_in_menu'}),
+                use_in_path  => $self->_make_field_label($content_spec, $content_spec->{'use_in_path'}),
             },
         );
     }
@@ -104,6 +139,26 @@ sub handle_view { # {{{
     $self->push_data($table);
 
     return;
+} # }}}
+
+sub _make_field_label { # {{{
+    my ( $self, $content_spec, $field_id ) = @_;
+
+    if ($field_id and $field_id =~ m{^\d+$}) {
+        # Numerical ID means data field ID.
+        foreach my $field (values %{ $content_spec->{'_data'} }) {
+            if ($field->{'id'} == $field_id) {
+                return TF("Data field: %s", undef, $field->{'caption'});
+            }
+        }
+    }
+
+    if ($field_id) {
+        # non-numerical ID means metadata field.
+        return TR("Field: " . $field_id);
+    }
+
+    return TR('ID');
 } # }}}
 
 # vim: fdm=marker

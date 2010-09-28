@@ -25,6 +25,8 @@ use Params::Validate qw( :all );
 sub handle_view { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
+    $self->set_class('Debug');
+
     $self->push_data(
         SLight::DataStructure::Dialog::Notification->new(
             class => q{SLight_Notification},

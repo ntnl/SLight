@@ -30,6 +30,9 @@ CREATE TABLE Content_Spec (
 	`version` SMALLINT NOT NULL DEFAULT 0,
 		-- In case the same module can handle different versions of the content type...
 
+    `class` VARCHAR(128) NOT NULL,
+        -- Class used to differentiate objects, making it more easier to handle then in CSS.
+
     `cms_usage` SMALLINT NOT NULL DEFAULT 0,
         -- Can such objects be used by CMS sub-system?
         -- One of:
@@ -37,6 +40,20 @@ CREATE TABLE Content_Spec (
         --  1 : can be used by CMS (as page additions)
         --  2 : can be used by CMS (as pages)
         --  3 : can be used by CMS (as pages and page additions)
+
+    `order_by` VARCHAR(128),
+        -- NULL     : unsorted (use their IDs)
+        -- $string  : Where $string is one of: status, added_time, modified_time (Content_Entity row)
+        -- $integer : Where $field is the Content_Spec_Field_id
+
+    `use_as_title` VARCHAR(128),
+        -- Same as `order_by`
+
+    `use_in_menu` VARCHAR(128),
+        -- Same as `order_by`
+
+    `use_in_path` VARCHAR(128),
+        -- Same as `order_by`
 
     `metadata` TEXT
         -- Serialized with YAML.

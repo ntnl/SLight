@@ -1,0 +1,43 @@
+---
+1-st level page:
+  breadcrumb_path:
+  - class: Test
+    href: /Docs/
+    label: Docs
+  main_object: e1
+  object_order:
+  - e1
+  objects:
+    e1:
+      class: Core::Empty
+      oid: ~
+  page_id: 3
+  template: Doc
+2-nd level page:
+  breadcrumb_path:
+  - class: Test
+    href: /About/
+    label: About
+  - class: Test
+    href: /About/Authors/
+    label: Authors
+  main_object: e1
+  object_order:
+  - e1
+  objects:
+    e1:
+      class: Core::Empty
+      oid: ~
+  page_id: 5
+  template: Default
+Root page:
+  breadcrumb_path: []
+  main_object: ob1
+  object_order:
+  - ob1
+  objects:
+    ob1:
+      class: CMS::Entry
+      oid: 1
+  page_id: 1
+  template: Default

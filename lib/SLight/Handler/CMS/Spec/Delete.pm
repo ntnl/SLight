@@ -23,6 +23,8 @@ use SLight::Core::L10N qw( TR TF );
 sub handle_view { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
+    $self->set_class('CMS_Spec');
+
     my $spec = $metadata->{'spec'};
 
     my $dialog = SLight::DataStructure::Dialog::YesNo->new(
@@ -58,6 +60,8 @@ sub handle_view { # {{{
 
 sub handle_commit { # {{{
     my ( $self, $oid, $metadata ) = @_;
+
+    $self->set_class('CMS_Spec');
 
     my $spec = $metadata->{'spec'};
 

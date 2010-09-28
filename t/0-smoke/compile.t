@@ -14,7 +14,7 @@
 
 # Check if all code can be compiled without problems.
 use FindBin qw( $Bin );
-use lib $Bin .'/../../lib/';
+use lib $Bin . q{/../../lib/};
 
 use SLight::Devel::SmokeTests;
 
@@ -33,3 +33,4 @@ SLight::Devel::SmokeTests::compilation_test(
     \@paths,
 );
 
+# vim: fdm=marker

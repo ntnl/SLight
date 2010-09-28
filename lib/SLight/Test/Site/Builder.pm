@@ -38,10 +38,22 @@ sub build_site { # {{{
 
     if (not $site_name) {
         foreach my $site (keys %sites) {
-            build_site($base_dir, $sql_dir, $print_cb, $site);
+            # Each build will be done by separate process.
+            # If there are any artifacts, they will die with the child process.
+            my $pid = fork;
+
+            assert_defined($pid, "Fork works well");
+            
+            if ($pid) {
+                waitpid($pid,0);
+            }
+            else {
+                build_site($base_dir, $sql_dir, $print_cb, $site);
+                exit 0;
+            }
         }
 
-        return;
+        return 0;
     }
 
     assert_exists(\%sites, $site_name, "Site configured.");

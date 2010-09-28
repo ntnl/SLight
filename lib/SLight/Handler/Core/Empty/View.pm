@@ -24,6 +24,8 @@ use Params::Validate qw( :all );
 sub handle_view { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
+    $self->set_class('Empty');
+
     $self->set_toolbox(
         [
             {

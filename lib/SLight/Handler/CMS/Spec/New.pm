@@ -21,6 +21,8 @@ use SLight::Core::L10N qw( TR );
 sub form_spec { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
+    $self->set_class('CMS_Spec');
+
     return {
         title  => TR(q{New content Spec}),
         action => $self->build_url(
@@ -41,6 +43,8 @@ sub form_spec { # {{{
 sub make_form { # {{{
     my ( $self, $oid, $metadata, $form ) = @_;
     
+    $self->set_class('CMS_Spec');
+
     $form->add_Entry(
         name    => 'caption',
         caption => TR('Caption'),
@@ -52,6 +56,8 @@ sub make_form { # {{{
 
 sub save_form { # {{{
     my ( $self, $oid, $metadata ) = @_;
+
+    $self->set_class('CMS_Spec');
 
     my $content_spec_id = add_ContentSpec(
         caption       => $self->{'options'}->{'caption'},

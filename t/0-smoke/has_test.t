@@ -1,4 +1,4 @@
-package SLight;
+#!/usr/bin/perl
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -12,15 +12,24 @@ package SLight;
 # 
 ################################################################################
 
-use strict; use warnings; # {{{
+# Check if all code can be compiled without problems.
+use FindBin qw( $Bin );
+use lib $Bin . q{/../../lib/};
 
-my $VERSION = '0.0.1';
+use SLight::Devel::SmokeTests;
 
-# }}}
+my @paths = (
+    $Bin .'/../../lib/',
+);
 
-sub version { # {{{
-    return $VERSION;
-} # }}}
+if ($ENV{'COVERAGE_RUN'}) {
+    # Just for the module's test..
+    @paths = ( $Bin .'/../../SLight/Interface/' );
+}
+
+SLight::Devel::SmokeTests::per_class_test(
+    \@paths,
+    $Bin .q{/../../t/},
+);
 
 # vim: fdm=marker
-1;

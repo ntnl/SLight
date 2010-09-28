@@ -2,6 +2,15 @@
 Root page:
   content:
     addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
       Core::Toolbox:
         class: SLight_Toolbox_Plugin
         content:
@@ -23,21 +32,8 @@ Root page:
         type: Container
     object_data:
       ob1:
-        class: SLight_Object
+        class: SLight_Object O-Content
         content:
-        - class: SLight_Notification
-          content:
-          - class: Message
-            content:
-            - class: generic
-              data:
-                text: This works!
-              type: Label
-            type: Container
-          - class: Buttons
-            content: []
-            type: Container
-          type: Container
         - class: Core
           content:
           - class: V-title Value

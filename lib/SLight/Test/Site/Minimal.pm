@@ -59,6 +59,8 @@ sub build { # {{{
             article => { id=>11, caption=>'Article', datatype=>'Text',   order=>2, default => q{}, translate=>1, max_length=>1024 },
         },
 
+        class => 'Content',
+
         cms_usage => 3,
 
         owning_module => q{CMS::Entry},
@@ -70,6 +72,8 @@ sub build { # {{{
             title => { id=>20, caption=>'Title', datatype=>'String', order=>1, default => q{}, translate=>1, max_length=>128 },
             news  => { id=>21, caption=>'News',  datatype=>'Text',   order=>2, default => q{}, translate=>1, max_length=>1024 },
         },
+
+        class => 'Content',
 
         cms_usage => 3,
 
@@ -92,6 +96,8 @@ sub build { # {{{
             
             about => { id=>39, caption => 'About', datatype => 'Text', order=>10, default => q{}, translate => 1, optional => 0, max_length => 1 },
         },
+
+        class => 'Person',
 
         cms_usage => 1,
 

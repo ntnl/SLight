@@ -1,10 +1,19 @@
 ---
 Get Content Spec choice menu:
   content:
-    addon_data: ~
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
     object_data:
       e1:
-        class: SLight_Object
+        class: SLight_Object O-AddContent
         content:
         - class: generic
           content:
@@ -52,10 +61,19 @@ Get Content Spec choice menu:
   response: CONTENT
 Get form:
   content:
-    addon_data: ~
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
     object_data:
       e1:
-        class: SLight_Object
+        class: SLight_Object O-AddContent
         content:
         - class: generic
           content:

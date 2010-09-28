@@ -29,7 +29,7 @@ sub _process { # {{{
         return;
     }
 
-    use Data::Dumper; warn Dumper $self->{'meta'}->{'path_bar'};
+#    use Data::Dumper; warn Dumper $self->{'meta'}->{'path_bar'};
 
     my @path_items = (
         mk_Link_token(

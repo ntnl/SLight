@@ -1,4 +1,16 @@
 #!/usr/bin/perl
+################################################################################
+# 
+# SLight - Lightweight Content Manager System.
+#
+# Copyright (C) 2010 Bartłomiej /Natanael/ Syguła
+#
+# This is free software.
+# It is licensed, and can be distributed under the same terms as Perl itself.
+#
+# More information on: http://slight-cms.org/
+# 
+################################################################################
 
 # Test for SLight::DataType
 use strict; use warnings; # {{{

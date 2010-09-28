@@ -27,6 +27,8 @@ use Params::Validate qw( :all );
 sub handle_view { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
+    $self->set_class('CMS_Spec');
+
     $self->set_toolbox(
         [
             {

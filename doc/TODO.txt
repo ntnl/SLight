@@ -54,23 +54,24 @@
 [X]     Entity - add support to 'IN' in '*_where' functions
 [>]     Add per-page (object, actually) thingy of it's title (long + short) set by object (during edit) or by one of it's sub-pages too :) Will be cool :)
 [X]         Make Object/Action Handlers _append_ to the path, but _only_ one element.
-[>]         Make PathHandlers generate path for a page
-[ ]         Add 'order_by', 'use_as_title', 'use_as_summary', 'use_in_menu' and 'use_in_path' support to ContentSpec, so Page PathHandler knows what to use.
-[ ]             Fix SQL
-[ ]             Fix API
-[ ]             Fix CMS::SpecList (should display which fields are used for what purpose)
+[X]         Make PathHandlers generate path for a page
+[>]         Add 'order_by', 'use_as_title', 'use_in_menu' and 'use_in_path' support to ContentSpec, so Page PathHandler, as well as knows what to use.
+[X]             Fix SQL
+[X]             Fix API
+[X]             Fix CMS::SpecList (should display which fields are used for what purpose)
 [ ]             Fix CMS::Spec display and form (should display and allow to change roles)
 [ ]         Make Page PathHandler use 'use_as_title' and 'use_in_path'
-[>] API
-[>]     ContentSpec store
+[ ]         Menu and Submenu should use 'order_by'
+[-] API
+[X]     ContentSpec store
 [X]         'cms_usage' column support
-[ ]         Add 'class' to Spec, so each SLight_Object can have a O-$class (so it's easyer to hack CSS)
+[X]         Add 'class' to Spec, so each SLight_Object can have an O-$class (so it's easier to hack CSS)
 [X]     Content store
 [ ]     Comment store
 [X]     Asset store
 [ ]     Page API refactoring ('page' to 'Page')
-[>] PathHandler ()
-[>]     Test Framework
+[X] PathHandler ()
+[X]     Test Framework
 [X]     SLight::PathHandler::CMS_Spec
 [X]     SLight::PathHandler::Test
 [X] Handler Object Test Framework
@@ -252,5 +253,9 @@
 =--= Future ideas:
 
 [ ] Fix CMS::SpecField form (should contain checkboxes for 'Use...' so User can do the choice directly from Field form)
+[ ] SLight::Handler::Browser
+[ ]     SLight::Handler::Browser::Recent (list sub-pages in order in which they ware created - newer on top)
+[ ]     SLight::Handler::Browser::Ordered (list sub-pages in order defined by 'order_by')
+[ ] ContentSpec fields describing how to sort, what to put into title, menu, path, and so on, should be a templates, so that User can join fields, eg: '%hip%-%ID%'
 [ ] ...
 

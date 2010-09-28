@@ -59,7 +59,7 @@ sub new { # {{{
 sub S_process_object { # {{{
     my ( $self, $object, $action, $step, $is_main_object ) = @_;
 
-    $self->D_Dump($object, $action);
+#    $self->D_Dump($object, $action);
 
     my ($pkg, $handler) = ( $object->{'class'} =~ m{^(.+?)::(.+?)$}s );
 
@@ -94,11 +94,14 @@ sub S_process_object { # {{{
                 replace_with_object => $result->{'replace_with_object'}
             };
         }
+        
+        assert_defined($result->{'class'}, 'Class is defined in result');
+        assert_defined($result->{'data'},  'Data is defined in result');
 
         return {
             data => mk_Container_token(
                 # TODO: add 'id' property to it, so every object has unique ID!
-                class   => 'SLight_Object',
+                class   => 'SLight_Object O-' . $result->{'class'},
                 content => $result->{'data'}
             ),
             meta => $result->{'meta'}

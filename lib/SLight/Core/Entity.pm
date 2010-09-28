@@ -369,8 +369,6 @@ sub update_ENTITY { # {{{
                     %{ $data_entry->{'data'} },
 
                     $self->{'base_table'} . q{_id} => $P{'id'},
-
-                    'debug' => $P{'debug'}, 
                 );
 
                 foreach my $key_column (keys %{ $data_entry->{'keys'} }) {
