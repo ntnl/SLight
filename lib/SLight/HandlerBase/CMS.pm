@@ -572,5 +572,42 @@ sub make_timebox { # {{{
     );
 } # }}}
 
+# Purpose:
+#   Create main toolbox for CMS::Entry-based page.
+sub manage_toolbox { # {{{
+    my ( $self, $oid ) = @_;
+    
+    my @common_toolbox = (
+        {
+            caption => TR('Edit'),
+            action  => 'Edit',
+        },
+        {
+            caption => TR('Delete'),
+            action  => 'Delete',
+        },
+    );
+    if ($self->is_main_object()) {
+        $self->set_toolbox(
+            [
+                {
+                    caption => TR('Add Content'),
+                    action  => 'AddContent',
+                },
+                @common_toolbox,
+            ]
+        );
+    }
+    else {
+        $self->push_toolbox(
+            urls => \@common_toolbox,
+            
+            'add_to_path' => [ q{-ob-} . $oid ],
+        );
+    }
+
+    return;
+} # }}}
+
 # vim: fdm=marker
 1;

@@ -1,0 +1,136 @@
+---
+Display Add Content form:
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        - class: Test
+          data:
+            href: /Download/
+            text: Download
+          type: Link
+        type: Container
+    object_data:
+      e1:
+        class: SLight_Object O-AddContent
+        content:
+        - class: generic
+          content:
+          - class: default
+            content:
+            - class: data
+              content:
+              - class: data
+                data:
+                  text: Article
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: data
+              content:
+              - class: generic
+                data:
+                  href: /Download/AddContent-form.web?target=New&spec_id=1
+                  text: As new page
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: data
+              content:
+              - class: generic
+                data:
+                  href: /Download/AddContent-form.web?target=Current&spec_id=1
+                  text: Append here
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            type: TableRow
+          - class: default
+            content:
+            - class: data
+              content:
+              - class: data
+                data:
+                  text: Gal
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: data
+              content:
+              - class: generic
+                data:
+                  href: /Download/AddContent-form.web?target=New&spec_id=3
+                  text: As new page
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: data
+              content:
+              - class: generic
+                data:
+                  href: /Download/AddContent-form.web?target=Current&spec_id=3
+                  text: Append here
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            type: TableRow
+          - class: default
+            content:
+            - class: data
+              content:
+              - class: data
+                data:
+                  text: News
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: data
+              content:
+              - class: generic
+                data:
+                  href: /Download/AddContent-form.web?target=New&spec_id=2
+                  text: As new page
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: data
+              content:
+              - class: generic
+                data:
+                  href: /Download/AddContent-form.web?target=Current&spec_id=2
+                  text: Append here
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            type: TableRow
+          type: Table
+        type: Container
+    object_order:
+    - e1
+    template: Default
+  mime_type: ~
+  response: CONTENT

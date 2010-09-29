@@ -14,7 +14,9 @@ package SLight::Protocol;
 use strict; use warnings; # {{{
 use base q{SLight::BaseClass};
 
+use SLight::AddonFactory;
 use SLight::OutputFactory;
+use SLight::HandlerFactory;
 use SLight::DataToken qw( mk_Container_token mk_Label_token );
 use SLight::Core::L10N qw( TR TF );
 

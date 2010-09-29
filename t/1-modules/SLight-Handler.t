@@ -20,18 +20,17 @@ use utf8;
 # }}}
 
 plan tests =>
-    + 2 # most simple ->new() constructor tests
-    + 2 # most simple ->make() method tests
+    + 5 # most-simple smoke tests.
 ;
 
-require SLight::OutputFactory;
+require SLight::Handler;
 
-my $f1_object;
-ok ($f1_object = SLight::OutputFactory->new(), q{->new ok});
-isa_ok($f1_object, 'SLight::OutputFactory', q{->new isa_ok});
+# This should be sufficient for some time...
 
-my $t1_object;
-ok ($t1_object = $f1_object->make(output=>'TEST'), q{->make ok});
-isa_ok($t1_object, 'SLight::Output::TEST', q{->make isa_ok});
+can_ok('SLight::Handler', 'new');
+can_ok('SLight::Handler', 'handle');
+can_ok('SLight::Handler', 'is_main_object');
+can_ok('SLight::Handler', 'set_class');
+can_ok('SLight::Handler', 'push_data');
 
 # vim: fdm=marker

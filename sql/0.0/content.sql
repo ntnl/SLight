@@ -137,7 +137,7 @@ CREATE TABLE Content_Spec_Field (
         -- This value will be used to determine maximal size of file uploads too.
         -- But, for uploads - it's bytes, since files tend to be binary ;)
 	
-    FOREIGN KEY(`Content_Spec_id`) REFERENCES Content_Spec(`id`)
+    FOREIGN KEY(`Content_Spec_id`) REFERENCES Content_Spec(`id`) ON DELETE CASCADE
 );
 CREATE        INDEX Content_Spec_Field_Content_Spec_id ON Content_Spec_Field (Content_Spec_id);
 CREATE UNIQUE INDEX Content_Spec_Field_class           ON Content_Spec_Field (Content_Spec_id, class);
@@ -193,8 +193,8 @@ CREATE TABLE Content_Entity (
         -- A place where modules can put 'their' stuff.
 
     FOREIGN KEY (`Page_Entity_id`)  REFERENCES Page_Entity (`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`Email_id`)        REFERENCES Email(`id`),
-	FOREIGN KEY (`Content_Spec_id`) REFERENCES Content_Spec(`id`)
+    FOREIGN KEY (`Email_id`)        REFERENCES Email(`id`) ON DELETE CASCADE,
+	FOREIGN KEY (`Content_Spec_id`) REFERENCES Content_Spec(`id`) ON DELETE CASCADE
 );
 CREATE UNIQUE INDEX Content_Entity_Page_Stuff ON Content_Entity (Page_Entity_id, on_page_index);
 
@@ -210,8 +210,8 @@ CREATE TABLE Content_Entity_Data (
 
 	`value`	TEXT NOT NULL,
 
-	FOREIGN KEY(`Content_Entity_id`)     REFERENCES Content_Entity(`id`),
-    FOREIGN KEY(`Content_Spec_Field_id`) REFERENCES Content_Spec_Field(`id`)
+	FOREIGN KEY(`Content_Entity_id`)     REFERENCES Content_Entity(`id`) ON DELETE CASCADE,
+    FOREIGN KEY(`Content_Spec_Field_id`) REFERENCES Content_Spec_Field(`id`) ON DELETE CASCADE
 );
 CREATE UNIQUE INDEX Content_Entity_Data_index ON Content_Entity_Data (Content_Entity_id, Content_Spec_Field_id, language);
 
@@ -234,8 +234,8 @@ CREATE TABLE Content_Entity_Data_History (
     `event_time`	TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         -- Time when given value was set.
 
-	FOREIGN KEY(`Content_Entity_id`)     REFERENCES Content_Entity(`id`),
-    FOREIGN KEY(`Content_Spec_Field_id`) REFERENCES Content_Type_Field(`id`)
+	FOREIGN KEY(`Content_Entity_id`)     REFERENCES Content_Entity(`id`) ON DELETE CASCADE,
+    FOREIGN KEY(`Content_Spec_Field_id`) REFERENCES Content_Spec_Field(`id`) ON DELETE CASCADE
 );
 
 CREATE TABLE Comment_Entity (
@@ -257,7 +257,7 @@ CREATE TABLE Comment_Entity (
 	`text`	TEXT,
 
     FOREIGN KEY (`parent_id`) REFERENCES Comment_Entity (`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`Email_id`)  REFERENCES Email(`id`)
+    FOREIGN KEY (`Email_id`)  REFERENCES Email(`id`) ON DELETE CASCADE
 );
 CREATE INDEX Comment_Entity_parent ON Comment_Entity (`parent_id`);
 CREATE INDEX Comment_Entity_email  ON Comment_Entity (`Email_id`);
@@ -277,7 +277,7 @@ CREATE TABLE Asset_Entity (
 
 	`summary`	VARCHAR(255), -- summary entered by the uploader
 
-	FOREIGN KEY (`Email_id`) REFERENCES Email(`id`)
+	FOREIGN KEY (`Email_id`) REFERENCES Email(`id`) ON DELETE CASCADE
 );
 CREATE INDEX Asset_Entity_email ON Asset_Entity (`Email_id`);
 
@@ -286,7 +286,7 @@ CREATE TABLE Asset_2_Content (
 
     `Content_Entity_id` INTEGER NOT NULL,
 
-    FOREIGN KEY (`Content_Entity_id`) REFERENCES Content_Entity (`id`)
+    FOREIGN KEY (`Content_Entity_id`) REFERENCES Content_Entity (`id`) ON DELETE CASCADE
 );
 CREATE UNIQUE INDEX Asset_2_Content_unique ON Asset_2_Content (`Asset_Entity_id`, `Content_Entity_id`);
 CREATE        INDEX Asset_2_Content_target ON Asset_2_Content (`Content_Entity_id`);
@@ -296,8 +296,8 @@ CREATE TABLE Asset_2_Content_Field (
     `Content_Entity_id` INTEGER NOT NULL,
     `Content_Spec_Field_id` INTEGER,
 
-    FOREIGN KEY (`Content_Entity_id`)     REFERENCES Content_Entity (`id`),
-    FOREIGN KEY (`Content_Spec_Field_id`) REFERENCES Content_Spec_Field (`id`)
+    FOREIGN KEY (`Content_Entity_id`)     REFERENCES Content_Entity (`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`Content_Spec_Field_id`) REFERENCES Content_Spec_Field (`id`) ON DELETE CASCADE
 );
 CREATE UNIQUE INDEX Asset_2_Content_Field_unique  ON Asset_2_Content_Field (`Asset_Entity_id`, `Content_Entity_id`, `Content_Spec_Field_id`);
 CREATE        INDEX Asset_2_Content_Field_target  ON Asset_2_Content_Field (`Content_Entity_id`, `Content_Spec_Field_id`);

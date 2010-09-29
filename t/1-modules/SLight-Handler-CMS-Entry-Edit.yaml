@@ -1,0 +1,111 @@
+---
+Do the update (send form):
+  location: http://foo.localdomain/About/
+  response: REDIRECT
+Open content edit form:
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        - class: Test
+          data:
+            href: /About/
+            text: About
+          type: Link
+        type: Container
+    object_data:
+      ob2:
+        class: SLight_Object O-Content
+        content:
+        - class: generic
+          content:
+          - class: generic
+            content:
+            - class: F-Label Label
+              data:
+                text: Article
+              type: Label
+            type: Container
+          - class: F-content.title Entry
+            content:
+            - class: Label
+              data:
+                text: Title (en)
+              type: Label
+            - class: Value
+              data:
+                name: content.title
+                value: Test sub-page
+              type: Entry
+            type: Container
+          - class: F-content.article TextEntry
+            content:
+            - class: Label
+              data:
+                text: Article (en)
+              type: Label
+            - class: Value
+              data:
+                name: content.article
+                value: Minimal test page, not such minimal any more ;)
+              type: TextEntry
+            type: Container
+          - class: F-meta.comment_write_policy SelectEntry
+            content:
+            - class: Label
+              data:
+                text: Comment write policy
+              type: Label
+            - class: Value
+              data:
+                name: meta.comment_write_policy
+                options:
+                - - '0'
+                  - Disabled
+                - - '1'
+                  - By registered users only (moderated)
+                - - '2'
+                  - By registered users only
+                - - '3'
+                  - By all users (moderated)
+                - - '4'
+                  - By all users
+                value: '0'
+              type: SelectEntry
+            type: Container
+          - class: F-meta.comment_read_policy SelectEntry
+            content:
+            - class: Label
+              data:
+                text: Comment display policy
+              type: Label
+            - class: Value
+              data:
+                name: meta.comment_read_policy
+                options:
+                - - '0'
+                  - Comments are hidden
+                - - '1'
+                  - Visible to registered users only
+                - - '2'
+                  - Visible to everyone
+                value: '0'
+              type: SelectEntry
+            type: Container
+          data:
+            action: /About/-ob-2/Edit-save.web
+            hidden: {}
+            submit: Update
+          type: Form
+        type: Container
+    object_order:
+    - ob2
+    template: Info
+  mime_type: ~
+  response: CONTENT

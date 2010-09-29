@@ -1,4 +1,7 @@
 ---
+Send form - save:
+  location: /_CMS_Spec/Spec/1/
+  response: REDIRECT
 Show edit form:
   content:
     addon_data:

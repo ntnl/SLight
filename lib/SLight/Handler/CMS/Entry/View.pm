@@ -54,34 +54,7 @@ sub handle_view { # {{{
         );
     }
 
-    my @common_toolbox = (
-        {
-            caption => TR('Edit'),
-            action  => 'Edit',
-        },
-        {
-            caption => TR('Delete'),
-            action  => 'Delete',
-        },
-    );
-    if ($self->is_main_object()) {
-        $self->set_toolbox(
-            [
-                {
-                    caption => TR('Add Content'),
-                    action  => 'AddContent',
-                },
-                @common_toolbox,
-            ]
-        );
-    }
-    else {
-        $self->push_toolbox(
-            urls => \@common_toolbox,
-            
-            'add_to_path' => [ q{-ob-} . $oid ],
-        );
-    }
+    $self->manage_toolbox($oid);
 
     return;
 } # }}}

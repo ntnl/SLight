@@ -846,7 +846,7 @@ sub delete_ENTITYs { # {{{
         }
     }
     
-    # Before deleting main rows, thrit coresponding child rows must be deleted.
+    # Before deleting main rows, their corresponding child rows must be deleted.
     if ($self->{'child_table'}) {
         SLight::Core::DB::run_delete(
             from  => $self->{'child_table'},

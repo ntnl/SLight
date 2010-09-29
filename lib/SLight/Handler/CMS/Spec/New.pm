@@ -50,6 +50,11 @@ sub make_form { # {{{
         caption => TR('Caption'),
         value   => q{},
     );
+    $form->add_Entry(
+        name    => 'caption',
+        caption => TR('Class'),
+        value   => q{},
+    );
 
     return;
 } # }}}
@@ -59,8 +64,11 @@ sub save_form { # {{{
 
     $self->set_class('CMS_Spec');
 
+    # FIXME! Add user input validation!
+
     my $content_spec_id = add_ContentSpec(
         caption       => $self->{'options'}->{'caption'},
+        class         => $self->{'options'}->{'class'},
         owning_module => q{CMS::Entry},
 
         cms_usage => 3, # FIXME: should not be hard-coded.

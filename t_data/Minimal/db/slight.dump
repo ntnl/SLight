@@ -137,7 +137,7 @@ CREATE TABLE Content_Spec_Field (
         -- This value will be used to determine maximal size of file uploads too.
         -- But, for uploads - it's bytes, since files tend to be binary ;)
 	
-    FOREIGN KEY(`Content_Spec_id`) REFERENCES Content_Spec(`id`)
+    FOREIGN KEY(`Content_Spec_id`) REFERENCES Content_Spec(`id`) ON DELETE CASCADE
 );
 INSERT INTO "Content_Spec_Field" VALUES(10,1,'title','Title',1,'String','',1,2,2,1,1,128);
 INSERT INTO "Content_Spec_Field" VALUES(11,1,'article','Article',2,'Text','',1,2,2,1,1,1024);
@@ -202,10 +202,11 @@ CREATE TABLE Content_Entity (
         -- A place where modules can put 'their' stuff.
 
     FOREIGN KEY (`Page_Entity_id`)  REFERENCES Page_Entity (`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`Email_id`)        REFERENCES Email(`id`),
-	FOREIGN KEY (`Content_Spec_id`) REFERENCES Content_Spec(`id`)
+    FOREIGN KEY (`Email_id`)        REFERENCES Email(`id`) ON DELETE CASCADE,
+	FOREIGN KEY (`Content_Spec_id`) REFERENCES Content_Spec(`id`) ON DELETE CASCADE
 );
-INSERT INTO "Content_Entity" VALUES(1,1,NULL,'V',1,0,0,0,'2010-09-28 16:25:15','2010-09-28 16:25:15',NULL);
+INSERT INTO "Content_Entity" VALUES(1,1,NULL,'V',1,0,0,0,'2010-09-29 15:59:01','2010-09-29 15:59:01',NULL);
+INSERT INTO "Content_Entity" VALUES(2,1,NULL,'V',2,0,0,0,'2010-09-29 15:59:01','2010-09-29 15:59:01',NULL);
 CREATE TABLE Content_Entity_Data (
 	`Content_Entity_id` INTEGER NOT NULL,
 
@@ -218,8 +219,8 @@ CREATE TABLE Content_Entity_Data (
 
 	`value`	TEXT NOT NULL,
 
-	FOREIGN KEY(`Content_Entity_id`)     REFERENCES Content_Entity(`id`),
-    FOREIGN KEY(`Content_Spec_Field_id`) REFERENCES Content_Spec_Field(`id`)
+	FOREIGN KEY(`Content_Entity_id`)     REFERENCES Content_Entity(`id`) ON DELETE CASCADE,
+    FOREIGN KEY(`Content_Spec_Field_id`) REFERENCES Content_Spec_Field(`id`) ON DELETE CASCADE
 );
 INSERT INTO "Content_Entity_Data" VALUES(1,11,'en','---
  - Minimal test site, not such minimal any more ;)
@@ -229,6 +230,14 @@ INSERT INTO "Content_Entity_Data" VALUES(1,11,'pl','---
  - Minimalna strona testowa, już nie taka minimalna ;)
 ');
 INSERT INTO "Content_Entity_Data" VALUES(1,10,'pl','Strona testowa zrobiona');
+INSERT INTO "Content_Entity_Data" VALUES(2,11,'en','---
+ - Minimal test page, not such minimal any more ;)
+');
+INSERT INTO "Content_Entity_Data" VALUES(2,10,'en','Test sub-page');
+INSERT INTO "Content_Entity_Data" VALUES(2,11,'pl','---
+ - Minimalna strona testowa, już nie taka minimalna ;)
+');
+INSERT INTO "Content_Entity_Data" VALUES(2,10,'pl','Podstrona testowa');
 CREATE TABLE Content_Entity_Data_History (
     `id` INTEGER PRIMARY KEY,
 
@@ -246,8 +255,8 @@ CREATE TABLE Content_Entity_Data_History (
     `event_time`	TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         -- Time when given value was set.
 
-	FOREIGN KEY(`Content_Entity_id`)     REFERENCES Content_Entity(`id`),
-    FOREIGN KEY(`Content_Spec_Field_id`) REFERENCES Content_Type_Field(`id`)
+	FOREIGN KEY(`Content_Entity_id`)     REFERENCES Content_Entity(`id`) ON DELETE CASCADE,
+    FOREIGN KEY(`Content_Spec_Field_id`) REFERENCES Content_Spec_Field(`id`) ON DELETE CASCADE
 );
 CREATE TABLE Comment_Entity (
 	`id` INTEGER PRIMARY KEY,
@@ -268,7 +277,7 @@ CREATE TABLE Comment_Entity (
 	`text`	TEXT,
 
     FOREIGN KEY (`parent_id`) REFERENCES Comment_Entity (`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`Email_id`)  REFERENCES Email(`id`)
+    FOREIGN KEY (`Email_id`)  REFERENCES Email(`id`) ON DELETE CASCADE
 );
 CREATE TABLE Asset_Entity (
 	`id` INTEGER PRIMARY KEY,
@@ -285,14 +294,14 @@ CREATE TABLE Asset_Entity (
 
 	`summary`	VARCHAR(255), -- summary entered by the uploader
 
-	FOREIGN KEY (`Email_id`) REFERENCES Email(`id`)
+	FOREIGN KEY (`Email_id`) REFERENCES Email(`id`) ON DELETE CASCADE
 );
 CREATE TABLE Asset_2_Content (
     `Asset_Entity_id` INTEGER,
 
     `Content_Entity_id` INTEGER NOT NULL,
 
-    FOREIGN KEY (`Content_Entity_id`) REFERENCES Content_Entity (`id`)
+    FOREIGN KEY (`Content_Entity_id`) REFERENCES Content_Entity (`id`) ON DELETE CASCADE
 );
 CREATE TABLE Asset_2_Content_Field (
     `Asset_Entity_id` INTEGER,
@@ -300,8 +309,8 @@ CREATE TABLE Asset_2_Content_Field (
     `Content_Entity_id` INTEGER NOT NULL,
     `Content_Spec_Field_id` INTEGER,
 
-    FOREIGN KEY (`Content_Entity_id`)     REFERENCES Content_Entity (`id`),
-    FOREIGN KEY (`Content_Spec_Field_id`) REFERENCES Content_Spec_Field (`id`)
+    FOREIGN KEY (`Content_Entity_id`)     REFERENCES Content_Entity (`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`Content_Spec_Field_id`) REFERENCES Content_Spec_Field (`id`) ON DELETE CASCADE
 );
 CREATE TABLE Email (
 	`id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it

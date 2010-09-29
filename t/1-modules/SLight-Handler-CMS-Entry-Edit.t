@@ -23,27 +23,31 @@ use English qw( -no_match_vars );
 
 my $site_root = SLight::Test::Site::prepare_fake(
     test_dir => $Bin . q{/../},
-    site     => 'Users'
+    site     => 'Minimal'
 );
 
 my @tests = (
     {
-        name => q{New spec form},
-        url  => q{/_CMS_Spec/Spec/New.web},
+        'name' => q{Open content edit form},
+        'url'  => q{/About/Edit.web},
     },
     {
-        name => q{Save new spec form},
-        url  => q{/_CMS_Spec/Spec/New-save.web},
-        cgi  => {
-            caption => 'Foo spec',
+        'name' => q{Do the update (send form)},
+        'url'  => q{/About/Edit-save.web},
+        'cgi'  => {
+            'content.title'   => 'Updated content',
+            'content.article' => 'This is an updated content.',
 
-            class => 'FooTest',
+            'meta.comment_write_policy' => 1,
+            'meta.comment_read_policy'  => 1,
         }
     },
 );
 
 run_handler_tests(
     tests => \@tests,
+    
+    strip_dates => 1,
 );
 
 # vim: fdm=marker

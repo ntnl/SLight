@@ -78,7 +78,7 @@ sub handle_save { # {{{
 
     update_Content(
         %content,
-        debug => 1,
+#        debug => 1,
     );
 
     $self->process_field_attachments(
@@ -117,7 +117,7 @@ sub _form { # {{{
     $self->build_form_guts(
         form    => $form,
         spec    => $content_spec,
-        errors  => {},
+        errors  => $errors,
         content => $content,
     );
 

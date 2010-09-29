@@ -1,0 +1,408 @@
+---
+AddContent form - as Current:
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        - class: Test
+          data:
+            href: /About/
+            text: About
+          type: Link
+        type: Container
+    object_data:
+      ob2:
+        class: SLight_Object O-AddContent
+        content:
+        - class: generic
+          content:
+          - class: generic
+            content:
+            - class: F-Label Label
+              data:
+                text: Article
+              type: Label
+            type: Container
+          - class: F-meta.email Entry
+            content:
+            - class: Label
+              data:
+                text: Email (internal use only)
+              type: Label
+            - class: Value
+              data:
+                name: meta.email
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-content.title Entry
+            content:
+            - class: Label
+              data:
+                text: Title (en)
+              type: Label
+            - class: Value
+              data:
+                name: content.title
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-content.article TextEntry
+            content:
+            - class: Label
+              data:
+                text: Article (en)
+              type: Label
+            - class: Value
+              data:
+                name: content.article
+                value: ''
+              type: TextEntry
+            type: Container
+          - class: F-meta.comment_write_policy SelectEntry
+            content:
+            - class: Label
+              data:
+                text: Comment write policy
+              type: Label
+            - class: Value
+              data:
+                name: meta.comment_write_policy
+                options:
+                - - 0
+                  - Disabled
+                - - 1
+                  - By registered users only (moderated)
+                - - 2
+                  - By registered users only
+                - - 3
+                  - By all users (moderated)
+                - - 4
+                  - By all users
+                value: 0
+              type: SelectEntry
+            type: Container
+          - class: F-meta.comment_read_policy SelectEntry
+            content:
+            - class: Label
+              data:
+                text: Comment display policy
+              type: Label
+            - class: Value
+              data:
+                name: meta.comment_read_policy
+                options:
+                - - 0
+                  - Comments are hidden
+                - - 1
+                  - Visible to registered users only
+                - - 2
+                  - Visible to everyone
+                value: 0
+              type: SelectEntry
+            type: Container
+          data:
+            action: /About/AddContent-save.web
+            hidden:
+              spec_id: 1
+              target: Current
+            submit: Add
+          type: Form
+        type: Container
+    object_order:
+    - ob2
+    template: Info
+  mime_type: ~
+  response: CONTENT
+AddContent form - as New:
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        - class: Test
+          data:
+            href: /About/
+            text: About
+          type: Link
+        type: Container
+    object_data:
+      ob2:
+        class: SLight_Object O-AddContent
+        content:
+        - class: generic
+          content:
+          - class: generic
+            content:
+            - class: F-Label Label
+              data:
+                text: Article
+              type: Label
+            type: Container
+          - class: F-page.path Entry
+            content:
+            - class: Label
+              data:
+                text: Path element name
+              type: Label
+            - class: Value
+              data:
+                name: page.path
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-page.template Entry
+            content:
+            - class: Label
+              data:
+                text: Template file
+              type: Label
+            - class: Value
+              data:
+                name: page.template
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-meta.email Entry
+            content:
+            - class: Label
+              data:
+                text: Email (internal use only)
+              type: Label
+            - class: Value
+              data:
+                name: meta.email
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-content.title Entry
+            content:
+            - class: Label
+              data:
+                text: Title (en)
+              type: Label
+            - class: Value
+              data:
+                name: content.title
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-content.article TextEntry
+            content:
+            - class: Label
+              data:
+                text: Article (en)
+              type: Label
+            - class: Value
+              data:
+                name: content.article
+                value: ''
+              type: TextEntry
+            type: Container
+          - class: F-meta.comment_write_policy SelectEntry
+            content:
+            - class: Label
+              data:
+                text: Comment write policy
+              type: Label
+            - class: Value
+              data:
+                name: meta.comment_write_policy
+                options:
+                - - 0
+                  - Disabled
+                - - 1
+                  - By registered users only (moderated)
+                - - 2
+                  - By registered users only
+                - - 3
+                  - By all users (moderated)
+                - - 4
+                  - By all users
+                value: 0
+              type: SelectEntry
+            type: Container
+          - class: F-meta.comment_read_policy SelectEntry
+            content:
+            - class: Label
+              data:
+                text: Comment display policy
+              type: Label
+            - class: Value
+              data:
+                name: meta.comment_read_policy
+                options:
+                - - 0
+                  - Comments are hidden
+                - - 1
+                  - Visible to registered users only
+                - - 2
+                  - Visible to everyone
+                value: 0
+              type: SelectEntry
+            type: Container
+          data:
+            action: /About/AddContent-save.web
+            hidden:
+              spec_id: 1
+              target: New
+            submit: Add
+          type: Form
+        type: Container
+    object_order:
+    - ob2
+    template: Info
+  mime_type: ~
+  response: CONTENT
+AddContent invitation:
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        - class: Test
+          data:
+            href: /About/
+            text: About
+          type: Link
+        type: Container
+    object_data:
+      ob2:
+        class: SLight_Object O-AddContent
+        content:
+        - class: generic
+          content:
+          - class: default
+            content:
+            - class: data
+              content:
+              - class: data
+                data:
+                  text: Article
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: data
+              content:
+              - class: generic
+                data:
+                  href: /About/AddContent-form.web?target=New&spec_id=1
+                  text: As new page
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: data
+              content:
+              - class: generic
+                data:
+                  href: /About/AddContent-form.web?target=Current&spec_id=1
+                  text: Append here
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            type: TableRow
+          - class: default
+            content:
+            - class: data
+              content:
+              - class: data
+                data:
+                  text: Gal
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: data
+              content:
+              - class: generic
+                data:
+                  href: /About/AddContent-form.web?target=New&spec_id=3
+                  text: As new page
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: data
+              content:
+              - class: generic
+                data:
+                  href: /About/AddContent-form.web?target=Current&spec_id=3
+                  text: Append here
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            type: TableRow
+          - class: default
+            content:
+            - class: data
+              content:
+              - class: data
+                data:
+                  text: News
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: data
+              content:
+              - class: generic
+                data:
+                  href: /About/AddContent-form.web?target=New&spec_id=2
+                  text: As new page
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: data
+              content:
+              - class: generic
+                data:
+                  href: /About/AddContent-form.web?target=Current&spec_id=2
+                  text: Append here
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            type: TableRow
+          type: Table
+        type: Container
+    object_order:
+    - ob2
+    template: Info
+  mime_type: ~
+  response: CONTENT
+Submit form - Current:
+  location: http://foo.localdomain/About/
+  response: REDIRECT
+Submit form - New:
+  location: http://foo.localdomain/About/Test1/
+  response: REDIRECT

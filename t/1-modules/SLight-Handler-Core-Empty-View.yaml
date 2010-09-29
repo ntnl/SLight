@@ -1,0 +1,42 @@
+---
+Display empty page:
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        - class: Test
+          data:
+            href: /Download/
+            text: Download
+          type: Link
+        type: Container
+      Core::Toolbox:
+        class: SLight_Toolbox_Plugin
+        content:
+        - class: SLight_AddContent_Action
+          data:
+            caption: Add content
+            href: /Download/AddContent-en.web_test
+          type: Action
+        - class: SLight_Delete_Action
+          data:
+            caption: Delete
+            href: /Download/Delete-en.web_test
+          type: Action
+        type: Container
+    object_data:
+      e1:
+        class: SLight_Object O-Empty
+        content: []
+        type: Container
+    object_order:
+    - e1
+    template: Default
+  mime_type: ~
+  response: CONTENT

@@ -59,7 +59,7 @@
 [X]             Fix SQL
 [X]             Fix API
 [X]             Fix CMS::SpecList (should display which fields are used for what purpose)
-[ ]             Fix CMS::Spec display and form (should display and allow to change roles)
+[>]             Fix CMS::Spec display and form (should display and allow to change roles)
 [ ]         Make Page PathHandler use 'use_as_title' and 'use_in_path'
 [ ]         Menu and Submenu should use 'order_by'
 [-] API
@@ -82,10 +82,10 @@
 [ ]         SLight::Handler::Core::Asset::Asset
 [ ]         SLight::Handler::Core::Asset::Internal
 [ ]         SLight::Handler::Core::Asset::Dynamic
-[>]     SLight::Handler::Core::Empty
+[X]     SLight::Handler::Core::Empty
 [X]         SLight::Handler::Core::Empty::View
 [X]         SLight::Handler::Core::Empty::AddContent
-[>]         SLight::Handler::Core::Empty::Delete
+[X]         SLight::Handler::Core::Empty::Delete
 [X]     SLight::Handler::CMS::Welcome
 [X]         SLight::Handler::CMS::Welcome::View
 [X]     SLight::Handler::CMS::SpecList
@@ -103,42 +103,42 @@
 [>]     SLight::Handler::CMS::Entry
 [X]         SLight::Handler::CMS::Entry::New
 [X]         SLight::Handler::CMS::Entry::Edit
-[>]         SLight::Handler::CMS::Entry::Delete
+[X]         SLight::Handler::CMS::Entry::Delete
 [ ]         SLight::Handler::CMS::Entry::Asset
 [ ]         SLight::Handler::CMS::Entry::Comment
 [X]         SLight::Handler::CMS::Entry::View
 [ ]         SLight::Handler::CMS::Entry::Translate
-[>]         SLight::Handler::CMS::Entry::AddContent
+[-]         SLight::Handler::CMS::Entry::AddContent
 [ ]             Display what handler owns the module type
 [ ]     SLight::Handler::Error
 [ ]         SLight::Handler::Error::NotFound
 [ ]         SLight::Handler::Error::InternalError
-[>] SLight::HandlerUtils::Pager
+[-] SLight::HandlerUtils::Pager
 [X] Output:
 [X]     SLight::OutputFactory
 [X]     HTML Template/Generator libraries
 [X]     SLight::Output
 [X]     SLight::Output::HTML
 [X]     SLight::Output::TEST
-[>] DataStructure
+[-] DataStructure
 [X]     SLight::DataStructure
 [X]     SLight::DataStructure::Token (new!)
-[>]     SLight::DataStructure::List (ex CoMe...GenericGrid)
+[-]     SLight::DataStructure::List (ex CoMe...GenericGrid)
 [ ]     SLight::DataStructure::Table (ex CoMe...GenericTable)
-[>]     SLight::DataStructure::Table::Properties (ex CoMe...GenericProperties)
-[>]     SLight::DataStructure::Form (ex CoMe...GenericForm)
+[-]     SLight::DataStructure::Table::Properties (ex CoMe...GenericProperties)
+[-]     SLight::DataStructure::Form (ex CoMe...GenericForm)
 [ ]     SLight::DataStructure::Form::Diff (CoMe...DiffForm)
 [X]     SLight::DataStructure::Dialog (new!)
 [X]     SLight::DataStructure::Dialog::Notification (ex CoMe...GenericMessage)
 [X]     SLight::DataStructure::Dialog::YesNo (ex. CoMe...YesNo)
-[>] Addon
+[-] Addon
 [X]     SLight::Addon::Core::Toolbox
 [X]     SLight::Addon::Core::Path
 [>]     SLight::Addon::Core::Sysinfo
 [X]     SLight::Addon::Core::Language
 [ ]     SLight::Addon::Core::Debug
-[>]     SLight::Addon::CMS::Menu
-[>]     SLight::Addon::CMS::Submenu
+[-]     SLight::Addon::CMS::Menu
+[-]     SLight::Addon::CMS::Submenu
 [ ] Development
 [ ]     Make a script, that creates fully usable sandbox from test site.
 [ ]     Intercept STDERR (when enabled) and handle it to Debug Addon

@@ -121,6 +121,23 @@ sub build { # {{{
             },
         }
     );
+    my $c2 = add_Content(
+        Content_Spec_id => $spec1_id,
+        Page_Entity_id  => $p1_id,
+
+        status => q{V},
+
+        _data => {
+            pl => {
+                10 => q{Podstrona testowa},
+                11 => qq{---\n - Minimalna strona testowa, już nie taka minimalna ;)\n},
+            },
+            en => {
+                10 => q{Test sub-page},
+                11 => qq{---\n - Minimal test page, not such minimal any more ;)\n},
+            },
+        }
+    );
 
     # Add gals, as authors, of course :-D Isn't that screwed? nooo.... :-P
 

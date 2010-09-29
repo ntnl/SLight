@@ -13,7 +13,7 @@ New spec form:
         type: Container
     object_data:
       _spec:
-        class: SLight_Object
+        class: SLight_Object O-CMS_Spec
         content:
         - class: generic
           content:
@@ -22,6 +22,18 @@ New spec form:
             - class: Label
               data:
                 text: Caption
+              type: Label
+            - class: Value
+              data:
+                name: caption
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-caption Entry
+            content:
+            - class: Label
+              data:
+                text: Class
               type: Label
             - class: Value
               data:

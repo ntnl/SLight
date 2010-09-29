@@ -30,6 +30,14 @@ my @tests = (
     {
         'name' => q{Show edit form},
         'url'  => q{/_CMS_Spec/Spec/1/Edit.web},
+    },
+    {
+        'name' => q{Send form - save},
+        'url'  => q{/_CMS_Spec/Spec/1/Edit-save.web},
+        'cgi'  => {
+            caption => 'Fixed spec',
+            class   => 'CClass',
+        }
     }
 );
 

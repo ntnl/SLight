@@ -42,7 +42,8 @@ sub build_form_guts { # {{{
         text => $spec->{'caption'}
     );
 
-    if ($self->{'options'}->{'target'} eq 'New') {
+    # Used by 'AddContent' variant.
+    if ($self->{'options'}->{'target'} and $self->{'options'}->{'target'} eq 'New') {
         # Add metadata required for the entry to be created.
         $form->add_Entry(
             caption => TR('Path element name'),
@@ -75,6 +76,8 @@ sub build_form_guts { # {{{
 #    use Data::Dumper; warn Dumper $ContentData;
 
     my %signatures_cache;
+    
+#    use Data::Dumper; warn Dumper $P{'errors'};
 
     # Add data fields from ContentType.
     foreach my $field_name (@{ $spec->{'_data_order'} }) {
