@@ -70,7 +70,7 @@ sub run_request { # {{{
 
     # Replace generated time placeholder with some real value, but only if We are doing some text-based response.
     # Running regexp on some binary data could have bad consequences.
-    if ($content->{'mime_type'} =~ m{^text/}) {
+    if ($content->{'mime_type'} =~ m{^text/}s) {
         my $total_run_time = sprintf "%.2f", time - $start_time;
 
         if ($content->{'content'}) {

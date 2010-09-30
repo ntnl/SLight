@@ -1,4 +1,4 @@
-package SLight::HandlerBase::Pager;
+package SLight::HandlerUtils::Pager;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.

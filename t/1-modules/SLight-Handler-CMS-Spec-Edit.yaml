@@ -32,6 +32,82 @@ Show edit form:
                 value: Article
               type: Entry
             type: Container
+          - class: F-class Entry
+            content:
+            - class: Label
+              data:
+                text: Class
+              type: Label
+            - class: Value
+              data:
+                name: class
+                value: Content
+              type: Entry
+            type: Container
+          - class: F-order_by SelectEntry
+            content:
+            - class: Label
+              data:
+                text: Order field
+              type: Label
+            - class: Value
+              data:
+                name: order_by
+                options: &1
+                - - path
+                  - URL Part
+                - - status
+                  - Status
+                - - added_time
+                  - Added time
+                - - modified_time
+                  - Modified time
+                - - '10'
+                  - 'Data field: Title'
+                - - '11'
+                  - 'Data field: Article'
+                value: ''
+              type: SelectEntry
+            type: Container
+          - class: F-use_as_title SelectEntry
+            content:
+            - class: Label
+              data:
+                text: Title field
+              type: Label
+            - class: Value
+              data:
+                name: use_as_title
+                options: *1
+                value: ''
+              type: SelectEntry
+            type: Container
+          - class: F-use_in_menu SelectEntry
+            content:
+            - class: Label
+              data:
+                text: Menu field
+              type: Label
+            - class: Value
+              data:
+                name: use_in_menu
+                options: *1
+                value: ''
+              type: SelectEntry
+            type: Container
+          - class: F-use_in_path SelectEntry
+            content:
+            - class: Label
+              data:
+                text: Path field
+              type: Label
+            - class: Value
+              data:
+                name: use_in_path
+                options: *1
+                value: ''
+              type: SelectEntry
+            type: Container
           data:
             action: /_CMS_Spec/Spec/1/Edit-save.web
             hidden: {}

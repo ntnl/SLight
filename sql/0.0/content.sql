@@ -230,7 +230,7 @@ CREATE TABLE Content_Entity_Data_History (
         -- * if the field is not translatable.
 
 	`value`	TEXT NOT NULL,
-	
+
     `event_time`	TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         -- Time when given value was set.
 

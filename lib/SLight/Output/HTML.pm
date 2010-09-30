@@ -39,7 +39,7 @@ sub process_addon_data { # {{{
 #    use Data::Dumper; warn q{process_addon_data: } . Dumper $addon, $data_structure;
 
     my $addon_placeholder = $addon;
-    $addon_placeholder =~ s{::}{.};
+    $addon_placeholder =~ s{::}{\.}s;
 
     $self->{'HTML'}->{'addons'}->{$addon_placeholder} = $data_structure;
 

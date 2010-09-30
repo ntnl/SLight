@@ -26,28 +26,15 @@ my $site_root = SLight::Test::Site::prepare_fake(
 
 my @tests = (
     {
-        name   => 'Typical login. OK',
+        name   => 'Typical (new) login. OK',
         data   => { foo => 'Zuzanna' },
-        meta   => { foo => { type=>'Login' } },
+        meta   => { foo => { type=>'NewLogin' } },
         expect => 'undef',
     },
     {
-        name   => 'Smallest login - 4 chars. OK',
-        data   => { foo => 'Zuza' },
-        meta   => { foo => { type=>'Login' } },
-        expect => 'undef',
-    },
-    
-    {
-        name   => 'Too short. FAIL',
-        data   => { foo => 'Zuz' },
-        meta   => { foo => { type=>'Login' } },
-    },
-    {
-        name   => 'Already taken. PASS',
-        data   => { foo => 'UserA' },
-        meta   => { foo => { type=>'Login' } },
-        expect => 'undef',
+        name   => 'Already taken. FAIL',
+        data   => { foo => 'wanda' },
+        meta   => { foo => { type=>'NewLogin' } },
     },
 );
 

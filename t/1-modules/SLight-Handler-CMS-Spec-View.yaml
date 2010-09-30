@@ -78,6 +78,50 @@ Display Spec:
                 text: '0'
               type: Label
             type: Container
+          - class: default
+            content:
+            - class: SLight_Caption
+              data:
+                text: 'Order field:'
+              type: Label
+            - class: SLight_Value
+              data:
+                text: Id
+              type: Label
+            type: Container
+          - class: default
+            content:
+            - class: SLight_Caption
+              data:
+                text: 'Title field:'
+              type: Label
+            - class: SLight_Value
+              data:
+                text: Id
+              type: Label
+            type: Container
+          - class: default
+            content:
+            - class: SLight_Caption
+              data:
+                text: 'Menu field:'
+              type: Label
+            - class: SLight_Value
+              data:
+                text: Id
+              type: Label
+            type: Container
+          - class: default
+            content:
+            - class: SLight_Caption
+              data:
+                text: 'Path field:'
+              type: Label
+            - class: SLight_Value
+              data:
+                text: Id
+              type: Label
+            type: Container
           data: {}
           type: Container
         type: Container

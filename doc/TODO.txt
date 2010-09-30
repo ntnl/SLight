@@ -59,9 +59,9 @@
 [X]             Fix SQL
 [X]             Fix API
 [X]             Fix CMS::SpecList (should display which fields are used for what purpose)
-[>]             Fix CMS::Spec display and form (should display and allow to change roles)
-[ ]         Make Page PathHandler use 'use_as_title' and 'use_in_path'
-[ ]         Menu and Submenu should use 'order_by'
+[X]             Fix CMS::Spec display and form (should display and allow to change roles)
+[X]         Make Page PathHandler use 'use_as_title' and 'use_in_path'
+[>]         Menu and Submenu should use 'order_by'
 [-] API
 [X]     ContentSpec store
 [X]         'cms_usage' column support
@@ -75,7 +75,7 @@
 [X]     SLight::PathHandler::CMS_Spec
 [X]     SLight::PathHandler::Test
 [X] Handler Object Test Framework
-[>] CMS Handler objects
+[-] CMS Handler objects
 [X]     SLight::Handler::Test::Foo
 [ ]     SLight::Handler::Core::Asset
 [ ]         SLight::Handler::Core::Asset::List
@@ -100,7 +100,7 @@
 [X]         SLight::Handler::CMS::SpecField::New
 [X]         SLight::Handler::CMS::SpecField::Edit
 [X]         SLight::Handler::CMS::SpecField::Delete
-[>]     SLight::Handler::CMS::Entry
+[-]     SLight::Handler::CMS::Entry
 [X]         SLight::Handler::CMS::Entry::New
 [X]         SLight::Handler::CMS::Entry::Edit
 [X]         SLight::Handler::CMS::Entry::Delete
@@ -134,17 +134,19 @@
 [-] Addon
 [X]     SLight::Addon::Core::Toolbox
 [X]     SLight::Addon::Core::Path
-[>]     SLight::Addon::Core::Sysinfo
+[-]     SLight::Addon::Core::Sysinfo
 [X]     SLight::Addon::Core::Language
 [ ]     SLight::Addon::Core::Debug
-[-]     SLight::Addon::CMS::Menu
-[-]     SLight::Addon::CMS::Submenu
+[>]     SLight::Addon::CMS::Rootmenu
+[>]     SLight::Addon::CMS::Menu
+[>]     SLight::Addon::CMS::Submenu
 [ ] Development
 [ ]     Make a script, that creates fully usable sandbox from test site.
 [ ]     Intercept STDERR (when enabled) and handle it to Debug Addon
 [ ]     Implement DB-schema-update utility.
 [ ] Bugs/Regressions
 [ ]     Template displays UTF incorrectly ("ł" in the footer is screwed) when there are UTF-8 characters IN content added to template.
+[ ]     Path does not put data trough Encode/Decode, and does not make thumbnails out of it!
 
     Definition of done:
 

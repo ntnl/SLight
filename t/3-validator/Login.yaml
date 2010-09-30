@@ -1,9 +1,6 @@
 --- 
-Already taken. FAIL: 
-  foo: Account with such ID already exists.
 Already taken. PASS: ~
 Smallest login - 4 chars. OK: ~
 Too short. FAIL: 
   foo: Too short, must have at least 4 characters.
-Typical (new) login. OK: ~
 Typical login. OK: ~

@@ -1,0 +1,4 @@
+--- 
+Typical (new) login. OK: ~
+Already taken. FAIL: 
+  foo: Account with such ID already exists.

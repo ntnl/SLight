@@ -33,7 +33,7 @@ sub analyze_path { # {{{
     my $last_template = 'Default';
     my @breadcrumb_path;
     my @path_stack;
-    
+
     # Check for aux object selector:
     if (scalar @{ $path } and $path->[-1] =~ m{-ob-(\d+)}) {
         $aux_object_id = $1;
@@ -62,16 +62,38 @@ sub analyze_path { # {{{
 
             $parent_id = $page_id = $pages->[0]->{'id'};
 
-#            my $content_objects = get_Contents_where(
-#                Page_Entity_id => $page_id,
-#                on_page_index  => 0,
-#            );
-#            if ($content_objects->[0]) {
-#                my $content_spec = get_ContentSpec($content_objects->[0]->{'Content_Spec_id'});
-
             push @path_stack, $part;
+
+            my $path_label = $part;
+            my $content_objects = get_Contents_where(
+                Page_Entity_id => $page_id,
+                on_page_index  => 0,
+            );
+            if ($content_objects->[0]) {
+                my $content_spec = get_ContentSpec($content_objects->[0]->{'Content_Spec_id'});
+
+                my @langs = (
+                    $self->{'url'}->{'lang'},
+                    ( keys %{ $content_objects->[0]->{'_data'} } ),
+                    q{*}
+                );
+
+                if ($content_spec and $content_spec->{'use_in_path'}) {
+                    if ($content_spec->{'use_in_path'} =~ m{\d}s) {
+                        foreach my $lang (@langs) {
+                            if ($content_objects->[0]->{'_data'}->{$lang}->{ $content_spec->{'use_in_path'} }) {
+                                $path_label = $content_objects->[0]->{'_data'}->{$lang}->{ $content_spec->{'use_in_path'} };
+                                last;
+                            }
+                        }
+                    }
+                    elsif ($content_objects->[0]->{ $content_spec->{'use_in_path'} }) {
+                        $path_label = $content_objects->[0]->{ $content_spec->{'use_in_path'} };
+                    }
+                }
+            }
             push @breadcrumb_path, {
-                label => $part,
+                label => $path_label,
                 class => 'Test',
                 href  => SLight::Core::URL::make_url(
                     path => [ @path_stack ],

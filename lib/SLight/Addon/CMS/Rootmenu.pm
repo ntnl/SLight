@@ -1,4 +1,4 @@
-package SLight::Addon::CMS::Submenu;
+package SLight::Addon::CMS::Rootmenu;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -26,44 +26,34 @@ use Params::Validate qw( :all );
 sub _process { # {{{
     my ( $self ) = @_;
 
-    if (not $self->{'page_id'}) {
-        return;
-    }
-
-    my $page = SLight::API::Page::get_page($self->{'page_id'});
-
-    if ($page->{'parent_id'} == 1) {
-        return;
-    }
-
     my $pages = SLight::API::Page::get_page_fields_where(
-        parent_id => $page->{'parent_id'},
+        parent_id => 1,
 
         _fields => [qw( path )]
     );
 
     my @menu_items;
-    foreach my $sub_page (@{ $pages }) {
+    foreach my $page (@{ $pages }) {
         my $class = 'Other';
 
         # FIXME! This will not work on 2-nd level page :(
-        if ($page->{'id'} == $sub_page->{'id'}) {
+        if ($self->{'page_id'} == $page->{'id'}) {
             $class = 'Current';
         }
 
         my $menu_item = mk_Link_token(
             class => $class,
             href  => SLight::Core::URL::make_url(
-                path => [ $sub_page->{'path'} ],
+                path => [ $page->{'path'} ],
             ),
-            text => $sub_page->{'path'}, # Fix this! Use some hjuman text.
+            text => $page->{'path'}, # Fix this! Use some hjuman text.
         );
 
         push @menu_items, $menu_item;
     }
 
     my $container = mk_Container_token(
-        class   => 'SLight_Submenu_Addon',
+        class   => 'SLight_Menu_Addon',
         content => \@menu_items,
     );
 
