@@ -1,0 +1,12 @@
+---
+Sub menu on 1-st level page: ~
+Sub menu on 2-st level page:
+  class: SLight_Submenu_Addon
+  content:
+  - class: Current
+    data:
+      href: /Authors/
+      text: Authors
+    type: Link
+  type: Container
+Sub menu on root: ~

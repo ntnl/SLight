@@ -1,0 +1,20 @@
+---
+Root page:
+  breadcrumb_path: ~
+  main_object: ob1
+  object_order:
+  - ob1
+  - ob2
+  objects:
+    ob1:
+      class: Test::Foo
+      metadata:
+        msg: First test entry
+      oid: 1
+    ob2:
+      class: Test::Foo
+      metadata:
+        msg: Second test entry
+      oid: 2
+  page_id: ~
+  template: Default

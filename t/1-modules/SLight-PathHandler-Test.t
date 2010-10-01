@@ -1,4 +1,4 @@
-package SLight::AddonFactory;
+#!/usr/bin/perl
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -12,26 +12,30 @@ package SLight::AddonFactory;
 # 
 ################################################################################
 use strict; use warnings; # {{{
-use base q{SLight::Core::Factory};
+use FindBin qw( $Bin );
+use lib $Bin . q{/../../lib/};
 
-use Carp;
+use SLight::Test::Site;
+use SLight::Test::PathHandler qw( run_pathhandler_tests );
+
 use English qw( -no_match_vars );
-use Params::Validate qw( :all );
 # }}}
 
-# Load an Addon object.
-sub make { # {{{
-    my $self = shift;
-    my %P = validate(
-        @_,
-        {
-            pkg   => { type=>SCALAR },
-            addon => { type=>SCALAR },
-        }
-    );
+my $site_root = SLight::Test::Site::prepare_empty(
+    test_dir => $Bin . q{/../},
+);
 
-    return $self->low_load( [ 'Addon', $P{'pkg'}, $P{'addon'} ] );
-} # }}}
+my @tests = (
+    {
+        'name' => q{Root page},
+        'path' => [ ],
+    },
+);
+
+run_pathhandler_tests(
+    tests => \@tests,
+
+    ph => 'Test',
+);
 
 # vim: fdm=marker
-1;

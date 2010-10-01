@@ -50,6 +50,12 @@ sub build { # {{{
         path      => q{Authors},
     );
 
+    # Add 3-rd level page:
+    my $p4_id = SLight::API::Page::add_page(
+        parent_id => $p4_id,
+        path      => q{Feedback},
+    );
+
     # Add some content specs:
     my $spec1_id = add_ContentSpec(
         caption => 'Article',

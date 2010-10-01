@@ -1,4 +1,4 @@
-package SLight::AddonFactory;
+#!/usr/bin/perl
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -12,26 +12,18 @@ package SLight::AddonFactory;
 # 
 ################################################################################
 use strict; use warnings; # {{{
-use base q{SLight::Core::Factory};
+use FindBin qw( $Bin );
+use lib $Bin . q{/../../lib/};
 
-use Carp;
-use English qw( -no_match_vars );
-use Params::Validate qw( :all );
+use Test::More;
 # }}}
 
-# Load an Addon object.
-sub make { # {{{
-    my $self = shift;
-    my %P = validate(
-        @_,
-        {
-            pkg   => { type=>SCALAR },
-            addon => { type=>SCALAR },
-        }
-    );
+use SLight::Output;
 
-    return $self->low_load( [ 'Addon', $P{'pkg'}, $P{'addon'} ] );
-} # }}}
+plan tests =>
+    + 1 # smoke tests
+;
+
+can_ok('SLight::Output', 'new');
 
 # vim: fdm=marker
-1;

@@ -1,0 +1,11 @@
+---
+Menu on 1-st level page:
+  class: SLight_Submenu_Addon
+  content:
+  - class: Other
+    data:
+      href: /About/Authors/
+      text: Authors
+    type: Link
+  type: Container
+Menu on root: ~

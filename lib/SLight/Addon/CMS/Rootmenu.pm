@@ -36,6 +36,8 @@ sub _process { # {{{
     foreach my $page (@{ $pages }) {
         my $class = 'Other';
 
+        my ( $order_by, $use_in_menu ) = $self->extract_fields($page->{'id'});
+
         # FIXME! This will not work on 2-nd level page :(
         if ($self->{'page_id'} == $page->{'id'}) {
             $class = 'Current';
@@ -46,15 +48,19 @@ sub _process { # {{{
             href  => SLight::Core::URL::make_url(
                 path => [ $page->{'path'} ],
             ),
-            text => $page->{'path'}, # Fix this! Use some hjuman text.
+            text => ( $use_in_menu or $page->{'path'} ),
         );
+
+        $menu_item->{'_sort'} = ( $order_by or $page->{'path'} );
 
         push @menu_items, $menu_item;
     }
 
     my $container = mk_Container_token(
-        class   => 'SLight_Menu_Addon',
-        content => \@menu_items,
+        class   => 'SLight_Rootmenu_Addon',
+        content => [
+            map { delete $_->{'_sort'}; $_ } sort { $a->{'_sort'} cmp $b->{'_sort'} } @menu_items
+        ],
     );
 
     return $container;

@@ -1,0 +1,39 @@
+---
+Root menu:
+  class: SLight_Rootmenu_Addon
+  content:
+  - class: Other
+    data:
+      href: /About/
+      text: About
+    type: Link
+  - class: Other
+    data:
+      href: /Docs/
+      text: Docs
+    type: Link
+  - class: Other
+    data:
+      href: /Download/
+      text: Download
+    type: Link
+  type: Container
+Root menu - remains the same:
+  class: SLight_Rootmenu_Addon
+  content:
+  - class: Current
+    data:
+      href: /About/
+      text: About
+    type: Link
+  - class: Other
+    data:
+      href: /Docs/
+      text: Docs
+    type: Link
+  - class: Other
+    data:
+      href: /Download/
+      text: Download
+    type: Link
+  type: Container

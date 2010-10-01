@@ -14,6 +14,8 @@ package SLight::AddonBase::CMS::Menu;
 use strict; use warnings; # {{{
 use base q{SLight::Addon};
 
+use SLight::API::Content qw( get_Contents_where );
+use SLight::API::ContentSpec qw( get_ContentSpec );
 use SLight::Core::L10N qw( TR TF );
 # }}}
 
@@ -25,7 +27,7 @@ sub get_pages_and_objects { # {{{
 
         _fields => [qw( path )]
     );
-    
+
     my @pages_and_objects;
 
     foreach my $page (@{ $pages }) {
@@ -40,15 +42,17 @@ sub get_pages_and_objects { # {{{
     return [ sort { ( $a->{'s'} <=> $b->{'s'} ) or ( $a->{'s'} cmp $b->{'s'} ) } @pages_and_objects ];
 } # }}}
 
-sub extract_field { # {{{
-    my ( $self, $page_id, $field ) = @_;
+# Purpose:
+#   Return content for 'order_by' and 'use_in_menu'.
+sub extract_fields { # {{{
+    my ( $self, $page_id ) = @_;
     
     my $content_objects = get_Contents_where(
         Page_Entity_id => $page_id,
         on_page_index  => 0,
     );
 
-    my $menu_label;
+    my @fields_content;
 
     if ($content_objects->[0]) {
         my $content_spec = get_ContentSpec($content_objects->[0]->{'Content_Spec_id'});
@@ -59,22 +63,28 @@ sub extract_field { # {{{
             q{*}
         );
 
-        if ($content_spec and $content_spec->{'use_in_path'}) {
-            if ($content_spec->{'use_in_path'} =~ m{\d}s) {
-                foreach my $lang (@langs) {
-                    if ($content_objects->[0]->{'_data'}->{$lang}->{ $content_spec->{'use_in_path'} }) {
-                        $menu_label = $content_objects->[0]->{'_data'}->{$lang}->{ $content_spec->{'use_in_path'} };
-                        last;
+        my $content = q{};
+
+        foreach my $field (qw( order_by use_in_menu )) {
+            if ($content_spec and $content_spec->{$field}) {
+                if ($content_spec->{$field} =~ m{\d}s) {
+                    foreach my $lang (@langs) {
+                        if ($content_objects->[0]->{'_data'}->{$lang}->{ $content_spec->{$field} }) {
+                            $content = $content_objects->[0]->{'_data'}->{$lang}->{ $content_spec->{$field} };
+                            last;
+                        }
                     }
                 }
+                elsif ($content_objects->[0]->{ $content_spec->{$field} }) {
+                    $content = $content_objects->[0]->{ $content_spec->{$field} };
+                }
             }
-            elsif ($content_objects->[0]->{ $content_spec->{'use_in_path'} }) {
-                $menu_label = $content_objects->[0]->{ $content_spec->{'use_in_path'} };
-            }
+
+            push @fields_content, $content;
         }
     }
 
-    return;
+    return @fields_content;
 } # }}}
 
 # vim: fdm=marker
