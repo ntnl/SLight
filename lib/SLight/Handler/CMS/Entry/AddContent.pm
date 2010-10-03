@@ -48,16 +48,20 @@ sub handle_view { # {{{
     my $table = SLight::DataStructure::List::Table->new(
         columns => [
             {
-                class => 'data',
-                name => 'label',
+                class => 'main_name',
+                name  => 'label',
             },
             {
-                class => 'data',
-                name => 'as_page_link',
+                class => 'name',
+                name  => 'owning_module',
             },
             {
-                class => 'data',
-                name => 'append_link',
+                class => 'link',
+                name  => 'as_page_link',
+            },
+            {
+                class => 'link',
+                name  => 'append_link',
             },
         ]
     );
@@ -68,6 +72,8 @@ sub handle_view { # {{{
             class => 'default',
             data => {
                 label => $spec->{'caption'},
+
+                owning_module => $spec->{'owning_module'},
 
                 as_page_link => [
                     mk_Link_token(

@@ -290,9 +290,9 @@ AddContent invitation:
           content:
           - class: default
             content:
-            - class: data
+            - class: main_name
               content:
-              - class: data
+              - class: main_name
                 data:
                   text: Article
                 type: Label
@@ -300,7 +300,17 @@ AddContent invitation:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: data
+            - class: name
+              content:
+              - class: name
+                data:
+                  text: CMS::Entry
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
               content:
               - class: generic
                 data:
@@ -311,7 +321,7 @@ AddContent invitation:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: data
+            - class: link
               content:
               - class: generic
                 data:
@@ -325,9 +335,9 @@ AddContent invitation:
             type: TableRow
           - class: default
             content:
-            - class: data
+            - class: main_name
               content:
-              - class: data
+              - class: main_name
                 data:
                   text: Gal
                 type: Label
@@ -335,7 +345,17 @@ AddContent invitation:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: data
+            - class: name
+              content:
+              - class: name
+                data:
+                  text: CMS::Entry
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
               content:
               - class: generic
                 data:
@@ -346,7 +366,7 @@ AddContent invitation:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: data
+            - class: link
               content:
               - class: generic
                 data:
@@ -360,9 +380,9 @@ AddContent invitation:
             type: TableRow
           - class: default
             content:
-            - class: data
+            - class: main_name
               content:
-              - class: data
+              - class: main_name
                 data:
                   text: News
                 type: Label
@@ -370,7 +390,17 @@ AddContent invitation:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: data
+            - class: name
+              content:
+              - class: name
+                data:
+                  text: CMS::Entry
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
               content:
               - class: generic
                 data:
@@ -381,7 +411,7 @@ AddContent invitation:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: data
+            - class: link
               content:
               - class: generic
                 data:
