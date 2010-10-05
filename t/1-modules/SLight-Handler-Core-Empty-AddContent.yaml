@@ -24,9 +24,9 @@ Display Add Content form:
           content:
           - class: default
             content:
-            - class: data
+            - class: main_name
               content:
-              - class: data
+              - class: main_name
                 data:
                   text: Article
                 type: Label
@@ -34,7 +34,17 @@ Display Add Content form:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: data
+            - class: name
+              content:
+              - class: name
+                data:
+                  text: CMS::Entry
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
               content:
               - class: generic
                 data:
@@ -45,7 +55,7 @@ Display Add Content form:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: data
+            - class: link
               content:
               - class: generic
                 data:
@@ -59,9 +69,9 @@ Display Add Content form:
             type: TableRow
           - class: default
             content:
-            - class: data
+            - class: main_name
               content:
-              - class: data
+              - class: main_name
                 data:
                   text: Gal
                 type: Label
@@ -69,7 +79,17 @@ Display Add Content form:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: data
+            - class: name
+              content:
+              - class: name
+                data:
+                  text: CMS::Entry
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
               content:
               - class: generic
                 data:
@@ -80,7 +100,7 @@ Display Add Content form:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: data
+            - class: link
               content:
               - class: generic
                 data:
@@ -94,9 +114,9 @@ Display Add Content form:
             type: TableRow
           - class: default
             content:
-            - class: data
+            - class: main_name
               content:
-              - class: data
+              - class: main_name
                 data:
                   text: News
                 type: Label
@@ -104,7 +124,17 @@ Display Add Content form:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: data
+            - class: name
+              content:
+              - class: name
+                data:
+                  text: CMS::Entry
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
               content:
               - class: generic
                 data:
@@ -115,7 +145,7 @@ Display Add Content form:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: data
+            - class: link
               content:
               - class: generic
                 data:

@@ -52,7 +52,7 @@
 [X] Core
 [X]     Cache
 [X]     Entity - add support to 'IN' in '*_where' functions
-[>]     Add per-page (object, actually) thingy of it's title (long + short) set by object (during edit) or by one of it's sub-pages too :) Will be cool :)
+[X]     Add per-page (object, actually) thingy of it's title (long + short) set by object (during edit) or by one of it's sub-pages too :) Will be cool :)
 [X]         Make Object/Action Handlers _append_ to the path, but _only_ one element.
 [X]         Make PathHandlers generate path for a page
 [X]         Add 'order_by', 'use_as_title', 'use_in_menu' and 'use_in_path' support to ContentSpec, so Page PathHandler, as well as knows what to use.
@@ -145,7 +145,7 @@
 [X]     SLight::Addon::CMS::Rootmenu
 [X]     SLight::Addon::CMS::Menu
 [X]     SLight::Addon::CMS::Submenu
-[>] Development
+[-] Development
 [X]     Handler test framework should support other (non-request) types of tests
 [X]         SQL Query based test - run sql query, output used as test result
 [X]         Callback based - run callback, use it's data it returns as test result
