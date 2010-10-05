@@ -61,6 +61,10 @@ sub run_handler_tests { # {{{
             $runner_test{'callback'} = \&_run_query_test;
             $runner_test{'args'}     = [ $t->{'sql_query'} ]; 
         }
+        elsif ($t->{'callback'}) {
+            $runner_test{'callback'} = $t->{'callback'};
+            $runner_test{'args'}     = ( $t->{'args'} or [] ); 
+        }
 
         foreach my $cb_field (qw( call_before call_format call_result )) {
             $runner_test{$cb_field} = $t->{$cb_field};

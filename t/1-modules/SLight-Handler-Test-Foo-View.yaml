@@ -52,3 +52,4 @@ Call the 'View' actio non 'Test::Foo' object:
     template: Default
   mime_type: ~
   response: CONTENT
+callback test: OK

@@ -31,6 +31,12 @@ my @tests = (
         'name' => q{Call the 'View' actio non 'Test::Foo' object},
         'url'  => q{/_Test/Foo/},
     },
+    {
+        # Just a test for test - probably should be moved to separate file! (FIXME)
+        'name'     => 'callback test',
+        'callback' => sub { return 'OK'; },
+        'expect'   => 'scalar',
+    }
 );
 
 run_handler_tests(
