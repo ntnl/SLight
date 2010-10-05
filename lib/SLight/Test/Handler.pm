@@ -46,7 +46,7 @@ sub run_handler_tests { # {{{
     foreach my $t (@{ $P{'tests'} }) {
         my %runner_test = (
             name     => $t->{'name'},
-            expect   => 'hashref',
+            expect   => ( $t->{'expect'} or 'hashref' ),
             callback => \&_run_test,
             args     => [
                 $t,
@@ -55,6 +55,12 @@ sub run_handler_tests { # {{{
                 }
             ]
         );
+
+        if ($t->{'sql_query'}) {
+            $runner_test{'expect'}   = 'arrayref';
+            $runner_test{'callback'} = \&_run_query_test;
+            $runner_test{'args'}     = [ $t->{'sql_query'} ]; 
+        }
 
         foreach my $cb_field (qw( call_before call_format call_result )) {
             $runner_test{$cb_field} = $t->{$cb_field};
@@ -87,6 +93,8 @@ sub _run_test { # {{{
         }
     }
 
+    assert_defined($t->{'url'});
+
     my $url = SLight::Core::URL::parse_url($t->{'url'});
 
 #    use Data::Dumper; warn Dumper \%url;
@@ -115,6 +123,23 @@ sub _strip_dates { # {{{
     my $crap = Dump($results);
     $crap =~ s{\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d}{##DATE(yyyy-mm-dd hh:mm:ss) IS SANE##}sg;
     return Load($crap);
+} # }}}
+
+sub _run_query_test { # {{{
+    my ( $query ) = @_;
+
+    my @results;
+
+    SLight::Core::DB::check();
+
+    my $sth = SLight::Core::DB::run_query(
+        query => $query,
+    );
+    while (my $row = $sth->fetchrow_hashref()) {
+        push @results, $row;
+    }
+
+    return \@results;
 } # }}}
 
 # vim: fdm=marker

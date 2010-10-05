@@ -28,12 +28,22 @@ my $site_root = SLight::Test::Site::prepare_fake(
 
 my @tests = (
     {
+        'name'      => q{List pages - before},
+        'sql_query' => [ "SELECT id, parent_id FROM Page_Entity ORDER BY id" ],
+        'expect'    => 'arrayref',
+    },
+    {
         'name' => q{Open confirmation dialog},
         'url'  => q{/About/Delete.web},
     },
     {
         'name' => q{Actually delete the page},
         'url'  => q{/About/Delete-commit.web},
+    },
+    {
+        'name'      => q{List pages - after},
+        'sql_query' => [ "SELECT id, parent_id FROM Page_Entity ORDER BY id" ],
+        'expect'    => 'arrayref',
     },
 );
 

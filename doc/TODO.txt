@@ -147,8 +147,8 @@
 [X]     SLight::Addon::CMS::Submenu
 [>] Development
 [>]     Handler test framework should support other (non-request) types of tests
-[>]         SQL Query based test - run sql query, output used as test result
-[ ]         Callback based - run callback, use itdata it returns as test result
+[X]         SQL Query based test - run sql query, output used as test result
+[>]         Callback based - run callback, use it's data it returns as test result
 [ ]     Write and setup script that uploads coverage metrics to the site
 [ ] Bugs/Regressions
 [ ]     Template displays UTF incorrectly ("ł" in the footer is screwed) when there are UTF-8 characters IN content added to template.

@@ -2,6 +2,24 @@
 Actually delete the page:
   location: /
   response: REDIRECT
+List pages - after:
+- id: 1
+  parent_id: ~
+- id: 3
+  parent_id: 1
+- id: 4
+  parent_id: 1
+List pages - before:
+- id: 1
+  parent_id: ~
+- id: 2
+  parent_id: 1
+- id: 3
+  parent_id: 1
+- id: 4
+  parent_id: 1
+- id: 5
+  parent_id: 2
 Open confirmation dialog:
   content:
     addon_data:
