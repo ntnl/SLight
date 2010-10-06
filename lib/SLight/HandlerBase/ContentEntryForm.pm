@@ -16,6 +16,7 @@ use base q{SLight::Handler};
 
 use SLight::Core::L10N qw( TR );
 use SLight::API::Util qw( human_readable_size );
+use SLight::API::Asset qw( attach_Asset_to_Content_Field get_Asset_ids_on_Content_Field get_Asset );
 use SLight::DataType;
 use SLight::Validator qw( validate_input );
 
@@ -23,7 +24,6 @@ use Params::Validate qw( :all );
 # }}}
 
 # Fixme:
-#   Rename 'attachments' to 'assets'!
 #   Change package to SLight::HandlerBase::CMS::EntryForm
 
 sub build_form_guts { # {{{
@@ -136,24 +136,24 @@ sub _add_field_to_form { # {{{
 
     my $cgi_field_name = q{content.}. $field_name;
 
-    if ($signature->{'attachment'}) {
-        # This field is handled by attachment.
+    if ($signature->{'asset'}) {
+        # This field is handled by an asset.
         # It requires some additional care, as support has to be implemented for:
-        #   - showing that attachment IS attached.
-        #   - adding the posibility to upload new attachment
-        #   - adding the posibility to remove attachment
+        #   - showing that asset IS attached.
+        #   - adding the possibility to upload new asset
+        #   - adding the possibility to remove asset
         # Not entering a file means: no change.
         # Entering file means: use this file.
-        # Selecting 'delete attachment' will remove the attachment (clear the field).
+        # Selecting 'delete asset' will remove the asset (clear the field).
         #
-        # System will also provide a way of labeling the attachment with some text.
+        # System will also provide a way of labeling the asset with some text.
         # This text can then be used as title, or while searching.
         # This text will be stored in the DB, while file is stored in file system.
         $form->add_FileEntry(
-            name => $cgi_field_name .q{.data},
+            name => $cgi_field_name .q{-data},
 
             caption => $field_spec->{'caption'},
-            error   => $errors->{ $cgi_field_name .q{.data} },
+            error   => $errors->{ $cgi_field_name .q{-data} },
         );
         $form->add_Entry(
             name => $cgi_field_name,
@@ -163,23 +163,22 @@ sub _add_field_to_form { # {{{
             error   => $errors->{$cgi_field_name},
         );
         if ($content->{'id'}) {
-#            my $already_attached = SLight::API::Asset::get_attachment_meta(
-#                parent  => 'content',
-#                object  => $self->{'ContentData'}->{'content_hash'}->{'id'},
-#                field   => $field_name,
-#            );
-#            if ($already_attached) {
-#                $form->add_Label(
-#                    text  => TF('Already attached: %s', undef, human_readable_size($already_attached->{'byte_size'})),
-#                    class => 'Hint'
-#                );
-#                $response->add_Check(
-#                    name => $cgi_field_name .q{.remove},
-#    
-#                    caption => TR('Remove attachment'),
-#                    checked => 0,
-#                );
-#            }
+            my $asset_ids = get_Asset_ids_on_Content_Field($content->{'id'}, $field_spec->{'id'});
+
+            if (scalar @{ $asset_ids }) {
+                my $asset_meta = get_Asset($asset_ids->[0]); # FIXME: display ALL assets (there can be more of them?)
+
+                $form->add_Label(
+                    text  => TF('Already attached: %s', undef, human_readable_size($asset_meta->{'byte_size'})),
+                    class => 'Hint'
+                );
+                $form->add_Check(
+                    name => $cgi_field_name . q{-remove},
+    
+                    caption => TR('Remove attachment'),
+                    checked => 0,
+                );
+            }
         }
     }
     else {
@@ -226,13 +225,13 @@ sub _add_field_to_form { # {{{
 # Slurp data given to Request, validate it and prepare for saving.
 #
 # If data fails validation, either %errors, %warnings or both will contain information to the User.
-# In this case, %data and %attachments will be empty.
+# In this case, %data and %assets will be empty.
 #
 # If data passed trough validation, but there are things to consider - %warnings will contain them.
-# In this case %errors will be empty, %data and %attachments will be filled.
+# In this case %errors will be empty, %data and %assets will be filled.
 # Data, that triggers warnings, may be stored in DB.
 #
-# If everything is OK, then %errors and %warnings will be empty, %data and %attachments will be filled.
+# If everything is OK, then %errors and %warnings will be empty, %data and %assets will be filled.
 sub slurp_content_form_data { # {{{
     my $self = shift;
     my %P = validate(
@@ -255,7 +254,7 @@ sub slurp_content_form_data { # {{{
         $validator_metadata{'page.template'} = { type=>'FileName', optional=>1, };
     }
 
-    if (not $P{'content'} and not $self->{'params'}->{'user'}->{'email'}) {
+    if (not $P{'content'} and not $self->{'user'}->{'email'}) {
         $validator_metadata{'meta.email'} = { type=>'Email', max_length=>1024 };
     }
 
@@ -268,14 +267,14 @@ sub slurp_content_form_data { # {{{
 
         my $signature = ( $signatures_cache{ $field->{'datatype'} } or $signatures_cache{ $field->{'datatype'} } = SLight::DataType::signature(type=>$field->{'datatype'}) );
 
-        if ($signature->{'attachment'}) {
-            # Attachment fields require some special handling.
+        if ($signature->{'asset'}) {
+            # Asset fields require some special handling.
             $validator_metadata{$cgi_name} = {
                 type       => 'String',
                 optional   => 1,
                 max_length => 512,
             };
-            $validator_metadata{$cgi_name .'.data'} = {
+            $validator_metadata{$cgi_name .'-data'} = {
                 type       => 'Any',
                 optional   => ( $field->{'optional'}   or 1 ),
                 max_length => ( $field->{'max_length'} or 1024 ),
@@ -304,7 +303,7 @@ sub slurp_content_form_data { # {{{
     }
 
     my %data;
-    my %attachments;
+    my %assets;
 
     # If there are no errors, process Entry fields.
     foreach my $field_name (keys %{ $P{'content_spec'}->{'_data'} }) {
@@ -318,14 +317,15 @@ sub slurp_content_form_data { # {{{
             $signatures_cache{ $field_spec->{'datatype'} } = SLight::DataType::signature(type=>$field_spec->{'datatype'})
         );
 
-        if ($signature->{'attachment'}) {
-            # This is an attachment-based field.
+        if ($signature->{'asset'}) {
+            # This is an asset-based field.
             # Warning: special handling ahead ;)
-            $attachments{$field_name} = {
+            my $field_id = $P{'content_spec'}->{'_data'}->{$field_name}->{'id'};
+            $assets{ $field_id } = {
                 filename => ( $self->{'options'}->{ $cgi_name .q{-filename} } or q{Unknown} ),,
                 summary  => ( $self->{'options'}->{ $cgi_name               } or q{} ),
-                data     => ( $self->{'options'}->{ $cgi_name .q{.data}     } or q{} ),
-                remove   => ( $self->{'options'}->{ $cgi_name .q{.remove}   } or 0 ),
+                data     => ( $self->{'options'}->{ $cgi_name .q{-data}     } or q{} ),
+                remove   => ( $self->{'options'}->{ $cgi_name .q{-remove}   } or 0 ),
             };
         }
 
@@ -343,37 +343,38 @@ sub slurp_content_form_data { # {{{
 #    use Data::Dumper; warn "Data slurped from form: ". Dumper \%data;
 #    use Data::Dumper; warn Dumper \%errors;
 
-    return ( $errors, \%warnings, \%data, \%attachments );
+    return ( $errors, \%warnings, \%data, \%assets );
 } # }}}
 
-sub process_field_attachments { # {{{
+sub process_field_assets { # {{{
     my $self = shift;
     my %P = validate(
         @_,
         {
-            id          => { type=>SCALAR },
-            attachments => { type=>HASHREF },
+            id     => { type=>SCALAR },
+            assets => { type=>HASHREF },
         }
     );
 
-    foreach my $field (keys %{ $P{'attachments'} }) {
-        my $form_entry = $P{'attachments'}->{ $field };
+    foreach my $field_id (keys %{ $P{'assets'} }) {
+        my $form_entry = $P{'assets'}->{ $field_id };
 
         if ($form_entry->{'data'}) {
-            # Attachment was sent with form.
+            # Asset was sent with form.
             # Put it on HDD :)
-#            SLight::API::Asset::put_attachment(
-#                data => $form_entry->{'data'},
-#
-#                email => ( $self->{'params'}->{'user'}->{'email'} or $self->{'params'}->{'options'}->{'meta.email'} ),
-#
-#                parent  => 'content',
-#                object  => $P{'id'},
-#                field   => $field,
-#
-#                filename => $form_entry->{'filename'},
-#                summary  => $form_entry->{'summary'},
-#            );
+            my $asset_id = SLight::API::Asset::add_Asset(
+                data => $form_entry->{'data'},
+
+                email => ( $self->{'user'}->{'email'} or $self->{'options'}->{'meta.email'} or q{test@test.test} ), # FIXME!
+
+                filename => $form_entry->{'filename'},
+                summary  => $form_entry->{'summary'},
+            );
+            attach_Asset_to_Content_Field(
+                $asset_id,
+                $P{'id'},
+                $field_id,
+            );
         }
     }
 

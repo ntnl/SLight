@@ -17,6 +17,7 @@ INSERT INTO "Page_Entity" VALUES(2,1,'About','Info');
 INSERT INTO "Page_Entity" VALUES(3,1,'Docs','Doc');
 INSERT INTO "Page_Entity" VALUES(4,1,'Download',NULL);
 INSERT INTO "Page_Entity" VALUES(5,2,'Authors',NULL);
+INSERT INTO "Page_Entity" VALUES(6,5,'Feedback',NULL);
 CREATE TABLE Content_Spec (
 	`id`     	INTEGER PRIMARY KEY,
 
@@ -143,16 +144,16 @@ INSERT INTO "Content_Spec_Field" VALUES(10,1,'title','Title',1,'String','',1,2,2
 INSERT INTO "Content_Spec_Field" VALUES(11,1,'article','Article',2,'Text','',1,2,2,1,1,1024);
 INSERT INTO "Content_Spec_Field" VALUES(20,2,'title','Title',1,'String','',1,2,2,1,1,128);
 INSERT INTO "Content_Spec_Field" VALUES(21,2,'news','News',2,'Text','',1,2,2,1,1,1024);
-INSERT INTO "Content_Spec_Field" VALUES(30,3,'name','Chest',1,'String','',0,2,2,1,0,3);
-INSERT INTO "Content_Spec_Field" VALUES(31,3,'pic','Pic',2,'Image','',0,2,2,1,0,3);
-INSERT INTO "Content_Spec_Field" VALUES(32,3,'birth','Birth date',3,'Date','',0,2,2,1,0,1);
-INSERT INTO "Content_Spec_Field" VALUES(33,3,'email','Email',4,'Email','',0,2,2,1,0,3);
-INSERT INTO "Content_Spec_Field" VALUES(34,3,'homepage','Homepage',5,'Link','',0,2,2,1,0,3);
+INSERT INTO "Content_Spec_Field" VALUES(30,3,'name','Name',1,'String','',0,2,2,1,0,64);
+INSERT INTO "Content_Spec_Field" VALUES(31,3,'pic','Pic',2,'Image','',0,2,2,1,0,1024000);
+INSERT INTO "Content_Spec_Field" VALUES(32,3,'birth','Birth date',3,'Date','',0,2,2,1,0,64);
+INSERT INTO "Content_Spec_Field" VALUES(33,3,'email','Email',4,'Email','',0,2,2,1,0,512);
+INSERT INTO "Content_Spec_Field" VALUES(34,3,'homepage','Homepage',5,'Link','',0,2,2,1,0,1025);
 INSERT INTO "Content_Spec_Field" VALUES(35,3,'chest','Chest',6,'Int','',0,2,2,1,0,3);
 INSERT INTO "Content_Spec_Field" VALUES(36,3,'waist','Waist',7,'Int','',0,2,2,1,0,3);
 INSERT INTO "Content_Spec_Field" VALUES(37,3,'hips','Hips',8,'Int','',0,2,2,1,0,3);
 INSERT INTO "Content_Spec_Field" VALUES(38,3,'cup','Cup size',9,'String','',0,2,2,1,0,1);
-INSERT INTO "Content_Spec_Field" VALUES(39,3,'about','About',10,'Text','',1,2,2,1,0,1);
+INSERT INTO "Content_Spec_Field" VALUES(39,3,'about','About',10,'Text','',1,2,2,1,0,10240);
 CREATE TABLE Content_Entity (
     `id` INTEGER PRIMARY KEY,
 
@@ -205,8 +206,8 @@ CREATE TABLE Content_Entity (
     FOREIGN KEY (`Email_id`)        REFERENCES Email(`id`) ON DELETE CASCADE,
 	FOREIGN KEY (`Content_Spec_id`) REFERENCES Content_Spec(`id`) ON DELETE CASCADE
 );
-INSERT INTO "Content_Entity" VALUES(1,1,NULL,'V',1,0,0,0,'2010-09-29 15:59:01','2010-09-29 15:59:01',NULL);
-INSERT INTO "Content_Entity" VALUES(2,1,NULL,'V',2,0,0,0,'2010-09-29 15:59:01','2010-09-29 15:59:01',NULL);
+INSERT INTO "Content_Entity" VALUES(1,1,NULL,'V',1,0,0,0,'2010-10-06 10:22:08','2010-10-06 10:22:08',NULL);
+INSERT INTO "Content_Entity" VALUES(2,1,NULL,'V',2,0,0,0,'2010-10-06 10:22:08','2010-10-06 10:22:08',NULL);
 CREATE TABLE Content_Entity_Data (
 	`Content_Entity_id` INTEGER NOT NULL,
 
@@ -251,7 +252,7 @@ CREATE TABLE Content_Entity_Data_History (
         -- * if the field is not translatable.
 
 	`value`	TEXT NOT NULL,
-	
+
     `event_time`	TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         -- Time when given value was set.
 

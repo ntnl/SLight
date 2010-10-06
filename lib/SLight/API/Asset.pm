@@ -57,6 +57,8 @@ sub add_Asset { # {{{
         {
             data => { type=>SCALAR },
 
+            email => { type=>SCALAR },
+
             filename => { type=>SCALAR },
             summary  => { type=>SCALAR, optional=>1, default=>q{} },
         }
@@ -175,7 +177,7 @@ sub _slurp_ids { # {{{
     return \@ids;
 } # }}}
 
-# Return metadata for one, selected attachment.
+# Return metadata for one, selected Asset.
 sub get_Asset { # {{{
     my ( $id ) = @_;
 

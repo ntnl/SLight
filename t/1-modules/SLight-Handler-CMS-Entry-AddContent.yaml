@@ -75,17 +75,17 @@ AddContent form - as Current:
               data:
                 name: meta.comment_write_policy
                 options:
-                - - 0
+                - - '0'
                   - Disabled
-                - - 1
+                - - '1'
                   - By registered users only (moderated)
-                - - 2
+                - - '2'
                   - By registered users only
-                - - 3
+                - - '3'
                   - By all users (moderated)
-                - - 4
+                - - '4'
                   - By all users
-                value: 0
+                value: '0'
               type: SelectEntry
             type: Container
           - class: F-meta.comment_read_policy SelectEntry
@@ -98,19 +98,19 @@ AddContent form - as Current:
               data:
                 name: meta.comment_read_policy
                 options:
-                - - 0
+                - - '0'
                   - Comments are hidden
-                - - 1
+                - - '1'
                   - Visible to registered users only
-                - - 2
+                - - '2'
                   - Visible to everyone
-                value: 0
+                value: '0'
               type: SelectEntry
             type: Container
           data:
             action: /About/AddContent-save.web
             hidden:
-              spec_id: 1
+              spec_id: '1'
               target: Current
             submit: Add
           type: Form
@@ -220,17 +220,17 @@ AddContent form - as New:
               data:
                 name: meta.comment_write_policy
                 options:
-                - - 0
+                - - '0'
                   - Disabled
-                - - 1
+                - - '1'
                   - By registered users only (moderated)
-                - - 2
+                - - '2'
                   - By registered users only
-                - - 3
+                - - '3'
                   - By all users (moderated)
-                - - 4
+                - - '4'
                   - By all users
-                value: 0
+                value: '0'
               type: SelectEntry
             type: Container
           - class: F-meta.comment_read_policy SelectEntry
@@ -243,19 +243,19 @@ AddContent form - as New:
               data:
                 name: meta.comment_read_policy
                 options:
-                - - 0
+                - - '0'
                   - Comments are hidden
-                - - 1
+                - - '1'
                   - Visible to registered users only
-                - - 2
+                - - '2'
                   - Visible to everyone
-                value: 0
+                value: '0'
               type: SelectEntry
             type: Container
           data:
             action: /About/AddContent-save.web
             hidden:
-              spec_id: 1
+              spec_id: '1'
               target: New
             submit: Add
           type: Form
@@ -430,6 +430,299 @@ AddContent invitation:
     template: Info
   mime_type: ~
   response: CONTENT
+Asset has been written: Yes
+Getting a girl - form:
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        - class: Test
+          data:
+            href: /About/
+            text: About
+          type: Link
+        type: Container
+    object_data:
+      ob2:
+        class: SLight_Object O-AddContent
+        content:
+        - class: generic
+          content:
+          - class: generic
+            content:
+            - class: F-Label Label
+              data:
+                text: Gal
+              type: Label
+            type: Container
+          - class: F-page.path Entry
+            content:
+            - class: Label
+              data:
+                text: Path element name
+              type: Label
+            - class: Value
+              data:
+                name: page.path
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-page.template Entry
+            content:
+            - class: Label
+              data:
+                text: Template file
+              type: Label
+            - class: Value
+              data:
+                name: page.template
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-meta.email Entry
+            content:
+            - class: Label
+              data:
+                text: Email (internal use only)
+              type: Label
+            - class: Value
+              data:
+                name: meta.email
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-content.name Entry
+            content:
+            - class: Label
+              data:
+                text: Name (any language)
+              type: Label
+            - class: Value
+              data:
+                name: content.name
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-content.pic-data FileEntry
+            content:
+            - class: Label
+              data:
+                text: Pic
+              type: Label
+            - class: Value
+              data:
+                name: content.pic-data
+              type: FileEntry
+            type: Container
+          - class: F-content.pic Entry
+            content:
+            - class: Label
+              data:
+                text: Summary
+              type: Label
+            - class: Value
+              data:
+                name: content.pic
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-content.birth Entry
+            content:
+            - class: Label
+              data:
+                text: Birth date (any language)
+              type: Label
+            - class: Value
+              data:
+                name: content.birth
+                value: 1970-01-01
+              type: Entry
+            type: Container
+          - class: F-content.email Entry
+            content:
+            - class: Label
+              data:
+                text: Email (any language)
+              type: Label
+            - class: Value
+              data:
+                name: content.email
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-content.homepage Entry
+            content:
+            - class: Label
+              data:
+                text: Homepage (any language)
+              type: Label
+            - class: Value
+              data:
+                name: content.homepage
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-content.chest Entry
+            content:
+            - class: Label
+              data:
+                text: Chest (any language)
+              type: Label
+            - class: Value
+              data:
+                name: content.chest
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-content.waist Entry
+            content:
+            - class: Label
+              data:
+                text: Waist (any language)
+              type: Label
+            - class: Value
+              data:
+                name: content.waist
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-content.hips Entry
+            content:
+            - class: Label
+              data:
+                text: Hips (any language)
+              type: Label
+            - class: Value
+              data:
+                name: content.hips
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-content.cup Entry
+            content:
+            - class: Label
+              data:
+                text: Cup size (any language)
+              type: Label
+            - class: Value
+              data:
+                name: content.cup
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-content.about TextEntry
+            content:
+            - class: Label
+              data:
+                text: About (en)
+              type: Label
+            - class: Value
+              data:
+                name: content.about
+                value: ''
+              type: TextEntry
+            type: Container
+          - class: F-meta.comment_write_policy SelectEntry
+            content:
+            - class: Label
+              data:
+                text: Comment write policy
+              type: Label
+            - class: Value
+              data:
+                name: meta.comment_write_policy
+                options:
+                - - '0'
+                  - Disabled
+                - - '1'
+                  - By registered users only (moderated)
+                - - '2'
+                  - By registered users only
+                - - '3'
+                  - By all users (moderated)
+                - - '4'
+                  - By all users
+                value: '0'
+              type: SelectEntry
+            type: Container
+          - class: F-meta.comment_read_policy SelectEntry
+            content:
+            - class: Label
+              data:
+                text: Comment display policy
+              type: Label
+            - class: Value
+              data:
+                name: meta.comment_read_policy
+                options:
+                - - '0'
+                  - Comments are hidden
+                - - '1'
+                  - Visible to registered users only
+                - - '2'
+                  - Visible to everyone
+                value: '0'
+              type: SelectEntry
+            type: Container
+          data:
+            action: /About/AddContent-save.web
+            hidden:
+              spec_id: '3'
+              target: New
+            submit: Add
+          type: Form
+        type: Container
+      ob4:
+        class: SLight_Object O-Content
+        content:
+        - class: Core
+          content:
+          - class: V-title Value
+            data:
+              text: New extra content
+            type: Label
+          - class: V-article Value
+            data:
+              text:
+              - - This is extra content.
+            type: Text
+          - class: SLight_Timebox
+            content:
+            - class: SLight_AddedTime
+              data:
+                text: 'Added: ##DATE(yyyy-mm-dd hh:mm:ss) IS SANE##'
+              type: Label
+            type: Container
+          type: Container
+        - class: SLight_Toolbox
+          content:
+          - class: SLight_Edit_Action
+            data:
+              caption: Edit
+              href: /About/-ob-4/Edit-form-en.web_test
+            type: Action
+          - class: SLight_Delete_Action
+            data:
+              caption: Delete
+              href: /About/-ob-4/Delete-form-en.web_test
+            type: Action
+          type: Container
+        type: Container
+    object_order:
+    - ob2
+    - ob4
+    template: Info
+  mime_type: ~
+  response: CONTENT
+Getting a girl - submit:
+  location: http://foo.localdomain/About/Woman/
+  response: REDIRECT
 Submit form - Current:
   location: http://foo.localdomain/About/
   response: REDIRECT

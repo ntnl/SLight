@@ -1,0 +1,4 @@
+---
+Date with time OK: ~
+Human-readable date and time. FAIL:
+  foo: 'Date format not recognized. Please use: YYYY-MM-DD hh:mm:ss format.'

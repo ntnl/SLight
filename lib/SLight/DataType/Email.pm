@@ -20,9 +20,9 @@ use Params::Validate qw{ :all };
 
 sub signature { # {{{
     return {
-        attachment => 0,
-        entry      => 'String',
-        display    => 'Email',
+        asset   => 0,
+        entry   => 'String',
+        display => 'Email',
 
         validator_type => 'Email',
     };

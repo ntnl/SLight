@@ -42,6 +42,8 @@ sub run_handler_tests { # {{{
         }
     );
 
+    my $strip_dates = ( delete $P{'strip_dates'} or 0 );
+
     my @tests;
     foreach my $t (@{ $P{'tests'} }) {
         my %runner_test = (
@@ -51,7 +53,7 @@ sub run_handler_tests { # {{{
             args     => [
                 $t,
                 {
-                    strip_dates => ( delete $P{'strip_dates'} or 0 ),
+                    strip_dates => $strip_dates,
                 }
             ]
         );
@@ -125,7 +127,8 @@ sub _strip_dates { # {{{
 
     # Fixme: this is a bit lame... but hey! It works, and I implemented it in 15 sec!
     my $crap = Dump($results);
-    $crap =~ s{\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d}{##DATE(yyyy-mm-dd hh:mm:ss) IS SANE##}sg;
+    $crap =~ s{\d\d\d\d\-\d\d\-\d\d \d\d\:\d\d\:\d\d}{##DATE(yyyy-mm-dd hh:mm:ss) IS SANE##}sgi;
+
     return Load($crap);
 } # }}}
 

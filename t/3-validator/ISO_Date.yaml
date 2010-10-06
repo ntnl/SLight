@@ -1,0 +1,4 @@
+---
+Date OK: ~
+Date with letters. FAIL:
+  foo: 'Date format not recognized. Please use: YYYY-MM-DD format.'

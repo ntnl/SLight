@@ -20,9 +20,9 @@ use Params::Validate qw{ :all };
 
 sub signature { # {{{
     return {
-        attachment => 0,
-        entry      => 'String',
-        display    => 'Link',
+        asset   => 0,
+        entry   => 'String',
+        display => 'Link',
 
         validator_type => 'URL',
     };
@@ -37,7 +37,7 @@ sub validate_data { # {{{
         }
     );
 
-    if ($P{'value'} !~ m{^[a-z]+://([^/]+)/.*$}s) {
+    if ($P{'value'} !~ m{^[a-z]+://([^/]+)(/.*)?$}s) {
         return "Not a link";
     }
 

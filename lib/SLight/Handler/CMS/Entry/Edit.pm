@@ -50,7 +50,7 @@ sub handle_save { # {{{
     $self->set_class($content_spec->{'class'});
 
     # Get the data, that User sent us.
-    my ( $errors, $warnings, $data, $attachments ) = $self->slurp_content_form_data(
+    my ( $errors, $warnings, $data, $assets ) = $self->slurp_content_form_data(
         content      => $content,
         content_spec => $content_spec,
     );
@@ -81,9 +81,9 @@ sub handle_save { # {{{
 #        debug => 1,
     );
 
-    $self->process_field_attachments(
-        id          => $oid,
-        attachments => $attachments,
+    $self->process_field_assets(
+        id     => $oid,
+        assets => $assets,
     );
 
     my %target_url = (

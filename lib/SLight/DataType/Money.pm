@@ -29,9 +29,9 @@ use Params::Validate qw{ :all };
 
 sub signature { # {{{
     return {
-        attachment => 0,
-        entry      => 'String',
-        display    => 'Label',
+        asset   => 0,
+        entry   => 'String',
+        display => 'Label',
 
         validator_type => 'Float',
     };

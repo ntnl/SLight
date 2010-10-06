@@ -74,14 +74,14 @@ use YAML::Syck qw{ Load Dump };
 #   [progress]10/100[/progress]
 #       creates progress bar with defined length
 # 
-#   [attach]id[/attach]
-#       embbeds attachment with given ID.
+#   [asset]id[/asset]
+#       embeds asset with given ID.
 
 sub signature { # {{{
     return {
-        attachment => 0,
-        entry      => 'Text',
-        display    => 'Text',
+        asset   => 0,
+        entry   => 'Text',
+        display => 'Text',
 
         validator_type => 'Text',
     };

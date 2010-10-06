@@ -21,10 +21,10 @@ use Params::Validate qw{ :all };
 # Return information about the DataType.
 sub signature { # {{{
     return {
-        attachment => 0,
+        asset => 0,
             # How to handle data:
             # 0 - works on the data directly.
-            # 1 - rowks on the path of file (usually attached to the field).
+            # 1 - wowks on the path of file (usually attached to the field).
 
         entry => 'String',
             # What type of input widget to use, one of:

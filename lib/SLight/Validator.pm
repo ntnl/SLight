@@ -42,7 +42,6 @@ my %validators = (
     
     'FileName' => { module=>'Disk.pm', function=>\&SLight::Validator::Disk::v_FileName, base => [qw{ STRING }] },
 
-    # Todo!
     'ISO_Date'     => { module=>'Time.pm', function=>\&SLight::Validator::Time::v_ISO_Date,     base => [qw{ STRING }] },
     'ISO_Time'     => { module=>'Time.pm', function=>\&SLight::Validator::Time::v_ISO_Time,     base => [qw{ STRING }] },
     'ISO_DateTime' => { module=>'Time.pm', function=>\&SLight::Validator::Time::v_ISO_DateTime, base => [qw{ STRING }] },

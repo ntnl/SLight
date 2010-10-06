@@ -23,8 +23,8 @@ use Params::Validate qw{ :all };
 
 sub signature { # {{{
     return {
-        attachment => 1,
-        entry      => 'String',
+        asset => 1,
+        entry => 'String',
     };
 } # }}}
 

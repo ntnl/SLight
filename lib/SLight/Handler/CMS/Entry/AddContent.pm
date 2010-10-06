@@ -145,7 +145,7 @@ sub handle_save { # {{{
     my $content_spec = get_ContentSpec($self->{'options'}->{'spec_id'});
 
     # Get the data, that User sent us.
-    my ( $errors, $warnings, $data, $attachments ) = $self->slurp_content_form_data(
+    my ( $errors, $warnings, $data, $assets ) = $self->slurp_content_form_data(
         content_spec => $content_spec,
     );
 
@@ -219,9 +219,9 @@ sub handle_save { # {{{
 
     my $content_id = add_Content(%content);
 
-    $self->process_field_attachments(
-        id          => $content_id,
-        attachments => $attachments,
+    $self->process_field_assets(
+        id     => $content_id,
+        assets => $assets,
     );
 
     my %target_url = (

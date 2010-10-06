@@ -78,12 +78,11 @@
 [-] CMS Handler objects
 [X]     SLight::Handler::Test::Foo
 [ ]     SLight::Handler::Core::AssetList
-[ ]         SLight::Handler::Core::AssetList::View <-- list Assets (does not list 'Dynamic' and 'Internal')
-[ ]     SLight::Handler::Core::Asset
+[ ]         SLight::Handler::Core::AssetList::View <-- list Assets
+[>]     SLight::Handler::Core::Asset
 [ ]         SLight::Handler::Core::Asset::View <-- return information about an Asset (size, mime type, when it was uploaded, by who)
-[ ]         SLight::Handler::Core::Asset::Download <-- sent Asset data to the User
-[ ]         SLight::Handler::Core::Asset::Internal
-[ ]         SLight::Handler::Core::Asset::Dynamic
+[>]         SLight::Handler::Core::Asset::Download <-- sent Asset data to the User
+[>]         SLight::Handler::Core::Asset::Thumb    <-- generate a thumbnail image for given Asset
 [X]     SLight::Handler::Core::Empty
 [X]         SLight::Handler::Core::Empty::View
 [X]         SLight::Handler::Core::Empty::AddContent

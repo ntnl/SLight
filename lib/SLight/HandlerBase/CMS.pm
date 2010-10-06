@@ -17,9 +17,9 @@ use base q{SLight::Handler};
 use SLight::Core::L10N qw( TR TF );
 use SLight::API::ContentSpec qw( get_ContentSpec );
 use SLight::API::Page qw( get_Page_full_path );
-use SLight::API::Asset qw( get_Asset_ids_on_Content );
+use SLight::API::Asset qw( get_Asset_ids_on_Content get_Asset_ids_on_Content_Field get_Asset );
 use SLight::API::Util qw( human_readable_size );
-use SLight::DataToken qw( mk_Link_token mk_Label_token mk_Container_token mk_Text_token mk_ListItem_token );
+use SLight::DataToken qw( mk_Link_token mk_Label_token mk_Container_token mk_Text_token mk_ListItem_token mk_Image_token );
 use SLight::DataType;
 
 use Carp::Assert::More qw( assert_defined assert_hashref assert_listref );
@@ -49,51 +49,47 @@ sub ContentData_2_details { # {{{
         0,            # thumb mode OFF
     );
 
-    # Display detailed information about attachments.
-    my @asset_ids = get_Asset_ids_on_Content($content->{'id'});
-    if (scalar @asset_ids) {
-        # ...
+    # Display detailed information about assets.
+    my $asset_ids = get_Asset_ids_on_Content($content->{'id'});
+    if (scalar @{ $asset_ids }) {
+        my $assets_list = get_Assets($asset_ids);
 
-#        my @attachments_list_contents;
-#        foreach my $attachments_meta (@attachments_list) {
-#            my $download_link = $self->build_url(
-#                method  => 'GET',
-#                handler => 'Content',
-#                action  => 'attachment',
-#                options => {
-#                    id => $attachments_meta->{'id'},
-#                },
-#                path => $item_path,
-#            );
-#
-#            my $hr_size = human_readable_size($attachments_meta->{'byte_size'});
-#
-#            my $item = mk_ListItem_token(
-#                class   => 'Attachment',
-#                content => [
-#                    mk_Link_token(
-#                        text => ( $attachments_meta->{'filename'} or TR('Unknown') ),
-#                        href => $download_link
-#                    ),
-#                    mk_Label_token(
-#                        text  => ( $attachments_meta->{'summary'} or q{-} ),
-#                        class =>'Summary'
-#                    ),
-#                    mk_Label_token(
-#                        text  => $hr_size,
-#                        class => 'Size'
-#                    ),
-#                ],
-#            );
-#            push @attachments_list_contents, $item;
-#        }
-#
-#        my $attachments_list = mk_List_token(
-#            class   => 'Attachments',
-#            content => \@attachments_list_contents
-#        );
-#
-#        push @container_contents, $attachments_list;
+        my @assets_list_contents;
+        foreach my $asset_meta (@{ $assets_list }) {
+            my $download_link = $self->build_url(
+                path_handler => 'Asset',
+                path         => [ $asset_meta->{'id'} ],
+                action       => 'Download',
+            );
+
+            my $hr_size = human_readable_size($asset_meta->{'byte_size'});
+
+            my $item = mk_ListItem_token(
+                class   => 'Asset',
+                content => [
+                    mk_Link_token(
+                        text => ( $asset_meta->{'filename'} or TR('Unknown') ),
+                        href => $download_link
+                    ),
+                    mk_Label_token(
+                        text  => ( $asset_meta->{'summary'} or q{-} ),
+                        class =>'Summary'
+                    ),
+                    mk_Label_token(
+                        text  => $hr_size,
+                        class => 'Size'
+                    ),
+                ],
+            );
+            push @assets_list_contents, $item;
+        }
+
+        my $asset_list = mk_List_token(
+            class   => 'Assets',
+            content => \@assets_list_contents
+        );
+
+        push @container_contents, $assets_list;
     }
 
 #    # Display number of comments.
@@ -157,8 +153,8 @@ sub display_ContentData_for_page { # {{{
             push @inner_container_content, $label;
         }
 
-        if ($signature->{'attachment'}) {
-            my $value = $self->render_asset_field( $field_name, $content, $item_path, $thumb_mode );
+        if ($signature->{'asset'}) {
+            my $value = $self->render_asset_field( $field, $content, $item_path, $thumb_mode );
 
             if (defined $value) {
                 push @inner_container_content, $value;
@@ -255,7 +251,7 @@ sub display_Email { # {{{
 # Note:
 #   first textual field will beSLight a link to Overview.
 sub ContentData_2_item { # {{{
-    my ( $self, $ContentData, $comments_count, $attachments_count, $childs_count ) = @_;
+    my ( $self, $ContentData, $comments_count, $assets_count, $childs_count ) = @_;
 
     my $item_path = SLight::Core::Content::path_for_id($ContentData->{'content_hash'}->{'id'});
 
@@ -303,7 +299,7 @@ sub ContentData_2_item { # {{{
         # Currently labels, but in future, maybe other widgets.
 
         my $value;
-        if ($signature->{'attachment'}) {
+        if ($signature->{'asset'}) {
             $value = $self->render_asset_field( $field_name, $ContentData, $item_path, 1 );
         }
         elsif ($ContentData->{'content_hash'}->{'data'}->{$field_name})  {
@@ -339,11 +335,11 @@ sub ContentData_2_item { # {{{
         }
     }
 
-    # Display count of attachments (not inluding files attached to fields).
-    if ($attachments_count) {
+    # Display count of assets (not including files attached to fields).
+    if ($assets_count) {
         my $value = mk_Label_token(
-            class => 'SLight_Attachments',
-            text  => TF('Attachments: %d', undef, $attachments_count),
+            class => 'SLight_Assets',
+            text  => TF('Assets: %d', undef, $assets_count),
         );
         push @values, $value,
     }
@@ -406,12 +402,12 @@ sub ContentList_2_list { # {{{
         fetch_callback => sub {
             my ( $ids ) = @_;
 
-            # Fetch counts of comments and attachments for ids on the list.
+            # Fetch counts of comments and assets for ids on the list.
             my $comments_per_item = SLight::Core::Comment::get_counts_per_object(
                 handler => [ 'Content' ],
                 object  => $ids,
             );
-            my $attachments_per_item = SLight::Core::Attachment::get_counts_per_object(
+            my $assets_per_item = SLight::API::Asset::get_counts_per_object(
                 parent => 'content',
                 object => $ids,
             );
@@ -427,7 +423,7 @@ sub ContentList_2_list { # {{{
                 push @list_items, $self->ContentData_2_item(
                     $ContentData,
                     ( $comments_per_item->{$entry_id}    or 0),
-                    ( $attachments_per_item->{$entry_id} or 0),
+                    ( $assets_per_item->{$entry_id} or 0),
                     ( $childs_per_item->{$entry_id}      or 0)
                 );
             }
@@ -447,85 +443,84 @@ sub ContentList_2_list { # {{{
 } # }}}
 
 sub render_asset_field { # {{{
-    my ( $self, $field_name, $ContentData, $path, $thumb_mode ) = @_;
+    my ( $self, $field, $content, $path, $thumb_mode ) = @_;
 
     my $value;
 
-    # Yes, this is suboptimal, but will be a good starting point for refactoring in future.
-    if (not defined $self->{'can_display_attachments'}) {
-        my %grant;
+    $self->{'can_display_assets'} = 1;
+# To be implemented in M4:
+#    # Yes, this is suboptimal, but will be a good starting point for refactoring in future.
+#    if (not defined $self->{'can_display_assets'}) {
+#        my %grant;
+#
+#        if ($self->{'params'}->{'user'}->{'login'}) {
+#            %grant = SLight::Core::User::Access::get_effective_user_access_rights(
+#                login   => $self->{'params'}->{'user'}->{'login'},
+#                pkg     => 'Content',
+#                handler => 'Content',
+#                action  => 'Asset',
+#            );
+#            if (not $grant{'Get'}) {
+#                %grant = SLight::Core::User::Access::get_effective_user_access_rights(
+#                    login   => q{!known!},
+#                    pkg     => 'Content',
+#                    handler => 'Content',
+#                    action  => 'Asset',
+#                );
+#            }
+#        }
+#        else {
+#            %grant = SLight::Core::User::Access::get_effective_user_access_rights(
+#                login   => q{!guest!},
+#                pkg     => 'Content',
+#                handler => 'Content',
+#                action  => 'Asset',
+#            );
+#        }
+#
+#        # We use this:
+#        #   $self->{'can_display_assets'}
+#        # undefined at start, will beSLight 0 or 1 when first check is performed.
+#
+#        if ($grant{'Get'}) {
+#            $self->{'can_display_assets'} = 1;
+#        }
+#        else {
+#            $self->{'can_display_assets'} = 0;
+#        }
+#    }
 
-        if ($self->{'params'}->{'user'}->{'login'}) {
-            %grant = SLight::Core::User::Access::get_effective_user_access_rights(
-                login   => $self->{'params'}->{'user'}->{'login'},
-                pkg     => 'Content',
-                handler => 'Content',
-                action  => 'Attachment',
-            );
-            if (not $grant{'Get'}) {
-                %grant = SLight::Core::User::Access::get_effective_user_access_rights(
-                    login   => q{!known!},
-                    pkg     => 'Content',
-                    handler => 'Content',
-                    action  => 'Attachment',
-                );
-            }
-        }
-        else {
-            %grant = SLight::Core::User::Access::get_effective_user_access_rights(
-                login   => q{!guest!},
-                pkg     => 'Content',
-                handler => 'Content',
-                action  => 'Attachment',
-            );
-        }
+    my $asset_ids = get_Asset_ids_on_Content_Field($content->{'id'}, $field->{'id'});
 
-        # We use this:
-        #   $self->{'can_display_attachments'}
-        # undefined at start, will beSLight 0 or 1 when first check is performed.
-
-        if ($grant{'Get'}) {
-            $self->{'can_display_attachments'} = 1;
-        }
-        else {
-            $self->{'can_display_attachments'} = 0;
-        }
+    if (not scalar @{ $asset_ids }) {
+        return;
     }
 
-    my $metadata = SLight::Core::Attachment::get_attachment_meta(
-        parent => 'content',
-        object => $ContentData->{'content_hash'}->{'id'},
-        field  => $field_name,
-    );
+    my $asset_meta = get_Asset($asset_ids->[0]); # FIXME: display ALL assets (there can be more of them?)
 
-    # Display attachments only, if User is able to download them.
-    if ($metadata and $self->{'can_display_attachments'}) {
-        my $download_link = $self->build_url(
-            method  => 'GET',
-            handler => 'Content',
-            action  => 'attachment',
-            options => {
-                id    => $metadata->{'id'},
-                thumb => $thumb_mode,
-            },
-            path => $path
+    # Display Assets only, if User is able to download them.
+    if ($asset_meta and $self->{'can_display_assets'}) {
+        my $thumb_url = $self->build_url(
+            path_handler => 'Asset',
+            action       => 'Thumb',
+            path         => [ 'Asset', $asset_meta->{'id'}, ],
         );
 
         # Fixme!
         # Hard coded to display images, so do not put anything else there ;)
         $value = mk_Image_token(
-            class => $field_name,
-            href  => $download_link,
-            label => ( $ContentData->{'content_hash'}->{'data'}->{$field_name} or $metadata->{'summary'} ),
+            class => 'Asset ' . $field->{'class'},
+            href  => $thumb_url,
+            label => ( $asset_meta->{'summary'} or $field->{'caption'} ),
         );
     }
-    elsif ($metadata) {
-        # Attachment was added, but User does not have grant to see it.
+    elsif ($asset_meta) {
+        # Asset was added, but User does not have grant to see it.
         # In this case - issue an information.
         $self->add_notification(
-            id   => 'Content-Attachments-Not-Granted',
+            id   => 'Content-Assets-Not-Granted',
             type => 'ACCESS',
-            text => TR('Attachments have not been displayed, due to insufficient access grants.'),
+            text => TR('Assets have not been displayed, due to insufficient access grants.'),
         );
     }
     else {

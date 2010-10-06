@@ -16,7 +16,7 @@ package SLight::DataStructure::Form;
 use strict; use warnings; # {{{
 use base 'SLight::DataStructure';
 
-use SLight::DataToken qw( mk_Form_token mk_Label_token mk_Entry_token mk_Container_token mk_TextEntry_token mk_SelectEntry_token );
+use SLight::DataToken qw( :all );
 
 use Params::Validate qw( :all );
 # }}}
