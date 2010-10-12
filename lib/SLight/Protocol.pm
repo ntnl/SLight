@@ -90,6 +90,12 @@ sub S_process_object { # {{{
                 redirect_href => $result->{'redirect'}
             };
         }
+        
+        if ($result->{'upload'}) {
+            return {
+                upload => $result->{'upload'}
+            };
+        }
 
         if ($result->{'replace_with_object'}) {
             return {
@@ -218,7 +224,6 @@ sub S_response_REDIRECT { # {{{
         location => $href,
     };
 } # }}}
-
 
 # vim: fdm=marker
 1;

@@ -37,6 +37,8 @@ sub new { # {{{
         meta  => {},
 
         redirect => undef,
+        
+        upload => undef,
 
         read_only => 0,
 
@@ -91,6 +93,12 @@ sub handle { # {{{
     if ($self->{'redirect'}) {
         return {
             redirect => $self->{'redirect'}
+        };
+    }
+
+    if ($self->{'upload'}) {
+        return {
+            upload => $self->{'upload'}
         };
     }
 
@@ -156,9 +164,25 @@ sub push_toolbox { # {{{
 sub redirect { # {{{
     my ( $self, $redirect ) = @_;
 
-    # FIXME: make sure no data was set! If so, something is br0ken!
+    # FIXME: make sure no upload/data was set! If so, something is br0ken!
     
     $self->{'redirect'} = $redirect;
+
+    return;
+} # }}}
+
+sub upload { # {{{
+    my ( $self, $data, $mime ) = @_;
+
+    assert_defined($data, "Data is defined");
+    assert_defined($mime, "Mime type is defined");
+
+    # FIXME: make sure no redirect/data was set! If so, something is br0ken!
+    
+    $self->{'upload'} = {
+        data => $data,
+        mime => $mime,
+    };
 
     return;
 } # }}}

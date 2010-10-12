@@ -35,7 +35,7 @@ sub _process { # {{{
         return;
     }
 
-    my $pages = SLight::API::Page::get_page_fields_where(
+    my $pages = SLight::API::Page::get_Page_fields_where(
         parent_id => $self->{'page_id'},
 
         _fields => [qw( path )]

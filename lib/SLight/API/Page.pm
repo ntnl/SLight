@@ -20,6 +20,15 @@ use Params::Validate qw( :all );
 # }}}
 
 our @EXPORT_OK = qw(
+    add_Page
+    update_Page
+    update_Pages
+    delete_Page
+    delete_Pages
+    get_Page
+    get_Pages
+    get_Page_ids_where
+    get_Page_fields_where
     get_Page_full_path
 );
 our %EXPORT_TAGS = ( 'all' => [ @EXPORT_OK ] );
@@ -34,7 +43,7 @@ my $_handler = SLight::Core::Entity->new( # {{{
 
 # Fixme: It should be: 'add_Page', not: 'add_page', and so on...
 
-sub add_page { # {{{
+sub add_Page { # {{{
     my %P = validate (
         @_,
         {
@@ -53,7 +62,7 @@ sub add_page { # {{{
     );
 } # }}}
 
-sub update_page { # {{{
+sub update_Page { # {{{
     my %P = validate (
         @_,
         {
@@ -76,7 +85,7 @@ sub update_page { # {{{
     );
 } # }}}
 
-sub update_pages { # {{{
+sub update_Pages { # {{{
     my %P = validate (
         @_,
         {
@@ -99,35 +108,35 @@ sub update_pages { # {{{
     );
 } # }}}
 
-sub delete_page { # {{{
+sub delete_Page { # {{{
     my ( $id ) = @_;
 
     return $_handler->delete_ENTITYs( [ $id ] );
 } # }}}
 
-sub delete_pages { # {{{
+sub delete_Pages { # {{{
     my ( $ids ) = @_;
 
     return $_handler->delete_ENTITYs( $ids );
 } # }}}
 
-sub get_page { # {{{
+sub get_Page { # {{{
     my ( $id ) = @_;
 
     return $_handler->get_ENTITY($id);
 } # }}}
 
-sub get_pages { # {{{
+sub get_Pages { # {{{
     my ( $ids ) = @_;
 
     return $_handler->get_ENTITYs($ids);
 } # }}}
 
-sub get_page_ids_where { # {{{
+sub get_Page_ids_where { # {{{
     return $_handler->get_ENTITY_ids_where(@_);
 } # }}}
 
-sub get_page_fields_where { # {{{
+sub get_Page_fields_where { # {{{
     return $_handler->get_ENTITYs_fields_where(@_);
 } # }}}
 

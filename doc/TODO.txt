@@ -41,7 +41,7 @@
 
         Pages are - in some way - served by SLight.
 
-=--= Milestone 3 - Working CMS - ....-..-..
+=--= Milestone 3 - Basic CMS - ....-..-..
 
 [X] Validator
 [X]     SLight::Validator.pm
@@ -67,9 +67,8 @@
 [X]         'cms_usage' column support
 [X]         Add 'class' to Spec, so each SLight_Object can have an O-$class (so it's easier to hack CSS)
 [X]     Content store
-[ ]     Comment store
 [X]     Asset store
-[ ]     Page API refactoring ('page' to 'Page')
+[>]     Page API refactoring ('page' to 'Page')
 [X] PathHandler
 [X]     Test Framework
 [X]     SLight::PathHandler::CMS_Spec
@@ -77,12 +76,13 @@
 [X] Handler Object Test Framework
 [-] CMS Handler objects
 [X]     SLight::Handler::Test::Foo
-[ ]     SLight::Handler::Core::AssetList
-[ ]         SLight::Handler::Core::AssetList::View <-- list Assets
+[X]     SLight::Handler::Core::AssetList
+[X]         SLight::Handler::Core::AssetList::View <-- list Assets
 [>]     SLight::Handler::Core::Asset
-[ ]         SLight::Handler::Core::Asset::View <-- return information about an Asset (size, mime type, when it was uploaded, by who)
-[>]         SLight::Handler::Core::Asset::Download <-- sent Asset data to the User
-[>]         SLight::Handler::Core::Asset::Thumb    <-- generate a thumbnail image for given Asset
+[>]         SLight::Handler::Core::Asset::View <-- return information about an Asset (size, mime type, when it was uploaded, by who)
+[X]         SLight::Handler::Core::Asset::Download <-- sent Asset data to the User
+[X]         SLight::Handler::Core::Asset::Thumb    <-- generate a thumbnail image for given Asset
+[X]         SLight::Handler::Core::Asset::Delete
 [X]     SLight::Handler::Core::Empty
 [X]         SLight::Handler::Core::Empty::View
 [X]         SLight::Handler::Core::Empty::AddContent
@@ -103,17 +103,9 @@
 [X]         SLight::Handler::CMS::SpecField::Delete
 [-]     SLight::Handler::CMS::Entry
 [X]         SLight::Handler::CMS::Entry::View
-[ ]         SLight::Handler::CMS::Entry::Details <-- Display the object with all Assets and Comments shown on page.
-[ ]             Ability for the main object to instruct the Protocol, that it wants to replace aux objects with own stuff.
-[ ]             Replace aux objects with 'SLight::Handler::CMS::Entry::Assets' and 'SLight::Handler::CMS::Entry::Comments'
 [X]         SLight::Handler::CMS::Entry::New
 [X]         SLight::Handler::CMS::Entry::Edit
 [X]         SLight::Handler::CMS::Entry::Delete
-[ ]         SLight::Handler::CMS::Entry::Attach <-- attach a file to the object as an Asset
-[ ]         SLight::Handler::CMS::Entry::Assets <-- detailed information about assets attached to the CMS object
-[ ]         SLight::Handler::CMS::Entry::Comment <-- post a comment about the CMS object
-[ ]         SLight::Handler::CMS::Entry::Comments <-- list comments from selected the CMS object
-[ ]         SLight::Handler::CMS::Entry::Translate
 [X]         SLight::Handler::CMS::Entry::AddContent
 [X]             Display what handler owns the module type
 [ ]     SLight::Handler::Error
@@ -149,9 +141,11 @@
 [X]         SQL Query based test - run sql query, output used as test result
 [X]         Callback based - run callback, use it's data it returns as test result
 [ ]     Write and setup script that uploads coverage metrics to the site
+[ ]     Website update
 [ ] Bugs/Regressions
 [ ]     Template displays UTF incorrectly ("ł" in the footer is screwed) when there are UTF-8 characters IN content added to template.
 [ ]     Path does not put data trough Encode/Decode, and does not make thumbnails out of it!
+[ ]     Assets are not replaced when object is edited (more like "nothing happens")
 
     Definition of done:
 
@@ -218,7 +212,26 @@
         Groups can be managed.
         Permissions can be managed.
 
-=--= Milestone 5 - Forum - ....-..-..
+=--= Milestone 5 - Advanced CMS - ....-..-..
+
+[ ] API
+[ ]     Comment store
+[ ] CMS
+[ ]     SLight::Handler::CMS::Entry
+[ ]         SLight::Handler::CMS::Entry::Details <-- Display the object with all Assets and Comments shown on page.
+[ ]             Ability for the main object to instruct the Protocol, that it wants to replace aux objects with own stuff.
+[ ]             Replace aux objects with 'SLight::Handler::CMS::Entry::Assets' and 'SLight::Handler::CMS::Entry::Comments'
+[ ]         SLight::Handler::CMS::Entry::Attach <-- attach a file to the object as an Asset
+[ ]         SLight::Handler::CMS::Entry::Assets <-- detailed information about assets attached to the CMS object
+[ ]         SLight::Handler::CMS::Entry::Comment <-- post a comment about the CMS object
+[ ]         SLight::Handler::CMS::Entry::Comments <-- list comments from selected the CMS object
+[ ]         SLight::Handler::CMS::Entry::Translate
+
+    Definition of done:
+
+    Most, if not all, commonly spotted CMS features are usable.
+
+=--= Milestone 6 - Forum - ....-..-..
     
 [ ] Forum-related Handler objects
 [ ]     SLight::Handler::Forum::Root
@@ -246,7 +259,7 @@
 
         Forum is complete.
 
-=--= Milestone 6 - Initial AJAX support - 
+=--= Milestone 7 - Initial AJAX support - 
 
 [ ] AJAX Protocol object
 [ ] P.O.C. of some js/html changes
@@ -255,7 +268,7 @@
 
         At least one action works trough AJAX
 
-=--= Milestone 7 - Full AJAX support - ....-..-..
+=--= Milestone 8 - Full AJAX support - ....-..-..
     
 [ ] Upgrade all applicable functionality to support AJAX
 

@@ -51,7 +51,15 @@ sub respond { # {{{
             $response->{'redirect_href'},
         );
     }
-    elsif ($response->{'replace_with_object'}) {
+
+    if ($response->{'upload'}) {
+        return $self->S_response_CONTENT(
+            $response->{'upload'}->{'data'},
+            $response->{'upload'}->{'mime'}
+        );
+    }
+
+    if ($response->{'replace_with_object'}) {
         # Internal redirect :) Cool :)
         $response = $self->S_process_object(
             $response->{'replace_with_object'},

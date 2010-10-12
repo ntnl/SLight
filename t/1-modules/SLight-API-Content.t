@@ -89,15 +89,15 @@ $ContentSpec_2{'id'} = add_ContentSpec(%ContentSpec_2); # 2
 
 my ($f_name, $f_chest, $f_waist, $f_hips, $f_cup ) = (50, 60, 70, 80, 90);
 
-my $p1 = SLight::API::Page::add_page(
+my $p1 = SLight::API::Page::add_Page(
     parent_id => undef,
     path      => 'root',
 );
-my $p2 = SLight::API::Page::add_page(
+my $p2 = SLight::API::Page::add_Page(
     parent_id => $p1,
     path      => 'Paintball',
 );
-my $p3 = SLight::API::Page::add_page(
+my $p3 = SLight::API::Page::add_Page(
     parent_id => $p1,
     path      => 'Gals',
 );

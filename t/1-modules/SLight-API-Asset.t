@@ -77,6 +77,8 @@ is (
     add_Asset (
         data => $image_png,
 
+        email => q{png@test.test},
+
         filename => 'SampleImage.png',
         summary  => 'Sample image: png',
     ),
@@ -88,6 +90,8 @@ is ( file_md5_hex( SLight::API::Asset::_path_for_id($a1) ), $md5_png, 'MD5 check
 is (
     add_Asset (
         data => $image_jpg,
+
+        email => q{jpg@test.test},
 
         filename => 'SampleImage.jpg',
         summary  => 'Sample image: jpg',
@@ -101,6 +105,8 @@ is (
     add_Asset (
         data => $image_jpg,
 
+        email => q{jpg@test.test},
+
         filename => 'SampleImage.jpg',
         summary  => 'Sample image: jpg',
     ),
@@ -112,6 +118,8 @@ is ( file_md5_hex( SLight::API::Asset::_path_for_id($a3) ), $md5_jpg, 'MD5 check
 is (
     add_Asset (
         data => $image_gif,
+
+        email => q{gif@test.test},
 
         filename => 'SampleImage.gif',
         summary  => 'Sample image: gif',
@@ -161,6 +169,8 @@ is_deeply(
         'filename' => 'SampleImage.png',
         'summary'  => 'Sample image: png',
 
+#        'email' => q{png@test.test},
+
         'mime_type' => 'image/png',
         'byte_size' => '13379',
 
@@ -179,6 +189,8 @@ is_deeply(
 
         'filename' => 'SampleImage.jpg',
         'summary'  => 'Sample image: jpg',
+
+#        'email' => q{jpg@test.test},
 
         'mime_type' => 'image/jpeg',
         'byte_size' => '2543',
@@ -203,6 +215,8 @@ is_deeply(
             'filename' => 'SampleImage.png',
             'summary'  => 'Sample image: png',
 
+#            'email' => q{png@test.test},
+
             'mime_type' => 'image/png',
             'byte_size' => '13379',
 
@@ -214,6 +228,8 @@ is_deeply(
 
             'filename' => 'SampleImage.jpg',
             'summary'  => 'Sample image: jpg',
+
+#            'email' => q{jpg@test.test},
 
             'mime_type' => 'image/jpeg',
             'byte_size' => '2543',

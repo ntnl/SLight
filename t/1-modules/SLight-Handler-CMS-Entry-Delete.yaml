@@ -20,6 +20,8 @@ List pages - before:
   parent_id: 1
 - id: 5
   parent_id: 2
+- id: 6
+  parent_id: 5
 Open confirmation dialog:
   content:
     addon_data:

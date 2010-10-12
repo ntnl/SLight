@@ -30,12 +30,14 @@ our @EXPORT_OK = qw(
 	add_Asset
     attach_Asset_to_Content
     attach_Asset_to_Content_Field
+    get_Asset_ids_where
     get_Asset_ids_on_Content
     get_Asset_ids_on_Content_Field
     get_Asset_ids_on_Content_Fields
     get_Asset
     get_Assets
     get_Asset_data
+    get_Asset_thumb
     delete_Asset
     delete_Assets
 );
@@ -193,8 +195,6 @@ sub get_Asset { # {{{
     return $asset;
 } # }}}
 
-# Purpose:
-#   Return metadata of files attached to given entry.
 sub get_Assets { # {{{
     my ( $ids ) = @_;
 
@@ -213,6 +213,14 @@ sub get_Asset_data { # {{{
     assert_positive_integer($id, 'id makes sense');
 
     return read_file(_path_for_id($id));
+} # }}}
+
+sub get_Asset_thumb { # {{{
+    my ( $id ) = @_;
+
+    assert_positive_integer($id, 'id makes sense');
+
+    return read_file(_thumb_path(_path_for_id($id)));
 } # }}}
 
 sub get_Asset_ids_where { # {{{

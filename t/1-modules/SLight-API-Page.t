@@ -22,15 +22,15 @@ use Test::More;
 # }}}
 
 plan tests =>
-    + 6 # add_page
-    + 1 # update_page
-    + 1 # update_pages
-    + 2 # delete_page (1x delete + 1x check)
-    + 2 # delete_pages (1x delete + 1x check)
-    + 2 # get_page
-    + 2 # get_pages
-    + 2 # get_page_ids_where
-    + 1 # get_page_fields_where
+    + 6 # add_Page
+    + 1 # update_Page
+    + 1 # update_Pages
+    + 2 # delete_Page (1x delete + 1x check)
+    + 2 # delete_Pages (1x delete + 1x check)
+    + 2 # get_Page
+    + 2 # get_Pages
+    + 2 # get_Page_ids_where
+    + 1 # get_Page_fields_where
     + 4 # get_Page_full_path
 ;
 
@@ -39,47 +39,56 @@ SLight::Test::Site::prepare_empty(
 );
 
 use SLight::API::Page qw(
+    add_Page
+    update_Page
+    update_Pages
+    delete_Page
+    delete_Pages
+    get_Page
+    get_Pages
+    get_Page_ids_where
+    get_Page_fields_where
     get_Page_full_path
 );
 
 
-my $page_0_id = SLight::API::Page::add_page(
+my $page_0_id = add_Page(
     parent_id => undef,
     path      => 'Foo',
 );
-is ($page_0_id, 1, "add_page (root)");
+is ($page_0_id, 1, "add_Page (root)");
 
-my $page_1_id = SLight::API::Page::add_page(
+my $page_1_id = add_Page(
     parent_id => $page_0_id,
     path      => 'Foo',
 );
-is ($page_1_id, 2, "add_page (1/5)");
+is ($page_1_id, 2, "add_Page (1/5)");
 
-my $page_2_id = SLight::API::Page::add_page(
+my $page_2_id = add_Page(
     parent_id => $page_1_id,
     path      => 'Bar',
 );
-is ($page_2_id, 3, "add_page (2/5)");
+is ($page_2_id, 3, "add_Page (2/5)");
 
-my $page_3_id = SLight::API::Page::add_page(
+my $page_3_id = add_Page(
     parent_id => $page_0_id,
     path      => 'Baz',
     template  => 'Light',
 );
-is ($page_3_id, 4, "add_page (3/5)");
+is ($page_3_id, 4, "add_Page (3/5)");
 
-my $page_4_id = SLight::API::Page::add_page(
+my $page_4_id = add_Page(
     parent_id => $page_3_id,
     path      => 'Goo',
     template  => 'Haevy',
 );
-is ($page_4_id, 5, "add_page (4/5)");
+is ($page_4_id, 5, "add_Page (4/5)");
 
-my $page_5_id = SLight::API::Page::add_page(
+my $page_5_id = add_Page(
     parent_id => $page_3_id,
     path      => 'Bzz',
 );
-is ($page_5_id, 6, "add_page (5/5)");
+is ($page_5_id, 6, "add_Page (5/5)");
 
 
 
@@ -107,30 +116,30 @@ is_deeply(
 
 
 is_deeply(
-    SLight::API::Page::get_page($page_1_id),
+    get_Page($page_1_id),
     {
         id        => $page_1_id,
         parent_id => $page_0_id,
         path      => 'Foo',
         template  => undef,
     },
-    'get_page (1 after add)'
+    'get_Page (1 after add)'
 );
 is_deeply(
-    SLight::API::Page::get_page($page_4_id),
+    get_Page($page_4_id),
     {
         id        => $page_4_id,
         parent_id => $page_3_id,
         path      => 'Goo',
         template  => 'Haevy'
     },
-    'get_page (4 after add)'
+    'get_Page (4 after add)'
 );
 
 
 
 is(
-    SLight::API::Page::update_page(
+    update_Page(
         id => $page_1_id,
 
         parent_id => $page_4_id,
@@ -138,13 +147,13 @@ is(
         template  => 'Nested',
     ),
     undef,
-    'update_page()'
+    'update_Page()'
 );
 
 is_deeply(
     [
         sort {$a->{'id'} <=> $b->{'id'}} @{
-            SLight::API::Page::get_pages( [$page_1_id, $page_4_id] )
+            get_Pages( [$page_1_id, $page_4_id] )
         }
     ],
     [
@@ -161,22 +170,22 @@ is_deeply(
             template  => 'Haevy'
         },
     ],
-    'get_pages (1 and 4 after update)'
+    'get_Pages (1 and 4 after update)'
 );
 
 is(
-    SLight::API::Page::update_pages(
+    update_Pages(
         ids => [ $page_4_id, $page_5_id ],
 
         template => 'Altered',
     ),
     undef,
-    'update_pages()'
+    'update_Pages()'
 );
 is_deeply(
     [
         sort {$a->{'id'} <=> $b->{'id'}} @{
-            SLight::API::Page::get_pages( [$page_4_id, $page_5_id] )
+            get_Pages( [$page_4_id, $page_5_id] )
         }
     ],
     [
@@ -193,35 +202,35 @@ is_deeply(
             template  => 'Altered'
         },
     ],
-    'get_pages (4 and 5 after updates)'
+    'get_Pages (4 and 5 after updates)'
 );
 
 is_deeply(
-    SLight::API::Page::get_page_ids_where(
+    get_Page_ids_where(
         path => [qw( Goo Bzz )],
     ),
     [
         $page_4_id,
         $page_5_id,
     ],
-    "get_page_ids_where() using multiple paths"
+    "get_Page_ids_where() using multiple paths"
 );
 
 is_deeply(
-    SLight::API::Page::get_page_ids_where(
+    get_Page_ids_where(
         template => 'Altered',
     ),
     [
         $page_4_id,
         $page_5_id,
     ],
-    "get_page_ids_where() using template"
+    "get_Page_ids_where() using template"
 );
 
 is_deeply(
     [
         sort {$a->{'id'} <=> $b->{'id'}} @{
-            SLight::API::Page::get_page_fields_where(
+            get_Page_fields_where(
                 template => 'Altered',
 
                 _fields  => [qw( id path )],
@@ -238,7 +247,7 @@ is_deeply(
             path      => 'Bzz',
         },
     ],
-    "get_page_fields_where() using template"
+    "get_Page_fields_where() using template"
 );
 
 ################################################################################
@@ -246,13 +255,13 @@ is_deeply(
 ################################################################################
 
 is (
-    SLight::API::Page::delete_page($page_1_id),
+    delete_Page($page_1_id),
     2,
-    "delete_page()"
+    "delete_Page()"
 );
 
 is_deeply(
-    [ sort {$a->{'id'} <=> $b->{'id'}} @{ SLight::API::Page::get_pages([ $page_1_id, $page_2_id, $page_3_id, $page_4_id, $page_5_id ]) } ],
+    [ sort {$a->{'id'} <=> $b->{'id'}} @{ get_Pages([ $page_1_id, $page_2_id, $page_3_id, $page_4_id, $page_5_id ]) } ],
     [
         {
             id        => $page_3_id,
@@ -273,17 +282,17 @@ is_deeply(
             template  => 'Altered'
         },
     ],
-    'delete_page() check with get_pages'
+    'delete_Page() check with get_Pages'
 );
 
 is (
-    SLight::API::Page::delete_pages([ $page_4_id, $page_5_id ]),
+    delete_Pages([ $page_4_id, $page_5_id ]),
     2,
-    "delete_pages()"
+    "delete_Pages()"
 );
 
 is_deeply(
-    [ sort {$a->{'id'} <=> $b->{'id'}} @{ SLight::API::Page::get_pages([ $page_1_id, $page_2_id, $page_3_id, $page_4_id, $page_5_id ]) } ],
+    [ sort {$a->{'id'} <=> $b->{'id'}} @{ get_Pages([ $page_1_id, $page_2_id, $page_3_id, $page_4_id, $page_5_id ]) } ],
     [
         {
             id        => $page_3_id,
@@ -292,7 +301,7 @@ is_deeply(
             template  => 'Light',
         },
     ],
-    'delete_pages() check with get_pages'
+    'delete_Pages() check with get_Pages'
 );
 
 # vim: fdm=marker

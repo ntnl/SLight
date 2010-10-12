@@ -26,7 +26,7 @@ use Params::Validate qw( :all );
 sub _process { # {{{
     my ( $self ) = @_;
 
-    my $pages = SLight::API::Page::get_page_fields_where(
+    my $pages = SLight::API::Page::get_Page_fields_where(
         parent_id => 1,
 
         _fields => [qw( path )]

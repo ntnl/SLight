@@ -22,36 +22,36 @@ use SLight::API::Page;
 
 sub build { # {{{
     # Add root page:
-    my $p0_id = SLight::API::Page::add_page(
+    my $p0_id = SLight::API::Page::add_Page(
         parent_id => undef,
         path      => q{},
         template  => q{Default},
     );
 
     # Add 1-st level pages:
-    my $p1_id = SLight::API::Page::add_page(
+    my $p1_id = SLight::API::Page::add_Page(
         parent_id => $p0_id,
         path      => q{About},
         template  => q{Info},
     );
-    my $p2_id = SLight::API::Page::add_page(
+    my $p2_id = SLight::API::Page::add_Page(
         parent_id => $p0_id,
         path      => q{Docs},
         template  => q{Doc},
     );
-    my $p3_id = SLight::API::Page::add_page(
+    my $p3_id = SLight::API::Page::add_Page(
         parent_id => $p0_id,
         path      => q{Download},
     );
 
     # Add 2-nd level pages:
-    my $p4_id = SLight::API::Page::add_page(
+    my $p4_id = SLight::API::Page::add_Page(
         parent_id => $p1_id,
         path      => q{Authors},
     );
 
     # Add 3-rd level page:
-    my $p5_id = SLight::API::Page::add_page(
+    my $p5_id = SLight::API::Page::add_Page(
         parent_id => $p4_id,
         path      => q{Feedback},
     );

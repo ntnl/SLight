@@ -1,0 +1,23 @@
+---
+Asset:
+  breadcrumb_path: []
+  main_object: _asset
+  object_order:
+  - _asset
+  objects:
+    _asset:
+      class: Core::Asset
+      oid: '1'
+  page_id: ~
+  template: Default
+Root page (list):
+  breadcrumb_path: []
+  main_object: l1
+  object_order:
+  - l1
+  objects:
+    l1:
+      class: Core::AssetList
+      oid: ~
+  page_id: ~
+  template: Default

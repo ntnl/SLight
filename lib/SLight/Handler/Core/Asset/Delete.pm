@@ -1,4 +1,4 @@
-package SLight::Handler::Core::Empty::Delete;
+package SLight::Handler::Core::Asset::Delete;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -12,21 +12,24 @@ package SLight::Handler::Core::Empty::Delete;
 # 
 ################################################################################
 use strict; use warnings; # {{{
-use base q{SLight::Handler};
+use base q{SLight::HandlerBase::CMS};
 
+use SLight::Core::L10N qw( TR TF );
+use SLight::API::Asset qw( get_Asset delete_Asset );
 use SLight::DataStructure::Dialog::YesNo;
 
-use SLight::API::Page;
-use SLight::Core::L10N qw( TR TF );
+use Params::Validate qw( :all );
 # }}}
 
 sub handle_view { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
-    $self->set_class('Empty');
+    my $asset = get_Asset($oid);
+
+    $self->set_class('Asset');
 
     my $dialog = SLight::DataStructure::Dialog::YesNo->new(
-        message => TR("Do you want to delete current page? Please confirm."),
+        message => TF("Do you want to delete asset '%s'? Please confirm.", undef, ($asset->{'summary'} or $asset->{'filename'})), # FIXME: use title field instead!
 
         yes_href => $self->build_url(
             action => 'Delete',
@@ -45,22 +48,25 @@ sub handle_view { # {{{
 
     $self->push_data($dialog);
 
+    $self->manage_toolbox($oid);
+
     return;
 } # }}}
 
 sub handle_commit { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
-    $self->set_class('Empty');
+    $self->set_class('Asset');
 
-    SLight::API::Page::delete_Page($self->{'page'}->{'page_id'});
+    SLight::API::Asset::delete_Asset($oid);
 
     # FIXME: This has to be fixed, so that the User is redirected to parent page, not to root!
     $self->redirect(
         $self->build_url(
-            action => 'View',
-            step   => 'view',
-            path   => [],
+            path_handler => 'Asset',
+            action       => 'View',
+            step         => 'view',
+            path         => [],
         )
     );
 

@@ -545,7 +545,7 @@ sub get_ENTITY_ids_where { # {{{
         columns => [ 'id' ],
         from    => $self->{'base_table'},
         where   => $where,
-#        debug   => 1
+        debug   => $P{'debug'},
     );
 
     my @entity_ids;
@@ -741,6 +741,10 @@ sub _make_where { # {{{
 
             $glue = ' AND ';
         }
+    }
+
+    if (not scalar @where) {
+        @where = ( q{'1' = }, 1 );
     }
 
     return \@where;

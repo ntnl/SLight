@@ -189,7 +189,7 @@ sub handle_save { # {{{
             $page{'parent_id'} = $self->{'page'}->{'page_id'};
         }
 
-        $page_id = SLight::API::Page::add_page(%page);
+        $page_id = SLight::API::Page::add_Page(%page);
     }
     else {
         $page_id = $self->{'page'}->{'page_id'};

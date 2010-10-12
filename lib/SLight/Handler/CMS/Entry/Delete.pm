@@ -61,7 +61,7 @@ sub handle_commit { # {{{
 
     $self->set_class('Empty');
 
-    SLight::API::Page::delete_page($self->{'page'}->{'page_id'});
+    SLight::API::Page::delete_Page($self->{'page'}->{'page_id'});
 
     # FIXME: This has to be fixed, so that the User is redirected to parent page, not to root!
     $self->redirect(

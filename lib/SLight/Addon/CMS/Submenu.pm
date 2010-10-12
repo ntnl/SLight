@@ -30,13 +30,13 @@ sub _process { # {{{
         return;
     }
 
-    my $page = SLight::API::Page::get_page($self->{'page_id'});
+    my $page = SLight::API::Page::get_Page($self->{'page_id'});
 
     if (not $page->{'parent_id'} or $page->{'parent_id'} == 1) {
         return;
     }
 
-    my $pages = SLight::API::Page::get_page_fields_where(
+    my $pages = SLight::API::Page::get_Page_fields_where(
         parent_id => $page->{'parent_id'},
 
         _fields => [qw( path )]

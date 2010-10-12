@@ -47,7 +47,7 @@ sub analyze_path { # {{{
         foreach my $part (@{ $path }) {
             if (not $part) { next; }
 
-            my $pages = SLight::API::Page::get_page_fields_where(
+            my $pages = SLight::API::Page::get_Page_fields_where(
                 parent_id => $parent_id,
                 path      => $part,
 
@@ -122,7 +122,7 @@ sub analyze_path { # {{{
 
     $self->set_page_id($page_id);
 
-    my $page = SLight::API::Page::get_page($page_id);
+    my $page = SLight::API::Page::get_Page($page_id);
 
     # If there is no root page, return a nice 'Welcome' message :)
     if ($page_id == 1 and not $page) {

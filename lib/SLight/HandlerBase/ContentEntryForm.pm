@@ -14,7 +14,7 @@ package SLight::HandlerBase::ContentEntryForm;
 use strict; use warnings; # {{{
 use base q{SLight::Handler};
 
-use SLight::Core::L10N qw( TR );
+use SLight::Core::L10N qw( TR TF );
 use SLight::API::Util qw( human_readable_size );
 use SLight::API::Asset qw( attach_Asset_to_Content_Field get_Asset_ids_on_Content_Field get_Asset );
 use SLight::DataType;
