@@ -16,6 +16,7 @@ use base q{SLight::Handler};
 
 use SLight::API::Asset qw( get_Asset );
 use SLight::Core::L10N qw( TR );
+use SLight::DataStructure::List::Table::Properties;
 
 use Carp;
 use English qw( -no_match_vars );
@@ -36,7 +37,45 @@ sub handle_view { # {{{
         path         => [ 'Asset', $asset->{'id'}, ],
     );
 
-    my $properties = 
+    my $properties = SLight::DataStructure::List::Table::Properties->new(
+        caption => TR(q{Asset details:}),
+    );
+    
+    $properties->add_Property(
+        caption => TR("Filename") . q{:},
+        value   => $asset->{'filename'},
+    );
+    $properties->add_Property(
+        caption => TR("Mime type") . q{:},
+        value   => $asset->{'mime_type'},
+    );
+    $properties->add_Property(
+        caption => TR("Summary") . q{:},
+        value   => $asset->{'summary'},
+    );
+
+    $self->push_data($properties);
+    
+    $self->push_toolbox(
+        urls => [
+            {
+                caption => TR('Download'),
+                action  => 'Download',
+                path    => [
+                    'Asset',
+                    $asset->{'id'},
+                ],
+            },
+            {
+                caption => TR('Delete'),
+                action  => 'Delete',
+                path    => [
+                    'Asset',
+                    $asset->{'id'},
+                ],
+            },
+        ]
+    );
 
     return;
 } # }}}

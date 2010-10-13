@@ -136,8 +136,6 @@ my @tests = (
     {
         name     => 'Asset has been written',
         callback => sub {
-            warn $site_root . q{assets/01/1.bin};
-
             if (-f $site_root . q{assets/01/1.bin}) {
                 return 'Yes';
             }

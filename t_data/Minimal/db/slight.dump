@@ -206,8 +206,8 @@ CREATE TABLE Content_Entity (
     FOREIGN KEY (`Email_id`)        REFERENCES Email(`id`) ON DELETE CASCADE,
 	FOREIGN KEY (`Content_Spec_id`) REFERENCES Content_Spec(`id`) ON DELETE CASCADE
 );
-INSERT INTO "Content_Entity" VALUES(1,1,NULL,'V',1,0,0,0,'2010-10-06 10:22:08','2010-10-06 10:22:08',NULL);
-INSERT INTO "Content_Entity" VALUES(2,1,NULL,'V',2,0,0,0,'2010-10-06 10:22:08','2010-10-06 10:22:08',NULL);
+INSERT INTO "Content_Entity" VALUES(1,1,NULL,'V',1,0,0,0,'2010-10-12 19:51:35','2010-10-12 19:51:35',NULL);
+INSERT INTO "Content_Entity" VALUES(2,1,NULL,'V',2,0,0,0,'2010-10-12 19:51:35','2010-10-12 19:51:35',NULL);
 CREATE TABLE Content_Entity_Data (
 	`Content_Entity_id` INTEGER NOT NULL,
 
@@ -297,6 +297,7 @@ CREATE TABLE Asset_Entity (
 
 	FOREIGN KEY (`Email_id`) REFERENCES Email(`id`) ON DELETE CASCADE
 );
+INSERT INTO "Asset_Entity" VALUES(1,NULL,'2010-10-12 19:51:35','SampleImage.png',13379,'image/png','Sample image for testing purposes.');
 CREATE TABLE Asset_2_Content (
     `Asset_Entity_id` INTEGER,
 

@@ -1,0 +1,70 @@
+---
+Ask for confirmation of Asset deletion:
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
+      Core::Toolbox:
+        class: SLight_Toolbox_Plugin
+        content:
+        - class: SLight_AddContent_Action
+          data:
+            caption: Add Content
+            href: /_Asset/Asset/1/AddContent-en.web_test
+          type: Action
+        - class: SLight_Edit_Action
+          data:
+            caption: Edit
+            href: /_Asset/Asset/1/Edit-en.web_test
+          type: Action
+        - class: SLight_Delete_Action
+          data:
+            caption: Delete
+            href: /_Asset/Asset/1/Delete-en.web_test
+          type: Action
+        type: Container
+    object_data:
+      _asset:
+        class: SLight_Object O-Asset
+        content:
+        - class: SLight_Delete_Dialog
+          content:
+          - class: Message
+            content:
+            - class: generic
+              data:
+                text: Do you want to delete asset 'Sample image for testing purposes.'?
+                  Please confirm.
+              type: Label
+            type: Container
+          - class: Buttons
+            content:
+            - class: Yes
+              data:
+                caption: Yes
+                href: /_Asset/Asset/1/Delete-commit.web
+              type: Action
+            - class: No
+              data:
+                caption: No
+                href: /_Asset/Asset/1/Delete.web
+              type: Action
+            type: Container
+          type: Container
+        type: Container
+    object_order:
+    - _asset
+    template: Default
+  mime_type: ~
+  response: CONTENT
+Commit Asset deletion:
+  location: /_Asset/
+  response: REDIRECT
+Confirm Asset deletion: []

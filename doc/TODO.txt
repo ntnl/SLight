@@ -62,24 +62,24 @@
 [X]             Fix CMS::Spec display and form (should display and allow to change roles)
 [X]         Make Page PathHandler use 'use_as_title' and 'use_in_path'
 [X]         Menu and Submenu should use 'order_by'
-[-] API
+[X] API
 [X]     ContentSpec store
 [X]         'cms_usage' column support
 [X]         Add 'class' to Spec, so each SLight_Object can have an O-$class (so it's easier to hack CSS)
 [X]     Content store
 [X]     Asset store
-[>]     Page API refactoring ('page' to 'Page')
+[X]     Page API refactoring ('page' to 'Page')
 [X] PathHandler
 [X]     Test Framework
 [X]     SLight::PathHandler::CMS_Spec
 [X]     SLight::PathHandler::Test
 [X] Handler Object Test Framework
-[-] CMS Handler objects
+[X] CMS Handler objects
 [X]     SLight::Handler::Test::Foo
 [X]     SLight::Handler::Core::AssetList
 [X]         SLight::Handler::Core::AssetList::View <-- list Assets
-[>]     SLight::Handler::Core::Asset
-[>]         SLight::Handler::Core::Asset::View <-- return information about an Asset (size, mime type, when it was uploaded, by who)
+[X]     SLight::Handler::Core::Asset
+[X]         SLight::Handler::Core::Asset::View <-- return information about an Asset (size, mime type, when it was uploaded, by who)
 [X]         SLight::Handler::Core::Asset::Download <-- sent Asset data to the User
 [X]         SLight::Handler::Core::Asset::Thumb    <-- generate a thumbnail image for given Asset
 [X]         SLight::Handler::Core::Asset::Delete
@@ -101,37 +101,29 @@
 [X]         SLight::Handler::CMS::SpecField::New
 [X]         SLight::Handler::CMS::SpecField::Edit
 [X]         SLight::Handler::CMS::SpecField::Delete
-[-]     SLight::Handler::CMS::Entry
+[X]     SLight::Handler::CMS::Entry
 [X]         SLight::Handler::CMS::Entry::View
 [X]         SLight::Handler::CMS::Entry::New
 [X]         SLight::Handler::CMS::Entry::Edit
 [X]         SLight::Handler::CMS::Entry::Delete
 [X]         SLight::Handler::CMS::Entry::AddContent
 [X]             Display what handler owns the module type
-[ ]     SLight::Handler::Error
-[ ]         SLight::Handler::Error::NotFound
-[ ]         SLight::Handler::Error::InternalError
 [X] Output:
 [X]     SLight::OutputFactory
 [X]     HTML Template/Generator libraries
 [X]     SLight::Output
 [X]     SLight::Output::HTML
 [X]     SLight::Output::TEST
-[-] DataStructure
+[X] DataStructure
 [X]     SLight::DataStructure
 [X]     SLight::DataStructure::Token (new!)
-[-]     SLight::DataStructure::List (ex CoMe...GenericGrid)
-[ ]     SLight::DataStructure::Table (ex CoMe...GenericTable)
-[-]     SLight::DataStructure::Table::Properties (ex CoMe...GenericProperties)
-[-]     SLight::DataStructure::Form (ex CoMe...GenericForm)
-[ ]     SLight::DataStructure::Form::Diff (CoMe...DiffForm)
 [X]     SLight::DataStructure::Dialog (new!)
 [X]     SLight::DataStructure::Dialog::Notification (ex CoMe...GenericMessage)
 [X]     SLight::DataStructure::Dialog::YesNo (ex. CoMe...YesNo)
-[-] Addon
+[X] Addon
 [X]     SLight::Addon::Core::Toolbox
 [X]     SLight::Addon::Core::Path
-[-]     SLight::Addon::Core::Sysinfo
+[X]     SLight::Addon::Core::Sysinfo
 [X]     SLight::Addon::Core::Language
 [X]     SLight::Addon::CMS::Rootmenu
 [X]     SLight::Addon::CMS::Menu
@@ -142,10 +134,10 @@
 [X]         Callback based - run callback, use it's data it returns as test result
 [ ]     Write and setup script that uploads coverage metrics to the site
 [ ]     Website update
-[ ] Bugs/Regressions
-[ ]     Template displays UTF incorrectly ("ł" in the footer is screwed) when there are UTF-8 characters IN content added to template.
-[ ]     Path does not put data trough Encode/Decode, and does not make thumbnails out of it!
-[ ]     Assets are not replaced when object is edited (more like "nothing happens")
+[>] Bugs/Regressions
+[X]     Template displays UTF incorrectly ("ł" in the footer is screwed) when there are UTF-8 characters IN content added to template.
+[X]     Path does not put data trough Encode/Decode, nor does snippets of it!
+[>]     Assets are not replaced when object is edited (more like "nothing happens")
 
     Definition of done:
 
@@ -192,7 +184,10 @@
 [ ]     SLight::Handler::Error
 [ ]         SLight::Handler::Error::AuthRequired <-- You must log-in to access this page.
 [ ]         SLight::Handler::Error::AccessDenied <-- You can not do the stuff you intended.
-[ ] SLight::PathHandler (remaining)
+[ ] SLight::Handler::Error
+[ ]     SLight::Handler::Error::NotFound
+[ ]     SLight::Handler::Error::InternalError
+[ ] SLight::PathHandler
 [ ]     SLight::Addon::MyData
 [ ]     SLight::Addon::Account
 [ ]     SLight::Addon::Group
@@ -205,6 +200,8 @@
 [ ]     Make a script, that creates fully usable sandbox from test site.
 [ ]     Intercept STDERR (when enabled) and handle it to Debug Addon
 [ ]     Implement DB-schema-update utility.
+[ ] Bugs:
+[ ]     ...
 
     Definition of done:
 
@@ -216,6 +213,12 @@
 
 [ ] API
 [ ]     Comment store
+[ ] DataStructure
+[-]     SLight::DataStructure::List (ex CoMe...GenericGrid)
+[ ]     SLight::DataStructure::Table (ex CoMe...GenericTable)
+[-]     SLight::DataStructure::Table::Properties (ex CoMe...GenericProperties)
+[-]     SLight::DataStructure::Form (ex CoMe...GenericForm)
+[ ]     SLight::DataStructure::Form::Diff (CoMe...DiffForm)
 [ ] CMS
 [ ]     SLight::Handler::CMS::Entry
 [ ]         SLight::Handler::CMS::Entry::Details <-- Display the object with all Assets and Comments shown on page.
@@ -226,6 +229,8 @@
 [ ]         SLight::Handler::CMS::Entry::Comment <-- post a comment about the CMS object
 [ ]         SLight::Handler::CMS::Entry::Comments <-- list comments from selected the CMS object
 [ ]         SLight::Handler::CMS::Entry::Translate
+[ ] Bugs
+[ ]     On CMS Delete dialog, the 'No' option redirects to the dialog (should redirect to the object's View action)
 
     Definition of done:
 

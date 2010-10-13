@@ -1,0 +1,9 @@
+---
+Default result:
+  class: SLight_Sysinfo_Addon
+  content:
+  - class: generic
+    data:
+      text: 'Generated in: $gen_time$s'
+    type: Label
+  type: Container

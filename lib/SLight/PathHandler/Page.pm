@@ -19,6 +19,7 @@ my $VERSION = '0.0.1';
 use SLight::API::Content qw( get_Contents_where );
 use SLight::API::ContentSpec qw( get_ContentSpec );
 use SLight::API::Page;
+use SLight::DataType;
 
 use Carp::Assert::More qw( assert_defined );
 # }}}
@@ -80,12 +81,31 @@ sub analyze_path { # {{{
 
                 if ($content_spec and $content_spec->{'use_in_path'}) {
                     if ($content_spec->{'use_in_path'} =~ m{\d}s) {
+                        # Extract the data:
                         foreach my $lang (@langs) {
                             if ($content_objects->[0]->{'_data'}->{$lang}->{ $content_spec->{'use_in_path'} }) {
                                 $path_label = $content_objects->[0]->{'_data'}->{$lang}->{ $content_spec->{'use_in_path'} };
                                 last;
                             }
                         }
+
+                        # FIXME: This is one big dirty, hairy and so on hack...!
+                        my $field_class;
+                        foreach my $_field_class (keys %{ $content_spec->{'_data'} }) {
+                            if ($content_spec->{'_data'}->{$_field_class}->{'id'} == $content_spec->{'use_in_path'}) {
+                                $field_class = $_field_class;
+                            }
+                        }
+
+                        # Decode it: (code from SLight::HandlerBase::CMS, FIXME: refactor to share!)
+                        $path_label = SLight::DataType::decode_data(
+                            type   => $content_spec->{'_data'}->{ $field_class }->{'datatype'},
+                            value  => $path_label,
+                            format => q{},
+                            target => 'SNIP',
+                        );
+
+#                        use Data::Dumper; warn Dumper $path_label;
                     }
                     elsif ($content_objects->[0]->{ $content_spec->{'use_in_path'} }) {
                         $path_label = $content_objects->[0]->{ $content_spec->{'use_in_path'} };

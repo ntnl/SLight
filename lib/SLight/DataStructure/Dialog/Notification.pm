@@ -15,7 +15,11 @@ package SLight::DataStructure::Dialog::Notification;
 use strict; use warnings;
 use base 'SLight::DataStructure::Dialog';
 
-# FIXME: deprecate this file! It was replaced by Dialog!
+use Carp qw( confess );
+
+sub add_button { # {{{
+    return confess("Notification does not have buttons!");
+} # }}}
 
 # vim: fdm=marker
 1;

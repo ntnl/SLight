@@ -13,9 +13,12 @@ package SLight::Test::Site::Minimal;
 ################################################################################
 use strict; use warnings; # {{{
 
+use SLight::API::Asset qw( add_Asset );
 use SLight::API::Content qw( add_Content );
 use SLight::API::ContentSpec qw( add_ContentSpec );
 use SLight::API::Page;
+
+use File::Slurp qw( read_file );
 # }}}
 
 # This module creates Minimal fake (test) site, with just 3 sub-pages.
@@ -143,6 +146,15 @@ sub build { # {{{
                 11 => qq{---\n - Minimal test page, not such minimal any more ;)\n},
             },
         }
+    );
+
+    add_Asset(
+        data => scalar read_file(SLight::Test::Site::Builder::trunk_path() . q{/t/SampleImage.png}),
+
+        email => 'test@test.test',
+
+        filename => 'SampleImage.png',
+        summary  => 'Sample image for testing purposes.',
     );
 
     # Add gals, as authors, of course :-D Isn't that screwed? nooo.... :-P

@@ -19,6 +19,7 @@ use SLight::Output::HTML::Generator;
 #use Co\Me::Common::Cache qw( Cache_Fetch_File Cache_Fetch_YAML );
 
 use Carp::Assert::More qw( assert_defined );
+use Encode;
 use File::Slurp qw( read_file );
 use Params::Validate qw( :all );
 use YAML::Syck qw( DumpFile LoadFile Dump );
@@ -30,8 +31,8 @@ use YAML::Syck qw( DumpFile LoadFile Dump );
 # HTML template, when loaded, is analized and stored as a structure
 # most suitable for HTML generation.
 #
-# Once the template has been analized, it's structure is saved
-# in a cache file (with html replaced by json). the second time
+# Once the template has been analyzed, it's structure is saved
+# in a cache file (with html replaced by JSON). the second time
 # the template is used, it will be loaded as a structure.
 #
 # Template structure is a hash:
@@ -47,7 +48,7 @@ use YAML::Syck qw( DumpFile LoadFile Dump );
 # %token = {
 #   type => ( TEXT | PLACEHOLDER | TEMPLATE | BLOCK ),
 #       # TEXT
-#       #   unparsable content, copied 1:1 from temlate to document.
+#       #   unparsable content, copied 1:1 from template to document.
 #       #
 #       # PLACEHOLDER
 #       #   simple variable
@@ -59,7 +60,7 @@ use YAML::Syck qw( DumpFile LoadFile Dump );
 #       #   selected block of tokens, that can have special meaning and handling.
 #
 #   name => $string,
-#       # Code name, needed to fetch items from acumulated data.
+#       # Code name, needed to fetch items from accumulated data.
 #
 #   html => $string,
 #       # HTML code that does not contain any blocks, nor placeholders.
@@ -72,7 +73,7 @@ use YAML::Syck qw( DumpFile LoadFile Dump );
 #
 # Currently only the 'index' object is used. More keys are planned in future.
 #
-# Data is acumulated as it enters the object.
+# Data is accumulated as it enters the object.
 # The same object can be used to display many different pages,
 # based on the same template.
 #
@@ -200,6 +201,7 @@ sub load_and_parse { # {{{
     # Cache will load on demand :)
 #    my $html = Cache_Fetch_File( path=>$self->{'dir'} .q{/}. $P{'name'} .q{.html} );
     my $html = read_file( $self->{'dir'} .q{/}. $P{'name'} .q{.html} );
+    $html = decode('utf8', $html);
 
     my $template = $self->process_html_template(
         html => $html,

@@ -29,6 +29,7 @@ my %sites = (
 );
 
 my $_site_root;
+my $_trunk_path;
 
 # Parameters:
 #   base_dir - where to create the site's dir
@@ -59,6 +60,8 @@ sub build_site { # {{{
     assert_exists(\%sites, $site_name, "Site configured.");
 
     $_site_root = $base_dir . q{/}. $site_name;
+
+    ( $_trunk_path ) = ( $sql_dir =~ m{(.+?)sql/}s );
 
     # Prepare directory by cleaning it from previous contents.
     remove_tree($_site_root, { keep_root=>1 } );
@@ -107,6 +110,10 @@ sub make_template { # {{{
     write_file($html_dir . $name . q{.html}, $contents);
 
     return;
+} # }}}
+
+sub trunk_path { # {{{
+    return $_trunk_path;
 } # }}}
 
 # vim: fdm=marker

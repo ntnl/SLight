@@ -284,7 +284,7 @@ sub _path_for_id { # {{{
     my $sub_dir = sprintf "%02d", ( substr $id, -2 );
 
     my $path = SLight::Core::Config::get_option('data_root');
-    $path .= q{assets/} . $sub_dir;
+    $path .= q{/assets/} . $sub_dir;
 
     if (not -d $path) {
         mkdir $path;

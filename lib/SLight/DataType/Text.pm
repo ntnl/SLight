@@ -166,6 +166,20 @@ sub decode_data { # {{{
         # Serialize to text with BBCode markup.
         return join qq{\n\n}, map { item_to_text($_) } @{ $value_data };
     }
+    elsif ($P{'target'} eq 'SNIP') {
+        # Serialize first paragraph and remove BBCode markup...
+        my $snip = item_to_text($value_data->[0]);
+
+        $snip =~ s{\[/?\w+\]}{}sgi;
+
+        if (length $snip > 64) {
+            $snip = substr $snip, 0, 64;
+
+            $snip .= q{...};
+        }
+
+        return $snip;
+    }
     elsif ($P{'target'} eq 'LIST') {
         # Return just the first paragraph.
         return [ $value_data->[0] ];
