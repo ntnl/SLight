@@ -14,7 +14,7 @@ package SLight::BaseClass;
 
 use strict; use warnings; # {{{
 
-my $VERSION = '0.0.1';
+my $VERSION = '0.0.2';
 
 # }}}
 

@@ -20,7 +20,7 @@ use File::Slurp qw( read_dir );
 use YAML::Syck qw( DumpFile );
 # }}}
 
-our $VERSION = '0.0.1';
+our $VERSION = '0.0.2';
 
 our @EXPORT_OK = qw(
     find_files

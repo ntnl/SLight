@@ -14,7 +14,7 @@ package SLight::PathHandler::Page;
 use strict; use warnings; # {{{
 use base q{SLight::PathHandler};
 
-my $VERSION = '0.0.1';
+my $VERSION = '0.0.2';
 
 use SLight::API::Content qw( get_Contents_where );
 use SLight::API::ContentSpec qw( get_ContentSpec );
@@ -194,7 +194,7 @@ sub analyze_path { # {{{
             my @object_ids;
             my %page_objects;
             my $found_main_object;
-            foreach my $entry (sort {  ($a->{'on_page_index'} <=> $b->{'on_page_index'}) or ($a->{'id'} <=> $b->{'id'}) } @{ $objects }) {
+            foreach my $entry (sort { ($a->{'on_page_index'} <=> $b->{'on_page_index'}) or ($a->{'id'} <=> $b->{'id'}) } @{ $objects }) {
                 if ($entry->{'on_page_index'} == 0 and not $found_main_object) {
                     # Checking for 'on_page_index' AND $found_main_object may seem a bit too much.
                     # But, let's not forget, that the software HAS to behave EVEN if some "power" user messes up with DB.
@@ -215,7 +215,7 @@ sub analyze_path { # {{{
 
             if (not $found_main_object) {
                 # This is not a normal situation, something IS wrong, but... (should this be a fixme?)
-                $self->set_main_object( $object_ids[0]->['id'] );
+                $self->set_main_object( $object_ids[0] );
             }
 
 #            use Data::Dumper; warn 'page objects: '. Dumper \%page_objects;

@@ -233,6 +233,8 @@
 [ ]         SLight::Handler::CMS::Entry::Translate
 [ ] Bugs
 [ ]     On CMS Delete dialog, the 'No' option redirects to the dialog (should redirect to the object's View action)
+[ ]     http://slight.notebook/_CMS_Spec/Field/1/Title/ is missing crumbs :(
+[ ]     Adding first page is ultimately br0ken - root page MUST be created, before any sub-pages are created! (maybe even trough content.sql?)
 
     Definition of done:
 
@@ -288,6 +290,7 @@
 [ ] Set-up CIS
 [ ]     Track/test commits
 [ ]     Run coverage test / report
+[ ] Detect and report, if DB is non writable
 [ ] Fix CMS::SpecField form (should contain checkboxes for 'Use...' so User can do the choice directly from Field form)
 [ ] SLight::Handler::Browser
 [ ]     SLight::Handler::Browser::Recent (list sub-pages in order in which they ware created - newer on top)

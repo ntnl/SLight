@@ -15,7 +15,7 @@ package SLight::PathHandler;
 use strict; use warnings; # {{{
 use base 'SLight::BaseClass';
 
-my $VERSION = '0.0.1';
+my $VERSION = '0.0.2';
 
 use Carp::Assert::More qw( assert_listref assert_hashref assert_defined );
 # }}}

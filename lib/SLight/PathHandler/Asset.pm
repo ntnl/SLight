@@ -14,7 +14,7 @@ package SLight::PathHandler::Asset;
 use strict; use warnings; # {{{
 use base q{SLight::PathHandler};
 
-my $VERSION = '0.0.1';
+my $VERSION = '0.0.2';
 
 use SLight::API::ContentSpec;
 
