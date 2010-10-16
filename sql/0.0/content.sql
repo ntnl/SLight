@@ -296,6 +296,7 @@ CREATE TABLE Asset_2_Content_Field (
     `Content_Entity_id` INTEGER NOT NULL,
     `Content_Spec_Field_id` INTEGER,
 
+    FOREIGN KEY (`Asset_Entity_id`)       REFERENCES Asset_Entity (`id`) ON DELETE CASCADE,
     FOREIGN KEY (`Content_Entity_id`)     REFERENCES Content_Entity (`id`) ON DELETE CASCADE,
     FOREIGN KEY (`Content_Spec_Field_id`) REFERENCES Content_Spec_Field (`id`) ON DELETE CASCADE
 );

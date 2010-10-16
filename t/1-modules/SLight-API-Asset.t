@@ -68,7 +68,7 @@ my $md5_png = file_md5_hex($Bin .q{/../SampleImage.png});
 my $md5_jpg = file_md5_hex($Bin .q{/../SampleImage.jpg});
 my $md5_gif = file_md5_hex($Bin .q{/../SampleImage.gif});
 
-my ($a1, $a2, $a3, $a4) = (1, 2, 3, 4);
+my ($a1, $a2, $a3, $a4) = (2, 3, 4, 5);
 
 ################################################################################
 #           Add Assets and attach them to Content Entities
@@ -174,8 +174,8 @@ is_deeply(
         'mime_type' => 'image/png',
         'byte_size' => '13379',
 
-        'path'  => 'FAKE/assets/01/1.bin',
-        'thumb' => 'FAKE/assets/01/1-thumb.png',
+        'path'  => 'FAKE/assets/02/2.bin',
+        'thumb' => 'FAKE/assets/02/2-thumb.png',
     },
     'get_Asset (1/2)',
 );
@@ -195,8 +195,8 @@ is_deeply(
         'mime_type' => 'image/jpeg',
         'byte_size' => '2543',
 
-        'path'  => 'FAKE/assets/03/3.bin',
-        'thumb' => 'FAKE/assets/03/3-thumb.png',
+        'path'  => 'FAKE/assets/04/4.bin',
+        'thumb' => 'FAKE/assets/04/4-thumb.png',
     },
     'get_Asset (2/2)',
 );
@@ -207,7 +207,7 @@ $assets->[0]->{'thumb'} =~ s{$site_root}{FAKE/};
 $assets->[1]->{'path'}  =~ s{$site_root}{FAKE/};
 $assets->[1]->{'thumb'} =~ s{$site_root}{FAKE/};
 is_deeply(
-    $assets,
+    [ sort { $a->{'id'} <=> $b->{'id'} } @{ $assets } ],
     [
         {
             'id' => $a1,
@@ -220,8 +220,8 @@ is_deeply(
             'mime_type' => 'image/png',
             'byte_size' => '13379',
 
-            'path'  => 'FAKE/assets/01/1.bin',
-            'thumb' => 'FAKE/assets/01/1-thumb.png',
+            'path'  => 'FAKE/assets/02/2.bin',
+            'thumb' => 'FAKE/assets/02/2-thumb.png',
         },
         {
             'id' => $a3,
@@ -234,8 +234,8 @@ is_deeply(
             'mime_type' => 'image/jpeg',
             'byte_size' => '2543',
 
-            'path'  => 'FAKE/assets/03/3.bin',
-            'thumb' => 'FAKE/assets/03/3-thumb.png',
+            'path'  => 'FAKE/assets/04/4.bin',
+            'thumb' => 'FAKE/assets/04/4-thumb.png',
         },
     ],
     'get_Assets'

@@ -15,6 +15,7 @@ package SLight::HandlerUtils::Toolbox;
 # Toolbox renderer.
 use strict; use warnings; use utf8; # {{{
 
+use SLight::Core::URL;
 use SLight::Core::L10N qw( TR TF );
 use SLight::DataToken qw( mk_Container_token mk_Action_token );
 

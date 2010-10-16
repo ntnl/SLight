@@ -27,11 +27,13 @@ sub _process { # {{{
 
     my @langs = @{ SLight::Core::Config::get_option('lang') };
 
+    my $selected_lang = ( $self->{'lang'} or $langs[0] );
+
     my @language_items;
     foreach my $language (@langs) {
         my $class = 'Other';
 
-        if ($language eq $self->{'lang'}) {
+        if ($language eq $selected_lang) {
             $class = 'Current';
         }
 

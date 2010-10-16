@@ -1,0 +1,15 @@
+---
+get_data() example:
+  class: test
+  content:
+  - class: Message
+    content:
+    - class: generic
+      data:
+        text: This is an example notification
+      type: Label
+    type: Container
+  - class: Buttons
+    content: []
+    type: Container
+  type: Container

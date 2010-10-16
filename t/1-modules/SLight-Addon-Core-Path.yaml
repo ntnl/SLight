@@ -1,0 +1,35 @@
+---
+Empty path: ~
+Path with 1 element:
+  class: SLight_Path_Addon
+  content:
+  - class: Root
+    data:
+      href: /
+      text: SLight sandbox
+    type: Link
+  - class: Selected
+    data:
+      href: /About/
+      text: About this page
+    type: Link
+  type: Container
+Path with 2 elements:
+  class: SLight_Path_Addon
+  content:
+  - class: Root
+    data:
+      href: /
+      text: SLight sandbox
+    type: Link
+  - class: Parent
+    data:
+      href: /About/
+      text: About this page
+    type: Link
+  - class: Selected
+    data:
+      href: /About/Creator/
+      text: The creator
+    type: Link
+  type: Container

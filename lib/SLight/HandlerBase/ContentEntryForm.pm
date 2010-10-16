@@ -16,7 +16,7 @@ use base q{SLight::Handler};
 
 use SLight::Core::L10N qw( TR TF );
 use SLight::API::Util qw( human_readable_size );
-use SLight::API::Asset qw( attach_Asset_to_Content_Field get_Asset_ids_on_Content_Field get_Asset );
+use SLight::API::Asset qw( attach_Asset_to_Content_Field get_Asset_ids_on_Content_Field get_Asset delete_Assets );
 use SLight::DataType;
 use SLight::Validator qw( validate_input );
 
@@ -361,7 +361,18 @@ sub process_field_assets { # {{{
 
         if ($form_entry->{'data'}) {
             # Asset was sent with form.
-            # Put it on HDD :)
+            # Check if We already have an Asset attached?
+            my $asset_ids = get_Asset_ids_on_Content_Field(
+                $P{'id'},
+                $field_id,
+            );
+            if ($asset_ids) {
+                # Yes - those must be deleted prior new one can be attached.
+                delete_Assets($asset_ids);
+            }
+
+            # Put the Asset on HDD :)
+            #                           ...or whatever.
             my $asset_id = SLight::API::Asset::add_Asset(
                 data => $form_entry->{'data'},
 

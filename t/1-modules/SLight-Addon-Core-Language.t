@@ -11,34 +11,34 @@
 # More information on: http://slight-cms.org/
 # 
 ################################################################################
-
 use strict; use warnings; # {{{
 use FindBin qw( $Bin );
-use lib $Bin .'/../../lib/';
+use lib $Bin . q{/../../lib/};
 
-use Test::More;
-use Test::FileReferenced;
+use SLight::Test::Site;
+use SLight::Test::Addon qw( run_addon_tests );
+
 use English qw( -no_match_vars );
 # }}}
 
-plan tests =>
-    + 1 # Create
-    + 1 # get_data
-;
-
-use SLight::DataStructure::Dialog::Notification;
-
-my $response = SLight::DataStructure::Dialog::Notification->new(
-    text  => 'This is an example notification',
-    class => 'test',
+my $site_root = SLight::Test::Site::prepare_fake(
+    test_dir => $Bin . q{/../},
+    site     => 'Minimal'
 );
 
-isa_ok($response, 'SLight::DataStructure::Dialog::Notification');
+my @tests = (
+    {
+        'name'    => q{Show languages (default)},
+        'url'     => q{/},
+        'page_id' => 2,
+        'meta'    => {},
+    },
+);
 
-is_referenced_ok(
-    $response->get_data(),
-    'get_data() example'
+run_addon_tests(
+    tests => \@tests,
+
+    addon => 'Core::Language',
 );
 
 # vim: fdm=marker
-

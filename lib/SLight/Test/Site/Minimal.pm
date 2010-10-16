@@ -70,7 +70,9 @@ sub build { # {{{
 
         class => 'Content',
 
-        cms_usage => 3,
+        cms_usage   => 3,
+        order_by    => 11,
+        use_in_menu => 10,
 
         owning_module => q{CMS::Entry},
     );
@@ -117,7 +119,8 @@ sub build { # {{{
         Content_Spec_id => $spec1_id,
         Page_Entity_id  => $p0_id,
 
-        status => q{V},
+        status        => q{V},
+        on_page_index => 0,
 
         _data => {
             pl => {

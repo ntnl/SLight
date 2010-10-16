@@ -59,7 +59,7 @@ CREATE TABLE Content_Spec (
         -- Serialized with YAML.
         -- A place where modules can put 'their' stuff.
 );
-INSERT INTO "Content_Spec" VALUES(1,'Article','CMS::Entry',0,'Content',3,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO "Content_Spec" VALUES(1,'Article','CMS::Entry',0,'Content',3,'11',NULL,'10',NULL,NULL);
 INSERT INTO "Content_Spec" VALUES(2,'News','CMS::Entry',0,'Content',3,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "Content_Spec" VALUES(3,'Gal','CMS::Entry',0,'Person',1,NULL,NULL,NULL,NULL,NULL);
 CREATE TABLE Content_Spec_Field (
@@ -206,8 +206,8 @@ CREATE TABLE Content_Entity (
     FOREIGN KEY (`Email_id`)        REFERENCES Email(`id`) ON DELETE CASCADE,
 	FOREIGN KEY (`Content_Spec_id`) REFERENCES Content_Spec(`id`) ON DELETE CASCADE
 );
-INSERT INTO "Content_Entity" VALUES(1,1,NULL,'V',1,0,0,0,'2010-10-12 19:51:35','2010-10-12 19:51:35',NULL);
-INSERT INTO "Content_Entity" VALUES(2,1,NULL,'V',2,0,0,0,'2010-10-12 19:51:35','2010-10-12 19:51:35',NULL);
+INSERT INTO "Content_Entity" VALUES(1,1,NULL,'V',1,0,0,0,'2010-10-14 15:54:40','2010-10-14 15:54:40',NULL);
+INSERT INTO "Content_Entity" VALUES(2,1,NULL,'V',2,0,0,0,'2010-10-14 15:54:40','2010-10-14 15:54:40',NULL);
 CREATE TABLE Content_Entity_Data (
 	`Content_Entity_id` INTEGER NOT NULL,
 
@@ -297,7 +297,7 @@ CREATE TABLE Asset_Entity (
 
 	FOREIGN KEY (`Email_id`) REFERENCES Email(`id`) ON DELETE CASCADE
 );
-INSERT INTO "Asset_Entity" VALUES(1,NULL,'2010-10-12 19:51:35','SampleImage.png',13379,'image/png','Sample image for testing purposes.');
+INSERT INTO "Asset_Entity" VALUES(1,NULL,'2010-10-14 15:54:40','SampleImage.png',13379,'image/png','Sample image for testing purposes.');
 CREATE TABLE Asset_2_Content (
     `Asset_Entity_id` INTEGER,
 
@@ -311,6 +311,7 @@ CREATE TABLE Asset_2_Content_Field (
     `Content_Entity_id` INTEGER NOT NULL,
     `Content_Spec_Field_id` INTEGER,
 
+    FOREIGN KEY (`Asset_Entity_id`)       REFERENCES Asset_Entity (`id`) ON DELETE CASCADE,
     FOREIGN KEY (`Content_Entity_id`)     REFERENCES Content_Entity (`id`) ON DELETE CASCADE,
     FOREIGN KEY (`Content_Spec_Field_id`) REFERENCES Content_Spec_Field (`id`) ON DELETE CASCADE
 );

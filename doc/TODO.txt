@@ -134,10 +134,10 @@
 [X]         Callback based - run callback, use it's data it returns as test result
 [ ]     Write and setup script that uploads coverage metrics to the site
 [ ]     Website update
-[>] Bugs/Regressions
+[X] Bugs/Regressions
 [X]     Template displays UTF incorrectly ("ł" in the footer is screwed) when there are UTF-8 characters IN content added to template.
 [X]     Path does not put data trough Encode/Decode, nor does snippets of it!
-[>]     Assets are not replaced when object is edited (more like "nothing happens")
+[X]     Assets are not replaced when object is edited (more like "nothing happens")
 
     Definition of done:
 

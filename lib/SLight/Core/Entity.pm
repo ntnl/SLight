@@ -565,7 +565,7 @@ sub get_ENTITYs_where { # {{{
         columns => $self->{'_really_all_fields'},
         from    => $self->{'base_table'},
         where   => $where,
-#        debug   => 1
+        debug   => $P{'debug'},
     );
 
     my %entities = $self->_slurp_entities($sth);

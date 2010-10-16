@@ -16,13 +16,14 @@ use base q{SLight::Addon};
 
 use SLight::API::Content qw( get_Contents_where );
 use SLight::API::ContentSpec qw( get_ContentSpec );
+use SLight::API::Page qw( get_Page_fields_where );
 use SLight::Core::L10N qw( TR TF );
 # }}}
 
 sub get_pages_and_objects { # {{{
     my ( $self, $parent_page_id ) = @_;
 
-    my $pages = SLight::API::Page::get_page_fields_where(
+    my $pages = get_Page_fields_where(
         parent_id => $parent_page_id,
 
         _fields => [qw( path )]
@@ -50,6 +51,7 @@ sub extract_fields { # {{{
     my $content_objects = get_Contents_where(
         Page_Entity_id => $page_id,
         on_page_index  => 0,
+#        debug => 1,
     );
 
     my @fields_content;

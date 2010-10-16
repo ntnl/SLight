@@ -59,7 +59,7 @@ sub build_site { # {{{
 
     assert_exists(\%sites, $site_name, "Site configured.");
 
-    $_site_root = $base_dir . q{/}. $site_name;
+    $_site_root = $base_dir . q{/} . $site_name . q{/};
 
     ( $_trunk_path ) = ( $sql_dir =~ m{(.+?)sql/}s );
 

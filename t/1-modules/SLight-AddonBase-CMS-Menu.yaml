@@ -1,0 +1,11 @@
+---
+extract_fields():
+- "---\n - Minimal test page, not such minimal any more ;)\n"
+- Test sub-page
+get_pages_and_objects():
+- l: Download
+  s: 0
+- l: Docs
+  s: 0
+- l: About
+  s: 0
