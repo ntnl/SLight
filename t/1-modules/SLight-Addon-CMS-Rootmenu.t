@@ -35,7 +35,7 @@ my @tests = (
     },
     {
         'name'    => q{Root menu - remains the same},
-        'url'     => q{/Abount/},
+        'url'     => q{/About/},
         'page_id' => 2,
         'meta'    => {},
     },

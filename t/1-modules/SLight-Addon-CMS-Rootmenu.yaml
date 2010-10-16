@@ -5,7 +5,7 @@ Root menu:
   - class: Other
     data:
       href: /About/
-      text: About
+      text: Test sub-page
     type: Link
   - class: Other
     data:
@@ -24,7 +24,7 @@ Root menu - remains the same:
   - class: Current
     data:
       href: /About/
-      text: About
+      text: Test sub-page
     type: Link
   - class: Other
     data:
