@@ -128,12 +128,14 @@
 [X]     SLight::Addon::CMS::Rootmenu
 [X]     SLight::Addon::CMS::Menu
 [X]     SLight::Addon::CMS::Submenu
-[-] Development
+[>] Development
 [X]     Handler test framework should support other (non-request) types of tests
 [X]         SQL Query based test - run sql query, output used as test result
 [X]         Callback based - run callback, use it's data it returns as test result
-[ ]     Write and setup script that uploads coverage metrics to the site
-[ ]     Website update
+[X]     Write script that uploads coverage metrics to the site
+[>]     Website update
+[ ]     Package stuff
+[ ]     Deploy packages
 [X] Bugs/Regressions
 [X]     Template displays UTF incorrectly ("ł" in the footer is screwed) when there are UTF-8 characters IN content added to template.
 [X]     Path does not put data trough Encode/Decode, nor does snippets of it!
@@ -283,6 +285,9 @@
 
 =--= Future ideas:
 
+[ ] Set-up CIS
+[ ]     Track/test commits
+[ ]     Run coverage test / report
 [ ] Fix CMS::SpecField form (should contain checkboxes for 'Use...' so User can do the choice directly from Field form)
 [ ] SLight::Handler::Browser
 [ ]     SLight::Handler::Browser::Recent (list sub-pages in order in which they ware created - newer on top)
