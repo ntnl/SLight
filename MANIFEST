@@ -154,7 +154,6 @@ sql/0.0/cache.sql
 t/0-smoke/has_test.t
 t/1-modules/SLight-Addon-CMS-Menu.t
 t/1-modules/SLight-Addon-CMS-Menu.yaml
-t/1-modules/SLight-Addon-CMS-Rootmenu-result.yaml
 t/1-modules/SLight-Addon-CMS-Rootmenu.t
 t/1-modules/SLight-Addon-CMS-Rootmenu.yaml
 t/1-modules/SLight-Addon-CMS-Submenu.t
@@ -204,7 +203,6 @@ t/1-modules/SLight-Handler-CMS-Spec-Edit.t
 t/1-modules/SLight-Handler-CMS-Spec-Edit.yaml
 t/1-modules/SLight-Handler-CMS-Spec-New.t
 t/1-modules/SLight-Handler-CMS-Spec-New.yaml
-t/1-modules/SLight-Handler-CMS-Spec-View-result.yaml
 t/1-modules/SLight-Handler-CMS-Spec-View.t
 t/1-modules/SLight-Handler-CMS-Spec-View.yaml
 t/1-modules/SLight-Handler-CMS-SpecField-Delete.t
@@ -225,7 +223,6 @@ t/1-modules/SLight-Handler-Core-Asset-Delete.t
 t/1-modules/SLight-Handler-Core-Asset-Delete.yaml
 t/1-modules/SLight-Handler-Core-Asset-Download.t
 t/1-modules/SLight-Handler-Core-Asset-Download.yaml
-t/1-modules/SLight-Handler-Core-Asset-Thumb-result.yaml
 t/1-modules/SLight-Handler-Core-Asset-Thumb.t
 t/1-modules/SLight-Handler-Core-Asset-Thumb.yaml
 t/1-modules/SLight-Handler-Core-Asset-View.t
@@ -265,7 +262,6 @@ t/1-modules/SLight-Output.t
 t/1-modules/SLight-OutputFactory.t
 t/1-modules/SLight-PathHandler-Asset.t
 t/1-modules/SLight-PathHandler-Asset.yaml
-t/1-modules/SLight-PathHandler-CMS_Spec-result.yaml
 t/1-modules/SLight-PathHandler-CMS_Spec.t
 t/1-modules/SLight-PathHandler-CMS_Spec.yaml
 t/1-modules/SLight-PathHandler-Page.t
@@ -332,3 +328,6 @@ t_data/Minimal/html/Doc.html
 t_data/Minimal/html/Info.html
 t_data/Minimal/html/Error.html
 t_data/Users/db/slight.dump
+Makefile.PL
+README
+META.yml

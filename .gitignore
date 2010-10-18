@@ -8,3 +8,8 @@ cover_db/
 critic-cache.yaml
 sandbox/*
 t/*/*-result.yaml
+META.yml
+Makefile.PL
+SLight-*.tar.gz
+blib/
+

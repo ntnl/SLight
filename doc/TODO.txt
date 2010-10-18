@@ -128,14 +128,13 @@
 [X]     SLight::Addon::CMS::Rootmenu
 [X]     SLight::Addon::CMS::Menu
 [X]     SLight::Addon::CMS::Submenu
-[>] Development
+[X] Development
 [X]     Handler test framework should support other (non-request) types of tests
 [X]         SQL Query based test - run sql query, output used as test result
 [X]         Callback based - run callback, use it's data it returns as test result
 [X]     Write script that uploads coverage metrics to the site
-[>]     Website update
-[ ]     Package stuff
-[ ]     Deploy packages
+[X]     Website update
+[X]     Package stuff
 [X] Bugs/Regressions
 [X]     Template displays UTF incorrectly ("ł" in the footer is screwed) when there are UTF-8 characters IN content added to template.
 [X]     Path does not put data trough Encode/Decode, nor does snippets of it!
@@ -235,6 +234,9 @@
 [ ]     On CMS Delete dialog, the 'No' option redirects to the dialog (should redirect to the object's View action)
 [ ]     http://slight.notebook/_CMS_Spec/Field/1/Title/ is missing crumbs :(
 [ ]     Adding first page is ultimately br0ken - root page MUST be created, before any sub-pages are created! (maybe even trough content.sql?)
+[ ]     Language selection is f...broken. Plugin needs to set different (more sane) classes too!
+[ ]     User must be able to chose position when adding new content to a page.
+[ ]     User must be able to change order of On-page (aux) content after added.
 
     Definition of done:
 

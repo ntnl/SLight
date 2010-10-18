@@ -75,3 +75,7 @@
 \..*\.swp
 \..*\.swo
 sandbox/.*
+
+SLight\-.*\-result\.yaml
+
+
