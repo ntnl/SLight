@@ -12,7 +12,6 @@ package SLight::Handler;
 # 
 ################################################################################
 use strict; use warnings; # {{{
-use base q{SLight::BaseClass};
 
 use SLight::HandlerUtils::Toolbox;
 

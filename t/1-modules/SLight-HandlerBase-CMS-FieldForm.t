@@ -1,4 +1,4 @@
-package SLight::BaseClass;
+#!/usr/bin/perl
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -13,26 +13,21 @@ package SLight::BaseClass;
 ################################################################################
 
 use strict; use warnings; # {{{
+use FindBin qw( $Bin );
+use lib $Bin . q{/../../lib/};
 
-my $VERSION = '0.0.2';
-
+use English qw( -no_match_vars );
+use Test::More;
+use Test::Exception;
 # }}}
 
-# Purpose:
-#   This suits as a base class for all SLight classes.
-#   As such, it has some handy methods :)
+plan tests =>
+    + 1 # Is a working base.
+;
 
-# Purpose:
-#   Data::Dump given parameters.
-sub D_Dump { # {{{
-    my ( $self, @stuff ) = @_;
+require SLight::HandlerBase::CMS::FieldForm;
 
-    require Data::Dumper;
-
-    print STDERR Data::Dumper::Dumper(@stuff);
-
-    return;
-} # }}}
+my $object = SLight::HandlerBase::CMS::FieldForm->new();
+ok($object, 'new() works');
 
 # vim: fdm=marker
-1;

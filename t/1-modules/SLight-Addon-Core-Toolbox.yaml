@@ -1,0 +1,25 @@
+---
+Empty toolbox: ~
+One-element toolbox:
+  class: SLight_Toolbox_Plugin
+  content:
+  - class: FirstAndOnly
+    data:
+      caption: Make foo
+      href: /Foo/
+    type: Action
+  type: Container
+Two-elements toolbox:
+  class: SLight_Toolbox_Plugin
+  content:
+  - class: FirstOfTwo
+    data:
+      caption: Make foo
+      href: /Foo/
+    type: Action
+  - class: SecondOfTwo
+    data:
+      caption: Make bar
+      href: /Bar/
+    type: Action
+  type: Container

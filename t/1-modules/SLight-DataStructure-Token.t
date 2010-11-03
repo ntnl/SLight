@@ -16,28 +16,21 @@ use strict; use warnings; # {{{
 use FindBin qw( $Bin );
 use lib $Bin .'/../../lib/';
 
-use Test::More;
-use Test::FileReferenced;
+use SLight::Test::DataStructure qw( run_datastructure_tests );
+
 use English qw( -no_match_vars );
 # }}}
 
-plan tests =>
-    + 1 # Create
-    + 1 # get_data
-;
-
-use SLight::DataStructure::Dialog::Notification;
-
-my $response = SLight::DataStructure::Dialog::Notification->new(
-    text  => 'This is an example notification',
-    class => 'test',
+my %tests = (
+    'simple usage' => {
+        tests => [], # None actually.
+    },
 );
 
-isa_ok($response, 'SLight::DataStructure::Dialog::Notification');
+run_datastructure_tests(
+    tests => \%tests,
 
-is_referenced_ok(
-    $response->get_data(),
-    'get_data() example'
+    structure => 'Token'
 );
 
 # vim: fdm=marker

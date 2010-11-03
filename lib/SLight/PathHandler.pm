@@ -13,7 +13,6 @@ package SLight::PathHandler;
 ################################################################################
 
 use strict; use warnings; # {{{
-use base 'SLight::BaseClass';
 
 my $VERSION = '0.0.2';
 

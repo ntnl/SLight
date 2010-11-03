@@ -146,9 +146,11 @@
 
 =--= Milestone 4 - User management - ....-..-..
 
-[ ] User API
-[ ]     SLight::API::User
+[>] User API
+[>]     SLight::API::User
 [ ]     SLight::API::Group
+[ ] Core functionality
+[ ]     Split 'content' into "objects before", "main object", "objects after"
 [ ] User-related Handler objects
 [ ]     SLight::Handler::Core::Authentication
 [ ]         SLight::Handler::Core::Authentication::Login
@@ -198,6 +200,7 @@
 [ ]     SLight::Addon::User::Panel
 [ ]     SLight::Addon::Core::Debug
 [ ] Development
+[ ]     Make sure, that every module has SLight::Dbg included in it
 [ ]     Make a script, that creates fully usable sandbox from test site.
 [ ]     Intercept STDERR (when enabled) and handle it to Debug Addon
 [ ]     Implement DB-schema-update utility.

@@ -14,30 +14,37 @@
 
 use strict; use warnings; # {{{
 use FindBin qw( $Bin );
-use lib $Bin .'/../../lib/';
+use lib $Bin . q{/../../lib/};
 
 use Test::More;
-use Test::FileReferenced;
-use English qw( -no_match_vars );
+use Test::Output;
 # }}}
 
 plan tests =>
-    + 1 # Create
-    + 1 # get_data
+    + 1 # Dmp
+    + 1 # mDmp
 ;
 
-use SLight::DataStructure::Dialog::Notification;
+use SLight::Dbg;
 
-my $response = SLight::DataStructure::Dialog::Notification->new(
-    text  => 'This is an example notification',
-    class => 'test',
+#        Dmp( { foo => 'Foo', bar => undef } );
+
+stderr_like(
+    sub {
+        Dmp( { foo => 'Foo', bar => undef } );
+    },
+    qr{\@main}sm,
+    'Basic Dmp test'
 );
 
-isa_ok($response, 'SLight::DataStructure::Dialog::Notification');
+#        mDmp( 'Test hash', { foo => 'Foo', bar => undef } );
 
-is_referenced_ok(
-    $response->get_data(),
-    'get_data() example'
+stderr_like(
+    sub {
+        mDmp( 'Test hash', { foo => 'Foo', bar => undef } );
+    },
+    qr{Test hash.+?\@main}sm,
+    'Basic Dmp test'
 );
 
 # vim: fdm=marker

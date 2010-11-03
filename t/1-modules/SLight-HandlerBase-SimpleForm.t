@@ -14,30 +14,20 @@
 
 use strict; use warnings; # {{{
 use FindBin qw( $Bin );
-use lib $Bin .'/../../lib/';
+use lib $Bin . q{/../../lib/};
 
-use Test::More;
-use Test::FileReferenced;
 use English qw( -no_match_vars );
+use Test::More;
+use Test::Exception;
 # }}}
 
 plan tests =>
-    + 1 # Create
-    + 1 # get_data
+    + 1 # Is a working base.
 ;
 
-use SLight::DataStructure::Dialog::Notification;
+require SLight::HandlerBase::SimpleForm;
 
-my $response = SLight::DataStructure::Dialog::Notification->new(
-    text  => 'This is an example notification',
-    class => 'test',
-);
-
-isa_ok($response, 'SLight::DataStructure::Dialog::Notification');
-
-is_referenced_ok(
-    $response->get_data(),
-    'get_data() example'
-);
+my $object = SLight::HandlerBase::SimpleForm->new();
+ok($object, 'new() works');
 
 # vim: fdm=marker

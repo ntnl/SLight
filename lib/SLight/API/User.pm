@@ -12,6 +12,7 @@ package SLight::API::User;
 # 
 ################################################################################
 use strict; use warnings; # {{{
+use base 'Exporter';
 
 use SLight::Core::Entity;
 
@@ -19,6 +20,16 @@ use Carp::Assert::More qw( assert_exists );
 use Digest::SHA qw( sha512_hex );
 use Params::Validate qw( :all );
 # }}}
+
+our @EXPORT_OK = qw(
+    add_User
+    update_User
+    get_User
+    delete_User
+    is_User_registered
+    check_User_pass
+);
+our %EXPORT_TAGS = ( 'all' => [ @EXPORT_OK ] );
 
 my %meta = (
     all_fields  => [qw( id login status name pass email_id )],
@@ -50,7 +61,7 @@ my $_handler = SLight::Core::Entity->new( # {{{
     has_comments => 1,
 ); # }}}
 
-sub add_user { # {{{
+sub add_User { # {{{
     my %P = validate (
         @_,
         {
@@ -84,7 +95,16 @@ sub add_user { # {{{
     );
 } # }}}
 
-sub is_registered { # {{{
+sub update_User { # {{{
+} # }}}
+
+sub get_User { # {{{
+} # }}}
+
+sub delete_User { # {{{
+} # }}}
+
+sub is_User_registered { # {{{
     my ( $login ) = @_;
 
     if ($_handler->count_ENTITYs_where( login=>$login )) {
@@ -92,6 +112,9 @@ sub is_registered { # {{{
     }
 
     return
+} # }}}
+
+sub check_User_pass { # {{{
 } # }}}
 
 # vim: fdm=marker
