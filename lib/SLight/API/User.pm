@@ -55,10 +55,9 @@ my $_handler = SLight::Core::Entity->new( # {{{
 
     data_fields => [qw( login status name pass_enc )],
 
-    has_metadata => 1,
-    has_owner    => 1,
-    has_assets   => 1,
-    has_comments => 1,
+#    has_owner    => 1,
+#    has_assets   => 1,
+#    has_comments => 1,
 ); # }}}
 
 sub add_User { # {{{
@@ -96,6 +95,31 @@ sub add_User { # {{{
 } # }}}
 
 sub update_User { # {{{
+    my %P = validate (
+        @_,
+        {
+            id => { type=>SCALAR },
+
+            name   => { type=>SCALAR, optional=>1 },
+            pass   => { type=>SCALAR, optional=>1 },
+            status => { type=>SCALAR, optional=>1 },
+            email  => { type=>SCALAR, optional=>1 },
+        }
+    );
+    
+    # Encrypt password, before putting it into DB.
+    if ($P{'pass'}) {
+        $P{'pass_enc'} = sha512_hex(delete $P{'pass'});
+    }
+
+    # Get or assign ID of the email:
+    if ($P{'email'}) {
+        $P{'email_id'} = SLight::Core::Email::get_email_id(delete $P{'email'}, 1);
+    }
+
+    return $_handler->update_ENTITY(
+        %P,
+    );
 } # }}}
 
 sub get_User { # {{{

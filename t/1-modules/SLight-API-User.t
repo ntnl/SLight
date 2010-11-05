@@ -50,23 +50,43 @@ use SLight::API::User qw(
 my ( $u1, $u2, $u3 );
 is (
     $u1 = add_User(
+        email  => q{first@test.test},
+        pass   => q{Pasłord}, # 'password' spelled in Polish
+        status => q{Disabled},
+        login  => q{First},
     ),
     1,
     'add_User (1/3) status: Disabled'
 );
 is (
     $u2 = add_User(
+        email  => q{first@test.test},
+        pass   => q{xxxXXXxxx}, # 'password' spelled in Polish
+        status => q{Guest},
+        login  => q{Second},
     ),
     2,
     'add_User (2/3) status: Guest'
 );
 is (
     $u3 = add_User(
+        email  => q{first@test.test},
+        pass   => q{123$%^qweRTY}, # 'password' spelled in Polish
+        status => q{Enabled},
+        login  => q{Third},
     ),
     3,
     'add_User (3/3) status: Enabled'
 );
 
 
+is (
+    update_User(
+        id   => $u1,
+        name => 'Initially Added',
+    ),
+    undef,
+    q{update_User}
+);
 
 # vim: fdm=marker
