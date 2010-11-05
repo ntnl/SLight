@@ -148,7 +148,15 @@
 
 [>] User API
 [>]     SLight::API::User
-[ ]     SLight::API::Group
+[X]         add_User
+[X]         update_User
+[>]         get_User
+[ ]         get_Users
+[ ]         get_User_ids_where
+[ ]         get_Users_where
+[ ]         delete_User
+[ ]         is_User_registered
+[ ]         check_User_pass
 [ ] Core functionality
 [ ]     Split 'content' into "objects before", "main object", "objects after"
 [ ] User-related Handler objects
@@ -301,5 +309,18 @@
 [ ]     SLight::Handler::Browser::Recent (list sub-pages in order in which they ware created - newer on top)
 [ ]     SLight::Handler::Browser::Ordered (list sub-pages in order defined by 'order_by')
 [ ] ContentSpec fields describing how to sort, what to put into title, menu, path, and so on, should be a templates, so that User can join fields, eg: '%hip%-%ID%'
+[ ] User API
+[ ]     SLight::API::Group
+[ ]         get_Group
+[ ]         get_Groups
+[ ]         get_Group_ids_where
+[ ]         get_Groups_where
+[ ]         add_Group
+[ ]         update_Group
+[ ]         delete_Group
+[ ]         add_to_Group
+[ ]         remove_from_Group
+[ ]         get_Group_content
+[ ]         get_User_Groups
 [ ] ...
 
