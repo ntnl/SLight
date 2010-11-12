@@ -150,68 +150,61 @@
 [>]     SLight::API::User
 [X]         add_User
 [X]         update_User
-[>]         get_User
-[ ]         get_Users
-[ ]         get_User_ids_where
-[ ]         get_Users_where
-[ ]         delete_User
-[ ]         is_User_registered
-[ ]         check_User_pass
-[ ] Core functionality
-[ ]     Split 'content' into "objects before", "main object", "objects after"
-[ ] User-related Handler objects
-[ ]     SLight::Handler::Core::Authentication
-[ ]         SLight::Handler::Core::Authentication::Login
-[ ]         SLight::Handler::Core::Authentication::Logout
-[ ]         SLight::Handler::Core::Authentication::Password
-[ ]         SLight::Handler::Core::Authentication::Register
-[ ]     SLight::Handler::MyAccount
-[ ]         SLight::Handler::MyAccount::MyData::Overview
-[ ]         SLight::Handler::MyAccount::MyData::Edit
+[X]         get_User
+[X]         get_Users
+[X]         get_User_ids_where
+[X]         get_Users_where
+[X]         delete_User
+[X]         is_User_registered
+[X]         check_User_pass
+[>] User-related PathHandler objects
+[>]     SLight::PathHandler::Authentication
+[ ]     SLight::PathHandler::MyAccount
+[ ]     SLight::PathHandler::Accounts
+[ ]     SLight::PathHandler::Account
+[>] User-related Handler objects
+[>]     SLight::Handler::User::Authentication (allow the User to authenticate itself)
+[>]         SLight::Handler::User::Authentication::Login (form + the actual authentication)
+[ ]         SLight::Handler::User::Authentication::Logout (view - instant action)
+[ ]         SLight::Handler::User::Authentication::Password (password recovery service)
+[ ]         SLight::Handler::User::Authentication::Register (allow a guest to register an account)
+[ ]     SLight::Handler::MyAccount (allow the User to manage his account)
+[ ]         SLight::Handler::MyAccount::Profile::Overview
+[ ]         SLight::Handler::MyAccount::Profile::Edit
 [ ]         SLight::Handler::MyAccount::Password::Change
+[ ]         SLight::Handler::MyAccount::Avatar::Overview
 [ ]         SLight::Handler::MyAccount::Avatar::Change
 [ ]         SLight::Handler::MyAccount::Avatar::Delete
-[ ]         SLight::Handler::MyAccount::Avatar::Image
-[ ]     SLight::Handler::Account
+[ ]     SLight::Handler::Account (allow site owner to manage User accounts)
 [ ]         SLight::Handler::Account::List::Overview
+[ ]         SLight::Handler::Account::Account::Overview
+[ ]         SLight::Handler::Account::Account::New
+[ ]         SLight::Handler::Account::Account::Edit
 [ ]         SLight::Handler::Account::Account::Delete
-[ ]         SLight::Handler::Account::User::Overview
-[ ]         SLight::Handler::Account::User::New
-[ ]         SLight::Handler::Account::User::Edit
-[ ]         SLight::Handler::Account::User::Permissions
-[ ]         SLight::Handler::Account::Password::Change
+[ ]         SLight::Handler::Account::Account::Password
+[ ]         SLight::Handler::Account::Permissions::Overview
+[ ]         SLight::Handler::Account::Permissions::Change
+[ ]         SLight::Handler::Account::Avatar::Overview
 [ ]         SLight::Handler::Account::Avatar::Change
 [ ]         SLight::Handler::Account::Avatar::Delete
 [ ]         SLight::Handler::Account::Avatar::Image
-[ ]     SLight::Handler::Group
-[ ]         SLight::Handler::Group::List::Overview
-[ ]         SLight::Handler::Group::Group::New
-[ ]         SLight::Handler::Group::Group::Edit
-[ ]         SLight::Handler::Group::Group::Delete
-[ ]         SLight::Handler::Group::Group::Permissions
-[ ]         SLight::Handler::Group::Users::List
-[ ]         SLight::Handler::Group::Users::Add
-[ ]         SLight::Handler::Group::Users::Remove
-[ ]     SLight::Handler::Error
-[ ]         SLight::Handler::Error::AuthRequired <-- You must log-in to access this page.
-[ ]         SLight::Handler::Error::AccessDenied <-- You can not do the stuff you intended.
 [ ] SLight::Handler::Error
-[ ]     SLight::Handler::Error::NotFound
-[ ]     SLight::Handler::Error::InternalError
-[ ] SLight::PathHandler
-[ ]     SLight::Addon::MyData
-[ ]     SLight::Addon::Account
-[ ]     SLight::Addon::Group
-[ ]     SLight::Addon::Authentication
-[ ]     SLight::Addon::Asset
+[ ]     SLight::Handler::Error::NotFound      <-- Resource not found)
+[ ]     SLight::Handler::Error::InternalError <-- Something bad happen. Try reloading.
+[ ]     SLight::Handler::Error::AuthRequired  <-- You must log-in to access this page.
+[ ]     SLight::Handler::Error::AccessDenied  <-- You can not do the stuff you intended.
 [ ] Addon
 [ ]     SLight::Addon::User::Panel
+[ ]     SLight::Addon::User::Info
 [ ]     SLight::Addon::Core::Debug
+[ ] Core functionality
+[ ]     Split 'content' into "objects before", "main object", "objects after" (with 'content' support maintained)
 [ ] Development
 [ ]     Make sure, that every module has SLight::Dbg included in it
 [ ]     Make a script, that creates fully usable sandbox from test site.
 [ ]     Intercept STDERR (when enabled) and handle it to Debug Addon
 [ ]     Implement DB-schema-update utility.
+[ ]     Version bump to 0.0.3
 [ ] Bugs:
 [ ]     ...
 
@@ -322,5 +315,15 @@
 [ ]         remove_from_Group
 [ ]         get_Group_content
 [ ]         get_User_Groups
+[ ] User Group support
+[ ]     SLight::Handler::Group
+[ ]         SLight::Handler::Group::List::Overview
+[ ]         SLight::Handler::Group::Group::New
+[ ]         SLight::Handler::Group::Group::Edit
+[ ]         SLight::Handler::Group::Group::Delete
+[ ]         SLight::Handler::Group::Group::Permissions
+[ ]         SLight::Handler::Group::Users::List
+[ ]         SLight::Handler::Group::Users::Add
+[ ]         SLight::Handler::Group::Users::Remove
 [ ] ...
 

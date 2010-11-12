@@ -14,6 +14,7 @@ package SLight::Core::Entity;
 use strict; use warnings; # {{{
 
 use SLight::Core::DB;
+use SLight::Core::Email;
 use SLight::Core::Cache qw( Cache_get Cache_put Cache_invalidate Cache_invalidate_referenced );
 
 use Carp::Assert::More qw( assert_positive_integer );
@@ -209,6 +210,10 @@ sub new { # {{{
 
     $self->{'_really_all_fields'} = [ 'id', @{ $self->{'_all_fields'} } ];
 
+    if ($P{'has_owner'}) {
+        push @{ $self->{'_really_all_fields'} }, q{Email_id};
+    }
+
     bless $self, $class;
 
     return $self;
@@ -263,6 +268,10 @@ sub add_ENTITY { # {{{
 
     if ($self->{'has_metadata'} and defined $P{'metadata'}) {
         $P{'metadata'} = Dump($P{'metadata'});
+    }
+    
+    if ($self->{'has_owner'}) {
+        $self->_pack_email( \%P );
     }
 
     SLight::Core::DB::run_insert(
@@ -447,6 +456,10 @@ sub get_ENTITY { # {{{
         $self->_add_data_to_entities( { $id => $entity } );
     }
 
+    if ($self->{'has_owner'}) {
+        $self->_unpack_emails( [ $entity ] );
+    }
+
     # Metadata field support.
     if ($self->{'has_metadata'}) {
         if ($entity->{'metadata'}) {
@@ -509,6 +522,11 @@ sub get_ENTITYs { # {{{
     if ($self->{'child_table'}) {
         $self->_add_data_to_entities(\%entities);
     }
+    
+    if ($self->{'has_owner'}) {
+        $self->_unpack_emails( [ values %entities ] );
+    }
+
 
 #    use Data::Dumper; warn Dumper \%entities;
 
@@ -578,6 +596,10 @@ sub get_ENTITYs_where { # {{{
         $self->_add_data_to_entities(\%entities);
     }
 
+    if ($self->{'has_owner'}) {
+        $self->_unpack_emails( [ values %entities ] );
+    }
+
 #    use Data::Dumper; warn Dumper \%entities;
 
     return [ values %entities ];
@@ -610,6 +632,10 @@ sub get_ENTITYs_fields_where { # {{{
 
     if ($self->{'child_table'}) {
         $self->_add_data_to_entities(\%entities, $P{'_data_fields'});
+    }
+
+    if ($self->{'has_owner'}) {
+        $self->_unpack_emails( [ values %entities ] );
     }
 
 #    use Data::Dumper; warn Dumper \%entities;
@@ -861,9 +887,40 @@ sub delete_ENTITYs { # {{{
     SLight::Core::DB::run_delete(
         from  => $self->{'base_table'},
         where => [ 'id IN ', $ids ],
+#        debug => 1,
     );
 
     return $deleted_count;
+} # }}}
+
+# Owner/Email handling.
+
+sub _pack_email { # {{{
+    my ( $self, $P ) = @_;
+    
+    # Get or assign ID of the email:
+    if ($P->{'email'}) {
+        $P->{'email_id'} = SLight::Core::Email::get_email_id(delete $P->{'email'}, 1);
+    }
+
+    return; # Works in place.
+} # }}}
+
+sub _unpack_emails { # {{{
+    my ( $self, $entities ) = @_;
+
+    # Note for later:
+    #   Start with slow, but working.
+    #   When it works, refactor into something faster.
+    foreach my $entity (@{ $entities }) {
+        if ($entity->{'Email_id'}) {
+            my $login;
+
+            ( $entity->{'email'}, $login ) = SLight::Core::Email::get_by_id(delete $entity->{'Email_id'}, 0);
+        }
+    }
+
+    return; # Works in place.
 } # }}}
 
 # vim: fdm=marker

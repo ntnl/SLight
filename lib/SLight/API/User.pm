@@ -24,16 +24,21 @@ use Params::Validate qw( :all );
 our @EXPORT_OK = qw(
     add_User
     update_User
-    get_User
     delete_User
+
+    get_User
+    get_Users
+    get_User_ids_where
+    get_Users_where
+
     is_User_registered
     check_User_pass
 );
 our %EXPORT_TAGS = ( 'all' => [ @EXPORT_OK ] );
 
 my %meta = (
-    all_fields  => [qw( id login status name pass email_id )],
-    data_fields => [qw(    login status name      email_id )],
+    all_fields  => [qw( id login status name pass )],
+    data_fields => [qw(    login status name      )],
 );
 
 my %status_set = (
@@ -55,7 +60,8 @@ my $_handler = SLight::Core::Entity->new( # {{{
 
     data_fields => [qw( login status name pass_enc )],
 
-#    has_owner    => 1,
+    has_owner => 1,
+
 #    has_assets   => 1,
 #    has_comments => 1,
 ); # }}}
@@ -78,19 +84,16 @@ sub add_User { # {{{
     # Encrypt password, before putting it into DB.
     my $pass_enc = sha512_hex($P{'pass'});
 
-    # Get or assign ID of the email:
-    my $email_id = SLight::Core::Email::get_email_id($P{'email'}, 1);
-
     return $_handler->add_ENTITY(
         id => $P{'id'},
 
+        email  => $P{'email'},
         login  => $P{'login'},
         status => $P{'status'},
 
         name      => $P{'name'},
 
         pass_enc => $pass_enc,
-        email_id => $email_id,
     );
 } # }}}
 
@@ -112,20 +115,47 @@ sub update_User { # {{{
         $P{'pass_enc'} = sha512_hex(delete $P{'pass'});
     }
 
-    # Get or assign ID of the email:
-    if ($P{'email'}) {
-        $P{'email_id'} = SLight::Core::Email::get_email_id(delete $P{'email'}, 1);
-    }
-
     return $_handler->update_ENTITY(
         %P,
     );
 } # }}}
 
 sub get_User { # {{{
+    my $user = $_handler->get_ENTITY(@_);
+
+    if ($user) {
+        delete $user->{'pass_enc'};
+    }
+
+    return $user;
+} # }}}
+
+sub get_Users { # {{{
+    my $users = $_handler->get_ENTITYs(@_);
+
+    if ($users) {
+        map { delete $_->{'pass_enc'} } @{ $users };
+    }
+
+    return $users;
+} # }}}
+
+sub get_User_ids_where { # {{{
+    return $_handler->get_ENTITY_ids_where(@_);
+} # }}}
+
+sub get_Users_where { # {{{
+    my $users = $_handler->get_ENTITYs_where(@_);
+
+    if ($users) {
+        map { delete $_->{'pass_enc'} } @{ $users };
+    }
+
+    return $users;
 } # }}}
 
 sub delete_User { # {{{
+    return $_handler->delete_ENTITY(@_);
 } # }}}
 
 sub is_User_registered { # {{{
@@ -135,10 +165,23 @@ sub is_User_registered { # {{{
         return 1;
     }
 
-    return
+    return 0;
 } # }}}
 
 sub check_User_pass { # {{{
+    my ( $login, $passwd ) = @_;
+
+    my $users = $_handler->get_ENTITYs_fields_where(
+        _fields => [qw( pass_enc )],
+
+        login => $login,
+    );
+
+    if ($users and ref $users eq 'ARRAY' and sha512_hex($passwd) eq $users->[0]->{'pass_enc'}) {
+        return $users->[0]->{'id'};
+    }
+
+    return 0;
 } # }}}
 
 # vim: fdm=marker
