@@ -206,7 +206,8 @@
 [ ]     Implement DB-schema-update utility.
 [ ]     Version bump to 0.0.3
 [ ] Bugs:
-[ ]     ...
+[ ]     Email is not mandatory in some (Asset, Content) API calls (but it should)
+[ ]     Some API calls (Asset, Content) should return login as well (not just email)
 
     Definition of done:
 

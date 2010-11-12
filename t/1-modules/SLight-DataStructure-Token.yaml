@@ -1,0 +1,6 @@
+---
+simple usage:
+  class: Test
+  data:
+    text: A simple line of simple text.
+  type: Label

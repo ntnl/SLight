@@ -69,6 +69,7 @@ sub add_Asset { # {{{
     my $binary_data = delete $P{'data'};
     
     my $id = $_handler->add_ENTITY(
+        'email'    => $P{'email'},
         'summary'  => $P{'summary'},
         'filename' => $P{'filename'},
     );

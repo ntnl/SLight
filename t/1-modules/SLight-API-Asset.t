@@ -169,7 +169,7 @@ is_deeply(
         'filename' => 'SampleImage.png',
         'summary'  => 'Sample image: png',
 
-#        'email' => q{png@test.test},
+        'email' => q{png@test.test},
 
         'mime_type' => 'image/png',
         'byte_size' => '13379',
@@ -190,7 +190,7 @@ is_deeply(
         'filename' => 'SampleImage.jpg',
         'summary'  => 'Sample image: jpg',
 
-#        'email' => q{jpg@test.test},
+        'email' => q{jpg@test.test},
 
         'mime_type' => 'image/jpeg',
         'byte_size' => '2543',
@@ -215,7 +215,7 @@ is_deeply(
             'filename' => 'SampleImage.png',
             'summary'  => 'Sample image: png',
 
-#            'email' => q{png@test.test},
+            'email' => q{png@test.test},
 
             'mime_type' => 'image/png',
             'byte_size' => '13379',
@@ -229,7 +229,7 @@ is_deeply(
             'filename' => 'SampleImage.jpg',
             'summary'  => 'Sample image: jpg',
 
-#            'email' => q{jpg@test.test},
+            'email' => q{jpg@test.test},
 
             'mime_type' => 'image/jpeg',
             'byte_size' => '2543',

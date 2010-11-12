@@ -16,6 +16,7 @@ use strict; use warnings; # {{{
 use FindBin qw( $Bin );
 use lib $Bin .'/../../lib/';
 
+use SLight::DataToken qw( mk_Label_token );
 use SLight::Test::DataStructure qw( run_datastructure_tests );
 
 use English qw( -no_match_vars );
@@ -23,6 +24,12 @@ use English qw( -no_match_vars );
 
 my %tests = (
     'simple usage' => {
+        params => {
+            token => mk_Label_token(
+                class => 'Test',
+                text  => 'A simple line of simple text.'
+            ),
+        },
         tests => [], # None actually.
     },
 );

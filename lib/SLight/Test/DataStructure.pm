@@ -59,7 +59,7 @@ sub run_datastructure_tests { # {{{
     my %P = validate(
         @_,
         {
-            tests => { type=>ARRAYREF },
+            tests => { type=>HASHREF },
 
             call_before => { type=>CODEREF, optional=>1 },
             call_format => { type=>CODEREF, optional=>1 },
@@ -69,7 +69,7 @@ sub run_datastructure_tests { # {{{
         }
     );
 
-    my $structure_class = q{SLight::DataStructure::} . $P{'tests'};
+    my $structure_class = q{SLight::DataStructure::} . delete $P{'structure'};
 
     my $class_filename = $structure_class . q{.pm};
     $class_filename =~ s{::}{/}sgi;
@@ -78,9 +78,9 @@ sub run_datastructure_tests { # {{{
 
     my @tests;
     foreach my $case_name (keys %{ $P{'tests'} }) {
-        my $case = $structure_class->{$case_name};
+        my $case = $P{'tests'}->{$case_name};
 
-        my $structure = $P{'structure'}->new(
+        my $structure = $structure_class->new(
             %{ $case->{'params'} }
         );
 

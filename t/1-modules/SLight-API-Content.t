@@ -130,6 +130,8 @@ is (
             },
         },
 
+        email => q{paintball@extreme.sports},
+
         metadata => {
             note_to_self => "First entry",
         }
@@ -161,6 +163,8 @@ is (
             }
         },
 
+        email => q{paintball@extreme.sports},
+
         metadata => {
             note_to_self => "Second entry",
         }
@@ -188,6 +192,8 @@ is (
             }
         },
 
+        email => q{gals@super.babes},
+
         metadata => {
             note_to_self => "Third entry",
         }
@@ -214,6 +220,8 @@ is (
                 $f_cup   => q{B},
             }
         },
+
+        email => q{gals@super.babes},
 
         metadata => {
             note_to_self => "Fourth entry",
@@ -332,6 +340,8 @@ is_deeply(
         added_time    => q{#DATE IS SANE#},
         modified_time => q{#DATE IS SANE#},
 
+        email => q{paintball@extreme.sports},
+
         metadata => {
             note_to_self => "Second entry",
         }
@@ -377,6 +387,8 @@ is_deeply(
             added_time    => q{#DATE IS SANE#},
             modified_time => q{#DATE IS SANE#},
 
+            email => q{gals@super.babes},
+
             metadata => {
                 note_to_self => "Third entry - updated",
             }
@@ -411,6 +423,8 @@ is_deeply(
 
             added_time    => q{#DATE IS SANE#},
             modified_time => q{#DATE IS SANE#},
+
+            email => q{paintball@extreme.sports},
 
             metadata => {
                 note_to_self => "Second entry",
@@ -503,6 +517,8 @@ is_deeply(
 
             added_time    => q{#DATE IS SANE#},
             modified_time => q{#DATE IS SANE#},
+
+            email => q{gals@super.babes},
 
             metadata => {
                 note_to_self => "Fourth entry",

@@ -27,6 +27,6 @@ plan tests =>
 
 # Yes, redicolous :)
 
-is (SLight::version(), '0.0.1', 'Version is OK');
+is (SLight::version(), '0.0.3', 'Version is OK');
 
 # vim: fdm=marker

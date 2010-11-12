@@ -916,7 +916,7 @@ sub _unpack_emails { # {{{
         if ($entity->{'Email_id'}) {
             my $login;
 
-            ( $entity->{'email'}, $login ) = SLight::Core::Email::get_by_id(delete $entity->{'Email_id'}, 0);
+            ( $entity->{'email'}, $login ) = SLight::Core::Email::get_by_id(delete $entity->{'Email_id'});
         }
     }
 

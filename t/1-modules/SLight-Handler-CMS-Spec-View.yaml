@@ -86,7 +86,7 @@ Display Spec:
               type: Label
             - class: SLight_Value
               data:
-                text: Id
+                text: 'Data field: Article'
               type: Label
             type: Container
           - class: default
@@ -108,7 +108,7 @@ Display Spec:
               type: Label
             - class: SLight_Value
               data:
-                text: Id
+                text: 'Data field: Title'
               type: Label
             type: Container
           - class: default

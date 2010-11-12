@@ -21,7 +21,7 @@ use SLight::API::User;
 
 sub build { # {{{
     # A
-    SLight::API::User::add_user(
+    SLight::API::User::add_User(
         login  => 'aga',
         status => 'Enabled',
         name   => 'Agnieszka',
@@ -30,7 +30,7 @@ sub build { # {{{
     );
 
     # B
-    SLight::API::User::add_user(
+    SLight::API::User::add_User(
         login  => 'beti',
         status => 'Enabled',
         name   => 'Beata',
@@ -39,7 +39,7 @@ sub build { # {{{
     );
 
     # E
-    SLight::API::User::add_user(
+    SLight::API::User::add_User(
         login  => 'ela',
         status => 'Enabled',
         name   => 'Elżbieta', # Polish 'ż' is used intentionally!
@@ -48,7 +48,7 @@ sub build { # {{{
     );
 
     # N
-    SLight::API::User::add_user(
+    SLight::API::User::add_User(
         login  => 'nataly',
         status => 'Guest',
         name   => 'Natalia',
@@ -57,7 +57,7 @@ sub build { # {{{
     );
 
     # W
-    SLight::API::User::add_user(
+    SLight::API::User::add_User(
         login  => 'wanda',
         status => 'Disabled',
         name   => 'Wanda L.',
