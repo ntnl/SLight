@@ -158,8 +158,8 @@
 [X]         is_User_registered
 [X]         check_User_pass
 [>] User-related PathHandler objects
-[>]     SLight::PathHandler::Authentication ([X] Test [X] Implementation)
-[>]     SLight::PathHandler::MyAccount      ([X] Test [ ] Implementation)
+[X]     SLight::PathHandler::Authentication ([X] Test [X] Implementation)
+[X]     SLight::PathHandler::MyAccount      ([X] Test [X] Implementation)
 [>]     SLight::PathHandler::Account        ([X] Test [ ] Implementation)
 [>] User-related Handler objects
 [>]     SLight::Handler::User::Authentication (allow the User to authenticate itself)

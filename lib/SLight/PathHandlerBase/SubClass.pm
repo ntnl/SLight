@@ -1,4 +1,4 @@
-package SLight::PathHandlerBase::Single;
+package SLight::PathHandlerBase::SubClass;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -16,18 +16,27 @@ use base q{SLight::PathHandler};
 
 # }}}
 
-# This is a king of Path handler, that always returns one object.
+# Path handler, that returns selected object from a sub-class.
 #
-# Is a path is given, it returns Not Found error!
+# Path must have either no (default object is returned), or one element.
 
 sub analyze_path { # {{{
     my ( $self, $path ) = @_;
 
-    if (scalar @{ $path }) {
+    if (scalar @{ $path } > 1) {
         return $self->generic_error_page('NotFound');
     }
 
-    my $object_class = $self->object_class();
+    my $object_class;
+    
+    if (not scalar @{ $path }) {
+        $object_class = $self->default_class();
+    }
+    else {
+        $object_class = $self->class_base() . q{::} . $path->[0];
+
+        # FIXME: verify, that the object class does exist!
+    }
 
     $self->set_objects(
         {

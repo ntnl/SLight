@@ -12,10 +12,19 @@ package SLight::PathHandler::MyAccount;
 # 
 ################################################################################
 use strict; use warnings; # {{{
+use base q{SLight::PathHandlerBase::SubClass};
 
 # }}}
 
+# FIXME: Check, if User has authenticated, and has proper status!
 
+sub default_class { # {{{
+    return 'MyAccount::MyData';
+} # }}}
+
+sub class_base { # {{{
+    return 'MyAccount';
+} # }}}
 
 # vim: fdm=marker
 1;
