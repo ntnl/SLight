@@ -12,10 +12,13 @@ package SLight::PathHandler::Authentication;
 # 
 ################################################################################
 use strict; use warnings; # {{{
+use base q{SLight::PathHandlerBase::Single};
 
 # }}}
 
-
+sub object_class { # {{{
+    return q{User::Authentication};
+} # }}}
 
 # vim: fdm=marker
 1;

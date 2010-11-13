@@ -1,4 +1,4 @@
-package SLight::Handler::MyAccount::Profile::Edit;
+package SLight::Handler::MyAccount::MyData::Overview;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.

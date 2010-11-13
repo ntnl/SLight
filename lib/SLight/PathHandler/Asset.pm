@@ -41,7 +41,7 @@ Generates a page with single I<SLight::Handler::Core::Asset> object.
 
 sub analyze_path { # {{{
     my ( $self, $path ) = @_;
-    
+
     assert_defined($path, "Path is defined");
 
     $self->set_template('Default');

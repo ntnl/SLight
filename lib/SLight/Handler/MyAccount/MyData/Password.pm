@@ -1,4 +1,4 @@
-package SLight::Handler::MyAccount::Password::Change;
+package SLight::Handler::MyAccount::MyData::Password;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.

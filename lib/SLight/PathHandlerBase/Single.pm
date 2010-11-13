@@ -1,4 +1,4 @@
-package SLight::PathHandler::Account;
+package SLight::PathHandlerBase::Single;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -12,10 +12,22 @@ package SLight::PathHandler::Account;
 # 
 ################################################################################
 use strict; use warnings; # {{{
+use base q{SLight::PathHandler};
 
 # }}}
 
+# This is a king of Path handler, that always returns one object.
+#
+# Is a path is given, it *should* return Not Found error!
 
+sub analyze_path { # {{{
+    my ( $self, $path ) = @_;
+
+    my $object_class = $self->object_class();
+
+    return 
+} # }}}
 
 # vim: fdm=marker
 1;
+

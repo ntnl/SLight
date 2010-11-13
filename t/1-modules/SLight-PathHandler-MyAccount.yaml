@@ -1,0 +1,45 @@
+---
+"Root (default) page":
+  breadcrumb_path: ~
+  main_object: o
+  object_order:
+  - o
+  objects:
+    ob1:
+      class: MyAccount::MyData
+      oid: ~
+  page_id: ~
+  template: Default
+My data page:
+  breadcrumb_path: ~
+  main_object: o
+  object_order:
+  - o
+  objects:
+    ob1:
+      class: MyAccount::MyData
+      oid: ~
+  page_id: ~
+  template: Default
+Avatar properties page:
+  breadcrumb_path: ~
+  main_object: o
+  object_order:
+  - o
+  objects:
+    ob1:
+      class: MyAccount::Avatar
+      oid: ~
+  page_id: ~
+  template: Default
+"Non-existing page":
+  breadcrumb_path: ~
+  main_object: NotFoundError
+  object_order:
+  - NotFoundError
+  objects:
+    NotFoundError:
+      class: Error::NotFound
+      oid: ~
+  page_id: ~
+  template: Error

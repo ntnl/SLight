@@ -1,0 +1,57 @@
+---
+"Root page - list of accounts":
+Account data page:
+  breadcrumb_path: ~
+  main_object: o
+  object_order:
+  - o
+  objects:
+    ob1:
+      class: Account::List
+      oid: ~
+  page_id: ~
+  template: Default
+Account data page:
+  breadcrumb_path: ~
+  main_object: o
+  object_order:
+  - o
+  objects:
+    ob1:
+      class: Account::Account
+      oid: ~
+  page_id: ~
+  template: Default
+Avatar page:
+  breadcrumb_path: ~
+  main_object: o
+  object_order:
+  - o
+  objects:
+    ob1:
+      class: Account::Avatar
+      oid: ~
+  page_id: ~
+  template: Default
+Permissions page:
+  breadcrumb_path: ~
+  main_object: o
+  object_order:
+  - o
+  objects:
+    ob1:
+      class: Account::Permissions
+      oid: ~
+  page_id: ~
+  template: Default
+Nonexisting page:
+  breadcrumb_path: ~
+  main_object: NotFoundError
+  object_order:
+  - NotFoundError
+  objects:
+    NotFoundError:
+      class: Error::NotFound
+      oid: ~
+  page_id: ~
+  template: Error

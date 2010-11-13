@@ -158,10 +158,9 @@
 [X]         is_User_registered
 [X]         check_User_pass
 [>] User-related PathHandler objects
-[>]     SLight::PathHandler::Authentication
-[ ]     SLight::PathHandler::MyAccount
-[ ]     SLight::PathHandler::Accounts
-[ ]     SLight::PathHandler::Account
+[>]     SLight::PathHandler::Authentication ([X] Test [ ] Implementation)
+[>]     SLight::PathHandler::MyAccount      ([X] Test [ ] Implementation)
+[>]     SLight::PathHandler::Account        ([X] Test [ ] Implementation)
 [>] User-related Handler objects
 [>]     SLight::Handler::User::Authentication (allow the User to authenticate itself)
 [>]         SLight::Handler::User::Authentication::Login (form + the actual authentication)
@@ -169,9 +168,9 @@
 [ ]         SLight::Handler::User::Authentication::Password (password recovery service)
 [ ]         SLight::Handler::User::Authentication::Register (allow a guest to register an account)
 [ ]     SLight::Handler::MyAccount (allow the User to manage his account)
-[ ]         SLight::Handler::MyAccount::Profile::Overview
-[ ]         SLight::Handler::MyAccount::Profile::Edit
-[ ]         SLight::Handler::MyAccount::Password::Change
+[ ]         SLight::Handler::MyAccount::MyData::Overview (ex: Profile::Overview)
+[ ]         SLight::Handler::MyAccount::MyData::Edit     (ex: Profile::Edit)
+[ ]         SLight::Handler::MyAccount::MyData::Password (ex: Password::Change)
 [ ]         SLight::Handler::MyAccount::Avatar::Overview
 [ ]         SLight::Handler::MyAccount::Avatar::Change
 [ ]         SLight::Handler::MyAccount::Avatar::Delete
@@ -208,6 +207,8 @@
 [ ] Bugs:
 [ ]     Email is not mandatory in some (Asset, Content) API calls (but it should)
 [ ]     Some API calls (Asset, Content) should return login as well (not just email)
+[ ]     s/Lightweight Content Manager System/Lightweight Content Management System/gs
+[ ]     Breadcrumbs are missing on Authentication, MyAccount and Account pages.
 
     Definition of done:
 
