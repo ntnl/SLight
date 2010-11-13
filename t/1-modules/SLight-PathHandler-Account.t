@@ -45,7 +45,7 @@ my @tests = (
     },
     {
         'name' => q{Nonexisting page},
-        'path' => [qw( beti Foo )],
+        'path' => [qw( beti Foo Bar )],
     },
 );
 

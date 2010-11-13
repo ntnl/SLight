@@ -157,10 +157,10 @@
 [X]         delete_User
 [X]         is_User_registered
 [X]         check_User_pass
-[>] User-related PathHandler objects
+[X] User-related PathHandler objects
 [X]     SLight::PathHandler::Authentication ([X] Test [X] Implementation)
 [X]     SLight::PathHandler::MyAccount      ([X] Test [X] Implementation)
-[>]     SLight::PathHandler::Account        ([X] Test [ ] Implementation)
+[X]     SLight::PathHandler::Account        ([X] Test [X] Implementation)
 [>] User-related Handler objects
 [>]     SLight::Handler::User::Authentication (allow the User to authenticate itself)
 [>]         SLight::Handler::User::Authentication::Login (form + the actual authentication)
@@ -209,6 +209,7 @@
 [ ]     Some API calls (Asset, Content) should return login as well (not just email)
 [ ]     s/Lightweight Content Manager System/Lightweight Content Management System/gs
 [ ]     Breadcrumbs are missing on Authentication, MyAccount and Account pages.
+[ ]     Implement ability to verify, if a Handler exists (such check is hard at the moment).
 
     Definition of done:
 
