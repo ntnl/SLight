@@ -128,5 +128,26 @@ sub response_content { # {{{
     return $content_response;
 } # }}}
 
+sub generic_error_page { # {{{
+    my ( $self, $error_type ) = @_;
+
+    $self->set_objects(
+        {
+            $error_type => {
+                class => 'Error::' . $error_type,
+                oid   => undef,
+            },
+        },
+    );
+
+    $self->set_object_order([ $error_type ]);
+
+    $self->set_main_object( $error_type );
+
+    $self->set_template( 'Error' );
+
+    return $self->response_content(); 
+} # }}}
+
 # vim: fdm=marker
 1;

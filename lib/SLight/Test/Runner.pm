@@ -99,6 +99,10 @@ sub run_tests { # {{{
             fail($t->{'name'});
             diag('Test callback returned unexpected type of data.');
 
+            use Data::Dumper;
+
+            note(Dumper $test_result);
+
             $failed++;
         }
 

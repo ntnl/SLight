@@ -1,23 +1,23 @@
 ---
+Non-root page:
+  breadcrumb_path: ~
+  main_object: NotFound
+  object_order:
+  - NotFound
+  objects:
+    NotFound:
+      class: Error::NotFound
+      oid: ~
+  page_id: ~
+  template: Error
 Root page:
   breadcrumb_path: ~
   main_object: o
   object_order:
   - o
   objects:
-    ob1:
+    o:
       class: User::Authentication
       oid: ~
   page_id: ~
   template: Default
-"Non-root page":
-  breadcrumb_path: ~
-  main_object: NotFoundError
-  object_order:
-  - NotFoundError
-  objects:
-    NotFoundError:
-      class: Error::NotFound
-      oid: ~
-  page_id: ~
-  template: Error

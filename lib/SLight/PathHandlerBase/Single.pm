@@ -23,9 +23,28 @@ use base q{SLight::PathHandler};
 sub analyze_path { # {{{
     my ( $self, $path ) = @_;
 
+    if (scalar @{ $path }) {
+        return $self->generic_error_page('NotFound');
+    }
+
     my $object_class = $self->object_class();
 
-    return 
+    $self->set_objects(
+        {
+            o => {
+                class => $object_class,
+                oid   => undef,
+            },
+        },
+    );
+
+    $self->set_object_order([qw( o )]);
+
+    $self->set_main_object('o');
+    
+    $self->set_template( 'Default' );
+
+    return $self->response_content(); 
 } # }}}
 
 # vim: fdm=marker

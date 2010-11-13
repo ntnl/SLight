@@ -132,7 +132,7 @@ sub analyze_path { # {{{
     }
 
     if (not $page_id) {
-        return $self->page_not_found();
+        return $self->generic_error_page('NotFound');
     }
 
     $self->set_breadcrumb_path(\@breadcrumb_path);
@@ -180,7 +180,7 @@ sub analyze_path { # {{{
             $self->set_object_order( [ $on_page_id ] );
         }
         else {
-            $self->page_not_found();
+            $self->generic_error_page('NotFound');
         }
     }
     elsif ($page) {
@@ -264,25 +264,6 @@ sub page_is_empty { # {{{
         {
             e1 => {
                 class    => 'Core::Empty',
-                oid      => undef,
-            },
-        },
-    );
-
-    $self->set_object_order([qw( e1 )]);
-
-    $self->set_main_object('e1');
-
-    return;
-} # }}}
-
-sub page_not_found { # {{{
-    my ( $self ) = @_;
-
-    $self->set_objects(
-        {
-            e1 => {
-                class    => 'Error::NotFound',
                 oid      => undef,
             },
         },
