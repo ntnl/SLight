@@ -12,10 +12,17 @@ package SLight::Handler::User::Authentication::Logout;
 # 
 ################################################################################
 use strict; use warnings; # {{{
+use base q{SLight::Handler};
 
 # }}}
 
+sub handle_view { # {{{
+    my ( $self, $oid, $metadata ) = @_;
 
+    
+
+    return;
+} # }}}
 
 # vim: fdm=marker
 1;
