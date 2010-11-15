@@ -16,15 +16,16 @@ use base q{SLight::Handler};
 
 use SLight::DataStructure::Form;
 use SLight::Core::URL;
+use SLight::Core::L10N qw( TR TF );
 # }}}
 
 sub build { # {{{
-    my ( $origin, $errors ) = @_;
+    my ( $origin, $options, $errors ) = @_;
 
     my $form = SLight::DataStructure::Form->new(
         class  => 'SL_Login_Form',
         action => SLight::Core::URL::make_url(
-            path_handler => 'Authenticate',
+            path_handler => q{Authentication},
             path         => [],
 
             action => 'Login',
@@ -38,8 +39,8 @@ sub build { # {{{
 
     $form->add_Entry(
         name    => 'user',
-        caption => TR('Caption'),
-        value   => ( $self->{'options'}->{'caption'} or $metadata->{'spec'}->{'caption'} ),
+        caption => TR('Login'),
+        value   => ( $options->{'user'} or q{} ),
         error   => ( $errors->{'user'} ),
     );
     $form->add_PasswordEntry(

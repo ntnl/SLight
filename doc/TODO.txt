@@ -146,8 +146,8 @@
 
 =--= Milestone 4 - User management - ....-..-..
 
-[>] User API
-[>]     SLight::API::User
+[X] User API
+[X]     SLight::API::User
 [X]         add_User
 [X]         update_User
 [X]         get_User
@@ -163,39 +163,39 @@
 [X]     SLight::PathHandler::Account        ([X] Test [X] Implementation)
 [>] User-related Handler objects
 [>]     SLight::Handler::User::Authentication (allow the User to authenticate itself)
-[>]         SLight::Handler::User::Authentication::Login (form + the actual authentication)
-[ ]         SLight::Handler::User::Authentication::Logout (view - instant action)
-[ ]         SLight::Handler::User::Authentication::Password (password recovery service)
-[ ]         SLight::Handler::User::Authentication::Register (allow a guest to register an account)
+[>]         SLight::Handler::User::Authentication::Login (form + the actual authentication)        ([ ] implementation [ ] Test)
+[ ]         SLight::Handler::User::Authentication::Logout (view - instant action)                  ([ ] implementation [ ] Test)
+[ ]         SLight::Handler::User::Authentication::Password (password recovery service)            ([ ] implementation [ ] Test)
+[ ]         SLight::Handler::User::Authentication::Register (allow a guest to register an account) ([ ] implementation [ ] Test)
 [ ]     SLight::Handler::MyAccount (allow the User to manage his account)
-[ ]         SLight::Handler::MyAccount::MyData::Overview (ex: Profile::Overview)
-[ ]         SLight::Handler::MyAccount::MyData::Edit     (ex: Profile::Edit)
-[ ]         SLight::Handler::MyAccount::MyData::Password (ex: Password::Change)
-[ ]         SLight::Handler::MyAccount::Avatar::Overview
-[ ]         SLight::Handler::MyAccount::Avatar::Change
-[ ]         SLight::Handler::MyAccount::Avatar::Delete
+[ ]         SLight::Handler::MyAccount::MyData::Overview ([ ] implementation [ ] Test) (ex: Profile::Overview)
+[ ]         SLight::Handler::MyAccount::MyData::Edit     ([ ] implementation [ ] Test) (ex: Profile::Edit)
+[ ]         SLight::Handler::MyAccount::MyData::Password ([ ] implementation [ ] Test) (ex: Password::Change)
+[ ]         SLight::Handler::MyAccount::Avatar::Overview ([ ] implementation [ ] Test)
+[ ]         SLight::Handler::MyAccount::Avatar::Change   ([ ] implementation [ ] Test)
+[ ]         SLight::Handler::MyAccount::Avatar::Delete   ([ ] implementation [ ] Test)
 [ ]     SLight::Handler::Account (allow site owner to manage User accounts)
-[ ]         SLight::Handler::Account::List::Overview
-[ ]         SLight::Handler::Account::Account::Overview
-[ ]         SLight::Handler::Account::Account::New
-[ ]         SLight::Handler::Account::Account::Edit
-[ ]         SLight::Handler::Account::Account::Delete
-[ ]         SLight::Handler::Account::Account::Password
-[ ]         SLight::Handler::Account::Permissions::Overview
-[ ]         SLight::Handler::Account::Permissions::Change
-[ ]         SLight::Handler::Account::Avatar::Overview
-[ ]         SLight::Handler::Account::Avatar::Change
-[ ]         SLight::Handler::Account::Avatar::Delete
-[ ]         SLight::Handler::Account::Avatar::Image
+[ ]         SLight::Handler::Account::List::Overview         ([ ] implementation [ ] Test)
+[ ]         SLight::Handler::Account::Account::Overview      ([ ] implementation [ ] Test)
+[ ]         SLight::Handler::Account::Account::New           ([ ] implementation [ ] Test)
+[ ]         SLight::Handler::Account::Account::Edit          ([ ] implementation [ ] Test)
+[ ]         SLight::Handler::Account::Account::Delete        ([ ] implementation [ ] Test)
+[ ]         SLight::Handler::Account::Account::Password      ([ ] implementation [ ] Test)
+[ ]         SLight::Handler::Account::Permissions::Overview  ([ ] implementation [ ] Test)
+[ ]         SLight::Handler::Account::Permissions::Change    ([ ] implementation [ ] Test)
+[ ]         SLight::Handler::Account::Avatar::Overview       ([ ] implementation [ ] Test)
+[ ]         SLight::Handler::Account::Avatar::Change         ([ ] implementation [ ] Test)
+[ ]         SLight::Handler::Account::Avatar::Delete         ([ ] implementation [ ] Test)
+[ ]         SLight::Handler::Account::Avatar::Image          ([ ] implementation [ ] Test)
 [ ] SLight::Handler::Error
 [ ]     SLight::Handler::Error::NotFound      <-- Resource not found)
 [ ]     SLight::Handler::Error::InternalError <-- Something bad happen. Try reloading.
 [ ]     SLight::Handler::Error::AuthRequired  <-- You must log-in to access this page.
 [ ]     SLight::Handler::Error::AccessDenied  <-- You can not do the stuff you intended.
 [ ] Addon
-[ ]     SLight::Addon::User::Panel
-[ ]     SLight::Addon::User::Info
-[ ]     SLight::Addon::Core::Debug
+[ ]     SLight::Addon::User::Panel ([ ] implementation [ ] Test)
+[ ]     SLight::Addon::User::Info  ([ ] implementation [ ] Test)
+[ ]     SLight::Addon::Core::Debug ([ ] implementation [ ] Test)
 [ ] Core functionality
 [ ]     Split 'content' into "objects before", "main object", "objects after" (with 'content' support maintained)
 [ ] Development

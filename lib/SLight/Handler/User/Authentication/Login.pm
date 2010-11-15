@@ -14,55 +14,57 @@ package SLight::Handler::User::Authentication::Login;
 use strict; use warnings; # {{{
 use base q{SLight::Handler};
 
-use SLight::API::User qw( check_User_pass );
+use SLight::API::User qw( check_User_pass get_User );
+use SLight::Core::L10N qw( TR TF );
 use SLight::Core::Session;
 use SLight::HandlerUtils::LoginForm;
 # }}}
 
-sub do_view { # {{{
+sub handle_view { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
     $self->set_class('SL_Login_Form');
 
-    my $user_id = check_User_pass($self->{'options'}->{'user'}, $self->{'options'}->{'pass'});
-
     my $form = SLight::HandlerUtils::LoginForm::build(
         q{/}, # Page-version of login form redirects to main page. Always.
+        $self->{'options'},
         {}
     );
 
     return $self->push_data($form);
 } # }}}
 
-sub do_authenticate { # {{{
-    my ($self, @params ) = @_;
+sub handle_authenticate { # {{{
+    my ($self, $oid, $metadata ) = @_;
 
-} # }}}
+    my $user_id = check_User_pass($self->{'options'}->{'user'}, $self->{'options'}->{'pass'});
 
-    return;
-} # }}}
+    if (not $user_id) {
+        # Return form, with an error!
+        # ...
+    }
 
-sub save_form { # {{{
-    my ( $self, $oid, $metadata ) = @_;
-
-    $self->set_class('SL_Login_Form');
+    my $user = get_User($user_id);
 
     my %user_hash = (
-        login => $self->{'Login'}->{'login'},
+        login => $user->{'login'},
     );
     SLight::Core::Session::part_set(
         'user',
         \%user_hash
     );
 
-    return $self->build_url(
-        action => 'View',
-        path   => [
-            'Spec',
-            $oid,
-        ],
-        step   => 'view'
+    $self->set_redirect(
+        $self->build_url(
+            path_handler => 'Page',
+            path         => [],
+
+            action => 'View',
+            step   => 'view'
+        ),
     );
+
+    return;
 } # }}}
 
 # vim: fdm=marker
