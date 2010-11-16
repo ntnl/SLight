@@ -33,7 +33,7 @@ use Params::Validate qw( :all );
 
 my $_handler_object;
 
-# Makre a Core::Request object
+# Make a Core::Request object
 sub new { # {{{
     my $class = shift;
     my %P = validate(
@@ -116,7 +116,7 @@ sub main { # {{{
 
     my $path_handler_object;
     my $protocol_object;
-    my $user_hash = undef;
+    my $user_hash = SLight::Core::Session::part('user');
 
     # Stage I, preparing for the request.
     my $stage_1_complete = eval {
@@ -159,7 +159,7 @@ sub main { # {{{
 
             $user_hash->{'lang'} = $P{'url'}->{'lang'};
 
-            SLight::Core::Session::part(
+            SLight::Core::Session::part_set(
                 'user',
                 $user_hash
             );
@@ -230,6 +230,7 @@ sub main { # {{{
 
     my $response_result = eval {
         return $protocol_object->respond(
+            user    => ( $user_hash or {} ),
             url     => $P{'url'},
             options => $P{'options'},
             page    => $page_content,

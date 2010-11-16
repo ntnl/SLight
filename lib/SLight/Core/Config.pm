@@ -62,6 +62,8 @@ sub initialize { # {{{
 sub find_and_load { # {{{
     my ( $path ) = @_;
 
+    assert_defined($path, q{Top search directory is defined});
+
     my @directories = split m{\/}s, $path;
 
     while (scalar @directories) {

@@ -23,38 +23,36 @@ use SLight::HandlerUtils::LoginForm;
 sub handle_view { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
-    $self->set_class('SL_Login_Form');
-
-    my $form = SLight::HandlerUtils::LoginForm::build(
-        q{/}, # Page-version of login form redirects to main page. Always.
-        $self->{'options'},
-        {}
-    );
-
-    return $self->push_data($form);
+    return $self->_form({});
 } # }}}
 
 sub handle_authenticate { # {{{
     my ($self, $oid, $metadata ) = @_;
+    
+    warn $self->{'options'}->{'user'}, $self->{'options'}->{'pass'};
 
     my $user_id = check_User_pass($self->{'options'}->{'user'}, $self->{'options'}->{'pass'});
 
     if (not $user_id) {
-        # Return form, with an error!
-        # ...
+        return $self->_form(
+            {
+                pass => TR(q{Login/Password combination is incorrect.}),
+            }
+        );
     }
 
     my $user = get_User($user_id);
 
     my %user_hash = (
         login => $user->{'login'},
+        id    => $user->{'id'},
     );
     SLight::Core::Session::part_set(
         'user',
         \%user_hash
     );
 
-    $self->set_redirect(
+    $self->redirect(
         $self->build_url(
             path_handler => 'Page',
             path         => [],
@@ -65,6 +63,20 @@ sub handle_authenticate { # {{{
     );
 
     return;
+} # }}}
+
+sub _form { # {{{
+    my ( $self, $errors ) = @_;
+
+    $self->set_class('SL_Login_Form');
+
+    my $form = SLight::HandlerUtils::LoginForm::build(
+        q{/},
+        $self->{'options'},
+        $errors,
+    );
+
+    return $self->push_data($form);
 } # }}}
 
 # vim: fdm=marker

@@ -1,0 +1,120 @@
+---
+Login form:
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
+    object_data:
+      o:
+        class: SLight_Object O-SL_Login_Form
+        content:
+        - class: SL_Login_Form
+          content:
+          - class: F-user Entry
+            content:
+            - class: Label
+              data:
+                text: Login
+              type: Label
+            - class: Value
+              data:
+                name: user
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-pass PasswordEntry
+            content:
+            - class: Label
+              data:
+                text: Password
+              type: Label
+            - class: Value
+              data:
+                name: pass
+                value: ''
+              type: PasswordEntry
+            type: Container
+          data:
+            action: /_Authentication/Login-authenticate.web
+            hidden:
+              origin: /
+            submit: Login
+          type: Form
+        type: Container
+    object_order:
+    - o
+    template: Default
+  mime_type: ~
+  response: CONTENT
+Sending form with bad login/pass:
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
+    object_data:
+      o:
+        class: SLight_Object O-SL_Login_Form
+        content:
+        - class: SL_Login_Form
+          content:
+          - class: F-user Entry
+            content:
+            - class: Label
+              data:
+                text: Login
+              type: Label
+            - class: Value
+              data:
+                name: user
+                value: foo
+              type: Entry
+            type: Container
+          - class: F-pass PasswordEntry
+            content:
+            - class: Label
+              data:
+                text: Password
+              type: Label
+            - class: Value
+              data:
+                name: pass
+                value: ''
+              type: PasswordEntry
+            - class: Error
+              data:
+                text: Login/Password combination is incorrect.
+              type: Label
+            type: Container
+          data:
+            action: /_Authentication/Login-authenticate.web
+            hidden:
+              origin: /
+            submit: Login
+          type: Form
+        type: Container
+    object_order:
+    - o
+    template: Default
+  mime_type: ~
+  response: CONTENT
+Sending form with correct login/pass:
+  location: /
+  response: REDIRECT
+Session dump (after login):
+  login: aga
+Session dump (before fail): ~
+Session dump (before login): ~

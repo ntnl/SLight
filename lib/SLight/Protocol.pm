@@ -43,7 +43,7 @@ sub new { # {{{
         page    => undef,
         url     => undef,
         options => undef,
-        user    => {},
+        user    => undef,
     };
 
     bless $self, $class;
@@ -169,6 +169,8 @@ sub S_process_addon { # {{{
 sub S_begin_response { # {{{
     my ( $self, %P ) = @_;
 
+    assert_defined($P{'user'}, 'User defined');
+
     assert_defined($P{'url'},  'URL defined');
 
     assert_defined($P{'options'},  'Options defined');
@@ -181,6 +183,7 @@ sub S_begin_response { # {{{
     assert_defined($P{'page'}->{'object_order'}, 'Object order (in page) defined');
     assert_defined($P{'page'}->{'main_object'},  'Main object (in page) defined');
 
+    $self->{'user'}    = $P{'user'};
     $self->{'url'}     = $P{'url'};
     $self->{'page'}    = $P{'page'};
     $self->{'options'} = $P{'options'};

@@ -1,0 +1,8 @@
+---
+Logout:
+  location: /
+  response: REDIRECT
+Session dump (after): {}
+Session dump (before):
+  id: 1
+  login: aga
