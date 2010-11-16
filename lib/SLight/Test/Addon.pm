@@ -11,7 +11,6 @@ package SLight::Test::Addon;
 # More information on: http://slight-cms.org/
 # 
 ################################################################################
-
 use strict; use warnings; # {{{
 use base 'Exporter';
 our @EXPORT_OK = qw(
@@ -20,6 +19,7 @@ our @EXPORT_OK = qw(
 our %EXPORT_TAGS = ('all' => [ @EXPORT_OK ]);
 
 use SLight::AddonFactory;
+use SLight::Core::Session;
 use SLight::Core::URL;
 use SLight::Test::Runner qw( run_tests );
 
@@ -91,7 +91,7 @@ sub _run_test { # {{{
     my $url = SLight::Core::URL::parse_url($t->{'url'});
 
     return $addon->process(
-        user    => {},
+        user    => ( SLight::Core::Session::part('user') or {} ),
         url     => $url,
         page_id => $t->{'page_id'},
         meta    => $t->{'meta'},

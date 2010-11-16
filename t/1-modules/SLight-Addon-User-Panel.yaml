@@ -1,0 +1,50 @@
+---
+Logged in:
+  class: SL_UserPanel_Addon
+  content:
+  - class: generic
+    data:
+      text: Logged-in as Agnieszka.
+    type: Label
+  - class: generic
+    data:
+      href: /_Authentication/Logout-en.web
+      text: Logout
+    type: Link
+  type: Container
+Not logged in:
+  class: SL_UserPanel_Addon
+  content:
+  - class: SL_Login_Form
+    content:
+    - class: F-user Entry
+      content:
+      - class: Label
+        data:
+          text: Login
+        type: Label
+      - class: Value
+        data:
+          name: user
+          value: ''
+        type: Entry
+      type: Container
+    - class: F-pass PasswordEntry
+      content:
+      - class: Label
+        data:
+          text: Password
+        type: Label
+      - class: Value
+        data:
+          name: pass
+          value: ''
+        type: PasswordEntry
+      type: Container
+    data:
+      action: /_Authentication/Login-authenticate.web
+      hidden:
+        origin: /
+      submit: Login
+    type: Form
+  type: Container

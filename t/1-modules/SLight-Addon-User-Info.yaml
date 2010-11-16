@@ -1,0 +1,27 @@
+---
+Logged in:
+  class: SL_UserInfo_Addon
+  content:
+  - class: generic
+    data:
+      text: Logged-in as Agnieszka.
+    type: Label
+  - class: generic
+    data:
+      href: /_Authentication/Logout-en.web
+      text: Logout
+    type: Link
+  type: Container
+Not logged in:
+  class: SL_UserInfo_Addon
+  content:
+  - class: generic
+    data:
+      text: Not logged-in.
+    type: Label
+  - class: generic
+    data:
+      href: /_Authentication/Login-en.web
+      text: Login
+    type: Link
+  type: Container

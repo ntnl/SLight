@@ -163,13 +163,28 @@
 [X]     SLight::PathHandler::Account        ([X] Test [X] Implementation)
 [>] User-related Handler objects
 [>]     SLight::Handler::User::Authentication (allow the User to authenticate itself)
-[>]         SLight::Handler::User::Authentication::Login (form + the actual authentication)        ([ ] implementation [ ] Test)
-[ ]         SLight::Handler::User::Authentication::Logout (view - instant action)                  ([ ] implementation [ ] Test)
-[ ]         SLight::Handler::User::Authentication::Password (password recovery service)            ([ ] implementation [ ] Test)
-[ ]         SLight::Handler::User::Authentication::Register (allow a guest to register an account) ([ ] implementation [ ] Test)
+[X]         SLight::Handler::User::Authentication::Login (form + the actual authentication)        ([X] implementation [X] Test)
+[X]         SLight::Handler::User::Authentication::Logout (view - instant action)                  ([X] implementation [X] Test)
+[>]         SLight::Handler::User::Authentication::Register (allow a guest to register an account)
+[>]             Form
+[ ]             Sending email + confirmation page
+[ ]             Verification + account setup
+[ ]             Thank you page
+[ ]             Automated test
+[ ]         SLight::Handler::User::Authentication::Password
+[ ]             Password recovery form
+[ ]             Send recovery link + confirmation page
+[ ]             New password form
+[ ]             Password reset + confirmation page
+[ ]             Automated test
 [ ]     SLight::Handler::MyAccount (allow the User to manage his account)
-[ ]         SLight::Handler::MyAccount::MyData::Overview ([ ] implementation [ ] Test) (ex: Profile::Overview)
-[ ]         SLight::Handler::MyAccount::MyData::Edit     ([ ] implementation [ ] Test) (ex: Profile::Edit)
+[ ]         SLight::Handler::MyAccount::MyData::Overview (ex: Profile::Overview)
+[ ]             Implementation
+[ ]             Test
+[ ]         SLight::Handler::MyAccount::MyData::Edit (ex: Profile::Edit)
+[ ]             Show form
+[ ]             Change data + redirect to overview.
+[ ]             Write automated test
 [ ]         SLight::Handler::MyAccount::MyData::Password ([ ] implementation [ ] Test) (ex: Password::Change)
 [ ]         SLight::Handler::MyAccount::Avatar::Overview ([ ] implementation [ ] Test)
 [ ]         SLight::Handler::MyAccount::Avatar::Change   ([ ] implementation [ ] Test)
@@ -192,14 +207,16 @@
 [ ]     SLight::Handler::Error::InternalError <-- Something bad happen. Try reloading.
 [ ]     SLight::Handler::Error::AuthRequired  <-- You must log-in to access this page.
 [ ]     SLight::Handler::Error::AccessDenied  <-- You can not do the stuff you intended.
-[ ] Addon
-[ ]     SLight::Addon::User::Panel ([ ] implementation [ ] Test)
-[ ]     SLight::Addon::User::Info  ([ ] implementation [ ] Test)
+[-] Addon
+[-]     SLight::Addon::User::Panel ([X] implementation [X] Test [ ] Avatar support)
+[X]     SLight::Addon::User::Info  ([X] implementation [X] Test)
 [ ]     SLight::Addon::Core::Debug ([ ] implementation [ ] Test)
 [ ] Core functionality
+[ ]     Email sending
 [ ]     Split 'content' into "objects before", "main object", "objects after" (with 'content' support maintained)
 [ ] Development
-[ ]     Make sure, that every module has SLight::Dbg included in it
+[ ]     Implement SLight::Dbg (with Dbg, a Dumper-like function)
+[ ]     Make sure, that every module has SLight::Dbg included in it (do there is always an 'warn Data::Dumper::Dumper' named D around)
 [ ]     Make a script, that creates fully usable sandbox from test site.
 [ ]     Intercept STDERR (when enabled) and handle it to Debug Addon
 [ ]     Implement DB-schema-update utility.
@@ -210,6 +227,7 @@
 [ ]     s/Lightweight Content Manager System/Lightweight Content Management System/gs
 [ ]     Breadcrumbs are missing on Authentication, MyAccount and Account pages.
 [ ]     Implement ability to verify, if a Handler exists (such check is hard at the moment).
+[ ]     Compilation errors in Addons kill the whole page!
 
     Definition of done:
 
@@ -293,6 +311,11 @@
     Definition of done:
 
         Adding, Editing, Deleting, Posting threads, responding - all working trough AJAX
+
+=--= Milestone 9 - First final (1.0.0) release - ....-..-..
+
+[ ] Development
+[ ]     Make sure (and fix) all built-in classes start with SL_*
 
 =--= Future ideas:
 

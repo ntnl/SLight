@@ -12,10 +12,15 @@ package SLight::Addon::Core::Debug;
 # 
 ################################################################################
 use strict; use warnings; # {{{
+use base q{SLight::Addon};
 
 # }}}
 
+sub _process { # {{{
+    my ( $self, %P ) = @_;
 
+    return;
+} # }}}
 
 # vim: fdm=marker
 1;
