@@ -47,9 +47,10 @@ my %status_set = (
         # This User can not log in.
         #
     'Guest' => 2,
-        # User account exists, but must be verified before it becomes fully usable
-        # This User can log in, but is othervise same as Guest (hence the name)
+        # User account exists, but must be verified before it becomes fully usable.
+        # This User can log in, but is otherwise same as Guest (hence the name).
         # Does not have to enter his Email all the time, as normal guests do.
+        # Such accounts are created by Authenticate-Register action.
         #
     'Enabled' => 3,
         # Fully-usable User account.

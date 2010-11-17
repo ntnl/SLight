@@ -29,7 +29,7 @@ sub handle_view { # {{{
 sub handle_authenticate { # {{{
     my ($self, $oid, $metadata ) = @_;
     
-    warn $self->{'options'}->{'user'}, $self->{'options'}->{'pass'};
+#    warn $self->{'options'}->{'user'}, $self->{'options'}->{'pass'};
 
     my $user_id = check_User_pass($self->{'options'}->{'user'}, $self->{'options'}->{'pass'});
 
@@ -68,7 +68,7 @@ sub handle_authenticate { # {{{
 sub _form { # {{{
     my ( $self, $errors ) = @_;
 
-    $self->set_class('SL_Login_Form');
+    $self->set_class('SL_User_Login');
 
     my $form = SLight::HandlerUtils::LoginForm::build(
         q{/},

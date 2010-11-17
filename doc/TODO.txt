@@ -163,14 +163,18 @@
 [X]     SLight::PathHandler::Account        ([X] Test [X] Implementation)
 [>] User-related Handler objects
 [>]     SLight::Handler::User::Authentication (allow the User to authenticate itself)
-[X]         SLight::Handler::User::Authentication::Login (form + the actual authentication)        ([X] implementation [X] Test)
-[X]         SLight::Handler::User::Authentication::Logout (view - instant action)                  ([X] implementation [X] Test)
+[X]         SLight::Handler::User::Authentication::Login (form + the actual authentication)
+[X]             Implementation
+[X]             Test
+[X]         SLight::Handler::User::Authentication::Logout (view - instant action)
+[X]             Implementation
+[X]             Test
 [>]         SLight::Handler::User::Authentication::Register (allow a guest to register an account)
-[>]             Form
-[ ]             Sending email + confirmation page
+[X]             Form
+[>]             Sending email + confirmation page
 [ ]             Verification + account setup
 [ ]             Thank you page
-[ ]             Automated test
+[>]             Automated test
 [ ]         SLight::Handler::User::Authentication::Password
 [ ]             Password recovery form
 [ ]             Send recovery link + confirmation page
@@ -185,12 +189,21 @@
 [ ]             Show form
 [ ]             Change data + redirect to overview.
 [ ]             Write automated test
-[ ]         SLight::Handler::MyAccount::MyData::Password ([ ] implementation [ ] Test) (ex: Password::Change)
-[ ]         SLight::Handler::MyAccount::Avatar::Overview ([ ] implementation [ ] Test)
-[ ]         SLight::Handler::MyAccount::Avatar::Change   ([ ] implementation [ ] Test)
-[ ]         SLight::Handler::MyAccount::Avatar::Delete   ([ ] implementation [ ] Test)
+[ ]         SLight::Handler::MyAccount::MyData::Password
+[ ]             Display form
+[ ]             Perform password change
+[ ]             Test
+[ ]         SLight::Handler::MyAccount::Avatar::Overview
+[ ]             Implementation
+[ ]             Test
+[ ]         SLight::Handler::MyAccount::Avatar::Change
+[ ]             Form
+[ ]             Perform avatar change
+[ ]             Test
+[ ]         SLight::Handler::MyAccount::Avatar::Delete
 [ ]             Show dialog
 [ ]             Perform the deletion
+[ ]             Test
 [ ]     SLight::Handler::Account (allow site owner to manage User accounts)
 [ ]         SLight::Handler::Account::List::Overview
 [ ]             Implementation
@@ -234,6 +247,13 @@
 [ ]         SLight::Handler::Account::Avatar::Image
 [ ]             Implementation
 [ ]             Test
+[-] DataStructure
+[-]     SLight::DataStructure::Form (ex CoMe...GenericForm)
+[-]         Implement
+[ ]         Test
+[-]     SLight::DataStructure::List (ex CoMe...GenericGrid)
+[-]         Implement
+[ ]         Test
 [ ] SLight::Handler::Error
 [ ]     SLight::Handler::Error::NotFound <-- Resource not found)
 [ ]             Implementation
@@ -286,17 +306,11 @@
 
 [ ] API
 [ ]     Comment store
-[ ] DataStructure
-[-]     SLight::DataStructure::List (ex CoMe...GenericGrid)
-[ ]         Implement
-[ ]         Test
+[-] DataStructure
 [ ]     SLight::DataStructure::Table (ex CoMe...GenericTable)
 [ ]         Implement
 [ ]         Test
 [-]     SLight::DataStructure::Table::Properties (ex CoMe...GenericProperties)
-[ ]         Implement
-[ ]         Test
-[-]     SLight::DataStructure::Form (ex CoMe...GenericForm)
 [ ]         Implement
 [ ]         Test
 [ ]     SLight::DataStructure::Form::Diff (CoMe...DiffForm)

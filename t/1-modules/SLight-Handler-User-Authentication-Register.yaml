@@ -1,0 +1,102 @@
+---
+User registration form:
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        - class: Current
+          data:
+            href: /_Authentication/Register.web
+            text: Register
+          type: Link
+        type: Container
+    object_data:
+      o:
+        class: SLight_Object O-SL_Register_User
+        content:
+        - class: generic
+          content:
+          - class: generic
+            content:
+            - class: F-Label Label
+              data:
+                text: Register User
+              type: Label
+            type: Container
+          - class: F-u-user Entry
+            content:
+            - class: Label
+              data:
+                text: Login
+              type: Label
+            - class: Value
+              data:
+                name: u-user
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-u-email Entry
+            content:
+            - class: Label
+              data:
+                text: Email
+              type: Label
+            - class: Value
+              data:
+                name: u-email
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-u-name Entry
+            content:
+            - class: Label
+              data:
+                text: Name
+              type: Label
+            - class: Value
+              data:
+                name: u-name
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-u-pass PasswordEntry
+            content:
+            - class: Label
+              data:
+                text: Password
+              type: Label
+            - class: Value
+              data:
+                name: u-pass
+                value: ''
+              type: PasswordEntry
+            type: Container
+          - class: F-u-pass-repeat PasswordEntry
+            content:
+            - class: Label
+              data:
+                text: Password (repeat)
+              type: Label
+            - class: Value
+              data:
+                name: u-pass-repeat
+                value: ''
+              type: PasswordEntry
+            type: Container
+          data:
+            action: /_Authentication/Register.web
+            hidden: {}
+            submit: Register
+          type: Form
+        type: Container
+    object_order:
+    - o
+    template: Default
+  mime_type: ~
+  response: CONTENT
