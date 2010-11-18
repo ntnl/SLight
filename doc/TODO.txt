@@ -172,15 +172,15 @@
 [>]         SLight::Handler::User::Authentication::Register (allow a guest to register an account)
 [X]             Form
 [>]             Sending email + confirmation page
-[ ]             Verification + account setup
-[ ]             Thank you page
+[>]             Verification + account setup
+[X]             Thank you page
 [>]             Automated test
-[ ]         SLight::Handler::User::Authentication::Password
+[>]         SLight::Handler::User::Authentication::Password
 [ ]             Password recovery form
 [ ]             Send recovery link + confirmation page
 [ ]             New password form
-[ ]             Password reset + confirmation page
-[ ]             Automated test
+[ ]             Password reset
+[>]             Automated test
 [ ]     SLight::Handler::MyAccount (allow the User to manage his account)
 [ ]         SLight::Handler::MyAccount::MyData::Overview (ex: Profile::Overview)
 [ ]             Implementation
@@ -278,6 +278,8 @@
 [ ]     SLight::Addon::Core::Debug
 [ ]         Implementation
 [ ]         Test
+[-] API
+[X]     SLight::API::EVK
 [ ] Core functionality
 [ ]     Email sending
 [ ]     Split 'content' into "objects before", "main object", "objects after" (with 'content' support maintained)
