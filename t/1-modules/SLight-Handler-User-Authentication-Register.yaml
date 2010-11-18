@@ -1,4 +1,162 @@
 ---
+'Check: User account was created':
+- email: test@subject.test
+  id: 6
+  login: Fooley
+  name: Test subject
+  status: Guest
+Display 'Thank you' page:
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
+    object_data:
+      o:
+        class: SLight_Object O-SL_Register_User
+        content:
+        - class: SLight_Dialog
+          content:
+          - class: Message
+            content:
+            - class: generic
+              data:
+                text: Thank You for registering! An email has been sent to You, with
+                  further information.
+              type: Label
+            type: Container
+          - class: Buttons
+            content: []
+            type: Container
+          type: Container
+        type: Container
+    object_order:
+    - o
+    template: Default
+  mime_type: ~
+  response: CONTENT
+Send out bad data (crash test):
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        - class: Current
+          data:
+            href: /_Authentication/Register-request.web
+            text: Register
+          type: Link
+        type: Container
+    object_data:
+      o:
+        class: SLight_Object O-SL_Register_User
+        content:
+        - class: generic
+          content:
+          - class: generic
+            content:
+            - class: F-Label Label
+              data:
+                text: Register User
+              type: Label
+            type: Container
+          - class: F-u-user Entry
+            content:
+            - class: Label
+              data:
+                text: Login
+              type: Label
+            - class: Value
+              data:
+                name: u-user
+                value: ''
+              type: Entry
+            - class: Error
+              data:
+                text: This field may not be empty.
+              type: Label
+            type: Container
+          - class: F-u-email Entry
+            content:
+            - class: Label
+              data:
+                text: Email
+              type: Label
+            - class: Value
+              data:
+                name: u-email
+                value: ''
+              type: Entry
+            - class: Error
+              data:
+                text: This field may not be empty.
+              type: Label
+            type: Container
+          - class: F-u-name Entry
+            content:
+            - class: Label
+              data:
+                text: Name
+              type: Label
+            - class: Value
+              data:
+                name: u-name
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-u-pass PasswordEntry
+            content:
+            - class: Label
+              data:
+                text: Password
+              type: Label
+            - class: Value
+              data:
+                name: u-pass
+                value: ''
+              type: PasswordEntry
+            - class: Error
+              data:
+                text: Too short, must have at least 5 characters.
+              type: Label
+            type: Container
+          - class: F-u-pass-repeat PasswordEntry
+            content:
+            - class: Label
+              data:
+                text: Password (repeat)
+              type: Label
+            - class: Value
+              data:
+                name: u-pass-repeat
+                value: ''
+              type: PasswordEntry
+            type: Container
+          data:
+            action: /_Authentication/Register-request.web
+            hidden: {}
+            submit: Register
+          type: Form
+        type: Container
+    object_order:
+    - o
+    template: Default
+  mime_type: ~
+  response: CONTENT
+Send out the form:
+  location: /_Authentication/Register-thankyou.web
+  response: REDIRECT
 User registration form:
   content:
     addon_data:

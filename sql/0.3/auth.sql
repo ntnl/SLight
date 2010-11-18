@@ -22,8 +22,9 @@ CREATE TABLE Email_Verification_Key (
     `Email_id`  INTEGER      NOT NULL,
     `key`       VARCHAR(128) NOT NULL,  -- 'secret' key, known only to email owner
 
-    `handler`   VARCHAR(128) NOT NULL,  -- module, that will do the verification
-    `params`    VARCHAR(255) NOT NULL,  -- parameters passed to the module
+    `metadata` TEXT,
+        -- Serialized with YAML.
+        -- A place where additional key-related information may be stored.
 
     FOREIGN KEY(`Email_id`) REFERENCES Email(`id`)
 );

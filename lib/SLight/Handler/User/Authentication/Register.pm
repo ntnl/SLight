@@ -60,7 +60,7 @@ sub handle_request { # {{{
 
     my $errors = $self->validate_form(
         0,
-        $self->{'params'}->{'options'}
+        $self->{'options'}
     );
 
     # Do We have any errors?
@@ -68,11 +68,15 @@ sub handle_request { # {{{
         # If so - show the form again, with errors, and data.
         $self->set_meta_field('title', TR(q{Register User - incorrect data}));
 
+        $self->set_class('SL_Register_User');
+
         $self->add_to_path_bar(
             label => TR('Register'),
             url   => {
-            method  => 'GET',
-                action  => 'register',
+                path_handler => 'Authentication',
+                path         => [],
+
+                action  => 'Register',
                 options => {},
             },
         );
@@ -90,6 +94,7 @@ sub handle_request { # {{{
         return;
     }
 
+    # Create a 'Guest' User account, that someone must verify.
     add_User(
         login => $self->{'options'}->{'u-user'},
 
@@ -101,11 +106,13 @@ sub handle_request { # {{{
         status => 'Guest',
     );
 
+    # Send the notification...
+
     my $target_url = $self->build_url(
         path_handler => 'Authentication',
         path         => [],
 
-        action  => 'register',
+        action  => 'Register',
         step    => 'thankyou',
         options => {},
     );
@@ -117,6 +124,8 @@ sub handle_request { # {{{
 
 sub handle_thankyou { # {{{
     my ( $self, $oid, $metadata ) = @_;
+
+    $self->set_class('SL_Register_User');
 
     my $message = SLight::DataStructure::Dialog::Notification->new(
         text => TR("Thank You for registering! An email has been sent to You, with further information."),

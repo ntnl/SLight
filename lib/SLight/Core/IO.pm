@@ -15,6 +15,7 @@ use strict; use warnings; # {{{
 use base 'Exporter';
 
 use Carp::Assert::More qw( assert_defined );
+use Data::UUID;
 use English qw( -no_match_vars );
 use File::Slurp qw( read_dir );
 use YAML::Syck qw( DumpFile );

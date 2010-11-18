@@ -21,7 +21,6 @@ use SLight::Core::IO qw( safe_save_YAML );
 
 use Carp;
 use Carp::Assert::More qw( assert_defined );
-use Data::UUID;
 use English qw(-no_match_vars);
 use Params::Validate qw( :all );
 use YAML::Syck qw( LoadFile );

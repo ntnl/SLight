@@ -103,9 +103,8 @@ sub validate_form { # {{{
     );
     my %meta_data = (
         email => { type => 'Email',  max_length => 256 },
-        name  => { type => 'String', max_length => 64 },
+        name  => { type => 'String', max_length => 64, optional => 1 },
         pass  => {
-            optional   => 1,
             type       => 'Password',
             max_length => 64,
 

@@ -328,6 +328,12 @@ sub update_ENTITY { # {{{
         $values{'metadata'} = Dump($values{'metadata'});
     }
 
+    if ($self->{'has_owner'} and $P{'email'}) {
+        $self->_pack_email( \%P );
+
+        $values{'Email_id'} = $P{'email_id'};
+    }
+
     SLight::Core::DB::run_update(
         'table' => $self->{'base_table'},
         'set'   => \%values,
