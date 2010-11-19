@@ -17,6 +17,7 @@ use SLight::API::Asset qw( add_Asset );
 use SLight::API::Content qw( add_Content );
 use SLight::API::ContentSpec qw( add_ContentSpec );
 use SLight::API::Page;
+use SLight::Test::Site::Users;
 
 use File::Slurp qw( read_file );
 # }}}
@@ -24,6 +25,9 @@ use File::Slurp qw( read_file );
 # This module creates Minimal fake (test) site, with just 3 sub-pages.
 
 sub build { # {{{
+    # You need users, to play with content.
+    SLight::Test::Site::Users::build();
+
     # Add root page:
     my $p0_id = SLight::API::Page::add_Page(
         parent_id => undef,

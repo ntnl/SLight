@@ -169,14 +169,20 @@
 [X]         SLight::Handler::User::Authentication::Logout (view - instant action)
 [X]             Implementation
 [X]             Test
-[>]         SLight::Handler::User::Authentication::Register (allow a guest to register an account)
+[X]         SLight::Handler::User::Authentication::Register (allow a guest to register an account)
 [X]             Form
-[>]             Sending email + confirmation page
-[>]             Verification + account setup
+[X]             Sending email + confirmation page
+[X]             Verification + account setup
 [X]             Thank you page
-[>]             Automated test
+[X]             Automated test
+[X]         SLight::Handler::User::Authentication::ActivateAccount
+[X]             Verification - negative (show error)
+[X]             Verification - positive (activate account)
+[X]             Verification - neutral (account already active)
+[X]             Thank you page
+[X]             Automated test
 [>]         SLight::Handler::User::Authentication::Password
-[ ]             Password recovery form
+[>]             Password recovery form
 [ ]             Send recovery link + confirmation page
 [ ]             New password form
 [ ]             Password reset
@@ -233,7 +239,7 @@
 [ ]         SLight::Handler::Account::Permissions::Change
 [ ]             Implementation
 [ ]             Test
-[ ]         SLight::Handler::Account::Avatar::Overview
+[ ]         SLight::Handler::Account::Avatar::Overviewagnes@test.test
 [ ]             Implementation
 [ ]             Test
 [ ]         SLight::Handler::Account::Avatar::Change
@@ -278,10 +284,14 @@
 [ ]     SLight::Addon::Core::Debug
 [ ]         Implementation
 [ ]         Test
-[-] API
+[-] SLight API
 [X]     SLight::API::EVK
-[ ] Core functionality
-[ ]     Email sending
+[ ]     Content
+[ ]         Support 'login' and 'user_id' parameters, along with 'email', to sign the stuff.
+[ ]     Asset
+[ ]         Support 'login' and 'user_id' parameters, along with 'email', to sign the stuff.
+[>] Core functionality
+[>]     Email sending
 [ ]     Split 'content' into "objects before", "main object", "objects after" (with 'content' support maintained)
 [ ] Development
 [ ]     Implement SLight::Dbg (with Dbg, a Dumper-like function)
@@ -349,6 +359,8 @@
 [ ]     Language selection is f...broken. Plugin needs to set different (more sane) classes too!
 [ ]     User must be able to chose position when adding new content to a page.
 [ ]     User must be able to change order of On-page (aux) content after added.
+[ ]     Move html templates from Minimal to HtmlTemplates
+[ ]     Implement the FIXME from SLight::Test::Site::Builder
 
     Definition of done:
 

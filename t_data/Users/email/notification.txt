@@ -1,0 +1,13 @@
+Dear ~~name~~,
+
+Please, be aware of the following events:
+
+~~notifications~~
+
+Thank you,
+Your SLight Automated Test.
+
+PS. This message was triggered by an automated test.
+If You DID received it, please simply ignore.
+
+PS2. This email template suits as UTF-8 characters (example: ąćęółńżź) test too :)

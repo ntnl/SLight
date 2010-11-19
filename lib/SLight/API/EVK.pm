@@ -24,6 +24,7 @@ our @EXPORT_OK = qw(
     update_EVK
     delete_EVK
     get_EVK
+    get_EVK_by_key
 );
 our %EXPORT_TAGS = ( 'all' => [ @EXPORT_OK ] );
 
@@ -75,6 +76,20 @@ sub get_EVK { # {{{
     my ( $id ) = @_;
 
     return $_handler->get_ENTITY($id);
+} # }}}
+
+sub get_EVK_by_key { # {{{
+    my ( $key ) = @_;
+
+    my $evks = $_handler->get_ENTITYs_where(
+        key => $key,
+    );
+
+    if ($evks) {
+        return $evks->[0];
+    }
+
+    return;
 } # }}}
 
 # vim: fdm=marker

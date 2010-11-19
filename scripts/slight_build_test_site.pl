@@ -20,7 +20,7 @@ use SLight::Test::Site::Builder;
 
 exit SLight::Test::Site::Builder::build_site(
     $Bin . q{/../t_data/},
-    $Bin . q{/../sql/0.0/},
+    $Bin . q{/../sql/0.3/},
     sub { print @_, "\n"; },
     $ARGV[0],
 );

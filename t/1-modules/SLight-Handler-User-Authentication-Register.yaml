@@ -1,4 +1,44 @@
 ---
+'Check: Confirmation email was sent':
+- !!perl/hash:MIME::Lite
+  Attrs:
+    content-disposition: inline
+    content-length: ~
+    content-transfer-encoding: quoted-printable
+    content-type: text/plain
+  Data: 'Dear Test subject,
+
+
+    An account has been registered on foo.localdomain by using the e-mail address
+    test@subject.test.
+
+
+    Please validate it by using the following link: /_Authentication/ActivateAccount.web?key=0000029A-002C-0002-002C-0000000022B8&login=Fooley
+
+
+    Thank you,
+
+    Your SLight Automated Test.
+
+
+    PS. This message was triggered by an automated test.
+
+    If You DID received it, please simply ignore.
+
+'
+  Header: []
+  Parts: []
+  SubAttrs:
+    content-type:
+      charset: UTF-8
+'Check: EVK was set-up.':
+  email: test@subject.test
+  id: 1
+  key: 0000029A-002C-0002-002C-0000000022B8
+  metadata:
+    login: Fooley
+    made_by: SLight::Handler::User::Authentication::Register
+    user_id: '6'
 'Check: User account was created':
 - email: test@subject.test
   id: 6

@@ -34,21 +34,14 @@ my $site_root = SLight::Test::Site::prepare_fake(
 # Sending REAL emails in automated tests does not seem to be smart ;)
 SLight::Core::Email::debug_disable_sending();
 
+my $cgi_1 = {
+    key   => undef,
+    login => q{Fooley},
+};
+
 my @tests = (
     {
-        'name' => q{User registration form},
-        'url'  => q{/_Authentication/Register.web},
-    },
-    {
-        'name' => q{Send out bad data (crash test)},
-        'url'  => q{/_Authentication/Register-request.web},
-        'cgi'  => {
-            q{u-pass}        => 'Foo',
-            q{u-pass-repeat} => 'Bar',
-        }
-    },
-    {
-        'name' => q{Send out the form},
+        'name' => q{Register an User account},
         'url'  => q{/_Authentication/Register-request.web},
         'cgi'  => {
             q{u-user}  => 'Fooley',
@@ -57,10 +50,16 @@ my @tests = (
 
             q{u-pass}        => 'MojeHasło', # Means: My Password (polish)
             q{u-pass-repeat} => 'MojeHasło',
-        }
+        },
+
+        'call_after' => sub {
+            my $evk = get_EVK(1);
+
+            $cgi_1->{key} = $evk->{'key'};
+        },
     },
     {
-        'name'     => q{Check: User account was created},
+        'name'     => q{Check: User account before activation},
         'callback' => sub {
             return get_Users_where(
                 login => 'Fooley',
@@ -69,17 +68,33 @@ my @tests = (
         expect => 'arrayref',
     },
     {
-        'name'     => q{Check: Confirmation email was sent},
-        'callback' => sub {
-            return $SLight::Core::Email::_unsent_stack[0]->{'Parts'};
+        'name' => q{Try to activate fake account},
+        'url'  => q{/_Authentication/ActivateAccount.web},
+        'cgi'  => {
+            key   => q{12345678-1234-1234-1234-1234567890AB},
+            login => q{Boobey},
         },
-        expect => 'arrayref',
     },
     {
-        'name'     => q{Check: EVK was set-up.},
+        'name' => q{Activate real account},
+        'url'  => q{/_Authentication/ActivateAccount.web},
+        'cgi'  => $cgi_1,
+    },
+    {
+        # This should result in 'incorrect activation key',
+        # since keys are deleted once the account is activated, thus can not be used again.
+        'name' => q{Activate already active account},
+        'url'  => q{/_Authentication/ActivateAccount.web},
+        'cgi'  => $cgi_1,
+    },
+    {
+        'name'     => q{Check: User account after activation},
         'callback' => sub {
-            return get_EVK(1);
+            return get_Users_where(
+                login => 'Fooley',
+            );
         },
+        expect => 'arrayref',
     },
     {
         'name' => q{Display 'Thank you' page},
@@ -90,23 +105,5 @@ my @tests = (
 run_handler_tests(
     tests => \@tests,
 );
-
-
-package Data::UUID;
-my $ct = 0;
-
-no warnings;
-
-sub to_string { # {{{
-    $ct++;
-
-# Some valid UUIDs:
-#    4162F712-1DD2-11B2-B17E-C09EFE1DC403
-#    2BC9E9A0-F3E7-11DF-91F2-D6145CFB52DF
-
-    my $fake_id = uc sprintf q{%08x-%04x-%04x-%04x-%012x}, 333*$ct, 22*$ct, $ct, 22*$ct, 4444*$ct;
-
-    return $fake_id;
-} # }}}
 
 # vim: fdm=marker

@@ -23,9 +23,10 @@ use File::Path qw( remove_tree );
 use File::Slurp qw( write_file );
 # }}}
 
-my %sites = (
-    'Minimal' => [qw( Minimal )],
-    'Users'   => [qw( Users )],
+my %sites = ( # FIXME: Actually support this!
+    'Minimal'        => [qw( Minimal )],
+    'Users'          => [qw( Users )],
+    'EmailTemplates' => [qw( EmailTemplates )],
 );
 
 my $_site_root;
@@ -108,6 +109,20 @@ sub make_template { # {{{
     }
 
     write_file($html_dir . $name . q{.html}, $contents);
+
+    return;
+} # }}}
+
+sub make_email { # {{{
+    my ( $name, $contents ) = @_;
+
+    my $email_dir = $_site_root . q{/email/};
+
+    if (not -d $email_dir) {
+        mkdir $email_dir;
+    }
+
+    write_file($email_dir . $name . q{.txt}, $contents);
 
     return;
 } # }}}

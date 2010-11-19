@@ -14,12 +14,16 @@ package SLight::Test::Site::Users;
 use strict; use warnings; # {{{
 
 use SLight::API::User;
+use SLight::Test::Site::EmailTemplates;
 # }}}
 
 # This module creates a set of Users.
 # It can be used as such, or as part of some bigger site.
 
 sub build { # {{{
+    # When playing with Users, you usually need email stuff too.
+    SLight::Test::Site::EmailTemplates::build();
+
     # A
     SLight::API::User::add_User(
         login  => 'aga',

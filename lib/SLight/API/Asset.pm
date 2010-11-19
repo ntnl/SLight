@@ -311,7 +311,7 @@ sub _image_thumbnailer { # {{{
 
     my $destination = _thumb_path($source);
 
-    slurp_pipe( 'convert -geometry 128x128 ' . $source .q{ }. $destination );
+    slurp_pipe( 'convert -geometry 128x128 ' . $source .q{ -strip +set date:create +set date:modify }. $destination );
 
     return $destination;
 } # }}}

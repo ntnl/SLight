@@ -1,0 +1,11 @@
+Dear ~~name~~,
+
+An account has been registered on ~~domain~~ by using the e-mail address ~~email~~.
+
+Please validate it by using the following link: ~~confirmation_link~~
+
+Thank you,
+Your SLight Automated Test.
+
+PS. This message was triggered by an automated test.
+If You DID received it, please simply ignore.

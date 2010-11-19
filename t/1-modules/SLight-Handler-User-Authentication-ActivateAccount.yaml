@@ -1,0 +1,127 @@
+---
+Activate already active account:
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
+    object_data:
+      o:
+        class: SLight_Object O-SL_ActivateAccount_User
+        content:
+        - class: SLight_Dialog
+          content:
+          - class: Message
+            content:
+            - class: generic
+              data:
+                text: Given activation key is incorrect. Please check spelling. Note,
+                  that letter case is important.
+              type: Label
+            type: Container
+          - class: Buttons
+            content: []
+            type: Container
+          type: Container
+        type: Container
+    object_order:
+    - o
+    template: Default
+  mime_type: ~
+  response: CONTENT
+Activate real account:
+  location: /_Authentication/ActivateAccount-thankyou.web
+  response: REDIRECT
+'Check: User account after activation':
+- email: test@subject.test
+  id: 6
+  login: Fooley
+  name: Test subject
+  status: Enabled
+'Check: User account before activation':
+- email: test@subject.test
+  id: 6
+  login: Fooley
+  name: Test subject
+  status: Guest
+Display 'Thank you' page:
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
+    object_data:
+      o:
+        class: SLight_Object O-SL_Register_User
+        content:
+        - class: SLight_Dialog
+          content:
+          - class: Message
+            content:
+            - class: generic
+              data:
+                text: Thank You for registering! An email has been sent to You, with
+                  further information.
+              type: Label
+            type: Container
+          - class: Buttons
+            content: []
+            type: Container
+          type: Container
+        type: Container
+    object_order:
+    - o
+    template: Default
+  mime_type: ~
+  response: CONTENT
+Register an User account:
+  location: /_Authentication/Register-thankyou.web
+  response: REDIRECT
+Try to activate fake account:
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
+    object_data:
+      o:
+        class: SLight_Object O-SL_ActivateAccount_User
+        content:
+        - class: SLight_Dialog
+          content:
+          - class: Message
+            content:
+            - class: generic
+              data:
+                text: Given activation key is incorrect. Please check spelling. Note,
+                  that letter case is important.
+              type: Label
+            type: Container
+          - class: Buttons
+            content: []
+            type: Container
+          type: Container
+        type: Container
+    object_order:
+    - o
+    template: Default
+  mime_type: ~
+  response: CONTENT

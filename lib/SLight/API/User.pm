@@ -16,7 +16,7 @@ use base 'Exporter';
 
 use SLight::Core::Entity;
 
-use Carp::Assert::More qw( assert_exists );
+use Carp::Assert::More qw( assert_exists assert_defined );
 use Digest::SHA qw( sha512_hex );
 use Params::Validate qw( :all );
 # }}}
@@ -172,13 +172,16 @@ sub is_User_registered { # {{{
 sub check_User_pass { # {{{
     my ( $login, $passwd ) = @_;
 
+    assert_defined($login);
+    assert_defined($passwd);
+
     my $users = $_handler->get_ENTITYs_fields_where(
         _fields => [qw( pass_enc )],
 
         login => $login,
     );
 
-    if ($users and ref $users eq 'ARRAY' and sha512_hex($passwd) eq $users->[0]->{'pass_enc'}) {
+    if ($users and $users->[0] and ref $users eq 'ARRAY' and sha512_hex($passwd) eq $users->[0]->{'pass_enc'}) {
         return $users->[0]->{'id'};
     }
 

@@ -13,7 +13,7 @@ Login form:
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_Login_Form
+        class: SLight_Object O-SL_User_Login
         content:
         - class: SL_Login_Form
           content:
@@ -67,7 +67,7 @@ Sending form with bad login/pass:
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_Login_Form
+        class: SLight_Object O-SL_User_Login
         content:
         - class: SL_Login_Form
           content:
@@ -115,6 +115,7 @@ Sending form with correct login/pass:
   location: /
   response: REDIRECT
 Session dump (after login):
+  id: 1
   login: aga
 Session dump (before fail): ~
 Session dump (before login): ~

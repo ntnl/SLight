@@ -28,6 +28,7 @@ CREATE TABLE Email_Verification_Key (
 
     FOREIGN KEY(`Email_id`) REFERENCES Email(`id`)
 );
+CREATE UNIQUE INDEX EVK_key ON Email_Verification_Key (key);
 
 CREATE TABLE User_Entity (
 	`id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it

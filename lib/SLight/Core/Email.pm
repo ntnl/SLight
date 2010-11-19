@@ -125,7 +125,6 @@ sub add_email { # {{{
     return SLight::Core::DB::last_insert_id();
 } # }}}
 
-=todo
 # Parameters:
 #   email : Email address
 #   title : Message title
@@ -143,11 +142,6 @@ sub send_to_email { # {{{
 #    print STDERR "Email : " . $P{'email'} . "\n";
 #    print STDERR "Title : " . $P{'title'} . "\n";
 #    print STDERR "Text  : " . $P{'text'} . "\n";
-
-    # Without those, MIME::Lite throws an error on UTF-8 (2010-05-31)
-#    utf8::encode($P{'email'});
-#    utf8::encode($P{'title'});
-#    utf8::encode($P{'text'});
 
 	my $lite_message = MIME::Lite->new(
 		From    => 'mailer@'. SLight::Core::Config::get_option('domain'),
@@ -168,14 +162,17 @@ sub send_to_email { # {{{
 
 #    warn "Sending mail to: $P{'email'}\n";
 
-    warn $lite_message->as_string();
+    # Archive the email in logs, in case something-is-wrong.
+    # ...and it aids development.
+    # Will be an option in 1.0 version.
+    print STDERR $lite_message->as_string();
 
     return send_lite($lite_message);
 } # }}}
 
-=cut
-
-#                           Guts.
+################################################################################
+#                                   Guts.                                      #
+################################################################################
 
 my $_clear_to_send = 1;
 

@@ -14,9 +14,13 @@ package SLight::Handler::User::Authentication::Register;
 use strict; use warnings; # {{{
 use base q{SLight::HandlerBase::User::AccountForm};
 
+use SLight::API::Email;
+use SLight::API::EVK qw( add_EVK );
 use SLight::API::User qw( add_User );
-use SLight::DataStructure::Dialog::Notification;
+use SLight::Core::Config;
+use SLight::Core::IO qw( unique_id );
 use SLight::Core::L10N qw( TR TF );
+use SLight::DataStructure::Dialog::Notification;
 # }}}
 
 sub handle_view { # {{{
@@ -95,7 +99,7 @@ sub handle_request { # {{{
     }
 
     # Create a 'Guest' User account, that someone must verify.
-    add_User(
+    my $id = add_User(
         login => $self->{'options'}->{'u-user'},
 
         name  => ( $self->{'options'}->{'u-name'} or q{} ),
@@ -107,7 +111,39 @@ sub handle_request { # {{{
     );
 
     # Send the notification...
+    my $activation_key = unique_id();
 
+    add_EVK(
+        email => $self->{'options'}->{'u-email'},
+        key   => $activation_key,
+
+        metadata => {
+            'made_by' => 'SLight::Handler::User::Authentication::Register',
+            'user_id' => $id,
+            'login'   => $self->{'options'}->{'u-user'},
+        }
+    );
+
+    my $activate_url = $self->build_url(
+        path_handler => 'Authentication',
+        path         => [],
+
+        action  => 'ActivateAccount',
+        step    => 'view',
+        options => {
+            login => $self->{'options'}->{'u-user'},
+            key   => $activation_key,
+        },
+    );
+
+    SLight::API::Email::send_registration(
+        email             => $self->{'options'}->{'u-email'},
+        domain            => SLight::Core::Config::get_option('domain'),
+        name              => ( $self->{'options'}->{'u-name'} or $self->{'options'}->{'u-user'} ),
+        confirmation_link => $activate_url,
+    );
+
+    # Redirect to 'Thank you' page.
     my $target_url = $self->build_url(
         path_handler => 'Authentication',
         path         => [],

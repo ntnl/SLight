@@ -26,6 +26,7 @@ plan tests =>
     + 2 # add_EVK
     + 1 # update_EVK
     + 3 # get_EVK
+    + 1 # get_EVK_by_key
     + 1 # delete_EVK
 ;
 
@@ -38,6 +39,7 @@ use SLight::API::EVK qw(
     update_EVK
     delete_EVK
     get_EVK
+    get_EVK_by_key
 );
 
 my $unique_id = unique_id();
@@ -84,6 +86,20 @@ is_deeply(
         },
     },
     q{get_EVK (1/3 - as update verification)},
+);
+
+is_deeply(
+    get_EVK_by_key($unique_id),
+    {
+        id    => $k2,
+        email => q{test@mail.tututu},
+        key   => $unique_id,
+        
+        metadata => {
+            foo => q{BarBarBar!}
+        },
+    },
+    q{get_EVK_by_key},
 );
 
 ok (

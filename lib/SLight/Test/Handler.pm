@@ -55,8 +55,14 @@ sub run_handler_tests { # {{{
                 {
                     strip_dates => $strip_dates,
                 }
-            ]
+            ],
         );
+
+        foreach my $cb (qw( call_after call_results call_before )) {
+            if ($t->{$cb}) {
+                $runner_test{$cb} = $t->{$cb};
+            }
+        }
 
         if ($t->{'sql_query'}) {
             $runner_test{'expect'}   = 'arrayref';

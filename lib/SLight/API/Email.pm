@@ -17,6 +17,7 @@ use SLight::Core::Config;
 use SLight::Core::Email;
 use SLight::Core::L10N qw( TR );
 
+use Encode qw( decode encode );
 use File::Slurp qw( read_file );
 use Params::Validate qw( :all );
 # }}}
@@ -53,7 +54,7 @@ sub send_confirmation { # {{{
 } # }}}
 
 # Purpose:
-#   Send message, which is used to check email addres of an User, that want's to create an account.
+#   Send message, which is used to check email address of an User, that wants to create an account.
 sub send_registration { # {{{
     my %P = validate(
         @_,

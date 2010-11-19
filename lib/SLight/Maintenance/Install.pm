@@ -49,6 +49,7 @@ sub make_site { # {{{
     mkdir $destination .q{assets};
     mkdir $destination .q{users};
     mkdir $destination .q{cache};
+    mkdir $destination .q{email};
 
     mkdir $destination .q{db};
 

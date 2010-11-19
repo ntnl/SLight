@@ -31,7 +31,7 @@ sub handle_authenticate { # {{{
     
 #    warn $self->{'options'}->{'user'}, $self->{'options'}->{'pass'};
 
-    my $user_id = check_User_pass($self->{'options'}->{'user'}, $self->{'options'}->{'pass'});
+    my $user_id = check_User_pass($self->{'options'}->{'user'}, ( $self->{'options'}->{'pass'} or q{} ));
 
     if (not $user_id) {
         return $self->_form(
