@@ -16,7 +16,7 @@ use base q{SLight::HandlerBase::CMS::Spec};
 
 use SLight::API::ContentSpec qw( get_ContentSpec );
 use SLight::Core::L10N qw( TR );
-use SLight::DataStructure::List::Table::Properties;
+use SLight::DataStructure::Properties;
 use SLight::DataToken qw( mk_Label_token mk_Link_token );
 
 use Carp;
@@ -68,7 +68,7 @@ sub handle_view { # {{{
 #    my $spec = get_ContentSpec($oid);
     my $spec = $metadata->{'spec'};
 
-    my $properties = SLight::DataStructure::List::Table::Properties->new(
+    my $properties = SLight::DataStructure::Properties->new(
         caption => TR(q{Specification}) . q{:},
     );
 

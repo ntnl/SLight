@@ -28,7 +28,7 @@ sub analyze_path { # {{{
     }
 
     my $object_class;
-    
+
     if (not scalar @{ $path }) {
         $object_class = $self->default_class();
     }
@@ -50,7 +50,7 @@ sub analyze_path { # {{{
     $self->set_object_order([qw( o )]);
 
     $self->set_main_object('o');
-    
+
     $self->set_template( 'Default' );
 
     return $self->response_content(); 
@@ -58,4 +58,3 @@ sub analyze_path { # {{{
 
 # vim: fdm=marker
 1;
-

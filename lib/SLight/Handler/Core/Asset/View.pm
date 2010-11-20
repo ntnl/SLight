@@ -16,7 +16,7 @@ use base q{SLight::Handler};
 
 use SLight::API::Asset qw( get_Asset );
 use SLight::Core::L10N qw( TR );
-use SLight::DataStructure::List::Table::Properties;
+use SLight::DataStructure::Properties;
 
 use Carp;
 use English qw( -no_match_vars );
@@ -37,7 +37,7 @@ sub handle_view { # {{{
         path         => [ 'Asset', $asset->{'id'}, ],
     );
 
-    my $properties = SLight::DataStructure::List::Table::Properties->new(
+    my $properties = SLight::DataStructure::Properties->new(
         caption => TR(q{Asset details:}),
     );
     

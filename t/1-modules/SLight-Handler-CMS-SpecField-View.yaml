@@ -23,22 +23,22 @@ Show field details:
             type: Label
           - class: default
             content:
-            - class: SLight_Caption
+            - class: SL_Property_Caption
               data:
                 text: 'Caption:'
               type: Label
-            - class: SLight_Value
+            - class: SL_Property_Value
               data:
                 text: Title
               type: Label
             type: Container
           - class: default
             content:
-            - class: SLight_Caption
+            - class: SL_Property_Caption
               data:
                 text: 'Data type:'
               type: Label
-            - class: SLight_Value
+            - class: SL_Property_Value
               data:
                 text: String
               type: Label

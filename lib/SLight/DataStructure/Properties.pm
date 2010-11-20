@@ -1,4 +1,4 @@
-package SLight::DataStructure::List::Table::Properties;
+package SLight::DataStructure::Properties;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -16,7 +16,7 @@ package SLight::DataStructure::List::Table::Properties;
 use strict; use warnings; # {{{
 use base 'SLight::DataStructure::List::Table';
 
-use SLight::DataToken qw( mk_Label_token mk_Container_token );
+use SLight::DataToken qw( mk_Label_token mk_Link_token mk_Container_token );
 
 use Params::Validate qw( :all );
 # }}}
@@ -71,16 +71,16 @@ sub add_Property { # {{{
     my @items;
 
     push @items, mk_Label_token(
-        class => 'SLight_Caption',
+        class => 'SL_Property_Caption',
         text  => $P{'caption'}
     );
     push @items, mk_Label_token(
-        class => 'SLight_Value',
+        class => 'SL_Property_Value',
         text  => $P{'value'}
     );
     if ($P{'extra_link'}) {
         push @items, mk_Link_token(
-            class   => 'extra_link',
+            class   => 'SL_Property_Link',
             text    => $P{'caption'},
             href    => $P{'extra_link'}
         );

@@ -1,0 +1,33 @@
+---
+basic usage:
+  class: SLight_Properties
+  content:
+  - class: default
+    content:
+    - class: SL_Property_Caption
+      data:
+        text: First
+      type: Label
+    - class: SL_Property_Value
+      data:
+        text: ''
+      type: Label
+    type: Container
+  - class: Full
+    content:
+    - class: SL_Property_Caption
+      data:
+        text: First
+      type: Label
+    - class: SL_Property_Value
+      data:
+        text: Filled
+      type: Label
+    - class: SL_Property_Link
+      data:
+        href: /out.html
+        text: First
+      type: Link
+    type: Container
+  data: {}
+  type: Container

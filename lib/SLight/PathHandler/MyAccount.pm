@@ -16,8 +16,6 @@ use base q{SLight::PathHandlerBase::SubClass};
 
 # }}}
 
-# FIXME: Check, if User has authenticated, and has proper status!
-
 sub default_class { # {{{
     return 'MyAccount::MyData';
 } # }}}

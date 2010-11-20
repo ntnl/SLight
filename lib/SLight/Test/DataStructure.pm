@@ -125,8 +125,8 @@ sub run_datastructure_tests { # {{{
 
 sub _run_test { # {{{
     my ( $structure, $method, $args ) = @_;
-
-    return $structure->$method->( @{ $args } );
+    
+    return $structure->$method( @{ $args } );
 } # }}}
 
 sub _run_final_test { # {{{

@@ -47,77 +47,77 @@ Display Spec:
             type: Label
           - class: default
             content:
-            - class: SLight_Caption
+            - class: SL_Property_Caption
               data:
                 text: 'Caption:'
               type: Label
-            - class: SLight_Value
+            - class: SL_Property_Value
               data:
                 text: Article
               type: Label
             type: Container
           - class: default
             content:
-            - class: SLight_Caption
+            - class: SL_Property_Caption
               data:
                 text: 'Handling module:'
               type: Label
-            - class: SLight_Value
+            - class: SL_Property_Value
               data:
                 text: CMS::Entry
               type: Label
             type: Container
           - class: default
             content:
-            - class: SLight_Caption
+            - class: SL_Property_Caption
               data:
                 text: 'Version:'
               type: Label
-            - class: SLight_Value
+            - class: SL_Property_Value
               data:
                 text: '0'
               type: Label
             type: Container
           - class: default
             content:
-            - class: SLight_Caption
+            - class: SL_Property_Caption
               data:
                 text: 'Order field:'
               type: Label
-            - class: SLight_Value
+            - class: SL_Property_Value
               data:
                 text: 'Data field: Article'
               type: Label
             type: Container
           - class: default
             content:
-            - class: SLight_Caption
+            - class: SL_Property_Caption
               data:
                 text: 'Title field:'
               type: Label
-            - class: SLight_Value
+            - class: SL_Property_Value
               data:
                 text: Id
               type: Label
             type: Container
           - class: default
             content:
-            - class: SLight_Caption
+            - class: SL_Property_Caption
               data:
                 text: 'Menu field:'
               type: Label
-            - class: SLight_Value
+            - class: SL_Property_Value
               data:
                 text: 'Data field: Title'
               type: Label
             type: Container
           - class: default
             content:
-            - class: SLight_Caption
+            - class: SL_Property_Caption
               data:
                 text: 'Path field:'
               type: Label
-            - class: SLight_Value
+            - class: SL_Property_Value
               data:
                 text: Id
               type: Label
@@ -136,22 +136,22 @@ Display Spec:
             type: Label
           - class: default
             content:
-            - class: SLight_Caption
+            - class: SL_Property_Caption
               data:
                 text: 'Caption:'
               type: Label
-            - class: SLight_Value
+            - class: SL_Property_Value
               data:
                 text: Article
               type: Label
             type: Container
           - class: default
             content:
-            - class: SLight_Caption
+            - class: SL_Property_Caption
               data:
                 text: 'Data type:'
               type: Label
-            - class: SLight_Value
+            - class: SL_Property_Value
               data:
                 text: Text
               type: Label
@@ -183,22 +183,22 @@ Display Spec:
             type: Label
           - class: default
             content:
-            - class: SLight_Caption
+            - class: SL_Property_Caption
               data:
                 text: 'Caption:'
               type: Label
-            - class: SLight_Value
+            - class: SL_Property_Value
               data:
                 text: Title
               type: Label
             type: Container
           - class: default
             content:
-            - class: SLight_Caption
+            - class: SL_Property_Caption
               data:
                 text: 'Data type:'
               type: Label
-            - class: SLight_Value
+            - class: SL_Property_Value
               data:
                 text: String
               type: Label

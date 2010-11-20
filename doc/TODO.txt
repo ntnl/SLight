@@ -187,9 +187,9 @@
 [X]             New password form
 [X]             Password reset
 [X]             Automated test
-[ ]     SLight::Handler::MyAccount (allow the User to manage his account)
-[ ]         SLight::Handler::MyAccount::MyData::Overview (ex: Profile::Overview)
-[ ]             Implementation
+[>]     SLight::Handler::MyAccount (allow the User to manage his account)
+[>]         SLight::Handler::MyAccount::MyData::Overview (ex: Profile::Overview)
+[>]             Implementation
 [ ]             Test
 [ ]         SLight::Handler::MyAccount::MyData::Edit (ex: Profile::Edit)
 [ ]             Show form
@@ -260,6 +260,9 @@
 [-]     SLight::DataStructure::List (ex CoMe...GenericGrid)
 [-]         Implement
 [ ]         Test
+[X]     DataStructure::List::Table::Properties
+[X]         Rename to DataStructure::Properties
+[X]         Write test
 [ ] SLight::Handler::Error
 [ ]     SLight::Handler::Error::NotFound <-- Resource not found)
 [ ]             Implementation
@@ -290,8 +293,10 @@
 [ ]         Support 'login' and 'user_id' parameters, along with 'email', to sign the stuff.
 [ ]     Asset
 [ ]         Support 'login' and 'user_id' parameters, along with 'email', to sign the stuff.
-[>] Core functionality
-[>]     Email sending
+[-] Core functionality
+[-]     Email sending
+[X]         Implementation
+[ ]         Automated test
 [ ]     Split 'content' into "objects before", "main object", "objects after" (with 'content' support maintained)
 [ ] Development
 [ ]     Implement SLight::Dbg (with Dbg, a Dumper-like function)
@@ -307,6 +312,7 @@
 [ ]     Breadcrumbs are missing on Authentication, MyAccount and Account pages.
 [ ]     Implement ability to verify, if a Handler exists (such check is hard at the moment).
 [ ]     Compilation errors in Addons kill the whole page!
+[ ]     User remains not logged-in in some places in User::Authentication (check and fix this)
 
     Definition of done:
 

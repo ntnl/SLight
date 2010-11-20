@@ -1,4 +1,4 @@
-package SLight::Handler::MyAccount::MyData::Overview;
+package SLight::HandlerBase::User::MyAccount;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -12,16 +12,23 @@ package SLight::Handler::MyAccount::MyData::Overview;
 # 
 ################################################################################
 use strict; use warnings; # {{{
-use base q{SLight::HandlerBase::User::MyAccount};
+use base q{SLight::Handler};
 
 # }}}
 
-sub handle_view { # {{{
-    my ( $self, $oid, $metadata ) = @_;
+sub get_user_data { # {{{
+    my ( $self ) = @_;
 
-    my $user_data = ( $self->get_user_data() or return );
+    if ($self->{'user'}->{'id'}) {
+        my $user = get_User($self->{'user'}->{'id'});
 
-    
+
+        # FIXME! Check status!
+
+        return $user;
+    }
+
+    # Return AccessDenied error!
 
     return;
 } # }}}
