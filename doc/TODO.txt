@@ -162,7 +162,7 @@
 [X]     SLight::PathHandler::MyAccount      ([X] Test [X] Implementation)
 [X]     SLight::PathHandler::Account        ([X] Test [X] Implementation)
 [>] User-related Handler objects
-[>]     SLight::Handler::User::Authentication (allow the User to authenticate itself)
+[X]     SLight::Handler::User::Authentication (allow the User to authenticate itself)
 [X]         SLight::Handler::User::Authentication::Login (form + the actual authentication)
 [X]             Implementation
 [X]             Test
@@ -181,12 +181,12 @@
 [X]             Verification - neutral (account already active)
 [X]             Thank you page
 [X]             Automated test
-[>]         SLight::Handler::User::Authentication::Password
-[>]             Password recovery form
-[ ]             Send recovery link + confirmation page
-[ ]             New password form
-[ ]             Password reset
-[>]             Automated test
+[X]         SLight::Handler::User::Authentication::Password
+[X]             Password recovery form
+[X]             Send recovery link + confirmation page
+[X]             New password form
+[X]             Password reset
+[X]             Automated test
 [ ]     SLight::Handler::MyAccount (allow the User to manage his account)
 [ ]         SLight::Handler::MyAccount::MyData::Overview (ex: Profile::Overview)
 [ ]             Implementation

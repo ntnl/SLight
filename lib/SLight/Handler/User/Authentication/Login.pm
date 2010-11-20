@@ -16,7 +16,7 @@ use base q{SLight::Handler};
 
 use SLight::API::User qw( check_User_pass get_User );
 use SLight::Core::L10N qw( TR TF );
-use SLight::Core::Session;
+use SLight::HandlerBase::User::Login;
 use SLight::HandlerUtils::LoginForm;
 # }}}
 
@@ -43,14 +43,7 @@ sub handle_authenticate { # {{{
 
     my $user = get_User($user_id);
 
-    my %user_hash = (
-        login => $user->{'login'},
-        id    => $user->{'id'},
-    );
-    SLight::Core::Session::part_set(
-        'user',
-        \%user_hash
-    );
+    SLight::HandlerBase::User::Login::login($user->{'id'}, $user->{'login'});
 
     $self->redirect(
         $self->build_url(
