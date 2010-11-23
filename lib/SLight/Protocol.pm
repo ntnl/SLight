@@ -73,6 +73,7 @@ sub S_process_object { # {{{
     my $result = $handler_object->handle(
         page     => $self->{'page'},
         url      => $self->{'url'},
+        user     => $self->{'user'},
         options  => $self->{'options'},
         step     => $step,
         oid      => $object->{'oid'},

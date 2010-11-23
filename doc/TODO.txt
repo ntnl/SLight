@@ -188,11 +188,15 @@
 [X]             Password reset
 [X]             Automated test
 [>]     SLight::Handler::MyAccount (allow the User to manage his account)
-[>]         SLight::Handler::MyAccount::MyData::Overview (ex: Profile::Overview)
-[>]             Implementation
-[ ]             Test
-[ ]         SLight::Handler::MyAccount::MyData::Edit (ex: Profile::Edit)
-[ ]             Show form
+[>]         SLight::HandlerBase::MyAccount
+[X]             Get User's data
+[ ]             Handle non-logged-in User
+[ ]             Handle disabled user
+[X]         SLight::Handler::MyAccount::MyData::View (ex: Profile::Overview)
+[X]             Implementation
+[X]             Test
+[>]         SLight::Handler::MyAccount::MyData::Edit (ex: Profile::Edit)
+[>]             Show form
 [ ]             Change data + redirect to overview.
 [ ]             Write automated test
 [ ]         SLight::Handler::MyAccount::MyData::Password
@@ -211,10 +215,10 @@
 [ ]             Perform the deletion
 [ ]             Test
 [ ]     SLight::Handler::Account (allow site owner to manage User accounts)
-[ ]         SLight::Handler::Account::List::Overview
+[ ]         SLight::Handler::Account::List::View
 [ ]             Implementation
 [ ]             Test
-[ ]         SLight::Handler::Account::Account::Overview
+[ ]         SLight::Handler::Account::Account::View
 [ ]             Implementation
 [ ]             Test
 [ ]         SLight::Handler::Account::Account::New
@@ -358,6 +362,8 @@
 [ ]             Form - show
 [ ]             Form - save
 [ ]             Test
+[ ] HTML templateing-related
+[ ]     Add 'delimiter' - either as a widget, or as sub-section to lists
 [ ] Bugs
 [ ]     On CMS Delete dialog, the 'No' option redirects to the dialog (should redirect to the object's View action)
 [ ]     http://slight.notebook/_CMS_Spec/Field/1/Title/ is missing crumbs :(

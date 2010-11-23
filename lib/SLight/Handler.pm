@@ -58,6 +58,7 @@ sub handle { # {{{
             step    => { type=>SCALAR },
             page    => { type=>HASHREF },
             url     => { type=>HASHREF },
+            user    => { type=>HASHREF },
             options => { type=>HASHREF },
             
             oid      => { type=>SCALAR | UNDEF },
@@ -69,6 +70,7 @@ sub handle { # {{{
     
     $self->{'page'}    = $P{'page'};
     $self->{'url'}     = $P{'url'};
+    $self->{'user'}    = $P{'user'};
     $self->{'options'} = $P{'options'};
 
     $self->{'is_main_object'} = $P{'is_main_object'};

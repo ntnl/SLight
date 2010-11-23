@@ -103,6 +103,8 @@ sub _run_test { # {{{
         foreach my $part (keys %{ $t->{'session'} }) {
             SLight::Core::Session::part_set($part, $t->{'session'}->{$part});
         }
+        
+        SLight::Core::Session::save();
     }
 
     assert_defined($t->{'url'});

@@ -32,6 +32,7 @@ my %tests = (
                 args   => [
                     caption => 'First',
                 ],
+                expect => 'undef',
             },
             {
                 name   => "Full property",
@@ -44,6 +45,7 @@ my %tests = (
                     extra_caption => q{Go out},
                     extra_link    => q{/out.html},
                 ],
+                expect => 'undef',
             },
         ],
     },

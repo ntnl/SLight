@@ -143,10 +143,6 @@ sub session_id { # {{{
 sub part { # {{{
     my ( $part_name, $value ) = @_;
 
-    if (defined $value) {
-        part_set($part_name, $value);
-    }
-
     return $session->{$part_name};
 } # }}}
 

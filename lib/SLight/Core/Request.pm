@@ -118,6 +118,8 @@ sub main { # {{{
     my $protocol_object;
     my $user_hash = SLight::Core::Session::part('user');
 
+    use Data::Dumper; warn Dumper $user_hash;
+
     # Stage I, preparing for the request.
     my $stage_1_complete = eval {
         task_starts("SLight::Core::Request preparation");
@@ -230,7 +232,7 @@ sub main { # {{{
 
     my $response_result = eval {
         return $protocol_object->respond(
-            user    => ( $user_hash or {} ),
+            user    => ( $user_hash or { login => undef, id => undef } ),
             url     => $P{'url'},
             options => $P{'options'},
             page    => $page_content,
