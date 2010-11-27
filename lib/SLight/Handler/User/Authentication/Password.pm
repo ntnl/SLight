@@ -44,7 +44,7 @@ sub handle_view { # {{{
 
     $self->push_data($form);
 
-    return
+    return;
 } # }}}
 
 sub handle_request { # {{{
@@ -191,7 +191,7 @@ sub handle_change { # {{{
         my $errors = validate_input(
             $self->{'options'},
             {
-                pass => { type=>'Password', extras=>{ 'pass-repeat'=>$self->{'options'}->{'pass-repeat'} } },
+                pass => { type=>'Password', max_length => 128, extras=>{ 'pass-repeat'=>$self->{'options'}->{'pass-repeat'} } },
             }
         );
 

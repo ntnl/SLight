@@ -27,7 +27,9 @@ our @EXPORT_OK = qw(
     delete_User
 
     get_User
+    get_User_by_login
     get_Users
+    get_all_Users
     get_User_ids_where
     get_Users_where
 
@@ -131,8 +133,43 @@ sub get_User { # {{{
     return $user;
 } # }}}
 
+# Purpose:
+#   Utility method, that wraps get_Users_where for ease of API use.
+sub get_User_by_login { # {{{
+    my ( $login ) = @_;
+
+    my $users = $_handler->get_ENTITYs_where(
+        login => $login,
+    );
+
+    if (not $users) {
+        return;
+    }
+
+    if (not $users->[0]) {
+        return;
+    }
+
+    my $user = $users->[0];
+
+    delete $user->{'pass_enc'};
+
+    return $user;
+} # }}}
+
 sub get_Users { # {{{
     my $users = $_handler->get_ENTITYs(@_);
+
+    if ($users) {
+        map { delete $_->{'pass_enc'} } @{ $users };
+    }
+
+    return $users;
+} # }}}
+
+# FIXME: update automated test.
+sub get_all_Users { # {{{
+    my $users = $_handler->get_all_ENTITYs(@_);
 
     if ($users) {
         map { delete $_->{'pass_enc'} } @{ $users };

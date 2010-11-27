@@ -1,0 +1,163 @@
+---
+'User ''aga'', status: Enabled':
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
+    object_data:
+      o:
+        class: SLight_Object O-SL_MyAccount_MyData
+        content:
+        - class: SLight_Properties
+          content:
+          - class: default
+            content:
+            - class: SL_Property_Caption
+              data:
+                text: 'Login:'
+              type: Label
+            - class: SL_Property_Value
+              data:
+                text: aga
+              type: Label
+            type: Container
+          - class: default
+            content:
+            - class: SL_Property_Caption
+              data:
+                text: 'Status:'
+              type: Label
+            - class: SL_Property_Value
+              data:
+                text: Enabled
+              type: Label
+            type: Container
+          - class: default
+            content:
+            - class: SL_Property_Caption
+              data:
+                text: 'Name:'
+              type: Label
+            - class: SL_Property_Value
+              data:
+                text: Agnieszka
+              type: Label
+            type: Container
+          - class: default
+            content:
+            - class: SL_Property_Caption
+              data:
+                text: 'Email:'
+              type: Label
+            - class: SL_Property_Value
+              data:
+                text: agnes@test.test
+              type: Label
+            type: Container
+          data: {}
+          type: Container
+        type: Container
+    object_order:
+    - o
+    template: Default
+  mime_type: ~
+  response: CONTENT
+'User ''nataly'', status: Guest':
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
+    object_data:
+      o:
+        class: SLight_Object O-SL_MyAccount_MyData
+        content:
+        - class: SLight_Properties
+          content:
+          - class: default
+            content:
+            - class: SL_Property_Caption
+              data:
+                text: 'Login:'
+              type: Label
+            - class: SL_Property_Value
+              data:
+                text: nataly
+              type: Label
+            type: Container
+          - class: default
+            content:
+            - class: SL_Property_Caption
+              data:
+                text: 'Status:'
+              type: Label
+            - class: SL_Property_Value
+              data:
+                text: Guest
+              type: Label
+            type: Container
+          - class: default
+            content:
+            - class: SL_Property_Caption
+              data:
+                text: 'Name:'
+              type: Label
+            - class: SL_Property_Value
+              data:
+                text: Natalia
+              type: Label
+            type: Container
+          - class: default
+            content:
+            - class: SL_Property_Caption
+              data:
+                text: 'Email:'
+              type: Label
+            - class: SL_Property_Value
+              data:
+                text: natka@test.test
+              type: Label
+            type: Container
+          data: {}
+          type: Container
+        type: Container
+    object_order:
+    - o
+    template: Default
+  mime_type: ~
+  response: CONTENT
+'User ''wanda'', status: Disabled':
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
+    object_data:
+      o:
+        class: SLight_Object O-SL_MyAccount_MyData
+        content: []
+        type: Container
+    object_order:
+    - o
+    template: Default
+  mime_type: ~
+  response: CONTENT

@@ -17,6 +17,7 @@ use base 'SLight::DataStructure';
 
 use SLight::DataToken qw( mk_List_token );
 
+use Carp::Assert::More qw( assert_defined );
 use Params::Validate qw( :all );
 # }}}
 
@@ -25,6 +26,7 @@ use Params::Validate qw( :all );
 #   {
 #       caption => text,
 #       name    => text,
+#       class   => text, # Optional
 #   },
 #   ...
 # ]
@@ -45,6 +47,16 @@ sub _new { # {{{
     $self->set_data(
         $self->_make_container( $P{'class'}, $self->{'Items'} )
     );
+
+    # Self-checks and defaults.
+    foreach my $column (@{ $self->{'Columns'} }) {
+        assert_defined($column->{'name'});
+        assert_defined($column->{'caption'});
+        
+        if (not $column->{'class'}) {
+            $column->{'class'} = 'generic';
+        }
+    }
 
     return;
 } # }}}

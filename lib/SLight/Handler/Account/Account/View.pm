@@ -1,4 +1,4 @@
-package SLight::Handler::MyAccount::MyData::View;
+package SLight::Handler::Account::Account::View;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -12,13 +12,15 @@ package SLight::Handler::MyAccount::MyData::View;
 # 
 ################################################################################
 use strict; use warnings; # {{{
-use base q{SLight::HandlerBase::User::MyAccount};
+use base q{SLight::Handler};
 
+use SLight::API::User qw( get_User_by_login );
 use SLight::DataStructure::Properties;
 use SLight::Core::L10N qw( TR );
 # }}}
 
 # FIXME:
+# - add permissions overview
 # - add avatar
 # - add toolbox
 # - add path
@@ -26,9 +28,9 @@ use SLight::Core::L10N qw( TR );
 sub handle_view { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
-    $self->set_class('SL_MyAccount_MyData');
+    $self->set_class('SL_Account_Data');
 
-    my $user_data = ( $self->get_user_data() or return );
+    my $user_data = get_User_by_login($oid);
 
     my $my_data = SLight::DataStructure::Properties->new();
 
@@ -41,6 +43,10 @@ sub handle_view { # {{{
         value   => TR($user_data->{'status'}),
     );
     $my_data->add_Property(
+        caption => TR('ID') . q{:},
+        value   => $user_data->{'id'},
+    );
+    $my_data->add_Property(
         caption => TR('Name') . q{:},
         value   => $user_data->{'name'},
     );
@@ -50,7 +56,7 @@ sub handle_view { # {{{
     );
 
     $self->push_data($my_data);
-    
+
     return;
 } # }}}
 

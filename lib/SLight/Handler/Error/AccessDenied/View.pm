@@ -1,4 +1,4 @@
-package SLight::Handler::Error::AuthRequired::Overview;
+package SLight::Handler::Error::AccessDenied::View;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.

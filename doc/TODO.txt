@@ -187,44 +187,17 @@
 [X]             New password form
 [X]             Password reset
 [X]             Automated test
-[>]     SLight::Handler::MyAccount (allow the User to manage his account)
-[>]         SLight::HandlerBase::MyAccount
-[X]             Get User's data
-[ ]             Handle non-logged-in User
-[ ]             Handle disabled user
-[X]         SLight::Handler::MyAccount::MyData::View (ex: Profile::Overview)
+[>]     SLight::Handler::Account (allow site owner to manage User accounts)
+[X]         SLight::Handler::Account::List::View
 [X]             Implementation
 [X]             Test
-[>]         SLight::Handler::MyAccount::MyData::Edit (ex: Profile::Edit)
-[>]             Show form
-[ ]             Change data + redirect to overview.
-[ ]             Write automated test
-[ ]         SLight::Handler::MyAccount::MyData::Password
-[ ]             Display form
-[ ]             Perform password change
-[ ]             Test
-[ ]         SLight::Handler::MyAccount::Avatar::Overview
-[ ]             Implementation
-[ ]             Test
-[ ]         SLight::Handler::MyAccount::Avatar::Change
-[ ]             Form
-[ ]             Perform avatar change
-[ ]             Test
-[ ]         SLight::Handler::MyAccount::Avatar::Delete
-[ ]             Show dialog
-[ ]             Perform the deletion
-[ ]             Test
-[ ]     SLight::Handler::Account (allow site owner to manage User accounts)
-[ ]         SLight::Handler::Account::List::View
-[ ]             Implementation
-[ ]             Test
-[ ]         SLight::Handler::Account::Account::View
-[ ]             Implementation
-[ ]             Test
-[ ]         SLight::Handler::Account::Account::New
-[ ]             Form - show
-[ ]             Form - save
-[ ]             Test
+[X]         SLight::Handler::Account::Account::View
+[X]             Implementation
+[X]             Test
+[>]         SLight::Handler::Account::Account::New
+[X]             Form - show
+[X]             Form - save
+[>]             Test
 [ ]         SLight::Handler::Account::Account::Edit
 [ ]             Form - show
 [ ]             Form - save
@@ -237,13 +210,13 @@
 [ ]             Form - show
 [ ]             Form - save
 [ ]             Test
-[ ]         SLight::Handler::Account::Permissions::Overview
+[ ]         SLight::Handler::Account::Permissions::View
 [ ]             Implementation
 [ ]             Test
 [ ]         SLight::Handler::Account::Permissions::Change
 [ ]             Implementation
 [ ]             Test
-[ ]         SLight::Handler::Account::Avatar::Overviewagnes@test.test
+[ ]         SLight::Handler::Account::Avatar::View
 [ ]             Implementation
 [ ]             Test
 [ ]         SLight::Handler::Account::Avatar::Change
@@ -256,6 +229,33 @@
 [ ]             Test
 [ ]         SLight::Handler::Account::Avatar::Image
 [ ]             Implementation
+[ ]             Test
+[-]     SLight::Handler::MyAccount (allow the User to manage his account)
+[-]         SLight::HandlerBase::MyAccount
+[X]             Get User's data
+[ ]             Handle non-logged-in User
+[ ]             Handle disabled user
+[X]         SLight::Handler::MyAccount::MyData::View (ex: Profile::Overview)
+[X]             Implementation
+[X]             Test
+[X]         SLight::Handler::MyAccount::MyData::Edit (ex: Profile::Edit)
+[X]             Show form
+[X]             Change data + redirect to overview.
+[X]             Write automated test
+[ ]         SLight::Handler::MyAccount::MyData::Password
+[ ]             Display form
+[ ]             Perform password change
+[ ]             Test
+[ ]         SLight::Handler::MyAccount::Avatar::View
+[ ]             Implementation
+[ ]             Test
+[ ]         SLight::Handler::MyAccount::Avatar::Change
+[ ]             Form
+[ ]             Perform avatar change
+[ ]             Test
+[ ]         SLight::Handler::MyAccount::Avatar::Delete
+[ ]             Show dialog
+[ ]             Perform the deletion
 [ ]             Test
 [-] DataStructure
 [-]     SLight::DataStructure::Form (ex CoMe...GenericForm)
@@ -303,12 +303,16 @@
 [ ]         Automated test
 [ ]     Split 'content' into "objects before", "main object", "objects after" (with 'content' support maintained)
 [ ] Development
+[ ]     Built-in EVK support in Test::Handler
+[ ]     Built-in Email support in Test::Handler
+[ ]     Built-in SLight::IO::unique_id support in Test::Handler
 [ ]     Implement SLight::Dbg (with Dbg, a Dumper-like function)
 [ ]     Make sure, that every module has SLight::Dbg included in it (do there is always an 'warn Data::Dumper::Dumper' named D around)
 [ ]     Make a script, that creates fully usable sandbox from test site.
 [ ]     Intercept STDERR (when enabled) and handle it to Debug Addon
 [ ]     Implement DB-schema-update utility.
 [ ]     Version bump to 0.0.3
+[ ]     Create module with Validator 'magic' - common metadata (SLight User hash, etc)
 [ ] Bugs:
 [ ]     Email is not mandatory in some (Asset, Content) API calls (but it should)
 [ ]     Some API calls (Asset, Content) should return login as well (not just email)
@@ -436,7 +440,7 @@
 [ ]             Form - show
 [ ]             Form - save
 [ ]             Test
-[ ]         SLight::Handler::Forum::Thread::Overview
+[ ]         SLight::Handler::Forum::Thread::View
 [ ]             Implement
 [ ]             Test
 [ ]         SLight::Handler::Forum::Thread::Delete
@@ -497,7 +501,7 @@
 [ ]         get_User_Groups
 [ ] User Group support
 [ ]     SLight::Handler::Group
-[ ]         SLight::Handler::Group::List::Overview
+[ ]         SLight::Handler::Group::List::View
 [ ]             Implement
 [ ]             Test
 [ ]         SLight::Handler::Group::Group::New
@@ -512,7 +516,7 @@
 [ ]             Show dialog
 [ ]             Perform the operation
 [ ]             Test
-[ ]         SLight::Handler::Group::Permissions::Overview
+[ ]         SLight::Handler::Group::Permissions::View
 [ ]             Implement
 [ ]             Test
 [ ]         SLight::Handler::Group::Permissions::Change

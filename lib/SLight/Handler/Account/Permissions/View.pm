@@ -1,4 +1,4 @@
-package SLight::Handler::Account::List::Overview;
+package SLight::Handler::Account::Permissions::View;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.

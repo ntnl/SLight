@@ -1,4 +1,4 @@
-package SLight::Handler::Error::InternalError::Overview;
+package SLight::Handler::Error::InternalError::View;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.

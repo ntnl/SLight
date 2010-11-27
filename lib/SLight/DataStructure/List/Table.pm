@@ -44,7 +44,7 @@ sub add_Row { # {{{
     foreach my $column (@{ $self->{'Columns'} }) {
         my $content = $self->make_label_if_text(
             object => $P{'data'}->{ $column->{'name'} },
-            class  => $column->{'class'}
+            class  => $column->{'class'},
         );
 
         push @columns, mk_TableCell_token(

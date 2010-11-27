@@ -1,0 +1,325 @@
+---
+List of accounts:
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
+      Core::Toolbox:
+        class: SLight_Toolbox_Plugin
+        content:
+        - class: SLight_New_Action
+          data:
+            caption: Add new Account
+            href: /_Account/add/Account/New-en.web_test
+          type: Action
+        type: Container
+    object_data:
+      o:
+        class: SLight_Object O-SL_AccountList
+        content:
+        - class: SL_AccountList
+          content:
+          - class: Enabled
+            content:
+            - class: generic
+              content:
+              - class: generic
+                data:
+                  href: /_Account/aga/Account/
+                  text: aga
+                type: Link
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            - class: generic
+              content:
+              - class: generic
+                data:
+                  text: Enabled
+                type: Label
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            - class: generic
+              content:
+              - class: generic
+                data:
+                  text: Agnieszka
+                type: Label
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            - class: generic
+              content:
+              - class: SLight_Toolbox
+                content:
+                - class: SLight_Edit_Action
+                  data:
+                    caption: Edit
+                    href: /_Account/aga/Account/Edit-en.web_test
+                  type: Action
+                - class: SLight_Permissions_Action
+                  data:
+                    caption: Permissions
+                    href: /_Account/aga/Permissions/Permissions-en.web_test
+                  type: Action
+                - class: SLight_Delete_Action
+                  data:
+                    caption: Delete
+                    href: /_Account/aga/Account/Delete-en.web_test
+                  type: Action
+                type: Container
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            type: TableRow
+          - class: Enabled
+            content:
+            - class: generic
+              content:
+              - class: generic
+                data:
+                  href: /_Account/beti/Account/
+                  text: beti
+                type: Link
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            - class: generic
+              content:
+              - class: generic
+                data:
+                  text: Enabled
+                type: Label
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            - class: generic
+              content:
+              - class: generic
+                data:
+                  text: Beata
+                type: Label
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            - class: generic
+              content:
+              - class: SLight_Toolbox
+                content:
+                - class: SLight_Edit_Action
+                  data:
+                    caption: Edit
+                    href: /_Account/beti/Account/Edit-en.web_test
+                  type: Action
+                - class: SLight_Permissions_Action
+                  data:
+                    caption: Permissions
+                    href: /_Account/beti/Permissions/Permissions-en.web_test
+                  type: Action
+                - class: SLight_Delete_Action
+                  data:
+                    caption: Delete
+                    href: /_Account/beti/Account/Delete-en.web_test
+                  type: Action
+                type: Container
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            type: TableRow
+          - class: Enabled
+            content:
+            - class: generic
+              content:
+              - class: generic
+                data:
+                  href: /_Account/ela/Account/
+                  text: ela
+                type: Link
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            - class: generic
+              content:
+              - class: generic
+                data:
+                  text: Enabled
+                type: Label
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            - class: generic
+              content:
+              - class: generic
+                data:
+                  text: Elżbieta
+                type: Label
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            - class: generic
+              content:
+              - class: SLight_Toolbox
+                content:
+                - class: SLight_Edit_Action
+                  data:
+                    caption: Edit
+                    href: /_Account/ela/Account/Edit-en.web_test
+                  type: Action
+                - class: SLight_Permissions_Action
+                  data:
+                    caption: Permissions
+                    href: /_Account/ela/Permissions/Permissions-en.web_test
+                  type: Action
+                - class: SLight_Delete_Action
+                  data:
+                    caption: Delete
+                    href: /_Account/ela/Account/Delete-en.web_test
+                  type: Action
+                type: Container
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            type: TableRow
+          - class: Guest
+            content:
+            - class: generic
+              content:
+              - class: generic
+                data:
+                  href: /_Account/nataly/Account/
+                  text: nataly
+                type: Link
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            - class: generic
+              content:
+              - class: generic
+                data:
+                  text: Guest
+                type: Label
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            - class: generic
+              content:
+              - class: generic
+                data:
+                  text: Natalia
+                type: Label
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            - class: generic
+              content:
+              - class: SLight_Toolbox
+                content:
+                - class: SLight_Edit_Action
+                  data:
+                    caption: Edit
+                    href: /_Account/nataly/Account/Edit-en.web_test
+                  type: Action
+                - class: SLight_Permissions_Action
+                  data:
+                    caption: Permissions
+                    href: /_Account/nataly/Permissions/Permissions-en.web_test
+                  type: Action
+                - class: SLight_Delete_Action
+                  data:
+                    caption: Delete
+                    href: /_Account/nataly/Account/Delete-en.web_test
+                  type: Action
+                type: Container
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            type: TableRow
+          - class: Disabled
+            content:
+            - class: generic
+              content:
+              - class: generic
+                data:
+                  href: /_Account/wanda/Account/
+                  text: wanda
+                type: Link
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            - class: generic
+              content:
+              - class: generic
+                data:
+                  text: Disabled
+                type: Label
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            - class: generic
+              content:
+              - class: generic
+                data:
+                  text: Wanda L.
+                type: Label
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            - class: generic
+              content:
+              - class: SLight_Toolbox
+                content:
+                - class: SLight_Edit_Action
+                  data:
+                    caption: Edit
+                    href: /_Account/wanda/Account/Edit-en.web_test
+                  type: Action
+                - class: SLight_Permissions_Action
+                  data:
+                    caption: Permissions
+                    href: /_Account/wanda/Permissions/Permissions-en.web_test
+                  type: Action
+                - class: SLight_Delete_Action
+                  data:
+                    caption: Delete
+                    href: /_Account/wanda/Account/Delete-en.web_test
+                  type: Action
+                type: Container
+              data:
+                colspan: 0
+                rowspan: 0
+              type: TableCell
+            type: TableRow
+          type: Table
+        type: Container
+    object_order:
+    - o
+    template: Default
+  mime_type: ~
+  response: CONTENT

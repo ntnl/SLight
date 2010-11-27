@@ -1,4 +1,4 @@
-package SLight::Handler::MyAccount::Avatar::Overview;
+package SLight::Handler::Error::AuthRequired::View;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.

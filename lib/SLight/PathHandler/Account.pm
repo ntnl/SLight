@@ -51,7 +51,7 @@ sub analyze_path { # {{{
     $self->set_object_order([qw( o )]);
 
     $self->set_main_object('o');
-    
+
     $self->set_template( 'Default' );
 
     return $self->response_content(); 

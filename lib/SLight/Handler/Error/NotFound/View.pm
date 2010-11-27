@@ -1,4 +1,4 @@
-package SLight::Handler::Error::AccessDenied::Overview;
+package SLight::Handler::Error::NotFound::View;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.

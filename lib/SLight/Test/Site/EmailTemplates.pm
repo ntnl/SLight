@@ -25,7 +25,7 @@ sub build { # {{{
         qq{\n}.
         qq{This is a verification email sent to address: ~~email~~\n}.
         qq{\n}.
-        qq{To use it in on the site, You have confirm, that You are it's rightful user,\n}.
+        qq{To use it in on the site, You have to confirm, that You are it's rightful user,\n}.
         qq{by using the following link: ~~confirmation_link~~\n}.
         qq{\n}.
         qq{Thank you,\n}.
