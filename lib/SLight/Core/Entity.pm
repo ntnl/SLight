@@ -277,7 +277,7 @@ sub add_ENTITY { # {{{
     SLight::Core::DB::run_insert(
         'into'   => $self->{'base_table'},
         'values' => \%P,
-#        debug    => 1, 
+        'debug'  => $P{'_debug'},
     );
 
     my $entity_id = SLight::Core::DB::last_insert_id();
@@ -298,7 +298,7 @@ sub add_ENTITY { # {{{
                     %{ $data },
                     $self->{'base_table'} . q{_id} => $entity_id,
                 },
-#                debug    => 1, 
+                'debug'  => $P{'_debug'},
             );
         }
     }
@@ -311,7 +311,7 @@ sub update_ENTITY { # {{{
 
     assert_positive_integer($P{'id'});
 
-#    $P{'debug'} = 1;
+#    $P{'_debug'} = 1;
 
     my %values;
     foreach my $field (@{ $self->{'_all_fields'} }) {
@@ -340,7 +340,7 @@ sub update_ENTITY { # {{{
         'where' => [
             'id = ', $P{'id'},
         ],
-        'debug' => $P{'debug'}, 
+        'debug' => $P{'_debug'}, 
     );
 
     my $current_data = $self->get_ENTITY($P{'id'});
@@ -367,14 +367,14 @@ sub update_ENTITY { # {{{
                         'table' => $self->{'child_table'},
                         'set'   => $data_entry->{'data'},
                         'where' => \@where,
-                        'debug' => $P{'debug'}, 
+                        'debug' => $P{'_debug'},
                     );
                 }
                 else {
                     SLight::Core::DB::run_delete(
                         'from'  => $self->{'child_table'},
                         'where' => \@where,
-                        'debug' => $P{'debug'}, 
+                        'debug' => $P{'_debug'},
                     );
                 }
             }
@@ -393,7 +393,7 @@ sub update_ENTITY { # {{{
                 push @inserts, {
                     'into'   => $self->{'child_table'},
                     'values' => \%insert_values,
-                    'debug'  => $P{'debug'}, 
+                    'debug'  => $P{'_debug'},
                 };
             }
         }
@@ -431,14 +431,14 @@ sub update_ENTITYs { # {{{
         'where' => [
             'id IN ', $P{'ids'},
         ],
-#        debug => 1, 
+        'debug' => $P{'_debug'},
     );
 
     return;
 } # }}}
 
 sub get_ENTITY { # {{{
-    my ( $self, $id ) = @_;
+    my ( $self, $id, $_debug ) = @_;
 
     assert_positive_integer($id);
 
@@ -448,7 +448,7 @@ sub get_ENTITY { # {{{
         columns => $self->{'_really_all_fields'},
         from    => $self->{'base_table'},
         where   => [ 'id = ', $id ],
-#        debug => 1
+        debug   => $_debug,
     );
     
     my $entity = $sth->fetchrow_hashref();
@@ -482,14 +482,14 @@ sub get_ENTITY { # {{{
 } # }}}
 
 sub get_all_ENTITYs { # {{{
-    my ( $self ) = @_;
+    my ( $self, $_debug ) = @_;
 
     SLight::Core::DB::check();
 
     my $sth = SLight::Core::DB::run_select(
         columns => $self->{'_really_all_fields'},
         from    => $self->{'base_table'},
-#        debug => 1
+        debug   => $_debug,
     );
 
     my %entities = $self->_slurp_entities($sth);
@@ -508,7 +508,7 @@ sub get_all_ENTITYs { # {{{
 } # }}}
 
 sub get_ENTITYs { # {{{
-    my ( $self, $ids ) = @_;
+    my ( $self, $ids, $_debug ) = @_;
 
     SLight::Core::DB::check();
 
@@ -516,7 +516,7 @@ sub get_ENTITYs { # {{{
         columns => $self->{'_really_all_fields'},
         from    => $self->{'base_table'},
         where   => [ 'id IN ', $ids ],
-#        debug => 1
+        debug   => $_debug,
     );
 
     my %entities = $self->_slurp_entities($sth);
@@ -550,7 +550,7 @@ sub count_ENTITYs_where { # {{{
         columns => [ 'id' ],
         from    => $self->{'base_table'},
         where   => $where,
-#        debug => 1
+        debug   => $P{'_debug'},
     );
 
     my @entity_ids;
@@ -569,7 +569,7 @@ sub get_ENTITY_ids_where { # {{{
         columns => [ 'id' ],
         from    => $self->{'base_table'},
         where   => $where,
-        debug   => $P{'debug'},
+        debug   => $P{'_debug'},
     );
 
     my @entity_ids;
@@ -589,7 +589,7 @@ sub get_ENTITYs_where { # {{{
         columns => $self->{'_really_all_fields'},
         from    => $self->{'base_table'},
         where   => $where,
-        debug   => $P{'debug'},
+        debug   => $P{'_debug'},
     );
 
     my %entities = $self->_slurp_entities($sth);
@@ -627,7 +627,7 @@ sub get_ENTITYs_fields_where { # {{{
         columns => [ keys %fields ],
         from    => $self->{'base_table'},
         where   => $where,
-#        debug => 1
+        debug   => $P{'_debug'},
     );
 
     my %entities = $self->_slurp_entities($sth);
@@ -783,7 +783,7 @@ sub _make_where { # {{{
 } # }}}
 
 sub _add_data_to_entities { # {{{
-    my ( $self, $entities, $fields ) = @_;
+    my ( $self, $entities, $fields, $_debug ) = @_;
 
     my $sth = SLight::Core::DB::run_select(
         columns => [
@@ -797,18 +797,18 @@ sub _add_data_to_entities { # {{{
         where   => [
             $self->{'base_table'} . q{_id IN }, [ keys %{ $entities } ]
         ],
-#        debug => 1
+        debug => $_debug,
     );
 
-        while (my $row = $sth->fetchrow_hashref()) {
-            my $e_id = delete $row->{ $self->{'base_table'} . q{_id} };
+    while (my $row = $sth->fetchrow_hashref()) {
+        my $e_id = delete $row->{ $self->{'base_table'} . q{_id} };
 
-            if (not $entities->{$e_id}->{'_data'}) {
-                $entities->{$e_id}->{'_data'} = {};
-            }
-
-            $self->_attach_data_row($entities->{$e_id}->{'_data'}, $row);
+        if (not $entities->{$e_id}->{'_data'}) {
+            $entities->{$e_id}->{'_data'} = {};
         }
+
+        $self->_attach_data_row($entities->{$e_id}->{'_data'}, $row);
+    }
 
     return;
 } # }}}
@@ -860,7 +860,7 @@ sub delete_ENTITY { # {{{
 } # }}}
 
 sub delete_ENTITYs { # {{{
-    my ( $self, $ids ) = @_;
+    my ( $self, $ids, $_debug ) = @_;
 
     my $deleted_count = scalar @{ $ids };
 
@@ -893,7 +893,7 @@ sub delete_ENTITYs { # {{{
     SLight::Core::DB::run_delete(
         from  => $self->{'base_table'},
         where => [ 'id IN ', $ids ],
-#        debug => 1,
+        debug => $_debug,
     );
 
     return $deleted_count;

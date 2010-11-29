@@ -110,9 +110,11 @@ sub update_User { # {{{
             pass   => { type=>SCALAR, optional=>1 },
             status => { type=>SCALAR, optional=>1 },
             email  => { type=>SCALAR, optional=>1 },
+            
+            _debug => { type=>SCALAR, optional=>1 },
         }
     );
-    
+
     # Encrypt password, before putting it into DB.
     if ($P{'pass'}) {
         $P{'pass_enc'} = sha512_hex(delete $P{'pass'});

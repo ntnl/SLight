@@ -1,4 +1,4 @@
-package SLight::Handler::Account::Account::Password;
+package SLight::Handler::MyAccount::Password::View;
 ################################################################################
 # 
 # SLight - Lightweight Content Manager System.
@@ -12,7 +12,10 @@ package SLight::Handler::Account::Account::Password;
 # 
 ################################################################################
 use strict; use warnings; # {{{
-use base q{SLight::HandlerBase::User::PasswordForm};
+use base qw(
+    SLight::HandlerBase::User::MyAccount
+    SLight::HandlerBase::User::PasswordForm
+);
 
 use SLight::API::User qw( update_User get_User_by_login );
 use SLight::Core::L10N qw( TR );
@@ -21,11 +24,11 @@ use SLight::Core::L10N qw( TR );
 sub handle_view { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
-    $self->set_class('SL_Account_Password');
+    $self->set_class('SL_MyAccount_Password');
 
-    my $user_data = get_User_by_login($oid);
+    my $user_data = ( $self->get_user_data() or return );
 
-    $self->password_form(1, $user_data, {});
+    $self->password_form(0, $user_data, {});
 
     return;
 } # }}}
@@ -33,15 +36,15 @@ sub handle_view { # {{{
 sub handle_save { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
-    my $user_data = get_User_by_login($oid);
+    my $user_data = ( $self->get_user_data() or return );
 
-    my $errors = $self->validate_form(1);
+    my $errors = $self->validate_form(0);
 
     if ($errors) {
-        $self->set_class('SL_Account_Password');
+        $self->set_class('SL_MyAccount_Password');
 
         $self->password_form(
-            1,
+            0,
             $errors
         );
 
@@ -57,11 +60,11 @@ sub handle_save { # {{{
     );
 
     my $redirect_url = $self->build_url(
-        path_handler => q{Account},
-        path         => [ $oid, q{Account} ],
+        path_handler => q{MyAccount},
+        path         => [],
 
-        action  => q{View},
-        step    => q{view},
+        action => q{View},
+        step   => q{view},
 
         options => {},
     );

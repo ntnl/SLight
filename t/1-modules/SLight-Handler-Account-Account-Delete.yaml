@@ -1,0 +1,63 @@
+---
+Check what was deleted:
+- Email_id: 1
+  id: 1
+  login: aga
+  name: Agnieszka
+  pass_enc: d27d225b94bf7be57d1c3d4d73f96fc0fd3c57d89d175ce336c226b0f27e9f27fed2dc7a7c6324228ff40a25e8fbef49f7cfb8656d0074a6d1c6c901406aa53e
+  status: Enabled
+- Email_id: 3
+  id: 3
+  login: ela
+  name: Elżbieta
+  pass_enc: 4d0146efcd56c02c2d2d0cf587974b0427715d9bcf0bd79bed0a76d7e691654cd8200d2ba60481bb5a481e37911f35be31204ecdcac7bd1ba440e36fc77bad04
+  status: Enabled
+Show dialog:
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
+    object_data:
+      o:
+        class: SLight_Object O-SL_Account_Delete
+        content:
+        - class: SL_Delete_Dialog
+          content:
+          - class: Message
+            content:
+            - class: generic
+              data:
+                text: 'Do you want to delete Account: ''beti'' (name: ''Beata'')?
+                  Please confirm.'
+              type: Label
+            type: Container
+          - class: Buttons
+            content:
+            - class: Yes
+              data:
+                caption: Yes
+                href: /_Account/beti/Account/Delete-commit.web
+              type: Action
+            - class: No
+              data:
+                caption: No
+                href: /_Account/Delete.web
+              type: Action
+            type: Container
+          type: Container
+        type: Container
+    object_order:
+    - o
+    template: Default
+  mime_type: ~
+  response: CONTENT
+Submit request:
+  location: /_Account/
+  response: REDIRECT

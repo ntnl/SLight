@@ -24,7 +24,7 @@ sub build { # {{{
     # When playing with Users, you usually need email stuff too.
     SLight::Test::Site::EmailTemplates::build();
 
-    # A
+    # A / 1
     SLight::API::User::add_User(
         login  => 'aga',
         status => 'Enabled',
@@ -33,7 +33,7 @@ sub build { # {{{
         email  => 'agnes@test.test',
     );
 
-    # B
+    # B / 2
     SLight::API::User::add_User(
         login  => 'beti',
         status => 'Enabled',
@@ -42,7 +42,7 @@ sub build { # {{{
         email  => 'beata@test.test',
     );
 
-    # E
+    # E / 3
     SLight::API::User::add_User(
         login  => 'ela',
         status => 'Enabled',
@@ -51,7 +51,7 @@ sub build { # {{{
         email  => 'ela@test.test',
     );
 
-    # N
+    # N / 4
     SLight::API::User::add_User(
         login  => 'nataly',
         status => 'Guest',
@@ -60,7 +60,7 @@ sub build { # {{{
         email  => 'natka@test.test',
     );
 
-    # W
+    # W / 5
     SLight::API::User::add_User(
         login  => 'wanda',
         status => 'Disabled',

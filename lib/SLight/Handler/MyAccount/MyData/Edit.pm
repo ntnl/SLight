@@ -102,8 +102,8 @@ sub handle_update { # {{{
             path_handler => q{MyAccount},
             path         => [qw( MyAccount )],
 
-            action  => q{Edit},
-            step    => q{emailinfo},
+            action => q{Edit},
+            step   => q{emailinfo},
 
             options => {},
         );
@@ -113,8 +113,8 @@ sub handle_update { # {{{
             path_handler => q{MyAccount},
             path         => [],
 
-            action  => q{View},
-            step    => q{view},
+            action => q{View},
+            step   => q{view},
 
             options => {},
         );

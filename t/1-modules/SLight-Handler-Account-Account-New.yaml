@@ -1,0 +1,243 @@
+---
+Check what was created:
+- Email_id: 6
+  id: 6
+  login: NewUser
+  name: Creted 4 Test
+  pass_enc: 52be991646024f578d2b31e39925f390dc6050c05d8c885e7494c165eac8facf2aa6b003294abe4fe34b93f438f09f602a2f451d21441ee1f32a6c66f6237599
+  status: Enabled
+Show form:
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
+    object_data:
+      o:
+        class: SLight_Object O-SL_Account_New
+        content:
+        - class: generic
+          content:
+          - class: F-login Entry
+            content:
+            - class: Label
+              data:
+                text: 'Login:'
+              type: Label
+            - class: Value
+              data:
+                name: login
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-pass PasswordEntry
+            content:
+            - class: Label
+              data:
+                text: 'Password:'
+              type: Label
+            - class: Value
+              data:
+                name: pass
+                value: ''
+              type: PasswordEntry
+            type: Container
+          - class: F-pass-repeat PasswordEntry
+            content:
+            - class: Label
+              data:
+                text: 'Password (repeat):'
+              type: Label
+            - class: Value
+              data:
+                name: pass-repeat
+                value: ''
+              type: PasswordEntry
+            type: Container
+          - class: F-status SelectEntry
+            content:
+            - class: Label
+              data:
+                text: 'Status:'
+              type: Label
+            - class: Value
+              data:
+                name: status
+                options:
+                - - Disabled
+                  - Disabled
+                - - Guest
+                  - Guest
+                - - Enabled
+                  - Enabled
+                value: ''
+              type: SelectEntry
+            type: Container
+          - class: F-name Entry
+            content:
+            - class: Label
+              data:
+                text: 'Name:'
+              type: Label
+            - class: Value
+              data:
+                name: name
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-email Entry
+            content:
+            - class: Label
+              data:
+                text: 'Email:'
+              type: Label
+            - class: Value
+              data:
+                name: email
+                value: ''
+              type: Entry
+            type: Container
+          data:
+            action: /_Account/add/Account/New-save-pl.web
+            hidden: {}
+            submit: Create
+          type: Form
+        type: Container
+    object_order:
+    - o
+    template: Default
+  mime_type: ~
+  response: CONTENT
+Submit form (bad data):
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
+    object_data:
+      o:
+        class: SLight_Object O-SL_Account_New
+        content:
+        - class: generic
+          content:
+          - class: F-login Entry
+            content:
+            - class: Label
+              data:
+                text: 'Login:'
+              type: Label
+            - class: Value
+              data:
+                name: login
+                value: t3$t
+              type: Entry
+            - class: Error
+              data:
+                text: Only numbers, Latin letters, '.', '_', '-' and '@' are allowed.
+              type: Label
+            type: Container
+          - class: F-pass PasswordEntry
+            content:
+            - class: Label
+              data:
+                text: 'Password:'
+              type: Label
+            - class: Value
+              data:
+                name: pass
+                value: ''
+              type: PasswordEntry
+            - class: Error
+              data:
+                text: Too short, must have at least 5 characters.
+              type: Label
+            type: Container
+          - class: F-pass-repeat PasswordEntry
+            content:
+            - class: Label
+              data:
+                text: 'Password (repeat):'
+              type: Label
+            - class: Value
+              data:
+                name: pass-repeat
+                value: ''
+              type: PasswordEntry
+            type: Container
+          - class: F-status SelectEntry
+            content:
+            - class: Label
+              data:
+                text: 'Status:'
+              type: Label
+            - class: Value
+              data:
+                name: status
+                options:
+                - - Disabled
+                  - Disabled
+                - - Guest
+                  - Guest
+                - - Enabled
+                  - Enabled
+                value: New
+              type: SelectEntry
+            type: Container
+          - class: F-name Entry
+            content:
+            - class: Label
+              data:
+                text: 'Name:'
+              type: Label
+            - class: Value
+              data:
+                name: name
+                value: 1234567890qwertyuiopasdfghjklzxcvbnm1qaz2wsx3edc4rfv5tgb6yhn7ujm8ik9ol0p
+              type: Entry
+            - class: Error
+              data:
+                text: Maximum number of chacters (64) has been exceeded
+              type: Label
+            type: Container
+          - class: F-email Entry
+            content:
+            - class: Label
+              data:
+                text: 'Email:'
+              type: Label
+            - class: Value
+              data:
+                name: email
+                value: foo@bar@baz
+              type: Entry
+            - class: Error
+              data:
+                text: Does not look line an Email address
+              type: Label
+            type: Container
+          data:
+            action: /_Account/add/Account/New-save-pl.web
+            hidden: {}
+            submit: Create
+          type: Form
+        type: Container
+    object_order:
+    - o
+    template: Default
+  mime_type: ~
+  response: CONTENT
+Submit form (goot data):
+  location: /_Account/pl.web
+  response: REDIRECT

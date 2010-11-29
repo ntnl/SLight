@@ -21,10 +21,18 @@ use SLight::Validator qw( validate_input );
 
 sub account_form { # {{{
     my ( $self, $new, $data, $errors ) = @_;
+    
+    my $form_label;
+    if ($new) {
+        $form_label = TR('Create');
+    }
+    else {
+        $form_label = TR('Update');
+    }
 
     my $form = SLight::DataStructure::Form->new(
         hidden => {},
-        submit => TR('Create'),
+        submit => $form_label,
         action => $self->build_url(
             step => 'save',
         ),

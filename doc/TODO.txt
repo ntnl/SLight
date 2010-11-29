@@ -197,19 +197,19 @@
 [>]         SLight::Handler::Account::Account::New
 [X]             Form - show
 [X]             Form - save
-[>]             Test
-[ ]         SLight::Handler::Account::Account::Edit
-[ ]             Form - show
-[ ]             Form - save
-[ ]             Test
-[ ]         SLight::Handler::Account::Account::Delete
-[ ]             Show dialog
-[ ]             Perform the deletion
-[ ]             Test
-[ ]         SLight::Handler::Account::Account::Password
-[ ]             Form - show
-[ ]             Form - save
-[ ]             Test
+[X]             Test
+[X]         SLight::Handler::Account::Account::Edit
+[X]             Form - show
+[X]             Form - save
+[X]             Test
+[X]         SLight::Handler::Account::Account::Delete
+[X]             Show dialog
+[X]             Perform the deletion
+[X]             Test
+[X]         SLight::Handler::Account::Account::Password
+[X]             Form - show
+[X]             Form - save
+[X]             Test
 [ ]         SLight::Handler::Account::Permissions::View
 [ ]             Implementation
 [ ]             Test
@@ -242,10 +242,10 @@
 [X]             Show form
 [X]             Change data + redirect to overview.
 [X]             Write automated test
-[ ]         SLight::Handler::MyAccount::MyData::Password
-[ ]             Display form
-[ ]             Perform password change
-[ ]             Test
+[X]         SLight::Handler::MyAccount::MyData::Password
+[X]             Display form
+[X]             Perform password change
+[X]             Test
 [ ]         SLight::Handler::MyAccount::Avatar::View
 [ ]             Implementation
 [ ]             Test
@@ -291,12 +291,16 @@
 [ ]     SLight::Addon::Core::Debug
 [ ]         Implementation
 [ ]         Test
-[-] SLight API
+[>] SLight API
 [X]     SLight::API::EVK
 [ ]     Content
 [ ]         Support 'login' and 'user_id' parameters, along with 'email', to sign the stuff.
 [ ]     Asset
 [ ]         Support 'login' and 'user_id' parameters, along with 'email', to sign the stuff.
+[>]     User
+[ ]         Set avatar
+[ ]         Get avatar
+[ ]         Delete avatar
 [-] Core functionality
 [-]     Email sending
 [X]         Implementation
@@ -321,6 +325,7 @@
 [ ]     Implement ability to verify, if a Handler exists (such check is hard at the moment).
 [ ]     Compilation errors in Addons kill the whole page!
 [ ]     User remains not logged-in in some places in User::Authentication (check and fix this)
+[ ]     Duplicated code - unify Account.pm into AccountForm.pm
 
     Definition of done:
 

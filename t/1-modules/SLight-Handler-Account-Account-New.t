@@ -1,0 +1,71 @@
+#!/usr/bin/perl
+################################################################################
+# 
+# SLight - Lightweight Content Manager System.
+#
+# Copyright (C) 2010 Bartłomiej /Natanael/ Syguła
+#
+# This is free software.
+# It is licensed, and can be distributed under the same terms as Perl itself.
+#
+# More information on: http://slight-cms.org/
+# 
+################################################################################
+use strict; use warnings; # {{{
+use FindBin qw( $Bin );
+use lib $Bin . q{/../../lib/};
+
+use SLight::Core::Session;
+use SLight::Test::Site;
+use SLight::Test::Handler qw( run_handler_tests );
+
+use English qw( -no_match_vars );
+# }}}
+
+my $site_root = SLight::Test::Site::prepare_fake(
+    test_dir => $Bin . q{/../},
+    site     => 'Users'
+);
+
+my @tests = (
+    {
+        'name' => q{Show form},
+        'url'  => q{/_Account/add/Account/New-pl.web},
+    },
+    {
+        'name' => q{Submit form (bad data)},
+        'url'  => q{/_Account/add/Account/New-save.web},
+        'cgi'  => {
+            login  => q{t3$t},
+            name   => q{1234567890qwertyuiopasdfghjklzxcvbnm1qaz2wsx3edc4rfv5tgb6yhn7ujm8ik9ol0p},
+            email  => q{foo@bar@baz},
+            status => q{New},
+
+            'pass'        => q{12},
+            'pass-repeat' => q{34},
+        },
+    },
+    {
+        'name' => q{Submit form (goot data)},
+        'url'  => q{/_Account/add/Account/New-save.web},
+        'cgi'  => {
+            login  => q{NewUser},
+            name   => q{Creted 4 Test},
+            email  => q{foo@bar.test},
+            status => q{Enabled},
+            
+            'pass'        => q{FooBarBaz},
+            'pass-repeat' => q{FooBarBaz},
+        },
+    },
+    {
+        'name'      => q{Check what was created},
+        'sql_query' => [q{SELECT * FROM User_Entity WHERE id > 5}],
+    },
+);
+
+run_handler_tests(
+    tests => \@tests,
+);
+
+# vim: fdm=marker
