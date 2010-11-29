@@ -320,8 +320,11 @@
 [ ] Bugs:
 [ ]     Email is not mandatory in some (Asset, Content) API calls (but it should)
 [ ]     Some API calls (Asset, Content) should return login as well (not just email)
-[ ]     s/Lightweight Content Manager System/Lightweight Content Management System/gs
-[ ]     Breadcrumbs are missing on Authentication, MyAccount and Account pages.
+[X]     s/Lightweight Content Manager System/Lightweight Content Management System/gs
+[ ]     Breadcrumbs are missing on:
+[ ]         Authentication pages.
+[ ]         MyAccount pages.
+[ ]         Account pages.
 [ ]     Implement ability to verify, if a Handler exists (such check is hard at the moment).
 [ ]     Compilation errors in Addons kill the whole page!
 [ ]     User remains not logged-in in some places in User::Authentication (check and fix this)

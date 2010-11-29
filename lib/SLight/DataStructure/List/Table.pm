@@ -1,7 +1,7 @@
 package SLight::DataStructure::List::Table;
 ################################################################################
 # 
-# SLight - Lightweight Content Manager System.
+# SLight - Lightweight Content Management System.
 #
 # Copyright (C) 2010 Bartłomiej /Natanael/ Syguła
 #

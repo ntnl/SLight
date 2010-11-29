@@ -1,7 +1,7 @@
 package SLight::PathHandler::CMS_Spec;
 ################################################################################
 # 
-# SLight - Lightweight Content Manager System.
+# SLight - Lightweight Content Management System.
 #
 # Copyright (C) 2010 Bartłomiej /Natanael/ Syguła
 #

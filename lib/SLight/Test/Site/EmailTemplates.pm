@@ -1,7 +1,7 @@
 package SLight::Test::Site::EmailTemplates;
 ################################################################################
 # 
-# SLight - Lightweight Content Manager System.
+# SLight - Lightweight Content Management System.
 #
 # Copyright (C) 2010 Bartłomiej /Natanael/ Syguła
 #

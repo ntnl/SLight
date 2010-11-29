@@ -1,7 +1,7 @@
 package SLight::Handler::CMS::Welcome::AddContent;
 ################################################################################
 # 
-# SLight - Lightweight Content Manager System.
+# SLight - Lightweight Content Management System.
 #
 # Copyright (C) 2010 Bartłomiej /Natanael/ Syguła
 #
