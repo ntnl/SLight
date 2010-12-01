@@ -1,5 +1,34 @@
 PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
+CREATE TABLE Email (
+	`id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it
+
+    `status`    CHAR(1) NOT NULL,
+        
+    `email`     VARCHAR(255) NOT NULL,
+
+    `user_id` INTEGER,
+        -- ID of the User owning this email (NULL if it was not claimed - owned by some Guest)
+
+    FOREIGN KEY(`user_id`) REFERENCES User_Entity(`id`)
+);
+INSERT INTO "Email" VALUES(1,'A','agnes@test.test',NULL);
+INSERT INTO "Email" VALUES(2,'A','beata@test.test',NULL);
+INSERT INTO "Email" VALUES(3,'A','ela@test.test',NULL);
+INSERT INTO "Email" VALUES(4,'A','natka@test.test',NULL);
+INSERT INTO "Email" VALUES(5,'A','wanda@test.test',NULL);
+CREATE TABLE Email_Verification_Key (
+	`id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it
+
+    `Email_id`  INTEGER      NOT NULL,
+    `key`       VARCHAR(128) NOT NULL,  -- 'secret' key, known only to email owner
+
+    `metadata` TEXT,
+        -- Serialized with YAML.
+        -- A place where additional key-related information may be stored.
+
+    FOREIGN KEY(`Email_id`) REFERENCES Email(`id`)
+);
 CREATE TABLE Page_Entity (
 	`id`       INTEGER PRIMARY KEY,
 
@@ -273,35 +302,6 @@ CREATE TABLE Asset_2_Content_Field (
     FOREIGN KEY (`Content_Entity_id`)     REFERENCES Content_Entity (`id`) ON DELETE CASCADE,
     FOREIGN KEY (`Content_Spec_Field_id`) REFERENCES Content_Spec_Field (`id`) ON DELETE CASCADE
 );
-CREATE TABLE Email (
-	`id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it
-
-    `status`    CHAR(1) NOT NULL,
-        
-    `email`     VARCHAR(255) NOT NULL,
-
-    `user_id` INTEGER,
-        -- ID of the User owning this email (NULL if it was not claimed - owned by some Guest)
-
-    FOREIGN KEY(`user_id`) REFERENCES User_Entity(`id`)
-);
-INSERT INTO "Email" VALUES(1,'A','agnes@test.test',NULL);
-INSERT INTO "Email" VALUES(2,'A','beata@test.test',NULL);
-INSERT INTO "Email" VALUES(3,'A','ela@test.test',NULL);
-INSERT INTO "Email" VALUES(4,'A','natka@test.test',NULL);
-INSERT INTO "Email" VALUES(5,'A','wanda@test.test',NULL);
-CREATE TABLE Email_Verification_Key (
-	`id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it
-
-    `Email_id`  INTEGER      NOT NULL,
-    `key`       VARCHAR(128) NOT NULL,  -- 'secret' key, known only to email owner
-
-    `metadata` TEXT,
-        -- Serialized with YAML.
-        -- A place where additional key-related information may be stored.
-
-    FOREIGN KEY(`Email_id`) REFERENCES Email(`id`)
-);
 CREATE TABLE User_Entity (
 	`id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it
 
@@ -333,6 +333,8 @@ CREATE TABLE Cache_Reference (
     key VARCHAR(255) NOT NULL
         -- Key.
 );
+CREATE UNIQUE INDEX Email_email ON Email (email);
+CREATE UNIQUE INDEX EVK_key ON Email_Verification_Key (key);
 CREATE UNIQUE INDEX Page_Entity_id   ON Page_Entity (id);
 CREATE UNIQUE INDEX Page_Entity_path ON Page_Entity (parent_id, path);
 CREATE INDEX Content_Spec_module ON Content_Spec (owning_module);
@@ -348,8 +350,6 @@ CREATE INDEX Asset_2_Content_target ON Asset_2_Content (`Content_Entity_id`);
 CREATE UNIQUE INDEX Asset_2_Content_Field_unique  ON Asset_2_Content_Field (`Asset_Entity_id`, `Content_Entity_id`, `Content_Spec_Field_id`);
 CREATE INDEX Asset_2_Content_Field_target  ON Asset_2_Content_Field (`Content_Entity_id`, `Content_Spec_Field_id`);
 CREATE INDEX Asset_2_Content_Field_targets ON Asset_2_Content_Field (`Content_Entity_id`);
-CREATE UNIQUE INDEX Email_email ON Email (email);
-CREATE UNIQUE INDEX EVK_key ON Email_Verification_Key (key);
 CREATE UNIQUE INDEX User_Entity_login ON User_Entity (login);
 CREATE INDEX User_Entity_email ON User_Entity (Email_id);
 CREATE INDEX Cache_Reference_id ON Cache_Reference (id);

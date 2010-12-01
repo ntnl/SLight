@@ -2,7 +2,7 @@ Dear ~~name~~,
 
 This is a verification email sent to address: ~~email~~
 
-To use it in on the site, You have confirm, that You are it's rightful user,
+To use it in on the site, You have to confirm, that You are it's rightful user,
 by using the following link: ~~confirmation_link~~
 
 Thank you,

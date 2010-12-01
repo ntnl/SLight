@@ -2,34 +2,6 @@
 
 PRAGMA foreign_keys = ON;
 
-CREATE TABLE Email (
-	`id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it
-
-    `status`    CHAR(1) NOT NULL,
-        
-    `email`     VARCHAR(255) NOT NULL,
-
-    `user_id` INTEGER,
-        -- ID of the User owning this email (NULL if it was not claimed - owned by some Guest)
-
-    FOREIGN KEY(`user_id`) REFERENCES User_Entity(`id`)
-);
-CREATE UNIQUE INDEX Email_email ON Email (email);
-
-CREATE TABLE Email_Verification_Key (
-	`id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it
-
-    `Email_id`  INTEGER      NOT NULL,
-    `key`       VARCHAR(128) NOT NULL,  -- 'secret' key, known only to email owner
-
-    `metadata` TEXT,
-        -- Serialized with YAML.
-        -- A place where additional key-related information may be stored.
-
-    FOREIGN KEY(`Email_id`) REFERENCES Email(`id`)
-);
-CREATE UNIQUE INDEX EVK_key ON Email_Verification_Key (key);
-
 CREATE TABLE User_Entity (
 	`id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it
 
@@ -41,11 +13,50 @@ CREATE TABLE User_Entity (
     `name`      VARCHAR(128),
 
     `pass_enc` VARCHAR(512),
+
     `Email_id` INTEGER NOT NULL,
         -- Primary email owned and used by the User.
 
-    FOREIGN KEY(`Email_id`) REFERENCES Email(`id`)
+    `avatar_Asset_id` INTEGER,
+        -- User's 'Avatar' image.
+
+    FOREIGN KEY(`Email_id`)       REFERENCES Email(`id`),
+    FOREIGN KEY(`avatar_Asset_id` REFERENCES Asset_Entity(`id`)
 );
 CREATE UNIQUE INDEX User_Entity_login ON User_Entity (login);
 CREATE        INDEX User_Entity_email ON User_Entity (Email_id);
+
+-- Two tables bellow define what functionality can be used by given User.
+
+CREATE TABLE System_Access (
+    user_type       VARCHAR(16) NOT NULL,
+        -- One of: 'Guest', 'Authenticated'
+
+    handler_family VARCHAR(128) NOT NULL,
+    handler_class  VARCHAR(128) NOT NULL,
+    handler_action VARCHAR(128) NOT NULL,
+        -- Asterisk (*) means 'any' and suits as a wild-card.
+        -- 'handler_object' is not present, as this table only outlines basic access rights.
+
+    policy VARCHAR(16) NOT NULL
+        -- One of: GRANTED, DENIED
+);
+CREATE UNIQUE INDEX System_Access_target ON System_Access (`user_type`, `handler_family`, `handler_class`, `handler_action`);
+
+CREATE TABLE User_Access (
+    User_id INTEGER NOT NULL,
+
+    handler_family VARCHAR(128) NOT NULL,
+    handler_class  VARCHAR(128) NOT NULL,
+    handler_action VARCHAR(128) NOT NULL,
+        -- Asterisk (*) means 'any' and suits as a wild-card.
+
+    handler_object VARCHAR(128) NOT NULL,
+
+    policy VARCHAR(16) NOT NULL,
+        -- One of: GRANTED, DENIED
+
+    FOREIGN KEY(`User_id`) REFERENCES User_Entity(`id`),
+);
+CREATE UNIQUE INDEX User_Access_target ON User_Access (`User_id`, `handler_family`, `handler_class`, `handler_action`, `handler_object`);
 

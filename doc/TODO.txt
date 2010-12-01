@@ -157,10 +157,13 @@
 [X]         delete_User
 [X]         is_User_registered
 [X]         check_User_pass
-[X] User-related PathHandler objects
+[>] User-related PathHandler objects
 [X]     SLight::PathHandler::Authentication ([X] Test [X] Implementation)
 [X]     SLight::PathHandler::MyAccount      ([X] Test [X] Implementation)
 [X]     SLight::PathHandler::Account        ([X] Test [X] Implementation)
+[>]     SLight::PathHandler::Permissions
+[ ]         Test
+[ ]         Implementation
 [>] User-related Handler objects
 [X]     SLight::Handler::User::Authentication (allow the User to authenticate itself)
 [X]         SLight::Handler::User::Authentication::Login (form + the actual authentication)
@@ -187,6 +190,13 @@
 [X]             New password form
 [X]             Password reset
 [X]             Automated test
+[ ]     SLight::Handler::System::Permissions (system-wide authorization settings)
+[ ]         SLight::Handler::System::Permissions::View
+[ ]             Implementation
+[ ]             Test
+[ ]         SLight::Handler::System::Permissions::Change
+[ ]             Implementation
+[ ]             Test
 [>]     SLight::Handler::Account (allow site owner to manage User accounts)
 [X]         SLight::Handler::Account::List::View
 [X]             Implementation
@@ -297,10 +307,14 @@
 [ ]         Support 'login' and 'user_id' parameters, along with 'email', to sign the stuff.
 [ ]     Asset
 [ ]         Support 'login' and 'user_id' parameters, along with 'email', to sign the stuff.
-[>]     User
+[-]     Avatar
 [ ]         Set avatar
 [ ]         Get avatar
 [ ]         Delete avatar
+[ ]     Access
+[ ]         grant_User_access
+[ ]         revoke_User_access
+[ ]         can_User_access
 [-] Core functionality
 [-]     Email sending
 [X]         Implementation
@@ -494,6 +508,7 @@
 [ ]     SLight::Handler::Browser::Recent (list sub-pages in order in which they ware created - newer on top)
 [ ]     SLight::Handler::Browser::Ordered (list sub-pages in order defined by 'order_by')
 [ ] ContentSpec fields describing how to sort, what to put into title, menu, path, and so on, should be a templates, so that User can join fields, eg: '%hip%-%ID%'
+[ ] Identify web robots. Use this information when performing authorization (add 'Robot' User type)
 [ ] User API
 [ ]     SLight::API::Group
 [ ]         get_Group

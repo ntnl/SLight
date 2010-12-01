@@ -924,6 +924,18 @@ Bla bla bla...
     Bar / BarBar / TripleBar
 
 
+Authorization (Permissions)
+
+    For the User to have access to an object, the following must be met:
+    1) There is an entry for this user_type in System_Access
+        - 'System' is checked (always)
+        - 'Guest' is checked (if the User is NOT authenticated)
+        - 'Authenticated' is checked (if the User IS authenticated)
+    2) There is an entry for this user_id in User_Access
+    
+    To be able to use a functionality, policy 'GRANTED' must be found.
+    If, at any level, a policy of 'DENIED' is found, access is denied,
+    and no additional lookup is done (search is aborted).
 
 News
 
