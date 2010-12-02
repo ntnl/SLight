@@ -157,13 +157,13 @@
 [X]         delete_User
 [X]         is_User_registered
 [X]         check_User_pass
-[>] User-related PathHandler objects
+[X] User-related PathHandler objects
 [X]     SLight::PathHandler::Authentication ([X] Test [X] Implementation)
 [X]     SLight::PathHandler::MyAccount      ([X] Test [X] Implementation)
 [X]     SLight::PathHandler::Account        ([X] Test [X] Implementation)
-[>]     SLight::PathHandler::Permissions
-[ ]         Test
-[ ]         Implementation
+[X]     SLight::PathHandler::Permissions
+[X]         Test
+[X]         Implementation
 [>] User-related Handler objects
 [X]     SLight::Handler::User::Authentication (allow the User to authenticate itself)
 [X]         SLight::Handler::User::Authentication::Login (form + the actual authentication)

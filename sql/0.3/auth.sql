@@ -20,8 +20,8 @@ CREATE TABLE User_Entity (
     `avatar_Asset_id` INTEGER,
         -- User's 'Avatar' image.
 
-    FOREIGN KEY(`Email_id`)       REFERENCES Email(`id`),
-    FOREIGN KEY(`avatar_Asset_id` REFERENCES Asset_Entity(`id`)
+    FOREIGN KEY(`Email_id`)        REFERENCES Email(`id`),
+    FOREIGN KEY(`avatar_Asset_id`) REFERENCES Asset_Entity(`id`)
 );
 CREATE UNIQUE INDEX User_Entity_login ON User_Entity (login);
 CREATE        INDEX User_Entity_email ON User_Entity (Email_id);
@@ -30,7 +30,7 @@ CREATE        INDEX User_Entity_email ON User_Entity (Email_id);
 
 CREATE TABLE System_Access (
     user_type       VARCHAR(16) NOT NULL,
-        -- One of: 'Guest', 'Authenticated'
+        -- One of: 'System', 'Guest', 'Authenticated'
 
     handler_family VARCHAR(128) NOT NULL,
     handler_class  VARCHAR(128) NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE User_Access (
     policy VARCHAR(16) NOT NULL,
         -- One of: GRANTED, DENIED
 
-    FOREIGN KEY(`User_id`) REFERENCES User_Entity(`id`),
+    FOREIGN KEY(`User_id`) REFERENCES User_Entity(`id`)
 );
 CREATE UNIQUE INDEX User_Access_target ON User_Access (`User_id`, `handler_family`, `handler_class`, `handler_action`, `handler_object`);
 

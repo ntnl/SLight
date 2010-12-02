@@ -21,29 +21,26 @@ use SLight::Test::PathHandler qw( run_pathhandler_tests );
 use English qw( -no_match_vars );
 # }}}
 
-my $site_root = SLight::Test::Site::prepare_empty(
+my $site_root = SLight::Test::Site::prepare_fake(
     test_dir => $Bin . q{/../},
+    site     => 'Users'
 );
 
 my @tests = (
     {
-        'name' => q{Root page},
+        'name' => q{Root page - list of stuff},
         'path' => [ ],
     },
-#    {
-#        'name' => q{Non-root page},
-#        'path' => [qw( Foo )],
-#    },
     {
-        'name' => q{Non-root page (2-nd level)},
-        'path' => [qw( Foo Bar )],
+        'name' => q{System settings},
+        'path' => [qw( System )],
     },
 );
 
 run_pathhandler_tests(
     tests => \@tests,
 
-    ph => 'Authentication',
+    ph => 'Permissions',
 );
 
 # vim: fdm=marker

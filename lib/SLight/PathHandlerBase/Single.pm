@@ -23,7 +23,7 @@ use base q{SLight::PathHandler};
 sub analyze_path { # {{{
     my ( $self, $path ) = @_;
 
-    if (scalar @{ $path }) {
+    if (scalar @{ $path } > 1) {
         return $self->generic_error_page('NotFound');
     }
 
@@ -33,7 +33,7 @@ sub analyze_path { # {{{
         {
             o => {
                 class => $object_class,
-                oid   => undef,
+                oid   => $path->[0],
             },
         },
     );
@@ -41,7 +41,7 @@ sub analyze_path { # {{{
     $self->set_object_order([qw( o )]);
 
     $self->set_main_object('o');
-    
+
     $self->set_template( 'Default' );
 
     return $self->response_content(); 
