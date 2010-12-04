@@ -73,7 +73,7 @@ is (
 is (
     $u2 = add_User(
         email  => q{first@test.test},
-        pass   => q{xxxXXXxxx}, # 'password' spelled in Polish
+        pass   => q{xxxXXXxxx},
         status => q{Guest},
         login  => q{Second},
     ),
@@ -83,7 +83,7 @@ is (
 is (
     $u3 = add_User(
         email  => q{first@test.test},
-        pass   => q{123$%^qweRTY}, # 'password' spelled in Polish
+        pass   => q{123$%^qweRTY},
         status => q{Enabled},
         login  => q{Third},
     ),

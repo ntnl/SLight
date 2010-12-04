@@ -197,14 +197,14 @@
 [ ]         SLight::Handler::System::Permissions::Change
 [ ]             Implementation
 [ ]             Test
-[>]     SLight::Handler::Account (allow site owner to manage User accounts)
+[-]     SLight::Handler::Account (allow site owner to manage User accounts)
 [X]         SLight::Handler::Account::List::View
 [X]             Implementation
 [X]             Test
 [X]         SLight::Handler::Account::Account::View
 [X]             Implementation
 [X]             Test
-[>]         SLight::Handler::Account::Account::New
+[X]         SLight::Handler::Account::Account::New
 [X]             Form - show
 [X]             Form - save
 [X]             Test
@@ -311,10 +311,14 @@
 [ ]         Set avatar
 [ ]         Get avatar
 [ ]         Delete avatar
-[ ]     Access
-[ ]         grant_User_access
-[ ]         revoke_User_access
-[ ]         can_User_access
+[X]     Permissions
+[X]         set_User_access
+[X]         set_System_access
+[X]         clear_User_access
+[X]         clear_System_access
+[X]         get_User_assess
+[X]         get_System_access
+[X]         can_User_access
 [-] Core functionality
 [-]     Email sending
 [X]         Implementation
@@ -509,6 +513,7 @@
 [ ]     SLight::Handler::Browser::Ordered (list sub-pages in order defined by 'order_by')
 [ ] ContentSpec fields describing how to sort, what to put into title, menu, path, and so on, should be a templates, so that User can join fields, eg: '%hip%-%ID%'
 [ ] Identify web robots. Use this information when performing authorization (add 'Robot' User type)
+[ ] Switch to SQL::Abstract-like module (possibly deprecate SLight::Core::SQL)
 [ ] User API
 [ ]     SLight::API::Group
 [ ]         get_Group
