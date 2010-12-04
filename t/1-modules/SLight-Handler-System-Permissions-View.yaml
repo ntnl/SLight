@@ -1,0 +1,129 @@
+---
+Levels list:
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
+    object_data:
+      o:
+        class: SLight_Object O-SL_System_Permissions
+        content:
+        - class: generic
+          content:
+          - class: System
+            content:
+            - class: generic
+              data:
+                href: /_Permissions/system.web
+                text: System
+              type: Link
+            - class: desc
+              data:
+                text: Policies applicable for both authenticated and non-authernticated
+                  Users.
+              type: Label
+            type: ListItem
+          - class: Guest
+            content:
+            - class: generic
+              data:
+                href: /_Permissions/guest.web
+                text: Guest
+              type: Link
+            - class: desc
+              data:
+                text: Policies applicable for both non-authernticated Users.
+              type: Label
+            type: ListItem
+          - class: Authenticated
+            content:
+            - class: generic
+              data:
+                href: /_Permissions/authenticated.web
+                text: Authenticated
+              type: Link
+            - class: desc
+              data:
+                text: Policies applicable for both authenticated Users.
+              type: Label
+            type: ListItem
+          type: List
+        type: Container
+    object_order:
+    - o
+    template: Default
+  mime_type: ~
+  response: CONTENT
+'Permissions: authenticated':
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
+    object_data:
+      o:
+        class: SLight_Object O-SL_System_Permissions
+        content: []
+        type: Container
+    object_order:
+    - o
+    template: Default
+  mime_type: ~
+  response: CONTENT
+'Permissions: guest':
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
+    object_data:
+      o:
+        class: SLight_Object O-SL_System_Permissions
+        content: []
+        type: Container
+    object_order:
+    - o
+    template: Default
+  mime_type: ~
+  response: CONTENT
+'Permissions: system':
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
+    object_data:
+      o:
+        class: SLight_Object O-SL_System_Permissions
+        content: []
+        type: Container
+    object_order:
+    - o
+    template: Default
+  mime_type: ~
+  response: CONTENT

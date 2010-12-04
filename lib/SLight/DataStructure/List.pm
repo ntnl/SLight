@@ -15,7 +15,7 @@ package SLight::DataStructure::List;
 use strict; use warnings; # {{{
 use base 'SLight::DataStructure';
 
-use SLight::DataToken qw( mk_List_token );
+use SLight::DataToken qw( mk_List_token mk_ListItem_token );
 
 use Carp::Assert::More qw( assert_defined );
 use Params::Validate qw( :all );
@@ -84,15 +84,17 @@ sub add_Row { # {{{
 
     my @fields;
     foreach my $column (@{ $self->{'Columns'} }) {
-        push @fields, @{
-            $self->make_label_if_text(
-                object => $P{'data'}->{ $column->{'name'} },
-                class  => $column->{'name'}
-            )
-        };
+        if (defined $P{'data'}->{ $column->{'name'} }) {
+            push @fields, @{
+                $self->make_label_if_text(
+                    object => $P{'data'}->{ $column->{'name'} },
+                    class  => $column->{'name'}
+                )
+            };
+        }
     }
 
-    push @{ $self->{'Items'} }, $self->make_GridItem(
+    push @{ $self->{'Items'} }, mk_ListItem_token(
         class   => $P{'class'},
         content => \@fields,
     );

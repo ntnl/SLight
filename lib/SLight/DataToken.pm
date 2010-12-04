@@ -48,6 +48,20 @@ our %EXPORT_TAGS = (
 
 # Functions that create valid hashref-s for DataStructure.
 
+sub mk_Container_token { # {{{
+    my %P = validate(
+        @_,
+        {
+            class   => { type=>SCALAR, optional=>1, default=>'generic' },
+            content => { type=>ARRAYREF }
+        }
+    );
+
+    $P{'type'} = 'Container';
+
+    return \%P;
+} # }}}
+
 sub mk_List_token { # {{{
     my %P = validate(
         @_,
@@ -58,6 +72,33 @@ sub mk_List_token { # {{{
     );
 
     $P{'type'} = 'List';
+
+    return \%P;
+} # }}}
+sub mk_ListItem_token { # {{{
+    my %P = validate(
+        @_,
+        {
+            class   => { type=>SCALAR, optional=>1, default=>'generic' },
+            content => { type=>ARRAYREF }
+        }
+    );
+
+    $P{'type'} = 'ListItem';
+
+    return \%P;
+} # }}}
+
+sub mk_Grid_token { # {{{
+    my %P = validate(
+        @_,
+        {
+            class   => { type=>SCALAR, optional=>1, default=>'generic' },
+            content => { type=>ARRAYREF },
+        }
+    );
+
+    $P{'type'} = 'Grid';
 
     return \%P;
 } # }}}
@@ -74,7 +115,8 @@ sub mk_GridItem_token { # {{{
 
     return \%P;
 } # }}}
-sub mk_Grid_token { # {{{
+
+sub mk_Table_token { # {{{
     my %P = validate(
         @_,
         {
@@ -83,24 +125,60 @@ sub mk_Grid_token { # {{{
         }
     );
 
-    $P{'type'} = 'Grid';
+    $P{'type'} = 'Table';
 
     return \%P;
 } # }}}
-sub mk_TextEntry_token { # {{{
+sub mk_TableRow_token { # {{{
     my %P = validate(
         @_,
         {
-            class => { type=>SCALAR, optional=>1, default=>'generic' },
-            value => { type=>SCALAR, optional=>1, default=>q{} },
-            name  => { type=>SCALAR },
+            class   => { type=>SCALAR, optional=>1, default=>'generic' },
+            content => { type=>ARRAYREF },
         }
     );
-    
-    $P{'type'} = 'TextEntry';
-    
-    $P{'data'}->{'name'}  = delete $P{'name'};
-    $P{'data'}->{'value'} = delete $P{'value'};
+
+    $P{'type'} = 'TableRow';
+
+    return \%P;
+} # }}}
+sub mk_TableCell_token { # {{{
+    my %P = validate(
+        @_,
+        {
+            class   => { type=>SCALAR, optional=>1, default=>'generic' },
+            content => { type=>ARRAYREF },
+            colspan => { type=>SCALAR, optional=>1, default=>0 },
+            rowspan => { type=>SCALAR, optional=>1, default=>0 },
+        }
+    );
+
+    $P{'type'} = 'TableCell';
+
+    $P{'data'}->{'colspan'} = delete $P{'colspan'};
+    $P{'data'}->{'rowspan'} = delete $P{'rowspan'};
+
+    return \%P;
+} # }}}
+
+sub mk_Form_token { # {{{
+    my %P = validate(
+        @_,
+        {
+            class   => { type=>SCALAR, optional=>1, default=>'generic' },
+            hidden  => { type=>HASHREF, optional=>1, },
+            action  => { type=>SCALAR },
+            submit  => { type=>SCALAR },
+            content => { type=>ARRAYREF }
+        }
+    );
+
+    $P{'type'} = 'Form';
+    $P{'data'} = {
+        hidden => delete $P{'hidden'},
+        action => delete $P{'action'},
+        submit => delete $P{'submit'},
+    };
 
     return \%P;
 } # }}}
@@ -115,6 +193,23 @@ sub mk_Entry_token { # {{{
     );
     
     $P{'type'} = 'Entry';
+    
+    $P{'data'}->{'name'}  = delete $P{'name'};
+    $P{'data'}->{'value'} = delete $P{'value'};
+
+    return \%P;
+} # }}}
+sub mk_TextEntry_token { # {{{
+    my %P = validate(
+        @_,
+        {
+            class => { type=>SCALAR, optional=>1, default=>'generic' },
+            value => { type=>SCALAR, optional=>1, default=>q{} },
+            name  => { type=>SCALAR },
+        }
+    );
+    
+    $P{'type'} = 'TextEntry';
     
     $P{'data'}->{'name'}  = delete $P{'name'};
     $P{'data'}->{'value'} = delete $P{'value'};
@@ -153,6 +248,43 @@ sub mk_PasswordEntry_token { # {{{
 
     return \%P;
 } # }}}
+sub mk_SelectEntry_token { # {{{
+    my %P = validate(
+        @_,
+        {
+            class   => { type=>SCALAR, optional=>1, default=>'generic' },
+            value   => { type=>SCALAR, optional=>1, default=>q{} },
+            options => { type=>ARRAYREF },
+            name    => { type=>SCALAR },
+        }
+    );
+    
+    $P{'type'} = 'SelectEntry';
+    
+    $P{'data'}->{'name'}    = delete $P{'name'};
+    $P{'data'}->{'value'}   = delete $P{'value'};
+    $P{'data'}->{'options'} = delete $P{'options'};
+
+    return \%P;
+} # }}}
+sub mk_Check_token { # {{{
+    my %P = validate(
+        @_,
+        {
+            class   => { type=>SCALAR, optional=>1, default=>'generic' },
+            checked => { type=>SCALAR, optional=>1, default=>0 },
+            name    => { type=>SCALAR },
+        }
+    );
+    
+    $P{'type'} = 'Check';
+    
+    $P{'data'}->{'name'}    = delete $P{'name'};
+    $P{'data'}->{'checked'} = delete $P{'checked'};
+
+    return \%P;
+} # }}}
+
 sub mk_Status_token { # {{{
     my %P = validate(
         @_,
@@ -195,59 +327,7 @@ sub mk_Text_token { # {{{
 
     return \%P;
 } # }}}
-sub mk_SelectEntry_token { # {{{
-    my %P = validate(
-        @_,
-        {
-            class   => { type=>SCALAR, optional=>1, default=>'generic' },
-            value   => { type=>SCALAR, optional=>1, default=>q{} },
-            options => { type=>ARRAYREF },
-            name    => { type=>SCALAR },
-        }
-    );
-    
-    $P{'type'} = 'SelectEntry';
-    
-    $P{'data'}->{'name'}    = delete $P{'name'};
-    $P{'data'}->{'value'}   = delete $P{'value'};
-    $P{'data'}->{'options'} = delete $P{'options'};
 
-    return \%P;
-} # }}}
-sub mk_Container_token { # {{{
-    my %P = validate(
-        @_,
-        {
-            class   => { type=>SCALAR, optional=>1, default=>'generic' },
-            content => { type=>ARRAYREF }
-        }
-    );
-
-    $P{'type'} = 'Container';
-
-    return \%P;
-} # }}}
-sub mk_Form_token { # {{{
-    my %P = validate(
-        @_,
-        {
-            class   => { type=>SCALAR, optional=>1, default=>'generic' },
-            hidden  => { type=>HASHREF, optional=>1, },
-            action  => { type=>SCALAR },
-            submit  => { type=>SCALAR },
-            content => { type=>ARRAYREF }
-        }
-    );
-
-    $P{'type'} = 'Form';
-    $P{'data'} = {
-        hidden => delete $P{'hidden'},
-        action => delete $P{'action'},
-        submit => delete $P{'submit'},
-    };
-
-    return \%P;
-} # }}}
 sub mk_Link_token { # {{{
     my %P = validate(
         @_,
@@ -294,80 +374,6 @@ sub mk_Image_token { # {{{
     
     $P{'data'}->{'href'}  = delete $P{'href'};
     $P{'data'}->{'label'} = delete $P{'label'};
-
-    return \%P;
-} # }}}
-sub mk_Check_token { # {{{
-    my %P = validate(
-        @_,
-        {
-            class   => { type=>SCALAR, optional=>1, default=>'generic' },
-            checked => { type=>SCALAR, optional=>1, default=>0 },
-            name    => { type=>SCALAR },
-        }
-    );
-    
-    $P{'type'} = 'Check';
-    
-    $P{'data'}->{'name'}    = delete $P{'name'};
-    $P{'data'}->{'checked'} = delete $P{'checked'};
-
-    return \%P;
-} # }}}
-sub mk_ListItem_token { # {{{
-    my %P = validate(
-        @_,
-        {
-            class   => { type=>SCALAR, optional=>1, default=>'generic' },
-            content => { type=>ARRAYREF }
-        }
-    );
-
-    $P{'type'} = 'ListItem';
-
-    return \%P;
-} # }}}
-sub mk_Table_token { # {{{
-    my %P = validate(
-        @_,
-        {
-            class   => { type=>SCALAR, optional=>1, default=>'generic' },
-            content => { type=>ARRAYREF },
-        }
-    );
-
-    $P{'type'} = 'Table';
-
-    return \%P;
-} # }}}
-sub mk_TableRow_token { # {{{
-    my %P = validate(
-        @_,
-        {
-            class   => { type=>SCALAR, optional=>1, default=>'generic' },
-            content => { type=>ARRAYREF },
-        }
-    );
-
-    $P{'type'} = 'TableRow';
-
-    return \%P;
-} # }}}
-sub mk_TableCell_token { # {{{
-    my %P = validate(
-        @_,
-        {
-            class   => { type=>SCALAR, optional=>1, default=>'generic' },
-            content => { type=>ARRAYREF },
-            colspan => { type=>SCALAR, optional=>1, default=>0 },
-            rowspan => { type=>SCALAR, optional=>1, default=>0 },
-        }
-    );
-
-    $P{'type'} = 'TableCell';
-
-    $P{'data'}->{'colspan'} = delete $P{'colspan'};
-    $P{'data'}->{'rowspan'} = delete $P{'rowspan'};
 
     return \%P;
 } # }}}

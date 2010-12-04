@@ -190,12 +190,16 @@
 [X]             New password form
 [X]             Password reset
 [X]             Automated test
-[ ]     SLight::Handler::System::Permissions (system-wide authorization settings)
-[ ]         SLight::Handler::System::Permissions::View
-[ ]             Implementation
-[ ]             Test
+[>]     SLight::Handler::System::Permissions (system-wide authorization settings)
+[>]         SLight::Handler::System::Permissions::View
+[X]             Implement: handle_view
+[>]             Implement: handle_system
+[>]             Implement: handle_guest
+[>]             Implement: handle_authenticated
+[>]             Test
 [ ]         SLight::Handler::System::Permissions::Change
-[ ]             Implementation
+[ ]             Implement: handle_set
+[ ]             Implement: handle_clear
 [ ]             Test
 [-]     SLight::Handler::Account (allow site owner to manage User accounts)
 [X]         SLight::Handler::Account::List::View

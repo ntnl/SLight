@@ -83,8 +83,11 @@ sub make_label_if_text { # {{{
         }
     );
 
-    if (ref $P{'object'}) {
+    if (ref $P{'object'} eq 'ARRAY') {
         return $P{'object'};
+    }
+    elsif (ref $P{'object'} eq 'HASH') {
+        return [ $P{'object'} ];
     }
 
     return [
