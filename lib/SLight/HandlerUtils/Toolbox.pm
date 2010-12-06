@@ -36,6 +36,8 @@ sub make_toolbox { # {{{
             path         => { type=>ARRAYREF, optional=>1 },
             add_to_path  => { type=>ARRAYREF, optional=>1 },
 
+            options  => { type=>HASHREF, optional=>1 },
+
             action => { type=>SCALAR, optional=>1 },
             step   => { type=>SCALAR, optional=>1 },
             lang   => { type=>SCALAR, optional=>1 },
@@ -54,8 +56,8 @@ sub make_toolbox { # {{{
     my @action_buttons;
     foreach my $url (@{ $P{'urls'} }) {
         # Apply defaults:
-        foreach my $field (qw( path_handler path action step lang page protocol )) {
-            if (not defined $url->{$field}) {
+        foreach my $field (qw( path_handler path action step lang page protocol options )) {
+            if (not defined $url->{$field} and $P{$field}) {
                 $url->{$field} = $P{$field};
 
                 assert_defined($url->{$field}, $field . " configured");

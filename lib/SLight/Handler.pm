@@ -385,6 +385,8 @@ sub make_toolbox { # {{{
             path_handler => { type=>SCALAR, optional=>1, default=>$self->{'url'}->{'path_handler'} },
             path         => { type=>SCALAR, optional=>1, default=>$self->{'url'}->{'path'} },
             add_to_path  => { type=>ARRAYREF, optional=>1 },
+            
+            options  => { type=>HASHREF, optional=>1 },
 
             action => { type=>SCALAR, optional=>1, default=>$self->{'url'}->{'action'} },
             step   => { type=>SCALAR, optional=>1, default=>$self->{'url'}->{'step'} },

@@ -185,7 +185,7 @@ sub clear_User_access { # {{{
 
     my @where = ( q{User_id = }, $P{'id'} );
     foreach my $field (qw( handler_family handler_class handler_action )) {
-        push @where, q{ AND } . $field . q{ = }, $P{'handler_family'},
+        push @where, q{ AND } . $field . q{ = }, $P{$field},
     }
 
     SLight::Core::DB::run_delete(
@@ -213,7 +213,7 @@ sub clear_System_access { # {{{
 
     my @where = ( q{user_type = }, $P{'type'} );
     foreach my $field (qw( handler_family handler_class handler_action )) {
-        push @where, q{ AND } . $field . q{ = }, $P{'handler_family'},
+        push @where, q{ AND } . $field . q{ = }, $P{$field},
     }
 
     SLight::Core::DB::run_delete(

@@ -211,9 +211,75 @@ sub _row { # {{{
             $policy_label = TR($access_policy);
 
             $display_inner = 0;
+
+            if ($access_policy eq 'DENIED') {
+                $actions = $self->make_toolbox(
+                    urls => [
+                        {
+                            caption => TR('Grant access'),
+                            step    => 'grant',
+                        },
+                        {
+                            caption => TR('Clear'),
+                            step    => 'clear',
+                        },
+                    ],
+                    action  => 'Change',
+                    options => {
+                        level => $level,
+            
+                        h_family => $family,
+                        h_class  => $class,
+                        h_action => $action,
+                    },
+                );
+            }
+            else {
+                $actions = $self->make_toolbox(
+                    urls => [
+                        {
+                            caption => TR('Deny access'),
+                            step    => 'deny',
+                        },
+                        {
+                            caption => TR('Clear'),
+                            step    => 'clear',
+                        },
+                    ],
+                    action  => 'Change',
+                    options => {
+                        level => $level,
+            
+                        h_family => $family,
+                        h_class  => $class,
+                        h_action => $action,
+                    },
+                );
+            }
         }
         else {
             $policy_label = TR('Not set');
+            
+            $actions = $self->make_toolbox(
+                urls => [
+                    {
+                        caption => TR('Grant access'),
+                        step    => 'grant',
+                    },
+                    {
+                        caption => TR('Deny access'),
+                        step    => 'deny',
+                    },
+                ],
+                action  => 'Change',
+                options => {
+                    level => $level,
+            
+                    h_family => $family,
+                    h_class  => $class,
+                    h_action => $action,
+                },
+            );
         }
     }
 
