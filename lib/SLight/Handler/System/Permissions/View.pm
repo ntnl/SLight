@@ -15,11 +15,12 @@ use strict; use warnings; # {{{
 use base q{SLight::Handler};
 
 use SLight::API::User;
-use SLight::API::Permissions;
+use SLight::API::Permissions qw( get_System_access );
+use SLight::Core::L10N qw( TR TF );
 use SLight::DataStructure::List;
 use SLight::DataStructure::List::Table;
 use SLight::DataToken qw( mk_Link_token );
-use SLight::Core::L10N qw( TR );
+use SLight::HandlerMeta;
 # }}}
 
 # FIXME:
@@ -93,6 +94,8 @@ sub handle_system { # {{{
 
     $self->set_class('SL_System_Permissions');
 
+    $self->_permissions('system');
+
     return;
 } # }}}
 
@@ -100,6 +103,8 @@ sub handle_guest { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
     $self->set_class('SL_System_Permissions');
+
+    $self->_permissions('guest', 'system');
 
     return;
 } # }}}
@@ -109,13 +114,15 @@ sub handle_authenticated { # {{{
 
     $self->set_class('SL_System_Permissions');
 
+    $self->_permissions('authenticated', 'system');
+
     return;
 } # }}}
 
 sub _permissions { # {{{
     my ( $self, $level, @other_levels ) = @_;
 
-    my $permissions = SLight::DataStructure::List::Table->new(
+    my $table = SLight::DataStructure::List::Table->new(
         columns => [
             {
                 caption => TR('Module'),
@@ -136,11 +143,90 @@ sub _permissions { # {{{
         ],
     );
 
-    # ...
+    my $handlers_list = SLight::HandlerMeta::get_handlers_list();
 
-    $self->push_data($permissions);
+    foreach my $family (@{ $handlers_list }) {
+        if (not $self->_row($table, $level, $family->{'class'}, q{*}, q{*})) {
+            next;
+        }
+
+        foreach my $object (@{ $family->{'objects'} }) {
+            if (not $self->_row($table, $level, $family->{'class'}, $object->{'class'}, q{*})) {
+                next;
+            }
+
+            foreach my $action (@{ $object->{'actions'} }) {
+                if (not $self->_row($table, $level, $family->{'class'}, $object->{'class'}, $action)) {
+                    next;
+                }
+            }
+        }
+    }
+
+    $self->push_data($table);
 
     return;
+} # }}}
+
+sub _row { # {{{
+    my ( $self, $table, $level, $family, $class, $action ) = @_;
+
+    my $display_inner = 1;
+
+    my $label = $family .q{::}. $class .q{::}. $action;
+
+    # Prepare stuff for this object class.
+    my $policy_label;
+    my $notes        = q{};
+    my $actions      = q{};
+
+    if ($level ne 'system') {
+        # Check 'system' settings first.
+        my $access_policy = get_System_access(
+            type => q{system},
+
+            handler_family => $family,
+            handler_class  => $class,
+            handler_action => $action,
+        );
+
+        if ($access_policy) {
+            $policy_label = TF(q{%s on system level}, undef, $access_policy);
+    
+            $display_inner = 0;
+        }
+    }
+
+    if (not $policy_label) {
+        # OK, so the 'system' check was not conclusive.
+        my $access_policy = get_System_access(
+            type => $level,
+
+            handler_family => $family,
+            handler_class  => $class,
+            handler_action => $action,
+        );
+
+        if ($access_policy) {
+            $policy_label = TR($access_policy);
+
+            $display_inner = 0;
+        }
+        else {
+            $policy_label = TR('Not set');
+        }
+    }
+
+    $table->add_Row(
+        data => {
+            module  => $label,
+            policy  => $policy_label,
+            notes   => $notes,
+            actions => $actions,
+        },
+    );
+
+    return $display_inner;
 } # }}}
 
 # vim: fdm=marker

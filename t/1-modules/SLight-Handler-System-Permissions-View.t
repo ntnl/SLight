@@ -17,6 +17,7 @@ use lib $Bin . q{/../../lib/};
 
 use SLight::Test::Site;
 use SLight::Test::Handler qw( run_handler_tests );
+use SLight::API::Permissions qw( set_System_access );
 
 use English qw( -no_match_vars );
 # }}}
@@ -25,6 +26,19 @@ my $site_root = SLight::Test::Site::prepare_fake(
     test_dir => $Bin . q{/../},
     site     => 'Users'
 );
+
+# Set some permissions :)
+# Use case 1-a - Family * * - on system level
+set_System_access( type => 'system',   handler_family => q{User},      handler_class  => q{*}, handler_action => q{*},  policy => 'GRANTED' );
+set_System_access( type => 'system',   handler_family => q{MyAccount}, handler_class  => q{*}, handler_action => q{*},  policy => 'DENIED' );
+
+# Use case 2-a - Family Class * - on system level
+set_System_access( type => 'system',   handler_family => q{Test},    handler_class  => q{Foo},  handler_action => q{*},    policy => 'GRANTED' );
+set_System_access( type => 'system',   handler_family => q{Account}, handler_class  => q{List}, handler_action => q{*},    policy => 'DENIED' );
+
+# Use case 3-a - Family Class Action - on system level
+set_System_access( type => 'system',   handler_family => q{Core}, handler_class  => q{Empty}, handler_action => q{View},        policy => 'GRANTED' );
+set_System_access( type => 'system',   handler_family => q{Core}, handler_class  => q{Empty}, handler_action => q{AddContent},  policy => 'DENIED' );
 
 my @tests = (
     {
