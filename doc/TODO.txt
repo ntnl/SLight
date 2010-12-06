@@ -328,6 +328,7 @@
 [X]         Implementation
 [ ]         Automated test
 [ ]     Split 'content' into "objects before", "main object", "objects after" (with 'content' support maintained)
+[X] SLight::HandlerMeta
 [ ] Development
 [ ]     Built-in EVK support in Test::Handler
 [ ]     Built-in Email support in Test::Handler
