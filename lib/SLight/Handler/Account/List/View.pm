@@ -71,8 +71,16 @@ sub handle_view { # {{{
                                 path   => [ $user_data->{'login'}, 'Account' ],
                             },
                             {
-                                action => 'Permissions',
-                                path   => [ $user_data->{'login'}, 'Permissions' ],
+                                caption => TR('Avatar'),
+                                class   => q{SLight_Avatar_Action},
+                                action  => 'View',
+                                path   => [ $user_data->{'login'}, 'Avatar' ],
+                            },
+                            {
+                                caption => TR('Permissions'),
+                                class   => q{SLight_Permissions_Action},
+                                action  => 'View',
+                                path    => [ $user_data->{'login'}, 'Permissions' ],
                             },
                             {
                                 action => 'Delete',

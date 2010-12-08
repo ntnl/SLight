@@ -39,13 +39,15 @@ Activate real account:
   location: /_Authentication/ActivateAccount-thankyou.web
   response: REDIRECT
 'Check: User account after activation':
-- email: test@subject.test
+- avatar_Asset_id: ~
+  email: test@subject.test
   id: 6
   login: Fooley
   name: Test subject
   status: Enabled
 'Check: User account before activation':
-- email: test@subject.test
+- avatar_Asset_id: ~
+  email: test@subject.test
   id: 6
   login: Fooley
   name: Test subject

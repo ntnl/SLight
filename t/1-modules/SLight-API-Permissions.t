@@ -276,7 +276,7 @@ is (
 
         handler_object => q{Ob1},
     ),
-    'GRANTED',
+    'DENIED',
     q{can_User_access}
 );
 is (
@@ -302,7 +302,7 @@ is (
 
         handler_object => undef,
     ),
-    'DENIED',
+    'GRANTED',
     q{can_User_access}
 );
 is (

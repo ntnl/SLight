@@ -71,7 +71,7 @@ List of accounts:
                 - class: SLight_Permissions_Action
                   data:
                     caption: Permissions
-                    href: /_Account/aga/Permissions/Permissions-en.web_test
+                    href: /_Account/aga/Permissions/en.web_test
                   type: Action
                 - class: SLight_Delete_Action
                   data:
@@ -129,7 +129,7 @@ List of accounts:
                 - class: SLight_Permissions_Action
                   data:
                     caption: Permissions
-                    href: /_Account/beti/Permissions/Permissions-en.web_test
+                    href: /_Account/beti/Permissions/en.web_test
                   type: Action
                 - class: SLight_Delete_Action
                   data:
@@ -187,7 +187,7 @@ List of accounts:
                 - class: SLight_Permissions_Action
                   data:
                     caption: Permissions
-                    href: /_Account/ela/Permissions/Permissions-en.web_test
+                    href: /_Account/ela/Permissions/en.web_test
                   type: Action
                 - class: SLight_Delete_Action
                   data:
@@ -245,7 +245,7 @@ List of accounts:
                 - class: SLight_Permissions_Action
                   data:
                     caption: Permissions
-                    href: /_Account/nataly/Permissions/Permissions-en.web_test
+                    href: /_Account/nataly/Permissions/en.web_test
                   type: Action
                 - class: SLight_Delete_Action
                   data:
@@ -303,7 +303,7 @@ List of accounts:
                 - class: SLight_Permissions_Action
                   data:
                     caption: Permissions
-                    href: /_Account/wanda/Permissions/Permissions-en.web_test
+                    href: /_Account/wanda/Permissions/en.web_test
                   type: Action
                 - class: SLight_Delete_Action
                   data:

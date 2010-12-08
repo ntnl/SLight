@@ -28,7 +28,7 @@ ok(
     SLight::Maintenance::Install::make_site(
         $site_root,
         sub { my $msg = shift; push @output, $msg; },
-        $Bin .'/../../sql/0.0/',
+        $Bin .'/../../sql/0.3/',
     ),
     "smoke test"
 );

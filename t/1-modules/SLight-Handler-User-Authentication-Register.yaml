@@ -40,7 +40,8 @@
     made_by: SLight::Handler::User::Authentication::Register
     user_id: '6'
 'Check: User account was created':
-- email: test@subject.test
+- avatar_Asset_id: ~
+  email: test@subject.test
   id: 6
   login: Fooley
   name: Test subject

@@ -63,7 +63,7 @@ is_deeply(
     'session started'
 );
 
-SLight::Core::Session::part('vars', { one=>1, two=>2 } );
+SLight::Core::Session::part_set('vars', { one=>1, two=>2 } );
 
 is_deeply(
     SLight::Core::Session::save(),
@@ -85,6 +85,8 @@ ok (SLight::Core::Session::session_id() ne $valid_session_id, 'restore - invalid
 # Session id is valid - session will be restored.
 $restored = SLight::Core::Session::restore( $valid_session_id );
 
+#use Data::Dumper; warn 'Restored Dumper: ' . Dumper $restored;
+
 $restored->{'expires'} = $expires;
 
 is_deeply(
@@ -96,9 +98,9 @@ is_deeply(
     'restore - valid ID'
 );
 
-is (SLight::Core::Session::part('foo'),        undef, 'part');
-is (SLight::Core::Session::part('foo', 'bar'), 'bar', 'part');
-is (SLight::Core::Session::part('foo'),        'bar', 'part');
+is (SLight::Core::Session::part('foo'),            undef, 'part');
+is (SLight::Core::Session::part_set('foo', 'bar'), 'bar', 'part');
+is (SLight::Core::Session::part('foo'),            'bar', 'part');
 
 is (SLight::Core::Session::part_reset('foo'),  undef, 'part_reset');
 is (SLight::Core::Session::part('foo'),        undef, 'part_reset ok');

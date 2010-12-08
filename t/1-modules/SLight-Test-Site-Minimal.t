@@ -19,7 +19,7 @@ use SLight::Test::Site::Builder::Test;
 
 SLight::Test::Site::Builder::Test::test_builder(
     $Bin . q{/../../t_data/},
-    $Bin . q{/../../sql/0.0/},
+    $Bin . q{/../../sql/0.3/},
     'Minimal',
 );
 

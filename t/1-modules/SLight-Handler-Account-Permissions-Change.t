@@ -29,16 +29,26 @@ my $site_root = SLight::Test::Site::prepare_fake(
 
 my @tests = (
     {
-        'name' => q{User 'aga', status: Enabled},
-        'url'  => q{/_Account/aga/},
+        'name' => q{Deny 'aga' access to all CMS actions},
+        'url'  => q{/_Account/aga/Permissions/Change-deny.web},
+        'cgi'  => {
+            h_family => q{CMS},
+            h_class  => q{*},
+            h_action => q{*},
+        },
     },
     {
-        'name' => q{User 'nataly', status: Guest},
-        'url'  => q{/_Account/nataly/},
+        'name' => q{Allow 'nataly' access to all User/Authentication actions for guests},
+        'url'  => q{/_Account/nataly/Permissions/Change-grant.web},
+        'cgi'  => {
+            h_family => q{User},
+            h_class  => q{Authentication},
+            h_action => q{*},
+        },
     },
     {
-        'name' => q{User 'wanda', status: Disabled},
-        'url'  => q{/_Account/wanda/},
+        'name'      => q{Check what was put into DB.},
+        'sql_query' => [q{SELECT * FROM User_Access}],
     },
 );
 
@@ -47,3 +57,4 @@ run_handler_tests(
 );
 
 # vim: fdm=marker
+

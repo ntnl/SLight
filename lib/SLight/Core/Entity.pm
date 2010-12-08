@@ -315,7 +315,7 @@ sub update_ENTITY { # {{{
 
     my %values;
     foreach my $field (@{ $self->{'_all_fields'} }) {
-        if ($P{$field}) {
+        if (exists $P{$field}) {
             $values{$field} = $P{$field};
         }
     }

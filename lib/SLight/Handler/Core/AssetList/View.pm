@@ -54,29 +54,29 @@ sub handle_view { # {{{
     my $table = SLight::DataStructure::List::Table->new(
         columns => [
             {
-                name  => 'thumb',
-                class => 'SLight_thumb',
-                label => q{},
+                name    => 'thumb',
+                class   => 'SLight_thumb',
+                caption => q{},
             },
             {
-                name  => 'summary',
-                class => 'SLight_main_name',
-                label => TR('Summary'),
+                name    => 'summary',
+                class   => 'SLight_main_name',
+                caption => TR('Summary'),
             },
             {
-                name  => 'mime_type',
-                class => 'SLight_mime',
-                label => TR('Mime type'),
+                name    => 'mime_type',
+                class   => 'SLight_mime',
+                caption => TR('Mime type'),
             },
             {
-                name  => 'added',
-                class => 'SLight_time',
-                label => TR('Added'),
+                name    => 'added',
+                class   => 'SLight_time',
+                caption => TR('Added'),
             },
             {
-                name  => 'actions',
-                class => 'SLight_toolbox',
-                label => TR('Actions'),
+                name    => 'actions',
+                class   => 'SLight_toolbox',
+                caption => TR('Actions'),
             },
         ]
     );

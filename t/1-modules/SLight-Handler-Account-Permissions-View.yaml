@@ -1,66 +1,4 @@
 ---
-Levels list:
-  content:
-    addon_data:
-      Core::Path:
-        class: SLight_Path_Addon
-        content:
-        - class: Root
-          data:
-            href: /
-            text: SLight sandbox
-          type: Link
-        type: Container
-    object_data:
-      o:
-        class: SLight_Object O-SL_System_Permissions
-        content:
-        - class: generic
-          content:
-          - class: System
-            content:
-            - class: generic
-              data:
-                href: /_Permissions/system.web
-                text: System
-              type: Link
-            - class: desc
-              data:
-                text: Policies applicable for both authenticated and non-authernticated
-                  Users.
-              type: Label
-            type: ListItem
-          - class: Guest
-            content:
-            - class: generic
-              data:
-                href: /_Permissions/guest.web
-                text: Guest
-              type: Link
-            - class: desc
-              data:
-                text: Policies applicable for both non-authernticated Users.
-              type: Label
-            type: ListItem
-          - class: Authenticated
-            content:
-            - class: generic
-              data:
-                href: /_Permissions/authenticated.web
-                text: Authenticated
-              type: Link
-            - class: desc
-              data:
-                text: Policies applicable for both authenticated Users.
-              type: Label
-            type: ListItem
-          type: List
-        type: Container
-    object_order:
-    - o
-    template: Default
-  mime_type: ~
-  response: CONTENT
 'Permissions: authenticated':
   content:
     addon_data:
@@ -118,12 +56,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=%2A&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=%2A&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=%2A&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=%2A&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -170,12 +108,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -222,12 +160,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=Delete
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=Delete
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=Delete
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=Delete
                   type: Action
                 type: Container
               data:
@@ -274,12 +212,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=Edit
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=Edit
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=Edit
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=Edit
                   type: Action
                 type: Container
               data:
@@ -326,12 +264,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=New
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=New
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=New
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=New
                   type: Action
                 type: Container
               data:
@@ -378,12 +316,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=Password
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=Password
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=Password
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=Password
                   type: Action
                 type: Container
               data:
@@ -430,12 +368,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=View
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=View
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=View
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=View
                   type: Action
                 type: Container
               data:
@@ -482,12 +420,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Avatar&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Avatar&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Avatar&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Avatar&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -534,12 +472,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Avatar&h_action=Change
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Avatar&h_action=Change
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Avatar&h_action=Change
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Avatar&h_action=Change
                   type: Action
                 type: Container
               data:
@@ -586,12 +524,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Avatar&h_action=Delete
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Avatar&h_action=Delete
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Avatar&h_action=Delete
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Avatar&h_action=Delete
                   type: Action
                 type: Container
               data:
@@ -638,12 +576,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Avatar&h_action=Image
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Avatar&h_action=Image
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Avatar&h_action=Image
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Avatar&h_action=Image
                   type: Action
                 type: Container
               data:
@@ -690,12 +628,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Avatar&h_action=View
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Avatar&h_action=View
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Avatar&h_action=View
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Avatar&h_action=View
                   type: Action
                 type: Container
               data:
@@ -785,12 +723,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Permissions&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Permissions&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Permissions&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Permissions&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -837,12 +775,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Permissions&h_action=Change
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Permissions&h_action=Change
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Permissions&h_action=Change
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Permissions&h_action=Change
                   type: Action
                 type: Container
               data:
@@ -889,12 +827,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Permissions&h_action=View
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Permissions&h_action=View
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Permissions&h_action=View
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Permissions&h_action=View
                   type: Action
                 type: Container
               data:
@@ -941,12 +879,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=%2A&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=%2A&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=%2A&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=%2A&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -993,12 +931,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Entry&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Entry&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Entry&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Entry&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -1045,12 +983,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Entry&h_action=AddContent
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Entry&h_action=AddContent
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Entry&h_action=AddContent
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Entry&h_action=AddContent
                   type: Action
                 type: Container
               data:
@@ -1097,12 +1035,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Entry&h_action=Delete
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Entry&h_action=Delete
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Entry&h_action=Delete
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Entry&h_action=Delete
                   type: Action
                 type: Container
               data:
@@ -1149,12 +1087,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Entry&h_action=Edit
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Entry&h_action=Edit
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Entry&h_action=Edit
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Entry&h_action=Edit
                   type: Action
                 type: Container
               data:
@@ -1201,12 +1139,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Entry&h_action=View
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Entry&h_action=View
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Entry&h_action=View
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Entry&h_action=View
                   type: Action
                 type: Container
               data:
@@ -1253,12 +1191,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Spec&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Spec&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Spec&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Spec&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -1305,12 +1243,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Spec&h_action=Delete
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Spec&h_action=Delete
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Spec&h_action=Delete
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Spec&h_action=Delete
                   type: Action
                 type: Container
               data:
@@ -1357,12 +1295,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Spec&h_action=Edit
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Spec&h_action=Edit
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Spec&h_action=Edit
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Spec&h_action=Edit
                   type: Action
                 type: Container
               data:
@@ -1409,12 +1347,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Spec&h_action=New
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Spec&h_action=New
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Spec&h_action=New
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Spec&h_action=New
                   type: Action
                 type: Container
               data:
@@ -1461,12 +1399,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Spec&h_action=View
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Spec&h_action=View
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Spec&h_action=View
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Spec&h_action=View
                   type: Action
                 type: Container
               data:
@@ -1513,12 +1451,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=SpecField&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecField&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=SpecField&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecField&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -1565,12 +1503,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=SpecField&h_action=Delete
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecField&h_action=Delete
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=SpecField&h_action=Delete
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecField&h_action=Delete
                   type: Action
                 type: Container
               data:
@@ -1617,12 +1555,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=SpecField&h_action=Edit
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecField&h_action=Edit
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=SpecField&h_action=Edit
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecField&h_action=Edit
                   type: Action
                 type: Container
               data:
@@ -1669,12 +1607,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=SpecField&h_action=New
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecField&h_action=New
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=SpecField&h_action=New
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecField&h_action=New
                   type: Action
                 type: Container
               data:
@@ -1721,12 +1659,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=SpecField&h_action=View
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecField&h_action=View
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=SpecField&h_action=View
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecField&h_action=View
                   type: Action
                 type: Container
               data:
@@ -1773,12 +1711,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=SpecList&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecList&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=SpecList&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecList&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -1825,12 +1763,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=SpecList&h_action=View
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecList&h_action=View
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=SpecList&h_action=View
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecList&h_action=View
                   type: Action
                 type: Container
               data:
@@ -1877,12 +1815,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Welcome&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Welcome&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Welcome&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Welcome&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -1929,12 +1867,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Welcome&h_action=AddContent
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Welcome&h_action=AddContent
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Welcome&h_action=AddContent
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Welcome&h_action=AddContent
                   type: Action
                 type: Container
               data:
@@ -1981,12 +1919,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Welcome&h_action=View
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Welcome&h_action=View
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Welcome&h_action=View
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Welcome&h_action=View
                   type: Action
                 type: Container
               data:
@@ -2033,12 +1971,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=authenticated&h_class=%2A&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Core&h_class=%2A&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=authenticated&h_class=%2A&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Core&h_class=%2A&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -2085,12 +2023,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=authenticated&h_class=Asset&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Asset&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=authenticated&h_class=Asset&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Asset&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -2137,12 +2075,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=authenticated&h_class=Asset&h_action=Delete
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Asset&h_action=Delete
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=authenticated&h_class=Asset&h_action=Delete
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Asset&h_action=Delete
                   type: Action
                 type: Container
               data:
@@ -2189,12 +2127,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=authenticated&h_class=Asset&h_action=Download
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Asset&h_action=Download
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=authenticated&h_class=Asset&h_action=Download
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Asset&h_action=Download
                   type: Action
                 type: Container
               data:
@@ -2241,12 +2179,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=authenticated&h_class=Asset&h_action=Thumb
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Asset&h_action=Thumb
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=authenticated&h_class=Asset&h_action=Thumb
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Asset&h_action=Thumb
                   type: Action
                 type: Container
               data:
@@ -2293,12 +2231,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=authenticated&h_class=Asset&h_action=View
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Asset&h_action=View
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=authenticated&h_class=Asset&h_action=View
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Asset&h_action=View
                   type: Action
                 type: Container
               data:
@@ -2345,12 +2283,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=authenticated&h_class=AssetList&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Core&h_class=AssetList&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=authenticated&h_class=AssetList&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Core&h_class=AssetList&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -2397,12 +2335,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=authenticated&h_class=AssetList&h_action=View
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Core&h_class=AssetList&h_action=View
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=authenticated&h_class=AssetList&h_action=View
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Core&h_class=AssetList&h_action=View
                   type: Action
                 type: Container
               data:
@@ -2449,12 +2387,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=authenticated&h_class=Empty&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Empty&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=authenticated&h_class=Empty&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Empty&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -2544,12 +2482,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=authenticated&h_class=Empty&h_action=Delete
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Empty&h_action=Delete
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=authenticated&h_class=Empty&h_action=Delete
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Empty&h_action=Delete
                   type: Action
                 type: Container
               data:
@@ -2682,12 +2620,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=System&level=authenticated&h_class=%2A&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=System&h_class=%2A&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=System&level=authenticated&h_class=%2A&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=System&h_class=%2A&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -2734,12 +2672,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=System&level=authenticated&h_class=Permissions&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=System&h_class=Permissions&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=System&level=authenticated&h_class=Permissions&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=System&h_class=Permissions&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -2786,12 +2724,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=System&level=authenticated&h_class=Permissions&h_action=View
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=System&h_class=Permissions&h_action=View
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=System&level=authenticated&h_class=Permissions&h_action=View
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=System&h_class=Permissions&h_action=View
                   type: Action
                 type: Container
               data:
@@ -2838,12 +2776,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=System&level=authenticated&h_class=Permissions&h_action=Change
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=System&h_class=Permissions&h_action=Change
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=System&level=authenticated&h_class=Permissions&h_action=Change
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=System&h_class=Permissions&h_action=Change
                   type: Action
                 type: Container
               data:
@@ -2890,12 +2828,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Test&level=authenticated&h_class=%2A&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Test&h_class=%2A&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Test&level=authenticated&h_class=%2A&h_action=%2A
+                    href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Test&h_class=%2A&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -3053,12 +2991,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=%2A&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=%2A&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=%2A&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=%2A&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -3105,12 +3043,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -3157,12 +3095,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=Delete
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=Delete
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=Delete
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=Delete
                   type: Action
                 type: Container
               data:
@@ -3209,12 +3147,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=Edit
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=Edit
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=Edit
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=Edit
                   type: Action
                 type: Container
               data:
@@ -3261,12 +3199,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=New
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=New
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=New
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=New
                   type: Action
                 type: Container
               data:
@@ -3313,12 +3251,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=Password
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=Password
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=Password
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=Password
                   type: Action
                 type: Container
               data:
@@ -3365,12 +3303,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=View
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=View
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=View
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=View
                   type: Action
                 type: Container
               data:
@@ -3417,12 +3355,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Avatar&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Avatar&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Avatar&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Avatar&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -3469,12 +3407,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Avatar&h_action=Change
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Avatar&h_action=Change
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Avatar&h_action=Change
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Avatar&h_action=Change
                   type: Action
                 type: Container
               data:
@@ -3521,12 +3459,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Avatar&h_action=Delete
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Avatar&h_action=Delete
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Avatar&h_action=Delete
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Avatar&h_action=Delete
                   type: Action
                 type: Container
               data:
@@ -3573,12 +3511,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Avatar&h_action=Image
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Avatar&h_action=Image
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Avatar&h_action=Image
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Avatar&h_action=Image
                   type: Action
                 type: Container
               data:
@@ -3625,12 +3563,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Avatar&h_action=View
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Avatar&h_action=View
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Avatar&h_action=View
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Avatar&h_action=View
                   type: Action
                 type: Container
               data:
@@ -3720,12 +3658,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Permissions&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Permissions&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Permissions&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Permissions&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -3772,12 +3710,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Permissions&h_action=Change
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Permissions&h_action=Change
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Permissions&h_action=Change
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Permissions&h_action=Change
                   type: Action
                 type: Container
               data:
@@ -3824,12 +3762,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Permissions&h_action=View
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Permissions&h_action=View
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Permissions&h_action=View
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Permissions&h_action=View
                   type: Action
                 type: Container
               data:
@@ -3876,12 +3814,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=%2A&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=%2A&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=%2A&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=%2A&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -3928,12 +3866,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Entry&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Entry&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Entry&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Entry&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -3980,12 +3918,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Entry&h_action=AddContent
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Entry&h_action=AddContent
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Entry&h_action=AddContent
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Entry&h_action=AddContent
                   type: Action
                 type: Container
               data:
@@ -4032,12 +3970,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Entry&h_action=Delete
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Entry&h_action=Delete
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Entry&h_action=Delete
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Entry&h_action=Delete
                   type: Action
                 type: Container
               data:
@@ -4084,12 +4022,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Entry&h_action=Edit
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Entry&h_action=Edit
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Entry&h_action=Edit
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Entry&h_action=Edit
                   type: Action
                 type: Container
               data:
@@ -4136,12 +4074,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Entry&h_action=View
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Entry&h_action=View
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Entry&h_action=View
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Entry&h_action=View
                   type: Action
                 type: Container
               data:
@@ -4188,12 +4126,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Spec&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Spec&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Spec&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Spec&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -4240,12 +4178,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Spec&h_action=Delete
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Spec&h_action=Delete
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Spec&h_action=Delete
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Spec&h_action=Delete
                   type: Action
                 type: Container
               data:
@@ -4292,12 +4230,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Spec&h_action=Edit
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Spec&h_action=Edit
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Spec&h_action=Edit
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Spec&h_action=Edit
                   type: Action
                 type: Container
               data:
@@ -4344,12 +4282,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Spec&h_action=New
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Spec&h_action=New
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Spec&h_action=New
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Spec&h_action=New
                   type: Action
                 type: Container
               data:
@@ -4396,12 +4334,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Spec&h_action=View
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Spec&h_action=View
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Spec&h_action=View
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Spec&h_action=View
                   type: Action
                 type: Container
               data:
@@ -4448,12 +4386,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=SpecField&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecField&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=SpecField&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecField&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -4500,12 +4438,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=SpecField&h_action=Delete
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecField&h_action=Delete
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=SpecField&h_action=Delete
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecField&h_action=Delete
                   type: Action
                 type: Container
               data:
@@ -4552,12 +4490,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=SpecField&h_action=Edit
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecField&h_action=Edit
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=SpecField&h_action=Edit
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecField&h_action=Edit
                   type: Action
                 type: Container
               data:
@@ -4604,12 +4542,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=SpecField&h_action=New
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecField&h_action=New
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=SpecField&h_action=New
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecField&h_action=New
                   type: Action
                 type: Container
               data:
@@ -4656,12 +4594,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=SpecField&h_action=View
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecField&h_action=View
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=SpecField&h_action=View
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecField&h_action=View
                   type: Action
                 type: Container
               data:
@@ -4708,12 +4646,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=SpecList&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecList&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=SpecList&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecList&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -4760,12 +4698,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=SpecList&h_action=View
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecList&h_action=View
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=SpecList&h_action=View
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecList&h_action=View
                   type: Action
                 type: Container
               data:
@@ -4812,12 +4750,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Welcome&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Welcome&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Welcome&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Welcome&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -4864,12 +4802,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Welcome&h_action=AddContent
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Welcome&h_action=AddContent
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Welcome&h_action=AddContent
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Welcome&h_action=AddContent
                   type: Action
                 type: Container
               data:
@@ -4916,12 +4854,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Welcome&h_action=View
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Welcome&h_action=View
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Welcome&h_action=View
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Welcome&h_action=View
                   type: Action
                 type: Container
               data:
@@ -4968,12 +4906,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=guest&h_class=%2A&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Core&h_class=%2A&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=guest&h_class=%2A&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Core&h_class=%2A&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -5020,12 +4958,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=guest&h_class=Asset&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Asset&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=guest&h_class=Asset&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Asset&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -5072,12 +5010,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=guest&h_class=Asset&h_action=Delete
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Asset&h_action=Delete
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=guest&h_class=Asset&h_action=Delete
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Asset&h_action=Delete
                   type: Action
                 type: Container
               data:
@@ -5124,12 +5062,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=guest&h_class=Asset&h_action=Download
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Asset&h_action=Download
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=guest&h_class=Asset&h_action=Download
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Asset&h_action=Download
                   type: Action
                 type: Container
               data:
@@ -5176,12 +5114,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=guest&h_class=Asset&h_action=Thumb
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Asset&h_action=Thumb
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=guest&h_class=Asset&h_action=Thumb
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Asset&h_action=Thumb
                   type: Action
                 type: Container
               data:
@@ -5228,12 +5166,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=guest&h_class=Asset&h_action=View
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Asset&h_action=View
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=guest&h_class=Asset&h_action=View
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Asset&h_action=View
                   type: Action
                 type: Container
               data:
@@ -5280,12 +5218,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=guest&h_class=AssetList&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Core&h_class=AssetList&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=guest&h_class=AssetList&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Core&h_class=AssetList&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -5332,12 +5270,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=guest&h_class=AssetList&h_action=View
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Core&h_class=AssetList&h_action=View
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=guest&h_class=AssetList&h_action=View
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Core&h_class=AssetList&h_action=View
                   type: Action
                 type: Container
               data:
@@ -5384,12 +5322,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=guest&h_class=Empty&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Empty&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=guest&h_class=Empty&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Empty&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -5479,12 +5417,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=guest&h_class=Empty&h_action=Delete
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Empty&h_action=Delete
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=guest&h_class=Empty&h_action=Delete
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Empty&h_action=Delete
                   type: Action
                 type: Container
               data:
@@ -5617,12 +5555,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=System&level=guest&h_class=%2A&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=System&h_class=%2A&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=System&level=guest&h_class=%2A&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=System&h_class=%2A&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -5669,12 +5607,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=System&level=guest&h_class=Permissions&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=System&h_class=Permissions&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=System&level=guest&h_class=Permissions&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=System&h_class=Permissions&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -5721,12 +5659,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=System&level=guest&h_class=Permissions&h_action=View
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=System&h_class=Permissions&h_action=View
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=System&level=guest&h_class=Permissions&h_action=View
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=System&h_class=Permissions&h_action=View
                   type: Action
                 type: Container
               data:
@@ -5773,12 +5711,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=System&level=guest&h_class=Permissions&h_action=Change
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=System&h_class=Permissions&h_action=Change
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=System&level=guest&h_class=Permissions&h_action=Change
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=System&h_class=Permissions&h_action=Change
                   type: Action
                 type: Container
               data:
@@ -5825,12 +5763,12 @@ Levels list:
                 - class: SLight_Change_Action
                   data:
                     caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Test&level=guest&h_class=%2A&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Test&h_class=%2A&h_action=%2A
                   type: Action
                 - class: SLight_Change_Action
                   data:
                     caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Test&level=guest&h_class=%2A&h_action=%2A
+                    href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Test&h_class=%2A&h_action=%2A
                   type: Action
                 type: Container
               data:
@@ -5919,2995 +5857,6 @@ Levels list:
                 data:
                   text: ''
                 type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          type: Table
-        type: Container
-    object_order:
-    - o
-    template: Default
-  mime_type: ~
-  response: CONTENT
-'Permissions: system':
-  content:
-    addon_data:
-      Core::Path:
-        class: SLight_Path_Addon
-        content:
-        - class: Root
-          data:
-            href: /
-            text: SLight sandbox
-          type: Link
-        type: Container
-    object_data:
-      o:
-        class: SLight_Object O-SL_System_Permissions
-        content:
-        - class: generic
-          content:
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Account::*::*
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=%2A&h_action=%2A
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=%2A&h_action=%2A
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Account::Account::*
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Account&h_action=%2A
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Account&h_action=%2A
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Account::Account::Delete
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Account&h_action=Delete
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Account&h_action=Delete
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Account::Account::Edit
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Account&h_action=Edit
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Account&h_action=Edit
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Account::Account::New
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Account&h_action=New
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Account&h_action=New
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Account::Account::Password
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Account&h_action=Password
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Account&h_action=Password
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Account::Account::View
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Account&h_action=View
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Account&h_action=View
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Account::Avatar::*
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Avatar&h_action=%2A
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Avatar&h_action=%2A
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Account::Avatar::Change
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Avatar&h_action=Change
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Avatar&h_action=Change
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Account::Avatar::Delete
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Avatar&h_action=Delete
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Avatar&h_action=Delete
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Account::Avatar::Image
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Avatar&h_action=Image
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Avatar&h_action=Image
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Account::Avatar::View
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Avatar&h_action=View
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Avatar&h_action=View
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Account::List::*
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Denied
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=List&h_action=%2A
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Clear
-                    href: /_Permissions/Change-clear-en.web_test?h_family=Account&level=system&h_class=List&h_action=%2A
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Account::Permissions::*
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Permissions&h_action=%2A
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Permissions&h_action=%2A
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Account::Permissions::Change
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Permissions&h_action=Change
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Permissions&h_action=Change
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Account::Permissions::View
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Permissions&h_action=View
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Permissions&h_action=View
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: CMS::*::*
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=%2A&h_action=%2A
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=%2A&h_action=%2A
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: CMS::Entry::*
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Entry&h_action=%2A
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Entry&h_action=%2A
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: CMS::Entry::AddContent
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Entry&h_action=AddContent
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Entry&h_action=AddContent
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: CMS::Entry::Delete
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Entry&h_action=Delete
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Entry&h_action=Delete
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: CMS::Entry::Edit
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Entry&h_action=Edit
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Entry&h_action=Edit
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: CMS::Entry::View
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Entry&h_action=View
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Entry&h_action=View
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: CMS::Spec::*
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Spec&h_action=%2A
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Spec&h_action=%2A
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: CMS::Spec::Delete
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Spec&h_action=Delete
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Spec&h_action=Delete
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: CMS::Spec::Edit
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Spec&h_action=Edit
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Spec&h_action=Edit
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: CMS::Spec::New
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Spec&h_action=New
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Spec&h_action=New
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: CMS::Spec::View
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Spec&h_action=View
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Spec&h_action=View
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: CMS::SpecField::*
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=SpecField&h_action=%2A
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=SpecField&h_action=%2A
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: CMS::SpecField::Delete
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=SpecField&h_action=Delete
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=SpecField&h_action=Delete
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: CMS::SpecField::Edit
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=SpecField&h_action=Edit
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=SpecField&h_action=Edit
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: CMS::SpecField::New
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=SpecField&h_action=New
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=SpecField&h_action=New
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: CMS::SpecField::View
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=SpecField&h_action=View
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=SpecField&h_action=View
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: CMS::SpecList::*
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=SpecList&h_action=%2A
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=SpecList&h_action=%2A
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: CMS::SpecList::View
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=SpecList&h_action=View
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=SpecList&h_action=View
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: CMS::Welcome::*
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Welcome&h_action=%2A
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Welcome&h_action=%2A
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: CMS::Welcome::AddContent
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Welcome&h_action=AddContent
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Welcome&h_action=AddContent
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: CMS::Welcome::View
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Welcome&h_action=View
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Welcome&h_action=View
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Core::*::*
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=system&h_class=%2A&h_action=%2A
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=system&h_class=%2A&h_action=%2A
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Core::Asset::*
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=system&h_class=Asset&h_action=%2A
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=system&h_class=Asset&h_action=%2A
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Core::Asset::Delete
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=system&h_class=Asset&h_action=Delete
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=system&h_class=Asset&h_action=Delete
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Core::Asset::Download
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=system&h_class=Asset&h_action=Download
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=system&h_class=Asset&h_action=Download
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Core::Asset::Thumb
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=system&h_class=Asset&h_action=Thumb
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=system&h_class=Asset&h_action=Thumb
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Core::Asset::View
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=system&h_class=Asset&h_action=View
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=system&h_class=Asset&h_action=View
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Core::AssetList::*
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=system&h_class=AssetList&h_action=%2A
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=system&h_class=AssetList&h_action=%2A
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Core::AssetList::View
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=system&h_class=AssetList&h_action=View
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=system&h_class=AssetList&h_action=View
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Core::Empty::*
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=system&h_class=Empty&h_action=%2A
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=system&h_class=Empty&h_action=%2A
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Core::Empty::AddContent
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Denied
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=system&h_class=Empty&h_action=AddContent
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Clear
-                    href: /_Permissions/Change-clear-en.web_test?h_family=Core&level=system&h_class=Empty&h_action=AddContent
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Core::Empty::Delete
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=system&h_class=Empty&h_action=Delete
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=system&h_class=Empty&h_action=Delete
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Core::Empty::View
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Granted
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=system&h_class=Empty&h_action=View
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Clear
-                    href: /_Permissions/Change-clear-en.web_test?h_family=Core&level=system&h_class=Empty&h_action=View
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: MyAccount::*::*
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Denied
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=MyAccount&level=system&h_class=%2A&h_action=%2A
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Clear
-                    href: /_Permissions/Change-clear-en.web_test?h_family=MyAccount&level=system&h_class=%2A&h_action=%2A
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: System::*::*
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=System&level=system&h_class=%2A&h_action=%2A
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=System&level=system&h_class=%2A&h_action=%2A
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: System::Permissions::*
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=System&level=system&h_class=Permissions&h_action=%2A
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=System&level=system&h_class=Permissions&h_action=%2A
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: System::Permissions::View
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=System&level=system&h_class=Permissions&h_action=View
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=System&level=system&h_class=Permissions&h_action=View
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: System::Permissions::Change
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=System&level=system&h_class=Permissions&h_action=Change
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=System&level=system&h_class=Permissions&h_action=Change
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Test::*::*
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Test&level=system&h_class=%2A&h_action=%2A
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Test&level=system&h_class=%2A&h_action=%2A
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Test::Foo::*
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Granted
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Test&level=system&h_class=Foo&h_action=%2A
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Clear
-                    href: /_Permissions/Change-clear-en.web_test?h_family=Test&level=system&h_class=Foo&h_action=%2A
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: User::*::*
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Granted
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=User&level=system&h_class=%2A&h_action=%2A
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Clear
-                    href: /_Permissions/Change-clear-en.web_test?h_family=User&level=system&h_class=%2A&h_action=%2A
-                  type: Action
-                type: Container
               data:
                 colspan: '0'
                 rowspan: '0'

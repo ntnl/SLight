@@ -21,6 +21,17 @@
             content:
             - class: SL_Property_Caption
               data:
+                text: 'Login:'
+              type: Label
+            - class: SL_Property_Value
+              data:
+                text: aga
+              type: Label
+            type: Container
+          - class: default
+            content:
+            - class: SL_Property_Caption
+              data:
                 text: 'Status:'
               type: Label
             - class: SL_Property_Value
@@ -37,17 +48,6 @@
             - class: SL_Property_Value
               data:
                 text: Agnieszka
-              type: Label
-            type: Container
-          - class: default
-            content:
-            - class: SL_Property_Caption
-              data:
-                text: 'Login:'
-              type: Label
-            - class: SL_Property_Value
-              data:
-                text: aga
               type: Label
             type: Container
           - class: default
@@ -91,6 +91,17 @@
             content:
             - class: SL_Property_Caption
               data:
+                text: 'Login:'
+              type: Label
+            - class: SL_Property_Value
+              data:
+                text: nataly
+              type: Label
+            type: Container
+          - class: default
+            content:
+            - class: SL_Property_Caption
+              data:
                 text: 'Status:'
               type: Label
             - class: SL_Property_Value
@@ -107,17 +118,6 @@
             - class: SL_Property_Value
               data:
                 text: Natalia
-              type: Label
-            type: Container
-          - class: default
-            content:
-            - class: SL_Property_Caption
-              data:
-                text: 'Login:'
-              type: Label
-            - class: SL_Property_Value
-              data:
-                text: nataly
               type: Label
             type: Container
           - class: default

@@ -1,0 +1,20 @@
+---
+Allow 'nataly' access to all User/Authentication actions for guests:
+  location: /_Account/nataly/Permissions/
+  response: REDIRECT
+Check what was put into DB.:
+- User_id: 1
+  handler_action: '*'
+  handler_class: '*'
+  handler_family: CMS
+  handler_object: '*'
+  policy: DENIED
+- User_id: 4
+  handler_action: '*'
+  handler_class: Authentication
+  handler_family: User
+  handler_object: '*'
+  policy: GRANTED
+Deny 'aga' access to all CMS actions:
+  location: /_Account/aga/Permissions/
+  response: REDIRECT

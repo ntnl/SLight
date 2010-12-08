@@ -1,12 +1,14 @@
 ---
 Check what was deleted:
 - Email_id: 1
+  avatar_Asset_id: ~
   id: 1
   login: aga
   name: Agnieszka
   pass_enc: d27d225b94bf7be57d1c3d4d73f96fc0fd3c57d89d175ce336c226b0f27e9f27fed2dc7a7c6324228ff40a25e8fbef49f7cfb8656d0074a6d1c6c901406aa53e
   status: Enabled
 - Email_id: 3
+  avatar_Asset_id: ~
   id: 3
   login: ela
   name: Elżbieta

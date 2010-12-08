@@ -13,7 +13,7 @@
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_MyAccount_MyData
+        class: SLight_Object O-SL_Account_Data
         content:
         - class: SLight_Properties
           content:
@@ -37,6 +37,17 @@
             - class: SL_Property_Value
               data:
                 text: Enabled
+              type: Label
+            type: Container
+          - class: default
+            content:
+            - class: SL_Property_Caption
+              data:
+                text: 'Id:'
+              type: Label
+            - class: SL_Property_Value
+              data:
+                text: 1
               type: Label
             type: Container
           - class: default
@@ -83,7 +94,7 @@
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_MyAccount_MyData
+        class: SLight_Object O-SL_Account_Data
         content:
         - class: SLight_Properties
           content:
@@ -107,6 +118,17 @@
             - class: SL_Property_Value
               data:
                 text: Guest
+              type: Label
+            type: Container
+          - class: default
+            content:
+            - class: SL_Property_Caption
+              data:
+                text: 'Id:'
+              type: Label
+            - class: SL_Property_Value
+              data:
+                text: 4
               type: Label
             type: Container
           - class: default
@@ -153,8 +175,67 @@
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_MyAccount_MyData
-        content: []
+        class: SLight_Object O-SL_Account_Data
+        content:
+        - class: SLight_Properties
+          content:
+          - class: default
+            content:
+            - class: SL_Property_Caption
+              data:
+                text: 'Login:'
+              type: Label
+            - class: SL_Property_Value
+              data:
+                text: wanda
+              type: Label
+            type: Container
+          - class: default
+            content:
+            - class: SL_Property_Caption
+              data:
+                text: 'Status:'
+              type: Label
+            - class: SL_Property_Value
+              data:
+                text: Disabled
+              type: Label
+            type: Container
+          - class: default
+            content:
+            - class: SL_Property_Caption
+              data:
+                text: 'Id:'
+              type: Label
+            - class: SL_Property_Value
+              data:
+                text: 5
+              type: Label
+            type: Container
+          - class: default
+            content:
+            - class: SL_Property_Caption
+              data:
+                text: 'Name:'
+              type: Label
+            - class: SL_Property_Value
+              data:
+                text: Wanda L.
+              type: Label
+            type: Container
+          - class: default
+            content:
+            - class: SL_Property_Caption
+              data:
+                text: 'Email:'
+              type: Label
+            - class: SL_Property_Value
+              data:
+                text: wanda@test.test
+              type: Label
+            type: Container
+          data: {}
+          type: Container
         type: Container
     object_order:
     - o

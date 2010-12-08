@@ -48,22 +48,26 @@ sub handle_view { # {{{
     my $table = SLight::DataStructure::List::Table->new(
         columns => [
             {
-                class => 'main_name',
-                name  => 'label',
+                caption => TR('Name'),
+                class   => 'main_name',
+                name    => 'label',
             },
             {
-                class => 'name',
-                name  => 'owning_module',
+                caption => TR('Handler'),
+                class   => 'name',
+                name    => 'owning_module',
             },
             {
-                class => 'link',
-                name  => 'as_page_link',
+                caption => q{},
+                class   => 'link',
+                name    => 'as_page_link',
             },
             {
-                class => 'link',
-                name  => 'append_link',
+                caption => q{},
+                class   => 'link',
+                name    => 'append_link',
             },
-        ]
+        ],
     );
 
     foreach my $spec (@{ $specs }) {

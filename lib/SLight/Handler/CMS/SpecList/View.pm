@@ -63,50 +63,50 @@ sub handle_view { # {{{
     my $table = SLight::DataStructure::List::Table->new(
         columns => [
             {
-                name  => 'caption',
-                class => 'SLight_main_name',
-                label => TR('Caption'),
+                name    => 'caption',
+                class   => 'SLight_main_name',
+                caption => TR('Caption'),
             },
             {
-                name  => 'owning_module',
-                class => 'SLight_name',
-                label => TR('Owner'),
+                name    => 'owning_module',
+                class   => 'SLight_name',
+                caption => TR('Owner'),
             },
             {
-                name  => 'class',
-                class => 'SLight_name',
-                label => TR('Class'),
+                name    => 'class',
+                class   => 'SLight_name',
+                caption => TR('Class'),
             },
             {
-                name  => 'version',
-                class => 'SLight_int',
-                label => TR('Version'),
+                name    => 'version',
+                class   => 'SLight_int',
+                caption => TR('Version'),
             },
             {
-                name  => 'field_count',
-                class => 'SLight_int',
-                label => TR('Amount of fields'),
+                name    => 'field_count',
+                class   => 'SLight_int',
+                caption => TR('Amount of fields'),
             },
             
             {
-                name  => 'order_by',
-                class => 'SLight_name',
-                label => TR('Order field'),
+                name    => 'order_by',
+                class   => 'SLight_name',
+                caption => TR('Order field'),
             },
             {
-                name  => 'use_as_title',
-                class => 'SLight_name',
-                label => TR('Title field'),
+                name    => 'use_as_title',
+                class   => 'SLight_name',
+                caption => TR('Title field'),
             },
             {
-                name  => 'use_in_menu',
-                class => 'SLight_name',
-                label => TR('Menu field'),
+                name    => 'use_in_menu',
+                class   => 'SLight_name',
+                caption => TR('Menu field'),
             },
             {
-                name  => 'use_in_path',
-                class => 'SLight_name',
-                label => TR('Path field'),
+                name    => 'use_in_path',
+                class   => 'SLight_name',
+                caption => TR('Path field'),
             },
         ]
     );

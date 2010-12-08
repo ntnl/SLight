@@ -68,10 +68,11 @@ sub restore { # {{{
     my $file = session_filename();
 
     if (-f $file) {
-        # We should gracefuly fail - session will not work,
+        # We should gracefully fail - session will not work,
         # but system will be at least partially usable.
         $session = LoadFile( $file );
     }
+
     # If we ware unable to load session, or it contains some garbage - it will be reseted.
     # Expired sessions should also be reseted.
 
@@ -111,6 +112,8 @@ sub save { # {{{
 #    use Data::Dumper; print $dh Dumper $session;
 #    close $dh;
 
+#    use Data::Dumper; print "Saving to: ". $file .q{: }. Dumper $session;
+
     safe_save_YAML($file, $session);
 
     return $session;
@@ -141,7 +144,7 @@ sub session_id { # {{{
 # Warning:
 #   use part_set to set session variables!
 sub part { # {{{
-    my ( $part_name, $value ) = @_;
+    my ( $part_name ) = @_;
 
     return $session->{$part_name};
 } # }}}

@@ -1,0 +1,18 @@
+---
+Allow access to all User/Authentication actions for guests:
+  location: /_Permissions/guest.web
+  response: REDIRECT
+Check what was put into DB.:
+- handler_action: '*'
+  handler_class: '*'
+  handler_family: CMS
+  policy: DENIED
+  user_type: system
+- handler_action: '*'
+  handler_class: Authentication
+  handler_family: User
+  policy: GRANTED
+  user_type: guest
+Deny access to all CMS actions on system level:
+  location: /_Permissions/system.web
+  response: REDIRECT

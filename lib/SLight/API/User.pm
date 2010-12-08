@@ -38,11 +38,6 @@ our @EXPORT_OK = qw(
 );
 our %EXPORT_TAGS = ( 'all' => [ @EXPORT_OK ] );
 
-my %meta = (
-    all_fields  => [qw( id login status name pass )],
-    data_fields => [qw(    login status name      )],
-);
-
 my %status_set = (
     'Disabled' => 1,
         # User account exists, but is not usable
@@ -61,7 +56,7 @@ my %status_set = (
 my $_handler = SLight::Core::Entity->new( # {{{
     base_table => 'User_Entity',
 
-    data_fields => [qw( login status name pass_enc )],
+    data_fields => [qw( login status name pass_enc avatar_Asset_id )],
 
     has_owner => 1,
 
@@ -79,6 +74,8 @@ sub add_User { # {{{
             status => { type=>SCALAR },
 
             email => { type=>SCALAR },
+
+            avatar_Asset_id => { type=>SCALAR, optional=>1 },
         }
     );
 
@@ -106,11 +103,13 @@ sub update_User { # {{{
         {
             id => { type=>SCALAR },
 
-            name   => { type=>SCALAR, optional=>1 },
             pass   => { type=>SCALAR, optional=>1 },
             status => { type=>SCALAR, optional=>1 },
             email  => { type=>SCALAR, optional=>1 },
-            
+
+            name            => { type=>SCALAR | UNDEF, optional=>1 },
+            avatar_Asset_id => { type=>SCALAR | UNDEF, optional=>1 },
+
             _debug => { type=>SCALAR, optional=>1 },
         }
     );

@@ -164,6 +164,9 @@
 [X]     SLight::PathHandler::Permissions
 [X]         Test
 [X]         Implementation
+[ ]     SLight::PathHandler::Avatar
+[ ]         Test
+[ ]         Implementation
 [>] User-related Handler objects
 [X]     SLight::Handler::User::Authentication (allow the User to authenticate itself)
 [X]         SLight::Handler::User::Authentication::Login (form + the actual authentication)
@@ -190,17 +193,17 @@
 [X]             New password form
 [X]             Password reset
 [X]             Automated test
-[>]     SLight::Handler::System::Permissions (system-wide authorization settings)
-[>]         SLight::Handler::System::Permissions::View
+[X]     SLight::Handler::System::Permissions (system-wide authorization settings)
+[X]         SLight::Handler::System::Permissions::View
 [X]             Implement: handle_view
-[>]             Implement: handle_system
-[>]             Implement: handle_guest
-[>]             Implement: handle_authenticated
-[>]             Test
-[ ]         SLight::Handler::System::Permissions::Change
-[ ]             Implement: handle_set
-[ ]             Implement: handle_clear
-[ ]             Test
+[X]             Implement: handle_system
+[X]             Implement: handle_guest
+[X]             Implement: handle_authenticated
+[X]             Test
+[X]         SLight::Handler::System::Permissions::Change
+[X]             Implement: handle_set
+[X]             Implement: handle_clear
+[X]             Test
 [-]     SLight::Handler::Account (allow site owner to manage User accounts)
 [X]         SLight::Handler::Account::List::View
 [X]             Implementation
@@ -224,14 +227,14 @@
 [X]             Form - show
 [X]             Form - save
 [X]             Test
-[ ]         SLight::Handler::Account::Permissions::View
-[ ]             Implementation
-[ ]             Test
-[ ]         SLight::Handler::Account::Permissions::Change
-[ ]             Implementation
-[ ]             Test
-[ ]         SLight::Handler::Account::Avatar::View
-[ ]             Implementation
+[X]         SLight::Handler::Account::Permissions::View
+[X]             Implementation
+[X]             Test
+[X]         SLight::Handler::Account::Permissions::Change
+[X]             Implementation
+[X]             Test
+[>]         SLight::Handler::Account::Avatar::View
+[>]             Implementation
 [ ]             Test
 [ ]         SLight::Handler::Account::Avatar::Change
 [ ]             Form - show
@@ -241,7 +244,8 @@
 [ ]             Show dialog
 [ ]             Perform the deletion
 [ ]             Test
-[ ]         SLight::Handler::Account::Avatar::Image
+[ ]     SLight::Handler::User::Avatar (return image, or redirect to Gravatar)
+[ ]         SLight::Handler::User::Avatar::View
 [ ]             Implementation
 [ ]             Test
 [-]     SLight::Handler::MyAccount (allow the User to manage his account)
@@ -260,8 +264,8 @@
 [X]             Display form
 [X]             Perform password change
 [X]             Test
-[ ]         SLight::Handler::MyAccount::Avatar::View
-[ ]             Implementation
+[>]         SLight::Handler::MyAccount::Avatar::View
+[>]             Implementation
 [ ]             Test
 [ ]         SLight::Handler::MyAccount::Avatar::Change
 [ ]             Form
@@ -311,10 +315,10 @@
 [ ]         Support 'login' and 'user_id' parameters, along with 'email', to sign the stuff.
 [ ]     Asset
 [ ]         Support 'login' and 'user_id' parameters, along with 'email', to sign the stuff.
-[-]     Avatar
-[ ]         Set avatar
-[ ]         Get avatar
-[ ]         Delete avatar
+[X]     Avatar
+[X]         Set avatar
+[X]         Get avatar
+[X]         Delete avatar
 [X]     Permissions
 [X]         set_User_access
 [X]         set_System_access
