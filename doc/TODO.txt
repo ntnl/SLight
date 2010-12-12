@@ -164,9 +164,9 @@
 [X]     SLight::PathHandler::Permissions
 [X]         Test
 [X]         Implementation
-[ ]     SLight::PathHandler::Avatar
-[ ]         Test
-[ ]         Implementation
+[X]     SLight::PathHandler::Avatar
+[X]         Test
+[X]         Implementation
 [>] User-related Handler objects
 [X]     SLight::Handler::User::Authentication (allow the User to authenticate itself)
 [X]         SLight::Handler::User::Authentication::Login (form + the actual authentication)
@@ -234,22 +234,22 @@
 [X]             Implementation
 [X]             Test
 [>]         SLight::Handler::Account::Avatar::View
-[>]             Implementation
+[X]             Implementation
 [ ]             Test
-[ ]         SLight::Handler::Account::Avatar::Change
-[ ]             Form - show
-[ ]             Form - save
+[>]         SLight::Handler::Account::Avatar::Change
+[X]             Form - view
+[X]             Form - save
 [ ]             Test
-[ ]         SLight::Handler::Account::Avatar::Delete
-[ ]             Show dialog
-[ ]             Perform the deletion
+[>]         SLight::Handler::Account::Avatar::Delete
+[X]             Show dialog
+[X]             Perform the deletion
 [ ]             Test
-[ ]     SLight::Handler::User::Avatar (return image, or redirect to Gravatar)
-[ ]         SLight::Handler::User::Avatar::View
-[ ]             Implementation
+[>]     SLight::Handler::User::Avatar (return image, or redirect to Gravatar)
+[X]         SLight::Handler::User::Avatar::View
+[X]             Implementation
 [ ]             Test
-[-]     SLight::Handler::MyAccount (allow the User to manage his account)
-[-]         SLight::HandlerBase::MyAccount
+[>]     SLight::Handler::MyAccount (allow the User to manage his account)
+[>]         SLight::HandlerBase::MyAccount
 [X]             Get User's data
 [ ]             Handle non-logged-in User
 [ ]             Handle disabled user
@@ -267,13 +267,13 @@
 [>]         SLight::Handler::MyAccount::Avatar::View
 [>]             Implementation
 [ ]             Test
-[ ]         SLight::Handler::MyAccount::Avatar::Change
-[ ]             Form
-[ ]             Perform avatar change
+[>]         SLight::Handler::MyAccount::Avatar::Change
+[X]             Form
+[X]             Perform avatar change
 [ ]             Test
-[ ]         SLight::Handler::MyAccount::Avatar::Delete
-[ ]             Show dialog
-[ ]             Perform the deletion
+[>]         SLight::Handler::MyAccount::Avatar::Delete
+[X]             Show dialog
+[X]             Perform the deletion
 [ ]             Test
 [-] DataStructure
 [-]     SLight::DataStructure::Form (ex CoMe...GenericForm)
@@ -299,10 +299,11 @@
 [ ]             Implementation
 [ ]             Test
 [-] Addon
-[-]     SLight::Addon::User::Panel
+[X]     SLight::Addon::User::Panel
 [X]         Implementation
 [X]         Test
-[ ]         Avatar support
+[X]         Avatar support
+[ ]         Link to MyData
 [X]     SLight::Addon::User::Info
 [X]         Implementation
 [X]         Test
@@ -523,7 +524,9 @@
 [ ] ContentSpec fields describing how to sort, what to put into title, menu, path, and so on, should be a templates, so that User can join fields, eg: '%hip%-%ID%'
 [ ] Identify web robots. Use this information when performing authorization (add 'Robot' User type)
 [ ] Switch to SQL::Abstract-like module (possibly deprecate SLight::Core::SQL)
-[ ] User API
+[ ] Possibly rename Handler::User::Avatar to Handler::Core::Avatar
+[ ] Ability to 'tag' objects with "permanent ID" - so a plugin can store it's config as an object.
+[ ] User/Group API
 [ ]     SLight::API::Group
 [ ]         get_Group
 [ ]         get_Groups
@@ -568,5 +571,6 @@
 [ ]         SLight::Handler::Group::Users::Remove
 [ ]             Implement
 [ ]             Test
+[ ] Improve code sharing between 'Account' and 'MyAccount' Handler modules.
 [ ] ...
 

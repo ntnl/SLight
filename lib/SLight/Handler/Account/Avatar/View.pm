@@ -83,6 +83,5 @@ sub handle_view { # {{{
     return;
 } # }}}
 
-
 # vim: fdm=marker
 1;

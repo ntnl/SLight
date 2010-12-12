@@ -24,27 +24,35 @@ sub _process { # {{{
     my ( $self, %P ) = @_;
     
     my @contents;
-    my $message    = q{Not logged-in.};
-    my $link_label = q{Login};
-    my $link_href  = q{};
-
     if ($self->{'user'}->{'login'}) {
         my $user = get_User($self->{'user'}->{'id'});
 
-        $message    = TF(q{Logged-in as %s.}, undef, ( $user->{'name'} or $user->{'login'} ) );
-        $link_label = q{Logout};
+        my $message    = TF(q{Logged-in as %s.}, undef, ( $user->{'name'} or $user->{'login'} ) );
+        my $link_label = q{Logout};
 
-        $link_href = SLight::Core::URL::make_url(
+        my $avatar_href = SLight::Core::URL::make_url(
+            path_handler => 'Avatar',
+            path         => [ $self->{'user'}->{'login'} ],
+
+            action => 'View',
+        );
+        push @contents, mk_Image_token(
+            class => q{SL_Avatar},
+            href  => $avatar_href,
+            label => ( $user->{'name'} or $user->{'login'} ),
+        );
+
+        push @contents, mk_Label_token(
+            text => $message,
+        );
+
+        my $link_href = SLight::Core::URL::make_url(
             path_handler => 'Authentication',
             path         => [],
 
             action => 'Logout',
 
             lang => ( $self->{'lang'} or q{en} ),
-        );
-        # Fixme: Add an Avatar!
-        push @contents, mk_Label_token(
-            text => $message,
         );
         push @contents, mk_Link_token(
             href => $link_href,

@@ -1,0 +1,23 @@
+---
+Avatar page:
+  breadcrumb_path: ~
+  main_object: o
+  object_order:
+  - o
+  objects:
+    o:
+      class: User::Avatar
+      oid: ~
+  page_id: ~
+  template: Default
+User Avatar page:
+  breadcrumb_path: ~
+  main_object: o
+  object_order:
+  - o
+  objects:
+    o:
+      class: User::Avatar
+      oid: Foo
+  page_id: ~
+  template: Default
