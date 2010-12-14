@@ -1,0 +1,84 @@
+---
+Off-site avatar (Gravatar):
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
+    object_data:
+      o:
+        class: SLight_Object O-SL_MyAccount_Avatar
+        content:
+        - class: generic
+          content:
+          - class: SL_Avatar
+            data:
+              href: /_Avatar/aga/
+              label: Avatar
+            type: Image
+          - class: generic
+            data:
+              text: Avatar image was not uploaded, Gravatar image will be used instead.
+            type: Label
+          - class: generic
+            data:
+              href: /_MyAccount/Avatar/Change.web
+              text: Upload Avatar
+            type: Link
+          type: Container
+        type: Container
+    object_order:
+    - o
+    template: Default
+  mime_type: ~
+  response: CONTENT
+On-site avatar:
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
+    object_data:
+      o:
+        class: SLight_Object O-SL_MyAccount_Avatar
+        content:
+        - class: generic
+          content:
+          - class: SL_Avatar
+            data:
+              href: /_Avatar/ela/
+              label: Avatar
+            type: Image
+          - class: generic
+            data:
+              text: Avatar is hosted on site.
+            type: Label
+          - class: generic
+            data:
+              href: /_MyAccount/Avatar/Change.web
+              text: Upload Avatar
+            type: Link
+          - class: generic
+            data:
+              href: /_MyAccount/Avatar/Delete.web
+              text: Delete Avatar
+            type: Link
+          type: Container
+        type: Container
+    object_order:
+    - o
+    template: Default
+  mime_type: ~
+  response: CONTENT

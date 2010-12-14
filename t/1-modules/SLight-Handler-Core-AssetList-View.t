@@ -15,6 +15,7 @@ use strict; use warnings; # {{{
 use FindBin qw( $Bin );
 use lib $Bin . q{/../../lib/};
 
+use SLight::API::Avatar qw( delete_Avatar );
 use SLight::API::Asset qw( add_Asset );
 use SLight::Test::Site;
 use SLight::Test::Handler qw( run_handler_tests );
@@ -27,6 +28,8 @@ my $site_root = SLight::Test::Site::prepare_fake(
     test_dir => $Bin . q{/../},
     site     => 'Users'
 );
+
+delete_Avatar(3);
 
 my @tests = (
     {

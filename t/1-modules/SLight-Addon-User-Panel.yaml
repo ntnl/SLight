@@ -2,6 +2,11 @@
 Logged in:
   class: SL_UserPanel_Addon
   content:
+  - class: SL_Avatar
+    data:
+      href: /_Avatar/aga/
+      label: Agnieszka
+    type: Image
   - class: generic
     data:
       text: Logged-in as Agnieszka.

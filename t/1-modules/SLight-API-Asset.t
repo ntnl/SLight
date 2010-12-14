@@ -16,6 +16,7 @@ use strict; use warnings; # {{{
 use FindBin qw( $Bin );
 use lib $Bin . q{/../../lib/};
 
+use SLight::API::Avatar qw( delete_Avatar );
 use SLight::Test::Site;
 
 use English qw( -no_match_vars );
@@ -43,6 +44,7 @@ my $site_root = SLight::Test::Site::prepare_fake(
     test_dir => $Bin . q{/../},
     site     => 'Minimal'
 );
+delete_Avatar(3);
 
 # Note to self: must make a fake site with content.
 
@@ -68,7 +70,7 @@ my $md5_png = file_md5_hex($Bin .q{/../SampleImage.png});
 my $md5_jpg = file_md5_hex($Bin .q{/../SampleImage.jpg});
 my $md5_gif = file_md5_hex($Bin .q{/../SampleImage.gif});
 
-my ($a1, $a2, $a3, $a4) = (2, 3, 4, 5);
+my ($a1, $a2, $a3, $a4) = (3, 4, 5, 6);
 
 ################################################################################
 #           Add Assets and attach them to Content Entities
@@ -174,8 +176,8 @@ is_deeply(
         'mime_type' => 'image/png',
         'byte_size' => '13379',
 
-        'path'  => 'FAKE/assets/02/2.bin',
-        'thumb' => 'FAKE/assets/02/2-thumb.png',
+        'path'  => 'FAKE/assets/03/3.bin',
+        'thumb' => 'FAKE/assets/03/3-thumb.png',
     },
     'get_Asset (1/2)',
 );
@@ -195,8 +197,8 @@ is_deeply(
         'mime_type' => 'image/jpeg',
         'byte_size' => '2543',
 
-        'path'  => 'FAKE/assets/04/4.bin',
-        'thumb' => 'FAKE/assets/04/4-thumb.png',
+        'path'  => 'FAKE/assets/05/5.bin',
+        'thumb' => 'FAKE/assets/05/5-thumb.png',
     },
     'get_Asset (2/2)',
 );
@@ -220,8 +222,8 @@ is_deeply(
             'mime_type' => 'image/png',
             'byte_size' => '13379',
 
-            'path'  => 'FAKE/assets/02/2.bin',
-            'thumb' => 'FAKE/assets/02/2-thumb.png',
+            'path'  => 'FAKE/assets/03/3.bin',
+            'thumb' => 'FAKE/assets/03/3-thumb.png',
         },
         {
             'id' => $a3,
@@ -234,8 +236,8 @@ is_deeply(
             'mime_type' => 'image/jpeg',
             'byte_size' => '2543',
 
-            'path'  => 'FAKE/assets/04/4.bin',
-            'thumb' => 'FAKE/assets/04/4-thumb.png',
+            'path'  => 'FAKE/assets/05/5.bin',
+            'thumb' => 'FAKE/assets/05/5-thumb.png',
         },
     ],
     'get_Assets'

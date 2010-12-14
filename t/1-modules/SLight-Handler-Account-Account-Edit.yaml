@@ -15,7 +15,7 @@ Check before updated:
   pass_enc: 9983885b17ec71fc68184d464d99150f38eeb542cc94be3f348cd202a4b19cdf25b8de3e20d5eb670851ba76ebe8b11a559cdd0e0fdd54a8716e62fcab6344f5
   status: Enabled
 - Email_id: 3
-  avatar_Asset_id: ~
+  avatar_Asset_id: 1
   id: 3
   login: ela
   name: Elżbieta
@@ -37,7 +37,7 @@ Check what was updated:
   pass_enc: 9983885b17ec71fc68184d464d99150f38eeb542cc94be3f348cd202a4b19cdf25b8de3e20d5eb670851ba76ebe8b11a559cdd0e0fdd54a8716e62fcab6344f5
   status: Guest
 - Email_id: 3
-  avatar_Asset_id: ~
+  avatar_Asset_id: 1
   id: 3
   login: ela
   name: Elżbieta

@@ -30,7 +30,7 @@ my $site_root = SLight::Test::Site::prepare_fake(
 my @tests = (
     {
         'name' => q{Empty Asset list},
-        'url'  => q{/_Asset/Asset/1/Download.web},
+        'url'  => q{/_Asset/Asset/2/Download.web},
     },
 );
 

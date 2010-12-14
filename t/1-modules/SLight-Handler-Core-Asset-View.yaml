@@ -61,12 +61,12 @@ Get info about an Asset:
           - class: SLight_Download_Action
             data:
               caption: Download
-              href: /_Asset/Asset/1/Download-en.web_test
+              href: /_Asset/Asset/2/Download-en.web_test
             type: Action
           - class: SLight_Delete_Action
             data:
               caption: Delete
-              href: /_Asset/Asset/1/Delete-en.web_test
+              href: /_Asset/Asset/2/Delete-en.web_test
             type: Action
           type: Container
         type: Container

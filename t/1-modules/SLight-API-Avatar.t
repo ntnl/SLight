@@ -45,7 +45,7 @@ my $image_gif = read_file($Bin .q{/../SampleImage.gif});
 
 is (
     set_Avatar(4, $image_gif),
-    1,
+    2,
     q{set_Avatar}
 );
 

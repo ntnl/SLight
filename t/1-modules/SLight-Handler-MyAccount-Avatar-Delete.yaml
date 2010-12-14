@@ -1,20 +1,16 @@
 ---
-Check what was deleted:
-- Email_id: 1
-  avatar_Asset_id: ~
-  id: 1
-  login: aga
-  name: Agnieszka
-  pass_enc: d27d225b94bf7be57d1c3d4d73f96fc0fd3c57d89d175ce336c226b0f27e9f27fed2dc7a7c6324228ff40a25e8fbef49f7cfb8656d0074a6d1c6c901406aa53e
-  status: Enabled
+Check - after: []
+Check - before:
+- id: 1
+Check - user:
 - Email_id: 3
-  avatar_Asset_id: 1
+  avatar_Asset_id: ~
   id: 3
   login: ela
   name: Elżbieta
   pass_enc: 4d0146efcd56c02c2d2d0cf587974b0427715d9bcf0bd79bed0a76d7e691654cd8200d2ba60481bb5a481e37911f35be31204ecdcac7bd1ba440e36fc77bad04
   status: Enabled
-Show dialog:
+Display form:
   content:
     addon_data:
       Core::Path:
@@ -28,7 +24,7 @@ Show dialog:
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_Account_Delete
+        class: SLight_Object O-SL_MyAccount_Avatar
         content:
         - class: SL_Delete_Dialog
           content:
@@ -36,8 +32,7 @@ Show dialog:
             content:
             - class: generic
               data:
-                text: 'Do you want to delete Account: ''beti'' (name: ''Beata'')?
-                  Please confirm.'
+                text: Do you want to delete avatar hosted on the site? Please confirm.
               type: Label
             type: Container
           - class: Buttons
@@ -45,12 +40,12 @@ Show dialog:
             - class: Yes
               data:
                 caption: Yes
-                href: /_Account/beti/Account/Delete-commit.web
+                href: /_MyAccount/Avatar/Delete-commit.web
               type: Action
             - class: No
               data:
                 caption: No
-                href: /_Account/Delete.web
+                href: /_MyAccount/Avatar/
               type: Action
             type: Container
           type: Container
@@ -60,6 +55,6 @@ Show dialog:
     template: Default
   mime_type: ~
   response: CONTENT
-Submit request:
-  location: /_Account/
+Upload image:
+  location: /_MyAccount/
   response: REDIRECT

@@ -17,17 +17,17 @@ Ask for confirmation of Asset deletion:
         - class: SLight_AddContent_Action
           data:
             caption: Add Content
-            href: /_Asset/Asset/1/AddContent-en.web_test
+            href: /_Asset/Asset/2/AddContent-en.web_test
           type: Action
         - class: SLight_Edit_Action
           data:
             caption: Edit
-            href: /_Asset/Asset/1/Edit-en.web_test
+            href: /_Asset/Asset/2/Edit-en.web_test
           type: Action
         - class: SLight_Delete_Action
           data:
             caption: Delete
-            href: /_Asset/Asset/1/Delete-en.web_test
+            href: /_Asset/Asset/2/Delete-en.web_test
           type: Action
         type: Container
     object_data:
@@ -49,12 +49,12 @@ Ask for confirmation of Asset deletion:
             - class: Yes
               data:
                 caption: Yes
-                href: /_Asset/Asset/1/Delete-commit.web
+                href: /_Asset/Asset/2/Delete-commit.web
               type: Action
             - class: No
               data:
                 caption: No
-                href: /_Asset/Asset/1/Delete.web
+                href: /_Asset/Asset/2/Delete.web
               type: Action
             type: Container
           type: Container
@@ -67,4 +67,5 @@ Ask for confirmation of Asset deletion:
 Commit Asset deletion:
   location: /_Asset/
   response: REDIRECT
-Confirm Asset deletion: []
+Confirm Asset deletion:
+- id: 1

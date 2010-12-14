@@ -15,6 +15,7 @@ use strict; use warnings; # {{{
 use FindBin qw( $Bin );
 use lib $Bin . q{/../../lib/};
 
+use SLight::API::Avatar qw( set_Avatar );
 use SLight::Test::Site;
 use SLight::Test::Handler qw( run_handler_tests );
 
@@ -24,23 +25,43 @@ use File::Slurp qw( read_file );
 
 my $site_root = SLight::Test::Site::prepare_fake(
     test_dir => $Bin . q{/../},
-    site     => 'Minimal'
+    site     => 'Users'
 );
 
 my @tests = (
     {
-        'name' => q{Ask for confirmation of Asset deletion},
-        'url'  => q{/_Asset/Asset/2/Delete.web},
-    },
-    {
-        'name' => q{Commit Asset deletion},
-        'url'  => q{/_Asset/Asset/2/Delete-commit.web},
-    },
-    {
-        'name'      => q{Confirm Asset deletion},
+        'name'      => q{Check - before},
         'sql_query' => [ 'SELECT id FROM Asset_Entity' ],
         'expect'    => 'arrayref',
-    }
+    },
+    {
+        'name' => q{Display form},
+        'url'  => q{/_MyAccount/Avatar/Change.web},
+        
+        'session' => {
+            'user' => {
+                login => 'beti',
+                id    => 2,
+            },
+        },
+    },
+    {
+        'name' => q{Upload image},
+        'url'  => q{/_MyAccount/Avatar/Change-save.web},
+        'cgi'  => {
+            'avatar' => scalar read_file($Bin . q{/../SampleImage.gif}),
+        },
+    },
+    {
+        'name'      => q{Check - after},
+        'sql_query' => [ 'SELECT id FROM Asset_Entity' ],
+        'expect'    => 'arrayref',
+    },
+    {
+        'name'      => q{Check - user},
+        'sql_query' => [ 'SELECT * FROM User_Entity WHERE id = 2' ],
+        'expect'    => 'arrayref',
+    },
 );
 
 run_handler_tests(

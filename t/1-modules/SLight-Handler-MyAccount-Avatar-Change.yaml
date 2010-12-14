@@ -1,0 +1,57 @@
+---
+Check - after:
+- id: 1
+- id: 2
+Check - before:
+- id: 1
+Check - user:
+- Email_id: 2
+  avatar_Asset_id: 2
+  id: 2
+  login: beti
+  name: Beata
+  pass_enc: 9983885b17ec71fc68184d464d99150f38eeb542cc94be3f348cd202a4b19cdf25b8de3e20d5eb670851ba76ebe8b11a559cdd0e0fdd54a8716e62fcab6344f5
+  status: Enabled
+Display form:
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
+    object_data:
+      o:
+        class: SLight_Object O-SL_MyAccount_Avatar
+        content:
+        - class: generic
+          content:
+          - class: F-avatar FileEntry
+            content:
+            - class: Label
+              data:
+                text: Avatar image
+              type: Label
+            - class: Value
+              data:
+                name: avatar
+              type: FileEntry
+            type: Container
+          data:
+            action: /_MyAccount/Avatar/Change-save.web
+            hidden: {}
+            submit: Upload
+          type: Form
+        type: Container
+    object_order:
+    - o
+    template: Default
+  mime_type: ~
+  response: CONTENT
+Upload image:
+  location: /_MyAccount/Avatar/
+  response: REDIRECT

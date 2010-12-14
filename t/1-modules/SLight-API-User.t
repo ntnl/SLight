@@ -112,6 +112,8 @@ is_deeply (
         email  => q{first@test.test},
         status => q{Disabled},
         login  => q{First},
+
+        avatar_Asset_id => undef,
     },
     'get_User (1/3)'
 );
@@ -123,6 +125,8 @@ is_deeply (
         email  => q{first@test.test},
         status => q{Guest},
         login  => q{Second},
+
+        avatar_Asset_id => undef,
     },
     'get_User (2/3)'
 );
@@ -134,6 +138,8 @@ is_deeply (
         email  => q{first@test.test},
         status => q{Enabled},
         login  => q{Third},
+
+        avatar_Asset_id => undef,
     },
     'get_User (3/3)'
 );
@@ -151,6 +157,8 @@ is_deeply (
             email  => q{first@test.test},
             status => q{Disabled},
             login  => q{First},
+
+            avatar_Asset_id => undef,
         },
         {
             id     => $u3,
@@ -158,6 +166,8 @@ is_deeply (
             email  => q{first@test.test},
             status => q{Enabled},
             login  => q{Third},
+
+            avatar_Asset_id => undef,
         },
     ],
     'get_Users'
@@ -208,6 +218,8 @@ is_deeply (
             email  => q{first@test.test},
             status => q{Enabled},
             login  => q{Third},
+
+            avatar_Asset_id => undef,
         },
     ],
     q{get_Users_where (2/2)},

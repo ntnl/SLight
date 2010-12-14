@@ -15,6 +15,7 @@ use strict; use warnings; # {{{
 use FindBin qw( $Bin );
 use lib $Bin . q{/../../lib/};
 
+use SLight::API::Avatar qw( set_Avatar );
 use SLight::Test::Site;
 use SLight::Test::Handler qw( run_handler_tests );
 
@@ -24,13 +25,17 @@ use File::Slurp qw( read_file );
 
 my $site_root = SLight::Test::Site::prepare_fake(
     test_dir => $Bin . q{/../},
-    site     => 'Minimal'
+    site     => 'Users'
 );
 
 my @tests = (
     {
-        'name' => q{Get info about an Asset},
-        'url'  => q{/_Asset/Asset/2/},
+        'name' => q{Off-site avatar (Gravatar)},
+        'url'  => q{/_Account/aga/Avatar/},
+    },
+    {
+        'name' => q{On-site avatar},
+        'url'  => q{/_Account/ela/Avatar/},
     },
 );
 

@@ -14,7 +14,9 @@ package SLight::Test::Site::Users;
 use strict; use warnings; # {{{
 
 use SLight::API::User;
+use SLight::API::Avatar qw( set_Avatar );
 use SLight::Test::Site::EmailTemplates;
+use File::Slurp qw( read_file );
 # }}}
 
 # This module creates a set of Users.
@@ -50,6 +52,8 @@ sub build { # {{{
         pass   => 'Elka',
         email  => 'ela@test.test',
     );
+
+    set_Avatar(3, scalar read_file(SLight::Test::Site::Builder::trunk_path() . q{/t/SampleImage.gif}));
 
     # N / 4
     SLight::API::User::add_User(

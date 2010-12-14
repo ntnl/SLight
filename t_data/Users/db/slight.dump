@@ -285,6 +285,7 @@ CREATE TABLE Asset_Entity (
 
 	FOREIGN KEY (`Email_id`) REFERENCES Email(`id`) ON DELETE CASCADE
 );
+INSERT INTO "Asset_Entity" VALUES(1,3,'2010-12-13 16:04:12','',6700,'image/gif','');
 CREATE TABLE Asset_2_Content (
     `Asset_Entity_id` INTEGER,
 
@@ -325,7 +326,7 @@ CREATE TABLE User_Entity (
 );
 INSERT INTO "User_Entity" VALUES(1,'aga','Enabled','Agnieszka','d27d225b94bf7be57d1c3d4d73f96fc0fd3c57d89d175ce336c226b0f27e9f27fed2dc7a7c6324228ff40a25e8fbef49f7cfb8656d0074a6d1c6c901406aa53e',1,NULL);
 INSERT INTO "User_Entity" VALUES(2,'beti','Enabled','Beata','9983885b17ec71fc68184d464d99150f38eeb542cc94be3f348cd202a4b19cdf25b8de3e20d5eb670851ba76ebe8b11a559cdd0e0fdd54a8716e62fcab6344f5',2,NULL);
-INSERT INTO "User_Entity" VALUES(3,'ela','Enabled','Elżbieta','4d0146efcd56c02c2d2d0cf587974b0427715d9bcf0bd79bed0a76d7e691654cd8200d2ba60481bb5a481e37911f35be31204ecdcac7bd1ba440e36fc77bad04',3,NULL);
+INSERT INTO "User_Entity" VALUES(3,'ela','Enabled','Elżbieta','4d0146efcd56c02c2d2d0cf587974b0427715d9bcf0bd79bed0a76d7e691654cd8200d2ba60481bb5a481e37911f35be31204ecdcac7bd1ba440e36fc77bad04',3,1);
 INSERT INTO "User_Entity" VALUES(4,'nataly','Guest','Natalia','e212af1edb9a37b6deb062f4864bc31d654173b4c551bd8d0875aa283fa12994e26d944722f95ed2c1098b107c3135330e98f6375b91311f26b61c39557cada3',4,NULL);
 INSERT INTO "User_Entity" VALUES(5,'wanda','Disabled','Wanda L.','e8d42198a43571d76bf2999e39c4a817fe83caef95e4c36ad1304b08270b065eece36ce313066702ccd507b2d3a743bfae99630cb351052a70d835d00a5016d7',5,NULL);
 CREATE TABLE System_Access (

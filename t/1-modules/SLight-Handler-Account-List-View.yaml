@@ -68,6 +68,11 @@ List of accounts:
                     caption: Edit
                     href: /_Account/aga/Account/Edit-en.web_test
                   type: Action
+                - class: SLight_Avatar_Action
+                  data:
+                    caption: Avatar
+                    href: /_Account/aga/Avatar/en.web_test
+                  type: Action
                 - class: SLight_Permissions_Action
                   data:
                     caption: Permissions
@@ -125,6 +130,11 @@ List of accounts:
                   data:
                     caption: Edit
                     href: /_Account/beti/Account/Edit-en.web_test
+                  type: Action
+                - class: SLight_Avatar_Action
+                  data:
+                    caption: Avatar
+                    href: /_Account/beti/Avatar/en.web_test
                   type: Action
                 - class: SLight_Permissions_Action
                   data:
@@ -184,6 +194,11 @@ List of accounts:
                     caption: Edit
                     href: /_Account/ela/Account/Edit-en.web_test
                   type: Action
+                - class: SLight_Avatar_Action
+                  data:
+                    caption: Avatar
+                    href: /_Account/ela/Avatar/en.web_test
+                  type: Action
                 - class: SLight_Permissions_Action
                   data:
                     caption: Permissions
@@ -242,6 +257,11 @@ List of accounts:
                     caption: Edit
                     href: /_Account/nataly/Account/Edit-en.web_test
                   type: Action
+                - class: SLight_Avatar_Action
+                  data:
+                    caption: Avatar
+                    href: /_Account/nataly/Avatar/en.web_test
+                  type: Action
                 - class: SLight_Permissions_Action
                   data:
                     caption: Permissions
@@ -299,6 +319,11 @@ List of accounts:
                   data:
                     caption: Edit
                     href: /_Account/wanda/Account/Edit-en.web_test
+                  type: Action
+                - class: SLight_Avatar_Action
+                  data:
+                    caption: Avatar
+                    href: /_Account/wanda/Avatar/en.web_test
                   type: Action
                 - class: SLight_Permissions_Action
                   data:

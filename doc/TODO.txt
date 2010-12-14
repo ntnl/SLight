@@ -233,23 +233,23 @@
 [X]         SLight::Handler::Account::Permissions::Change
 [X]             Implementation
 [X]             Test
-[>]         SLight::Handler::Account::Avatar::View
+[X]         SLight::Handler::Account::Avatar::View
 [X]             Implementation
-[ ]             Test
-[>]         SLight::Handler::Account::Avatar::Change
+[X]             Test
+[X]         SLight::Handler::Account::Avatar::Change
 [X]             Form - view
 [X]             Form - save
-[ ]             Test
-[>]         SLight::Handler::Account::Avatar::Delete
+[X]             Test
+[X]         SLight::Handler::Account::Avatar::Delete
 [X]             Show dialog
 [X]             Perform the deletion
-[ ]             Test
-[>]     SLight::Handler::User::Avatar (return image, or redirect to Gravatar)
+[X]             Test
+[X]     SLight::Handler::User::Avatar (return image, or redirect to Gravatar)
 [X]         SLight::Handler::User::Avatar::View
 [X]             Implementation
-[ ]             Test
-[>]     SLight::Handler::MyAccount (allow the User to manage his account)
-[>]         SLight::HandlerBase::MyAccount
+[X]             Test
+[-]     SLight::Handler::MyAccount (allow the User to manage his account)
+[-]         SLight::HandlerBase::MyAccount
 [X]             Get User's data
 [ ]             Handle non-logged-in User
 [ ]             Handle disabled user
@@ -264,17 +264,17 @@
 [X]             Display form
 [X]             Perform password change
 [X]             Test
-[>]         SLight::Handler::MyAccount::Avatar::View
-[>]             Implementation
-[ ]             Test
-[>]         SLight::Handler::MyAccount::Avatar::Change
+[X]         SLight::Handler::MyAccount::Avatar::View
+[X]             Implementation
+[X]             Test
+[X]         SLight::Handler::MyAccount::Avatar::Change
 [X]             Form
 [X]             Perform avatar change
-[ ]             Test
-[>]         SLight::Handler::MyAccount::Avatar::Delete
+[X]             Test
+[X]         SLight::Handler::MyAccount::Avatar::Delete
 [X]             Show dialog
 [X]             Perform the deletion
-[ ]             Test
+[X]             Test
 [-] DataStructure
 [-]     SLight::DataStructure::Form (ex CoMe...GenericForm)
 [-]         Implement
@@ -333,6 +333,7 @@
 [X]         Implementation
 [ ]         Automated test
 [ ]     Split 'content' into "objects before", "main object", "objects after" (with 'content' support maintained)
+[ ]     Check for permissions, emit SLight::Handler::Error::AccessDenied as needed.
 [X] SLight::HandlerMeta
 [ ] Development
 [ ]     Built-in EVK support in Test::Handler

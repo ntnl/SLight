@@ -15,6 +15,7 @@ use strict; use warnings; # {{{
 use FindBin qw( $Bin );
 use lib $Bin . q{/../../lib/};
 
+use SLight::API::Avatar qw( set_Avatar );
 use SLight::Test::Site;
 use SLight::Test::Handler qw( run_handler_tests );
 
@@ -24,13 +25,39 @@ use File::Slurp qw( read_file );
 
 my $site_root = SLight::Test::Site::prepare_fake(
     test_dir => $Bin . q{/../},
-    site     => 'Minimal'
+    site     => 'Users'
 );
 
 my @tests = (
     {
-        'name' => q{Get info about an Asset},
-        'url'  => q{/_Asset/Asset/2/},
+        'name'      => q{Check - before},
+        'sql_query' => [ 'SELECT id FROM Asset_Entity' ],
+        'expect'    => 'arrayref',
+    },
+    {
+        'name' => q{Display form},
+        'url'  => q{/_MyAccount/Avatar/Delete.web},
+        
+        'session' => {
+            'user' => {
+                login => 'ela',
+                id    => 3,
+            },
+        },
+    },
+    {
+        'name' => q{Upload image},
+        'url'  => q{/_MyAccount/Avatar/Delete-commit.web},
+    },
+    {
+        'name'      => q{Check - after},
+        'sql_query' => [ 'SELECT id FROM Asset_Entity' ],
+        'expect'    => 'arrayref',
+    },
+    {
+        'name'      => q{Check - user},
+        'sql_query' => [ 'SELECT * FROM User_Entity WHERE id = 3' ],
+        'expect'    => 'arrayref',
     },
 );
 
