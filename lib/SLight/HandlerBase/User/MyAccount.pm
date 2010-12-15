@@ -15,6 +15,8 @@ use strict; use warnings; # {{{
 use base q{SLight::Handler};
 
 use SLight::API::User qw( get_User );
+use SLight::DataStructure::Dialog::Notification;
+use SLight::Core::L10N qw( TR TF );
 # }}}
 
 sub get_user_data { # {{{
@@ -26,14 +28,24 @@ sub get_user_data { # {{{
         my $user = get_User($self->{'user'}->{'id'});
 
         if ($user->{'status'} eq 'Disabled') {
-            # FIXME: Throw a 'Account disabled' warning here!
+            my $message = SLight::DataStructure::Dialog::Notification->new(
+                text => TR("This Account is disabled."),
+            );
+
+            $self->push_data($message);
+
             return;
         }
 
         return $user;
     }
 
-    # Return AccessDenied error, bu doing internal redirect!
+    # Return AuthRequired error by doing internal redirect!
+    $self->replace_with_object(
+        class    => q{Error::AuthRequired},
+        oid      => undef,
+        metadata => {},
+    );
 
     return;
 } # }}}

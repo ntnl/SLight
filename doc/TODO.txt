@@ -167,7 +167,7 @@
 [X]     SLight::PathHandler::Avatar
 [X]         Test
 [X]         Implementation
-[>] User-related Handler objects
+[X] User-related Handler objects
 [X]     SLight::Handler::User::Authentication (allow the User to authenticate itself)
 [X]         SLight::Handler::User::Authentication::Login (form + the actual authentication)
 [X]             Implementation
@@ -204,7 +204,7 @@
 [X]             Implement: handle_set
 [X]             Implement: handle_clear
 [X]             Test
-[-]     SLight::Handler::Account (allow site owner to manage User accounts)
+[X]     SLight::Handler::Account (allow site owner to manage User accounts)
 [X]         SLight::Handler::Account::List::View
 [X]             Implementation
 [X]             Test
@@ -248,11 +248,11 @@
 [X]         SLight::Handler::User::Avatar::View
 [X]             Implementation
 [X]             Test
-[-]     SLight::Handler::MyAccount (allow the User to manage his account)
-[-]         SLight::HandlerBase::MyAccount
+[X]     SLight::Handler::MyAccount (allow the User to manage his account)
+[X]         SLight::HandlerBase::MyAccount
 [X]             Get User's data
-[ ]             Handle non-logged-in User
-[ ]             Handle disabled user
+[X]             Handle non-logged-in User
+[X]             Handle disabled user
 [X]         SLight::Handler::MyAccount::MyData::View (ex: Profile::Overview)
 [X]             Implementation
 [X]             Test

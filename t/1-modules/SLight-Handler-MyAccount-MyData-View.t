@@ -29,6 +29,10 @@ my $site_root = SLight::Test::Site::prepare_fake(
 
 my @tests = (
     {
+        'name' => q{Guest access},
+        'url'  => q{/_MyAccount/},
+    },
+    {
         'name' => q{User 'aga', status: Enabled},
         'url'  => q{/_MyAccount/},
 

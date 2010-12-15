@@ -21,7 +21,7 @@ use lib $Bin . '/../lib/';
 chdir $Bin . q{/../};
 
 # Run coverage test:
-#system _which(q{prove_cover}), q{-j}, 2, q{-r}, q{--no_report}, q{t/};
+system _which(q{prove_cover}), q{-j}, 2, q{-r}, q{--no_report}, q{t/};
 
 # Generate report:
 system _which(q{cover_report}),

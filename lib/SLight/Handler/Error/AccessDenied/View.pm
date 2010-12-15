@@ -12,10 +12,25 @@ package SLight::Handler::Error::AccessDenied::View;
 # 
 ################################################################################
 use strict; use warnings; # {{{
+use base q{SLight::Handler};
 
+use SLight::DataStructure::Dialog::Notification;
+use SLight::Core::L10N qw( TR TF );
 # }}}
 
+sub handle_view { # {{{
+    my ( $self, $oid, $metadata ) = @_;
 
+    $self->set_class('SL_Error_AccessDenied');
+
+    my $message = SLight::DataStructure::Dialog::Notification->new(
+        text => TR("You are not authorized to access this page (Error: Access denied)."),
+    );
+
+    $self->push_data($message);
+
+    return;
+} # }}}
 
 # vim: fdm=marker
 1;

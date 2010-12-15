@@ -1,4 +1,40 @@
 ---
+Guest access:
+  content:
+    addon_data:
+      Core::Path:
+        class: SLight_Path_Addon
+        content:
+        - class: Root
+          data:
+            href: /
+            text: SLight sandbox
+          type: Link
+        type: Container
+    object_data:
+      o:
+        class: SLight_Object O-SL_Error_AuthRequired
+        content:
+        - class: SLight_Dialog
+          content:
+          - class: Message
+            content:
+            - class: generic
+              data:
+                text: 'You must log-in to access this page. (Error: Authentication
+                  required).'
+              type: Label
+            type: Container
+          - class: Buttons
+            content: []
+            type: Container
+          type: Container
+        type: Container
+    object_order:
+    - o
+    template: Default
+  mime_type: ~
+  response: CONTENT
 'User ''aga'', status: Enabled':
   content:
     addon_data:
@@ -154,7 +190,20 @@
     object_data:
       o:
         class: SLight_Object O-SL_MyAccount_MyData
-        content: []
+        content:
+        - class: SLight_Dialog
+          content:
+          - class: Message
+            content:
+            - class: generic
+              data:
+                text: This Account is disabled.
+              type: Label
+            type: Container
+          - class: Buttons
+            content: []
+            type: Container
+          type: Container
         type: Container
     object_order:
     - o
