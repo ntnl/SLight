@@ -157,7 +157,7 @@
 [X]         delete_User
 [X]         is_User_registered
 [X]         check_User_pass
-[X] User-related PathHandler objects
+[X] PathHandler objects
 [X]     SLight::PathHandler::Authentication ([X] Test [X] Implementation)
 [X]     SLight::PathHandler::MyAccount      ([X] Test [X] Implementation)
 [X]     SLight::PathHandler::Account        ([X] Test [X] Implementation)
@@ -275,29 +275,32 @@
 [X]             Show dialog
 [X]             Perform the deletion
 [X]             Test
-[-] DataStructure
-[-]     SLight::DataStructure::Form (ex CoMe...GenericForm)
-[-]         Implement
-[ ]         Test
+[>] DataStructure
+[>]     SLight::DataStructure::Form (ex CoMe...GenericForm)
+[>]         Implement
+[>]         Test
 [-]     SLight::DataStructure::List (ex CoMe...GenericGrid)
 [-]         Implement
 [ ]         Test
 [X]     DataStructure::List::Table::Properties
 [X]         Rename to DataStructure::Properties
 [X]         Write test
-[ ] SLight::Handler::Error
-[ ]     SLight::Handler::Error::NotFound <-- Resource not found)
-[ ]             Implementation
-[ ]             Test
-[ ]     SLight::Handler::Error::InternalError <-- Something bad happen. Try reloading.
-[ ]             Implementation
-[ ]             Test
-[ ]     SLight::Handler::Error::AuthRequired <-- You must log-in to access this page.
-[ ]             Implementation
-[ ]             Test
-[ ]     SLight::Handler::Error::AccessDenied <-- You can not do the stuff you intended.
-[ ]             Implementation
-[ ]             Test
+[X] SLight::Handler::Test::Handler
+[X]     Implementation
+[X]     Test
+[X] SLight::Handler::Error
+[X]     SLight::Handler::Error::NotFound <-- Resource not found)
+[X]             Implementation
+[X]             Test
+[X]     SLight::Handler::Error::InternalError <-- Something bad happen. Try reloading.
+[X]             Implementation
+[X]             Test
+[X]     SLight::Handler::Error::AuthRequired <-- You must log-in to access this page.
+[X]             Implementation
+[X]             Test
+[X]     SLight::Handler::Error::AccessDenied <-- You can not do the stuff you intended.
+[X]             Implementation
+[X]             Test
 [-] Addon
 [X]     SLight::Addon::User::Panel
 [X]         Implementation
@@ -332,20 +335,11 @@
 [-]     Email sending
 [X]         Implementation
 [ ]         Automated test
-[ ]     Split 'content' into "objects before", "main object", "objects after" (with 'content' support maintained)
 [ ]     Check for permissions, emit SLight::Handler::Error::AccessDenied as needed.
 [X] SLight::HandlerMeta
 [ ] Development
-[ ]     Built-in EVK support in Test::Handler
-[ ]     Built-in Email support in Test::Handler
-[ ]     Built-in SLight::IO::unique_id support in Test::Handler
-[ ]     Implement SLight::Dbg (with Dbg, a Dumper-like function)
-[ ]     Make sure, that every module has SLight::Dbg included in it (do there is always an 'warn Data::Dumper::Dumper' named D around)
-[ ]     Make a script, that creates fully usable sandbox from test site.
-[ ]     Intercept STDERR (when enabled) and handle it to Debug Addon
 [ ]     Implement DB-schema-update utility.
 [ ]     Version bump to 0.0.3
-[ ]     Create module with Validator 'magic' - common metadata (SLight User hash, etc)
 [ ] Bugs:
 [ ]     Email is not mandatory in some (Asset, Content) API calls (but it should)
 [ ]     Some API calls (Asset, Content) should return login as well (not just email)
@@ -405,7 +399,17 @@
 [ ]             Test
 [ ] HTML templateing-related
 [ ]     Add 'delimiter' - either as a widget, or as sub-section to lists
+[ ] Development
+[ ]     Built-in EVK support in Test::Handler
+[ ]     Built-in Email support in Test::Handler
+[ ]     Built-in SLight::IO::unique_id support in Test::Handler
+[ ]     Implement SLight::Dbg (with Dbg, a Dumper-like function)
+[ ]     Make sure, that every module has SLight::Dbg included in it (do there is always an 'warn Data::Dumper::Dumper' named D around)
+[ ]     Make a script, that creates fully usable sandbox from test site.
+[ ]     Intercept STDERR (when enabled) and handle it to Debug Addon
+[ ]     Create module with Validator 'magic' - common metadata (SLight User hash, etc)
 [ ] Bugs
+[ ]     Split 'content' into "objects before", "main object", "objects after" (with 'content' support maintained)
 [ ]     On CMS Delete dialog, the 'No' option redirects to the dialog (should redirect to the object's View action)
 [ ]     http://slight.notebook/_CMS_Spec/Field/1/Title/ is missing crumbs :(
 [ ]     Adding first page is ultimately br0ken - root page MUST be created, before any sub-pages are created! (maybe even trough content.sql?)

@@ -162,7 +162,9 @@ sub get_Users { # {{{
     my $users = $_handler->get_ENTITYs(@_);
 
     if ($users) {
-        map { delete $_->{'pass_enc'} } @{ $users };
+        foreach my $user (@{ $users }) {
+            delete $user->{'pass_enc'};
+        }
     }
 
     return $users;
@@ -173,7 +175,9 @@ sub get_all_Users { # {{{
     my $users = $_handler->get_all_ENTITYs(@_);
 
     if ($users) {
-        map { delete $_->{'pass_enc'} } @{ $users };
+        foreach my $user (@{ $users }) {
+            delete $user->{'pass_enc'};
+        }
     }
 
     return $users;
@@ -187,7 +191,9 @@ sub get_Users_where { # {{{
     my $users = $_handler->get_ENTITYs_where(@_);
 
     if ($users) {
-        map { delete $_->{'pass_enc'} } @{ $users };
+        foreach my $user (@{ $users }) {
+            delete $user->{'pass_enc'};
+        }
     }
 
     return $users;

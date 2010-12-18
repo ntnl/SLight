@@ -33,7 +33,7 @@ sub get_handlers_list { # {{{
                 },
                 {
                     class => q{Avatar},
-                    actions => [qw( Change Delete Image View )],
+                    actions => [qw( Change Delete View )],
                 },
                 {
                     class => q{List},
@@ -96,7 +96,7 @@ sub get_handlers_list { # {{{
                 },
                 {
                     class => 'MyData',
-                    actions => [qw( Edit Password View )],
+                    actions => [qw( Edit View )],
                 },
                 {
                     class => 'Password',

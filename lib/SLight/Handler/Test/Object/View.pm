@@ -1,4 +1,4 @@
-package SLight::Handler::Error::InternalError::View;
+package SLight::Handler::Test::Object::View;
 ################################################################################
 # 
 # SLight - Lightweight Content Management System.
@@ -16,18 +16,20 @@ use base q{SLight::Handler};
 
 use SLight::DataStructure::Dialog::Notification;
 use SLight::Core::L10N qw( TR TF );
+
+use Carp;
+use English qw( -no_match_vars );
+use Params::Validate qw( :all );
 # }}}
 
 sub handle_view { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
-    $self->set_class('SL_Error_Internal');
-
-    my $message = SLight::DataStructure::Dialog::Notification->new(
-        text => TR("Request can not be completed, due to unexpected difficulties. Please try again. (Error: Internal)."),
+    $self->replace_with_object(
+        class    => $self->{'options'}->{'t-class'},
+        oid      => $self->{'options'}->{'t-oid'},
+        metadata => {},
     );
-
-    $self->push_data($message);
 
     return;
 } # }}}

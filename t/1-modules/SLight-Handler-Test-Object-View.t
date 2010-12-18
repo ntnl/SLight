@@ -28,8 +28,12 @@ my $site_root = SLight::Test::Site::prepare_fake(
 
 my @tests = (
     {
-        'name' => q{Call the 'View' actio non 'Test::Foo' object},
-        'url'  => q{/_Test/},
+        'name' => q{Example test case},
+        'url'  => q{/_Test/Object/},
+        'cgi'  => {
+            't-class' => 'Test::Foo',
+            't-oid'   => '123',
+        },
     },
 );
 

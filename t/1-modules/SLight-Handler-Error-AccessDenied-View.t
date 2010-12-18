@@ -21,15 +21,18 @@ use SLight::Test::Handler qw( run_handler_tests );
 use English qw( -no_match_vars );
 # }}}
 
-my $site_root = SLight::Test::Site::prepare_fake(
+my $site_root = SLight::Test::Site::prepare_empty(
     test_dir => $Bin . q{/../},
-    site     => 'Users'
 );
 
 my @tests = (
     {
-        'name' => q{Call the 'View' actio non 'Test::Foo' object},
-        'url'  => q{/_Test/},
+        'name' => q{Fake an AccessDenied error},
+        'url'  => q{/_Test/Object/},
+        'cgi'  => {
+            't-class' => 'Error::AccessDenied',
+            't-oid'   => undef,
+        },
     },
 );
 

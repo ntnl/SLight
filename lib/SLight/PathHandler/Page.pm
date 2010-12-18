@@ -36,7 +36,7 @@ sub analyze_path { # {{{
     my @path_stack;
 
     # Check for aux object selector:
-    if (scalar @{ $path } and $path->[-1] =~ m{-ob-(\d+)}) {
+    if (scalar @{ $path } and $path->[-1] =~ m{-ob-(\d+)}s) {
         $aux_object_id = $1;
 
         pop @{ $path };

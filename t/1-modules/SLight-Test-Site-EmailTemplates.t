@@ -1,4 +1,4 @@
-package SLight::Handler::Account::Avatar::Image;
+#!/usr/bin/perl
 ################################################################################
 # 
 # SLight - Lightweight Content Management System.
@@ -11,11 +11,16 @@ package SLight::Handler::Account::Avatar::Image;
 # More information on: http://slight-cms.org/
 # 
 ################################################################################
-use strict; use warnings; # {{{
 
-# }}}
+use FindBin qw( $Bin );
+use lib $Bin .q{/../../lib/};
 
+use SLight::Test::Site::Builder::Test;
 
+SLight::Test::Site::Builder::Test::test_builder(
+    $Bin . q{/../../t_data/},
+    $Bin . q{/../../sql/0.3/},
+    'EmailTemplates',
+);
 
 # vim: fdm=marker
-1;

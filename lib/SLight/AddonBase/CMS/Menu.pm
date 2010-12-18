@@ -54,36 +54,38 @@ sub extract_fields { # {{{
 #        debug => 1,
     );
 
+    if (not $content_objects->[0]) {
+        return;
+    }
+
     my @fields_content;
 
-    if ($content_objects->[0]) {
-        my $content_spec = get_ContentSpec($content_objects->[0]->{'Content_Spec_id'});
+    my $content_spec = get_ContentSpec($content_objects->[0]->{'Content_Spec_id'});
 
-        my @langs = (
-            $self->{'url'}->{'lang'},
-            ( keys %{ $content_objects->[0]->{'_data'} } ),
-            q{*}
-        );
+    my @langs = (
+        $self->{'url'}->{'lang'},
+        ( keys %{ $content_objects->[0]->{'_data'} } ),
+        q{*}
+    );
 
-        my $content = q{};
+    my $content = q{};
 
-        foreach my $field (qw( order_by use_in_menu )) {
-            if ($content_spec and $content_spec->{$field}) {
-                if ($content_spec->{$field} =~ m{\d}s) {
-                    foreach my $lang (@langs) {
-                        if ($content_objects->[0]->{'_data'}->{$lang}->{ $content_spec->{$field} }) {
-                            $content = $content_objects->[0]->{'_data'}->{$lang}->{ $content_spec->{$field} };
-                            last;
-                        }
+    foreach my $field (qw( order_by use_in_menu )) {
+        if ($content_spec and $content_spec->{$field}) {
+            if ($content_spec->{$field} =~ m{\d}s) {
+                foreach my $lang (@langs) {
+                    if ($content_objects->[0]->{'_data'}->{$lang}->{ $content_spec->{$field} }) {
+                        $content = $content_objects->[0]->{'_data'}->{$lang}->{ $content_spec->{$field} };
+                        last;
                     }
                 }
-                elsif ($content_objects->[0]->{ $content_spec->{$field} }) {
-                    $content = $content_objects->[0]->{ $content_spec->{$field} };
-                }
             }
-
-            push @fields_content, $content;
+            elsif ($content_objects->[0]->{ $content_spec->{$field} }) {
+                $content = $content_objects->[0]->{ $content_spec->{$field} };
+            }
         }
+
+        push @fields_content, $content;
     }
 
     return @fields_content;

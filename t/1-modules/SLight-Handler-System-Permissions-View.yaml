@@ -605,58 +605,6 @@ Levels list:
               content:
               - class: generic
                 data:
-                  text: Account::Avatar::Image
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Avatar&h_action=Image
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Avatar&h_action=Image
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
                   text: Account::Avatar::View
                 type: Label
               data:
@@ -3540,58 +3488,6 @@ Levels list:
               content:
               - class: generic
                 data:
-                  text: Account::Avatar::Image
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Avatar&h_action=Image
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Avatar&h_action=Image
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
                   text: Account::Avatar::View
                 type: Label
               data:
@@ -6462,58 +6358,6 @@ Levels list:
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Avatar&h_action=Delete
-                  type: Action
-                type: Container
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Account::Avatar::Image
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: Not set
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
-                  text: ''
-                type: Label
-              data:
-                colspan: '0'
-                rowspan: '0'
-              type: TableCell
-            - class: generic
-              content:
-              - class: SLight_Toolbox
-                content:
-                - class: SLight_Change_Action
-                  data:
-                    caption: Grant access
-                    href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Avatar&h_action=Image
-                  type: Action
-                - class: SLight_Change_Action
-                  data:
-                    caption: Deny access
-                    href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Avatar&h_action=Image
                   type: Action
                 type: Container
               data:

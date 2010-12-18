@@ -30,24 +30,41 @@ sub analyze_path { # {{{
 
     $self->set_template('Default');
 
-    $self->set_objects(
-        {
-            ob1 => {
-                class    => 'Test::Foo',
-                oid      => 1,
-                metadata => { 'msg' => 'First test entry' },
-            },
-            ob2 => {
-                class    => 'Test::Foo',
-                oid      => 2,
-                metadata => { 'msg' => 'Second test entry' },
+    if (scalar @{ $path }) {
+        $self->set_objects(
+            {
+                t1 => {
+                    class    => q{Test::} . $path->[0],
+                    oid      => undef,
+                    metadata => {},
+                },
             }
-        },
-    );
+        );
+    
+        $self->set_object_order([qw( t1 )]);
 
-    $self->set_object_order([qw( ob1 ob2 )]);
+        $self->set_main_object('t1');
+    }
+    else {
+        $self->set_objects(
+            {
+                ob1 => {
+                    class    => 'Test::Foo',
+                    oid      => 1,
+                    metadata => { 'msg' => 'First test entry' },
+                },
+                ob2 => {
+                    class    => 'Test::Foo',
+                    oid      => 2,
+                    metadata => { 'msg' => 'Second test entry' },
+                }
+            },
+        );
 
-    $self->set_main_object('ob1');
+        $self->set_object_order([qw( ob1 ob2 )]);
+
+        $self->set_main_object('ob1');
+    }
 
     return $self->response_content();
 } # }}}

@@ -1,5 +1,5 @@
 ---
-Call the 'View' actio non 'Test::Foo' object:
+Example test case:
   content:
     addon_data:
       Core::Path:
@@ -12,7 +12,7 @@ Call the 'View' actio non 'Test::Foo' object:
           type: Link
         type: Container
     object_data:
-      ob1:
+      t1:
         class: SLight_Object O-Debug
         content:
         - class: SLight_Notification
@@ -21,24 +21,7 @@ Call the 'View' actio non 'Test::Foo' object:
             content:
             - class: generic
               data:
-                text: 'Diagnosting message: ''First test entry'''
-              type: Label
-            type: Container
-          - class: Buttons
-            content: []
-            type: Container
-          type: Container
-        type: Container
-      ob2:
-        class: SLight_Object O-Debug
-        content:
-        - class: SLight_Notification
-          content:
-          - class: Message
-            content:
-            - class: generic
-              data:
-                text: 'Diagnosting message: ''Second test entry'''
+                text: 'Diagnosting message: ''None'''
               type: Label
             type: Container
           - class: Buttons
@@ -47,8 +30,7 @@ Call the 'View' actio non 'Test::Foo' object:
           type: Container
         type: Container
     object_order:
-    - ob1
-    - ob2
+    - t1
     template: Default
   mime_type: ~
   response: CONTENT

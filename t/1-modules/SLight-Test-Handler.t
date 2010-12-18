@@ -20,15 +20,21 @@ use Test::Exception;
 use utf8;
 # }}}
 
-use SLight::Test::Handler;
+use SLight::Test::Handler qw( run_handler_tests );
 
-plan tests =>
-    + 1 # smoke test.
-;
+my @tests = (
+    {
+        # Just a test for test - probably should be moved to separate file! (FIXME)
+        'name'     => 'callback test',
+        'callback' => sub { return 'OK'; },
+        'expect'   => 'scalar',
+    }
+);
 
-# At this point, only smoke tests seem necessary.
-# This code is heavily used by SLight-Handler-* tests, anyway!
-
-can_ok('SLight::Test::Handler', 'run_handler_tests');
+run_handler_tests(
+    tests => \@tests,
+    
+    strip_dates => 1,
+);
 
 # vim: fdm=marker

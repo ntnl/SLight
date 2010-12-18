@@ -29,19 +29,19 @@ sub handle_view { # {{{
         class   => 'SL_AccountList',
         columns => [
             {
-                caption => TR('Login'),
+                caption => TR(q{Login}),
                 name    => 'login',
             },
             {
-                caption => TR('Status'),
+                caption => TR(q{Status}),
                 name    => 'status',
             },
             {
-                caption => TR('Name'),
+                caption => TR(q{Name}),
                 name    => 'name',
             },
             {
-                caption => TR(''),
+                caption => TR(q{}),
                 name    => 'actions',
             },
         ],

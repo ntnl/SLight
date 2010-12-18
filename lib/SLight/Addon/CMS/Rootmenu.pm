@@ -56,11 +56,16 @@ sub _process { # {{{
         push @menu_items, $menu_item;
     }
 
+    my @items_sorted;
+    foreach my $item (sort { $a->{'_sort'} cmp $b->{'_sort'} } @menu_items) {
+        delete $item->{'_sort'};
+
+        push @items_sorted, $item;
+    }
+
     my $container = mk_Container_token(
         class   => 'SLight_Rootmenu_Addon',
-        content => [
-            map { delete $_->{'_sort'}; $_ } sort { $a->{'_sort'} cmp $b->{'_sort'} } @menu_items
-        ],
+        content => \@items_sorted,
     );
 
     return $container;

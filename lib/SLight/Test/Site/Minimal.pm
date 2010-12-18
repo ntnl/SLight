@@ -99,7 +99,7 @@ sub build { # {{{
 
         _data => {
             name     => { id=>30, caption => 'Name',       datatype => 'String', order=>1, default => q{}, translate => 0, optional => 0, max_length => 64 },
-            pic      => { id=>31, caption => 'Pic',        datatype => 'Image',  order=>2, default => q{}, translate => 0, optional => 0, max_length => 1024000 },
+            pic      => { id=>31, caption => 'Pic',        datatype => 'Image',  order=>2, default => q{}, translate => 0, optional => 0, max_length => 1_024_000 },
             birth    => { id=>32, caption => 'Birth date', datatype => 'Date',   order=>3, default => q{}, translate => 0, optional => 0, max_length => 64 },
             email    => { id=>33, caption => 'Email',      datatype => 'Email',  order=>4, default => q{}, translate => 0, optional => 0, max_length => 512 },
             homepage => { id=>34, caption => 'Homepage',   datatype => 'Link',   order=>5, default => q{}, translate => 0, optional => 0, max_length => 1025 },
@@ -109,7 +109,7 @@ sub build { # {{{
             hips  => { id=>37, caption => 'Hips',       datatype => 'Int',    order=>8, default => q{}, translate => 0, optional => 0, max_length => 3 },
             cup   => { id=>38, caption => 'Cup size',   datatype => 'String', order=>9, default => q{}, translate => 0, optional => 0, max_length => 1 },
             
-            about => { id=>39, caption => 'About', datatype => 'Text', order=>10, default => q{}, translate => 1, optional => 0, max_length => 10240 },
+            about => { id=>39, caption => 'About', datatype => 'Text', order=>10, default => q{}, translate => 1, optional => 0, max_length => 10_240 },
         },
 
         class => 'Person',

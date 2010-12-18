@@ -22,7 +22,10 @@ our @EXPORT_OK = qw(
     Dmp
     mDmp
 );
-our @EXPORT = @EXPORT_OK;
+our @EXPORT = @EXPORT_OK; ## no critic (ProhibitAutomaticExportation)
+# Note: The whole purpose of this module it to make Dmp and mDmp available
+# with minimal effort, hence the 'no critic' directive.
+
 our %EXPORT_TAGS = (
     'all' => [ @EXPORT_OK ],
 );

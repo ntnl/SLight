@@ -43,7 +43,7 @@ sub run_addon_tests { # {{{
 
     my $factory = SLight::AddonFactory->new();
 
-    my ( $addon_pkg, $addon_class ) = split q{::}, delete $P{'addon'};
+    my ( $addon_pkg, $addon_class ) = split /::/s, delete $P{'addon'};
 
     my @tests;
     foreach my $t (@{ $P{'tests'} }) {

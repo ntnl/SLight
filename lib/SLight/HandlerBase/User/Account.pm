@@ -107,7 +107,14 @@ sub validate_form { # {{{
 
     if ($new) {
         $meta{'login'} = { type => 'NewLogin', max_length => 64 };
-        $meta{'pass'}  = { type => 'Password', max_length => 128, extras=>{ 'pass-repeat'=>$self->{'options'}->{'pass-repeat'} } },
+
+        $meta{'pass'} = {
+            type       => 'Password',
+            max_length => 128,
+            extras => {
+                'pass-repeat' => $self->{'options'}->{'pass-repeat'},
+            },
+        };
     }
 
     return validate_input(
