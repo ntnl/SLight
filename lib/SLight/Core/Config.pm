@@ -22,7 +22,7 @@ use YAML::Syck qw( LoadFile );
 use File::Slurp qw( read_dir );
 # }}}
 
-our $VERSION = '0.0.2';
+our $VERSION = '0.0.3';
 
 # Defaults:
 my %config = (

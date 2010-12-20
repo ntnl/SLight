@@ -1,0 +1,136 @@
+---
+full_blown_example:
+  class: Test_Form_DS
+  content:
+  - class: F-t_string Entry
+    content:
+    - class: Label
+      data:
+        text: Sample string entry
+      type: Label
+    - class: Value
+      data:
+        name: t_string
+        value: Foo Foo Foo
+      type: Entry
+    - class: Error
+      data:
+        text: String has issues
+      type: Label
+    type: Container
+  - class: F-t_password PasswordEntry
+    content:
+    - class: Label
+      data:
+        text: Sample password entry
+      type: Label
+    - class: Value
+      data:
+        name: t_password
+        value: ''
+      type: PasswordEntry
+    - class: Error
+      data:
+        text: Password has issues
+      type: Label
+    type: Container
+  - class: F-t_text TextEntry
+    content:
+    - class: Label
+      data:
+        text: Sample text entry
+      type: Label
+    - class: Value
+      data:
+        name: t_text
+        value: Ala ma cota
+      type: TextEntry
+    - class: Error
+      data:
+        text: Text has issues
+      type: Label
+    type: Container
+  - class: F-t_select SelectEntry
+    content:
+    - class: Label
+      data:
+        text: Sample select entry
+      type: Label
+    - class: Value
+      data:
+        name: t_select
+        options:
+        - - Foo
+          - '1: Foo'
+        - - Bar
+          - '2: Bar'
+        - - Baz
+          - '3: Baz'
+        value: Foo
+      type: SelectEntry
+    - class: Error
+      data:
+        text: Select has issues
+      type: Label
+    type: Container
+  - class: F-t_file FileEntry
+    content:
+    - class: Label
+      data:
+        text: Sample file entry
+      type: Label
+    - class: Value
+      data:
+        name: t_file
+      type: FileEntry
+    - class: Error
+      data:
+        text: File has issues
+      type: Label
+    type: Container
+  - class: F-t_check Check
+    content:
+    - class: Check
+      data:
+        checked: 1
+        name: t_check
+      type: Check
+    - class: Label
+      data:
+        text: Sample check
+      type: Label
+    - class: Error
+      data:
+        text: Check has issues
+      type: Label
+    type: Container
+  - class: generic
+    content:
+    - class: F-Normal Label
+      data:
+        text: Sample label
+      type: Label
+    type: Container
+  - class: generic
+    content:
+    - class: F-Finalize Action
+      data:
+        caption: Sample action
+        href: /Foo/Bar/
+      type: Action
+    type: Container
+  data:
+    action: /FormAction/
+    hidden:
+      test_1: one
+      test_2: two
+    submit: Commit test
+  type: Form
+full_blown_example - add_Action: ~
+full_blown_example - add_Check: ~
+full_blown_example - add_Entry: ~
+full_blown_example - add_FileEntry: ~
+full_blown_example - add_Label: ~
+full_blown_example - add_PasswordEntry: ~
+full_blown_example - add_SelectEntry: ~
+full_blown_example - add_TextEntry: ~

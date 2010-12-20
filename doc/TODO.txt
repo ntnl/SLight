@@ -275,13 +275,13 @@
 [X]             Show dialog
 [X]             Perform the deletion
 [X]             Test
-[>] DataStructure
-[>]     SLight::DataStructure::Form (ex CoMe...GenericForm)
-[>]         Implement
-[>]         Test
-[-]     SLight::DataStructure::List (ex CoMe...GenericGrid)
-[-]         Implement
-[ ]         Test
+[X] DataStructure
+[X]     SLight::DataStructure::Form (ex CoMe...GenericForm)
+[X]         Implement
+[X]         Test
+[X]     SLight::DataStructure::List (ex CoMe...GenericGrid)
+[X]         Implement
+[X]         Test
 [X]     DataStructure::List::Table::Properties
 [X]         Rename to DataStructure::Properties
 [X]         Write test
@@ -301,24 +301,18 @@
 [X]     SLight::Handler::Error::AccessDenied <-- You can not do the stuff you intended.
 [X]             Implementation
 [X]             Test
-[-] Addon
+[X] Addon
 [X]     SLight::Addon::User::Panel
 [X]         Implementation
 [X]         Test
 [X]         Avatar support
-[ ]         Link to MyData
+[X]         Link to MyData
 [X]     SLight::Addon::User::Info
 [X]         Implementation
 [X]         Test
-[ ]     SLight::Addon::Core::Debug
-[ ]         Implementation
-[ ]         Test
-[>] SLight API
+[X]         Link to MyData
+[X] SLight API
 [X]     SLight::API::EVK
-[ ]     Content
-[ ]         Support 'login' and 'user_id' parameters, along with 'email', to sign the stuff.
-[ ]     Asset
-[ ]         Support 'login' and 'user_id' parameters, along with 'email', to sign the stuff.
 [X]     Avatar
 [X]         Set avatar
 [X]         Get avatar
@@ -335,12 +329,12 @@
 [-]     Email sending
 [X]         Implementation
 [ ]         Automated test
-[ ]     Check for permissions, emit SLight::Handler::Error::AccessDenied as needed.
+[>]     Check for permissions, emit SLight::Handler::Error::AccessDenied as needed.
 [X] SLight::HandlerMeta
-[ ] Development
+[-] Development
 [ ]     Implement DB-schema-update utility.
-[ ]     Version bump to 0.0.3
-[ ] Bugs:
+[X]     Version bump to 0.0.3
+[-] Bugs:
 [ ]     Email is not mandatory in some (Asset, Content) API calls (but it should)
 [ ]     Some API calls (Asset, Content) should return login as well (not just email)
 [X]     s/Lightweight Content Manager System/Lightweight Content Management System/gs
@@ -397,6 +391,14 @@
 [ ]             Form - show
 [ ]             Form - save
 [ ]             Test
+[ ] SLight API
+[ ]     Content
+[ ]         Support 'login' and 'user_id' parameters, along with 'email', to sign the stuff.
+[ ]     Asset
+[ ]         Support 'login' and 'user_id' parameters, along with 'email', to sign the stuff.
+[ ] SLight::Addon::Core::Debug
+[ ]     Implementation
+[ ]     Test
 [ ] HTML templateing-related
 [ ]     Add 'delimiter' - either as a widget, or as sub-section to lists
 [ ] Development

@@ -242,6 +242,11 @@ sub can_User_access { # {{{
         }
     );
 
+    # Errors are always allowed to be viewed :)
+    if ($P{'handler_family'} eq 'Error') {
+        return q{GRANTED};
+    }
+
     # FIXME! Cache response from this function, or it will be awfully slow!
 
     my @system_wild_path = (

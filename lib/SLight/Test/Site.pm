@@ -14,7 +14,7 @@ package SLight::Test::Site;
 use strict; use warnings; # {{{
 use utf8;
 
-our $VERSION = 0.0.2;
+our $VERSION = 0.0.3;
 
 use SLight::Core::Config;
 use SLight::Core::DB;

@@ -13,7 +13,7 @@ package SLight::Core::Session;
 ################################################################################
 use strict; use warnings; # {{{
 
-our $VERSION = 0.0.2;
+our $VERSION = 0.0.3;
 
 use SLight::Core::Config;
 

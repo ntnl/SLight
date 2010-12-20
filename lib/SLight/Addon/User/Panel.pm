@@ -27,9 +27,6 @@ sub _process { # {{{
     if ($self->{'user'}->{'login'}) {
         my $user = get_User($self->{'user'}->{'id'});
 
-        my $message    = TF(q{Logged-in as %s.}, undef, ( $user->{'name'} or $user->{'login'} ) );
-        my $link_label = q{Logout};
-
         my $avatar_href = SLight::Core::URL::make_url(
             path_handler => 'Avatar',
             path         => [ $self->{'user'}->{'login'} ],
@@ -42,8 +39,12 @@ sub _process { # {{{
             label => ( $user->{'name'} or $user->{'login'} ),
         );
 
-        push @contents, mk_Label_token(
-            text => $message,
+        push @contents, mk_Link_token(
+            href => SLight::Core::URL::make_url(
+                path_handler => 'MyAccount',
+                path         => [],
+            ),
+            text => TF(q{Logged-in as %s.}, undef, ( $user->{'name'} or $user->{'login'} )),
         );
 
         my $link_href = SLight::Core::URL::make_url(
@@ -56,7 +57,7 @@ sub _process { # {{{
         );
         push @contents, mk_Link_token(
             href => $link_href,
-            text => $link_label,
+            text => TR(q{Logout}),
         );
     }
     else {

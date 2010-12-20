@@ -248,7 +248,7 @@ sub add_Check { # {{{
             name    => { type=>SCALAR },
             caption => { type=>SCALAR },
             checked => { type=>SCALAR },
-#            error   => { type=>SCALAR | UNDEF, optional=>1 },
+            error   => { type=>SCALAR | UNDEF, optional=>1 },
         }
     );
     
@@ -263,12 +263,12 @@ sub add_Check { # {{{
             text  => $P{'caption'},
         ),
     );
-#    if ($P{'error'}) {
-#        push @content, mk_Label_token(
-#            class => 'Error',
-#            text  => $P{'error'},
-#        ),
-#    }
+    if ($P{'error'}) {
+        push @content, mk_Label_token(
+            class => 'Error',
+            text  => $P{'error'},
+        ),
+    }
 
     push @{ $self->{'FormContent'} }, mk_Container_token(
         class   => q{F-} . $P{'name'} . q{ Check},
@@ -307,7 +307,7 @@ sub add_Action { # {{{
         {
             caption => { type=>SCALAR },
             href    => { type=>SCALAR },
-            class   => { type=>SCALAR, optional=>1, default=>'Label' },
+            class   => { type=>SCALAR, optional=>1, default=>'Action' },
         }
     );
 

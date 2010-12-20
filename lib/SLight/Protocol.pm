@@ -13,9 +13,10 @@ package SLight::Protocol;
 ################################################################################
 use strict; use warnings; # {{{
 
-my $VERSION = '0.0.2';
+my $VERSION = '0.0.3';
 
 use SLight::AddonFactory;
+use SLight::API::Permissions qw( can_User_access );
 use SLight::OutputFactory;
 use SLight::HandlerFactory;
 use SLight::DataToken qw( mk_Container_token mk_Label_token );
@@ -65,6 +66,29 @@ sub S_process_object { # {{{
 #    $self->D_Dump($object, $action);
 
     my ($pkg, $handler) = ( $object->{'class'} =~ m{^(.+?)::(.+?)$}s );
+
+    # Check, if the User can use the object.
+    my $policy = can_User_access(
+        id => $self->{'user'}->{'id'},
+
+        handler_family => $pkg,
+        handler_class  => $handler,
+        handler_action => $self->{'url'}->{'action'},
+
+        handler_object => $object->{'oid'},
+    );
+    if ($policy ne q{GRANTED}) {
+        return $self->S_process_object(
+            {
+                class    => q{Error::AccessDenied},
+                oid      => undef,
+                metadata => {},
+            },
+            q{View},
+            q{view},
+            1,
+        );
+    }
 
     my $handler_object = $self->{'handler_factory'}->make(pkg => $pkg, handler => $handler, action => $action );
 

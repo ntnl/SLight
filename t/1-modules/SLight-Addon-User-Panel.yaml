@@ -9,8 +9,9 @@ Logged in:
     type: Image
   - class: generic
     data:
+      href: /_MyAccount/
       text: Logged-in as Agnieszka.
-    type: Label
+    type: Link
   - class: generic
     data:
       href: /_Authentication/Logout-en.web
