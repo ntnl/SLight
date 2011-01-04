@@ -51,6 +51,8 @@ run_handler_tests(
     tests => \@tests,
     
     strip_dates => 1,
+
+    skip_permissions => 1,
 );
 
 # vim: fdm=marker

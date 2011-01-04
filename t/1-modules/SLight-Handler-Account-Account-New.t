@@ -36,26 +36,26 @@ my @tests = (
         'name' => q{Submit form (bad data)},
         'url'  => q{/_Account/add/Account/New-save.web},
         'cgi'  => {
-            login  => q{t3$t},
-            name   => q{1234567890qwertyuiopasdfghjklzxcvbnm1qaz2wsx3edc4rfv5tgb6yhn7ujm8ik9ol0p},
-            email  => q{foo@bar@baz},
-            status => q{New},
+            'u-login'  => q{t3$t},
+            'u-name'   => q{1234567890qwertyuiopasdfghjklzxcvbnm1qaz2wsx3edc4rfv5tgb6yhn7ujm8ik9ol0p},
+            'u-email'  => q{foo@bar@baz},
+            'u-status' => q{New},
 
-            'pass'        => q{12},
-            'pass-repeat' => q{34},
+            'u-pass'        => q{12},
+            'u-pass-repeat' => q{34},
         },
     },
     {
         'name' => q{Submit form (goot data)},
         'url'  => q{/_Account/add/Account/New-save.web},
         'cgi'  => {
-            login  => q{NewUser},
-            name   => q{Creted 4 Test},
-            email  => q{foo@bar.test},
-            status => q{Enabled},
+            'u-login'  => q{NewUser},
+            'u-name'   => q{Creted 4 Test},
+            'u-email'  => q{foo@bar.test},
+            'u-status' => q{Enabled},
             
-            'pass'        => q{FooBarBaz},
-            'pass-repeat' => q{FooBarBaz},
+            'u-pass'        => q{FooBarBaz},
+            'u-pass-repeat' => q{FooBarBaz},
         },
     },
     {
@@ -66,6 +66,8 @@ my @tests = (
 
 run_handler_tests(
     tests => \@tests,
+
+    skip_permissions => 1,
 );
 
 # vim: fdm=marker

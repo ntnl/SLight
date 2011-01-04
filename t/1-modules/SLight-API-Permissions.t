@@ -127,7 +127,7 @@ is (
 
 is (
     set_System_access(
-        type => q{System},
+        type => q{system},
 
         handler_family => q{MoinMoin},
         handler_class  => q{*},
@@ -140,7 +140,7 @@ is (
 );
 is (
     set_System_access(
-        type => q{Guest},
+        type => q{guest},
 
         handler_family => q{MoinMoin},
         handler_class  => q{Sandbox},
@@ -153,7 +153,7 @@ is (
 );
 is (
     get_System_access(
-        type => q{System},
+        type => q{system},
 
         handler_family => q{MoinMoin},
         handler_class  => q{*},
@@ -166,7 +166,7 @@ is (
 );
 is (
     get_System_access(
-        type => q{System},
+        type => q{system},
 
         handler_family => q{ZumZum},
         handler_class  => q{*},
@@ -192,7 +192,7 @@ is (
 );
 is (
     clear_System_access(
-        type => 'Guest',
+        type => 'guest',
 
         handler_family => q{MoinMoin},
         handler_class  => q{Sandbox},
@@ -231,7 +231,7 @@ is (
 
 is (
     get_System_access(
-        type => q{System},
+        type => q{system},
 
         handler_family => q{MoinMoin},
         handler_class  => q{Ziu},
@@ -242,7 +242,7 @@ is (
 );
 is (
     get_System_access(
-        type => q{Guest},
+        type => q{guest},
 
         handler_family => q{MoinMoin},
         handler_class  => q{Aaa},
@@ -292,19 +292,30 @@ is (
     'DENIED',
     q{can_User_access}
 );
+
+set_System_access(
+    type => q{system},
+
+    handler_family => q{FooFoo},
+    handler_class  => q{Box},
+    handler_action => q{*},
+
+    policy => 'GRANTED',
+);
 is (
     can_User_access(
         id => undef,
 
-        handler_family => q{MoinMoin},
-        handler_class  => q{Sandbox},
+        handler_family => q{FooFoo},
+        handler_class  => q{Box},
         handler_action => q{In},
 
         handler_object => undef,
     ),
     'GRANTED',
-    q{can_User_access}
+    q{can_User_access (guest)}
 );
+
 is (
     can_User_access(
         id => $u2,
@@ -316,7 +327,7 @@ is (
         handler_object => q{Niom},
     ),
     'DENIED',
-    q{can_User_access}
+    q{can_User_access (user)}
 );
 
 # vim: fdm=marker

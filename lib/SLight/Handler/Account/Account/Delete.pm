@@ -12,7 +12,7 @@ package SLight::Handler::Account::Account::Delete;
 # 
 ################################################################################
 use strict; use warnings; # {{{
-use base q{SLight::HandlerBase::User::Account};
+use base q{SLight::Handler};
 
 use SLight::API::User qw( delete_User get_User_by_login );
 use SLight::DataStructure::Dialog::YesNo;

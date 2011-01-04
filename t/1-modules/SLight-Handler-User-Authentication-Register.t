@@ -51,7 +51,7 @@ my @tests = (
         'name' => q{Send out the form},
         'url'  => q{/_Authentication/Register-request.web},
         'cgi'  => {
-            q{u-user}  => 'Fooley',
+            q{u-login} => 'Fooley',
             q{u-name}  => 'Test subject',
             q{u-email} => 'test@subject.test',
 
@@ -89,6 +89,8 @@ my @tests = (
 
 run_handler_tests(
     tests => \@tests,
+
+    skip_permissions => 1,
 );
 
 

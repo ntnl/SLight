@@ -30,7 +30,7 @@ CREATE        INDEX User_Entity_email ON User_Entity (Email_id);
 
 CREATE TABLE System_Access (
     user_type       VARCHAR(16) NOT NULL,
-        -- One of: 'System', 'Guest', 'Authenticated'
+        -- One of: 'system', 'guest', 'authenticated'
 
     handler_family VARCHAR(128) NOT NULL,
     handler_class  VARCHAR(128) NOT NULL,

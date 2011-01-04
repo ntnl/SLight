@@ -23,103 +23,143 @@ use Params::Validate qw( :all );
 
 # Returns form, that (probably) should be put into main content of the page.
 # Parameters:
-#   $edit
-#       If $edit is set, it should be a hashref with current data.
-#       If it is undef, then we are doing addition.
+#   
+#   new_user
+#       Forces 'Login', 'Password', 'Password (repeat)'
 #
-#   $form_label
+#   admin
+#       Forces 'Password', 'Password (repeat)' and 'Status'
+#
+#   data
+#       Data used to initialize the form (if there is not data in 'options')
+#
+#   form_label
 #       String used as a form's label.
 #
-#   $submit_label
+#   submit_label
 #       String used as a label for Submit key.
 #
-#   $errors
+#   errors
 #       Hashref.
+#
+#   step
+#
 sub make_form { # {{{
-    my ( $self, $edit, $form_label, $submit_label, $errors ) = @_;
+    my ( $self, %P ) = @_;
 
     my $form = SLight::DataStructure::Form->new(
         action => $self->build_url(
             method  => 'POST',
             options => {},
+            step    => $P{'step'},
         ),
         hidden  => {},
-        submit  => $submit_label,
+        submit  => $P{'submit_label'},
     );
     # Add the caption, so User knows what kind of data it enters.
     $form->add_Label(
-        text => $form_label,
+        text => $P{'form_label'},
     );
+
     # In edit mode we already have the login, and it generally should not change.
-    if (not $edit) {
+    if ($P{'new_user'}) {
         $form->add_Entry(
-            caption => TR('Login'),
-            name    => 'u-user',
-            value   => ( $self->{'options'}->{'u-user'} or q{} ),
-            error   => ( $errors->{'user'} or q{} ),
+            caption => TR('Login:'),
+            name    => 'u-login',
+            value   => ( $self->{'options'}->{'u-login'} or q{} ),
+            error   => ( $P{'errors'}->{'login'} or q{} ),
         );
 
         # Reset to an empty hash (otherwise it may be undef, zero or empty string).
-        $edit = {};
+        $P{'data'} = {};
+
+        $form->add_PasswordEntry(
+            caption => TR('Password:'),
+            name    => 'u-pass',
+            value   => q{}, # Always empty, putting password here could lead to vulnerability!
+            error   => $P{'errors'}->{'pass'},
+        );
+        $form->add_PasswordEntry(
+            caption => TR('Password (repeat):'),
+            name    => 'u-pass-repeat',
+            value   => q{},
+            error   => q{},
+        );
+    }
+    if ($P{'admin'}) {
+        $form->add_SelectEntry(
+            caption => TR('Status:'),
+            name    => 'status',
+            value   => ( $self->{'options'}->{'u-status'} or $P{'data'}->{'status'} or q{} ),
+            options => [
+                [
+                    q{Disabled},
+                    TR('Disabled'),
+                ],
+                [
+                    q{Guest},
+                    TR('Guest'),
+                ],
+                [
+                    q{Enabled},
+                    TR('Enabled'),
+                ],
+            ],
+            error => $P{'errors'}->{'status'},
+        );
     }
 
-    # All other options are common to both Add and Edit modes.
+    # All other options are common.
     $form->add_Entry(
-        caption => TR('Email'),
-        name    => 'u-email',
-        value   => ( $self->{'options'}->{'u-email'} or $edit->{'email'} or q{} ),
-        error   => ( $errors->{'email'} or q{} ),
-    );
-    $form->add_Entry(
-        caption => TR('Name'),
+        caption => TR('Name:'),
         name    => 'u-name',
-        value   => ( $self->{'options'}->{'u-name'} or $edit->{'name'} or q{} ),
-        error   => ( $errors->{'name'} or q{} ),
+        value   => ( $self->{'options'}->{'u-name'} or $P{'data'}->{'name'} or q{} ),
+        error   => ( $P{'errors'}->{'name'} or q{} ),
     );
-    $form->add_PasswordEntry(
-        caption => TR('Password'),
-        name    => 'u-pass',
-        value   => q{}, # Always empty, putting password here could lead to vulnerability!
-        error   => ( $errors->{'pass'} or q{} ),
-    );
-    $form->add_PasswordEntry(
-        caption => TR('Password (repeat)'),
-        name    => 'u-pass-repeat',
-        value   => q{}, # Always empty, putting password here could lead to vulnerability!
+    $form->add_Entry(
+        caption => TR('Email:'),
+        name    => 'u-email',
+        value   => ( $self->{'options'}->{'u-email'} or $P{'data'}->{'email'} or q{} ),
+        error   => ( $P{'errors'}->{'email'} or q{} ),
     );
 
-    return $form;
+    $self->push_data($form);
+
+    return;
 } # }}}
 
 # Validate User Data form input.
 # Returns errors (hash ref), or empty hash ref
+# Parameters:
+#   admin
+#
+#   new_user
+#
 sub validate_form { # {{{
-    my ( $self, $edit, $options ) = @_;
+    my ( $self, %P ) = @_;
 
     my %given_data = (
-        email => $options->{'u-email'},
-        name  => $options->{'u-name'},
-        pass  => $options->{'u-pass'}
+        email => $self->{'options'}->{'u-email'},
+        name  => $self->{'options'}->{'u-name'},
     );
     my %meta_data = (
         email => { type => 'Email',  max_length => 256 },
         name  => { type => 'String', max_length => 64, optional => 1 },
-        pass  => {
+    );
+    if ($P{'new_user'}) {
+        $given_data{'pass'} = $self->{'options'}->{'u-pass'};
+
+        $meta_data{'pass'} = {
             type       => 'Password',
             max_length => 64,
 
             extras => {
-                'pass-repeat' => $options->{'u-pass-repeat'}
+                'pass-repeat' => $self->{'options'}->{'u-pass-repeat'}
             }
-        }
-    );
+        };
+        $given_data{'login'} = $self->{'options'}->{'u-login'};
 
-    # In Edit mode login is passed trough 'system' ways.
-    # Otherwise, it is a direct User input, and should be validated at form level.
-    if (not $edit) {
-        $given_data{'user'} = $options->{'u-user'};
-
-        $meta_data{'user'} = {
+        $meta_data{'login'} = {
             type       => 'Login',
             max_length => 64
         };

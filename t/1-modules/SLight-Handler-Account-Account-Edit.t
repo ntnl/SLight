@@ -36,9 +36,9 @@ my @tests = (
         'name' => q{Submit form (bad data)},
         'url'  => q{/_Account/beti/Account/Edit-save.web},
         'cgi'  => {
-            name   => q{1234567890qwertyuiopasdfghjklzxcvbnm1qaz2wsx3edc4rfv5tgb6yhn7ujm8ik9ol0p},
-            email  => q{foo@bar@baz},
-            status => q{New},
+            'u-name'   => q{1234567890qwertyuiopasdfghjklzxcvbnm1qaz2wsx3edc4rfv5tgb6yhn7ujm8ik9ol0p},
+            'u-email'  => q{foo@bar@baz},
+            'u-status' => q{New},
         },
     },
     {
@@ -46,12 +46,12 @@ my @tests = (
         'sql_query' => [q{SELECT * FROM User_Entity WHERE id IN (1, 2, 3)}],
     },
     {
-        'name' => q{Submit form (goot data)},
+        'name' => q{Submit form (good data)},
         'url'  => q{/_Account/beti/Account/Edit-save.web},
         'cgi'  => {
-            name   => q{Beate},
-            email  => q{bb@bar.test},
-            status => q{Guest},
+            'u-name'   => q{Beate},
+            'u-email'  => q{bb@bar.test},
+            'u-status' => q{Guest},
         },
     },
     {
@@ -62,6 +62,8 @@ my @tests = (
 
 run_handler_tests(
     tests => \@tests,
+
+    skip_permissions => 1,
 );
 
 # vim: fdm=marker

@@ -41,13 +41,14 @@ sub handle_view { # {{{
         },
     );
 
-    $self->push_data(
-        $self->make_form(
-            undef, # undef = new
-            TR('Register User'),
-            TR('Register'),
-            {},
-        ),
+    $self->make_form(
+        new_user => 1,
+
+        step         => 'request',
+        form_label   => TR('Register User'),
+        submit_label => TR('Register'),
+
+        errors => {},
     );
 
     return;
@@ -63,8 +64,7 @@ sub handle_request { # {{{
 #    }
 
     my $errors = $self->validate_form(
-        0,
-        $self->{'options'}
+        new_user => 1,
     );
 
     # Do We have any errors?
@@ -86,13 +86,14 @@ sub handle_request { # {{{
         );
 
         # It will show the data User sent to us.
-        $self->push_data(
-            $self->make_form(
-                undef, # undef = new
-                TR('Register User'),
-                TR('Register'),
-                $errors,
-            )
+        $self->make_form(
+            new_user => 1,
+
+            step         => 'request',
+            form_label   => TR('Register User'),
+            submit_label => TR('Register'),
+
+            errors => $errors,
         );
 
         return;
@@ -100,7 +101,7 @@ sub handle_request { # {{{
 
     # Create a 'Guest' User account, that someone must verify.
     my $id = add_User(
-        login => $self->{'options'}->{'u-user'},
+        login => $self->{'options'}->{'u-login'},
 
         name  => ( $self->{'options'}->{'u-name'} or q{} ),
 
@@ -120,7 +121,7 @@ sub handle_request { # {{{
         metadata => {
             'made_by' => 'SLight::Handler::User::Authentication::Register',
             'user_id' => $id,
-            'login'   => $self->{'options'}->{'u-user'},
+            'login'   => $self->{'options'}->{'u-login'},
         }
     );
 
@@ -131,7 +132,7 @@ sub handle_request { # {{{
         action  => 'ActivateAccount',
         step    => 'view',
         options => {
-            login => $self->{'options'}->{'u-user'},
+            login => $self->{'options'}->{'u-login'},
             key   => $activation_key,
         },
     );
@@ -139,7 +140,7 @@ sub handle_request { # {{{
     SLight::API::Email::send_registration(
         email             => $self->{'options'}->{'u-email'},
         domain            => SLight::Core::Config::get_option('domain'),
-        name              => ( $self->{'options'}->{'u-name'} or $self->{'options'}->{'u-user'} ),
+        name              => ( $self->{'options'}->{'u-name'} or $self->{'options'}->{'u-login'} ),
         confirmation_link => $activate_url,
     );
 

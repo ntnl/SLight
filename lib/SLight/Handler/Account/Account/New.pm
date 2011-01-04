@@ -12,7 +12,7 @@ package SLight::Handler::Account::Account::New;
 # 
 ################################################################################
 use strict; use warnings; # {{{
-use base q{SLight::HandlerBase::User::Account};
+use base q{SLight::HandlerBase::User::AccountForm};
 
 use SLight::API::User qw( add_User );
 use SLight::DataStructure::Form;
@@ -24,7 +24,17 @@ sub handle_view { # {{{
 
     $self->set_class('SL_Account_New');
 
-    $self->account_form(1, {}, {});
+    $self->make_form(
+        new_user => 1,
+        admin    => 1,
+
+        step   => 'save',
+        data   => {},
+        errors => {},
+
+        form_label   => TR('New Account'),
+        submit_label => TR('Add'),
+    );
 
     return;
 } # }}}
@@ -32,26 +42,35 @@ sub handle_view { # {{{
 sub handle_save { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
-    my $errors = $self->validate_form(1);
+    my $errors = $self->validate_form(
+        new_user => 1,
+        admin    => 1,
+    );
 
     if ($errors) {
         $self->set_class('SL_Account_New');
-    
-        $self->account_form(
-            1,
-            $self->{'options'},
-            $errors
+
+        $self->make_form(
+            new_user => 1,
+            admin    => 1,
+
+            step   => 'save',
+            data   => {},
+            errors => $errors,
+
+            form_label   => TR('New Account'),
+            submit_label => TR('Add'),
         );
 
         return;
     }
 
     add_User(
-        login  => $self->{'options'}->{'login'},
-        pass   => $self->{'options'}->{'pass'},
-        name   => $self->{'options'}->{'name'},
-        email  => $self->{'options'}->{'email'},
-        status => $self->{'options'}->{'status'},
+        login  => $self->{'options'}->{'u-login'},
+        pass   => $self->{'options'}->{'u-pass'},
+        name   => $self->{'options'}->{'u-name'},
+        email  => $self->{'options'}->{'u-email'},
+        status => $self->{'options'}->{'u-status'},
     );
 
     my $redirect_url = $self->build_url(

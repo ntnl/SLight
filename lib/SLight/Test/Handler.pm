@@ -38,11 +38,16 @@ sub run_handler_tests { # {{{
             call_format => { type=>CODEREF, optional=>1 },
             call_result => { type=>CODEREF, optional=>1 },
 
-            strip_dates => { type=>SCALAR, optional=>1 },
+            strip_dates      => { type=>SCALAR, optional=>1 },
+            skip_permissions => { type=>SCALAR, optional=>1 },
         }
     );
 
     my $strip_dates = ( delete $P{'strip_dates'} or 0 );
+
+    if (delete $P{'skip_permissions'}) {
+        SLight::Core::Config::set_option('skip_permissions', 1);
+    }
 
     my @tests;
     foreach my $t (@{ $P{'tests'} }) {

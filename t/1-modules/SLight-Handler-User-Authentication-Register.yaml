@@ -112,55 +112,27 @@ Send out bad data (crash test):
                 text: Register User
               type: Label
             type: Container
-          - class: F-u-user Entry
+          - class: F-u-login Entry
             content:
             - class: Label
               data:
-                text: Login
+                text: 'Login:'
               type: Label
             - class: Value
               data:
-                name: u-user
+                name: u-login
                 value: ''
               type: Entry
             - class: Error
               data:
                 text: This field may not be empty.
               type: Label
-            type: Container
-          - class: F-u-email Entry
-            content:
-            - class: Label
-              data:
-                text: Email
-              type: Label
-            - class: Value
-              data:
-                name: u-email
-                value: ''
-              type: Entry
-            - class: Error
-              data:
-                text: This field may not be empty.
-              type: Label
-            type: Container
-          - class: F-u-name Entry
-            content:
-            - class: Label
-              data:
-                text: Name
-              type: Label
-            - class: Value
-              data:
-                name: u-name
-                value: ''
-              type: Entry
             type: Container
           - class: F-u-pass PasswordEntry
             content:
             - class: Label
               data:
-                text: Password
+                text: 'Password:'
               type: Label
             - class: Value
               data:
@@ -176,13 +148,41 @@ Send out bad data (crash test):
             content:
             - class: Label
               data:
-                text: Password (repeat)
+                text: 'Password (repeat):'
               type: Label
             - class: Value
               data:
                 name: u-pass-repeat
                 value: ''
               type: PasswordEntry
+            type: Container
+          - class: F-u-name Entry
+            content:
+            - class: Label
+              data:
+                text: 'Name:'
+              type: Label
+            - class: Value
+              data:
+                name: u-name
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-u-email Entry
+            content:
+            - class: Label
+              data:
+                text: 'Email:'
+              type: Label
+            - class: Value
+              data:
+                name: u-email
+                value: ''
+              type: Entry
+            - class: Error
+              data:
+                text: This field may not be empty.
+              type: Label
             type: Container
           data:
             action: /_Authentication/Register-request.web
@@ -228,39 +228,15 @@ User registration form:
                 text: Register User
               type: Label
             type: Container
-          - class: F-u-user Entry
+          - class: F-u-login Entry
             content:
             - class: Label
               data:
-                text: Login
+                text: 'Login:'
               type: Label
             - class: Value
               data:
-                name: u-user
-                value: ''
-              type: Entry
-            type: Container
-          - class: F-u-email Entry
-            content:
-            - class: Label
-              data:
-                text: Email
-              type: Label
-            - class: Value
-              data:
-                name: u-email
-                value: ''
-              type: Entry
-            type: Container
-          - class: F-u-name Entry
-            content:
-            - class: Label
-              data:
-                text: Name
-              type: Label
-            - class: Value
-              data:
-                name: u-name
+                name: u-login
                 value: ''
               type: Entry
             type: Container
@@ -268,7 +244,7 @@ User registration form:
             content:
             - class: Label
               data:
-                text: Password
+                text: 'Password:'
               type: Label
             - class: Value
               data:
@@ -280,7 +256,7 @@ User registration form:
             content:
             - class: Label
               data:
-                text: Password (repeat)
+                text: 'Password (repeat):'
               type: Label
             - class: Value
               data:
@@ -288,8 +264,32 @@ User registration form:
                 value: ''
               type: PasswordEntry
             type: Container
+          - class: F-u-name Entry
+            content:
+            - class: Label
+              data:
+                text: 'Name:'
+              type: Label
+            - class: Value
+              data:
+                name: u-name
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-u-email Entry
+            content:
+            - class: Label
+              data:
+                text: 'Email:'
+              type: Label
+            - class: Value
+              data:
+                name: u-email
+                value: ''
+              type: Entry
+            type: Container
           data:
-            action: /_Authentication/Register.web
+            action: /_Authentication/Register-request.web
             hidden: {}
             submit: Register
           type: Form

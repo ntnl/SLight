@@ -34,6 +34,8 @@ our @EXPORT_OK = qw(
 );
 our %EXPORT_TAGS = ( 'all' => [ @EXPORT_OK ] );
 
+# Fixme: validate function's input (like 'guest' is OK, where 'Guest' is not!)
+
 sub get_User_access { # {{{
     my %P = validate(
         @_,
@@ -225,7 +227,7 @@ sub clear_System_access { # {{{
     return;
 } # }}}
 
-
+# FIXME! Cache response from this function, or it will be awfully slow!
 sub can_User_access { # {{{
     my %P = validate(
         @_,
@@ -238,7 +240,7 @@ sub can_User_access { # {{{
 
             handler_object => { type=>SCALAR | UNDEF },
 
-            _debug => { type=>SCALAR, optional=>1 },
+            _debug => { type=>SCALAR, optional=>1, default=>0 },
         }
     );
 
@@ -247,28 +249,32 @@ sub can_User_access { # {{{
         return q{GRANTED};
     }
 
-    # FIXME! Cache response from this function, or it will be awfully slow!
+    if (SLight::Core::Config::get_option('skip_permissions')) {
+#        print STDERR q{Permssions check skipped due to config setting (skip_permissions: 1).};
+        return q{GRANTED};
+    }
 
     my @system_wild_path = (
-        { type => 'System', handler_family => $P{'handler_family'}, handler_class  => $P{'handler_class'}, handler_action => $P{'handler_action'}, },
-        { type => 'System', handler_family => $P{'handler_family'}, handler_class  => $P{'handler_class'}, handler_action => q{*}, },
-        { type => 'System', handler_family => $P{'handler_family'}, handler_class  => q{*},                handler_action => q{*}, },
+        { type => 'system', handler_family => $P{'handler_family'}, handler_class  => $P{'handler_class'}, handler_action => $P{'handler_action'}, },
+        { type => 'system', handler_family => $P{'handler_family'}, handler_class  => $P{'handler_class'}, handler_action => q{*}, },
+        { type => 'system', handler_family => $P{'handler_family'}, handler_class  => q{*},                handler_action => q{*}, },
     );
     if ($P{'id'}) {
-        push @system_wild_path, { type => 'Authenticated', handler_family => $P{'handler_family'}, handler_class  => $P{'handler_class'}, handler_action => $P{'handler_action'}, };
-        push @system_wild_path, { type => 'Authenticated', handler_family => $P{'handler_family'}, handler_class  => $P{'handler_class'}, handler_action => q{*}, };
-        push @system_wild_path, { type => 'Authenticated', handler_family => $P{'handler_family'}, handler_class  => q{*},                handler_action => q{*}, };
+        push @system_wild_path, { type => 'authenticated', handler_family => $P{'handler_family'}, handler_class  => $P{'handler_class'}, handler_action => $P{'handler_action'}, };
+        push @system_wild_path, { type => 'authenticated', handler_family => $P{'handler_family'}, handler_class  => $P{'handler_class'}, handler_action => q{*}, };
+        push @system_wild_path, { type => 'authenticated', handler_family => $P{'handler_family'}, handler_class  => q{*},                handler_action => q{*}, };
     }
     else {
-        push @system_wild_path, { type => 'Guest', handler_family => $P{'handler_family'}, handler_class  => $P{'handler_class'}, handler_action => $P{'handler_action'}, };
-        push @system_wild_path, { type => 'Guest', handler_family => $P{'handler_family'}, handler_class  => $P{'handler_class'}, handler_action => q{*}, };
-        push @system_wild_path, { type => 'Guest', handler_family => $P{'handler_family'}, handler_class  => q{*},                handler_action => q{*}, };
+        push @system_wild_path, { type => 'guest', handler_family => $P{'handler_family'}, handler_class  => $P{'handler_class'}, handler_action => $P{'handler_action'}, };
+        push @system_wild_path, { type => 'guest', handler_family => $P{'handler_family'}, handler_class  => $P{'handler_class'}, handler_action => q{*}, };
+        push @system_wild_path, { type => 'guest', handler_family => $P{'handler_family'}, handler_class  => q{*},                handler_action => q{*}, };
     }
 
     my $found_granted = 0;
     foreach my $path (@system_wild_path) {
         my $system_access = get_System_access(
             %{ $path },
+            _debug => $P{'_debug'},
         );
         if ($system_access and $system_access eq 'DENIED') {
             return q{DENIED};
@@ -296,7 +302,10 @@ sub can_User_access { # {{{
 
         $found_granted = 0;
         foreach my $path (@user_wild_path) {
-            my $system_access = get_User_access(%{ $path });
+            my $system_access = get_User_access(
+                %{ $path },
+                _debug => $P{'_debug'},
+            );
 
             if ($system_access and $system_access eq 'DENIED') {
                 return 'DENIED';

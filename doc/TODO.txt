@@ -329,7 +329,7 @@
 [-]     Email sending
 [X]         Implementation
 [ ]         Automated test
-[>]     Check for permissions, emit SLight::Handler::Error::AccessDenied as needed.
+[X]     Check for permissions, emit SLight::Handler::Error::AccessDenied as needed.
 [X] SLight::HandlerMeta
 [-] Development
 [ ]     Implement DB-schema-update utility.
@@ -345,7 +345,7 @@
 [ ]     Implement ability to verify, if a Handler exists (such check is hard at the moment).
 [ ]     Compilation errors in Addons kill the whole page!
 [ ]     User remains not logged-in in some places in User::Authentication (check and fix this)
-[ ]     Duplicated code - unify Account.pm into AccountForm.pm
+[X]     Duplicated code - unify Account.pm into AccountForm.pm
 
     Definition of done:
 

@@ -14,6 +14,7 @@ package SLight::Core::Request;
 use strict; use warnings; # {{{
 
 use SLight::AddonFactory;
+use SLight::API::Permissions qw( can_User_access );
 use SLight::Core::DB;
 use SLight::Core::L10N qw( TR TF );
 use SLight::Core::Session;
@@ -218,8 +219,6 @@ sub main { # {{{
         return $path_handler_object->analyze_path($P{'url'}->{'path'});
     };
 
-#    use Data::Dumper; warn Dumper $page_content;
-
     if ($EVAL_ERROR or not $page_content) {
         return $self->stage_error(
             stage => 2,
@@ -227,6 +226,46 @@ sub main { # {{{
         );
     }
     
+    my $auth_check_ok = eval {
+#        use Data::Dumper; warn Dumper $page_content;
+
+        # Check if User can access main object.
+        my $access_main_object = $self->verify_access_to_object(
+            $user_hash->{'id'},
+            $page_content->{'objects'}->{ $page_content->{'main_object'} },
+            $P{'url'}->{'action'},
+        );
+
+        # Check, if the User can use aux object from the page.
+        if ($access_main_object) {
+            foreach my $object_id (keys %{ $page_content->{'objects'} }) {
+                if ($object_id eq $page_content->{'main_object'}) {
+                    next;
+                }
+
+                $self->verify_access_to_object(
+                    $user_hash->{'id'},
+                    $page_content->{'objects'}->{ $object_id },
+                    'View'
+                );
+            }
+        }
+        else {
+            $page_content->{'objects'} = {
+                $page_content->{'main_object'} => $page_content->{'objects'}->{ $page_content->{'main_object'} },
+            };
+            $page_content->{'object_order'} = [ $page_content->{'main_object'} ];
+        }
+
+        return 1;
+    };
+    if ($EVAL_ERROR or not $auth_check_ok) {
+        return $self->stage_error(
+            stage => 3,
+            ee    => $EVAL_ERROR,
+        );
+    }
+
     # Path seems to be fine.
     # Can move to Stage III - produce response
 
@@ -241,7 +280,7 @@ sub main { # {{{
 
     if ($EVAL_ERROR or not $response_result) {
         return $self->stage_error(
-            stage => 3,
+            stage => 4,
             ee    => $EVAL_ERROR,
         );
     }
@@ -390,6 +429,34 @@ sub stage_error { # {{{
         content  => TR(q{Internal error. Site is temporarly unavailable.}), # Fixme: write better text here
         debug    => $P{'ee'},
     };
+} # }}}
+
+sub verify_access_to_object { # {{{
+    my ( $self, $user_id, $object, $action ) = @_;
+
+    my ($pkg, $handler) = ( $object->{'class'} =~ m{^(.+?)::(.+?)$}s );
+
+    my $policy = can_User_access(
+        id => $user_id,
+
+        handler_family => $pkg,
+        handler_class  => $handler,
+        handler_action => $action,
+
+        handler_object => $object->{'oid'},
+    );
+
+    if ($policy ne q{GRANTED}) {
+        print STDERR "Denied access to $pkg :: $handler :: $action \n";
+
+        $object->{'class'}    = q{Error::AccessDenied};
+        $object->{'oid'}      = undef,
+        $object->{'metadata'} = {};
+
+        return;
+    }
+
+    return 1;
 } # }}}
 
 # vim: fdm=marker

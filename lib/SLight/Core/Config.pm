@@ -35,6 +35,8 @@ my %config = (
     lang          => [qw( en )],
     debug         => 0, # Set to 1, to see more verbose error messages.
     lib           => undef,
+
+    skip_permissions => 0,
 );
 
 my $initialized = 0;

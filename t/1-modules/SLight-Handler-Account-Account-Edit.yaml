@@ -61,6 +61,13 @@ Show form:
         content:
         - class: generic
           content:
+          - class: generic
+            content:
+            - class: F-Label Label
+              data:
+                text: 'Edit Account: beti'
+              type: Label
+            type: Container
           - class: F-status SelectEntry
             content:
             - class: Label
@@ -80,7 +87,7 @@ Show form:
                 value: Enabled
               type: SelectEntry
             type: Container
-          - class: F-name Entry
+          - class: F-u-name Entry
             content:
             - class: Label
               data:
@@ -88,11 +95,11 @@ Show form:
               type: Label
             - class: Value
               data:
-                name: name
+                name: u-name
                 value: Beata
               type: Entry
             type: Container
-          - class: F-email Entry
+          - class: F-u-email Entry
             content:
             - class: Label
               data:
@@ -100,7 +107,7 @@ Show form:
               type: Label
             - class: Value
               data:
-                name: email
+                name: u-email
                 value: beata@test.test
               type: Entry
             type: Container
@@ -133,6 +140,13 @@ Submit form (bad data):
         content:
         - class: generic
           content:
+          - class: generic
+            content:
+            - class: F-Label Label
+              data:
+                text: 'Edit Account: beti'
+              type: Label
+            type: Container
           - class: F-status SelectEntry
             content:
             - class: Label
@@ -152,7 +166,7 @@ Submit form (bad data):
                 value: New
               type: SelectEntry
             type: Container
-          - class: F-name Entry
+          - class: F-u-name Entry
             content:
             - class: Label
               data:
@@ -160,7 +174,7 @@ Submit form (bad data):
               type: Label
             - class: Value
               data:
-                name: name
+                name: u-name
                 value: 1234567890qwertyuiopasdfghjklzxcvbnm1qaz2wsx3edc4rfv5tgb6yhn7ujm8ik9ol0p
               type: Entry
             - class: Error
@@ -168,7 +182,7 @@ Submit form (bad data):
                 text: Maximum number of chacters (64) has been exceeded
               type: Label
             type: Container
-          - class: F-email Entry
+          - class: F-u-email Entry
             content:
             - class: Label
               data:
@@ -176,7 +190,7 @@ Submit form (bad data):
               type: Label
             - class: Value
               data:
-                name: email
+                name: u-email
                 value: foo@bar@baz
               type: Entry
             - class: Error
@@ -195,6 +209,6 @@ Submit form (bad data):
     template: Default
   mime_type: ~
   response: CONTENT
-Submit form (goot data):
+Submit form (good data):
   location: /_Account/beti/Account/pl.web
   response: REDIRECT

@@ -12,10 +12,10 @@ package SLight::Handler::Account::Account::Edit;
 # 
 ################################################################################
 use strict; use warnings; # {{{
-use base q{SLight::HandlerBase::User::Account};
+use base q{SLight::HandlerBase::User::AccountForm};
 
 use SLight::API::User qw( update_User get_User_by_login );
-use SLight::Core::L10N qw( TR );
+use SLight::Core::L10N qw( TR TF );
 # }}}
 
 sub handle_view { # {{{
@@ -25,7 +25,17 @@ sub handle_view { # {{{
 
     my $user_data = get_User_by_login($oid);
 
-    $self->account_form(0, $user_data, {});
+    $self->make_form(
+        new_user => 0,
+        admin    => 1,
+
+        step   => 'save',
+        data   => $user_data,
+        errors => {},
+
+        form_label   => TF('Edit Account: %s', undef, $oid),
+        submit_label => TR('Update'),
+    );
 
     return;
 } # }}}
@@ -35,15 +45,23 @@ sub handle_save { # {{{
 
     my $user_data = get_User_by_login($oid);
 
-    my $errors = $self->validate_form(0);
+    my $errors = $self->validate_form(
+        admin => 1,
+    );
 
     if ($errors) {
         $self->set_class('SL_Account_Edit');
 
-        $self->account_form(
-            0,
-            $self->{'options'},
-            $errors
+        $self->make_form(
+            new_user => 0,
+            admin    => 1,
+
+            step   => 'save',
+            data   => {},
+            errors => $errors,
+
+            form_label   => TF('Edit Account: %s', undef, $oid),
+            submit_label => TR('Update'),
         );
 
         return;
@@ -52,9 +70,9 @@ sub handle_save { # {{{
     update_User(
         id => $user_data->{'id'},
 
-        name   => $self->{'options'}->{'name'},
-        email  => $self->{'options'}->{'email'},
-        status => $self->{'options'}->{'status'},
+        name   => $self->{'options'}->{'u-name'},
+        email  => $self->{'options'}->{'u-email'},
+        status => $self->{'options'}->{'u-status'},
 
 #        _debug => 1,
     );

@@ -60,6 +60,8 @@ my @tests = (
 
 run_handler_tests(
     tests => \@tests,
+
+    skip_permissions => 1,
 );
 
 # vim: fdm=marker
