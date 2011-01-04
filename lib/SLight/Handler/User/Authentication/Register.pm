@@ -80,6 +80,7 @@ sub handle_request { # {{{
                 path_handler => 'Authentication',
                 path         => [],
 
+                step    => 'view',
                 action  => 'Register',
                 options => {},
             },
@@ -163,6 +164,18 @@ sub handle_thankyou { # {{{
     my ( $self, $oid, $metadata ) = @_;
 
     $self->set_class('SL_Register_User');
+
+    $self->add_to_path_bar(
+        label => TR('Register'),
+        url   => {
+            path_handler => 'Authentication',
+            path         => [],
+
+            step    => 'view',
+            action  => 'Register',
+            options => {},
+        },
+    );
 
     my $message = SLight::DataStructure::Dialog::Notification->new(
         text => TR("Thank You for registering! An email has been sent to You, with further information."),

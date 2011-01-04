@@ -10,6 +10,11 @@ Login form:
             href: /
             text: SLight sandbox
           type: Link
+        - class: Current
+          data:
+            href: /_Authentication/Login.web
+            text: Log-in
+          type: Link
         type: Container
     object_data:
       o:
@@ -63,6 +68,11 @@ Sending form with bad login/pass:
           data:
             href: /
             text: SLight sandbox
+          type: Link
+        - class: Current
+          data:
+            href: /_Authentication/Login.web
+            text: Log-in
           type: Link
         type: Container
     object_data:

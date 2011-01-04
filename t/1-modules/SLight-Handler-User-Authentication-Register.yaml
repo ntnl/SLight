@@ -57,6 +57,11 @@ Display 'Thank you' page:
             href: /
             text: SLight sandbox
           type: Link
+        - class: Current
+          data:
+            href: /_Authentication/Register.web
+            text: Register
+          type: Link
         type: Container
     object_data:
       o:
@@ -95,7 +100,7 @@ Send out bad data (crash test):
           type: Link
         - class: Current
           data:
-            href: /_Authentication/Register-request.web
+            href: /_Authentication/Register.web
             text: Register
           type: Link
         type: Container

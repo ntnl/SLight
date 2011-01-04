@@ -62,6 +62,13 @@ sub _form { # {{{
     my ( $self, $errors ) = @_;
 
     $self->set_class('SL_User_Login');
+    
+    $self->add_to_path_bar(
+        label => TR('Log-in'),
+        url   => {
+            step => 'view',
+        },
+    );
 
     my $form = SLight::HandlerUtils::LoginForm::build(
         q{/},

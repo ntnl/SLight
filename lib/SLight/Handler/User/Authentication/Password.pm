@@ -29,17 +29,6 @@ use SLight::Validator qw( validate_input );
 sub handle_view { # {{{
     my ( $self ) = @_;
 
-#    $self->set_meta_field('title', TR(q{Password reset}));
-#    
-#    $self->add_to_path_bar(
-#        label => TR('Password reset'),
-#        url   => {
-#        method  => 'GET',
-#            action  => 'preset',
-#            options => {},
-#        },
-#    );
-
     my $form = $self->request_form({});
 
     $self->push_data($form);
@@ -234,6 +223,15 @@ sub request_form { # {{{
 
     $self->set_class('SL_PasswordReset_Form');
 
+    $self->set_meta_field('title', TR(q{Password recovery}));
+
+    $self->add_to_path_bar(
+        label => TR('Password recovery'),
+        url   => {
+            step => 'view',
+        },
+    );
+
     my $action_url = $self->build_url(
         path_handler => q{Authentication},
         path         => [],
@@ -271,6 +269,19 @@ sub password_form { # {{{
     my ( $self, $user_data, $errors ) = @_;
 
     $self->set_class('SL_PasswordReset_Form');
+
+    $self->set_meta_field('title', TR(q{Password recovery}));
+
+    $self->add_to_path_bar(
+        label => TR('Password recovery'),
+        url   => {
+            step    => 'entry',
+            options => {
+                key   => $self->{'options'}->{'key'},
+                login => $self->{'options'}->{'login'},
+            },
+        },
+    );
 
     my $action_url = $self->build_url(
         path_handler => q{Authentication},
@@ -311,6 +322,15 @@ sub password_form { # {{{
 
 sub bad_user_error { # {{{
     my ( $self ) = @_;
+
+    $self->set_meta_field('title', TR(q{Password recovery}));
+
+    $self->add_to_path_bar(
+        label => TR('Password recovery'),
+        url   => {
+            step => 'view',
+        },
+    );
 
     my $message = CoMe::Response::GenericMessage->new(
         text => TR("User can not be identified. Please verify."),
