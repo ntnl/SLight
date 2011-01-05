@@ -18,6 +18,16 @@ Show form:
             href: /
             text: SLight sandbox
           type: Link
+        - class: Parent
+          data:
+            href: /_Account/pl.web
+            text: Accounts
+          type: Link
+        - class: Current
+          data:
+            href: /_Account/add/Account/New-pl.web
+            text: New
+          type: Link
         type: Container
     object_data:
       o:
@@ -132,6 +142,16 @@ Submit form (bad data):
           data:
             href: /
             text: SLight sandbox
+          type: Link
+        - class: Parent
+          data:
+            href: /_Account/pl.web
+            text: Accounts
+          type: Link
+        - class: Current
+          data:
+            href: /_Account/add/Account/New-pl.web
+            text: New
           type: Link
         type: Container
     object_data:

@@ -24,6 +24,8 @@ sub handle_view { # {{{
     $self->set_class('SL_Account_Edit');
 
     my $user_data = get_User_by_login($oid);
+    
+    $self->_set_path_bar($user_data);
 
     $self->make_form(
         new_user => 0,
@@ -51,6 +53,8 @@ sub handle_save { # {{{
 
     if ($errors) {
         $self->set_class('SL_Account_Edit');
+
+        $self->_set_path_bar($user_data);
 
         $self->make_form(
             new_user => 0,
@@ -88,6 +92,43 @@ sub handle_save { # {{{
     );
 
     $self->redirect($redirect_url);
+
+    return;
+} # }}}
+
+sub _set_path_bar { # {{{
+    my ( $self, $user_data ) = @_;
+
+    $self->add_to_path_bar(
+        label => TR('Accounts'),
+        url   => {
+            path   => [],
+            action => 'View',
+            step   => 'view',
+        },
+    );
+    $self->add_to_path_bar(
+        label => ( $user_data->{'name'} or $user_data->{'login'} ),
+        url   => {
+            path   => [
+                $user_data->{'login'},
+                q{Account},
+            ],
+            action => 'View',
+            step   => 'view',
+        },
+    );
+    $self->add_to_path_bar(
+        label => TR('Edit'),
+        url   => {
+            path   => [
+                $user_data->{'login'},
+                q{Account},
+            ],
+            action => 'Edit',
+            step   => 'view',
+        },
+    );
 
     return;
 } # }}}

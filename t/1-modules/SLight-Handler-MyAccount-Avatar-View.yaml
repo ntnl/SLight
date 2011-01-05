@@ -10,6 +10,16 @@ Off-site avatar (Gravatar):
             href: /
             text: SLight sandbox
           type: Link
+        - class: Parent
+          data:
+            href: /_MyAccount/
+            text: My Account
+          type: Link
+        - class: Current
+          data:
+            href: /_MyAccount/Avatar/
+            text: Avatar
+          type: Link
         type: Container
     object_data:
       o:
@@ -48,6 +58,16 @@ On-site avatar:
           data:
             href: /
             text: SLight sandbox
+          type: Link
+        - class: Parent
+          data:
+            href: /_MyAccount/
+            text: My Account
+          type: Link
+        - class: Current
+          data:
+            href: /_MyAccount/Avatar/
+            text: Avatar
           type: Link
         type: Container
     object_data:

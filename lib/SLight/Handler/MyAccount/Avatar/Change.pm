@@ -75,6 +75,28 @@ sub _form { # {{{
     my ( $self, $errors ) = @_;
 
     $self->set_class('SL_MyAccount_Avatar');
+    
+    $self->add_to_path_bar(
+        label => TR('My Account'),
+        url   => {
+            path   => [],
+            action => 'View',
+            step   => 'view',
+        },
+    );
+    $self->add_to_path_bar(
+        label => TR('Avatar'),
+        url   => {
+            action => 'View',
+            step   => 'view',
+        },
+    );
+    $self->add_to_path_bar(
+        label => TR('Change'),
+        url   => {
+            step => 'view',
+        },
+    );
 
     my $form = SLight::DataStructure::Form->new(
         submit => TR('Upload'),

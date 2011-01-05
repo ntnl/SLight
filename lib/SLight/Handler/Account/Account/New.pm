@@ -24,6 +24,8 @@ sub handle_view { # {{{
 
     $self->set_class('SL_Account_New');
 
+    $self->_set_path_bar();
+
     $self->make_form(
         new_user => 1,
         admin    => 1,
@@ -49,6 +51,8 @@ sub handle_save { # {{{
 
     if ($errors) {
         $self->set_class('SL_Account_New');
+
+        $self->_set_path_bar();
 
         $self->make_form(
             new_user => 1,
@@ -84,6 +88,32 @@ sub handle_save { # {{{
     );
 
     $self->redirect($redirect_url);
+
+    return;
+} # }}}
+
+sub _set_path_bar { # {{{
+    my ( $self ) = @_;
+
+    $self->add_to_path_bar(
+        label => TR('Accounts'),
+        url   => {
+            path   => [],
+            action => 'View',
+            step   => 'view',
+        },
+    );
+    $self->add_to_path_bar(
+        label => TR('New'),
+        url   => {
+            path   => [
+                q{add},
+                q{Account},
+            ],
+            action => 'New',
+            step   => 'view',
+        },
+    );
 
     return;
 } # }}}

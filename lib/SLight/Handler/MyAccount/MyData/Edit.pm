@@ -205,6 +205,21 @@ sub my_data_form { # {{{
     my ( $self, $user_data, $errors ) = @_;
 
     $self->set_class('SL_MyAccount_MyData');
+    
+    $self->add_to_path_bar(
+        label => TR('My Account'),
+        url   => {
+            path   => [],
+            action => 'View',
+            step   => 'view',
+        },
+    );
+    $self->add_to_path_bar(
+        label => TR('Edit'),
+        url   => {
+            step   => 'view',
+        },
+    );
 
     my $action_url = $self->build_url(
         path_handler => q{MyAccount},

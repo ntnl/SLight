@@ -28,6 +28,37 @@ sub handle_view { # {{{
 
     my $user_data = get_User_by_login($oid);
 
+    $self->add_to_path_bar(
+        label => TR('Accounts'),
+        url   => {
+            path   => [],
+            action => 'View',
+            step   => 'view',
+        },
+    );
+    $self->add_to_path_bar(
+        label => ( $user_data->{'name'} or $user_data->{'login'} ),
+        url   => {
+            path   => [
+                $user_data->{'login'},
+                q{Account},
+            ],
+            action => 'View',
+            step   => 'view',
+        },
+    );
+    $self->add_to_path_bar(
+        label => TR('Avatar'),
+        url   => {
+            path   => [
+                $user_data->{'login'},
+                q{Avatar},
+            ],
+            action => 'View',
+            step   => 'view',
+        },
+    );
+
     my @stuff;
 
     push @stuff, mk_Image_token(

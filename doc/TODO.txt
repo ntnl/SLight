@@ -339,27 +339,27 @@
 [ ]     Some API calls (Asset, Content) should return login as well (not just email)
 [X]     s/Lightweight Content Manager System/Lightweight Content Management System/gs
 [>]     Breadcrumbs are missing on:
-[>]         Authentication pages.
+[X]         Authentication pages.
 [X]             Login
 [X]             Password
 [X]             Register
-[>]         MyAccount pages.
+[X]         MyAccount pages.
+[X]             Avatar::Change
+[X]             Avatar::Delete
+[X]             Avatar::View
+[X]             MyData::Edit
+[X]             MyData::View
+[X]             Password::View
+[>]         Account pages.
+[X]             Account::Delete
+[X]             Account::Edit
+[X]             Account::New
+[X]             Account::Password
+[X]             Account::View
 [ ]             Avatar::Change
 [ ]             Avatar::Delete
 [ ]             Avatar::View
-[ ]             MyData::Edit
-[ ]             MyData::View
-[ ]             Password::View
-[ ]         Account pages.
-[ ]             Account::Delete
-[ ]             Account::Edit
-[ ]             Account::New
-[ ]             Account::Password
-[ ]             Account::View
-[ ]             Avatar::Change
-[ ]             Avatar::Delete
-[ ]             Avatar::View
-[ ]             List::View
+[X]             List::View
 [ ]             Permissions::Change
 [ ]             Permissions::View
 [ ]     Implement ability to verify, if a Handler exists (such check is hard at the moment).

@@ -24,6 +24,28 @@ sub handle_view { # {{{
 
     $self->set_class('SL_MyAccount_Avatar');
 
+    $self->add_to_path_bar(
+        label => TR('My Account'),
+        url   => {
+            path   => [],
+            action => 'View',
+            step   => 'view',
+        },
+    );
+    $self->add_to_path_bar(
+        label => TR('Avatar'),
+        url   => {
+            action => 'View',
+            step   => 'view',
+        },
+    );
+    $self->add_to_path_bar(
+        label => TR('Delete'),
+        url   => {
+            step => 'view',
+        },
+    );
+
     my $user_data = ( $self->get_user_data() or return );
 
     my $dialog = SLight::DataStructure::Dialog::YesNo->new(

@@ -21,6 +21,21 @@ Display form:
             href: /
             text: SLight sandbox
           type: Link
+        - class: Parent
+          data:
+            href: /_MyAccount/
+            text: My Account
+          type: Link
+        - class: Parent
+          data:
+            href: /_MyAccount/Avatar/
+            text: Avatar
+          type: Link
+        - class: Current
+          data:
+            href: /_MyAccount/Avatar/Delete.web
+            text: Delete
+          type: Link
         type: Container
     object_data:
       o:

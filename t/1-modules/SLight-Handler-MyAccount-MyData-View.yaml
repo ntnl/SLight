@@ -46,6 +46,11 @@ Guest access:
             href: /
             text: SLight sandbox
           type: Link
+        - class: Current
+          data:
+            href: /_MyAccount/
+            text: My Account
+          type: Link
         type: Container
     object_data:
       o:
@@ -116,6 +121,11 @@ Guest access:
             href: /
             text: SLight sandbox
           type: Link
+        - class: Current
+          data:
+            href: /_MyAccount/
+            text: My Account
+          type: Link
         type: Container
     object_data:
       o:
@@ -185,6 +195,11 @@ Guest access:
           data:
             href: /
             text: SLight sandbox
+          type: Link
+        - class: Current
+          data:
+            href: /_MyAccount/
+            text: My Account
           type: Link
         type: Container
     object_data:

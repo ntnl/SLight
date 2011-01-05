@@ -25,6 +25,15 @@ sub handle_view { # {{{
 
     $self->set_class('SL_AccountList');
 
+    $self->add_to_path_bar(
+        label => TR('Accounts'),
+        url   => {
+            path   => [],
+            action => 'View',
+            step   => 'view',
+        },
+    );
+
     my $table = SLight::DataStructure::List::Table->new(
         class   => 'SL_AccountList',
         columns => [

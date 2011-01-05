@@ -25,6 +25,21 @@ Show dialog:
             href: /
             text: SLight sandbox
           type: Link
+        - class: Parent
+          data:
+            href: /_Account/
+            text: Accounts
+          type: Link
+        - class: Parent
+          data:
+            href: /_Account/beti/Account/
+            text: Beata
+          type: Link
+        - class: Current
+          data:
+            href: /_Account/beti/Account/Delete.web
+            text: Delete
+          type: Link
         type: Container
     object_data:
       o:

@@ -28,6 +28,14 @@ sub handle_view { # {{{
 
     $self->set_class('SL_MyAccount_MyData');
 
+    $self->add_to_path_bar(
+        label => TR('My Account'),
+        url   => {
+            path   => [],
+            step => 'view',
+        },
+    );
+
     my $user_data = ( $self->get_user_data() or return );
 
     my $my_data = SLight::DataStructure::Properties->new();

@@ -10,6 +10,21 @@ Off-site avatar (Gravatar):
             href: /
             text: SLight sandbox
           type: Link
+        - class: Parent
+          data:
+            href: /_Account/
+            text: Accounts
+          type: Link
+        - class: Parent
+          data:
+            href: /_Account/aga/Account/
+            text: Agnieszka
+          type: Link
+        - class: Current
+          data:
+            href: /_Account/aga/Avatar/
+            text: Avatar
+          type: Link
         type: Container
     object_data:
       o:
@@ -48,6 +63,21 @@ On-site avatar:
           data:
             href: /
             text: SLight sandbox
+          type: Link
+        - class: Parent
+          data:
+            href: /_Account/
+            text: Accounts
+          type: Link
+        - class: Parent
+          data:
+            href: /_Account/ela/Account/
+            text: Elżbieta
+          type: Link
+        - class: Current
+          data:
+            href: /_Account/ela/Avatar/
+            text: Avatar
           type: Link
         type: Container
     object_data:

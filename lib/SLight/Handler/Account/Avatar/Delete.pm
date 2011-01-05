@@ -27,6 +27,48 @@ sub handle_view { # {{{
 
     my $user_data = get_User_by_login($oid);
 
+    $self->add_to_path_bar(
+        label => TR('Accounts'),
+        url   => {
+            path   => [],
+            action => 'View',
+            step   => 'view',
+        },
+    );
+    $self->add_to_path_bar(
+        label => ( $user_data->{'name'} or $user_data->{'login'} ),
+        url   => {
+            path   => [
+                $user_data->{'login'},
+                q{Account},
+            ],
+            action => 'View',
+            step   => 'view',
+        },
+    );
+    $self->add_to_path_bar(
+        label => TR('Avatar'),
+        url   => {
+            path   => [
+                $user_data->{'login'},
+                q{Avatar},
+            ],
+            action => 'View',
+            step   => 'view',
+        },
+    );
+    $self->add_to_path_bar(
+        label => TR('Delete'),
+        url   => {
+            path   => [
+                $user_data->{'login'},
+                q{Avatar},
+            ],
+            action => 'Delete',
+            step   => 'view',
+        },
+    );
+
     my $dialog = SLight::DataStructure::Dialog::YesNo->new(
         message => TF("Do you want to delete avatar for Account: '%s'? Please confirm.", undef, $user_data->{'login'}),
 

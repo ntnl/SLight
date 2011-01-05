@@ -23,7 +23,6 @@ use SLight::Core::L10N qw( TR );
 # - add permissions overview
 # - add avatar
 # - add toolbox
-# - add path
 
 sub handle_view { # {{{
     my ( $self, $oid, $metadata ) = @_;
@@ -31,6 +30,26 @@ sub handle_view { # {{{
     $self->set_class('SL_Account_Data');
 
     my $user_data = get_User_by_login($oid);
+
+    $self->add_to_path_bar(
+        label => TR('Accounts'),
+        url   => {
+            path   => [],
+            action => 'View',
+            step   => 'view',
+        },
+    );
+    $self->add_to_path_bar(
+        label => ( $user_data->{'name'} or $user_data->{'login'} ),
+        url   => {
+            path   => [
+                $user_data->{'login'},
+                q{Account},
+            ],
+            action => 'View',
+            step   => 'view',
+        },
+    );
 
     my $my_data = SLight::DataStructure::Properties->new();
 

@@ -26,6 +26,37 @@ sub handle_view { # {{{
 
     my $user_data = get_User_by_login($oid);
 
+    $self->add_to_path_bar(
+        label => TR('Accounts'),
+        url   => {
+            path   => [],
+            action => 'View',
+            step   => 'view',
+        },
+    );
+    $self->add_to_path_bar(
+        label => ( $user_data->{'name'} or $oid ),
+        url   => {
+            path   => [
+                $oid,
+                q{Account},
+            ],
+            action => 'View',
+            step   => 'view',
+        },
+    );
+    $self->add_to_path_bar(
+        label => TR('Delete'),
+        url   => {
+            path   => [
+                $oid,
+                q{Account},
+            ],
+            action => 'Delete',
+            step   => 'view',
+        },
+    );
+
     my $dialog = SLight::DataStructure::Dialog::YesNo->new(
         message => TF("Do you want to delete Account: '%s' (name: '%s')? Please confirm.", undef, $user_data->{'login'}, ( $user_data->{'name'} or q{-} )),
 

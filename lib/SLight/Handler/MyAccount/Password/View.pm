@@ -28,6 +28,21 @@ sub handle_view { # {{{
 
     my $user_data = ( $self->get_user_data() or return );
 
+    $self->add_to_path_bar(
+        label => TR('My Account'),
+        url   => {
+            path   => [],
+            action => 'View',
+            step => 'view',
+        },
+    );
+    $self->add_to_path_bar(
+        label => TR('Change password'),
+        url   => {
+            step => 'view',
+        },
+    );
+
     $self->password_form(0, $user_data, {});
 
     return;
@@ -42,6 +57,21 @@ sub handle_save { # {{{
 
     if ($errors) {
         $self->set_class('SL_MyAccount_Password');
+
+        $self->add_to_path_bar(
+            label => TR('My Account'),
+            url   => {
+                path   => [],
+                action => 'View',
+                step => 'view',
+            },
+        );
+        $self->add_to_path_bar(
+            label => TR('Change password'),
+            url   => {
+                step => 'view',
+            },
+        );
 
         $self->password_form(
             0,

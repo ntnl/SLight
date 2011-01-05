@@ -10,6 +10,11 @@ List of accounts:
             href: /
             text: SLight sandbox
           type: Link
+        - class: Current
+          data:
+            href: /_Account/
+            text: Accounts
+          type: Link
         type: Container
       Core::Toolbox:
         class: SLight_Toolbox_Plugin
