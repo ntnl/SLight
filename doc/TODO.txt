@@ -338,7 +338,7 @@
 [ ]     Email is not mandatory in some (Asset, Content) API calls (but it should)
 [ ]     Some API calls (Asset, Content) should return login as well (not just email)
 [X]     s/Lightweight Content Manager System/Lightweight Content Management System/gs
-[>]     Breadcrumbs are missing on:
+[X]     Breadcrumbs are missing on:
 [X]         Authentication pages.
 [X]             Login
 [X]             Password
@@ -350,19 +350,17 @@
 [X]             MyData::Edit
 [X]             MyData::View
 [X]             Password::View
-[>]         Account pages.
+[X]         Account pages.
 [X]             Account::Delete
 [X]             Account::Edit
 [X]             Account::New
 [X]             Account::Password
 [X]             Account::View
-[ ]             Avatar::Change
-[ ]             Avatar::Delete
-[ ]             Avatar::View
+[X]             Avatar::Change
+[X]             Avatar::Delete
+[X]             Avatar::View
 [X]             List::View
-[ ]             Permissions::Change
-[ ]             Permissions::View
-[ ]     Implement ability to verify, if a Handler exists (such check is hard at the moment).
+[X]             Permissions::View
 [ ]     Compilation errors in Addons kill the whole page!
 [ ]     User remains not logged-in in some places in User::Authentication (check and fix this)
 [X]     Duplicated code - unify Account.pm into AccountForm.pm
@@ -599,5 +597,6 @@
 [ ]             Implement
 [ ]             Test
 [ ] Improve code sharing between 'Account' and 'MyAccount' Handler modules.
+[ ] Implement ability to verify, if a Handler exists (such check is hard at the moment).
 [ ] ...
 

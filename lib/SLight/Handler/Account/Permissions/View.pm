@@ -29,7 +29,36 @@ sub handle_view { # {{{
 
     my $user_data = get_User_by_login($oid);
 
-    $self->set_class('SL_System_Permissions');
+    $self->add_to_path_bar(
+        label => TR('Accounts'),
+        url   => {
+            path   => [],
+            action => 'View',
+            step   => 'view',
+        },
+    );
+    $self->add_to_path_bar(
+        label => ( $user_data->{'name'} or $user_data->{'login'} ),
+        url   => {
+            path   => [
+                $user_data->{'login'},
+                q{Account},
+            ],
+            action => 'View',
+            step   => 'view',
+        },
+    );
+    $self->add_to_path_bar(
+        label => TR('Permissions'),
+        url   => {
+            path   => [
+                $user_data->{'login'},
+                q{Permissions},
+            ],
+            action => 'View',
+            step   => 'view',
+        },
+    );
 
     $self->{'_uid'} = $user_data->{'id'};
 

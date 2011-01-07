@@ -10,10 +10,25 @@
             href: /
             text: SLight sandbox
           type: Link
+        - class: Parent
+          data:
+            href: /_Account/
+            text: Accounts
+          type: Link
+        - class: Parent
+          data:
+            href: /_Account/wanda/Account/
+            text: Wanda L.
+          type: Link
+        - class: Current
+          data:
+            href: /_Account/wanda/Permissions/
+            text: Permissions
+          type: Link
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_System_Permissions
+        class: SLight_Object O-SL_Account_Permissions
         content:
         - class: generic
           content:
@@ -2893,10 +2908,25 @@
             href: /
             text: SLight sandbox
           type: Link
+        - class: Parent
+          data:
+            href: /_Account/
+            text: Accounts
+          type: Link
+        - class: Parent
+          data:
+            href: /_Account/nataly/Account/
+            text: Natalia
+          type: Link
+        - class: Current
+          data:
+            href: /_Account/nataly/Permissions/
+            text: Permissions
+          type: Link
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_System_Permissions
+        class: SLight_Object O-SL_Account_Permissions
         content:
         - class: generic
           content:

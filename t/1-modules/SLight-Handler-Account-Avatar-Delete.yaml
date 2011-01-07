@@ -24,6 +24,26 @@ Display dialog:
             href: /
             text: SLight sandbox
           type: Link
+        - class: Parent
+          data:
+            href: /_Account/
+            text: Accounts
+          type: Link
+        - class: Parent
+          data:
+            href: /_Account/ela/Account/
+            text: Elżbieta
+          type: Link
+        - class: Parent
+          data:
+            href: /_Account/ela/Avatar/
+            text: Avatar
+          type: Link
+        - class: Current
+          data:
+            href: /_Account/ela/Avatar/Delete.web
+            text: Delete
+          type: Link
         type: Container
     object_data:
       o:

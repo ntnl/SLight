@@ -26,7 +26,7 @@ sub handle_view { # {{{
 
     my $user_data = get_User_by_login($oid);
 
-    return $self->_form({});
+    return $self->_form($user_data, {});
 } # }}}
 
 sub handle_save { # {{{
@@ -45,7 +45,7 @@ sub handle_save { # {{{
     my $errors = validate_input($self->{'options'}, \%validator_metadata);
 
     if ($errors) {
-        return $self->_form($errors);
+        return $self->_form($user_data, $errors);
     }
 
     set_Avatar(
@@ -69,9 +69,51 @@ sub handle_save { # {{{
 } # }}}
 
 sub _form { # {{{
-    my ( $self, $errors ) = @_;
+    my ( $self, $user_data, $errors ) = @_;
 
     $self->set_class('SL_Account_Avatar');
+
+    $self->add_to_path_bar(
+        label => TR('Accounts'),
+        url   => {
+            path   => [],
+            action => 'View',
+            step   => 'view',
+        },
+    );
+    $self->add_to_path_bar(
+        label => ( $user_data->{'name'} or $user_data->{'login'} ),
+        url   => {
+            path   => [
+                $user_data->{'login'},
+                q{Account},
+            ],
+            action => 'View',
+            step   => 'view',
+        },
+    );
+    $self->add_to_path_bar(
+        label => TR('Avatar'),
+        url   => {
+            path   => [
+                $user_data->{'login'},
+                q{Avatar},
+            ],
+            action => 'View',
+            step   => 'view',
+        },
+    );
+    $self->add_to_path_bar(
+        label => TR('Change'),
+        url   => {
+            path   => [
+                $user_data->{'login'},
+                q{Avatar},
+            ],
+            action => 'Change',
+            step   => 'view',
+        },
+    );
 
     my $form = SLight::DataStructure::Form->new(
         submit => TR('Upload'),

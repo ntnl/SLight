@@ -23,6 +23,26 @@ Display form:
             href: /
             text: SLight sandbox
           type: Link
+        - class: Parent
+          data:
+            href: /_Account/
+            text: Accounts
+          type: Link
+        - class: Parent
+          data:
+            href: /_Account/beti/Account/
+            text: Beata
+          type: Link
+        - class: Parent
+          data:
+            href: /_Account/beti/Avatar/
+            text: Avatar
+          type: Link
+        - class: Current
+          data:
+            href: /_Account/beti/Avatar/Change.web
+            text: Change
+          type: Link
         type: Container
     object_data:
       o:
