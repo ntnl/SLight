@@ -325,10 +325,10 @@
 [X]         get_User_assess
 [X]         get_System_access
 [X]         can_User_access
-[-] Core functionality
-[-]     Email sending
+[X] Core functionality
+[X]     Email sending
 [X]         Implementation
-[ ]         Automated test
+[X]         Automated test
 [X]     Check for permissions, emit SLight::Handler::Error::AccessDenied as needed.
 [X] SLight::HandlerMeta
 [-] Development
