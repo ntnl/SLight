@@ -334,9 +334,7 @@
 [-] Development
 [ ]     Implement DB-schema-update utility.
 [X]     Version bump to 0.0.3
-[-] Bugs:
-[ ]     Email is not mandatory in some (Asset, Content) API calls (but it should)
-[ ]     Some API calls (Asset, Content) should return login as well (not just email)
+[>] Bugs:
 [X]     s/Lightweight Content Manager System/Lightweight Content Management System/gs
 [X]     Breadcrumbs are missing on:
 [X]         Authentication pages.
@@ -361,8 +359,8 @@
 [X]             Avatar::View
 [X]             List::View
 [X]             Permissions::View
-[ ]     Compilation errors in Addons kill the whole page!
-[ ]     User remains not logged-in in some places in User::Authentication (check and fix this)
+[X]     Compilation errors in Addons kill the whole page!
+[>]     User remains not logged-in in some places in User::Authentication (check and fix this)
 [X]     Duplicated code - unify Account.pm into AccountForm.pm
 
     Definition of done:
@@ -438,6 +436,7 @@
 [ ]     User must be able to change order of On-page (aux) content after added.
 [ ]     Move html templates from Minimal to HtmlTemplates
 [ ]     Implement the FIXME from SLight::Test::Site::Builder
+[ ]     Some API calls (Asset, Content) should return login as well (not just email)
 
     Definition of done:
 

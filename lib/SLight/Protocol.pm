@@ -66,59 +66,75 @@ sub S_process_object { # {{{
 
     my ($pkg, $handler) = ( $object->{'class'} =~ m{^(.+?)::(.+?)$}s );
 
-    my $handler_object = $self->{'handler_factory'}->make(pkg => $pkg, handler => $handler, action => $action );
+    my $handler_object = eval {
+        return $self->{'handler_factory'}->make(pkg => $pkg, handler => $handler, action => $action );
+    };
+    if ($EVAL_ERROR or not $handler_object) {
+        printf STDERR "%s object failed to compile.\n", $pkg .q{::}. $handler .q{::}. $action;
+        print STDERR $EVAL_ERROR;
 
-    # FIXME! eval it, or something...
+        return mk_Label_token(
+            class => 'SLight_Error',
+            text  => TF("%s failed.", undef, $pkg .q{::}. $handler .q{::}. $action),
+        );
+    }
 
-    my $result = $handler_object->handle(
-        page     => $self->{'page'},
-        url      => $self->{'url'},
-        user     => $self->{'user'},
-        options  => $self->{'options'},
-        step     => $step,
-        oid      => $object->{'oid'},
-        metadata => $object->{'metadata'},
+    my $result = eval {
+        return $handler_object->handle(
+            page     => $self->{'page'},
+            url      => $self->{'url'},
+            user     => $self->{'user'},
+            options  => $self->{'options'},
+            step     => $step,
+            oid      => $object->{'oid'},
+            metadata => $object->{'metadata'},
 
-        is_main_object => $is_main_object
-    );
+            is_main_object => $is_main_object
+        );
+    };
+    if ($EVAL_ERROR or not $result) {
+        printf STDERR "%s object failed to run.\n", $pkg .q{::}. $handler .q{::}. $action;
+        print STDERR $EVAL_ERROR;
+
+        return mk_Label_token(
+            class => 'SLight_Error',
+            text  => TF("%s failed.", undef, $pkg .q{::}. $handler .q{::}. $action),
+        );
+    }
 
     # Fixme! actually check, if this is a derivative from SLight::DataStructure (!)
 
-    if ($result) {
-#        use Data::Dumper; warn Dumper $result;
+#    use Data::Dumper; warn Dumper $result;
 
-        if ($result->{'redirect'}) {
-            return {
-                redirect_href => $result->{'redirect'}
-            };
-        }
-        
-        if ($result->{'upload'}) {
-            return {
-                upload => $result->{'upload'}
-            };
-        }
-
-        if ($result->{'replace_with_object'}) {
-            return {
-                replace_with_object => $result->{'replace_with_object'}
-            };
-        }
-        
-        assert_defined($result->{'class'}, 'Class is defined in result');
-        assert_defined($result->{'data'},  'Data is defined in result');
-
+    if ($result->{'redirect'}) {
         return {
-            data => mk_Container_token(
-                # TODO: add 'id' property to it, so every object has unique ID!
-                class   => 'SLight_Object O-' . $result->{'class'},
-                content => $result->{'data'}
-            ),
-            meta => $result->{'meta'}
+            redirect_href => $result->{'redirect'}
+        };
+    }
+    
+    if ($result->{'upload'}) {
+        return {
+            upload => $result->{'upload'}
         };
     }
 
-    return;
+    if ($result->{'replace_with_object'}) {
+        return {
+            replace_with_object => $result->{'replace_with_object'}
+        };
+    }
+    
+    assert_defined($result->{'class'}, 'Class is defined in result');
+    assert_defined($result->{'data'},  'Data is defined in result');
+
+    return {
+        data => mk_Container_token(
+            # TODO: add 'id' property to it, so every object has unique ID!
+            class   => 'SLight_Object O-' . $result->{'class'},
+            content => $result->{'data'}
+        ),
+        meta => $result->{'meta'}
+    };
 } # }}}
 
 sub S_process_addon { # {{{
@@ -130,20 +146,20 @@ sub S_process_addon { # {{{
     my ($pkg, $addon) = ( $class =~ m{^(.+?)::(.+?)$}s );
 
     my $addon_object = eval {
-        $self->{'addon_factory'}->make(pkg => $pkg, addon => $addon);
+        return $self->{'addon_factory'}->make(pkg => $pkg, addon => $addon);
     };
     if ($EVAL_ERROR or not $addon_object) {
-        printf STDERR "%s plugin failed to compile.\n", $pkg .q{.}. $addon;
+        printf STDERR "%s plugin failed to compile.\n", $pkg .q{::}. $addon;
         print STDERR $EVAL_ERROR;
 
         return mk_Label_token(
             class => 'SLight_Error',
-            text  => TF("%s plugin failed to compile.", undef, $pkg .q{.}. $addon),
+            text  => TF("%s plugin failed.", undef, $pkg .q{::}. $addon),
         );
     }
 
     my $data = eval {
-        $addon_object->process(
+        return $addon_object->process(
             page_id => ( $self->{'page'}->{'page_id'} or 0 ),
             url     => $self->{'url'},
             user    => $self->{'user'},
@@ -151,12 +167,12 @@ sub S_process_addon { # {{{
         );
     };
     if ($EVAL_ERROR) {
-        printf STDERR "%s plugin failed to run.\n", $pkg .q{.}. $addon;
+        printf STDERR "%s plugin failed to run.\n", $pkg .q{::}. $addon;
         print STDERR $EVAL_ERROR;
 
         return mk_Label_token(
             class => 'SLight_Error',
-            text  => TF("%s plugin failed to run.", undef, $pkg .q{.}. $addon),
+            text  => TF("%s plugin failed.", undef, $pkg .q{::}. $addon),
         );
     }
 
