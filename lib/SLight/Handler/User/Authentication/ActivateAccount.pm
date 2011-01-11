@@ -18,6 +18,7 @@ use SLight::API::EVK qw( get_EVK_by_key delete_EVK );
 use SLight::API::User qw( get_User update_User );
 use SLight::DataStructure::Dialog::Notification;
 use SLight::Core::L10N qw( TR TF );
+use SLight::HandlerBase::User::Login;
 # }}}
 
 sub handle_view { # {{{
@@ -49,6 +50,9 @@ sub handle_view { # {{{
             );
 
             delete_EVK($evk->{'id'});
+
+            # Log-in the User.
+            SLight::HandlerBase::User::Login::login($evk->{'metadata'}->{'user_id'}, $evk->{'metadata'}->{'login'});
         }
         else {
             # Disabled account!
