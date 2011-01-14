@@ -26,6 +26,8 @@ use Params::Validate qw( :all );
 # Fixme:
 #   Change package to SLight::HandlerBase::CMS::EntryForm
 
+my %signatures_cache;
+    
 sub build_form_guts { # {{{
     my (  $self, %P ) = @_;
 
@@ -75,8 +77,6 @@ sub build_form_guts { # {{{
 
 #    use Data::Dumper; warn Dumper $ContentData;
 
-    my %signatures_cache;
-    
 #    use Data::Dumper; warn Dumper $P{'errors'};
 
     # Add data fields from ContentType.
@@ -84,12 +84,13 @@ sub build_form_guts { # {{{
         my $field = $spec->{'_data'}->{$field_name};
 
         $self->_add_field_to_form(
-            $content,
-            $P{'errors'},
-            $field_name,
-            $field,
-            ( $signatures_cache{ $field->{'datatype'} } or $signatures_cache{ $field->{'datatype'} } = SLight::DataType::signature(type=>$field->{'datatype'}) ),
-            $form
+            content => $content,
+            errors  => $P{'errors'},
+
+            field_name => $field_name,
+            field_spec => $field,
+
+            form => $form
         );
     }
 
@@ -130,7 +131,18 @@ my %type_map = (
 
 # Add single field to Content Entry Form response.
 sub _add_field_to_form { # {{{
-    my ( $self, $content, $errors, $field_name, $field_spec, $signature, $form ) = @_;
+    my ( $self, %P ) = @_;
+
+#    my ( $self, $content, $errors, $field_name, $field_spec, $form ) = @_;
+
+    my $field_name = $P{'field_name'};
+    my $field_spec = $P{'field_spec'};
+
+    my $signature = (
+        $signatures_cache{ $field_spec->{'datatype'} }
+    or
+        $signatures_cache{ $field_spec->{'datatype'} } = SLight::DataType::signature(type=>$field_spec->{'datatype'})
+    );
 
     # FIXME: no way to select on-page order.
 
@@ -149,30 +161,30 @@ sub _add_field_to_form { # {{{
         # System will also provide a way of labeling the asset with some text.
         # This text can then be used as title, or while searching.
         # This text will be stored in the DB, while file is stored in file system.
-        $form->add_FileEntry(
+        $P{'form'}->add_FileEntry(
             name => $cgi_field_name .q{-data},
 
             caption => $field_spec->{'caption'},
-            error   => $errors->{ $cgi_field_name .q{-data} },
+            error   => $P{'errors'}->{ $cgi_field_name .q{-data} },
         );
-        $form->add_Entry(
+        $P{'form'}->add_Entry(
             name => $cgi_field_name,
 
             caption => TR('Summary'),
-            value   => ( $self->{'options'}->{$cgi_field_name} or $content->{'_data'}->{$field_name} or q{} ),
-            error   => $errors->{$cgi_field_name},
+            value   => ( $self->{'options'}->{$cgi_field_name} or $P{'content'}->{'_data'}->{$field_name} or q{} ),
+            error   => $P{'errors'}->{$cgi_field_name},
         );
-        if ($content->{'id'}) {
-            my $asset_ids = get_Asset_ids_on_Content_Field($content->{'id'}, $field_spec->{'id'});
+        if ($P{'content'}->{'id'}) {
+            my $asset_ids = get_Asset_ids_on_Content_Field($P{'content'}->{'id'}, $field_spec->{'id'});
 
             if (scalar @{ $asset_ids }) {
                 my $asset_meta = get_Asset($asset_ids->[0]); # FIXME: display ALL assets (there can be more of them?)
 
-                $form->add_Label(
+                $P{'form'}->add_Label(
                     text  => TF('Already attached: %s', undef, human_readable_size($asset_meta->{'byte_size'})),
                     class => 'Hint'
                 );
-                $form->add_Check(
+                $P{'form'}->add_Check(
                     name => $cgi_field_name . q{-remove},
     
                     caption => TR('Remove attachment'),
@@ -204,18 +216,18 @@ sub _add_field_to_form { # {{{
             # Value will be initialized from DB data.
             $entry_value = SLight::DataType::decode_data(
                 type   => $field_spec->{'datatype'},
-                value  => ( $content->{'_data'}->{$field_lang}->{$field_spec->{'id'}} or q{} ),
+                value  => ( $P{'content'}->{'_data'}->{$field_lang}->{$field_spec->{'id'}} or q{} ),
                 format => q{},
                 target => 'FORM',
             );
         }
 
-        $form->$method(
+        $P{'form'}->$method(
             name => $cgi_field_name,
 
             caption => ( sprintf "%s (%s)", $field_spec->{'caption'}, $lang_info ),
             value   => ( $entry_value or q{} ),
-            error   => $errors->{$cgi_field_name},
+            error   => $P{'errors'}->{$cgi_field_name},
         );
     }
 
@@ -242,13 +254,69 @@ sub slurp_content_form_data { # {{{
         }
     );
 
-    my %signatures_cache;
+    # Do validation.
+    my $errors = validate_input(
+        $self->{'options'},
+        $self->mk_validator_metadata(%P)
+    );
 
+#    use Data::Dumper; warn Dumper $errors;
+
+    # If there are any errors, stop processing and return them.
+    if ($errors) {
+        return ($errors, {}, {}, {});
+    }
+
+    my %warnings;
+    my %data;
+    my %assets;
+
+    # If there are no errors, process Entry fields.
+    foreach my $field_name (keys %{ $P{'content_spec'}->{'_data'} }) {
+        my $cgi_name = q{content.}. $field_name;
+
+        my $field_spec = $P{'content_spec'}->{'_data'}->{$field_name};
+
+        # Signature should already be in cache (from previous foreach).
+        if ($signatures_cache{ $field_spec->{'datatype'} }->{'asset'}) {
+            # This is an asset-based field.
+            # Warning: special handling ahead ;)
+            my $field_id = $P{'content_spec'}->{'_data'}->{$field_name}->{'id'};
+
+            $assets{ $field_id } = {
+                filename => ( $self->{'options'}->{ $cgi_name .q{-filename} } or q{Unknown} ),
+                summary  => ( $self->{'options'}->{ $cgi_name               } or q{} ),
+                data     => ( $self->{'options'}->{ $cgi_name .q{-data}     } or q{} ),
+                remove   => ( $self->{'options'}->{ $cgi_name .q{-remove}   } or 0 ),
+            };
+        }
+
+        my $field_lang = q{*};
+        if ($field_spec->{'translate'}) {
+            $field_lang = $self->{'url'}->{'lang'};
+        }
+
+        $data{ $field_lang }->{ $field_spec->{'id'} } = SLight::DataType::encode_data(
+            type  => $field_spec->{'datatype'},
+            value => ( $self->{'options'}->{$cgi_name} or q{} )
+        );
+    }
+
+#    use Data::Dumper; warn "Data slurped from form: ". Dumper \%data;
+#    use Data::Dumper; warn Dumper \%errors;
+
+    return ( $errors, \%warnings, \%data, \%assets );
+} # }}}
+
+sub mk_validator_metadata { # {{{
+    my ( $self, %P ) = @_;
+    
     # Prepare validation metadata.
     my %validator_metadata = (
         'meta.comment_write_policy' => { type=>'Integer' },
         'meta.comment_read_policy'  => { type=>'Integer' },
     );
+
     if ($self->{'options'}->{'target'} and $self->{'options'}->{'target'} eq 'New') {
         $validator_metadata{'page.path'}     = { type=>'FileName' };
         $validator_metadata{'page.template'} = { type=>'FileName', optional=>1, };
@@ -289,61 +357,7 @@ sub slurp_content_form_data { # {{{
         }
     }
 
-    # Do validation.
-    my $errors = validate_input($self->{'options'}, \%validator_metadata);
-
-#    use Data::Dumper; warn Dumper $errors;
-
-    # Future compatibility.
-    my %warnings;
-
-    # If there are any errors, stop processing and return them.
-    if ($errors) {
-        return ($errors, \%warnings, {}, {});
-    }
-
-    my %data;
-    my %assets;
-
-    # If there are no errors, process Entry fields.
-    foreach my $field_name (keys %{ $P{'content_spec'}->{'_data'} }) {
-        my $cgi_name = q{content.}. $field_name;
-
-        my $field_spec = $P{'content_spec'}->{'_data'}->{$field_name};
-
-        my $signature = (
-            $signatures_cache{ $field_spec->{'datatype'} }
-            or
-            $signatures_cache{ $field_spec->{'datatype'} } = SLight::DataType::signature(type=>$field_spec->{'datatype'})
-        );
-
-        if ($signature->{'asset'}) {
-            # This is an asset-based field.
-            # Warning: special handling ahead ;)
-            my $field_id = $P{'content_spec'}->{'_data'}->{$field_name}->{'id'};
-            $assets{ $field_id } = {
-                filename => ( $self->{'options'}->{ $cgi_name .q{-filename} } or q{Unknown} ),,
-                summary  => ( $self->{'options'}->{ $cgi_name               } or q{} ),
-                data     => ( $self->{'options'}->{ $cgi_name .q{-data}     } or q{} ),
-                remove   => ( $self->{'options'}->{ $cgi_name .q{-remove}   } or 0 ),
-            };
-        }
-
-        my $field_lang = q{*};
-        if ($field_spec->{'translate'}) {
-            $field_lang = $self->{'url'}->{'lang'};
-        }
-
-        $data{ $field_lang }->{ $field_spec->{'id'} } = SLight::DataType::encode_data(
-            type  => $field_spec->{'datatype'},
-            value => ( $self->{'options'}->{$cgi_name} or q{} )
-        );
-    }
-
-#    use Data::Dumper; warn "Data slurped from form: ". Dumper \%data;
-#    use Data::Dumper; warn Dumper \%errors;
-
-    return ( $errors, \%warnings, \%data, \%assets );
+    return \%validator_metadata;
 } # }}}
 
 sub process_field_assets { # {{{

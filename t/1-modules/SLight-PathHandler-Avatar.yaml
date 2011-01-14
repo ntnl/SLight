@@ -1,6 +1,6 @@
 ---
 Avatar page:
-  breadcrumb_path: ~
+  breadcrumb_path: []
   main_object: o
   object_order:
   - o
@@ -11,7 +11,7 @@ Avatar page:
   page_id: ~
   template: Default
 User Avatar page:
-  breadcrumb_path: ~
+  breadcrumb_path: []
   main_object: o
   object_order:
   - o

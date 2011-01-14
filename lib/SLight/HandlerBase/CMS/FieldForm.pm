@@ -18,7 +18,7 @@ use SLight::API::ContentSpec qw( update_ContentSpec );
 use SLight::Core::L10N qw( TR );
 # }}}
 
-sub make_form { # {{{
+sub make_form { ## no critic (Subroutines::ProhibitExcessComplexity) {{{
     my ( $self, $oid, $metadata, $form, $errors ) = @_;
 
     my $field_data = ( $metadata->{'spec'}->{'_data'}->{$oid} or {} );

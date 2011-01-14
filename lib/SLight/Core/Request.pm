@@ -393,7 +393,7 @@ sub built_in_reply { # {{{
     };
 } # }}}
 
-# Todo: Needs some love!
+# TODO: Needs some love!
 sub stage_error { # {{{
     my ( $self, %P ) = @_;
 
@@ -450,7 +450,7 @@ sub verify_access_to_object { # {{{
         print STDERR "Denied access to $pkg :: $handler :: $action \n";
 
         $object->{'class'}    = q{Error::AccessDenied};
-        $object->{'oid'}      = undef,
+        $object->{'oid'}      = undef;
         $object->{'metadata'} = {};
 
         return;

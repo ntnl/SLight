@@ -1,6 +1,6 @@
 ---
 Root page:
-  breadcrumb_path: ~
+  breadcrumb_path: []
   main_object: ob1
   object_order:
   - ob1

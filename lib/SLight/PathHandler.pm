@@ -55,6 +55,9 @@ sub new { # {{{
             # that will block processing of other (aux) object.
             #
             # Usually, this is the object directly associated to the page URL.
+        
+        breadcrumb_path => [],
+            # List of links that form the main Breadcrumb path.
     };
 
     bless $self, $class;

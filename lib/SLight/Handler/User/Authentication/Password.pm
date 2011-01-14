@@ -22,7 +22,7 @@ use SLight::Core::IO qw( unique_id );
 use SLight::Core::L10N qw( TR TF );
 use SLight::DataStructure::Dialog::Notification;
 use SLight::DataStructure::Form;
-use SLight::HandlerBase::User::Login;
+use SLight::HandlerUtils::UserLogin;
 use SLight::Validator qw( validate_input );
 # }}}
 
@@ -198,7 +198,7 @@ sub handle_change { # {{{
         delete_EVK($evk->{'id'});
 
         # Log-in the User and put him into his profile page.
-        SLight::HandlerBase::User::Login::login($target_user->{'id'}, $target_user->{'login'});
+        SLight::HandlerUtils::UserLogin::login($target_user->{'id'}, $target_user->{'login'});
 
         my $target_url = $self->build_url(
             path_handler => 'MyAccount',

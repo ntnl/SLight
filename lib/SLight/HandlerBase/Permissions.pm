@@ -25,7 +25,7 @@ use SLight::HandlerMeta;
 sub render_permissions { # {{{
     my ( $self, $cgi ) = @_;
 
-    my $table = SLight::DataStructure::List::Table->new(
+    $self->{'Table'} = SLight::DataStructure::List::Table->new(
         columns => [
             {
                 caption => TR('Module'),
@@ -49,30 +49,30 @@ sub render_permissions { # {{{
     my $handlers_list = SLight::HandlerMeta::get_handlers_list();
 
     foreach my $family (@{ $handlers_list }) {
-        if (not $self->_row($table, $family->{'class'}, q{*}, q{*}, $cgi)) {
+        if (not $self->_row($family->{'class'}, q{*}, q{*}, $cgi)) {
             next;
         }
 
         foreach my $object (@{ $family->{'objects'} }) {
-            if (not $self->_row($table, $family->{'class'}, $object->{'class'}, q{*}, $cgi)) {
+            if (not $self->_row($family->{'class'}, $object->{'class'}, q{*}, $cgi)) {
                 next;
             }
 
             foreach my $action (@{ $object->{'actions'} }) {
-                if (not $self->_row($table, $family->{'class'}, $object->{'class'}, $action, $cgi)) {
+                if (not $self->_row($family->{'class'}, $object->{'class'}, $action, $cgi)) {
                     next;
                 }
             }
         }
     }
 
-    $self->push_data($table);
+    $self->push_data($self->{'Table'});
 
     return;
 } # }}}
 
 sub _row { # {{{
-    my ( $self, $table, $family, $class, $action, $cgi ) = @_;
+    my ( $self, $family, $class, $action, $cgi ) = @_;
 
     my $display_inner = 1;
 
@@ -170,7 +170,7 @@ sub _row { # {{{
         }
     }
 
-    $table->add_Row(
+    $self->{'Table'}->add_Row(
         data => {
             module  => $label,
             policy  => $policy_label,

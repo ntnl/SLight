@@ -1,4 +1,4 @@
-package SLight::HandlerBase::User::Login;
+#!/usr/bin/perl
 ################################################################################
 # 
 # SLight - Lightweight Content Management System.
@@ -12,31 +12,18 @@ package SLight::HandlerBase::User::Login;
 # 
 ################################################################################
 use strict; use warnings; # {{{
+use FindBin qw( $Bin );
+use lib $Bin .'/../../lib/';
 
-use SLight::Core::Session;
+use Test::More;
 
-use Carp::Assert::More qw( assert_defined );
+use English qw( -no_match_vars );
 # }}}
 
-# Purpose:
-#   Log-in the given user.
-sub login { # {{{
-    my ( $id, $login ) = @_;
+# It's just a "placeholder". Will fill it with some stuff in future. Perhaps.
 
-    assert_defined($id);
-    assert_defined($login);
+plan tests => 1;
 
-    my %user_hash = (
-        login => $login,
-        id    => $id,
-    );
-    SLight::Core::Session::part_set(
-        'user',
-        \%user_hash
-    );
-
-    return;
-} # }}}
+pass("Just a placeholder");
 
 # vim: fdm=marker
-1;

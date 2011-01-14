@@ -331,9 +331,7 @@
 [X]         Automated test
 [X]     Check for permissions, emit SLight::Handler::Error::AccessDenied as needed.
 [X] SLight::HandlerMeta
-[-] Development
-[ ]     Implement DB-schema-update utility.
-[X]     Version bump to 0.0.3
+[X] Version bump to 0.0.3
 [X] Bugs:
 [X]     s/Lightweight Content Manager System/Lightweight Content Management System/gs
 [X]     Breadcrumbs are missing on:
@@ -426,6 +424,10 @@
 [ ]     Make a script, that creates fully usable sandbox from test site.
 [ ]     Intercept STDERR (when enabled) and handle it to Debug Addon
 [ ]     Create module with Validator 'magic' - common metadata (SLight User hash, etc)
+[ ] Migration/backup utility
+[ ]     Dump utility
+[ ]     Import utility
+[ ]     Migrate utility
 [ ] Bugs
 [ ]     Split 'content' into "objects before", "main object", "objects after" (with 'content' support maintained)
 [ ]     On CMS Delete dialog, the 'No' option redirects to the dialog (should redirect to the object's View action)

@@ -1,6 +1,6 @@
 ---
 Non-root page (2-nd level):
-  breadcrumb_path: ~
+  breadcrumb_path: []
   main_object: NotFound
   object_order:
   - NotFound
@@ -11,7 +11,7 @@ Non-root page (2-nd level):
   page_id: ~
   template: Error
 Root page:
-  breadcrumb_path: ~
+  breadcrumb_path: []
   main_object: o
   object_order:
   - o
