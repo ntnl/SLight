@@ -3,7 +3,6 @@ MANIFEST			This list of files
 META.yml
 Makefile.PL
 README
-SLight-v0.0.2.tar.gz
 data/Logo.svg
 doc/Notepad.txt
 doc/TODO.txt
