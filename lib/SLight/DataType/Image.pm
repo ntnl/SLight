@@ -3,7 +3,7 @@ package SLight::DataType::Image;
 # 
 # SLight - Lightweight Content Management System.
 #
-# Copyright (C) 2010 Bartłomiej /Natanael/ Syguła
+# Copyright (C) 2010-2011 Bartłomiej /Natanael/ Syguła
 #
 # This is free software.
 # It is licensed, and can be distributed under the same terms as Perl itself.

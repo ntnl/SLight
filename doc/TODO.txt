@@ -332,6 +332,7 @@
 [X]     Check for permissions, emit SLight::Handler::Error::AccessDenied as needed.
 [X] SLight::HandlerMeta
 [X] Version bump to 0.0.3
+[X] Add '2011' to copyright notice.
 [X] Bugs:
 [X]     s/Lightweight Content Manager System/Lightweight Content Management System/gs
 [X]     Breadcrumbs are missing on:

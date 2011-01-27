@@ -1,9 +1,16 @@
 #!/usr/bin/perl
-# Copyright 2010, Bartłomiej Syguła (natanael@natanael.krakow.pl)
+################################################################################
+# 
+# SLight - Lightweight Content Management System.
 #
-# This is free software. It is licensed, and can be distributed under the same terms as Perl itself.
+# Copyright (C) 2010-2011 Bartłomiej /Natanael/ Syguła
 #
-# For more, see my website: http://www-slight-cms.org/
+# This is free software.
+# It is licensed, and can be distributed under the same terms as Perl itself.
+#
+# More information on: http://slight-cms.org/
+# 
+################################################################################
 use strict; use warnings;
 
 use Module::Build;
