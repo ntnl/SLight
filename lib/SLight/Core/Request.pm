@@ -251,6 +251,9 @@ sub main { # {{{
             }
         }
         else {
+            # Access was denied!
+            $P{'url'}->{'action'} = 'View'; # FIXME: Find some more sane way of doing this rewrite!
+
             $page_content->{'objects'} = {
                 $page_content->{'main_object'} => $page_content->{'objects'}->{ $page_content->{'main_object'} },
             };

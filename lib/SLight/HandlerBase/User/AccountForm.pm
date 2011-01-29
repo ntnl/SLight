@@ -89,7 +89,7 @@ sub make_form { # {{{
     if ($P{'admin'}) {
         $form->add_SelectEntry(
             caption => TR('Status:'),
-            name    => 'status',
+            name    => 'u-status',
             value   => ( $self->{'options'}->{'u-status'} or $P{'data'}->{'status'} or q{} ),
             options => [
                 [

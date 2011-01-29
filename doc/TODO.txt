@@ -417,6 +417,7 @@
 [ ] HTML templateing-related
 [ ]     Add 'delimiter' - either as a widget, or as sub-section to lists
 [ ] Development
+[ ]     In Handler tests - check if CGI parameters send in a request are the ones defined in previews one.
 [ ]     Built-in EVK support in Test::Handler
 [ ]     Built-in Email support in Test::Handler
 [ ]     Built-in SLight::IO::unique_id support in Test::Handler

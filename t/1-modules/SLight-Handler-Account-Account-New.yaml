@@ -78,7 +78,7 @@ Show form:
                 value: ''
               type: PasswordEntry
             type: Container
-          - class: F-status SelectEntry
+          - class: F-u-status SelectEntry
             content:
             - class: Label
               data:
@@ -86,7 +86,7 @@ Show form:
               type: Label
             - class: Value
               data:
-                name: status
+                name: u-status
                 options:
                 - - Disabled
                   - Disabled
@@ -211,7 +211,7 @@ Submit form (bad data):
                 value: ''
               type: PasswordEntry
             type: Container
-          - class: F-status SelectEntry
+          - class: F-u-status SelectEntry
             content:
             - class: Label
               data:
@@ -219,7 +219,7 @@ Submit form (bad data):
               type: Label
             - class: Value
               data:
-                name: status
+                name: u-status
                 options:
                 - - Disabled
                   - Disabled
