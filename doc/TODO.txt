@@ -441,6 +441,8 @@
 [ ]     Move html templates from Minimal to HtmlTemplates
 [ ]     Implement the FIXME from SLight::Test::Site::Builder
 [ ]     Some API calls (Asset, Content) should return login as well (not just email)
+[ ]     When there is a DB error (like when appending new content to a page) there is only 'Internal error' displayed. This should be handled better.
+[ ]     When appending new content to a page: on_page_index is not handled correctly
 
     Definition of done:
 

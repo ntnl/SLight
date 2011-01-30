@@ -18,6 +18,20 @@ my $VERSION = '0.0.3';
 
 # }}}
 
+=encoding UTF-8
+
+=head1 NAME
+
+SLight - Lightweight Content Management System.
+
+=head1 DESCRIPTION
+
+SLight is a CMS writting in Perl 5. At this stage, it is in development, and should not be used to run on 'production' websites.
+
+You are welcome to browse the code, send comments and contributions!
+
+=cut
+
 sub version { # {{{
     return $VERSION;
 } # }}}
