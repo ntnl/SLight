@@ -368,7 +368,26 @@
         Groups can be managed.
         Permissions can be managed.
 
-=--= Milestone 5 - Advanced CMS - ....-..-..
+=--= Sprint 2 - Command line CMS - 2011-02-27
+
+[>] Command line interface to manipulate CMS
+[>]     Bootstrap the tool (support --help, --version, initialize config and such).
+[ ]     I/O support (loading/dumping Perl data structures).
+[ ]         YAML
+[ ]         JSON
+[ ]         XMS
+[ ]     --cms-list
+[ ]         Implement
+[ ]         Ensure that automated tests covers >99% of code
+[ ]     --cms-delete
+[ ]         Implement
+[ ]         Ensure that automated tests covers >99% of code
+[ ]     --cms-set
+[ ]         Implement
+[ ]         Ensure that automated tests covers >99% of code
+[ ]     Release to the public
+
+=--= Sprint 2 - Advanced CMS - ....-..-..
 
 [ ] API
 [ ]     Comment store
@@ -448,7 +467,7 @@
 
     Most, if not all, commonly spotted CMS features are usable.
 
-=--= Milestone 6 - Forum - ....-..-..
+=--= Sprint .. - ....-..-..
     
 [ ] Forum-related Handler objects
 [ ]     SLight::Handler::Forum::Root
@@ -519,7 +538,7 @@
 
         Forum is complete.
 
-=--= Milestone 7 - Initial AJAX support - 
+=--= Sprint .. - Initial AJAX support - 
 
 [ ] AJAX Protocol object
 [ ] P.O.C. of some js/html changes
@@ -528,7 +547,7 @@
 
         At least one action works trough AJAX
 
-=--= Milestone 8 - Full AJAX support - ....-..-..
+=--= Sprint .. - Full AJAX support - ....-..-..
     
 [ ] Upgrade all applicable functionality to support AJAX
 
@@ -536,10 +555,12 @@
 
         Adding, Editing, Deleting, Posting threads, responding - all working trough AJAX
 
-=--= Milestone 9 - First final (1.0.0) release - ....-..-..
+=--= Sprint .. - First final (1.0.0) release - ....-..-..
 
 [ ] Development
 [ ]     Make sure (and fix) all built-in classes start with SL_*
+
+
 
 =--= Future ideas:
 
