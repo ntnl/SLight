@@ -130,6 +130,8 @@ sub undump_db { # {{{
 
 # Clear fake directory, so it contains nothing.
 sub prepare_fake_dir { # {{{
+    assert_defined($test_dir, "Test dir set up properly");
+
     SLight::Core::Config::initialize($test_dir);
 
     my $site_root = clear_fake();
