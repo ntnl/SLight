@@ -154,7 +154,7 @@ sub fake_config { # {{{
     SLight::Core::Config::set_option('lang',      [qw{ en de fr pl }]);
 
     # Connect to DB, for convenance.
-    if (-f $site_root . q{/db/slight.sqlite}) {
+    if (-f ($site_root . q{/db/slight.sqlite}) ) {
         SLight::Core::DB::check();
     };
 

@@ -371,9 +371,9 @@
 =--= Sprint 2 - Command line CMS - 2011-02-27
 
 [>] Command line interface to manipulate CMS
-[>]     Bootstrap the tool (support --help, --version, initialize config and such).
-[ ]     I/O support (loading/dumping Perl data structures).
-[ ]         YAML
+[X]     Bootstrap the tool (support --help, --version, initialize config and such).
+[>]     I/O support (loading/dumping Perl data structures).
+[>]         YAML
 [ ]         JSON
 [ ]         XMS
 [ ]     --cms-list
@@ -386,6 +386,10 @@
 [ ]         Implement
 [ ]         Ensure that automated tests covers >99% of code
 [ ]     Release to the public
+[ ] Bugs
+[ ]     Path element errors are not displayed?
+[ ]     Adding first page "kills" the CMS :(
+[ ]     Remove white space right after and before [bbcode] tags
 
 =--= Sprint 2 - Advanced CMS - ....-..-..
 
@@ -564,6 +568,8 @@
 
 =--= Future ideas:
 
+[ ] If an User enters a page, that does not exist, and can create it, propose it to him :) Be User Friendly :)
+[ ] In the 'Add content' chooser add the option "as sibling", that will add new content to the same parent.
 [ ] Set-up CIS
 [ ]     Track/test commits
 [ ]     Run coverage test / report
@@ -576,7 +582,7 @@
 [ ] Identify web robots. Use this information when performing authorization (add 'Robot' User type)
 [ ] Switch to SQL::Abstract-like module (possibly deprecate SLight::Core::SQL)
 [ ] Possibly rename Handler::User::Avatar to Handler::Core::Avatar
-[ ] Ability to 'tag' objects with "permanent ID" - so a plugin can store it's config as an object.
+[ ] Ability to 'tag' objects with "permanent ID" - so an add-on can store it's config as an object.
 [ ] User/Group API
 [ ]     SLight::API::Group
 [ ]         get_Group

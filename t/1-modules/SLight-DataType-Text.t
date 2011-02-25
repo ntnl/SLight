@@ -129,7 +129,35 @@ my @encode_tests = (
             qq{      - )\n}.
             qq{    tag: b\n}.
             qq{  - " Baz"\n},
-    }
+    },
+    {
+        name   => 'Rich text in quotes',
+        value  => "John said:\n\n[quote]\nThis is a [b]rich[/b] text.\n\nI [i]like[/i] it!\n[/quote]\n\nI agree with John.",
+        expect =>
+            qq{--- \n}.
+            qq{- \n}.
+            qq{  - "John said:"\n}.
+            qq{- \n}.
+            qq{  - \n}.
+            qq{    ct: \n}.
+            qq{      - "This is a "\n}.
+            qq{      - \n}.
+            qq{        ct: rich\n}.
+            qq{        tag: b\n}.
+            qq{      - " text."\n}.
+            qq{      - \n}.
+            qq{        tag: br\n}.
+            qq{      - \n}.
+            qq{        tag: br\n}.
+            qq{      - "I "\n}.
+            qq{      - \n}.
+            qq{        ct: like\n}.
+            qq{        tag: i\n}.
+            qq{      - " it!"\n}.
+            qq{    tag: quote\n}.
+            qq{- \n}.
+            qq{  - I agree with John.\n},
+    },
 );
 
 my @decode_tests = (

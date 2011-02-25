@@ -37,6 +37,16 @@ use YAML::Syck qw{ Load Dump };
 #
 # Complete reference:
 #
+#   [h1]Header level: 1[/h1]
+#
+#   [h2]Header level: 2[/h2]
+#
+#   [h3]Header level: 3[/h3]
+#
+#   [h4]Header level: 4[/h4]
+#
+#   [h5]Header level: 5[/h5]
+#
 #   [b]bolded text[/b]
 #       makes the text bold
 #
@@ -108,7 +118,7 @@ sub encode_data { # {{{
             format => { type=>SCALAR },
         }
     );
-    
+
     # Fix newlines.
     $P{'value'} =~ s{\r\n}{\n}sg;
     $P{'value'} =~ s{\r}{\n}sg;
@@ -117,15 +127,48 @@ sub encode_data { # {{{
     $P{'value'} =~ s{^[ \t]+}{}sgm;
     $P{'value'} =~ s{[ \t]+$}{}sgm;
     
-    # Split to paragraphs and process each...
-    my @paragraphs = split /\n\n+/s, $P{'value'};
+    # Parse BBCode.
+    #   FIXME: Consider using BBCode::Parser in next release.
+
+    my $structure = analize_text($P{'value'});
+
+#    # Split to paragraphs and process each...
+#    my @paragraphs = split /\n\n+/s, $P{'value'};
 
 #    use Data::Dumper; warn "PARA: ". Dumper \@paragraphs;
 
     my @encoded;
-    foreach my $paragraph ( @paragraphs ) {
-        push @encoded, analize_text($paragraph);
+    my $current_para = [];
+    my $last_was_br = 0;
+
+    foreach my $item (@{ $structure }) {
+#        use Data::Dumper; warn "Item: ". Dumper $item;
+
+        if (ref $item and ref $item eq 'HASH' and $item->{'tag'} eq 'br') {
+            if ($last_was_br) {
+                # Remove that last [br] that was put there...
+                pop @{ $current_para };
+
+                push @encoded, $current_para;
+                $current_para = [];
+            }
+            else {
+                push @{ $current_para }, $item;
+            
+                $last_was_br = 1;
+            }
+        }
+        else {
+            push @{ $current_para }, $item;
+            
+            $last_was_br = 0;
+        }
     }
+    push @encoded, $current_para;
+
+#    foreach my $paragraph ( @paragraphs ) {
+#        push @encoded, analize_text($paragraph);
+#    }
     
 #    use Data::Dumper; warn "ENC ". $P{'value'} ." => ". Dumper \@encoded;
 
@@ -196,10 +239,17 @@ my %single_tags = (
     separate => 1
 );
 my %paired_tags = (
-    b     => 1,
-    i     => 1,
-    u     => 1,
-    s     => 1,
+    h1 => 1,
+    h2 => 1,
+    h3 => 1,
+    h4 => 1,
+    h5 => 1,
+
+    b => 1,
+    i => 1,
+    u => 1,
+    s => 1,
+
     url   => 1,
     img   => 1,
     quote => 1,
@@ -211,15 +261,23 @@ my %paired_tags = (
 );
 
 sub analize_text { # {{{
-    my ( $paragraph ) = @_;
+    my ( $text ) = @_;
 
-    # Turn newlines to BB-tags.
-    $paragraph =~ s/[\s\t]*[\n\r]+[\s\t]*/\[br\]/sg;
+    # Clean up from unneeded spaces.
+    $text =~ s{^[ \t]+}{}s;
+    $text =~ s{[ \t]+$}{}s;
 
-    # Current implementation is roether efficient, should be more then sifficient for start.
+    # Remove newlines that 'pad' block elements:
+    $text =~ s{\[(quote|code|pre)\]\n+}{[$1]}sg;
+    $text =~ s{\n+\[/(quote|code|pre)\]}{[/$1]}sg;
+
+    # Turn newline characters into [br] tags.
+    $text =~ s{[ \t]*\n}{[br]}sg;
+    
+    # Current implementation is rather efficient, should be more then sufficient for start.
     # When time comes, a refactoring will be easy, especially,
     # when all important use-cases are covered in tests.
-    my @parsable_elements = split m{(?:\[(/)?([^\[\]]+?)(?:\=([^\[\]]+))?\])}s, $paragraph;
+    my @parsable_elements = split m{(?:\[(/)?([^\[\]]+?)(?:\=([^\[\]]+))?\])}s, $text;
 
 #    use Data::Dumper; warn "PE: ". Dumper \@parsable_elements;
 

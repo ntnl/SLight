@@ -15,9 +15,14 @@ use strict; use warnings; # {{{
 
 my $VERSION = '0.0.3';
 
+use Cwd qw( getcwd );
 use English qw( -no_match_vars );
 use Getopt::Long 2.36 qw( GetOptionsFromArray );
 # }}}
+
+my $_format
+my $_input;
+my $_output;
 
 sub main { # {{{
     my ( @params ) = @_;
@@ -51,6 +56,7 @@ sub main { # {{{
         print "\n";
         print "SLight version: ". $VERSION ."\n";
         print "\n";
+
         return 0;
     }
 
@@ -74,7 +80,11 @@ sub main { # {{{
         print "  --version Display version and exit.\n";
         print "  --help    Display (this) brief summary.\n";
         print "\n";
+
+        return 0;
     }
+
+    SLight::Core::Config::initialize( getcwd() );
 
     my %functionality = (
         'cms-list'   => \&handle_cms_list,
@@ -82,12 +92,13 @@ sub main { # {{{
         'cms-set'    => \&handle_cms_set,
     );
 
+    $_format = $options{'format'};
+    $_input  = $options{'input'};
+    $_output = $options{'output'};
+
     foreach my $function (keys %functionality) {
         if ($options{$function}) {
-            &{ $functionality{$function} }(
-                format => $options{'format'},
-                input  => $options{'input'},
-            );
+            &{ $functionality{$function} }();
         }
     }
 
@@ -97,6 +108,14 @@ sub main { # {{{
 
 # Initial implementation should fit one module.
 # Later, when more stuff gets added, underlying functionality should probably be moved out.
+
+sub pull_data { # {{{
+} # }}}
+
+sub push_data { # {{{
+} # }}}
+
+
 
 sub handle_cms_list { # {{{
 } # }}}

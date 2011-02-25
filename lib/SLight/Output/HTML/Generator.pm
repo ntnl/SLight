@@ -63,6 +63,27 @@ sub structure_to_html { # {{{
 } # }}}
 
 my %known_tags = (
+    'h1' => {
+        replace     => q{<b class=BBC_H1>%s</b>},
+        has_content => 1,
+    },
+    'h2' => {
+        replace     => q{<b class=BBC_H2>%s</b>},
+        has_content => 1,
+    },
+    'h3' => {
+        replace     => q{<b class=BBC_H3>%s</b>},
+        has_content => 1,
+    },
+    'h4' => {
+        replace     => q{<b class=BBC_H4>%s</b>},
+        has_content => 1,
+    },
+    'h5' => {
+        replace     => q{<b class=BBC_H5>%s</b>},
+        has_content => 1,
+    },
+
     'b' => {
         replace     => q{<b class=BBC_Bold>%s</b>},
         has_content => 1,
@@ -81,6 +102,7 @@ my %known_tags = (
         replace     => q{<span class=BBC_Strike>%s</span>},
         has_content => 1,
     },
+
     'url' => {
         replace  => q{<a href="%s" class=BBC_Url>%s</a>},
         has_both => 1,
@@ -89,6 +111,7 @@ my %known_tags = (
         replace   => q{<img src="%s" class=BBC_Img>},
         has_value => 1,
     },
+
     'quote' => {
         replace     => q{<blockquote class=BBC_Quote>%s</blockquote>},
         has_content => 1,
@@ -97,9 +120,18 @@ my %known_tags = (
         replace     => q{<pre class=BBC_Code>%s</pre>},
         has_content => 1,
     },
+    'pre' => {
+        replace     => q{<pre class=BBC_Pre>%s</pre>},
+        has_content => 1,
+    },
+
     'size' => {
         replace  => q{<span style="font-size: %s%%;">%s</span>},
         has_both => 1,
+
+# FIXME: support percents, one-digit integers, and point sizes!
+#
+#        v_cb => sub { my ( $v ) = @_; return 100 + 10 * $v; },
     },
     'color' => {
         replace  => q{<span style="color: %s">%s</span>},
@@ -162,6 +194,11 @@ sub token_to_html { # {{{
 
             if ($data_token->{'value'}) {
                 $value = $data_token->{'value'};
+            }
+
+            # Has a value callback?
+            if ($info->{'v_cb'}) {
+                $value = &{ $info->{'v_cb'} }($value);
             }
 
             if ($info->{'has_both'}) {
