@@ -32,6 +32,7 @@ plan tests =>
     + 2 # get_Page_ids_where
     + 1 # get_Page_fields_where
     + 4 # get_Page_full_path
+    + 4 # get_Page_id_for_path
 ;
 
 SLight::Test::Site::prepare_empty(
@@ -49,6 +50,7 @@ use SLight::API::Page qw(
     get_Page_ids_where
     get_Page_fields_where
     get_Page_full_path
+    get_Page_id_for_path
 );
 
 
@@ -111,6 +113,29 @@ is_deeply(
     get_Page_full_path($page_4_id),
     [qw( Baz Goo )],
     'get_Page_full_path (4/4) second level depth = two elements list'
+);
+
+
+
+is_deeply(
+    get_Page_id_for_path([qw( A B C D )]),
+    undef,
+    'get_Page_id_for_path (1/4) non-existing path does not kill the function'
+);
+is_deeply(
+    get_Page_id_for_path([]),
+    $page_0_id,
+    'get_Page_id_for_path (2/4) root path = root page'
+);
+is_deeply(
+    get_Page_id_for_path([ 'Foo' ]),
+    $page_1_id,
+    'get_Page_id_for_path (3/4) first level depth = one element list'
+);
+is_deeply(
+    get_Page_id_for_path([qw( Baz Goo )]),
+    $page_4_id,
+    'get_Page_id_for_path (4/4) second level depth = two elements list'
 );
 
 

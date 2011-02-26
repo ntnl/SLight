@@ -887,6 +887,7 @@ sub delete_ENTITYs { # {{{
         SLight::Core::DB::run_delete(
             from  => $self->{'child_table'},
             where => [ $self->{'base_table'} . q{_id IN }, $ids ],
+            debug => $_debug,
         );
     }
 

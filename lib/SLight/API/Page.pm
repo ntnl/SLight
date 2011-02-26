@@ -30,6 +30,7 @@ our @EXPORT_OK = qw(
     get_Page_ids_where
     get_Page_fields_where
     get_Page_full_path
+    get_Page_id_for_path
 );
 our %EXPORT_TAGS = ( 'all' => [ @EXPORT_OK ] );
 
@@ -153,9 +154,36 @@ sub get_Page_full_path { # {{{
     return \@path;
 } # }}}
 
-# TODO:
-#
-# sub id_for_path
+sub get_Page_id_for_path { # {{{
+    my ( $path ) = @_;
+
+    if (not scalar @{ $path }) {
+        return 1;
+    }
+
+    my $parent_id = 1;
+    my $last_page_id;
+    foreach my $part (@{ $path }) {
+        if (not $part) { next; }
+
+        my $pages = SLight::API::Page::get_Page_fields_where(
+            parent_id => $parent_id,
+            path      => $part,
+
+            _fields => [qw( id template )],
+        );
+
+        if (not $pages->[0]) {
+            # Something IS wrong here! It's not possible to have holes in path!
+            # Let's hope, it's just User messing with the URL.
+            last;
+        }
+
+        $parent_id = $last_page_id = $pages->[0]->{'id'};
+    }
+
+    return $last_page_id;
+} # }}}
 
 # vim: fdm=marker
 1;
