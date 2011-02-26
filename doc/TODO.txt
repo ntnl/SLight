@@ -372,12 +372,12 @@
 
 [>] Command line interface to manipulate CMS
 [X]     Bootstrap the tool (support --help, --version, initialize config and such).
-[>]     I/O support (loading/dumping Perl data structures).
-[>]         YAML
-[ ]         JSON
-[ ]         XMS
-[ ]     --cms-list
-[ ]         Implement
+[X]     I/O support (loading/dumping Perl data structures).
+[X]         YAML
+[X]         JSON
+[X]         XMS
+[>]     --cms-list
+[>]         Implement
 [ ]         Ensure that automated tests covers >99% of code
 [ ]     --cms-delete
 [ ]         Implement
