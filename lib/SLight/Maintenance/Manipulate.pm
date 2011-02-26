@@ -16,6 +16,7 @@ use strict; use warnings; # {{{
 my $VERSION = '0.0.3';
 
 use SLight::API::Content qw( get_Contents_where );
+use SLight::API::ContentSpec qw( get_ContentSpec );
 use SLight::API::Page qw( get_Page get_Page_id_for_path );
 use SLight::Core::Config;
 use SLight::Core::DB;
@@ -50,9 +51,9 @@ sub main { # {{{
         'cms-delete=s' => \$options{'cms-delete'},
         'cms-set=s'    => \$options{'cms-set'},
         
-        'format' => \$options{'format'},
-        'input'  => \$options{'input'},
-        'output' => \$options{'output'},
+        'format=s' => \$options{'format'},
+        'input=s'  => \$options{'input'},
+        'output=s' => \$options{'output'},
 
         'help'    => \$options{'help'},
         'version' => \$options{'version'},
@@ -173,7 +174,12 @@ sub push_data { # {{{
     elsif ($_format eq 'xml') {
         require XML::Simple;
 
-        $string = XML::Simple::XMLOut($data);
+        $string = XML::Simple::XMLout(
+            $data,
+
+            RootName   => 'SLight',
+            NoAttr     => 1,
+        );
     }
 
     # Step two - either print, or write to a file.
@@ -199,17 +205,30 @@ sub handle_cms_list { # {{{
 
     my $path = [ split qr{\/}s, $options->{'cms-list'} ];
 
-    use Data::Dumper; warn "Path: ". Dumper $path;
+#    use Data::Dumper; warn "Path: ". Dumper $path;
 
     my $page_id = get_Page_id_for_path( $path );
 
-    warn $page_id;
+#    warn $page_id;
 
     my $list = get_Contents_where(
         Page_Entity_id => $page_id,
     );
+    # Replace Content_Spec_id with Content_Spec
+    foreach my $item (@{ $list }) {
+        my $Content_Spec_id = delete $item->{'Content_Spec_id'};
 
-    push_data($list);
+        $item->{'Content_Spec'} = get_ContentSpec($Content_Spec_id);
+    }
+
+    push_data(
+        {
+            response => {
+                status => 'OK',
+            },
+            Content_Entry => $list
+        }
+    );
 
     return;
 } # }}}
