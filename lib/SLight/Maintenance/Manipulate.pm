@@ -146,9 +146,6 @@ sub pull_data { # {{{
         return JSON::XS::Load($raw_data);
     }
     if ($_format eq 'xml') {
-        require XML::Simple;
-
-        return XML::Simple::XMLIn($raw_data);
     }
 
     # Unsupported data format :(
@@ -172,14 +169,17 @@ sub push_data { # {{{
         $string = JSON::XS::Dump($data);
     }
     elsif ($_format eq 'xml') {
-        require XML::Simple;
+        require XML::Smart;
 
-        $string = XML::Simple::XMLout(
-            $data,
+        my $XML = XML::Smart->new(q{<?xml version="1.0" encoding="UTF-8" ?><SLightRPC></SLightRPC>});
 
-            RootName   => 'SLight',
-            NoAttr     => 1,
-        );
+        _xml_attach($XML->{'SLightRPC'}, $data);
+
+        $string = $XML->data(nometagen => 1);
+
+        my $XML2 = XML::Smart->new($string);
+
+        print $XML2->dump_tree();
     }
 
     # Step two - either print, or write to a file.
@@ -194,7 +194,29 @@ sub push_data { # {{{
     return;
 } # }}}
 
+sub _xml_attach { # {{{
+    my ( $xml, $data ) = @_;
 
+    foreach my $key (keys %{ $data }) {
+        if (ref $data->{$key} eq 'HASH') {
+            _xml_attach($xml->{$key}, $data->{$key});
+        }
+        elsif (ref $data->{$key} eq 'ARRAY') {
+            foreach my $item (@{ $data->{$key} }) {
+                push @{ $xml->{ $key } }, $item;
+            
+                $xml->{ $key }->[-1]->set_node(1);
+            }
+        }
+        else {
+            $xml->{$key} = $data->{$key};
+
+            $xml->{$key}->set_node(1);
+        }
+    }
+
+    return;
+} # }}}
 
 sub handle_cms_list { # {{{
     my ( $options ) = @_;
@@ -214,19 +236,62 @@ sub handle_cms_list { # {{{
     my $list = get_Contents_where(
         Page_Entity_id => $page_id,
     );
-    # Replace Content_Spec_id with Content_Spec
-    foreach my $item (@{ $list }) {
-        my $Content_Spec_id = delete $item->{'Content_Spec_id'};
 
-        $item->{'Content_Spec'} = get_ContentSpec($Content_Spec_id);
+#    # Replace Content_Spec_id with Content_Spec
+#    foreach my $item (@{ $list }) {
+#        my $Content_Spec_id = delete $item->{'Content_Spec_id'};
+#
+#        $item->{'Content_Spec'} = get_ContentSpec($Content_Spec_id);
+#    }
+
+    my %contents;
+
+    my %Content_Spec_cache;
+    my %id_to_class_cache;
+    foreach my $item (@{ $list }) {
+        my $Content_Spec_id = $item->{'Content_Spec_id'};
+
+        if (not $Content_Spec_cache{$Content_Spec_id}) {
+            $Content_Spec_cache{$Content_Spec_id} = get_ContentSpec($Content_Spec_id);
+
+            $Content_Spec_cache{$Content_Spec_id}->{'Data'} = delete $Content_Spec_cache{$Content_Spec_id}->{'_data'};
+
+            push @{ $contents{'Content_Spec'} }, $Content_Spec_cache{$Content_Spec_id};
+    
+            foreach my $class (keys %{ $Content_Spec_cache{$Content_Spec_id}->{'Data'} }) {
+                $id_to_class_cache{$Content_Spec_id}->{ $Content_Spec_cache{$Content_Spec_id}->{'Data'}->{$class}->{'id'} } = $class;
+            }
+        }
+
+        if ($item->{'_data'}) {
+            $item->{'Data'} = delete $item->{'_data'};
+
+            foreach my $lang (keys %{ $item->{'Data'} }) {
+                my @ids = keys %{ $item->{'Data'}->{$lang} };
+
+                foreach my $field_id (@ids) {
+                    my $field_code = $id_to_class_cache{ $item->{'Content_Spec_id'} }->{$field_id};
+
+                    $item->{'Data'}->{$lang}->{ $field_code } = delete $item->{'Data'}->{$lang}->{$field_id};
+                }
+            }
+        }
+
+        push @{ $contents{'Content'} }, $item;
     }
 
     push_data(
         {
-            response => {
-                status => 'OK',
+            Head => {
+                version => q{0.1},
+                status  => 'OK',
             },
-            Content_Entry => $list
+            Body => \%contents,
+#            [
+#                {
+#                    Content => \@content,
+#                },
+#            ],
         }
     );
 

@@ -937,7 +937,40 @@ Authorization (Permissions)
     If, at any level, a policy of 'DENIED' is found, access is denied,
     and no additional lookup is done (search is aborted).
 
-News
+RPC data format
 
- 2010-06-12 :: Website on-line.  Project's initial website is up and running.
+    Request:
+
+        <SLight>
+            <request>
+                <version>1.0</version>
+            </request>
+            <auth>
+                <user>...</user>
+                <pass>...</pass>
+            </auth>
+            <items>
+            </items>
+        </SLight>
+
+    Response:
+
+        <SLight>
+            <response>
+                <version>1.0</version>
+                <status>OK</status>
+            </response>
+            <items>
+                <Content>
+                    <id>123</id>
+                    <foo>Yes</foo>
+                    <bar>No</bar>
+                    <data>
+                        <field id=1>
+                            <sex>Yes, often</sex>
+                        </field>
+                    </data>
+                </Content>
+            </items>
+        </SLight>
 
