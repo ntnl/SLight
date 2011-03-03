@@ -24,6 +24,7 @@ use SLight::DataType qw( decode_data );
 
 use Cwd qw( getcwd );
 use English qw( -no_match_vars );
+use Encode qw( encode decode );
 use File::Slurp qw( read_file write_file );
 use Getopt::Long 2.36 qw( GetOptionsFromArray );
 # }}}
@@ -191,10 +192,10 @@ sub push_data { # {{{
     # Step two - either print, or write to a file.
     if ($_output eq q{-}) {
         # Read from STDIN.
-        print $string;
+        print encode('utf8', $string);
     }
     else {
-        write_file($_output, $string);
+        write_file($_output, { binmode => ':raw' }, encode('utf8', $string));
     }
 
     return;
@@ -352,11 +353,6 @@ sub handle_cms_set { # {{{
     my ( $options ) = @_;
 
     return;
-} # }}}
-
-sub _deserialize { # {{{
-    my ( $data, $metadata ) = @_;
-
 } # }}}
 
 # vim: fdm=marker

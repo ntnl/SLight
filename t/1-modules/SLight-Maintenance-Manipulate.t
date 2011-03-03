@@ -19,12 +19,17 @@ use utf8;
 use SLight::Test::Site;
 
 use English qw( -no_match_vars );
+use File::Slurp qw( read_file );
 use Test::More;
+use Test::FileReferenced;
+use Test::Output;
 # }}}
 
 plan tests =>
-    + 1 # Smoke...
+    + 3 # standard options...
+    + 3 # --cms-get with all three formats.
 ;
+# Prepare... # {{{
 my $site_root = SLight::Test::Site::prepare_fake(
     test_dir => $Bin . q{/../},
     site     => 'Minimal'
@@ -32,6 +37,50 @@ my $site_root = SLight::Test::Site::prepare_fake(
 
 use SLight::Maintenance::Manipulate;
 
-pass('TODO!');
+my $pepper = q{/tmp/manipulate_out_}. $PID . q{/};
+mkdir $pepper;
+# }}}
+
+
+
+# Check standard options support.
+output_like(
+    sub { 
+        SLight::Maintenance::Manipulate::main();
+    },
+    qr{Usage},
+    undef,
+    'Run with no params'
+);
+output_like(
+    sub { 
+        SLight::Maintenance::Manipulate::main(q{--help});
+    },
+    qr{Usage},
+    undef,
+    'Run with --help'
+);
+output_like(
+    sub { 
+        SLight::Maintenance::Manipulate::main(q{--version});
+    },
+    qr{version}s,
+    undef,
+    'Run with --version'
+);
+
+
+# If it dies, the test will die too, so why bother to check?
+SLight::Maintenance::Manipulate::main(q{--cms-get}, q{/}, q{--format}, q{xml},  q{--output}, $pepper . 'xml');
+SLight::Maintenance::Manipulate::main(q{--cms-get}, q{/}, q{--format}, q{yaml}, q{--output}, $pepper . 'yaml');
+SLight::Maintenance::Manipulate::main(q{--cms-get}, q{/}, q{--format}, q{json}, q{--output}, $pepper . 'json');
+
+is_referenced_ok(q{}.scalar read_file( $pepper . 'xml' ),  '--cms-get to XML');
+is_referenced_ok(q{}.scalar read_file( $pepper . 'yaml' ), '--cms-get to YAML');
+is_referenced_ok(q{}.scalar read_file( $pepper . 'json' ), '--cms-get to JSON');
+
+END {
+    system q{rm}, q{-rf}, $pepper;
+}
 
 # vim: fdm=marker

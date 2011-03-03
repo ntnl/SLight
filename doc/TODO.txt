@@ -379,9 +379,9 @@
 [ ]     --cms-list
 [ ]         Implement
 [ ]         Ensure that automated tests covers >99% of code
-[>]     --cms-get
+[X]     --cms-get
 [X]         Implement
-[>]         Ensure that automated tests covers >99% of code
+[X]         Ensure that automated tests covers >99% of code
 [ ]     --cms-delete
 [ ]         Implement
 [ ]         Ensure that automated tests covers >99% of code

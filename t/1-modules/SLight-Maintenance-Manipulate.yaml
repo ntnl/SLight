@@ -1,0 +1,51 @@
+---
+--cms-get to JSON: "{\"Head\":{\"status\":\"OK\",\"version\":\"0.1\"},\"Body\":{\"Content_Spec\":[{\"_data_order\":[\"title\",\"article\"],\"owning_module\":\"CMS::Entry\",\"version\":0,\"order_by\":\"11\",\"cms_usage\":3,\"use_as_title\":null,\"caption\":\"Article\",\"use_in_path\":null,\"use_in_menu\":\"10\",\"metadata\":{},\"id\":1,\"class\":\"Content\",\"Data\":{\"article\":{\"display_on_page\":2,\"default\":\"\",\"display_on_list\":2,\"optional\":1,\"caption\":\"Article\",\"display_label\":1,\"order\":2,\"translate\":1,\"id\":\"11\",\"max_length\":1024,\"datatype\":\"Text\"},\"title\":{\"display_on_page\":2,\"default\":\"\",\"display_on_list\":2,\"optional\":1,\"caption\":\"Title\",\"display_label\":1,\"order\":1,\"translate\":1,\"id\":\"10\",\"max_length\":128,\"datatype\":\"String\"}}}],\"Content\":[{\"comment_read_policy\":0,\"Content_Spec_id\":\"1\",\"on_page_index\":0,\"Page_Entity_id\":1,\"status\":\"V\",\"comment_write_policy\":0,\"modified_time\":\"2010-12-13
+  16:04:12\",\"added_time\":\"2010-12-13 16:04:12\",\"Email_id\":null,\"id\":\"1\",\"metadata\":{},\"Data\":{\"en\":{\"article\":\"Minimal
+  test site, not such minimal any more ;)\",\"title\":\"Test site is up\"},\"pl\":{\"article\":\"Minimalna
+  strona testowa, juÃ\NÂ¼ nie taka minimalna ;)\",\"title\":\"Strona testowa zrobiona\"}}}],\"Page\":[{\"template\":\"Default\",\"path\":\"/\",\"id\":1,\"parent_id\":0}]}}"
+--cms-get to XML: "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<SLightRPC>\n  <Head>\n
+  \   <status>OK</status>\n    <version>0.1</version>\n  </Head>\n  <Body>\n    <Content_Spec>\n
+  \     <_data_order>title</_data_order>\n      <_data_order>title</_data_order>\n
+  \     <_data_order>title</_data_order>\n      <owning_module>CMS::Entry</owning_module>\n
+  \     <version>0</version>\n      <order_by>11</order_by>\n      <cms_usage>3</cms_usage>\n
+  \     <caption>Article</caption>\n      <use_in_menu>10</use_in_menu>\n      <metadata/>\n
+  \     <id>1</id>\n      <class>Content</class>\n      <Data>\n        <article>\n
+  \         <display_on_page>2</display_on_page>\n          <display_on_list>2</display_on_list>\n
+  \         <optional>1</optional>\n          <caption>Article</caption>\n          <display_label>1</display_label>\n
+  \         <order>2</order>\n          <translate>1</translate>\n          <id>11</id>\n
+  \         <max_length>1024</max_length>\n          <datatype>Text</datatype>\n        </article>\n
+  \       <title>\n          <display_on_page>2</display_on_page>\n          <display_on_list>2</display_on_list>\n
+  \         <optional>1</optional>\n          <caption>Title</caption>\n          <display_label>1</display_label>\n
+  \         <order>1</order>\n          <translate>1</translate>\n          <id>10</id>\n
+  \         <max_length>128</max_length>\n          <datatype>String</datatype>\n
+  \       </title>\n      </Data>\n    </Content_Spec>\n    <Content>\n      <comment_read_policy>0</comment_read_policy>\n
+  \     <Content_Spec_id>1</Content_Spec_id>\n      <on_page_index>0</on_page_index>\n
+  \     <Page_Entity_id>1</Page_Entity_id>\n      <status>V</status>\n      <comment_write_policy>0</comment_write_policy>\n
+  \     <modified_time>2010-12-13 16:04:12</modified_time>\n      <added_time>2010-12-13
+  16:04:12</added_time>\n      <id>1</id>\n      <metadata/>\n      <Data>\n        <en>\n
+  \         <article>Minimal test site, not such minimal any more ;)</article>\n          <title>Test
+  site is up</title>\n        </en>\n        <pl>\n          <article>Minimalna strona
+  testowa, juÅ¼ nie taka minimalna ;)</article>\n          <title>Strona testowa zrobiona</title>\n
+  \       </pl>\n      </Data>\n    </Content>\n    <Page>\n      <template>Default</template>\n
+  \     <path>/</path>\n      <id>1</id>\n      <parent_id>0</parent_id>\n    </Page>\n
+  \ </Body>\n</SLightRPC>\n\n"
+--cms-get to YAML: "--- \nBody: \n  Content: \n    - \n      Content_Spec_id: 1\n
+  \     Data: \n        en: \n          article: Minimal test site, not such minimal
+  any more ;)\n          title: Test site is up\n        pl: \n          article:
+  Minimalna strona testowa, juÅ¼ nie taka minimalna ;)\n          title: Strona testowa
+  zrobiona\n      Email_id: ~\n      Page_Entity_id: '1'\n      added_time: 2010-12-13
+  16:04:12\n      comment_read_policy: '0'\n      comment_write_policy: '0'\n      id:
+  1\n      metadata: {}\n\n      modified_time: 2010-12-13 16:04:12\n      on_page_index:
+  '0'\n      status: V\n  Content_Spec: \n    - \n      Data: \n        article: \n
+  \         caption: Article\n          datatype: Text\n          default: ''\n          display_label:
+  '1'\n          display_on_list: '2'\n          display_on_page: '2'\n          id:
+  11\n          max_length: '1024'\n          optional: '1'\n          order: 2\n
+  \         translate: '1'\n        title: \n          caption: Title\n          datatype:
+  String\n          default: ''\n          display_label: '1'\n          display_on_list:
+  '2'\n          display_on_page: '2'\n          id: 10\n          max_length: '128'\n
+  \         optional: '1'\n          order: 1\n          translate: '1'\n      _data_order:
+  \n        - title\n        - article\n      caption: Article\n      class: Content\n
+  \     cms_usage: '3'\n      id: '1'\n      metadata: {}\n\n      order_by: 11\n
+  \     owning_module: CMS::Entry\n      use_as_title: ~\n      use_in_menu: 10\n
+  \     use_in_path: ~\n      version: '0'\n  Page: \n    - \n      id: '1'\n      parent_id:
+  0\n      path: /\n      template: Default\nHead: \n  status: OK\n  version: '0.1'\n"
