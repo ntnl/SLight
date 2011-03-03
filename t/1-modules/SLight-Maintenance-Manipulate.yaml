@@ -49,3 +49,15 @@
   \     owning_module: CMS::Entry\n      use_as_title: ~\n      use_in_menu: 10\n
   \     use_in_path: ~\n      version: '0'\n  Page: \n    - \n      id: '1'\n      parent_id:
   0\n      path: /\n      template: Default\nHead: \n  status: OK\n  version: '0.1'\n"
+--cms-list to JSON: '{"Head":{"status":"OK","version":"0.1"},"Body":{"Page":[{"template":null,"path":"Download","id":"4","parent_id":1},{"template":"Doc","path":"Docs","id":"3","parent_id":1},{"template":"Info","path":"About","id":"2","parent_id":1}]}}'
+--cms-list to XML: "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<SLightRPC>\n  <Head>\n
+  \   <status>OK</status>\n    <version>0.1</version>\n  </Head>\n  <Body>\n    <Page>\n
+  \     <path>Download</path>\n      <id>4</id>\n      <parent_id>1</parent_id>\n
+  \   </Page>\n    <Page>\n      <template>Doc</template>\n      <path>Docs</path>\n
+  \     <id>3</id>\n      <parent_id>1</parent_id>\n    </Page>\n    <Page>\n      <template>Info</template>\n
+  \     <path>About</path>\n      <id>2</id>\n      <parent_id>1</parent_id>\n    </Page>\n
+  \ </Body>\n</SLightRPC>\n\n"
+--cms-list to YAML: "--- \nBody: \n  Page: \n    - \n      id: 4\n      parent_id:
+  '1'\n      path: Download\n      template: ~\n    - \n      id: 3\n      parent_id:
+  '1'\n      path: Docs\n      template: Doc\n    - \n      id: 2\n      parent_id:
+  '1'\n      path: About\n      template: Info\nHead: \n  status: OK\n  version: '0.1'\n"

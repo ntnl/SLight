@@ -368,7 +368,7 @@
         Groups can be managed.
         Permissions can be managed.
 
-=--= Sprint 2 - Command line CMS - 2011-02-27
+=--= Sprint 2 - Command line CMS - (X 2011-02-27) 2011-03-06
 
 [>] Command line interface to manipulate CMS
 [X]     Bootstrap the tool (support --help, --version, initialize config and such).
@@ -376,13 +376,13 @@
 [X]         YAML
 [X]         JSON
 [X]         XMS
-[ ]     --cms-list
-[ ]         Implement
-[ ]         Ensure that automated tests covers >99% of code
+[X]     --cms-list
+[X]         Implement
+[X]         Ensure that automated tests covers >99% of code
 [X]     --cms-get
 [X]         Implement
 [X]         Ensure that automated tests covers >99% of code
-[ ]     --cms-delete
+[>]     --cms-delete
 [ ]         Implement
 [ ]         Ensure that automated tests covers >99% of code
 [ ]     --cms-set
@@ -394,7 +394,7 @@
 [ ]     Adding first page "kills" the CMS :(
 [ ]     Remove white space right after and before [bbcode] tags
 
-=--= Sprint 2 - Advanced CMS - ....-..-..
+=--= Sprint 3 - Advanced CMS - ....-..-..
 
 [ ] API
 [ ]     Comment store

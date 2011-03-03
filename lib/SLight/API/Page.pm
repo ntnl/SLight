@@ -27,6 +27,7 @@ our @EXPORT_OK = qw(
     delete_Pages
     get_Page
     get_Pages
+    get_Pages_where
     get_Page_ids_where
     get_Page_fields_where
     get_Page_full_path
@@ -129,6 +130,10 @@ sub get_Pages { # {{{
     my ( $ids ) = @_;
 
     return $_handler->get_ENTITYs($ids);
+} # }}}
+
+sub get_Pages_where { # {{{
+    return $_handler->get_ENTITYs_where(@_);
 } # }}}
 
 sub get_Page_ids_where { # {{{

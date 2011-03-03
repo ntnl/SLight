@@ -17,7 +17,7 @@ my $VERSION = '0.0.3';
 
 use SLight::API::Content qw( get_Contents_where );
 use SLight::API::ContentSpec qw( get_ContentSpec );
-use SLight::API::Page qw( get_Page get_Page_id_for_path );
+use SLight::API::Page qw( get_Page get_Page_id_for_path get_Pages_where );
 use SLight::Core::Config;
 use SLight::Core::DB;
 use SLight::DataType qw( decode_data );
@@ -126,6 +126,8 @@ sub main { # {{{
     return 0;
 } # }}}
 
+
+
 # Initial implementation should fit one module.
 # Later, when more stuff gets added, underlying functionality should probably be moved out.
 
@@ -160,6 +162,7 @@ sub pull_data { # {{{
     }
 
     # Unsupported data format :(
+    # FIXME: warn the User!
 
     return;
 } # }}}
@@ -252,9 +255,33 @@ sub _xml_attach_array { # {{{
     return;
 } # }}}
 
+
+
 sub handle_cms_list { # {{{
     my ( $options ) = @_;
 
+    $options->{'cms-get'} =~ s{^/}{}s;
+    $options->{'cms-get'} =~ s{/$}{}s;
+
+    my $path = [ split qr{\/}s, $options->{'cms-list'} ];
+
+    my $page_id = get_Page_id_for_path( $path );
+
+    my $sub_pages = get_Pages_where(
+        parent_id => $page_id,
+    );
+
+    push_data(
+        {
+            Head => {
+                version => q{0.1},
+                status  => 'OK',
+            },
+            Body => {
+                Page => $sub_pages,
+            },
+        }
+    );
 
     return;
 } # }}}
