@@ -11,8 +11,14 @@ package SLight::DataType;
 # More information on: http://slight-cms.org/
 # 
 ################################################################################
-
 use strict; use warnings; # {{{
+use base 'Exporter';
+our @EXPORT_OK = qw(
+    validate_data
+    decode_data
+    encode_data
+);
+our %EXPORT_TAGS = ('all' => [ @EXPORT_OK ]);
 
 use Carp::Assert::More qw( assert_is );
 
