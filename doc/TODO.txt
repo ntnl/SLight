@@ -382,17 +382,21 @@
 [X]     --cms-get
 [X]         Implement
 [X]         Ensure that automated tests covers >99% of code
-[>]     --cms-delete
+[X]     --cms-delete
+[X]         Implement
+[X]         Ensure that automated tests covers >99% of code
+[>]     --cms-set
 [ ]         Implement
 [ ]         Ensure that automated tests covers >99% of code
-[ ]     --cms-set
-[ ]         Implement
-[ ]         Ensure that automated tests covers >99% of code
-[ ]     Release to the public
 [ ] Bugs
 [ ]     Path element errors are not displayed?
 [ ]     Adding first page "kills" the CMS :(
 [ ]     Remove white space right after and before [bbcode] tags
+[ ] Release to the public
+[ ]     Make package
+[ ]     Beta-test
+[ ]     Upload package for public consumption
+[ ]     Spread the news :)
 
 =--= Sprint 3 - Advanced CMS - ....-..-..
 

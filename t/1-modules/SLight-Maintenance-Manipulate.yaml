@@ -1,4 +1,13 @@
 ---
+--cms-delete does it's job:
+- id: 4
+  parent_id: 1
+  path: Download
+  template: ~
+- id: 2
+  parent_id: 1
+  path: About
+  template: Info
 --cms-get to JSON: "{\"Head\":{\"status\":\"OK\",\"version\":\"0.1\"},\"Body\":{\"Content_Spec\":[{\"_data_order\":[\"title\",\"article\"],\"owning_module\":\"CMS::Entry\",\"version\":0,\"order_by\":\"11\",\"cms_usage\":3,\"use_as_title\":null,\"caption\":\"Article\",\"use_in_path\":null,\"use_in_menu\":\"10\",\"metadata\":{},\"id\":1,\"class\":\"Content\",\"Data\":{\"article\":{\"display_on_page\":2,\"default\":\"\",\"display_on_list\":2,\"optional\":1,\"caption\":\"Article\",\"display_label\":1,\"order\":2,\"translate\":1,\"id\":\"11\",\"max_length\":1024,\"datatype\":\"Text\"},\"title\":{\"display_on_page\":2,\"default\":\"\",\"display_on_list\":2,\"optional\":1,\"caption\":\"Title\",\"display_label\":1,\"order\":1,\"translate\":1,\"id\":\"10\",\"max_length\":128,\"datatype\":\"String\"}}}],\"Content\":[{\"comment_read_policy\":0,\"Content_Spec_id\":\"1\",\"on_page_index\":0,\"Page_Entity_id\":1,\"status\":\"V\",\"comment_write_policy\":0,\"modified_time\":\"2010-12-13
   16:04:12\",\"added_time\":\"2010-12-13 16:04:12\",\"Email_id\":null,\"id\":\"1\",\"metadata\":{},\"Data\":{\"en\":{\"article\":\"Minimal
   test site, not such minimal any more ;)\",\"title\":\"Test site is up\"},\"pl\":{\"article\":\"Minimalna

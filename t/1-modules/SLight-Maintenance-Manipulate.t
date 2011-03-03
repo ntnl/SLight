@@ -17,6 +17,7 @@ use lib $Bin .'/../../lib/';
 use utf8;
 
 use SLight::Test::Site;
+use SLight::API::Page qw( get_Pages_where );
 
 use English qw( -no_match_vars );
 use File::Slurp qw( read_file );
@@ -29,6 +30,7 @@ plan tests =>
     + 3 # standard options...
     + 3 # --cms-list with all three formats.
     + 3 # --cms-get with all three formats.
+    + 2 # --cms-delete
 ;
 # Prepare... # {{{
 my $site_root = SLight::Test::Site::prepare_fake(
@@ -90,6 +92,18 @@ SLight::Maintenance::Manipulate::main(q{--cms-list}, q{/}, q{--format}, q{json},
 is_referenced_ok(q{}.scalar read_file( $pepper . 'list-xml' ),  '--cms-list to XML');
 is_referenced_ok(q{}.scalar read_file( $pepper . 'list-yaml' ), '--cms-list to YAML');
 is_referenced_ok(q{}.scalar read_file( $pepper . 'list-json' ), '--cms-list to JSON');
+
+
+
+# If it dies, the test will die too, so why bother to check?
+output_like(
+    sub { SLight::Maintenance::Manipulate::main(q{--cms-delete}, q{/Docs/}); },
+    qr{status: OK},
+    undef,
+    "--cms-delete outputs a response."
+);
+# Check, if the page 'Doc' was really deleted.
+is_referenced_ok(get_Pages_where(parent_id=>1), "--cms-delete does it's job");
 
 
 

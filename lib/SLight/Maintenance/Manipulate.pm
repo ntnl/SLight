@@ -17,7 +17,7 @@ my $VERSION = '0.0.3';
 
 use SLight::API::Content qw( get_Contents_where );
 use SLight::API::ContentSpec qw( get_ContentSpec );
-use SLight::API::Page qw( get_Page get_Page_id_for_path get_Pages_where );
+use SLight::API::Page qw( get_Page get_Page_id_for_path get_Pages_where delete_Page );
 use SLight::Core::Config;
 use SLight::Core::DB;
 use SLight::DataType qw( decode_data );
@@ -263,7 +263,7 @@ sub handle_cms_list { # {{{
     $options->{'cms-get'} =~ s{^/}{}s;
     $options->{'cms-get'} =~ s{/$}{}s;
 
-    my $path = [ split qr{\/}s, $options->{'cms-list'} ];
+    my $path = [ split qr{\/}s, $options->{'cms-get'} ];
 
     my $page_id = get_Page_id_for_path( $path );
 
@@ -372,6 +372,24 @@ sub handle_cms_get { # {{{
 
 sub handle_cms_delete { # {{{
     my ( $options ) = @_;
+
+    $options->{'cms-get'} =~ s{^/}{}s;
+    $options->{'cms-get'} =~ s{/$}{}s;
+
+    my $path = [ split qr{\/}s, $options->{'cms-delete'} ];
+
+    my $page_id = get_Page_id_for_path( $path );
+
+    delete_Page($page_id);
+    
+    push_data(
+        {
+            Head => {
+                version => q{0.1},
+                status  => 'OK',
+            },
+        }
+    );
 
     return;
 } # }}}
