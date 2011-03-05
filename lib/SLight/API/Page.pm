@@ -69,20 +69,13 @@ sub update_Page { # {{{
             id => { type=>SCALAR },
 
             parent_id => { type=>SCALAR, optional=>1 },
-            path      => { type=>SCALAR },
+            path      => { type=>SCALAR, optional=>1 },
             
-            template => { type=>SCALAR },
+            template => { type=>SCALAR, optional=>1 },
         }
     );
 
-    return $_handler->update_ENTITY(
-        id => $P{'id'},
-
-        parent_id => $P{'parent_id'},
-
-        path     => $P{'path'},
-        template => $P{'template'},
-    );
+    return $_handler->update_ENTITY(%P);
 } # }}}
 
 sub update_Pages { # {{{
@@ -181,7 +174,7 @@ sub get_Page_id_for_path { # {{{
         if (not $pages->[0]) {
             # Something IS wrong here! It's not possible to have holes in path!
             # Let's hope, it's just User messing with the URL.
-            last;
+            return;
         }
 
         $parent_id = $last_page_id = $pages->[0]->{'id'};

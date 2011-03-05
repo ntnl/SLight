@@ -32,7 +32,7 @@ plan tests =>
     + 2 # get_Page_ids_where
     + 1 # get_Page_fields_where
     + 4 # get_Page_full_path
-    + 4 # get_Page_id_for_path
+    + 5 # get_Page_id_for_path
 ;
 
 SLight::Test::Site::prepare_empty(
@@ -118,9 +118,14 @@ is_deeply(
 
 
 is_deeply(
-    get_Page_id_for_path([qw( A B C D )]),
+    scalar get_Page_id_for_path([qw( A B C D )]),
     undef,
-    'get_Page_id_for_path (1/4) non-existing path does not kill the function'
+    'get_Page_id_for_path (1/4) non-existing path does not kill the function (1-st level)'
+);
+is_deeply(
+    scalar get_Page_id_for_path([qw( Foo Goo )]),
+    undef,
+    'get_Page_id_for_path (1/4) non-existing path does not kill the function (2-dn level)'
 );
 is_deeply(
     get_Page_id_for_path([]),
