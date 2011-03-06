@@ -96,7 +96,23 @@ sub build_site { # {{{
 
     unlink $db_path;
 
+    # Create something in empty directories, otherwise git will ignore them.
+    foreach my $dir (qw( assets cache db email html sessions users )) {
+        touch($_site_root . q{/} . $dir . q{/.keep});
+    }
+
     return 0;
+} # }}}
+
+# Create an empty (zero bytes) file.
+#
+# If a file already exists, it will be truncated.
+sub touch { # {{{
+    my ($file) = @_;
+
+    my $fh;
+    open $fh, q{>}, $file;
+    return close $fh;
 } # }}}
 
 sub make_template { # {{{

@@ -236,8 +236,8 @@ CREATE TABLE Content_Entity (
     FOREIGN KEY (`Email_id`)        REFERENCES Email(`id`) ON DELETE CASCADE,
 	FOREIGN KEY (`Content_Spec_id`) REFERENCES Content_Spec(`id`) ON DELETE CASCADE
 );
-INSERT INTO "Content_Entity" VALUES(1,1,NULL,'V',1,0,0,0,'2010-12-13 16:04:12','2010-12-13 16:04:12',NULL);
-INSERT INTO "Content_Entity" VALUES(2,1,NULL,'V',2,0,0,0,'2010-12-13 16:04:12','2010-12-13 16:04:12',NULL);
+INSERT INTO "Content_Entity" VALUES(1,1,NULL,'V',1,0,0,0,'2011-03-06 16:58:22','2011-03-06 16:58:22',NULL);
+INSERT INTO "Content_Entity" VALUES(2,1,NULL,'V',2,0,0,0,'2011-03-06 16:58:22','2011-03-06 16:58:22',NULL);
 CREATE TABLE Content_Entity_Data (
 	`Content_Entity_id` INTEGER NOT NULL,
 
@@ -327,8 +327,8 @@ CREATE TABLE Asset_Entity (
 
 	FOREIGN KEY (`Email_id`) REFERENCES Email(`id`) ON DELETE CASCADE
 );
-INSERT INTO "Asset_Entity" VALUES(1,3,'2010-12-13 16:04:12','',6700,'image/gif','');
-INSERT INTO "Asset_Entity" VALUES(2,6,'2010-12-13 16:04:13','SampleImage.png',13379,'image/png','Sample image for testing purposes.');
+INSERT INTO "Asset_Entity" VALUES(1,3,'2011-03-06 16:58:22','',6700,'image/gif','');
+INSERT INTO "Asset_Entity" VALUES(2,6,'2011-03-06 16:58:22','SampleImage.png',13379,'image/png','Sample image for testing purposes.');
 CREATE TABLE Asset_2_Content (
     `Asset_Entity_id` INTEGER,
 
@@ -374,7 +374,7 @@ INSERT INTO "User_Entity" VALUES(4,'nataly','Guest','Natalia','e212af1edb9a37b6d
 INSERT INTO "User_Entity" VALUES(5,'wanda','Disabled','Wanda L.','e8d42198a43571d76bf2999e39c4a817fe83caef95e4c36ad1304b08270b065eece36ce313066702ccd507b2d3a743bfae99630cb351052a70d835d00a5016d7',5,NULL);
 CREATE TABLE System_Access (
     user_type       VARCHAR(16) NOT NULL,
-        -- One of: 'System', 'Guest', 'Authenticated'
+        -- One of: 'system', 'guest', 'authenticated'
 
     handler_family VARCHAR(128) NOT NULL,
     handler_class  VARCHAR(128) NOT NULL,
