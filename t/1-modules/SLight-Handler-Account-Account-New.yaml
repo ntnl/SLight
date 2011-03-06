@@ -16,7 +16,7 @@ Show form:
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         - class: Parent
           data:
@@ -141,7 +141,7 @@ Submit form (bad data):
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         - class: Parent
           data:

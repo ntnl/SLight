@@ -8,7 +8,7 @@ Get info about an Asset:
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         type: Container
     object_data:

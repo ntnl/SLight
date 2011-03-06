@@ -8,7 +8,7 @@ Off-site avatar (Gravatar):
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         - class: Parent
           data:
@@ -57,7 +57,7 @@ On-site avatar:
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         - class: Parent
           data:

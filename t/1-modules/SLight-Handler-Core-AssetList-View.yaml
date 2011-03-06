@@ -8,7 +8,7 @@ Asset list with one asset:
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         - class: Current
           data:
@@ -101,7 +101,7 @@ Empty Asset list:
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         - class: Current
           data:

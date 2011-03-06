@@ -8,7 +8,7 @@ Fake AuthRequired error:
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         type: Container
     object_data:

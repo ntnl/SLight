@@ -11,7 +11,7 @@ Open content edit form:
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         - class: Test
           data:

@@ -41,7 +41,7 @@ Email information page:
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         type: Container
     object_data:
@@ -80,7 +80,7 @@ Email verified:
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         type: Container
     object_data:
@@ -116,7 +116,7 @@ Open My Data form:
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         - class: Parent
           data:
@@ -179,7 +179,7 @@ Send My Data form (bad input):
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         - class: Parent
           data:

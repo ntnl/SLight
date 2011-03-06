@@ -6,7 +6,7 @@ Path with 1 element:
   - class: Root
     data:
       href: /
-      text: SLight sandbox
+      text: Test facility
     type: Link
   - class: Selected
     data:
@@ -20,7 +20,7 @@ Path with 2 elements:
   - class: Root
     data:
       href: /
-      text: SLight sandbox
+      text: Test facility
     type: Link
   - class: Parent
     data:

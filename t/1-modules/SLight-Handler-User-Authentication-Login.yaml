@@ -8,7 +8,7 @@ Login form:
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         - class: Current
           data:
@@ -67,7 +67,7 @@ Sending form with bad login/pass:
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         - class: Current
           data:

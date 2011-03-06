@@ -8,7 +8,7 @@ Empty list:
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         - class: Current
           data:
@@ -57,7 +57,7 @@ One element list:
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         - class: Current
           data:

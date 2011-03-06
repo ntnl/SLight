@@ -8,7 +8,7 @@ Call the 'View' actio non 'Test::Foo' object:
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         type: Container
     object_data:

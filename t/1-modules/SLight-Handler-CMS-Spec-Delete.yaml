@@ -8,7 +8,7 @@ Ask for existing Spec:
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         type: Container
     object_data:

@@ -8,7 +8,7 @@ Root page:
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         type: Container
       Core::Toolbox:

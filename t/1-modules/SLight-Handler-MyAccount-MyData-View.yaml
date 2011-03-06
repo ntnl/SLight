@@ -8,7 +8,7 @@ Guest access:
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         type: Container
     object_data:
@@ -44,7 +44,7 @@ Guest access:
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         - class: Current
           data:
@@ -119,7 +119,7 @@ Guest access:
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         - class: Current
           data:
@@ -194,7 +194,7 @@ Guest access:
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         - class: Current
           data:

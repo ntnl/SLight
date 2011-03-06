@@ -55,7 +55,7 @@ Display 'Thank you' page:
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         - class: Current
           data:
@@ -96,7 +96,7 @@ Send out bad data (crash test):
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         - class: Current
           data:
@@ -212,7 +212,7 @@ User registration form:
         - class: Root
           data:
             href: /
-            text: SLight sandbox
+            text: Test facility
           type: Link
         - class: Current
           data:

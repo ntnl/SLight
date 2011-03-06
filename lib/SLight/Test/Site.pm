@@ -147,6 +147,7 @@ sub prepare_fake_dir { # {{{
 sub fake_config { # {{{
     my ( $site_root ) = @_;
 
+    SLight::Core::Config::set_option('name',      q{Test facility});
     SLight::Core::Config::set_option('domain',    q{foo.localdomain});
     SLight::Core::Config::set_option('web_root',  q{/});
     SLight::Core::Config::set_option('site_root', $site_root);
