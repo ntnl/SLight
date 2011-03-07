@@ -64,19 +64,32 @@ my $_handler = SLight::Core::Entity->new( # {{{
 sub add_Content { # {{{
     my %P = @_; # Fixme: use Params::Validate here!
 
-    return $_handler->add_ENTITY(%P);
+    return $_handler->add_ENTITY(
+        %P,
+
+        added_time    => $_handler->timestamp_2_timedate(time),
+        modified_time => $_handler->timestamp_2_timedate(time),
+    );
 } # }}}
 
 sub update_Content { # {{{
     my %P = @_; # Fixme: use Params::Validate here!
 
-    return $_handler->update_ENTITY(%P);
+    return $_handler->update_ENTITY(
+        %P,
+
+        modified_time => $_handler->timestamp_2_timedate(time),
+    );
 } # }}}
 
 sub update_Contents { # {{{
     my %P = @_; # Fixme: use Params::Validate here!
 
-    return $_handler->update_ENTITYs(%P);
+    return $_handler->update_ENTITYs(
+        %P,
+
+        modified_time => $_handler->timestamp_2_timedate(time),
+    );
 } # }}}
 
 sub count_Contents_where { # {{{
