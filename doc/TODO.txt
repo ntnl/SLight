@@ -385,9 +385,9 @@
 [X]     --cms-delete
 [X]         Implement
 [X]         Ensure that automated tests covers >99% of code
-[>]     --cms-set
-[ ]         Implement
-[ ]         Ensure that automated tests covers >99% of code
+[X]     --cms-set
+[X]         Implement
+[X]         Ensure that automated tests covers >99% of code
 [ ] Bugs
 [ ]     Path element errors are not displayed?
 [ ]     Adding first page "kills" the CMS :(

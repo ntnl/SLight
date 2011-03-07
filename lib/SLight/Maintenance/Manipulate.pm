@@ -15,14 +15,15 @@ use strict; use warnings; # {{{
 
 my $VERSION = '0.0.3';
 
-use SLight::API::Content qw( get_Contents_where );
+use SLight::API::Content qw( add_Content update_Content get_Contents_where delete_Contents );
 use SLight::API::ContentSpec qw( get_ContentSpec );
-use SLight::API::Page qw( get_Page get_Page_id_for_path get_Pages_where delete_Page );
+use SLight::API::Page qw( add_Page update_Page get_Page get_Page_id_for_path get_Pages_where delete_Page );
 use SLight::Core::Config;
 use SLight::Core::DB;
-use SLight::DataType qw( decode_data );
+use SLight::DataType qw( decode_data encode_data );
 
 use Cwd qw( getcwd );
+use Carp::Assert::More qw( assert_defined );
 use English qw( -no_match_vars );
 use Encode qw( encode decode );
 use File::Slurp qw( read_file write_file );
@@ -155,10 +156,12 @@ sub pull_data { # {{{
     }
     if ($_format eq 'xml') {
         require XML::Smart;
-        
+
         my $XML = XML::Smart->new($raw_data);
 
-        return $XML->tree_ok();
+        my $data = $XML->tree_ok();
+
+        return _xml_strip_content($data->{'SLightRPC'});
     }
 
     # Unsupported data format :(
@@ -255,6 +258,37 @@ sub _xml_attach_array { # {{{
     return;
 } # }}}
 
+sub _xml_strip_content { # {{{
+    my ( $stuff ) = @_;
+    
+    if (ref $stuff eq 'ARRAY') {
+        my @good_stuff;
+
+        foreach my $item (@{ $stuff }) {
+            push @good_stuff, _xml_strip_content($item);
+        }
+
+        return \@good_stuff;
+    }
+    elsif (ref $stuff eq 'HASH') {
+        if ( (scalar keys %{ $stuff }) == 1 and defined $stuff->{'CONTENT'}) {
+            return $stuff->{'CONTENT'};
+        }
+        else {
+            # Strip not needed junk (it SHOULD be just a junk...)
+            delete $stuff->{'CONTENT'};
+
+            my %good_stuff;
+            foreach my $key (keys %{ $stuff }) {
+                $good_stuff{$key} = _xml_strip_content($stuff->{$key});
+            }
+
+            return \%good_stuff;
+        }
+    }
+
+    return $stuff;
+} # }}}
 
 
 sub handle_cms_list { # {{{
@@ -394,8 +428,158 @@ sub handle_cms_delete { # {{{
     return;
 } # }}}
 
+# How this works...
+#
+# First, check if there is a page under the path.
+#   If not
+#       - Create the page.
+#           (id will be ignored, if given, possible 'fixme')
+#       - Add Content items to the page.
+#           (ids will be ignored, if given, possible 'fixme')
+#   If so:
+#       - Update the page.
+#       - Have any Content entities been supplied?
+#           If so
+#               - Add ones that are missing
+#               - Update (if IDs ware given)
+#               - Delete old Contents, that ware not present in the query
+#           - Add Content entities to the Page
+#
 sub handle_cms_set { # {{{
     my ( $options ) = @_;
+
+    $options->{'cms-set'} =~ s{^/}{}s;
+    $options->{'cms-set'} =~ s{/$}{}s;
+
+    my $path = [ split qr{\/}s, $options->{'cms-set'} ];
+
+    my $data = pull_data();
+
+#    use Data::Dumper; warn "Path: " . Dumper $path;
+#    use Data::Dumper; warn "Pulled data: " . Dumper $data;
+
+    my $page_id = get_Page_id_for_path( $path );
+
+#    warn 'Page_id from path: ' . ($page_id or q{---});
+
+    # If User provided Page data, process this data.
+    if ($data->{'Body'}->{'Page'}) {
+        if (ref $data->{'Body'}->{'Page'} ne 'ARRAY') {
+            $data->{'Body'}->{'Page'} = [
+                $data->{'Body'}->{'Page'}
+            ];
+        }
+
+#        use Data::Dumper; warn 'Page '. Dumper $data->{'Body'}->{'Page'};
+
+        if (not $page_id) {
+            # There is no such page, create it.
+            # Get it's parent.
+            my $new_path_elem = pop @{ $path };
+
+            my $parent_id = get_Page_id_for_path( $path );
+
+            $page_id = add_Page(
+                parent_id => $parent_id,
+                path      => $new_path_elem,
+
+                template => $data->{'Body'}->{'Page'}->[0]->{'template'},
+            );
+        }
+        else {
+            # Page exists, so update it.
+            update_Page(
+                id => $page_id,
+
+                template => $data->{'Body'}->{'Page'}->[0]->{'template'},
+            );
+        }
+    }
+
+    if ($data->{'Body'}->{'Content'}) {
+#       warn "Will update content!";
+
+        if (ref $data->{'Body'}->{'Content'} ne 'ARRAY') {
+            $data->{'Body'}->{'Content'} = [
+                $data->{'Body'}->{'Content'}
+            ];
+        }
+
+#        use Data::Dumper; warn 'Page '. Dumper $data->{'Body'}->{'Content'};
+
+        # Get Content present on the selected page.
+        my $content_list = get_Contents_where(
+            Page_Entity_id => $page_id,
+        );
+
+        my %present_content;
+        foreach my $Content_Entry (@{ $content_list }) {
+            $present_content{ $Content_Entry->{'id'} } = $Content_Entry;
+        }
+
+#        warn "I have found this content in DB: ". Dumper \%present_content;
+
+        # FIXME! Encode data!
+
+        foreach my $Content_Entry (@{ $data->{'Body'}->{'Content'} }) {
+            my $id = delete $Content_Entry->{'id'};
+
+            # Fix 'Data' key name.
+            if ($Content_Entry->{'Data'}) {
+                $Content_Entry->{'_data'} = delete $Content_Entry->{'Data'};
+
+                # Fix _data IDs.
+                my $Content_Spec = get_ContentSpec($Content_Entry->{'Content_Spec_id'});
+
+                foreach my $lang (keys %{ $Content_Entry->{'_data'} }) {
+                    my @fields = keys %{ $Content_Entry->{'_data'}->{$lang} };
+
+                    foreach my $field (@fields) {
+                        my $field_id = $Content_Spec->{'_data'}->{$field}->{'id'};
+
+                        $Content_Entry->{'_data'}->{$lang}->{$field_id} = delete $Content_Entry->{'_data'}->{$lang}->{$field};
+                    }
+                }
+
+#                use Data::Dumper; warn Dumper $Content_Spec;
+            }
+
+            if ($id and $present_content{$id}) {
+                update_Content(
+                    %{ $Content_Entry },
+
+                    id => $id,
+                );
+
+#                warn "Updating content!";
+
+                delete $present_content{$id};
+            }
+            else {
+                # FIXME: Check, that this key was empty.
+                delete $Content_Entry->{'Page_Entity_id'};
+
+#                warn "Adding content to $page_id!";
+
+                add_Content(
+                    Page_Entity_id => $page_id,
+
+                    %{ $Content_Entry },
+                );
+            }
+        }
+
+        delete_Contents( [ keys %present_content ] );
+    }
+
+    push_data(
+        {
+            Head => {
+                version => q{0.1},
+                status  => 'OK',
+            },
+        }
+    );
 
     return;
 } # }}}

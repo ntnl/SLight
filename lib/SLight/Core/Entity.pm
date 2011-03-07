@@ -262,6 +262,8 @@ sub add_ENTITY { # {{{
 #        $values{$field} = $P{$field};
 #    }
 
+    my $_debug = delete $P{'_debug'};
+
     SLight::Core::DB::check();
 
     my $data_hash = delete $P{'_data'};
@@ -277,7 +279,7 @@ sub add_ENTITY { # {{{
     SLight::Core::DB::run_insert(
         'into'   => $self->{'base_table'},
         'values' => \%P,
-        'debug'  => $P{'_debug'},
+        'debug'  => $_debug,
     );
 
     my $entity_id = SLight::Core::DB::last_insert_id();
@@ -298,7 +300,7 @@ sub add_ENTITY { # {{{
                     %{ $data },
                     $self->{'base_table'} . q{_id} => $entity_id,
                 },
-                'debug'  => $P{'_debug'},
+                'debug' => $_debug,
             );
         }
     }
@@ -648,6 +650,23 @@ sub get_ENTITYs_fields_where { # {{{
 
     return [ values %entities ];
 } # }}}
+
+
+
+# Utility methods
+
+
+sub timestamp_2_timedate { # {{{
+    my ( $self, $timestamp ) = @_;
+
+    my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime $timestamp;
+
+    return sprintf q{%04d-%02d-%02d %02d:%02d:%02d}, $year + 1900, $mon + 1, $mday, $hour, $min, $sec;
+} # }}}
+
+
+
+# Internal methods
 
 sub _slurp_entities { # {{{
     my ( $self, $sth) = @_;
