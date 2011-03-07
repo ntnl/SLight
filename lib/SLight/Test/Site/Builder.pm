@@ -111,8 +111,11 @@ sub touch { # {{{
     my ($file) = @_;
 
     my $fh;
-    open $fh, q{>}, $file;
-    return close $fh;
+    if (open $fh, q{>}, $file) {
+        close $fh;
+    }
+
+    return;
 } # }}}
 
 sub make_template { # {{{
