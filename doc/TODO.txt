@@ -370,7 +370,7 @@
 
 =--= Sprint 2 - Command line CMS - (X 2011-02-27) 2011-03-06
 
-[>] Command line interface to manipulate CMS
+[X] Command line interface to manipulate CMS
 [X]     Bootstrap the tool (support --help, --version, initialize config and such).
 [X]     I/O support (loading/dumping Perl data structures).
 [X]         YAML
@@ -392,6 +392,7 @@
 [ ]     Path element errors are not displayed?
 [ ]     Adding first page "kills" the CMS :(
 [ ]     Remove white space right after and before [bbcode] tags
+[ ]     When a part of the Template is missing, do not throw a 'hard' internal error.
 [ ] Release to the public
 [ ]     Make package
 [ ]     Beta-test

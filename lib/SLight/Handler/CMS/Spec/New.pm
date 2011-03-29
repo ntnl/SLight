@@ -41,7 +41,7 @@ sub form_spec { # {{{
 } # }}}
 
 sub make_form { # {{{
-    my ( $self, $oid, $metadata, $form ) = @_;
+    my ( $self, $oid, $metadata, $form, $errors ) = @_;
     
     $self->set_class('CMS_Spec');
 
@@ -49,11 +49,13 @@ sub make_form { # {{{
         name    => 'caption',
         caption => TR('Caption'),
         value   => ( $self->{'options'}->{'caption'} or q{} ),
+        error   => $errors->{'caption'},
     );
     $form->add_Entry(
         name    => 'class',
         caption => TR('Class'),
         value   => ( $self->{'options'}->{'caption'} or q{} ),
+        error   => $errors->{'class'},
     );
 
     my @role_field_options = (

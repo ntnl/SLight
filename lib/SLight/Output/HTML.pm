@@ -86,6 +86,13 @@ sub serialize { # {{{
         }
     }
 
+    # Add some useful page-wide variables.
+    $template->set_var('web_root', SLight::Core::Config::get_option('web_root'));
+    $template->set_var(
+        'basehref',
+        q{//} . SLight::Core::Config::get_option('domain') . SLight::Core::Config::get_option('web_root')
+    );
+
     return (
        $template->render(),
         q{text/html; character-set: utf-8}

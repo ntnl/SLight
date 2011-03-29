@@ -50,7 +50,7 @@ Get form:
             - class: Value
               data:
                 name: order
-                value: '0'
+                value: '2'
               type: Entry
             type: Container
           - class: F-datatype SelectEntry
@@ -102,7 +102,7 @@ Get form:
                   - Not translatable
                 - - '1'
                   - This field is translatable
-                value: ''
+                value: '0'
               type: SelectEntry
             type: Container
           - class: F-display_on_page SelectEntry
@@ -121,7 +121,7 @@ Get form:
                   - Display as summary
                 - - '2'
                   - Display in full form
-                value: ''
+                value: '2'
               type: SelectEntry
             type: Container
           - class: F-display_on_list SelectEntry
@@ -140,7 +140,7 @@ Get form:
                   - Display as summary
                 - - '2'
                   - Display in full form
-                value: ''
+                value: '1'
               type: SelectEntry
             type: Container
           - class: F-display_label SelectEntry
@@ -161,7 +161,7 @@ Get form:
                   - only on pages.
                 - - '3'
                   - do not display (only on forms)
-                value: ''
+                value: '3'
               type: SelectEntry
             type: Container
           - class: F-optional SelectEntry
@@ -178,7 +178,7 @@ Get form:
                   - Yes, it is always required
                 - - '1'
                   - No, it is optional
-                value: ''
+                value: '1'
               type: SelectEntry
             type: Container
           - class: F-max_length Entry

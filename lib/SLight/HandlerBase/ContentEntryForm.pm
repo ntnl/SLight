@@ -51,7 +51,7 @@ sub build_form_guts { # {{{
             caption => TR('Path element name'),
             name    => 'page.path',
             value   => ( $self->{'options'}->{'page.path'} or $page->{'path'} or q{}),
-            error   => $P{'errors'}->{'meta.path'},
+            error   => $P{'errors'}->{'page.path'},
         );
         # Fixme! This should be a select entry!
         $form->add_Entry(

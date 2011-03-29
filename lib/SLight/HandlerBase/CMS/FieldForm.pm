@@ -24,6 +24,12 @@ sub make_form { ## no critic (Subroutines::ProhibitExcessComplexity) {{{
     my $field_data = ( $metadata->{'spec'}->{'_data'}->{$oid} or {} );
 
 #    use Data::Dumper; warn Dumper $field_data;
+#    use Data::Dumper; warn Dumper $metadata;
+
+    my $default_order = 0;
+    if ($metadata->{'spec'}->{'_data'}) {
+        $default_order = scalar keys %{ $metadata->{'spec'}->{'_data'} };
+    }
 
     $form->add_Entry(
         name    => 'class',
@@ -40,7 +46,7 @@ sub make_form { ## no critic (Subroutines::ProhibitExcessComplexity) {{{
     $form->add_Entry(
         name    => 'order',
         caption => TR('Order') . q{:},
-        value   => ( $self->{'options'}->{'order'} or $field_data->{'order'} or q{0} ),
+        value   => ( $self->{'options'}->{'order'} or $field_data->{'order'} or $default_order ),
         error   => ( $errors->{'order'} or q{} ),
     );
     $form->add_SelectEntry(
@@ -69,7 +75,7 @@ sub make_form { ## no critic (Subroutines::ProhibitExcessComplexity) {{{
     $form->add_SelectEntry(
         name    => 'translate',
         caption => TR('Localization') . q{:},
-        value   => ( $self->{'options'}->{'translate'} or $field_data->{'translate'} or q{} ),
+        value   => ( $self->{'options'}->{'translate'} or $field_data->{'translate'} or q{0} ),
         options => [
             [ '0', TR('Not translatable'), ],
             [ '1', TR('This field is translatable'), ],
@@ -79,7 +85,7 @@ sub make_form { ## no critic (Subroutines::ProhibitExcessComplexity) {{{
     $form->add_SelectEntry(
         name    => 'display_on_page',
         caption => TR('Display on page') . q{:},
-        value   => ( $self->{'options'}->{'display_on_page'} or $field_data->{'display_on_page'} or q{} ),
+        value   => ( $self->{'options'}->{'display_on_page'} or $field_data->{'display_on_page'} or q{2} ),
         options => [
             [ '0', TR('Do not display'), ],
             [ '1', TR('Display as summary'), ],
@@ -90,7 +96,7 @@ sub make_form { ## no critic (Subroutines::ProhibitExcessComplexity) {{{
     $form->add_SelectEntry(
         name    => 'display_on_list',
         caption => TR('Display on list') . q{:},
-        value   => ( $self->{'options'}->{'display_on_list'} or $field_data->{'display_on_list'} or q{} ),
+        value   => ( $self->{'options'}->{'display_on_list'} or $field_data->{'display_on_list'} or q{1} ),
         options => [
             [ '0', TR('Do not display'), ],
             [ '1', TR('Display as summary'), ],
@@ -101,7 +107,7 @@ sub make_form { ## no critic (Subroutines::ProhibitExcessComplexity) {{{
     $form->add_SelectEntry(
         name    => 'display_label',
         caption => TR('Display label') . q{:},
-        value   => ( $self->{'options'}->{'display_label'} or $field_data->{'display_label'} or q{} ),
+        value   => ( $self->{'options'}->{'display_label'} or $field_data->{'display_label'} or q{3} ),
         options => [
             [ '0', TR('display on pages and on lists.'), ],
             [ '1', TR('only on lists.'), ],
@@ -113,7 +119,7 @@ sub make_form { ## no critic (Subroutines::ProhibitExcessComplexity) {{{
     $form->add_SelectEntry(
         name    => 'optional',
         caption => TR('Is required') . q{:},
-        value   => ( $self->{'options'}->{'optional'} or $field_data->{'optional'} or q{} ),
+        value   => ( $self->{'options'}->{'optional'} or $field_data->{'optional'} or q{1} ),
         options => [
             [ '0', TR('Yes, it is always required'), ],
             [ '1', TR('No, it is optional'), ],
@@ -128,7 +134,6 @@ sub make_form { ## no critic (Subroutines::ProhibitExcessComplexity) {{{
 
     return;
 } # }}}
-
 
 # vim: fdm=marker
 1;

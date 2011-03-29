@@ -40,6 +40,10 @@ sub main { # {{{
         }
     );
 
+#    use Data::Dumper; warn Dumper \%ENV;
+
+#    warn <STDIN>;
+
     # Default values:
     my $output_type = 'THT';
 
@@ -66,7 +70,7 @@ sub main { # {{{
         FILE     => 'pass_FILE',
         REDIRECT => 'pass_REDIRECT',
     );
-    
+
 #    warn "R: " . $response->{'response'};
 #    use Data::Dumper; warn Dumper $response;
 
@@ -157,6 +161,8 @@ sub safe_main { # {{{
         return internal_error_response("Form data has been truncated.");
     }
 
+#    use Data::Dumper; warn Dumper $cgi;
+
     # Initialize our internal data storage.
     $self->{'CGI'} = {
         cgi         => $cgi,
@@ -186,7 +192,8 @@ sub safe_main { # {{{
 
 #    print "URL: ". $raw_url ."\n";
 #    print "WRU: ". $web_root ."\n";
-#    use Data::Dumper; print Dumper \%ENV;
+#    use Data::Dumper; warn Dumper \%ENV;
+#     use Data::Dumper; warn Dumper \%options;
 
     # Can we replace defaults with something sane?
     if ($raw_url =~ m{^$web_root}s) {

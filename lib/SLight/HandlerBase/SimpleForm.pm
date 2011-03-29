@@ -64,6 +64,8 @@ sub handle_save { # {{{
         $form_spec->{'validator_metadata'},
     );
 
+#    use Data::Dumper; warn 'Errors: '. Dumper $errors;
+
     if ($errors) {
         return $self->handle_view($oid, $metadata, $errors);
     }
