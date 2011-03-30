@@ -11,17 +11,18 @@ package SLight::HandlerUtils::Toolbox;
 # More information on: http://slight-cms.org/
 # 
 ################################################################################
-
-# Toolbox renderer.
 use strict; use warnings; use utf8; # {{{
 
 use SLight::Core::URL;
 use SLight::Core::L10N qw( TR TF );
 use SLight::DataToken qw( mk_Container_token mk_Action_token );
+use SLight::API::Permissions qw( can_User_access );
 
 use Carp::Assert::More qw( assert_defined );
 use Params::Validate qw( :all );
 # }}}
+
+# Toolbox renderer.
 
 # Purpose:
 #   Prepare an 'advanced' toolbox, where labels can be customized,
@@ -74,6 +75,17 @@ sub make_toolbox { # {{{
         assert_defined($url->{'action'}, "action configured");
 
         # Check access rights.
+#        my $access_poliicy = can_User_access(
+#            handler_family => 
+#            handler_class  => 
+#
+#            handler_action => $P{'action'},
+#
+#            handler_object => 
+#        );
+#        if ($access_policy ne q{GRANTED}) {
+#            next;
+#        }
 
         my $caption = ( delete $url->{'caption'} or TR(ucfirst $url->{'action'} . q{#action}) );
         my $class   = ( delete $url->{'class'}   or q{SLight_} . ( ucfirst $url->{'action'} ) . q{_Action} );

@@ -116,7 +116,7 @@ sub response_content { # {{{
 
     my $content_response = {
         page_id => $self->{'page_id'},
-        
+
         breadcrumb_path => $self->{'breadcrumb_path'},
 
         template => $self->{'template'},

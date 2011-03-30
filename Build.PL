@@ -23,6 +23,16 @@ my $build = Module::Build->new (
     dist_author   => 'Bartłomiej Syguła <natanael@natanael.krakow.pl>',
 
     # What You must have, and what will do You good.
+    configure_requires => {
+        'Module::Build' => 0.36,
+    },
+    build_requires => {
+        'Test::Exception'       => '0.27',
+        'Test::FileReferenced'  => '0.01',
+        'Test::More'            => '0.94',
+        'Test::Output'          => '0.16',
+        'File::Copy::Recursive' => '0.38',
+    },
     requires => {
         'perl' => '5.8.0',
 
@@ -46,13 +56,6 @@ my $build = Module::Build->new (
         'Time::HiRes'           => '1.9721',
         'URI::Escape'           => '1.58',
         'YAML::Syck'            => '1.17',
-    },
-    build_requires => {
-        'Test::Exception'       => '0.27',
-        'Test::FileReferenced'  => '0.01',
-        'Test::More'            => '0.94',
-        'Test::Output'          => '0.16',
-        'File::Copy::Recursive' => '0.38',
     },
 
     # Play nice with friends ;)

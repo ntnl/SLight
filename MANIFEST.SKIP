@@ -79,3 +79,4 @@ sandbox/.*
 SLight\-.*\-result\.yaml
 
 SLight-.+?tar.gz
+^SLight-v\d.+?

@@ -14,7 +14,7 @@ package SLight::Handler::CMS::Entry::AddContent;
 use strict; use warnings; # {{{
 use base q{SLight::HandlerBase::ContentEntryForm};
 
-use SLight::API::Content qw( add_Content );
+use SLight::API::Content qw( add_Content get_Content_ids_where );
 use SLight::API::ContentSpec qw( get_ContentSpecs_where get_ContentSpec );
 use SLight::API::Page;
 use SLight::DataStructure::List::Table;
@@ -218,7 +218,12 @@ sub handle_save { # {{{
         $content{'on_page_index'} = 0;
     }
     else {
-        $content{'on_page_index'} = 1; # At the moment, it will just put the 'aux' content in the back.
+        # Check, if there is already some content, and - adjust the index respectively.
+        my $content_ids = get_Content_ids_where(
+            Page_Entity_id => $page_id,
+        );
+
+        $content{'on_page_index'} = scalar @{ $content_ids } + 1;
     }
 
     my $content_id = add_Content(%content);
