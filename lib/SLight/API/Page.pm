@@ -168,7 +168,7 @@ sub get_Page_id_for_path { # {{{
             parent_id => $parent_id,
             path      => $part,
 
-            _fields => [qw( id template )],
+            _fields => [qw( id )],
         );
 
         if (not $pages->[0]) {

@@ -42,7 +42,8 @@ sub new { # {{{
         read_only => 0,
 
         url  => undef,
-        user => {}, # Planned for Milestone 4
+
+        user => {},
     };
 
     bless $self, $class;
@@ -156,6 +157,10 @@ sub push_data { # {{{
 #   Add Toolbox to the object's output (so, not as part of the page, but a part of the object).
 sub push_toolbox { # {{{
     my ( $self, %toolbox ) = @_;
+
+    if ($self->{'user'}->{'id'} and not $toolbox{'user_id'}) {
+        $toolbox{'user_id'} = $self->{'user'}->{'id'};
+    }
 
     return $self->push_data(
         $self->make_toolbox(%toolbox)

@@ -13,10 +13,11 @@ package SLight::HandlerUtils::Toolbox;
 ################################################################################
 use strict; use warnings; use utf8; # {{{
 
+use SLight::API::Permissions qw( can_User_access );
 use SLight::Core::URL;
 use SLight::Core::L10N qw( TR TF );
 use SLight::DataToken qw( mk_Container_token mk_Action_token );
-use SLight::API::Permissions qw( can_User_access );
+use SLight::PathHandlerUtils;
 
 use Carp::Assert::More qw( assert_defined );
 use Params::Validate qw( :all );
@@ -31,6 +32,8 @@ sub make_toolbox { # {{{
     my %P = validate(
         @_,
         {
+            user_id => { type=>SCALAR, optional=>1 },
+
             urls => { type=>ARRAYREF },
 
             path_handler => { type=>SCALAR, optional=>1 },
@@ -47,7 +50,6 @@ sub make_toolbox { # {{{
             protocol => { type=>SCALAR, optional=>1 },
 
             class => { type=>SCALAR },
-#            login => { type=>SCALAR },
         }
     );
 
@@ -74,18 +76,28 @@ sub make_toolbox { # {{{
 
         assert_defined($url->{'action'}, "action configured");
 
-        # Check access rights.
-#        my $access_poliicy = can_User_access(
-#            handler_family => 
-#            handler_class  => 
-#
-#            handler_action => $P{'action'},
-#
-#            handler_object => 
-#        );
-#        if ($access_policy ne q{GRANTED}) {
-#            next;
-#        }
+        my $class_and_id = SLight::PathHandlerUtils::get_path_target($url->{'path_handler'}, $url->{'path'});
+        if ($class_and_id) {
+#            use Data::Dumper; warn Dumper $url;
+#            use Data::Dumper; warn Dumper $class_and_id;
+
+            my ($handler_family, $handler_class) = split /::/, $class_and_id->{'handler'};
+
+            # Check access rights, we have enough data for it to be possible.
+            my $access_policy = can_User_access(
+                id => $P{'user_id'},
+
+                handler_family => $handler_family,
+                handler_class  => $handler_class,
+
+                handler_action => $url->{'action'},
+
+                handler_object => $class_and_id->{'id'},
+            );
+            if ($access_policy ne q{GRANTED}) {
+                next;
+            }
+        }
 
         my $caption = ( delete $url->{'caption'} or TR(ucfirst $url->{'action'} . q{#action}) );
         my $class   = ( delete $url->{'class'}   or q{SLight_} . ( ucfirst $url->{'action'} ) . q{_Action} );

@@ -18,11 +18,57 @@ my $VERSION = '0.0.3';
 
 use SLight::API::Content qw( get_Contents_where );
 use SLight::API::ContentSpec qw( get_ContentSpec );
-use SLight::API::Page;
+use SLight::API::Page qw( get_Page_id_for_path );
 use SLight::DataType;
 
 use Carp::Assert::More qw( assert_defined );
 # }}}
+
+=over
+
+=item get_path_target ( $self, $path )
+
+Return HASHREF with I<Object Handler> (C<handler>) and I<Object ID> (C<id>).
+
+Initial purpose of this function was to translate path to Class/ID,
+so this information can be used by Permissions checkers,
+to see if the User has access rights to some target pointed by the URL.
+
+TOD: move this comment to PathHandler.pm
+
+=back
+
+=cut
+
+sub get_path_target { # {{{
+    my ( $self, $path ) = @_;
+
+    my $page_id = get_Page_id_for_path($path);
+
+    if ($page_id) {
+        my $content_objects = get_Contents_where(
+            Page_Entity_id => $page_id,
+            on_page_index  => 0,
+        );
+
+        if ($content_objects and scalar @{ $content_objects } == 1) {
+            my $content = $content_objects->[0];
+
+#            use Data::Dumper; warn Dumper $content;
+
+            my $content_spec = get_ContentSpec($content->{'Content_Spec_id'});
+            
+#            use Data::Dumper; warn Dumper $content_spec;
+
+            return {
+                handler => $content_spec->{'owning_module'},
+                id      => $content->{'id'},
+            };
+        }
+    }
+
+    return;
+} # }}}
 
 sub analyze_path { # {{{
     my ( $self, $path ) = @_;
