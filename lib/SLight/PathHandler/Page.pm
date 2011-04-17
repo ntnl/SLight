@@ -42,15 +42,15 @@ sub analyze_path { # {{{
 
     if (scalar @{ $path }) {
         ( $page_id, $last_template ) = $self->walk_the_path($path);
+
+        if (not $page_id) {
+            return $self->generic_error_page('NotFound');
+        }
     }
     else {
         # Page with ID of 1 is the root page.
         # (if this is not the case, it means, that DB is broken)
         $page_id = 1;
-    }
-
-    if (not $page_id) {
-        return $self->generic_error_page('NotFound');
     }
 
 #    use Data::Dumper; warn 'breadcrumb_path: '. Dumper \@breadcrumb_path;
@@ -63,6 +63,8 @@ sub analyze_path { # {{{
     # If there is no root page, return a nice 'Welcome' message :)
     if ($page_id == 1 and not $page) {
         $self->cms_db_is_empty();
+
+        $self->set_page_id(0);
     }
     elsif ($aux_object_id) {
         $self->setup_aux_object($page_id, $aux_object_id);
@@ -73,6 +75,8 @@ sub analyze_path { # {{{
     else {
         # For now, assume the page is empty.
         $self->page_is_empty();
+
+        $self->set_page_id(0);
     }
 
     $self->set_template( ($page->{'template'} or 'Default') );

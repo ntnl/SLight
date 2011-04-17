@@ -94,18 +94,6 @@ Get form:
                 text: Article
               type: Label
             type: Container
-          - class: F-page.path Entry
-            content:
-            - class: Label
-              data:
-                text: Path element name
-              type: Label
-            - class: Value
-              data:
-                name: page.path
-                value: ''
-              type: Entry
-            type: Container
           - class: F-page.template Entry
             content:
             - class: Label
@@ -164,17 +152,17 @@ Get form:
               data:
                 name: meta.comment_write_policy
                 options:
-                - - 0
+                - - '0'
                   - Disabled
-                - - 1
+                - - '1'
                   - By registered users only (moderated)
-                - - 2
+                - - '2'
                   - By registered users only
-                - - 3
+                - - '3'
                   - By all users (moderated)
-                - - 4
+                - - '4'
                   - By all users
-                value: 0
+                value: '0'
               type: SelectEntry
             type: Container
           - class: F-meta.comment_read_policy SelectEntry
@@ -187,19 +175,19 @@ Get form:
               data:
                 name: meta.comment_read_policy
                 options:
-                - - 0
+                - - '0'
                   - Comments are hidden
-                - - 1
+                - - '1'
                   - Visible to registered users only
-                - - 2
+                - - '2'
                   - Visible to everyone
-                value: 0
+                value: '0'
               type: SelectEntry
             type: Container
           data:
             action: /AddContent-save.web
             hidden:
-              spec_id: 1
+              spec_id: '1'
               target: New
             submit: Add
           type: Form

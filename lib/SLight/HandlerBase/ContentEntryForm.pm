@@ -47,12 +47,14 @@ sub build_form_guts { # {{{
     # Used by 'AddContent' variant.
     if ($self->{'options'}->{'target'} and $self->{'options'}->{'target'} eq 'New') {
         # Add metadata required for the entry to be created.
-        $form->add_Entry(
-            caption => TR('Path element name'),
-            name    => 'page.path',
-            value   => ( $self->{'options'}->{'page.path'} or $page->{'path'} or q{}),
-            error   => $P{'errors'}->{'page.path'},
-        );
+        if ($self->{'page'}->{'page_id'}) {
+            $form->add_Entry(
+                caption => TR('Path element name'),
+                name    => 'page.path',
+                value   => ( $self->{'options'}->{'page.path'} or $page->{'path'} or q{}),
+                error   => $P{'errors'}->{'page.path'},
+            );
+        }
         # Fixme! This should be a select entry!
         $form->add_Entry(
             caption => TR('Template file'),
@@ -318,7 +320,9 @@ sub mk_validator_metadata { # {{{
     );
 
     if ($self->{'options'}->{'target'} and $self->{'options'}->{'target'} eq 'New') {
-        $validator_metadata{'page.path'}     = { type=>'FileName' };
+        if ($self->{'page'}->{'page_id'}) {
+            $validator_metadata{'page.path'} = { type=>'FileName' };
+        }
         $validator_metadata{'page.template'} = { type=>'FileName', optional=>1, };
     }
 

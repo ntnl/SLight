@@ -41,6 +41,8 @@ our @EXPORT_OK = qw(
     mk_Table_token
     mk_TableRow_token
     mk_TableCell_token
+
+    mk_ProgressBar_token
 );
 our %EXPORT_TAGS = (
     'all' => [ @EXPORT_OK ],
@@ -378,18 +380,29 @@ sub mk_Image_token { # {{{
     return \%P;
 } # }}}
 
+sub mk_ProgressBar_token { # {{{
+    my %P = validate(
+        @_,
+        {
+            class => { type=>SCALAR, optional=>1, default=>'generic' },
+
+            bar_class => { type=>SCALAR, optional=>1, default=>'generic' },
+            bar_value => { type=>SCALAR },
+            bar_range => { type=>SCALAR },
+        }
+    );
+    
+    $P{'type'} = 'ProgressBar';
+
+    $P{'data'}->{'bar_class'} = delete $P{'bar_class'};
+    $P{'data'}->{'bar_value'} = delete $P{'bar_value'};
+    $P{'data'}->{'bar_range'} = delete $P{'bar_range'};
+
+    return \%P;
+} # }}}
+
 # WIP
 #sub mk_Radio_token { # {{{
-#    my %P = validate(
-#        @_,
-#        {
-#        }
-#    );
-#
-#    return \%P;
-#} # }}}
-# WIP:
-#sub mk_ProgressBar_token { # {{{
 #    my %P = validate(
 #        @_,
 #        {

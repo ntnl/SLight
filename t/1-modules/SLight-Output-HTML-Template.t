@@ -40,7 +40,7 @@ plan tests =>
     + 1 # process_element_GridItem
     + 1 # process_element_Grid
     + 1 # process_element_Form
-    + 3 # process_element_ProgressBar
+    + 1 # process_element_ProgressBar
     + 2 # process_element_TextEntry
     + 1 # process_element_FileEntry
     + 2 # process_element_Status
@@ -332,55 +332,19 @@ is_deeply (
     {
         SLight::Output::HTML::Template::process_element_ProgressBar(
             {
-                count => 0,
-                total => 0,
+                bar_class => 'Running',
+                bar_range => '255',
+                bar_value => '128',
             }
         )
     },
     {
-        State   => 'Starting',
-        Count   => 0,
-        Total   => 0,
-        Percent => q{},
-        Width   => 100,
+        BarClass => 'Running',
+        BarRange => '255',
+        BarValue => '128',
+        Percent  => '50',
     },
-    'process_element_ProgressBar - Starting'
-);
-is_deeply (
-    {
-        SLight::Output::HTML::Template::process_element_ProgressBar(
-            {
-                count => 10,
-                total => 50,
-            }
-        )
-    },
-    {
-        State   => 'Running',
-        Count   => 10,
-        Total   => 50,
-        Percent => '20',
-        Width   => '20',
-    },
-    'process_element_ProgressBar - Running'
-);
-is_deeply (
-    {
-        SLight::Output::HTML::Template::process_element_ProgressBar(
-            {
-                count => 50,
-                total => 50,
-            }
-        )
-    },
-    {
-        State   => 'Finished',
-        Count   => 50,
-        Total   => 50,
-        Percent => '100',
-        Width   => '100',
-    },
-    'process_element_ProgressBar - Finished'
+    'process_element_ProgressBar'
 );
 
 # process_element_TextEntry

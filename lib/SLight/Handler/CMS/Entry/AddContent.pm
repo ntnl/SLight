@@ -182,16 +182,23 @@ sub handle_save { # {{{
     my $page_id;
     if ($self->{'options'}->{'target'} eq 'New') {
         my %page = (
-            path => $self->{'options'}->{'page.path'},
+            path => ( $self->{'options'}->{'page.path'} or q{} ),
         );
 
-        if ($self->{'options'}->{'template'}) {
+        if ($self->{'options'}->{'page.template'}) {
             $page{'template'} = $self->{'options'}->{'page.template'};
         }
+
+#        use Data::Dumper; die Dumper($self->{'page'});
 
         if ($self->{'page'}->{'page_id'}) {
             $page{'parent_id'} = $self->{'page'}->{'page_id'};
         }
+        else {
+            $page{'parent_id'} = undef;
+        }
+
+#        use Data::Dumper; die Dumper(\%page);
 
         $page_id = SLight::API::Page::add_Page(%page);
     }

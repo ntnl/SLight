@@ -480,11 +480,14 @@ sub render_template { # {{{
         BLOCK       => 'process_block',
     );
 
-    my @html,;
+    my @html;
     foreach my $token (@{ $P{'template'}->{'index'} }) {
         my $handler = $handlers{ $token->{'type'} };
 
-        push @html, $self->$handler( $token, $P{'data'} );
+        my $string = $self->$handler( $token, $P{'data'} );
+        if (defined $string) {
+            push @html, $string;
+        }
     }
     
     return join q{}, @html;
@@ -873,24 +876,16 @@ sub process_element_ProgressBar { # {{{
     my ( $data ) = @_;
 
     my %pdata = (
-        Count => $data->{'count'},
-        Total => $data->{'total'},
+        BarClass => $data->{'bar_class'},
+        BarRange => $data->{'bar_range'},
+        BarValue => $data->{'bar_value'},
     );
     
-    if ($pdata{'Total'}) {
-        $pdata{'Percent'} = sprintf "%d", 100 * $pdata{'Count'} / $pdata{'Total'};
-        $pdata{'Width'}   = $pdata{'Percent'};
-        if ($pdata{'Percent'} == 100) {
-            $pdata{'State'} = 'Finished';
-        }
-        else {
-            $pdata{'State'} = 'Running';
-        }
+    if ($pdata{'BarRange'}) {
+        $pdata{'Percent'} = sprintf "%d", 100 * $pdata{'BarValue'} / $pdata{'BarRange'};
     }
     else {
         $pdata{'Percent'} = q{};
-        $pdata{'Width'}   = 100;
-        $pdata{'State'}   = 'Starting';
     }
 
     return %pdata;
