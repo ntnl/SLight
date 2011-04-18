@@ -114,7 +114,7 @@ output_like(
 is_referenced_ok(get_Pages_where(parent_id=>1), "--cms-delete does it's job");
 
 
-set_absolute_time(1299511545);
+set_fixed_time(1299511545);
 
 # FIXME: write with some UTF-8!!!
 write_file($pepper . q{set-xml}, q{<?xml version="1.0" encoding="utf-8" ?>

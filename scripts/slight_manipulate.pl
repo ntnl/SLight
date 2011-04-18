@@ -15,7 +15,7 @@ use strict; use warnings; # {{{
 use FindBin qw( $Bin );
 use lib $Bin. '/../lib/';
 
-my $VERSION = '0.0.3';
+my $VERSION = '0.0.4';
 
 use SLight::Maintenance::Manipulate;
 # }}}

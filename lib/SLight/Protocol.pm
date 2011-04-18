@@ -13,7 +13,7 @@ package SLight::Protocol;
 ################################################################################
 use strict; use warnings; # {{{
 
-my $VERSION = '0.0.3';
+my $VERSION = '0.0.4';
 
 use SLight::AddonFactory;
 use SLight::OutputFactory;

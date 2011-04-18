@@ -4,6 +4,7 @@ Build
 _build
 *.bak
 MYMETA.yml
+MYMETA.json
 cover_db/
 critic-cache.yaml
 sandbox/*
@@ -12,4 +13,6 @@ META.yml
 Makefile.PL
 SLight-*.tar.gz
 blib/
+t/1-modules/SLight-Output-HTML-Template/Two_part.yaml
+t/1-modules/SLight-Output-HTML-Template/foo.yaml
 

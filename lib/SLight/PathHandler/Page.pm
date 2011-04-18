@@ -14,7 +14,7 @@ package SLight::PathHandler::Page;
 use strict; use warnings; # {{{
 use base q{SLight::PathHandler};
 
-my $VERSION = '0.0.3';
+my $VERSION = '0.0.4';
 
 use SLight::API::Content qw( get_Contents_where );
 use SLight::API::ContentSpec qw( get_ContentSpec );
@@ -90,7 +90,7 @@ sub analyze_path { # {{{
         ( $page_id, $last_template ) = $self->walk_the_path($path);
 
         if (not $page_id) {
-            return $self->generic_error_page('NotFound');
+            return $self->page_does_not_exist();
         }
     }
     else {
@@ -149,25 +149,6 @@ sub cms_db_is_empty { # {{{
     return;
 } # }}}
 
-sub page_is_empty { # {{{
-    my ( $self ) = @_;
-
-    $self->set_objects(
-        {
-            e1 => {
-                class    => 'Core::Empty',
-                oid      => undef,
-            },
-        },
-    );
-
-    $self->set_object_order([qw( e1 )]);
-
-    $self->set_main_object('e1');
-
-    return;
-} # }}}
-
 # Purpose:
 #   Descend into the tree, to find the page pointed by path in URL.
 sub walk_the_path { # {{{
@@ -192,7 +173,8 @@ sub walk_the_path { # {{{
         if (not $pages->[0]) {
             # Something IS wrong here! It's not possible to have holes in path!
             # Let's hope, it's just User messing with the URL.
-            last;
+            # Still, this should end with E404 Page not found.
+            return;
         }
 
         $parent_id = $page_id = $pages->[0]->{'id'};

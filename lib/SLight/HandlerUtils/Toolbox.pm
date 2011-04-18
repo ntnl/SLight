@@ -81,7 +81,7 @@ sub make_toolbox { # {{{
 #            use Data::Dumper; warn Dumper $url;
 #            use Data::Dumper; warn Dumper $class_and_id;
 
-            my ($handler_family, $handler_class) = split /::/, $class_and_id->{'handler'};
+            my ($handler_family, $handler_class) = split m/::/s, $class_and_id->{'handler'};
 
             # Check access rights, we have enough data for it to be possible.
             my $access_policy = can_User_access(

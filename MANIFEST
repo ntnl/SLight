@@ -163,6 +163,7 @@ lib/SLight/PathHandler/Test.pm
 lib/SLight/PathHandlerBase/Single.pm
 lib/SLight/PathHandlerBase/SubClass.pm
 lib/SLight/PathHandlerFactory.pm
+lib/SLight/PathHandlerUtils.pm
 lib/SLight/Protocol.pm
 lib/SLight/Protocol/WEB.pm
 lib/SLight/Protocol/WEB_TEST.pm
@@ -418,10 +419,13 @@ t/1-modules/SLight-Maintenance-Manipulate.yaml
 t/1-modules/SLight-Output-HTML-Generator.t
 t/1-modules/SLight-Output-HTML-Generator.yaml
 t/1-modules/SLight-Output-HTML-Template.t
+t/1-modules/SLight-Output-HTML-Template.yaml
 t/1-modules/SLight-Output-HTML-Template/addition_2_part.html
 t/1-modules/SLight-Output-HTML-Template/addition_2_part.yaml
 t/1-modules/SLight-Output-HTML-Template/addition_part.html
 t/1-modules/SLight-Output-HTML-Template/addition_part.yaml
+t/1-modules/SLight-Output-HTML-Template/broken_part.html
+t/1-modules/SLight-Output-HTML-Template/broken_part.yaml
 t/1-modules/SLight-Output-HTML-Template/example.html
 t/1-modules/SLight-Output-HTML-Template/example.yaml
 t/1-modules/SLight-Output-HTML-Template/example2.html
@@ -458,6 +462,7 @@ t/1-modules/SLight-PathHandler.t
 t/1-modules/SLight-PathHandlerBase-Single.t
 t/1-modules/SLight-PathHandlerBase-SubClass.t
 t/1-modules/SLight-PathHandlerFactory.t
+t/1-modules/SLight-PathHandlerUtils.t
 t/1-modules/SLight-Protocol-WEB.t
 t/1-modules/SLight-Protocol-WEB_TEST.t
 t/1-modules/SLight-Protocol.t
@@ -556,4 +561,3 @@ t_data/Users/email/notification.txt
 t_data/Users/email/registration.txt
 t_data/Users/sessions/.keep
 t_data/Users/users/.keep
-

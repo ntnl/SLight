@@ -14,7 +14,7 @@ package SLight;
 
 use strict; use warnings; # {{{
 
-my $VERSION = '0.0.3';
+my $VERSION = '0.0.4';
 
 # }}}
 

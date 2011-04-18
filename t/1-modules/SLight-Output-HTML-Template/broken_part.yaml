@@ -1,0 +1,28 @@
+--- 
+has_block: {}
+
+has_form: {}
+
+has_grid: {}
+
+has_list: {}
+
+has_var: {}
+
+index: 
+  - 
+    html: "<html>\n    <head>\n        <title>"
+    type: TEXT
+  - 
+    name: title
+    type: PLACEHOLDER
+  - 
+    html: "</title>\n    </head>\n    <body>\n\n    <div>One</div>\n\n    "
+    type: TEXT
+  - 
+    name: Two_part
+    template: "<div class=\"SL_Template_Error\">Error: Template part missing: \"Two_part\"!</div>"
+    type: TEMPLATE
+  - 
+    html: "\n\n    <div>Three</div>\n\n    </body>\n</html>\n"
+    type: TEXT

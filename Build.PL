@@ -58,6 +58,8 @@ my $build = Module::Build->new (
         'YAML::Syck'            => '1.17',
     },
 
+    recursive_test_files => 1,
+
     # Play nice with friends ;)
     create_makefile_pl => 'traditional',
     create_packlist    => 1,

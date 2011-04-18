@@ -14,7 +14,7 @@ package SLight::PathHandler;
 
 use strict; use warnings; # {{{
 
-my $VERSION = '0.0.3';
+my $VERSION = '0.0.4';
 
 use Carp::Assert::More qw( assert_listref assert_hashref assert_defined );
 # }}}
@@ -129,6 +129,36 @@ sub response_content { # {{{
 #    use Data::Dumper; warn Dumper $content_response;
 
     return $content_response;
+} # }}}
+
+# Some useful methods.
+
+# Indicate, that path points to empty page.
+sub page_is_empty { # {{{
+    my ( $self ) = @_;
+
+    $self->set_objects(
+        {
+            e1 => {
+                class    => 'Core::Empty',
+                oid      => undef,
+            },
+        },
+    );
+
+    $self->set_object_order([qw( e1 )]);
+
+    $self->set_main_object('e1');
+
+    return;
+} # }}}
+
+# Indicate, that the page specified by the path, does not exist.
+# This is generally the equivalent od the E404 response.
+sub page_does_not_exist { # {{{
+    my ( $self ) = @_;
+
+    return $self->generic_error_page('NotFound');
 } # }}}
 
 sub generic_error_page { # {{{

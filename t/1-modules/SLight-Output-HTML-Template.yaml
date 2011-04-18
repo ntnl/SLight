@@ -1,0 +1,4 @@
+---
+Missing part is handled gracefuly.: "<html>\n    <head>\n        <title></title>\n
+  \   </head>\n    <body>\n\n    <div>One</div>\n\n    <div class=\"SL_Template_Error\">Error:
+  Template part missing: \"Two_part\"!</div>\n\n    <div>Three</div>\n\n    </body>\n</html>\n"

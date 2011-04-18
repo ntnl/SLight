@@ -13,7 +13,7 @@ package SLight::Maintenance::Manipulate;
 ################################################################################
 use strict; use warnings; # {{{
 
-my $VERSION = '0.0.3';
+my $VERSION = '0.0.4';
 
 use SLight::API::Content qw( add_Content update_Content get_Contents_where delete_Contents );
 use SLight::API::ContentSpec qw( get_ContentSpec );
@@ -55,7 +55,7 @@ sub main { # {{{
         'cms-get=s'    => \$options{'cms-get'},
         'cms-set=s'    => \$options{'cms-set'},
         'cms-delete=s' => \$options{'cms-delete'},
-        
+
         'format=s' => \$options{'format'},
         'input=s'  => \$options{'input'},
         'output=s' => \$options{'output'},

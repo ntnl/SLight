@@ -107,6 +107,7 @@ sub new { # {{{
         {
             name => { type=>SCALAR | ARRAYREF },
             dir  => { type=>SCALAR },
+            lang => { type=>SCALAR, optional=>1 },
         }
     );
 
@@ -160,47 +161,57 @@ sub load_and_parse { # {{{
         @_,
         {
             name => { type=>SCALAR },
+
+            is_part => { type=>SCALAR, optional=>1, },
         }
     );
 
     my $html_filename = $self->{'dir'} .q{/}. $P{'name'} .q{.html};
     my $yaml_filename = $self->{'dir'} .q{/}. $P{'name'} .q{.yaml};
 
-#    warn 'Trying: '. $html_filename;
+#    warn 'Is part: ' . ( $P{'is_part'} or 0 );
+#    warn 'Trying : ' . $html_filename;
+#    warn "YAML   : " . $yaml_filename;
+#    warn "Yaml -M  : " . (0 + -M $yaml_filename );
+#    warn "Html -M  : " . (0 + -M $html_filename );
 
-    # If the file does not exist, gracefully return.
-    if (not -f $html_filename) {
-        return;
-    }
-
-#    warn "File: ". $yaml_filename;
-#    warn "Yaml -M ". (-M $yaml_filename);
-#    warn "Html -M ". (-M$html_filename );
+#    print `ls -l /home/natanael/Projekty/Perl/SLight/t/1-modules/SLight-Output-HTML-Template/example.*`;
 
     # Check cache file...
-    if (-f $yaml_filename and (-M $yaml_filename < -M $html_filename )) {
+    if ( (-f $html_filename) and (-f $yaml_filename) and (-M $yaml_filename < -M $html_filename )) {
         # Cache file exists, and it was modified LATER then the source - html file.
         # We do not need to load the HTML and parse it - we have it ready from the
         # last run...
         # -M gives You 'days since...' so the biger the number - the older the file.
-        
+
         if (not $self->{'source'}) {
             $self->{'source'} = 'YAML';
         }
 
-#        warn "Loading: $yaml_filename\n";
-
         return $self->parsed_fetch($yaml_filename);
     }
 
+    my $html;
+    # If the file does not exist, the function can gracefully return an error message.
+    if (-f $html_filename) {
+        $html = (
+            eval { return read_file( $html_filename ); }
+        or
+            $html = q{<div class="SL_Template_Error">Error loading template part: "}. $P{'name'} .q{"!</div>}
+        );
+    }
+    elsif ($P{'is_part'}) {
+        $html = q{<div class="SL_Template_Error">Error: Template part missing: "}. $P{'name'} .q{"!</div>};
+    }
+    else {
+        return;
+    }
+    
     # Only the main template sets the 'source'...
     if (not $self->{'source'}) {
         $self->{'source'} = 'HTML';
     }
-
-    # Cache will load on demand :)
-#    my $html = Cache_Fetch_File( path=>$self->{'dir'} .q{/}. $P{'name'} .q{.html} );
-    my $html = read_file( $self->{'dir'} .q{/}. $P{'name'} .q{.html} );
+    
     $html = decode('utf8', $html);
 
     my $template = $self->process_html_template(
@@ -312,7 +323,10 @@ sub extract_placeholders { # {{{
         # First - check some special placeholders.
         my $token;
         if ($placeholder =~ m{^(.+?)_part$}s) {
-            my $sub_template = $self->load_and_parse( name=>$placeholder );
+            my $sub_template = $self->load_and_parse(
+                name    => $placeholder,
+                is_part => 1
+            );
 
             assert_defined ($sub_template, "Sub template: $placeholder found.");
 
@@ -1006,7 +1020,10 @@ sub parsed_fetch_index_check { # {{{
     
     foreach my $token (@{ $index }) {
         if ($token->{'type'} eq 'TEMPLATE') {
-            $token->{'template'} = $self->load_and_parse( name=>$token->{'name'} );
+            $token->{'template'} = $self->load_and_parse(
+                name    => $token->{'name'},
+                is_part => 1
+            );
         }
         elsif ($token->{'type'} eq 'BLOCK') {
             $self->parsed_fetch_index_check($token->{'template'}->{'index'});

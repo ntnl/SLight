@@ -21,7 +21,7 @@ use File::Slurp qw( read_dir );
 use YAML::Syck qw( DumpFile );
 # }}}
 
-our $VERSION = '0.0.3';
+our $VERSION = '0.0.4';
 
 our @EXPORT_OK = qw(
     find_files
@@ -71,8 +71,9 @@ sub find_files { # {{{
         }
 
         # Recure into the directory..
-        if (-d $start_path . $file) {
-            push @files_filtered, find_files($start_path . $file .q{/}, $name_mask);
+        my $dir_path = $start_path . $file .q{/};
+        if (-d $dir_path) {
+            push @files_filtered, find_files($dir_path, $name_mask);
         }
     }
 

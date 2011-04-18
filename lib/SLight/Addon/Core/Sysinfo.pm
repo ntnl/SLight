@@ -21,7 +21,7 @@ use SLight::DataToken qw( mk_Label_token mk_Container_token );
 use Params::Validate qw( :all );
 # }}}
 
-our $VERSION = '0.0.3';
+our $VERSION = '0.0.4';
 
 sub _process { # {{{
     my ( $self, %P ) = @_;

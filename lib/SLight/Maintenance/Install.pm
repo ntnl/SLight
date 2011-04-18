@@ -13,7 +13,7 @@ package SLight::Maintenance::Install;
 ################################################################################
 use strict; use warnings; # {{{
 
-our $VERSION = 0.0.3;
+our $VERSION = 0.0.4;
 
 use Carp::Assert::More qw( assert_defined assert_is );
 
@@ -55,7 +55,9 @@ sub make_site { # {{{
 
     $feedback_call->("Making sqlites...");
 
-    assert_is( -f $destination . q{db/slight.sqlite}, undef, "File: db/slight.sqlite does not exists.");
+    my $db_file = $destination . q{db/slight.sqlite};
+
+    assert_is( -f $db_file, undef, "File: db/slight.sqlite does not exists.");
     # Fixme: this array should be filled automatically
     my @init_files = (
         $sql_source . q{email.sql},

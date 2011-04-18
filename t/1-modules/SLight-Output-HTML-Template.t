@@ -15,19 +15,22 @@ use strict; use warnings; # {{{
 use FindBin qw{ $Bin };
 use lib $Bin .'/../../lib/';
 
+use Test::FileReferenced;
 use Test::More;
 # }}}
 
 use SLight::Output::HTML::Template;
 
 plan tests =>
-    + 2 # Load template, parse HTML.
+    + 3 # Load template, parse HTML.
     + 2 # Render empty template
     + 4 # Add various data
     + 2 # Render full template
     
     + 2 # check if fetching from cache works...
 
+    + 1 # Handle missing template parts.
+    
 # Broken!
 #    + 4 # has_*
 
@@ -64,6 +67,8 @@ my $template_1 = SLight::Output::HTML::Template->new(
 );
 isa_ok($template_1, 'SLight::Output::HTML::Template', "Template object created");
 is ($template_1->source(), 'HTML', 'Was loaded from html');
+
+ok(-f $Bin .'/SLight-Output-HTML-Template/example.yaml', "Cache file was created");
 
 my $result = $template_1->render();
 
@@ -182,6 +187,12 @@ my $template_2 = SLight::Output::HTML::Template->new(
 );
 isa_ok($template_2, 'SLight::Output::HTML::Template', "Template object created, cached");
 is ($template_2->source(), 'YAML', 'Was loaded from yaml');
+
+my $template_broken_part = SLight::Output::HTML::Template->new(
+    name => [ 'broken_part' ],
+    dir  => $Bin .'/SLight-Output-HTML-Template',
+);
+is_referenced_ok($template_broken_part->render(), q{Missing part is handled gracefuly.});
 
 #is ($template_2->has_var('zzbbzz'),  0, 'has_var negative');
 #is ($template_2->has_list('zzbbzz'), 0, 'has_list negative');
