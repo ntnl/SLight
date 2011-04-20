@@ -18,6 +18,16 @@ mk_Container_token:
   - Container
   - Bar
   type: Container
+mk_Container_token - with mixed strings and tokens:
+  class: generic
+  content:
+  - Foo
+  - class: bold
+    data:
+      text: Bar
+    type: Label
+  - Baz
+  type: Container
 mk_Entry_token:
   class: generic
   data:

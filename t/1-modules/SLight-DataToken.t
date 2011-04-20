@@ -45,7 +45,8 @@ use SLight::DataToken qw(
 );
 
 plan tests =>
-    + 21 # just check if all the routines are runnable.
+    + 20 # just check if all the routines are runnable.
+    + 2 # mk_Container_token
 ;
 
 is_referenced_ok(
@@ -131,12 +132,27 @@ is_referenced_ok(
     ),
     'mk_Text_token'
 );
+
 is_referenced_ok(
     mk_Container_token(
         content => [qw( Foo Container Bar )],
     ),
     'mk_Container_token'
 );
+is_referenced_ok(
+    mk_Container_token(
+        content => [
+            'Foo',
+            mk_Label_token(
+                text  => q{Bar},
+                class => q{bold},
+            ),
+            'Baz',
+        ],
+    ),
+    'mk_Container_token - with mixed strings and tokens'
+);
+
 is_referenced_ok(
     mk_Form_token(
         content => [qw( Foo Form Bar )],

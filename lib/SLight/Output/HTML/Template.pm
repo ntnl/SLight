@@ -236,7 +236,7 @@ sub source { # {{{
     return ( $self->{'source'} or 'NONE' );
 } # }}}
 
-# Analize HTML string. Results go in the template structure.
+# Analyze HTML string. Results go in the template structure.
 sub process_html_template { # {{{
     my $self = shift;
     my %P = validate(
@@ -245,8 +245,6 @@ sub process_html_template { # {{{
             html => { type=>SCALAR },
         }
     );
-    
-    assert_defined($P{'html'}, "Got HTML to process");
 
     my %template = (
         'index' => [],
@@ -263,12 +261,12 @@ sub process_html_template { # {{{
 
     # First part will always be a text template, that we need to process.
     my $part = shift @parts;
-    
+
     $self->extract_placeholders(
         template => \%template,
         html     => $part
     );
-    
+
 #    warn "Blocks: ". Dump \@parts;
 
     while (my $block = shift @parts) {
@@ -281,10 +279,10 @@ sub process_html_template { # {{{
                 name     => $block_name,
                 template => $self->process_html_template( html=>$block_content ),
             );
-        
+
             push @{ $template{'index'} }, \%token;
         }
-        
+
         # Append also the text after the block.
         # It can contain placeholders, so it must be procesed too.
         my $html_part = shift @parts;
@@ -699,9 +697,31 @@ my %layout_elements = (
 sub process_layout_element { # {{{
     my ( $self, $definition, $element ) = @_;
 
+    assert_defined($element, 'Element is defined');
+
 #    warn "Definitions: ". Dump $definition;
+#    print "\n";
+
 #    warn "Element: ". Dump $element;
+#    print "\n";
+
 #    warn "Definition: ". Dump $definition->{ $element->{'type'} };
+#    print "\n";
+
+    if (not ref $element) {
+        # It's a scalar - pass it AS-IS - it does not depend on the template.
+        # We do not want someone (by mistake, of course ;) - to abuse this functionality to pass raw HTML,
+        # or anything similar, so let's quote it.
+
+        # FIXME: Poor-man's quoting... but it's fast, and should be reliable-enough.
+        $element =~ s{&}{&amp;}sg;
+        $element =~ s{>}{&gt;}sg;
+        $element =~ s{<}{&lt;}sg;
+
+#        warn "QUOTTING!";
+
+        return $element;
+    }
 
     assert_defined($element->{'type'}, 'Type of the element is known');
 

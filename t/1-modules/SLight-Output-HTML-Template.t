@@ -15,6 +15,11 @@ use strict; use warnings; # {{{
 use FindBin qw{ $Bin };
 use lib $Bin .'/../../lib/';
 
+use SLight::DataToken qw(
+    mk_Label_token
+);
+
+use File::Slurp qw( read_file );
 use Test::FileReferenced;
 use Test::More;
 # }}}
@@ -38,6 +43,9 @@ plan tests =>
     + 2 # Static html test.
     + 2 # No blocks html test.
     + 2 # TRUE/FALSE
+
+    # Template-Widgets HTML rendering
+    + 1 # render mix of widgets and texts
 
     # Smoke-testing advanced layout making.
     + 1 # process_element_GridItem
@@ -243,6 +251,35 @@ Value 2 is false.
     </body>
 </html>
 ', "Static HTML - result OK");
+
+
+################################################################################
+#                       Template-Widgets HTML rendering
+################################################################################
+
+my $template_layout = SLight::Output::HTML::Template->new(
+    name => [ 'layout_example' ],
+    dir  => $Bin .'/SLight-Output-HTML-Template',
+);
+$template_layout->set_layout(
+    'sandbox',
+    {
+        type    => 'Container',
+        content => [
+            q{Foo},
+            mk_Label_token(
+                text  => q{Bar},
+                class => q{bold},
+            ),
+            q{Baz},
+        ],
+    }
+);
+is_referenced_ok($template_layout->render(), 'process_layout_element - text+widget mix');
+
+################################################################################
+#                   Smoke-testing advanced layout making.
+################################################################################
 
 # process_element_SelectEntry
 is_deeply (

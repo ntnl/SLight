@@ -561,3 +561,7 @@ t_data/Users/email/notification.txt
 t_data/Users/email/registration.txt
 t_data/Users/sessions/.keep
 t_data/Users/users/.keep
+t/1-modules/SLight-Output-HTML-Template/layout_example.html
+t/1-modules/SLight-Output-HTML-Template/layout_example.yaml
+t/1-modules/SLight-Output-HTML-Template/Two_part.yaml
+META.json

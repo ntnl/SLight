@@ -1,0 +1,102 @@
+--- 
+has_block: {}
+
+has_form: {}
+
+has_grid: {}
+
+has_list: {}
+
+has_var: {}
+
+index: 
+  - 
+    html: "<html>\n    <head><title>Layout example</title></head>\n    <body>\n\n        "
+    type: TEXT
+  - 
+    name: sandbox
+    template: 
+      has_block: {}
+
+      has_form: {}
+
+      has_grid: {}
+
+      has_list: {}
+
+      has_var: {}
+
+      index: 
+        - 
+          html: "\n            "
+          type: TEXT
+        - 
+          name: Container
+          template: 
+            has_block: {}
+
+            has_form: {}
+
+            has_grid: {}
+
+            has_list: {}
+
+            has_var: {}
+
+            index: 
+              - 
+                html: "            <div class=\""
+                type: TEXT
+              - 
+                name: Class
+                type: PLACEHOLDER
+              - 
+                html: "\">\n            "
+                type: TEXT
+              - 
+                name: Content
+                type: PLACEHOLDER
+              - 
+                html: "\n            </div>\n            "
+                type: TEXT
+          type: BLOCK
+        - 
+          html: "\n            "
+          type: TEXT
+        - 
+          name: Label
+          template: 
+            has_block: {}
+
+            has_form: {}
+
+            has_grid: {}
+
+            has_list: {}
+
+            has_var: {}
+
+            index: 
+              - 
+                html: "            <span class=\""
+                type: TEXT
+              - 
+                name: Class
+                type: PLACEHOLDER
+              - 
+                html: "\">"
+                type: TEXT
+              - 
+                name: Text
+                type: PLACEHOLDER
+              - 
+                html: "</span>\n            "
+                type: TEXT
+          type: BLOCK
+        - 
+          html: "\n        "
+          type: TEXT
+    type: BLOCK
+  - 
+    html: "\n    </body>\n</html>\n"
+    type: TEXT

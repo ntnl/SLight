@@ -399,6 +399,8 @@ sub make_toolbox { # {{{
             page   => { type=>SCALAR, optional=>1, default=>$self->{'url'}->{'page'} },
 
             protocol => { type=>SCALAR, optional=>1, default=>$self->{'url'}->{'protocol'} },
+            
+            user_id => { type=>SCALAR, optional=>1 },
         }
     );
 

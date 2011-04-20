@@ -235,8 +235,6 @@
 [ ]             Perform the deletion
 [ ]             Test
 [-] SLight::HandlerUtils::Pager
-[ ] Bugs
-[?]     Remove white space right after and before [bbcode] tags
 [ ] Release to the public
 [ ]     Make package
 [ ]     Beta-test
@@ -246,6 +244,31 @@
     Definition of done:
 
         Forum is complete.
+
+=--= Sprint 3 - Command line CMS -
+
+[ ] CMS edit functions
+[ ]     Select templates from drop-down list
+[ ]     Select on-page index from drop-down menu
+[ ]     Ability to edit on-page-index
+[ ]     Preview in CMS add/edit forms.
+[ ] CMS Lists
+[ ]     News like list (display recent n summarized child items)
+[ ]     Blog-like list (display recent n child items in full form)
+[ ]     Gallery-like browser (display n items with zoom support)
+[ ] Bugs
+[?]     Remove white space right after and before [bbcode] tags
+[ ]     When DB can not be opened, try to display error using templates... (do not throw an internal error!)
+[ ]     Drop DB connection when major errors (especially internal!) happen.
+[ ] Release to the public
+[ ]     Make package
+[ ]     Beta-test
+[ ]     Upload package for public consumption
+[ ]     Spread the news :)
+
+    Definition of done:
+
+        SLight can be used as CMS with no major limitations.
 
 =--= Sprint 2 - Command line CMS - (X 2011-02-27) 2011-03-06
 
@@ -271,11 +294,11 @@
 [X]     Adding first page "kills" the CMS :(
 [X]     When a part of the Template is missing, do not throw a 'hard' internal error.
 [X]     Path element (bad/broken URLs) errors are not displayed?
-[>] Release to the public
+[X] Release to the public
 [X]     Make package
-[>]     Beta-test
-[ ]     Upload package for public consumption
-[ ]     Spread the news :)
+[X]     Beta-test
+[X]     Upload package for public consumption
+[X]     Spread the news :)
 
 =--= Milestone 4 - User management - ....-..-..
 
