@@ -19,8 +19,7 @@ Guest access:
           content:
           - class: Message
             content:
-            - class: generic
-              data:
+            - data:
                 text: 'You must log-in to access this page. (Error: Authentication
                   required).'
               type: Label
@@ -210,8 +209,7 @@ Guest access:
           content:
           - class: Message
             content:
-            - class: generic
-              data:
+            - data:
                 text: This Account is disabled.
               type: Label
             type: Container

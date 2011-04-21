@@ -66,8 +66,7 @@ Open confirmation dialog:
           content:
           - class: Message
             content:
-            - class: generic
-              data:
+            - data:
                 text: Do you want to delete '2'? Please confirm.
               type: Label
             type: Container

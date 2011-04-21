@@ -19,8 +19,7 @@ Call the 'View' actio non 'Test::Foo' object:
           content:
           - class: Message
             content:
-            - class: generic
-              data:
+            - data:
                 text: 'Diagnosting message: ''First test entry'''
               type: Label
             type: Container
@@ -36,8 +35,7 @@ Call the 'View' actio non 'Test::Foo' object:
           content:
           - class: Message
             content:
-            - class: generic
-              data:
+            - data:
                 text: 'Diagnosting message: ''Second test entry'''
               type: Label
             type: Container

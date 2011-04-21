@@ -52,8 +52,7 @@ Email information page:
           content:
           - class: Message
             content:
-            - class: generic
-              data:
+            - data:
                 text: 'New email can be use only after it is verified: message has
                   been sent to that address, with further information.'
               type: Label
@@ -91,8 +90,7 @@ Email verified:
           content:
           - class: Message
             content:
-            - class: generic
-              data:
+            - data:
                 text: Email setting has been changed. All emails will be sent to new
                   address.
               type: Label

@@ -2,13 +2,11 @@
 Logged in:
   class: SL_UserInfo_Addon
   content:
-  - class: generic
-    data:
+  - data:
       href: /_MyAccount/
       text: Logged-in as Agnieszka.
     type: Link
-  - class: generic
-    data:
+  - data:
       href: /_Authentication/Logout-en.web
       text: Logout
     type: Link
@@ -16,12 +14,10 @@ Logged in:
 Not logged in:
   class: SL_UserInfo_Addon
   content:
-  - class: generic
-    data:
+  - data:
       text: Not logged-in.
     type: Label
-  - class: generic
-    data:
+  - data:
       href: /_Authentication/Login-en.web
       text: Login
     type: Link

@@ -15,8 +15,7 @@ Get Content Spec choice menu:
       e1:
         class: SLight_Object O-AddContent
         content:
-        - class: generic
-          content:
+        - content:
           - class: default
             content:
             - class: main_name
@@ -41,8 +40,7 @@ Get Content Spec choice menu:
               type: TableCell
             - class: link
               content:
-              - class: generic
-                data:
+              - data:
                   href: /AddContent-form.web?target=New&spec_id=1
                   text: As new page
                 type: Link
@@ -52,8 +50,7 @@ Get Content Spec choice menu:
               type: TableCell
             - class: link
               content:
-              - class: generic
-                data:
+              - data:
                   href: /AddContent-form.web?target=Current&spec_id=1
                   text: Append here
                 type: Link
@@ -85,10 +82,8 @@ Get form:
       e1:
         class: SLight_Object O-AddContent
         content:
-        - class: generic
-          content:
-          - class: generic
-            content:
+        - content:
+          - content:
             - class: F-Label Label
               data:
                 text: Article

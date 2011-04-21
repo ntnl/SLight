@@ -19,8 +19,7 @@ Ask for existing Spec:
           content:
           - class: Message
             content:
-            - class: generic
-              data:
+            - data:
                 text: 'Do you want to delete CMS Spec: ''Article''? Please confirm.'
               type: Label
             type: Container

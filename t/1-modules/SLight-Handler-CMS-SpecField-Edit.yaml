@@ -15,8 +15,7 @@ Open form:
       _field:
         class: SLight_Object O-CMS_Spec_Field
         content:
-        - class: generic
-          content:
+        - content:
           - class: F-class Entry
             content:
             - class: Label

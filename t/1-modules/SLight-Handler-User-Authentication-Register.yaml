@@ -71,8 +71,7 @@ Display 'Thank you' page:
           content:
           - class: Message
             content:
-            - class: generic
-              data:
+            - data:
                 text: Thank You for registering! An email has been sent to You, with
                   further information.
               type: Label
@@ -108,10 +107,8 @@ Send out bad data (crash test):
       o:
         class: SLight_Object O-SL_Register_User
         content:
-        - class: generic
-          content:
-          - class: generic
-            content:
+        - content:
+          - content:
             - class: F-Label Label
               data:
                 text: Register User
@@ -224,10 +221,8 @@ User registration form:
       o:
         class: SLight_Object O-SL_Register_User
         content:
-        - class: generic
-          content:
-          - class: generic
-            content:
+        - content:
+          - content:
             - class: F-Label Label
               data:
                 text: Register User

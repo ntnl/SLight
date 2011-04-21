@@ -104,15 +104,13 @@ full_blown_example:
         text: Check has issues
       type: Label
     type: Container
-  - class: generic
-    content:
+  - content:
     - class: F-Normal Label
       data:
         text: Sample label
       type: Label
     type: Container
-  - class: generic
-    content:
+  - content:
     - class: F-Finalize Action
       data:
         caption: Sample action
@@ -125,6 +123,7 @@ full_blown_example:
       test_1: one
       test_2: two
     submit: Commit test
+  preview: Preview test
   type: Form
 full_blown_example - add_Action: ~
 full_blown_example - add_Check: ~

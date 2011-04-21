@@ -35,7 +35,7 @@ sub _new { # {{{
     my %P = validate(
         @_,
         {
-            class   => { type=>SCALAR, optional=>1, default=>'generic' },
+            class   => { type=>SCALAR, optional=>1 },
             columns => { type=>ARRAYREF },
         }
     );
@@ -52,10 +52,6 @@ sub _new { # {{{
     foreach my $column (@{ $self->{'Columns'} }) {
         assert_defined($column->{'name'});
         assert_defined($column->{'caption'});
-        
-        if (not $column->{'class'}) {
-            $column->{'class'} = 'generic';
-        }
     }
 
     return;
@@ -64,10 +60,14 @@ sub _new { # {{{
 sub _make_container { # {{{
     my ( $self, $class, $items ) = @_;
 
-    return mk_List_token(
-        class   => $class,
+    my %list = (
         content => $items,
     );
+    if ($class) {
+        $list{'class'} = $class;
+    }
+
+    return mk_List_token(%list);
 } # }}}
 
 sub add_Row { # {{{
@@ -75,7 +75,7 @@ sub add_Row { # {{{
     my %P = validate(
         @_,
         {
-            class => { type=>SCALAR, optional=>1, default=>'generic' },
+            class => { type=>SCALAR, optional=>1 },
             data  => { type=>HASHREF },
         }
     );

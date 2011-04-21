@@ -31,7 +31,7 @@ sub _new { # {{{
             hidden  => { type=>HASHREF },
             submit  => { type=>SCALAR },
             preview => { type=>SCALAR, optional=>1 },
-            class   => { type=>SCALAR, optional=>1, default=>'generic' },
+            class   => { type=>SCALAR, optional=>1 },
         }
     );
 
@@ -39,10 +39,8 @@ sub _new { # {{{
 
     $self->set_data(
         mk_Form_token(
-            class   => $P{'class'},
-            hidden  => $P{'hidden'},
-            action  => $P{'action'},
-            submit  => $P{'submit'},
+            %P,
+
             content => $self->{'FormContent'},
         )
     );

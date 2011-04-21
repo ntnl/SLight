@@ -78,7 +78,7 @@ sub make_label_if_text { # {{{
     my %P = validate(
         @_,
         {
-            class  => { type=>SCALAR, optional=>1, default=>'generic' },
+            class  => { type=>SCALAR | UNDEF, optional=>1 },
             object => { }
         }
     );
@@ -90,11 +90,15 @@ sub make_label_if_text { # {{{
         return [ $P{'object'} ];
     }
 
+    my %label = (
+        text  => $P{'object'},
+    );
+    if (defined $P{'class'}) {
+        $label{'class'} = $P{'class'};
+    }
+
     return [
-        mk_Label_token(
-            text  => $P{'object'},
-            class => $P{'class'}
-        )
+        mk_Label_token(%label)
     ];
 } # }}}
 

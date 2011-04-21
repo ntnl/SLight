@@ -19,8 +19,7 @@ Example test case:
           content:
           - class: Message
             content:
-            - class: generic
-              data:
+            - data:
                 text: 'Diagnosting message: ''None'''
               type: Label
             type: Container

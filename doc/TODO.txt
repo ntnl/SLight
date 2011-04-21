@@ -256,10 +256,15 @@
 [ ]     News like list (display recent n summarized child items)
 [ ]     Blog-like list (display recent n child items in full form)
 [ ]     Gallery-like browser (display n items with zoom support)
-[ ] Bugs
-[?]     Remove white space right after and before [bbcode] tags
+[ ] HTML/Template improvements
+[ ]     Support for 'style' attribute in mk_*_token and bellow.
+[ ]     Support for 'id' attribute in mk_*_token and bellow.
+[ ]     Ability to use widgets as labels for Link (and some other widgets)
+[>] Bugs
+[X]     Remove 'generic' class names.
 [ ]     When DB can not be opened, try to display error using templates... (do not throw an internal error!)
 [ ]     Drop DB connection when major errors (especially internal!) happen.
+[?]     Remove white space right after and before [bbcode] tags
 [ ] Release to the public
 [ ]     Make package
 [ ]     Beta-test

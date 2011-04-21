@@ -7,13 +7,11 @@ Logged in:
       href: /_Avatar/aga/
       label: Agnieszka
     type: Image
-  - class: generic
-    data:
+  - data:
       href: /_MyAccount/
       text: Logged-in as Agnieszka.
     type: Link
-  - class: generic
-    data:
+  - data:
       href: /_Authentication/Logout-en.web
       text: Logout
     type: Link

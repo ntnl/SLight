@@ -1,25 +1,21 @@
 ---
 mk_Action_token:
-  class: generic
   data:
     caption: This is an caption
     href: /foo/bar/baz.html
   type: Action
 mk_Check_token:
-  class: generic
   data:
     checked: 1
     name: check1
   type: Check
 mk_Container_token:
-  class: generic
   content:
   - Foo
   - Container
   - Bar
   type: Container
 mk_Container_token - with mixed strings and tokens:
-  class: generic
   content:
   - Foo
   - class: bold
@@ -29,18 +25,15 @@ mk_Container_token - with mixed strings and tokens:
   - Baz
   type: Container
 mk_Entry_token:
-  class: generic
   data:
     name: entry1
     value: ''
   type: Entry
 mk_FileEntry_token:
-  class: generic
   data:
     name: fale1
   type: FileEntry
 mk_Form_token:
-  class: generic
   content:
   - Foo
   - Form
@@ -52,58 +45,49 @@ mk_Form_token:
     submit: Send out
   type: Form
 mk_GridItem_token:
-  class: generic
   content:
   - Foo
   - GridItem
   - Bar
   type: GridItem
 mk_Grid_token:
-  class: generic
   content:
   - Foo
   - Grid
   - Bar
   type: Grid
 mk_Image_token:
-  class: generic
   data:
     href: /foo/bar/baz.png
     label: This is an image
   type: Image
 mk_Label_token:
-  class: generic
   data:
     text: This is an usual label
   type: Label
 mk_Link_token:
-  class: generic
   data:
     href: /foo/bar/baz.html
     text: This is a link
   type: Link
 mk_ListItem_token:
-  class: generic
   content:
   - Foo
   - ListItem
   - Bar
   type: ListItem
 mk_List_token:
-  class: generic
   content:
   - Foo
   - List
   - Bar
   type: List
 mk_PasswordEntry_token:
-  class: generic
   data:
     name: pass1
     value: ''
   type: PasswordEntry
 mk_SelectEntry_token:
-  class: generic
   data:
     name: select1
     options:
@@ -113,12 +97,10 @@ mk_SelectEntry_token:
     value: ''
   type: SelectEntry
 mk_Status_token:
-  class: generic
   data:
     status: OK
   type: Status
 mk_TableCell_token:
-  class: generic
   content:
   - Foo
   - Cell
@@ -128,27 +110,23 @@ mk_TableCell_token:
     rowspan: 3
   type: TableCell
 mk_TableRow_token:
-  class: generic
   content:
   - Foo
   - Row
   - Bar
   type: TableRow
 mk_Table_token:
-  class: generic
   content:
   - Foo
   - Table
   - Bar
   type: Table
 mk_TextEntry_token:
-  class: generic
   data:
     name: text1
     value: ''
   type: TextEntry
 mk_Text_token:
-  class: generic
   data:
     text: This is an usual text
   type: Text

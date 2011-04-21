@@ -33,8 +33,7 @@ Empty list:
           content:
           - class: Message
             content:
-            - class: generic
-              data:
+            - data:
                 text: No specs.
               type: Label
             type: Container
@@ -78,14 +77,11 @@ One element list:
       l1:
         class: SLight_Object O-Generic
         content:
-        - class: generic
-          content:
-          - class: generic
-            content:
+        - content:
+          - content:
             - class: SLight_main_name
               content:
-              - class: generic
-                data:
+              - data:
                   href: /_CMS_Spec/Spec/1/
                   text: Woman
                 type: Link

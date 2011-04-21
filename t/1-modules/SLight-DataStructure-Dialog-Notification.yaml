@@ -4,8 +4,7 @@ get_data() example:
   content:
   - class: Message
     content:
-    - class: generic
-      data:
+    - data:
         text: This is an example notification
       type: Label
     type: Container

@@ -54,8 +54,11 @@ sub mk_Container_token { # {{{
     my %P = validate(
         @_,
         {
-            class   => { type=>SCALAR, optional=>1, default=>'generic' },
-            content => { type=>ARRAYREF }
+            id    => { type=>SCALAR, optional=>1 },
+            class => { type=>SCALAR, optional=>1 },
+            style => { type=>HASHREF, optional=>1 },
+
+            content => { type=>ARRAYREF | HASHREF }
         }
     );
 
@@ -68,7 +71,10 @@ sub mk_List_token { # {{{
     my %P = validate(
         @_,
         {
-            class   => { type=>SCALAR, optional=>1, default=>'generic' },
+            id    => { type=>SCALAR, optional=>1 },
+            class => { type=>SCALAR, optional=>1 },
+            style => { type=>HASHREF, optional=>1 },
+
             content => { type=>ARRAYREF }
         }
     );
@@ -81,8 +87,11 @@ sub mk_ListItem_token { # {{{
     my %P = validate(
         @_,
         {
-            class   => { type=>SCALAR, optional=>1, default=>'generic' },
-            content => { type=>ARRAYREF }
+            id    => { type=>SCALAR, optional=>1 },
+            class => { type=>SCALAR, optional=>1 },
+            style => { type=>HASHREF, optional=>1 },
+
+            content => { type=>ARRAYREF | HASHREF }
         }
     );
 
@@ -95,7 +104,10 @@ sub mk_Grid_token { # {{{
     my %P = validate(
         @_,
         {
-            class   => { type=>SCALAR, optional=>1, default=>'generic' },
+            id    => { type=>SCALAR, optional=>1 },
+            class => { type=>SCALAR, optional=>1 },
+            style => { type=>HASHREF, optional=>1 },
+
             content => { type=>ARRAYREF },
         }
     );
@@ -108,7 +120,10 @@ sub mk_GridItem_token { # {{{
     my %P = validate(
         @_,
         {
-            class   => { type=>SCALAR, optional=>1, default=>'generic' },
+            id    => { type=>SCALAR, optional=>1 },
+            class => { type=>SCALAR, optional=>1 },
+            style => { type=>HASHREF, optional=>1 },
+
             content => { type=>ARRAYREF },
         }
     );
@@ -122,7 +137,10 @@ sub mk_Table_token { # {{{
     my %P = validate(
         @_,
         {
-            class   => { type=>SCALAR, optional=>1, default=>'generic' },
+            id    => { type=>SCALAR, optional=>1 },
+            class => { type=>SCALAR, optional=>1 },
+            style => { type=>HASHREF, optional=>1 },
+
             content => { type=>ARRAYREF },
         }
     );
@@ -135,7 +153,10 @@ sub mk_TableRow_token { # {{{
     my %P = validate(
         @_,
         {
-            class   => { type=>SCALAR, optional=>1, default=>'generic' },
+            id    => { type=>SCALAR, optional=>1 },
+            class => { type=>SCALAR, optional=>1 },
+            style => { type=>HASHREF, optional=>1 },
+
             content => { type=>ARRAYREF },
         }
     );
@@ -148,8 +169,11 @@ sub mk_TableCell_token { # {{{
     my %P = validate(
         @_,
         {
-            class   => { type=>SCALAR, optional=>1, default=>'generic' },
-            content => { type=>ARRAYREF },
+            id    => { type=>SCALAR, optional=>1 },
+            class => { type=>SCALAR, optional=>1 },
+            style => { type=>HASHREF, optional=>1 },
+
+            content => { type=>SCALAR | ARRAYREF | HASHREF },
             colspan => { type=>SCALAR, optional=>1, default=>0 },
             rowspan => { type=>SCALAR, optional=>1, default=>0 },
         }
@@ -167,10 +191,14 @@ sub mk_Form_token { # {{{
     my %P = validate(
         @_,
         {
-            class   => { type=>SCALAR, optional=>1, default=>'generic' },
-            hidden  => { type=>HASHREF, optional=>1, },
+            id    => { type=>SCALAR, optional=>1 },
+            class => { type=>SCALAR, optional=>1 },
+            style => { type=>HASHREF, optional=>1 },
+
+            hidden  => { type=>HASHREF, optional=>1 },
             action  => { type=>SCALAR },
             submit  => { type=>SCALAR },
+            preview => { type=>SCALAR, optional=>1 },
             content => { type=>ARRAYREF }
         }
     );
@@ -188,7 +216,10 @@ sub mk_Entry_token { # {{{
     my %P = validate(
         @_,
         {
-            class => { type=>SCALAR, optional=>1, default=>'generic' },
+            id    => { type=>SCALAR, optional=>1 },
+            class => { type=>SCALAR, optional=>1 },
+            style => { type=>HASHREF, optional=>1 },
+
             value => { type=>SCALAR, optional=>1, default=>q{} },
             name  => { type=>SCALAR },
         }
@@ -205,7 +236,10 @@ sub mk_TextEntry_token { # {{{
     my %P = validate(
         @_,
         {
-            class => { type=>SCALAR, optional=>1, default=>'generic' },
+            id    => { type=>SCALAR, optional=>1 },
+            class => { type=>SCALAR, optional=>1 },
+            style => { type=>HASHREF, optional=>1 },
+
             value => { type=>SCALAR, optional=>1, default=>q{} },
             name  => { type=>SCALAR },
         }
@@ -222,7 +256,10 @@ sub mk_FileEntry_token { # {{{
     my %P = validate(
         @_,
         {
-            class => { type=>SCALAR, optional=>1, default=>'generic' },
+            id    => { type=>SCALAR, optional=>1 },
+            class => { type=>SCALAR, optional=>1 },
+            style => { type=>HASHREF, optional=>1 },
+
             name  => { type=>SCALAR },
         }
     );
@@ -237,7 +274,10 @@ sub mk_PasswordEntry_token { # {{{
     my %P = validate(
         @_,
         {
-            class => { type=>SCALAR, optional=>1, default=>'generic' },
+            id    => { type=>SCALAR, optional=>1 },
+            class => { type=>SCALAR, optional=>1 },
+            style => { type=>HASHREF, optional=>1 },
+
             value => { type=>SCALAR, optional=>1, default=>q{} },
             name  => { type=>SCALAR },
         }
@@ -254,7 +294,10 @@ sub mk_SelectEntry_token { # {{{
     my %P = validate(
         @_,
         {
-            class   => { type=>SCALAR, optional=>1, default=>'generic' },
+            id    => { type=>SCALAR, optional=>1 },
+            class => { type=>SCALAR, optional=>1 },
+            style => { type=>HASHREF, optional=>1 },
+
             value   => { type=>SCALAR, optional=>1, default=>q{} },
             options => { type=>ARRAYREF },
             name    => { type=>SCALAR },
@@ -273,7 +316,10 @@ sub mk_Check_token { # {{{
     my %P = validate(
         @_,
         {
-            class   => { type=>SCALAR, optional=>1, default=>'generic' },
+            id    => { type=>SCALAR, optional=>1 },
+            class => { type=>SCALAR, optional=>1 },
+            style => { type=>HASHREF, optional=>1 },
+
             checked => { type=>SCALAR, optional=>1, default=>0 },
             name    => { type=>SCALAR },
         }
@@ -291,7 +337,10 @@ sub mk_Status_token { # {{{
     my %P = validate(
         @_,
         {
-            class  => { type=>SCALAR, optional=>1, default=>'generic' },
+            id    => { type=>SCALAR, optional=>1 },
+            class => { type=>SCALAR, optional=>1 },
+            style => { type=>HASHREF, optional=>1 },
+
             status => { type=>SCALAR, optional=>1, default=>q{} }
         }
     );
@@ -305,8 +354,11 @@ sub mk_Label_token { # {{{
     my %P = validate(
         @_,
         {
-            class => { type=>SCALAR, optional=>1, default=>'generic' },
-            text  => { type=>SCALAR, optional=>1, default=>q{} }
+            id    => { type=>SCALAR, optional=>1 },
+            class => { type=>SCALAR, optional=>1 },
+            style => { type=>HASHREF, optional=>1 },
+
+            text  => { type=>SCALAR }
         }
     );
 
@@ -319,7 +371,10 @@ sub mk_Text_token { # {{{
     my %P = validate(
         @_,
         {
-            class => { type=>SCALAR, optional=>1, default=>'generic' },
+            id    => { type=>SCALAR, optional=>1 },
+            class => { type=>SCALAR, optional=>1 },
+            style => { type=>HASHREF, optional=>1 },
+
             text  => { type=>SCALAR | ARRAYREF, optional=>1, default=>q{} }
         }
     );
@@ -334,9 +389,12 @@ sub mk_Link_token { # {{{
     my %P = validate(
         @_,
         {
-            class => { type=>SCALAR, optional=>1, default=>'generic' },
-            text  => { type=>SCALAR },
-            href  => { type=>SCALAR },
+            id    => { type=>SCALAR, optional=>1 },
+            class => { type=>SCALAR, optional=>1 },
+            style => { type=>HASHREF, optional=>1 },
+
+            text => { type=>SCALAR | ARRAYREF | HASHREF },
+            href => { type=>SCALAR },
         }
     );
 
@@ -350,7 +408,10 @@ sub mk_Action_token { # {{{
     my %P = validate(
         @_,
         {
-            class => { type=>SCALAR, optional=>1, default=>'generic' },
+            id    => { type=>SCALAR, optional=>1 },
+            class => { type=>SCALAR, optional=>1 },
+            style => { type=>HASHREF, optional=>1 },
+
             caption => { type=>SCALAR },
             href    => { type=>SCALAR },
         }
@@ -366,9 +427,12 @@ sub mk_Image_token { # {{{
     my %P = validate(
         @_,
         {
-            class => { type=>SCALAR, optional=>1, default=>'generic' },
+            id    => { type=>SCALAR, optional=>1 },
+            class => { type=>SCALAR, optional=>1 },
+            style => { type=>HASHREF, optional=>1 },
+
             href  => { type=>SCALAR },
-            label => { type=>SCALAR, optional=>1, default=>q{} },
+            label => { type=>SCALAR, optional=>1 },
         }
     );
     
@@ -384,9 +448,12 @@ sub mk_ProgressBar_token { # {{{
     my %P = validate(
         @_,
         {
-            class => { type=>SCALAR, optional=>1, default=>'generic' },
+            id    => { type=>SCALAR, optional=>1 },
+            class => { type=>SCALAR, optional=>1 },
+            style => { type=>HASHREF, optional=>1 },
 
-            bar_class => { type=>SCALAR, optional=>1, default=>'generic' },
+
+            bar_class => { type=>SCALAR, optional=>1 },
             bar_value => { type=>SCALAR },
             bar_range => { type=>SCALAR },
         }

@@ -20,10 +20,8 @@ AddContent form - as Current:
       ob2:
         class: SLight_Object O-AddContent
         content:
-        - class: generic
-          content:
-          - class: generic
-            content:
+        - content:
+          - content:
             - class: F-Label Label
               data:
                 text: Article
@@ -141,10 +139,8 @@ AddContent form - as New:
       ob2:
         class: SLight_Object O-AddContent
         content:
-        - class: generic
-          content:
-          - class: generic
-            content:
+        - content:
+          - content:
             - class: F-Label Label
               data:
                 text: Article
@@ -286,8 +282,7 @@ AddContent invitation:
       ob2:
         class: SLight_Object O-AddContent
         content:
-        - class: generic
-          content:
+        - content:
           - class: default
             content:
             - class: main_name
@@ -312,8 +307,7 @@ AddContent invitation:
               type: TableCell
             - class: link
               content:
-              - class: generic
-                data:
+              - data:
                   href: /About/AddContent-form.web?target=New&spec_id=1
                   text: As new page
                 type: Link
@@ -323,8 +317,7 @@ AddContent invitation:
               type: TableCell
             - class: link
               content:
-              - class: generic
-                data:
+              - data:
                   href: /About/AddContent-form.web?target=Current&spec_id=1
                   text: Append here
                 type: Link
@@ -357,8 +350,7 @@ AddContent invitation:
               type: TableCell
             - class: link
               content:
-              - class: generic
-                data:
+              - data:
                   href: /About/AddContent-form.web?target=New&spec_id=3
                   text: As new page
                 type: Link
@@ -368,8 +360,7 @@ AddContent invitation:
               type: TableCell
             - class: link
               content:
-              - class: generic
-                data:
+              - data:
                   href: /About/AddContent-form.web?target=Current&spec_id=3
                   text: Append here
                 type: Link
@@ -402,8 +393,7 @@ AddContent invitation:
               type: TableCell
             - class: link
               content:
-              - class: generic
-                data:
+              - data:
                   href: /About/AddContent-form.web?target=New&spec_id=2
                   text: As new page
                 type: Link
@@ -413,8 +403,7 @@ AddContent invitation:
               type: TableCell
             - class: link
               content:
-              - class: generic
-                data:
+              - data:
                   href: /About/AddContent-form.web?target=Current&spec_id=2
                   text: Append here
                 type: Link
@@ -452,10 +441,8 @@ Getting a girl - form:
       ob2:
         class: SLight_Object O-AddContent
         content:
-        - class: generic
-          content:
-          - class: generic
-            content:
+        - content:
+          - content:
             - class: F-Label Label
               data:
                 text: Gal

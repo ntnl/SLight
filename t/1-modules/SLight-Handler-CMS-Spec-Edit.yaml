@@ -18,8 +18,7 @@ Show edit form:
       _spec:
         class: SLight_Object O-CMS_Spec
         content:
-        - class: generic
-          content:
+        - content:
           - class: F-caption Entry
             content:
             - class: Label

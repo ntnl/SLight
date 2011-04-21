@@ -43,8 +43,7 @@ Display form:
       o:
         class: SLight_Object O-SL_MyAccount_Avatar
         content:
-        - class: generic
-          content:
+        - content:
           - class: F-avatar FileEntry
             content:
             - class: Label

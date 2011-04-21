@@ -19,8 +19,7 @@ Fake NotFound error:
           content:
           - class: Message
             content:
-            - class: generic
-              data:
+            - data:
                 text: 'Requested resource was not found. Plesase check URL (Error:
                   Not found).'
               type: Label

@@ -22,10 +22,14 @@ use Params::Validate qw( :all );
 sub _make_container { # {{{
     my ( $self, $class, $items ) = @_;
 
-    return mk_Table_token(
-        class   => $class,
+    my %table = (
         content => $items,
     );
+    if ($class) {
+        $table{'class'} = $class;
+    }
+
+    return mk_Table_token(%table);
 } # }}}
 
 sub add_Row { # {{{
@@ -33,7 +37,7 @@ sub add_Row { # {{{
     my %P = validate(
         @_,
         {
-            class => { type=>SCALAR, optional=>1, default=>'generic' },
+            class => { type=>SCALAR, optional=>1 },
             data  => { type=>HASHREF },
         }
     );
@@ -47,16 +51,22 @@ sub add_Row { # {{{
             class  => $column->{'class'},
         );
 
-        push @columns, mk_TableCell_token(
-            class   => $column->{'class'},
+        my %cell = (
             content => $content,
         );
+        if ($column->{'class'}) {
+            $cell{'class'} = $column->{'class'};
+        }
+        push @columns, mk_TableCell_token(%cell);
     }
 
-    push @{ $self->{'Items'} }, mk_TableRow_token(
-        class   => $P{'class'},
+    my %row = (
         content => \@columns,
     );
+    if ($P{'class'}) {
+        $row{'class'} = $P{'class'};
+    }
+    push @{ $self->{'Items'} }, mk_TableRow_token(%row);
 
     return;
 } # }}}

@@ -731,14 +731,31 @@ sub process_layout_element { # {{{
     }
 
     my %element_variables = (
-        Class => $element->{'class'},
         &{ $layout_elements{ $element->{'type'} }->{'process_sub'} }( ($element->{'data'} or {}) ),
     );
+    if ($element->{'class'}) {
+        $element_variables{'Class'} = $element->{'class'};
+    }
 
     if ($element->{'content'}) {
         foreach my $child_element (@{ $element->{'content'} }) {
             $element_variables{'Content'} .= $self->process_layout_element($definition, $child_element);
         }
+    }
+
+#    if ($element->{'type'} eq 'Link') {
+#        use Data::Dumper; warn Dumper $element;
+#    }
+
+    # Support for non-string Text labels:
+    if ($element->{'data'}->{'text'} and ref $element->{'data'}->{'text'}) {
+        my $string = q{};
+
+        foreach my $child_element (@{ $element->{'data'}->{'text'} }) {
+            $string .= $self->process_layout_element($definition, $child_element);
+        }
+
+        $element_variables{'Text'} = $string;
     }
 
     my $html = $self->process_block($definition->{ $element->{'type'} }, { var_data=>\%element_variables }, 1);

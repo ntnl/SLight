@@ -24,8 +24,7 @@ Ask for page:
           content:
           - class: Message
             content:
-            - class: generic
-              data:
+            - data:
                 text: Do you want to delete current page? Please confirm.
               type: Label
             type: Container

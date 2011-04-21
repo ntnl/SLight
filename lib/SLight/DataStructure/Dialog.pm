@@ -79,11 +79,7 @@ sub add_button { # {{{
 
     # FIXME: validate input!
 
-    push @{ $self->{'Dialog'}->{'Buttons'} }, mk_Action_token(
-        class   => ( $P{'class'} or 'generic' ),
-        caption => $P{'caption'},
-        href    => $P{'href'},
-    );
+    push @{ $self->{'Dialog'}->{'Buttons'} }, mk_Action_token(%P);
 
     return;
 } # }}}

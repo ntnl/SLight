@@ -19,8 +19,7 @@ Activate already active account:
           content:
           - class: Message
             content:
-            - class: generic
-              data:
+            - data:
                 text: Given activation key is incorrect. Please check spelling. Note,
                   that letter case is important.
               type: Label
@@ -77,8 +76,7 @@ Display 'Thank you' page:
           content:
           - class: Message
             content:
-            - class: generic
-              data:
+            - data:
                 text: Thank You for registering! An email has been sent to You, with
                   further information.
               type: Label
@@ -116,8 +114,7 @@ Try to activate fake account:
           content:
           - class: Message
             content:
-            - class: generic
-              data:
+            - data:
                 text: Given activation key is incorrect. Please check spelling. Note,
                   that letter case is important.
               type: Label

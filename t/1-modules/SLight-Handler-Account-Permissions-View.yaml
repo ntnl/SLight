@@ -30,42 +30,33 @@
       o:
         class: SLight_Object O-SL_Account_Permissions
         content:
-        - class: generic
-          content:
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+        - content:
+          - content:
+            - content:
+              - data:
                   text: Account::*::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -84,40 +75,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Account::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -136,40 +119,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Account::Delete
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -188,40 +163,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Account::Edit
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -240,40 +207,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Account::New
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -292,40 +251,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Account::Password
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -344,40 +295,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Account::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -396,40 +339,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Avatar::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -448,40 +383,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Avatar::Change
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -500,40 +427,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Avatar::Delete
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -552,40 +471,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Avatar::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -604,42 +515,33 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::List::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: 'Inherited: DENIED'
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
@@ -647,40 +549,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Permissions::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -699,40 +593,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Permissions::Change
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -751,40 +637,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Permissions::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -803,40 +681,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::*::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -855,40 +725,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Entry::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -907,40 +769,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Entry::AddContent
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -959,40 +813,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Entry::Delete
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -1011,40 +857,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Entry::Edit
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -1063,40 +901,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Entry::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -1115,40 +945,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Spec::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -1167,40 +989,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Spec::Delete
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -1219,40 +1033,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Spec::Edit
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -1271,40 +1077,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Spec::New
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -1323,40 +1121,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Spec::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -1375,40 +1165,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::SpecField::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -1427,40 +1209,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::SpecField::Delete
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -1479,40 +1253,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::SpecField::Edit
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -1531,40 +1297,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::SpecField::New
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -1583,40 +1341,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::SpecField::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -1635,40 +1385,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::SpecList::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -1687,40 +1429,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::SpecList::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -1739,40 +1473,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Welcome::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -1791,40 +1517,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Welcome::AddContent
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -1843,40 +1561,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Welcome::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -1895,40 +1605,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::*::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -1947,40 +1649,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::Asset::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -1999,40 +1693,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::Asset::Delete
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -2051,40 +1737,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::Asset::Download
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -2103,40 +1781,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::Asset::Thumb
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -2155,40 +1825,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::Asset::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -2207,40 +1869,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::AssetList::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -2259,40 +1913,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::AssetList::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -2311,40 +1957,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::Empty::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -2363,42 +2001,33 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::Empty::AddContent
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: 'Inherited: DENIED'
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
@@ -2406,40 +2035,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::Empty::Delete
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -2458,42 +2079,33 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::Empty::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: 'Inherited: GRANTED'
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
@@ -2501,42 +2113,33 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: MyAccount::*::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: 'Inherited: DENIED'
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
@@ -2544,40 +2147,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: System::*::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -2596,40 +2191,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: System::Permissions::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -2648,40 +2235,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: System::Permissions::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -2700,40 +2279,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: System::Permissions::Change
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -2752,40 +2323,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Test::*::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -2804,42 +2367,33 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Test::Foo::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: 'Inherited: GRANTED'
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
@@ -2847,42 +2401,33 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: User::*::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: 'Inherited: GRANTED'
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
@@ -2928,42 +2473,33 @@
       o:
         class: SLight_Object O-SL_Account_Permissions
         content:
-        - class: generic
-          content:
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+        - content:
+          - content:
+            - content:
+              - data:
                   text: Account::*::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -2982,40 +2518,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Account::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -3034,40 +2562,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Account::Delete
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -3086,40 +2606,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Account::Edit
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -3138,40 +2650,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Account::New
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -3190,40 +2694,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Account::Password
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -3242,40 +2738,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Account::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -3294,40 +2782,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Avatar::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -3346,40 +2826,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Avatar::Change
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -3398,40 +2870,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Avatar::Delete
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -3450,40 +2914,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Avatar::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -3502,42 +2958,33 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::List::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: 'Inherited: DENIED'
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
@@ -3545,40 +2992,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Permissions::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -3597,40 +3036,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Permissions::Change
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -3649,40 +3080,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Account::Permissions::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -3701,40 +3124,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::*::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -3753,40 +3168,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Entry::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -3805,40 +3212,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Entry::AddContent
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -3857,40 +3256,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Entry::Delete
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -3909,40 +3300,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Entry::Edit
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -3961,40 +3344,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Entry::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -4013,40 +3388,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Spec::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -4065,40 +3432,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Spec::Delete
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -4117,40 +3476,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Spec::Edit
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -4169,40 +3520,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Spec::New
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -4221,40 +3564,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Spec::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -4273,40 +3608,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::SpecField::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -4325,40 +3652,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::SpecField::Delete
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -4377,40 +3696,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::SpecField::Edit
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -4429,40 +3740,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::SpecField::New
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -4481,40 +3784,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::SpecField::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -4533,40 +3828,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::SpecList::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -4585,40 +3872,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::SpecList::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -4637,40 +3916,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Welcome::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -4689,40 +3960,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Welcome::AddContent
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -4741,40 +4004,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: CMS::Welcome::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -4793,40 +4048,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::*::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -4845,40 +4092,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::Asset::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -4897,40 +4136,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::Asset::Delete
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -4949,40 +4180,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::Asset::Download
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -5001,40 +4224,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::Asset::Thumb
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -5053,40 +4268,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::Asset::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -5105,40 +4312,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::AssetList::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -5157,40 +4356,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::AssetList::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -5209,40 +4400,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::Empty::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -5261,42 +4444,33 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::Empty::AddContent
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: 'Inherited: DENIED'
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
@@ -5304,40 +4478,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::Empty::Delete
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -5356,42 +4522,33 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Core::Empty::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: 'Inherited: GRANTED'
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
@@ -5399,42 +4556,33 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: MyAccount::*::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: 'Inherited: DENIED'
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
@@ -5442,40 +4590,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: System::*::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -5494,40 +4634,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: System::Permissions::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -5546,40 +4678,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: System::Permissions::View
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -5598,40 +4722,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: System::Permissions::Change
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -5650,40 +4766,32 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Test::*::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: Not set
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
+            - content:
               - class: SLight_Toolbox
                 content:
                 - class: SLight_Change_Action
@@ -5702,42 +4810,33 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: Test::Foo::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: 'Inherited: GRANTED'
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
@@ -5745,42 +4844,33 @@
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: generic
-            content:
-            - class: generic
-              content:
-              - class: generic
-                data:
+          - content:
+            - content:
+              - data:
                   text: User::*::*
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: 'Inherited: GRANTED'
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
-            - class: generic
-              content:
-              - class: generic
-                data:
+            - content:
+              - data:
                   text: ''
                 type: Label
               data:

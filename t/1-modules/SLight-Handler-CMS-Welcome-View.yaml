@@ -19,16 +19,14 @@ Get the welcome message (note, that DB is empty):
           content:
           - class: Message
             content:
-            - class: generic
-              data:
+            - data:
                 text: Welcome to SLight Content Management System. This instalation
                   has no content.
               type: Label
             type: Container
           - class: Buttons
             content:
-            - class: generic
-              data:
+            - data:
                 caption: Start by adding Content specification.
                 href: /_CMS_Spec/
               type: Action

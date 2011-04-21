@@ -20,10 +20,8 @@ Asset list with one asset:
       l1:
         class: SLight_Object O-Assets
         content:
-        - class: generic
-          content:
-          - class: generic
-            content:
+        - content:
+          - content:
             - class: SLight_thumb
               content:
               - class: Asset
@@ -117,8 +115,7 @@ Empty Asset list:
           content:
           - class: Message
             content:
-            - class: generic
-              data:
+            - data:
                 text: No assets.
               type: Label
             type: Container

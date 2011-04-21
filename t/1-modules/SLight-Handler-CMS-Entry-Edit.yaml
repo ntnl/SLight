@@ -23,10 +23,8 @@ Open content edit form:
       ob2:
         class: SLight_Object O-Content
         content:
-        - class: generic
-          content:
-          - class: generic
-            content:
+        - content:
+          - content:
             - class: F-Label Label
               data:
                 text: Article

@@ -19,8 +19,7 @@ Fake an AccessDenied error:
           content:
           - class: Message
             content:
-            - class: generic
-              data:
+            - data:
                 text: 'You are not authorized to access this page (Error: Access denied).'
               type: Label
             type: Container

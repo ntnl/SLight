@@ -49,8 +49,7 @@ Show dialog:
           content:
           - class: Message
             content:
-            - class: generic
-              data:
+            - data:
                 text: 'Do you want to delete Account: ''beti'' (name: ''Beata'')?
                   Please confirm.'
               type: Label

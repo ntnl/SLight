@@ -16,8 +16,7 @@ full_blown_example:
       data:
         text: Beti
       type: Label
-    - class: generic
-      data:
+    - data:
         href: http://website.of.beti.pl
         text: Website of Beti
       type: Link
@@ -36,8 +35,7 @@ full_blown_example:
       data:
         text: Crea
       type: Label
-    - class: generic
-      data:
+    - data:
         href: http://www.ela.pl
         text: www-ELA-pl
       type: Link

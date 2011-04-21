@@ -19,8 +19,7 @@ Fake AuthRequired error:
           content:
           - class: Message
             content:
-            - class: generic
-              data:
+            - data:
                 text: 'You must log-in to access this page. (Error: Authentication
                   required).'
               type: Label

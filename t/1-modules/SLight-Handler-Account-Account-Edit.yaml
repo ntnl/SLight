@@ -74,10 +74,8 @@ Show form:
       o:
         class: SLight_Object O-SL_Account_Edit
         content:
-        - class: generic
-          content:
-          - class: generic
-            content:
+        - content:
+          - content:
             - class: F-Label Label
               data:
                 text: 'Edit Account: beti'
@@ -168,10 +166,8 @@ Submit form (bad data):
       o:
         class: SLight_Object O-SL_Account_Edit
         content:
-        - class: generic
-          content:
-          - class: generic
-            content:
+        - content:
+          - content:
             - class: F-Label Label
               data:
                 text: 'Edit Account: beti'
