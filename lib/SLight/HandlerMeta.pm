@@ -46,6 +46,31 @@ sub get_handlers_list { # {{{
             ], # }}}
         },
         {
+            class => q{List}, # {{{
+            objects => [
+                {
+                    class => q{Headlines},
+                    actions => [qw( View Settings AddContent Delete )],
+                },
+                {
+                    class => q{Aggregator},
+                    actions => [qw( View Settings AddContent Delete )],
+                },
+                {
+                    class => q{Blog},
+                    actions => [qw( View Settings AddContent Delete )],
+                },
+                {
+                    class => q{News},
+                    actions => [qw( View Settings AddContent Delete )],
+                },
+                {
+                    class => q{Gallery},
+                    actions => [qw( View Zoom Settings AddContent Delete )],
+                },
+            ], # }}}
+        },
+        {
             class => q{CMS}, # {{{
             objects => [
                 {

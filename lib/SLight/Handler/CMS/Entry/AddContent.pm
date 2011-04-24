@@ -70,8 +70,46 @@ sub handle_view { # {{{
         ],
     );
 
+    $table->add_Row(
+        class => 'default',
+        data => {
+            label => TR('Empty space'),
+
+            owning_module => q{Core::Empty},
+
+            as_page_link => [
+                mk_Link_token(
+                    text => TR('As new page'),
+                    href => $self->build_url(
+                        step    => 'form',
+                        options => {
+                            target  => q{New},
+                            handler => q{CMS::Entry},
+                        },
+                    ),
+                ),
+            ],
+            append_link => [
+                mk_Link_token(
+                    text => TR('Append here'),
+                    href => $self->build_url(
+                        step    => 'form',
+                        options => {
+                            target => 'Current',
+                            handler => q{CMS::Entry},
+                        },
+                    ),
+                )
+            ]
+        },
+    );
+
+    foreach my $list_type (qw( Headlines News Blog Gallery Aggregator )) {
+        # Hard-coded "for now" (FIXME!)
+    }
+
     foreach my $spec (@{ $specs }) {
-        # Hardcoded for now (FIXME!)
+        # Hard-coded "for now" (FIXME!)
         $table->add_Row(
             class => 'default',
             data => {
