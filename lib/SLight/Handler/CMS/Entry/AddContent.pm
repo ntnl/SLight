@@ -21,6 +21,7 @@ use SLight::DataStructure::List::Table;
 use SLight::DataStructure::Form;
 use SLight::Core::L10N qw( TR );
 use SLight::DataToken qw( mk_Label_token mk_Link_token );
+use SLight::HandlerMetaFactory;
 
 use Carp;
 use Carp::Assert::More qw( assert_defined );
@@ -36,7 +37,8 @@ sub handle_view { # {{{
     assert_defined($self->{'page'}->{'page_id'}, 'ID (in page) defined');
 
     my $specs = get_ContentSpecs_where(
-        cms_usage => [1, 2, 3],
+        cms_usage     => [1, 2, 3],
+        owning_module => 'CMS::Entry',
     );
 
     if (not scalar @{ $specs }) {
@@ -71,7 +73,6 @@ sub handle_view { # {{{
     );
 
     $table->add_Row(
-        class => 'default',
         data => {
             label => TR('Empty space'),
 
@@ -106,16 +107,11 @@ sub handle_view { # {{{
 
     foreach my $list_type (qw( Headlines News Blog Gallery Aggregator )) {
         # Hard-coded "for now" (FIXME!)
-    }
-
-    foreach my $spec (@{ $specs }) {
-        # Hard-coded "for now" (FIXME!)
         $table->add_Row(
-            class => 'default',
             data => {
-                label => $spec->{'caption'},
+                label => TR(q{List: } . $list_type),
 
-                owning_module => $spec->{'owning_module'},
+                owning_module => q{List::} . $list_type,
 
                 as_page_link => [
                     mk_Link_token(
@@ -124,7 +120,7 @@ sub handle_view { # {{{
                             step    => 'form',
                             options => {
                                 target  => 'New',
-                                spec_id => $spec->{'id'},
+                                handler => q{List::} . $list_type,
                             },
                         ),
                     ),
@@ -136,6 +132,44 @@ sub handle_view { # {{{
                             step    => 'form',
                             options => {
                                 target => 'Current',
+                                handler => q{List::} . $list_type,
+                            },
+                        ),
+                    )
+                ]
+            },
+        );
+    }
+
+    foreach my $spec (@{ $specs }) {
+        # Hard-coded "for now" (FIXME!)
+        $table->add_Row(
+            data => {
+                label => TR("Content") .q{: }. $spec->{'caption'},
+
+                owning_module => $spec->{'owning_module'},
+
+                as_page_link => [
+                    mk_Link_token(
+                        text => TR('As new page'),
+                        href => $self->build_url(
+                            step    => 'form',
+                            options => {
+                                target  => 'New',
+                                handler => q{CMS::Entry},
+                                spec_id => $spec->{'id'},
+                            },
+                        ),
+                    ),
+                ],
+                append_link => [
+                    mk_Link_token(
+                        text => TR('Append here'),
+                        href => $self->build_url(
+                            step    => 'form',
+                            options => {
+                                target  => 'Current',
+                                handler => q{CMS::Entry},
                                 spec_id => $spec->{'id'},
                             },
                         ),
@@ -155,7 +189,9 @@ sub handle_form { # {{{
 
     $self->set_class('AddContent');
 
-    my $spec = get_ContentSpec($self->{'options'}->{'spec_id'});
+    my $meta_handler = $self->_meta_handler($self->{'options'}->{'handler'});
+
+    my $content_spec = $meta_handler->get_spec($self->{'options'}->{'spec_id'});
 
     my $form = SLight::DataStructure::Form->new(
         submit => TR('Add'),
@@ -164,13 +200,14 @@ sub handle_form { # {{{
         ),
         hidden => {
             target  => $self->{'options'}->{'target'},
-            spec_id => $self->{'options'}->{'spec_id'},
+            handler => $self->{'options'}->{'handler'},
+            spec_id => ( $self->{'options'}->{'spec_id'} or q{} ),
         }
     );
 
     $self->build_form_guts(
         form    => $form,
-        spec    => $spec,
+        spec    => $content_spec,
         errors  => {},
     );
 
@@ -184,7 +221,9 @@ sub handle_save { # {{{
 
     $self->set_class('AddContent');
 
-    my $content_spec = get_ContentSpec($self->{'options'}->{'spec_id'});
+    my $meta_handler = $self->_meta_handler($self->{'options'}->{'handler'});
+
+    my $content_spec = $meta_handler->get_spec($self->{'options'}->{'spec_id'}, 1);
 
     # Get the data, that User sent us.
     my ( $errors, $warnings, $data, $assets ) = $self->slurp_content_form_data(
@@ -293,6 +332,21 @@ sub handle_save { # {{{
     $self->redirect( $self->build_url(%target_url) );
 
     return;
+} # }}}
+
+sub _meta_handler { # {{{
+    my ( $self, $class ) = @_;
+
+    my $factory = SLight::HandlerMetaFactory->new();
+
+    my ( $pkg, $handler ) = split m/::/s, $class;
+
+    my $handlermeta = $factory->make(
+        pkg     => $pkg,
+        handler => $handler,
+    );
+
+    return $handlermeta;
 } # }}}
 
 # vim: fdm=marker

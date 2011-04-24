@@ -268,6 +268,7 @@
 [ ]     When DB can not be opened, try to display error using templates... (do not throw an internal error!)
 [ ]     Drop DB connection when major errors (especially internal!) happen.
 [?]     Remove white space right after and before [bbcode] tags
+[ ]     Do not show email field, if User is logged in.
 [ ] Release to the public
 [ ]     Make package
 [ ]     Beta-test
