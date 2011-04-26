@@ -8,7 +8,7 @@ New spec form:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         type: Container
     object_data:
@@ -20,7 +20,7 @@ New spec form:
             content:
             - class: Label
               data:
-                text: Caption
+                label: Caption
               type: Label
             - class: Value
               data:
@@ -32,7 +32,7 @@ New spec form:
             content:
             - class: Label
               data:
-                text: Class
+                label: Class
               type: Label
             - class: Value
               data:
@@ -44,7 +44,7 @@ New spec form:
             content:
             - class: Label
               data:
-                text: Order field
+                label: Order field
               type: Label
             - class: Value
               data:
@@ -65,7 +65,7 @@ New spec form:
             content:
             - class: Label
               data:
-                text: Title field
+                label: Title field
               type: Label
             - class: Value
               data:
@@ -78,7 +78,7 @@ New spec form:
             content:
             - class: Label
               data:
-                text: Menu field
+                label: Menu field
               type: Label
             - class: Value
               data:
@@ -91,7 +91,7 @@ New spec form:
             content:
             - class: Label
               data:
-                text: Path field
+                label: Path field
               type: Label
             - class: Value
               data:

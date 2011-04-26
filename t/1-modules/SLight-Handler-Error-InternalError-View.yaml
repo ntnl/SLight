@@ -8,7 +8,7 @@ Fake Internal error:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         type: Container
     object_data:
@@ -20,7 +20,7 @@ Fake Internal error:
           - class: Message
             content:
             - data:
-                text: 'Request can not be completed, due to unexpected difficulties.
+                label: 'Request can not be completed, due to unexpected difficulties.
                   Please try again. (Error: Internal).'
               type: Label
             type: Container

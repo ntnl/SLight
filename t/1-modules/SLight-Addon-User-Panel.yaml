@@ -9,11 +9,11 @@ Logged in:
     type: Image
   - data:
       href: /_MyAccount/
-      text: Logged-in as Agnieszka.
+      label: Logged-in as Agnieszka.
     type: Link
   - data:
       href: /_Authentication/Logout-en.web
-      text: Logout
+      label: Logout
     type: Link
   type: Container
 Not logged in:
@@ -25,7 +25,7 @@ Not logged in:
       content:
       - class: Label
         data:
-          text: Login
+          label: Login
         type: Label
       - class: Value
         data:
@@ -37,7 +37,7 @@ Not logged in:
       content:
       - class: Label
         data:
-          text: Password
+          label: Password
         type: Label
       - class: Value
         data:

@@ -8,7 +8,7 @@ Call the 'View' actio non 'Test::Foo' object:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         type: Container
     object_data:
@@ -20,7 +20,7 @@ Call the 'View' actio non 'Test::Foo' object:
           - class: Message
             content:
             - data:
-                text: 'Diagnosting message: ''First test entry'''
+                label: 'Diagnosting message: ''First test entry'''
               type: Label
             type: Container
           - class: Buttons
@@ -36,7 +36,7 @@ Call the 'View' actio non 'Test::Foo' object:
           - class: Message
             content:
             - data:
-                text: 'Diagnosting message: ''Second test entry'''
+                label: 'Diagnosting message: ''Second test entry'''
               type: Label
             type: Container
           - class: Buttons

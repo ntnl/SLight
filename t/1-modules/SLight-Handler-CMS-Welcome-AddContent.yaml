@@ -8,7 +8,7 @@ Get Content Spec choice menu:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         type: Container
     object_data:
@@ -16,13 +16,12 @@ Get Content Spec choice menu:
         class: SLight_Object O-AddContent
         content:
         - content:
-          - class: default
-            content:
+          - content:
             - class: main_name
               content:
               - class: main_name
                 data:
-                  text: Article
+                  label: Empty space
                 type: Label
               data:
                 colspan: '0'
@@ -32,7 +31,7 @@ Get Content Spec choice menu:
               content:
               - class: name
                 data:
-                  text: CMS::Entry
+                  label: Core::Empty
                 type: Label
               data:
                 colspan: '0'
@@ -41,8 +40,8 @@ Get Content Spec choice menu:
             - class: link
               content:
               - data:
-                  href: /AddContent-form.web?target=New&spec_id=1
-                  text: As new page
+                  href: /AddContent-form.web?target=New&handler=CMS%3A%3AEntry
+                  label: As new page
                 type: Link
               data:
                 colspan: '0'
@@ -51,8 +50,260 @@ Get Content Spec choice menu:
             - class: link
               content:
               - data:
-                  href: /AddContent-form.web?target=Current&spec_id=1
-                  text: Append here
+                  href: /AddContent-form.web?target=Current&handler=CMS%3A%3AEntry
+                  label: Append here
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            type: TableRow
+          - content:
+            - class: main_name
+              content:
+              - class: main_name
+                data:
+                  label: 'List: Headlines'
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: name
+              content:
+              - class: name
+                data:
+                  label: List::Headlines
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /AddContent-form.web?target=New&handler=List%3A%3AHeadlines
+                  label: As new page
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /AddContent-form.web?target=Current&handler=List%3A%3AHeadlines
+                  label: Append here
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            type: TableRow
+          - content:
+            - class: main_name
+              content:
+              - class: main_name
+                data:
+                  label: 'List: News'
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: name
+              content:
+              - class: name
+                data:
+                  label: List::News
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /AddContent-form.web?target=New&handler=List%3A%3ANews
+                  label: As new page
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /AddContent-form.web?target=Current&handler=List%3A%3ANews
+                  label: Append here
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            type: TableRow
+          - content:
+            - class: main_name
+              content:
+              - class: main_name
+                data:
+                  label: 'List: Blog'
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: name
+              content:
+              - class: name
+                data:
+                  label: List::Blog
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /AddContent-form.web?target=New&handler=List%3A%3ABlog
+                  label: As new page
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /AddContent-form.web?target=Current&handler=List%3A%3ABlog
+                  label: Append here
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            type: TableRow
+          - content:
+            - class: main_name
+              content:
+              - class: main_name
+                data:
+                  label: 'List: Gallery'
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: name
+              content:
+              - class: name
+                data:
+                  label: List::Gallery
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /AddContent-form.web?target=New&handler=List%3A%3AGallery
+                  label: As new page
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /AddContent-form.web?target=Current&handler=List%3A%3AGallery
+                  label: Append here
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            type: TableRow
+          - content:
+            - class: main_name
+              content:
+              - class: main_name
+                data:
+                  label: 'List: Aggregator'
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: name
+              content:
+              - class: name
+                data:
+                  label: List::Aggregator
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /AddContent-form.web?target=New&handler=List%3A%3AAggregator
+                  label: As new page
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /AddContent-form.web?target=Current&handler=List%3A%3AAggregator
+                  label: Append here
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            type: TableRow
+          - content:
+            - class: main_name
+              content:
+              - class: main_name
+                data:
+                  label: 'Content: Article'
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: name
+              content:
+              - class: name
+                data:
+                  label: CMS::Entry
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /AddContent-form.web?target=New&handler=CMS%3A%3AEntry&spec_id=1
+                  label: As new page
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /AddContent-form.web?target=Current&handler=CMS%3A%3AEntry&spec_id=1
+                  label: Append here
                 type: Link
               data:
                 colspan: '0'
@@ -75,7 +326,7 @@ Get form:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         type: Container
     object_data:
@@ -86,14 +337,14 @@ Get form:
           - content:
             - class: F-Label Label
               data:
-                text: Article
+                label: Article
               type: Label
             type: Container
           - class: F-page.template Entry
             content:
             - class: Label
               data:
-                text: Template file
+                label: Template file
               type: Label
             - class: Value
               data:
@@ -105,7 +356,7 @@ Get form:
             content:
             - class: Label
               data:
-                text: Email (internal use only)
+                label: Email (internal use only)
               type: Label
             - class: Value
               data:
@@ -117,7 +368,7 @@ Get form:
             content:
             - class: Label
               data:
-                text: Title (en)
+                label: Title (en)
               type: Label
             - class: Value
               data:
@@ -129,7 +380,7 @@ Get form:
             content:
             - class: Label
               data:
-                text: Article (en)
+                label: Article (en)
               type: Label
             - class: Value
               data:
@@ -141,7 +392,7 @@ Get form:
             content:
             - class: Label
               data:
-                text: Comment write policy
+                label: Comment write policy
               type: Label
             - class: Value
               data:
@@ -164,7 +415,7 @@ Get form:
             content:
             - class: Label
               data:
-                text: Comment display policy
+                label: Comment display policy
               type: Label
             - class: Value
               data:
@@ -182,6 +433,7 @@ Get form:
           data:
             action: /AddContent-save.web
             hidden:
+              handler: CMS::Entry
               spec_id: '1'
               target: New
             submit: Add

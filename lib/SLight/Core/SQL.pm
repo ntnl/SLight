@@ -133,7 +133,7 @@ sub sql_select { # {{{
             'dbh'      => { type=>OBJECT },
             'distinct' => { type=>BOOLEAN, optional=>1 },
     		'columns'  => { type=>ARRAYREF },
-		    'from'     => { type=>SCALAR },
+		    'from'     => { type=>SCALAR | ARRAYREF },
 
 	    	'where'    => { type=>ARRAYREF, optional=>1 },
     		'group_by' => { type=>ARRAYREF, optional=>1 },
@@ -290,7 +290,7 @@ sub sql_build_query { # {{{
     }
 
     if ($P{'columns'}) {
-        $query[-1] .= q{ `}. ( join q{`, `}, @{ $P{'columns'} } ) .q{`};
+        $query[-1] .= q{ }. ( join q{, }, @{ $P{'columns'} } );
     }
 
     if ($P{'table'}) {

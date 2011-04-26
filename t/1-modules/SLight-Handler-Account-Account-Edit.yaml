@@ -52,22 +52,22 @@ Show form:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Parent
           data:
             href: /_Account/pl.web
-            text: Accounts
+            label: Accounts
           type: Link
         - class: Parent
           data:
             href: /_Account/beti/Account/pl.web
-            text: Beata
+            label: Beata
           type: Link
         - class: Current
           data:
             href: /_Account/beti/Account/Edit-pl.web
-            text: Edit
+            label: Edit
           type: Link
         type: Container
     object_data:
@@ -78,14 +78,14 @@ Show form:
           - content:
             - class: F-Label Label
               data:
-                text: 'Edit Account: beti'
+                label: 'Edit Account: beti'
               type: Label
             type: Container
           - class: F-u-status SelectEntry
             content:
             - class: Label
               data:
-                text: 'Status:'
+                label: 'Status:'
               type: Label
             - class: Value
               data:
@@ -104,7 +104,7 @@ Show form:
             content:
             - class: Label
               data:
-                text: 'Name:'
+                label: 'Name:'
               type: Label
             - class: Value
               data:
@@ -116,7 +116,7 @@ Show form:
             content:
             - class: Label
               data:
-                text: 'Email:'
+                label: 'Email:'
               type: Label
             - class: Value
               data:
@@ -144,22 +144,22 @@ Submit form (bad data):
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Parent
           data:
             href: /_Account/pl.web
-            text: Accounts
+            label: Accounts
           type: Link
         - class: Parent
           data:
             href: /_Account/beti/Account/pl.web
-            text: Beata
+            label: Beata
           type: Link
         - class: Current
           data:
             href: /_Account/beti/Account/Edit-pl.web
-            text: Edit
+            label: Edit
           type: Link
         type: Container
     object_data:
@@ -170,14 +170,14 @@ Submit form (bad data):
           - content:
             - class: F-Label Label
               data:
-                text: 'Edit Account: beti'
+                label: 'Edit Account: beti'
               type: Label
             type: Container
           - class: F-u-status SelectEntry
             content:
             - class: Label
               data:
-                text: 'Status:'
+                label: 'Status:'
               type: Label
             - class: Value
               data:
@@ -196,7 +196,7 @@ Submit form (bad data):
             content:
             - class: Label
               data:
-                text: 'Name:'
+                label: 'Name:'
               type: Label
             - class: Value
               data:
@@ -205,14 +205,14 @@ Submit form (bad data):
               type: Entry
             - class: Error
               data:
-                text: Maximum number of chacters (64) has been exceeded
+                label: Maximum number of chacters (64) has been exceeded
               type: Label
             type: Container
           - class: F-u-email Entry
             content:
             - class: Label
               data:
-                text: 'Email:'
+                label: 'Email:'
               type: Label
             - class: Value
               data:
@@ -221,7 +221,7 @@ Submit form (bad data):
               type: Entry
             - class: Error
               data:
-                text: Does not look line an Email address
+                label: Does not look line an Email address
               type: Label
             type: Container
           data:

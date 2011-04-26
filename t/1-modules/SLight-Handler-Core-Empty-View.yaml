@@ -8,12 +8,12 @@ Display empty page:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Test
           data:
             href: /Download/
-            text: Download
+            label: Download
           type: Link
         type: Container
       Core::Toolbox:

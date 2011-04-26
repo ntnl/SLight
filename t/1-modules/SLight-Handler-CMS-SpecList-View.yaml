@@ -8,12 +8,12 @@ Empty list:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Current
           data:
             href: /_CMS_Spec/
-            text: Content Specs
+            label: Content Specs
           type: Link
         type: Container
       Core::Toolbox:
@@ -34,7 +34,7 @@ Empty list:
           - class: Message
             content:
             - data:
-                text: No specs.
+                label: No specs.
               type: Label
             type: Container
           - class: Buttons
@@ -56,12 +56,12 @@ One element list:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Current
           data:
             href: /_CMS_Spec/
-            text: Content Specs
+            label: Content Specs
           type: Link
         type: Container
       Core::Toolbox:
@@ -83,7 +83,7 @@ One element list:
               content:
               - data:
                   href: /_CMS_Spec/Spec/1/
-                  text: Woman
+                  label: Woman
                 type: Link
               data:
                 colspan: 0
@@ -93,7 +93,7 @@ One element list:
               content:
               - class: SLight_name
                 data:
-                  text: CMS::Entry
+                  label: CMS::Entry
                 type: Label
               data:
                 colspan: 0
@@ -103,7 +103,7 @@ One element list:
               content:
               - class: SLight_name
                 data:
-                  text: Gal
+                  label: Gal
                 type: Label
               data:
                 colspan: 0
@@ -113,7 +113,7 @@ One element list:
               content:
               - class: SLight_int
                 data:
-                  text: 0
+                  label: 0
                 type: Label
               data:
                 colspan: 0
@@ -123,7 +123,7 @@ One element list:
               content:
               - class: SLight_int
                 data:
-                  text: 6
+                  label: 6
                 type: Label
               data:
                 colspan: 0
@@ -133,7 +133,7 @@ One element list:
               content:
               - class: SLight_name
                 data:
-                  text: 'Data field: Cup size'
+                  label: 'Data field: Cup size'
                 type: Label
               data:
                 colspan: 0
@@ -143,7 +143,7 @@ One element list:
               content:
               - class: SLight_name
                 data:
-                  text: 'Data field: Name'
+                  label: 'Data field: Name'
                 type: Label
               data:
                 colspan: 0
@@ -153,7 +153,7 @@ One element list:
               content:
               - class: SLight_name
                 data:
-                  text: 'Data field: Nick'
+                  label: 'Data field: Nick'
                 type: Label
               data:
                 colspan: 0
@@ -163,7 +163,7 @@ One element list:
               content:
               - class: SLight_name
                 data:
-                  text: 'Data field: Nick'
+                  label: 'Data field: Nick'
                 type: Label
               data:
                 colspan: 0

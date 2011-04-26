@@ -8,7 +8,7 @@ Example test case:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         type: Container
     object_data:
@@ -20,7 +20,7 @@ Example test case:
           - class: Message
             content:
             - data:
-                text: 'Diagnosting message: ''None'''
+                label: 'Diagnosting message: ''None'''
               type: Label
             type: Container
           - class: Buttons

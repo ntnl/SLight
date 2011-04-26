@@ -41,7 +41,7 @@ my $_handler = SLight::Core::Entity->new( # {{{
     has_metadata => 1,
 
     data_fields       => [qw( caption owning_module class cms_usage version order_by use_as_title use_in_menu use_in_path )],
-    child_data_fields => [qw( id class order datatype caption default translate display_on_page display_on_list display_label optional max_length )],
+    child_data_fields => [qw( id class field_index datatype caption default_value translate display_on_page display_on_list display_label optional max_length )],
 
     cache_namespage => 'SLight::API::ContentType',
 ); # }}}
@@ -115,7 +115,7 @@ sub _fix_spec {  # {{{
 
     if ($content_spec->{'_data'}) {
         $content_spec->{'_data_order'} = [
-            sort { $content_spec->{'_data'}->{$a}->{'order'} <=> $content_spec->{'_data'}->{$b}->{'order'} } keys %{ $content_spec->{'_data'} }
+            sort { $content_spec->{'_data'}->{$a}->{'field_index'} <=> $content_spec->{'_data'}->{$b}->{'field_index'} } keys %{ $content_spec->{'_data'} }
         ];
     }
 

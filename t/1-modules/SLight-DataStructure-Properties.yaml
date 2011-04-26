@@ -6,27 +6,27 @@ basic usage:
     content:
     - class: SL_Property_Caption
       data:
-        text: First
+        label: First
       type: Label
     - class: SL_Property_Value
       data:
-        text: ''
+        label: ''
       type: Label
     type: Container
   - class: Full
     content:
     - class: SL_Property_Caption
       data:
-        text: First
+        label: First
       type: Label
     - class: SL_Property_Value
       data:
-        text: Filled
+        label: Filled
       type: Label
     - class: SL_Property_Link
       data:
         href: /out.html
-        text: First
+        label: First
       type: Link
     type: Container
   data: {}

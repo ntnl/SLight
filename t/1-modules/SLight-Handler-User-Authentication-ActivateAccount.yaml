@@ -8,7 +8,7 @@ Activate already active account:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         type: Container
     object_data:
@@ -20,7 +20,7 @@ Activate already active account:
           - class: Message
             content:
             - data:
-                text: Given activation key is incorrect. Please check spelling. Note,
+                label: Given activation key is incorrect. Please check spelling. Note,
                   that letter case is important.
               type: Label
             type: Container
@@ -60,12 +60,12 @@ Display 'Thank you' page:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Current
           data:
             href: /_Authentication/Register.web
-            text: Register
+            label: Register
           type: Link
         type: Container
     object_data:
@@ -77,7 +77,7 @@ Display 'Thank you' page:
           - class: Message
             content:
             - data:
-                text: Thank You for registering! An email has been sent to You, with
+                label: Thank You for registering! An email has been sent to You, with
                   further information.
               type: Label
             type: Container
@@ -103,7 +103,7 @@ Try to activate fake account:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         type: Container
     object_data:
@@ -115,7 +115,7 @@ Try to activate fake account:
           - class: Message
             content:
             - data:
-                text: Given activation key is incorrect. Please check spelling. Note,
+                label: Given activation key is incorrect. Please check spelling. Note,
                   that letter case is important.
               type: Label
             type: Container

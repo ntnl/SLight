@@ -8,17 +8,17 @@ Off-site avatar (Gravatar):
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Parent
           data:
             href: /_MyAccount/
-            text: My Account
+            label: My Account
           type: Link
         - class: Current
           data:
             href: /_MyAccount/Avatar/
-            text: Avatar
+            label: Avatar
           type: Link
         type: Container
     object_data:
@@ -32,11 +32,11 @@ Off-site avatar (Gravatar):
               label: Avatar
             type: Image
           - data:
-              text: Avatar image was not uploaded, Gravatar image will be used instead.
+              label: Avatar image was not uploaded, Gravatar image will be used instead.
             type: Label
           - data:
               href: /_MyAccount/Avatar/Change.web
-              text: Upload Avatar
+              label: Upload Avatar
             type: Link
           type: Container
         type: Container
@@ -54,17 +54,17 @@ On-site avatar:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Parent
           data:
             href: /_MyAccount/
-            text: My Account
+            label: My Account
           type: Link
         - class: Current
           data:
             href: /_MyAccount/Avatar/
-            text: Avatar
+            label: Avatar
           type: Link
         type: Container
     object_data:
@@ -78,15 +78,15 @@ On-site avatar:
               label: Avatar
             type: Image
           - data:
-              text: Avatar is hosted on site.
+              label: Avatar is hosted on site.
             type: Label
           - data:
               href: /_MyAccount/Avatar/Change.web
-              text: Upload Avatar
+              label: Upload Avatar
             type: Link
           - data:
               href: /_MyAccount/Avatar/Delete.web
-              text: Delete Avatar
+              label: Delete Avatar
             type: Link
           type: Container
         type: Container

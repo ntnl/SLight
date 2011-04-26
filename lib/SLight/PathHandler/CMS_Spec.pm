@@ -114,7 +114,7 @@ sub do_spec { # {{{
 
         $objects{_spec}->{'metadata'}->{'spec'} = $content_spec;
 
-        foreach my $field (sort {$content_spec->{'_data'}->{$a}->{'order'} <=> $content_spec->{'_data'}->{$b}->{'order'}} keys %{ $content_spec->{'_data'} }) {
+        foreach my $field (sort {$content_spec->{'_data'}->{$a}->{'field_index'} <=> $content_spec->{'_data'}->{$b}->{'field_index'}} keys %{ $content_spec->{'_data'} }) {
             push @field_id_order, $field;
     
             $objects{$field} = {

@@ -8,17 +8,17 @@
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Parent
           data:
             href: /_Account/
-            text: Accounts
+            label: Accounts
           type: Link
         - class: Current
           data:
             href: /_Account/aga/Account/
-            text: Agnieszka
+            label: Agnieszka
           type: Link
         type: Container
     object_data:
@@ -31,55 +31,55 @@
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Login:'
+                label: 'Login:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: aga
+                label: aga
               type: Label
             type: Container
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Status:'
+                label: 'Status:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: Enabled
+                label: Enabled
               type: Label
             type: Container
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Id:'
+                label: 'Id:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: 1
+                label: 1
               type: Label
             type: Container
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Name:'
+                label: 'Name:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: Agnieszka
+                label: Agnieszka
               type: Label
             type: Container
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Email:'
+                label: 'Email:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: agnes@test.test
+                label: agnes@test.test
               type: Label
             type: Container
           data: {}
@@ -99,17 +99,17 @@
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Parent
           data:
             href: /_Account/
-            text: Accounts
+            label: Accounts
           type: Link
         - class: Current
           data:
             href: /_Account/nataly/Account/
-            text: Natalia
+            label: Natalia
           type: Link
         type: Container
     object_data:
@@ -122,55 +122,55 @@
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Login:'
+                label: 'Login:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: nataly
+                label: nataly
               type: Label
             type: Container
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Status:'
+                label: 'Status:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: Guest
+                label: Guest
               type: Label
             type: Container
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Id:'
+                label: 'Id:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: 4
+                label: 4
               type: Label
             type: Container
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Name:'
+                label: 'Name:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: Natalia
+                label: Natalia
               type: Label
             type: Container
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Email:'
+                label: 'Email:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: natka@test.test
+                label: natka@test.test
               type: Label
             type: Container
           data: {}
@@ -190,17 +190,17 @@
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Parent
           data:
             href: /_Account/
-            text: Accounts
+            label: Accounts
           type: Link
         - class: Current
           data:
             href: /_Account/wanda/Account/
-            text: Wanda L.
+            label: Wanda L.
           type: Link
         type: Container
     object_data:
@@ -213,55 +213,55 @@
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Login:'
+                label: 'Login:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: wanda
+                label: wanda
               type: Label
             type: Container
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Status:'
+                label: 'Status:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: Disabled
+                label: Disabled
               type: Label
             type: Container
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Id:'
+                label: 'Id:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: 5
+                label: 5
               type: Label
             type: Container
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Name:'
+                label: 'Name:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: Wanda L.
+                label: Wanda L.
               type: Label
             type: Container
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Email:'
+                label: 'Email:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: wanda@test.test
+                label: wanda@test.test
               type: Label
             type: Container
           data: {}

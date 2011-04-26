@@ -8,12 +8,12 @@ Display Add Content form:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Test
           data:
             href: /Download/
-            text: Download
+            label: Download
           type: Link
         type: Container
     object_data:
@@ -21,13 +21,12 @@ Display Add Content form:
         class: SLight_Object O-AddContent
         content:
         - content:
-          - class: default
-            content:
+          - content:
             - class: main_name
               content:
               - class: main_name
                 data:
-                  text: Article
+                  label: Empty space
                 type: Label
               data:
                 colspan: '0'
@@ -37,7 +36,7 @@ Display Add Content form:
               content:
               - class: name
                 data:
-                  text: CMS::Entry
+                  label: Core::Empty
                 type: Label
               data:
                 colspan: '0'
@@ -46,8 +45,8 @@ Display Add Content form:
             - class: link
               content:
               - data:
-                  href: /Download/AddContent-form.web?target=New&spec_id=1
-                  text: As new page
+                  href: /Download/AddContent-form.web?target=New&handler=CMS%3A%3AEntry
+                  label: As new page
                 type: Link
               data:
                 colspan: '0'
@@ -56,21 +55,20 @@ Display Add Content form:
             - class: link
               content:
               - data:
-                  href: /Download/AddContent-form.web?target=Current&spec_id=1
-                  text: Append here
+                  href: /Download/AddContent-form.web?target=Current&handler=CMS%3A%3AEntry
+                  label: Append here
                 type: Link
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: default
-            content:
+          - content:
             - class: main_name
               content:
               - class: main_name
                 data:
-                  text: Gal
+                  label: 'List: Headlines'
                 type: Label
               data:
                 colspan: '0'
@@ -80,7 +78,7 @@ Display Add Content form:
               content:
               - class: name
                 data:
-                  text: CMS::Entry
+                  label: List::Headlines
                 type: Label
               data:
                 colspan: '0'
@@ -89,8 +87,8 @@ Display Add Content form:
             - class: link
               content:
               - data:
-                  href: /Download/AddContent-form.web?target=New&spec_id=3
-                  text: As new page
+                  href: /Download/AddContent-form.web?target=New&handler=List%3A%3AHeadlines
+                  label: As new page
                 type: Link
               data:
                 colspan: '0'
@@ -99,21 +97,20 @@ Display Add Content form:
             - class: link
               content:
               - data:
-                  href: /Download/AddContent-form.web?target=Current&spec_id=3
-                  text: Append here
+                  href: /Download/AddContent-form.web?target=Current&handler=List%3A%3AHeadlines
+                  label: Append here
                 type: Link
               data:
                 colspan: '0'
                 rowspan: '0'
               type: TableCell
             type: TableRow
-          - class: default
-            content:
+          - content:
             - class: main_name
               content:
               - class: main_name
                 data:
-                  text: News
+                  label: 'List: News'
                 type: Label
               data:
                 colspan: '0'
@@ -123,7 +120,7 @@ Display Add Content form:
               content:
               - class: name
                 data:
-                  text: CMS::Entry
+                  label: List::News
                 type: Label
               data:
                 colspan: '0'
@@ -132,8 +129,8 @@ Display Add Content form:
             - class: link
               content:
               - data:
-                  href: /Download/AddContent-form.web?target=New&spec_id=2
-                  text: As new page
+                  href: /Download/AddContent-form.web?target=New&handler=List%3A%3ANews
+                  label: As new page
                 type: Link
               data:
                 colspan: '0'
@@ -142,8 +139,260 @@ Display Add Content form:
             - class: link
               content:
               - data:
-                  href: /Download/AddContent-form.web?target=Current&spec_id=2
-                  text: Append here
+                  href: /Download/AddContent-form.web?target=Current&handler=List%3A%3ANews
+                  label: Append here
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            type: TableRow
+          - content:
+            - class: main_name
+              content:
+              - class: main_name
+                data:
+                  label: 'List: Blog'
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: name
+              content:
+              - class: name
+                data:
+                  label: List::Blog
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /Download/AddContent-form.web?target=New&handler=List%3A%3ABlog
+                  label: As new page
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /Download/AddContent-form.web?target=Current&handler=List%3A%3ABlog
+                  label: Append here
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            type: TableRow
+          - content:
+            - class: main_name
+              content:
+              - class: main_name
+                data:
+                  label: 'List: Gallery'
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: name
+              content:
+              - class: name
+                data:
+                  label: List::Gallery
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /Download/AddContent-form.web?target=New&handler=List%3A%3AGallery
+                  label: As new page
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /Download/AddContent-form.web?target=Current&handler=List%3A%3AGallery
+                  label: Append here
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            type: TableRow
+          - content:
+            - class: main_name
+              content:
+              - class: main_name
+                data:
+                  label: 'List: Aggregator'
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: name
+              content:
+              - class: name
+                data:
+                  label: List::Aggregator
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /Download/AddContent-form.web?target=New&handler=List%3A%3AAggregator
+                  label: As new page
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /Download/AddContent-form.web?target=Current&handler=List%3A%3AAggregator
+                  label: Append here
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            type: TableRow
+          - content:
+            - class: main_name
+              content:
+              - class: main_name
+                data:
+                  label: 'Content: Article'
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: name
+              content:
+              - class: name
+                data:
+                  label: CMS::Entry
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /Download/AddContent-form.web?target=New&handler=CMS%3A%3AEntry&spec_id=1
+                  label: As new page
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /Download/AddContent-form.web?target=Current&handler=CMS%3A%3AEntry&spec_id=1
+                  label: Append here
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            type: TableRow
+          - content:
+            - class: main_name
+              content:
+              - class: main_name
+                data:
+                  label: 'Content: Gal'
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: name
+              content:
+              - class: name
+                data:
+                  label: CMS::Entry
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /Download/AddContent-form.web?target=New&handler=CMS%3A%3AEntry&spec_id=3
+                  label: As new page
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /Download/AddContent-form.web?target=Current&handler=CMS%3A%3AEntry&spec_id=3
+                  label: Append here
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            type: TableRow
+          - content:
+            - class: main_name
+              content:
+              - class: main_name
+                data:
+                  label: 'Content: News'
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: name
+              content:
+              - class: name
+                data:
+                  label: CMS::Entry
+                type: Label
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /Download/AddContent-form.web?target=New&handler=CMS%3A%3AEntry&spec_id=2
+                  label: As new page
+                type: Link
+              data:
+                colspan: '0'
+                rowspan: '0'
+              type: TableCell
+            - class: link
+              content:
+              - data:
+                  href: /Download/AddContent-form.web?target=Current&handler=CMS%3A%3AEntry&spec_id=2
+                  label: Append here
                 type: Link
               data:
                 colspan: '0'

@@ -5,17 +5,17 @@ Root menu:
   - class: Other
     data:
       href: /About/
-      text: Test sub-page
+      label: Test sub-page
     type: Link
   - class: Other
     data:
       href: /Docs/
-      text: Docs
+      label: Docs
     type: Link
   - class: Other
     data:
       href: /Download/
-      text: Download
+      label: Download
     type: Link
   type: Container
 Root menu - remains the same:
@@ -24,16 +24,16 @@ Root menu - remains the same:
   - class: Current
     data:
       href: /About/
-      text: Test sub-page
+      label: Test sub-page
     type: Link
   - class: Other
     data:
       href: /Docs/
-      text: Docs
+      label: Docs
     type: Link
   - class: Other
     data:
       href: /Download/
-      text: Download
+      label: Download
     type: Link
   type: Container

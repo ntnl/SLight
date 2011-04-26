@@ -8,12 +8,12 @@ Asset list with one asset:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Current
           data:
             href: /_Asset/
-            text: Assets
+            label: Assets
           type: Link
         type: Container
     object_data:
@@ -37,7 +37,7 @@ Asset list with one asset:
               content:
               - class: SLight_main_name
                 data:
-                  text: Sample image for testing purposes.
+                  label: Sample image for testing purposes.
                 type: Label
               data:
                 colspan: 0
@@ -47,7 +47,7 @@ Asset list with one asset:
               content:
               - class: SLight_mime
                 data:
-                  text: image/png
+                  label: image/png
                 type: Label
               data:
                 colspan: 0
@@ -57,7 +57,7 @@ Asset list with one asset:
               content:
               - class: SLight_time
                 data:
-                  text: '-'
+                  label: '-'
                 type: Label
               data:
                 colspan: 0
@@ -99,12 +99,12 @@ Empty Asset list:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Current
           data:
             href: /_Asset/
-            text: Assets
+            label: Assets
           type: Link
         type: Container
     object_data:
@@ -116,7 +116,7 @@ Empty Asset list:
           - class: Message
             content:
             - data:
-                text: No assets.
+                label: No assets.
               type: Label
             type: Container
           - class: Buttons

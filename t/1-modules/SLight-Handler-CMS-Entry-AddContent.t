@@ -42,6 +42,7 @@ my @tests = (
         'url'  => q{/About/AddContent-form.web},
         'cgi'  => {
             target  => 'New',
+            handler => 'CMS::Entry',
             spec_id => 1,
         }
     },
@@ -50,6 +51,7 @@ my @tests = (
         'url'  => q{/About/AddContent-save.web},
         'cgi'  => {
             'target'  => 'New',
+            'handler' => 'CMS::Entry',
             'spec_id' => 1,
 
             'page.path'     => q{Test1},
@@ -72,6 +74,7 @@ my @tests = (
         'url'  => q{/About/AddContent-form.web},
         'cgi'  => {
             target  => 'Current',
+            handler => 'CMS::Entry',
             spec_id => 1,
         }
     },
@@ -80,6 +83,7 @@ my @tests = (
         'url'  => q{/About/AddContent-save.web},
         'cgi'  => {
             'target'  => 'Current',
+            'handler' => 'CMS::Entry',
             'spec_id' => 1,
 
             'meta.email' => q{agnes@test.test},
@@ -99,6 +103,7 @@ my @tests = (
         url  => q{/About/AddContent-form.web},
         cgi  => {
             target  => 'New',
+            handler => 'CMS::Entry',
             spec_id => 3,
         }
     },
@@ -107,6 +112,7 @@ my @tests = (
         url  => q{/About/AddContent-save.web},
         cgi  => {
             'target'  => 'New',
+            'handler' => 'CMS::Entry',
             'spec_id' => 3,
 
             'meta.email' => q{agnes@test.test},

@@ -3,6 +3,6 @@ Default result:
   class: SLight_Sysinfo_Addon
   content:
   - data:
-      text: 'Generated in: $gen_time$s'
+      label: 'Generated in: $gen_time$s'
     type: Label
   type: Container

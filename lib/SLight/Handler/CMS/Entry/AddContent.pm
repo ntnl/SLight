@@ -223,7 +223,7 @@ sub handle_save { # {{{
 
     my $meta_handler = $self->_meta_handler($self->{'options'}->{'handler'});
 
-    my $content_spec = $meta_handler->get_spec($self->{'options'}->{'spec_id'}, 1);
+    my $content_spec = $meta_handler->get_spec($self->{'options'}->{'spec_id'});
 
     # Get the data, that User sent us.
     my ( $errors, $warnings, $data, $assets ) = $self->slurp_content_form_data(
@@ -288,7 +288,7 @@ sub handle_save { # {{{
     my %content = (
         Page_Entity_id => $page_id,
 
-        Content_Spec_id => $self->{'options'}->{'spec_id'},
+        Content_Spec_id => $content_spec->{'id'},
 
         status => q{V},
 

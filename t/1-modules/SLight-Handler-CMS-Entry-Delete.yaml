@@ -31,12 +31,12 @@ Open confirmation dialog:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Test
           data:
             href: /About/
-            text: About
+            label: About
           type: Link
         type: Container
       Core::Toolbox:
@@ -67,7 +67,7 @@ Open confirmation dialog:
           - class: Message
             content:
             - data:
-                text: Do you want to delete '2'? Please confirm.
+                label: Do you want to delete '2'? Please confirm.
               type: Label
             type: Container
           - class: Buttons

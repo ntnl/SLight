@@ -8,7 +8,7 @@ Fake an AccessDenied error:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         type: Container
     object_data:
@@ -20,7 +20,7 @@ Fake an AccessDenied error:
           - class: Message
             content:
             - data:
-                text: 'You are not authorized to access this page (Error: Access denied).'
+                label: 'You are not authorized to access this page (Error: Access denied).'
               type: Label
             type: Container
           - class: Buttons

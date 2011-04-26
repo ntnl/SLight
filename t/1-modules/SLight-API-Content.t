@@ -62,10 +62,10 @@ my %ContentSpec_1 = (
     caption => 'Paintball gun',
     class   => 'TestStuff',
     _data   => { #      .-- usually this is not given, so DB creates it by itself...
-        marker => { id=>10, caption => 'Marker Brand',     datatype  => 'String', order=>1, default => '', translate => 0, optional => 0, max_length => 250 },
-        air    => { id=>20, caption => 'Gass type',        datatype  => 'String', order=>2, default => '', translate => 0, optional => 0, max_length => 250 },
-        bps    => { id=>30, caption => 'Balls Per Second', datatype  => 'Int',    order=>3, default => '', translate => 0, optional => 0, max_length => 250 },
-        note   => { id=>40, caption => 'Note',             datatype  => 'Text',   order=>4, default => '', translate => 1, optional => 0, max_length => 250 },
+        marker => { id=>10, caption => 'Marker Brand',     datatype  => 'String', field_index=>1, default_value => '', translate => 0, optional => 0, max_length => 250 },
+        air    => { id=>20, caption => 'Gass type',        datatype  => 'String', field_index=>2, default_value => '', translate => 0, optional => 0, max_length => 250 },
+        bps    => { id=>30, caption => 'Balls Per Second', datatype  => 'Int',    field_index=>3, default_value => '', translate => 0, optional => 0, max_length => 250 },
+        note   => { id=>40, caption => 'Note',             datatype  => 'Text',   field_index=>4, default_value => '', translate => 1, optional => 0, max_length => 250 },
     },
     owning_module => 'Test::Test',
 );
@@ -77,11 +77,11 @@ my %ContentSpec_2 = (
     caption => 'Beautifull woman',
     class   => 'TestStuff',
     _data   => {
-        name  => { id=>50, caption => 'Chest',    datatype => 'String', order=>1, default => '', translate => 0, optional => 0, max_length => 3 },
-        chest => { id=>60, caption => 'Chest',    datatype => 'Int',    order=>2, default => '', translate => 0, optional => 0, max_length => 3 },
-        waist => { id=>70, caption => 'Waist',    datatype => 'Int',    order=>3, default => '', translate => 0, optional => 0, max_length => 3 },
-        hips  => { id=>80, caption => 'Hips',     datatype => 'Int',    order=>4, default => '', translate => 0, optional => 0, max_length => 3 },
-        cup   => { id=>90, caption => 'Cup size', datatype => 'String', order=>5, default => '', translate => 0, optional => 0, max_length => 1 },
+        name  => { id=>50, caption => 'Chest',    datatype => 'String', field_index=>1, default_value => '', translate => 0, optional => 0, max_length => 3 },
+        chest => { id=>60, caption => 'Chest',    datatype => 'Int',    field_index=>2, default_value => '', translate => 0, optional => 0, max_length => 3 },
+        waist => { id=>70, caption => 'Waist',    datatype => 'Int',    field_index=>3, default_value => '', translate => 0, optional => 0, max_length => 3 },
+        hips  => { id=>80, caption => 'Hips',     datatype => 'Int',    field_index=>4, default_value => '', translate => 0, optional => 0, max_length => 3 },
+        cup   => { id=>90, caption => 'Cup size', datatype => 'String', field_index=>5, default_value => '', translate => 0, optional => 0, max_length => 1 },
     },
     owning_module => 'Test::Test',
 );
@@ -546,7 +546,7 @@ is_deeply(
     get_Contents_fields_where(
         status => q{H},
 
-        _fields => [ qw( status ) ],
+        _fields => [ qw( status owning_module ) ],
 
         _data_lang => q{en},
     ),
@@ -555,6 +555,8 @@ is_deeply(
             id => $c4,
 
             status => q{H},
+
+            owning_module => q{Test::Test},
 
             _data => {
                 q{*} => {

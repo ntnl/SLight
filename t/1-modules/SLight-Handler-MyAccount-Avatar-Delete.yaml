@@ -19,22 +19,22 @@ Display form:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Parent
           data:
             href: /_MyAccount/
-            text: My Account
+            label: My Account
           type: Link
         - class: Parent
           data:
             href: /_MyAccount/Avatar/
-            text: Avatar
+            label: Avatar
           type: Link
         - class: Current
           data:
             href: /_MyAccount/Avatar/Delete.web
-            text: Delete
+            label: Delete
           type: Link
         type: Container
     object_data:
@@ -46,7 +46,7 @@ Display form:
           - class: Message
             content:
             - data:
-                text: Do you want to delete avatar hosted on the site? Please confirm.
+                label: Do you want to delete avatar hosted on the site? Please confirm.
               type: Label
             type: Container
           - class: Buttons

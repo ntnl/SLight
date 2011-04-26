@@ -8,7 +8,7 @@ Fake NotFound error:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         type: Container
     object_data:
@@ -20,7 +20,7 @@ Fake NotFound error:
           - class: Message
             content:
             - data:
-                text: 'Requested resource was not found. Plesase check URL (Error:
+                label: 'Requested resource was not found. Plesase check URL (Error:
                   Not found).'
               type: Label
             type: Container

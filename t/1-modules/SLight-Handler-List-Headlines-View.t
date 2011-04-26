@@ -15,53 +15,48 @@ use strict; use warnings; # {{{
 use FindBin qw( $Bin );
 use lib $Bin . q{/../../lib/};
 
+use SLight::HandlerMetaFactory;
+use SLight::API::Content qw( add_Content );
 use SLight::Test::Site;
 use SLight::Test::Handler qw( run_handler_tests );
-use SLight::API::ContentSpec qw( add_ContentSpec );
 
 use English qw( -no_match_vars );
 # }}}
 
 my $site_root = SLight::Test::Site::prepare_fake(
     test_dir => $Bin . q{/../},
-    site     => 'Users'
+    site     => 'Minimal'
 );
 
-# Add some content specs:
-my $spec1_id = add_ContentSpec(
-    caption => 'Article',
+my $hmf = SLight::HandlerMetaFactory->new();
+my $hm = $hmf->make(pkg => 'List', handler => 'Headlines');
+my $spec = $hm->get_spec();
 
-    class => 'TestStuff',
+add_Content(
+    Content_Spec_id => $spec->{'id'},
 
-    _data => {
-        title   => { id=>10, caption=>'Title',   datatype=>'String', field_index=>1, default_value => q{}, translate=>1, max_length=>128 },
-        article => { id=>11, caption=>'Article', datatype=>'Text',   field_index=>2, default_value => q{}, translate=>1, max_length=>1024 },
-    },
+    status => q{V},
+    Page_Entity_id => 1,
 
-    cms_usage => 3,
+    on_page_index => 2,
 
-    owning_module => q{CMS::Entry},
+    comment_write_policy => 0,
+    comment_read_policy  => 0,
+
+    added_time    => q{2011-04-23 12:30:00},
+    modified_time => q{2011-04-23 12:30:00},
 );
 
 my @tests = (
     {
-        'name' => q{Get Content Spec choice menu},
-        'url'  => q{/AddContent.web},
+        'name' => q{Headlines on front page},
+        'url'  => q{/},
     },
-    {
-        'name' => q{Get form},
-        'url'  => q{/AddContent-form.web},
-        'cgi'  => {
-            target  => q{New},
-            handler => q{CMS::Entry},
-            spec_id => 1,
-        },
-    }
 );
 
 run_handler_tests(
     tests => \@tests,
-    
+
     strip_dates => 1,
 
     skip_permissions => 1,

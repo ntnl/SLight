@@ -11,7 +11,7 @@ Show edit form:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         type: Container
     object_data:
@@ -23,7 +23,7 @@ Show edit form:
             content:
             - class: Label
               data:
-                text: Caption
+                label: Caption
               type: Label
             - class: Value
               data:
@@ -35,7 +35,7 @@ Show edit form:
             content:
             - class: Label
               data:
-                text: Class
+                label: Class
               type: Label
             - class: Value
               data:
@@ -47,7 +47,7 @@ Show edit form:
             content:
             - class: Label
               data:
-                text: Order field
+                label: Order field
               type: Label
             - class: Value
               data:
@@ -72,7 +72,7 @@ Show edit form:
             content:
             - class: Label
               data:
-                text: Title field
+                label: Title field
               type: Label
             - class: Value
               data:
@@ -85,7 +85,7 @@ Show edit form:
             content:
             - class: Label
               data:
-                text: Menu field
+                label: Menu field
               type: Label
             - class: Value
               data:
@@ -98,7 +98,7 @@ Show edit form:
             content:
             - class: Label
               data:
-                text: Path field
+                label: Path field
               type: Label
             - class: Value
               data:
@@ -120,28 +120,28 @@ Show edit form:
           content:
           - class: caption
             data:
-              text: 'Field:'
+              label: 'Field:'
             type: Label
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Caption:'
+                label: 'Caption:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: Article
+                label: Article
               type: Label
             type: Container
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Data type:'
+                label: 'Data type:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: Text
+                label: Text
               type: Label
             type: Container
           data: {}
@@ -167,28 +167,28 @@ Show edit form:
           content:
           - class: caption
             data:
-              text: 'Field:'
+              label: 'Field:'
             type: Label
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Caption:'
+                label: 'Caption:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: Title
+                label: Title
               type: Label
             type: Container
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Data type:'
+                label: 'Data type:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: String
+                label: String
               type: Label
             type: Container
           data: {}

@@ -13,26 +13,26 @@ Field page:
             article:
               caption: Article
               datatype: Text
-              default: ''
+              default_value: ''
               display_label: 1
               display_on_list: 2
               display_on_page: 2
+              field_index: 2
               id: 11
               max_length: 1024
               optional: 1
-              order: 2
               translate: 1
             title:
               caption: Title
               datatype: String
-              default: ''
+              default_value: ''
               display_label: 1
               display_on_list: 2
               display_on_page: 2
+              field_index: 1
               id: 10
               max_length: 128
               optional: 1
-              order: 1
               translate: 1
           _data_order:
           - title
@@ -78,26 +78,26 @@ Spec page:
             article:
               caption: Article
               datatype: Text
-              default: ''
+              default_value: ''
               display_label: 1
               display_on_list: 2
               display_on_page: 2
+              field_index: 2
               id: 11
               max_length: 1024
               optional: 1
-              order: 2
               translate: 1
             title:
               caption: Title
               datatype: String
-              default: ''
+              default_value: ''
               display_label: 1
               display_on_list: 2
               display_on_page: 2
+              field_index: 1
               id: 10
               max_length: 128
               optional: 1
-              order: 1
               translate: 1
           _data_order:
           - title

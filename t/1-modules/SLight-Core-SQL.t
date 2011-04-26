@@ -64,7 +64,7 @@ is_deeply(
         'columns'  => [qw{ col1 col2 }],
         'group_by' => [qw{ col3 }],
     ),
-    [ "SELECT `col1`, `col2` FROM Foo GROUP BY col3" ],
+    [ "SELECT col1, col2 FROM Foo GROUP BY col3" ],
     'sql_build_query - select (without where)'
 );
 is_deeply(
@@ -77,7 +77,7 @@ is_deeply(
         'group_by' => [qw{ col3 col4 }],
         'order_by' => [ 'col2 DESC', 'col1' ],
     ),
-    [ "SELECT `col1`, `col2` FROM Foo WHERE col1 = ", 42, " GROUP BY col3, col4 ORDER BY col2 DESC, col1" ],
+    [ "SELECT col1, col2 FROM Foo WHERE col1 = ", 42, " GROUP BY col3, col4 ORDER BY col2 DESC, col1" ],
     'sql_build_query - select (with where)'
 );
 is_deeply(
@@ -88,7 +88,7 @@ is_deeply(
         'columns'  => [qw{ col1 Bar.col2 }],
         'where'    => [ "col1 = ", 42 ],
     ),
-    [ "SELECT `col1`, `Bar.col2` FROM Foo LEFT JOIN Bar ON Foo.id=Bar.Foo_id WHERE col1 = ", 42 ],
+    [ "SELECT col1, Bar.col2 FROM Foo LEFT JOIN Bar ON Foo.id=Bar.Foo_id WHERE col1 = ", 42 ],
     'sql_build_query - select (with join)'
 );
 is_deeply(

@@ -17,6 +17,7 @@ use base 'Exporter';
 use SLight::Core::Entity;
 
 use Carp;
+use Carp::Assert::More qw( assert_integer );
 use Params::Validate qw{ :all };
 # }}}
 
@@ -44,6 +45,14 @@ my $_handler = SLight::Core::Entity->new( # {{{
     child_data_fields  => [qw( value )],
     parent_data_fields => [qw( owning_module )],
 
+    joined_fields => {
+        Content_Spec => [qw( owning_module class order_by use_as_title use_in_menu use_in_path )]
+    },
+
+    join_key_fields => {
+        Content_Spec => 'Content_Spec_id',
+    },
+
     child_key => [ 'language', 'Content_Spec_Field_id' ],
 
     has_metadata => 1,
@@ -63,6 +72,8 @@ my $_handler = SLight::Core::Entity->new( # {{{
 
 sub add_Content { # {{{
     my %P = @_; # Fixme: use Params::Validate here!
+
+    assert_integer($P{'Content_Spec_id'});
 
     return $_handler->add_ENTITY(
         %P,

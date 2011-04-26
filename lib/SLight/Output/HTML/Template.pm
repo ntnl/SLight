@@ -700,13 +700,13 @@ sub process_layout_element { # {{{
     assert_defined($element, 'Element is defined');
 
 #    warn "Definitions: ". Dump $definition;
-#    print "\n";
+#    print STDERR "\n";
 
 #    warn "Element: ". Dump $element;
-#    print "\n";
+#    print STDERR "\n";
 
 #    warn "Definition: ". Dump $definition->{ $element->{'type'} };
-#    print "\n";
+#    print STDERR "\n";
 
     if (not ref $element) {
         # It's a scalar - pass it AS-IS - it does not depend on the template.
@@ -721,6 +721,19 @@ sub process_layout_element { # {{{
 #        warn "QUOTTING!";
 
         return $element;
+    }
+    elsif (ref $element eq 'ARRAY') {
+        my $html = q{};
+
+        foreach my $sub_elem (@{ $element }) {
+            $html .= $self->process_layout_element($definition, $sub_elem);
+        }
+
+        return $html;
+    }
+
+    if (not defined  $element->{'type'}) {
+        use Data::Dumper; warn Dumper $element;
     }
 
     assert_defined($element->{'type'}, 'Type of the element is known');
@@ -747,15 +760,15 @@ sub process_layout_element { # {{{
 #        use Data::Dumper; warn Dumper $element;
 #    }
 
-    # Support for non-string Text labels:
-    if ($element->{'data'}->{'text'} and ref $element->{'data'}->{'text'}) {
+    # Support for non-string Labels:
+    if ($element->{'data'}->{'label'} and ref $element->{'data'}->{'label'}) {
         my $string = q{};
 
-        foreach my $child_element (@{ $element->{'data'}->{'text'} }) {
+        foreach my $child_element (@{ $element->{'data'}->{'label'} }) {
             $string .= $self->process_layout_element($definition, $child_element);
         }
 
-        $element_variables{'Text'} = $string;
+        $element_variables{'Label'} = $string;
     }
 
     my $html = $self->process_block($definition->{ $element->{'type'} }, { var_data=>\%element_variables }, 1);
@@ -837,10 +850,10 @@ sub process_element_Radio { # {{{
 sub process_element_Label { # {{{
     my ( $data ) = @_;
 
-    assert_defined($data->{'text'}, 'Text is defined.');
+    assert_defined($data->{'label'}, 'Text is defined.');
 
     return (
-        Text => SLight::Output::HTML::Generator::token_to_html($data->{'text'})
+        Label => SLight::Output::HTML::Generator::token_to_html($data->{'label'})
     );
 } # }}}
 sub process_element_Text { # {{{
@@ -911,8 +924,8 @@ sub process_element_Link { # {{{
     my ( $data ) = @_;
 
     return (
-        Text => ( $data->{'text'} or $data->{'href'} or q{...}),
-        Href => ( $data->{'href'} or q{#} ),
+        Label => ( $data->{'label'} or $data->{'href'} or q{...} ),
+        Href  => ( $data->{'href'} or q{#} ),
     );
 } # }}}
 sub process_element_Image { # {{{

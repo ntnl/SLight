@@ -107,7 +107,7 @@ CREATE TABLE Content_Spec_Field (
         -- This will be a textual description, intended for Site owner.
         -- SLight will push it trough L10N sub-system, each time it will output it.
 
-	`order`		SMALLINT NOT NULL,
+	`field_index` SMALLINT NOT NULL,
 
 	`datatype`  VARCHAR(64)  NOT NULL,
 		-- One of:
@@ -129,7 +129,7 @@ CREATE TABLE Content_Spec_Field (
 		--
 		--	Test
 
-	`default`   VARCHAR(255) NOT NULL,
+	`default_value` VARCHAR(255) NOT NULL,
         -- Default value used to initialize the Add form.
 
 	`translate` SMALLINT NOT NULL,
@@ -236,8 +236,8 @@ CREATE TABLE Content_Entity (
     FOREIGN KEY (`Email_id`)        REFERENCES Email(`id`) ON DELETE CASCADE,
 	FOREIGN KEY (`Content_Spec_id`) REFERENCES Content_Spec(`id`) ON DELETE CASCADE
 );
-INSERT INTO "Content_Entity" VALUES(1,1,NULL,'V',1,0,0,0,'2011-03-06 17:06:54','2011-03-06 17:06:54',NULL);
-INSERT INTO "Content_Entity" VALUES(2,1,NULL,'V',2,0,0,0,'2011-03-06 17:06:54','2011-03-06 17:06:54',NULL);
+INSERT INTO "Content_Entity" VALUES(1,1,NULL,'V',1,0,0,0,'2011-04-26 16:27:37','2011-04-26 16:27:37',NULL);
+INSERT INTO "Content_Entity" VALUES(2,1,NULL,'V',2,0,0,0,'2011-04-26 16:27:37','2011-04-26 16:27:37',NULL);
 CREATE TABLE Content_Entity_Data (
 	`Content_Entity_id` INTEGER NOT NULL,
 
@@ -327,8 +327,8 @@ CREATE TABLE Asset_Entity (
 
 	FOREIGN KEY (`Email_id`) REFERENCES Email(`id`) ON DELETE CASCADE
 );
-INSERT INTO "Asset_Entity" VALUES(1,3,'2011-03-06 17:06:54','',6700,'image/gif','');
-INSERT INTO "Asset_Entity" VALUES(2,6,'2011-03-06 17:06:54','SampleImage.png',13379,'image/png','Sample image for testing purposes.');
+INSERT INTO "Asset_Entity" VALUES(1,3,'2011-04-26 14:27:37','',6700,'image/gif','');
+INSERT INTO "Asset_Entity" VALUES(2,6,'2011-04-26 14:27:38','SampleImage.png',13379,'image/png','Sample image for testing purposes.');
 CREATE TABLE Asset_2_Content (
     `Asset_Entity_id` INTEGER,
 

@@ -8,7 +8,7 @@ Get info about an Asset:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         type: Container
     object_data:
@@ -19,39 +19,39 @@ Get info about an Asset:
           content:
           - class: caption
             data:
-              text: 'Asset details:'
+              label: 'Asset details:'
             type: Label
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Filename:'
+                label: 'Filename:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: SampleImage.png
+                label: SampleImage.png
               type: Label
             type: Container
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Mime type:'
+                label: 'Mime type:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: image/png
+                label: image/png
               type: Label
             type: Container
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Summary:'
+                label: 'Summary:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: Sample image for testing purposes.
+                label: Sample image for testing purposes.
               type: Label
             type: Container
           data: {}

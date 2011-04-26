@@ -21,27 +21,27 @@ Display form:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Parent
           data:
             href: /_Account/
-            text: Accounts
+            label: Accounts
           type: Link
         - class: Parent
           data:
             href: /_Account/beti/Account/
-            text: Beata
+            label: Beata
           type: Link
         - class: Parent
           data:
             href: /_Account/beti/Avatar/
-            text: Avatar
+            label: Avatar
           type: Link
         - class: Current
           data:
             href: /_Account/beti/Avatar/Change.web
-            text: Change
+            label: Change
           type: Link
         type: Container
     object_data:
@@ -53,7 +53,7 @@ Display form:
             content:
             - class: Label
               data:
-                text: Avatar image
+                label: Avatar image
               type: Label
             - class: Value
               data:

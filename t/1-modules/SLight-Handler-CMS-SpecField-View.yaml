@@ -8,7 +8,7 @@ Show field details:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         type: Container
     object_data:
@@ -19,28 +19,28 @@ Show field details:
           content:
           - class: caption
             data:
-              text: 'Field:'
+              label: 'Field:'
             type: Label
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Caption:'
+                label: 'Caption:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: Title
+                label: Title
               type: Label
             type: Container
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Data type:'
+                label: 'Data type:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: String
+                label: String
               type: Label
             type: Container
           data: {}

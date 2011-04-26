@@ -4,21 +4,21 @@ Logged in:
   content:
   - data:
       href: /_MyAccount/
-      text: Logged-in as Agnieszka.
+      label: Logged-in as Agnieszka.
     type: Link
   - data:
       href: /_Authentication/Logout-en.web
-      text: Logout
+      label: Logout
     type: Link
   type: Container
 Not logged in:
   class: SL_UserInfo_Addon
   content:
   - data:
-      text: Not logged-in.
+      label: Not logged-in.
     type: Label
   - data:
       href: /_Authentication/Login-en.web
-      text: Login
+      label: Login
     type: Link
   type: Container

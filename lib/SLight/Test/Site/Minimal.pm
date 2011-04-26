@@ -68,8 +68,8 @@ sub build { # {{{
         caption => 'Article',
 
         _data => {
-            title   => { id=>10, caption=>'Title',   datatype=>'String', order=>1, default => q{}, translate=>1, max_length=>128 },
-            article => { id=>11, caption=>'Article', datatype=>'Text',   order=>2, default => q{}, translate=>1, max_length=>1024 },
+            title   => { id=>10, caption=>'Title',   datatype=>'String', field_index=>1, default_value => q{}, translate=>1, max_length=>128 },
+            article => { id=>11, caption=>'Article', datatype=>'Text',   field_index=>2, default_value => q{}, translate=>1, max_length=>1024 },
         },
 
         class => 'Content',
@@ -84,8 +84,8 @@ sub build { # {{{
         caption => 'News',
 
         _data => {
-            title => { id=>20, caption=>'Title', datatype=>'String', order=>1, default => q{}, translate=>1, max_length=>128 },
-            news  => { id=>21, caption=>'News',  datatype=>'Text',   order=>2, default => q{}, translate=>1, max_length=>1024 },
+            title => { id=>20, caption=>'Title', datatype=>'String', field_index=>1, default_value => q{}, translate=>1, max_length=>128 },
+            news  => { id=>21, caption=>'News',  datatype=>'Text',   field_index=>2, default_value => q{}, translate=>1, max_length=>1024 },
         },
 
         class => 'Content',
@@ -98,18 +98,18 @@ sub build { # {{{
         caption => 'Gal',
 
         _data => {
-            name     => { id=>30, caption => 'Name',       datatype => 'String', order=>1, default => q{}, translate => 0, optional => 0, max_length => 64 },
-            pic      => { id=>31, caption => 'Pic',        datatype => 'Image',  order=>2, default => q{}, translate => 0, optional => 0, max_length => 1_024_000 },
-            birth    => { id=>32, caption => 'Birth date', datatype => 'Date',   order=>3, default => q{}, translate => 0, optional => 0, max_length => 64 },
-            email    => { id=>33, caption => 'Email',      datatype => 'Email',  order=>4, default => q{}, translate => 0, optional => 0, max_length => 512 },
-            homepage => { id=>34, caption => 'Homepage',   datatype => 'Link',   order=>5, default => q{}, translate => 0, optional => 0, max_length => 1025 },
+            name     => { id=>30, caption => 'Name',       datatype => 'String', field_index=>1, default_value => q{}, translate => 0, optional => 0, max_length => 64 },
+            pic      => { id=>31, caption => 'Pic',        datatype => 'Image',  field_index=>2, default_value => q{}, translate => 0, optional => 0, max_length => 1_024_000 },
+            birth    => { id=>32, caption => 'Birth date', datatype => 'Date',   field_index=>3, default_value => q{}, translate => 0, optional => 0, max_length => 64 },
+            email    => { id=>33, caption => 'Email',      datatype => 'Email',  field_index=>4, default_value => q{}, translate => 0, optional => 0, max_length => 512 },
+            homepage => { id=>34, caption => 'Homepage',   datatype => 'Link',   field_index=>5, default_value => q{}, translate => 0, optional => 0, max_length => 1025 },
 
-            chest => { id=>35, caption => 'Chest',      datatype => 'Int',    order=>6, default => q{}, translate => 0, optional => 0, max_length => 3 },
-            waist => { id=>36, caption => 'Waist',      datatype => 'Int',    order=>7, default => q{}, translate => 0, optional => 0, max_length => 3 },
-            hips  => { id=>37, caption => 'Hips',       datatype => 'Int',    order=>8, default => q{}, translate => 0, optional => 0, max_length => 3 },
-            cup   => { id=>38, caption => 'Cup size',   datatype => 'String', order=>9, default => q{}, translate => 0, optional => 0, max_length => 1 },
+            chest => { id=>35, caption => 'Chest',      datatype => 'Int',    field_index=>6, default_value => q{}, translate => 0, optional => 0, max_length => 3 },
+            waist => { id=>36, caption => 'Waist',      datatype => 'Int',    field_index=>7, default_value => q{}, translate => 0, optional => 0, max_length => 3 },
+            hips  => { id=>37, caption => 'Hips',       datatype => 'Int',    field_index=>8, default_value => q{}, translate => 0, optional => 0, max_length => 3 },
+            cup   => { id=>38, caption => 'Cup size',   datatype => 'String', field_index=>9, default_value => q{}, translate => 0, optional => 0, max_length => 1 },
             
-            about => { id=>39, caption => 'About', datatype => 'Text', order=>10, default => q{}, translate => 1, optional => 0, max_length => 10_240 },
+            about => { id=>39, caption => 'About', datatype => 'Text', field_index=>10, default_value => q{}, translate => 1, optional => 0, max_length => 10_240 },
         },
 
         class => 'Person',

@@ -41,7 +41,7 @@ Email information page:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         type: Container
     object_data:
@@ -53,7 +53,7 @@ Email information page:
           - class: Message
             content:
             - data:
-                text: 'New email can be use only after it is verified: message has
+                label: 'New email can be use only after it is verified: message has
                   been sent to that address, with further information.'
               type: Label
             type: Container
@@ -79,7 +79,7 @@ Email verified:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         type: Container
     object_data:
@@ -91,7 +91,7 @@ Email verified:
           - class: Message
             content:
             - data:
-                text: Email setting has been changed. All emails will be sent to new
+                label: Email setting has been changed. All emails will be sent to new
                   address.
               type: Label
             type: Container
@@ -114,17 +114,17 @@ Open My Data form:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Parent
           data:
             href: /_MyAccount/
-            text: My Account
+            label: My Account
           type: Link
         - class: Current
           data:
             href: /_MyAccount/MyData/Edit.web
-            text: Edit
+            label: Edit
           type: Link
         type: Container
     object_data:
@@ -137,7 +137,7 @@ Open My Data form:
             content:
             - class: Label
               data:
-                text: 'Name:'
+                label: 'Name:'
               type: Label
             - class: Value
               data:
@@ -149,7 +149,7 @@ Open My Data form:
             content:
             - class: Label
               data:
-                text: 'Email:'
+                label: 'Email:'
               type: Label
             - class: Value
               data:
@@ -177,17 +177,17 @@ Send My Data form (bad input):
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Parent
           data:
             href: /_MyAccount/
-            text: My Account
+            label: My Account
           type: Link
         - class: Current
           data:
             href: /_MyAccount/MyData/Edit.web
-            text: Edit
+            label: Edit
           type: Link
         type: Container
     object_data:
@@ -200,7 +200,7 @@ Send My Data form (bad input):
             content:
             - class: Label
               data:
-                text: 'Name:'
+                label: 'Name:'
               type: Label
             - class: Value
               data:
@@ -209,14 +209,14 @@ Send My Data form (bad input):
               type: Entry
             - class: Error
               data:
-                text: Maximum number of chacters (64) has been exceeded
+                label: Maximum number of chacters (64) has been exceeded
               type: Label
             type: Container
           - class: F-email Entry
             content:
             - class: Label
               data:
-                text: 'Email:'
+                label: 'Email:'
               type: Label
             - class: Value
               data:
@@ -225,7 +225,7 @@ Send My Data form (bad input):
               type: Entry
             - class: Error
               data:
-                text: Does not look line an Email address
+                label: Does not look line an Email address
               type: Label
             type: Container
           data:

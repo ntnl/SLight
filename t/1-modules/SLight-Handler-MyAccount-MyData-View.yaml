@@ -8,7 +8,7 @@ Guest access:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         type: Container
     object_data:
@@ -20,7 +20,7 @@ Guest access:
           - class: Message
             content:
             - data:
-                text: 'You must log-in to access this page. (Error: Authentication
+                label: 'You must log-in to access this page. (Error: Authentication
                   required).'
               type: Label
             type: Container
@@ -43,12 +43,12 @@ Guest access:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Current
           data:
             href: /_MyAccount/
-            text: My Account
+            label: My Account
           type: Link
         type: Container
     object_data:
@@ -61,44 +61,44 @@ Guest access:
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Login:'
+                label: 'Login:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: aga
+                label: aga
               type: Label
             type: Container
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Status:'
+                label: 'Status:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: Enabled
+                label: Enabled
               type: Label
             type: Container
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Name:'
+                label: 'Name:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: Agnieszka
+                label: Agnieszka
               type: Label
             type: Container
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Email:'
+                label: 'Email:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: agnes@test.test
+                label: agnes@test.test
               type: Label
             type: Container
           data: {}
@@ -118,12 +118,12 @@ Guest access:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Current
           data:
             href: /_MyAccount/
-            text: My Account
+            label: My Account
           type: Link
         type: Container
     object_data:
@@ -136,44 +136,44 @@ Guest access:
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Login:'
+                label: 'Login:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: nataly
+                label: nataly
               type: Label
             type: Container
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Status:'
+                label: 'Status:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: Guest
+                label: Guest
               type: Label
             type: Container
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Name:'
+                label: 'Name:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: Natalia
+                label: Natalia
               type: Label
             type: Container
           - class: default
             content:
             - class: SL_Property_Caption
               data:
-                text: 'Email:'
+                label: 'Email:'
               type: Label
             - class: SL_Property_Value
               data:
-                text: natka@test.test
+                label: natka@test.test
               type: Label
             type: Container
           data: {}
@@ -193,12 +193,12 @@ Guest access:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Current
           data:
             href: /_MyAccount/
-            text: My Account
+            label: My Account
           type: Link
         type: Container
     object_data:
@@ -210,7 +210,7 @@ Guest access:
           - class: Message
             content:
             - data:
-                text: This Account is disabled.
+                label: This Account is disabled.
               type: Label
             type: Container
           - class: Buttons

@@ -55,12 +55,12 @@ Display 'Thank you' page:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Current
           data:
             href: /_Authentication/Register.web
-            text: Register
+            label: Register
           type: Link
         type: Container
     object_data:
@@ -72,7 +72,7 @@ Display 'Thank you' page:
           - class: Message
             content:
             - data:
-                text: Thank You for registering! An email has been sent to You, with
+                label: Thank You for registering! An email has been sent to You, with
                   further information.
               type: Label
             type: Container
@@ -95,12 +95,12 @@ Send out bad data (crash test):
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Current
           data:
             href: /_Authentication/Register.web
-            text: Register
+            label: Register
           type: Link
         type: Container
     object_data:
@@ -111,14 +111,14 @@ Send out bad data (crash test):
           - content:
             - class: F-Label Label
               data:
-                text: Register User
+                label: Register User
               type: Label
             type: Container
           - class: F-u-login Entry
             content:
             - class: Label
               data:
-                text: 'Login:'
+                label: 'Login:'
               type: Label
             - class: Value
               data:
@@ -127,14 +127,14 @@ Send out bad data (crash test):
               type: Entry
             - class: Error
               data:
-                text: This field may not be empty.
+                label: This field may not be empty.
               type: Label
             type: Container
           - class: F-u-pass PasswordEntry
             content:
             - class: Label
               data:
-                text: 'Password:'
+                label: 'Password:'
               type: Label
             - class: Value
               data:
@@ -143,14 +143,14 @@ Send out bad data (crash test):
               type: PasswordEntry
             - class: Error
               data:
-                text: Too short, must have at least 5 characters.
+                label: Too short, must have at least 5 characters.
               type: Label
             type: Container
           - class: F-u-pass-repeat PasswordEntry
             content:
             - class: Label
               data:
-                text: 'Password (repeat):'
+                label: 'Password (repeat):'
               type: Label
             - class: Value
               data:
@@ -162,7 +162,7 @@ Send out bad data (crash test):
             content:
             - class: Label
               data:
-                text: 'Name:'
+                label: 'Name:'
               type: Label
             - class: Value
               data:
@@ -174,7 +174,7 @@ Send out bad data (crash test):
             content:
             - class: Label
               data:
-                text: 'Email:'
+                label: 'Email:'
               type: Label
             - class: Value
               data:
@@ -183,7 +183,7 @@ Send out bad data (crash test):
               type: Entry
             - class: Error
               data:
-                text: This field may not be empty.
+                label: This field may not be empty.
               type: Label
             type: Container
           data:
@@ -209,12 +209,12 @@ User registration form:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Current
           data:
             href: /_Authentication/Register.web
-            text: Register
+            label: Register
           type: Link
         type: Container
     object_data:
@@ -225,14 +225,14 @@ User registration form:
           - content:
             - class: F-Label Label
               data:
-                text: Register User
+                label: Register User
               type: Label
             type: Container
           - class: F-u-login Entry
             content:
             - class: Label
               data:
-                text: 'Login:'
+                label: 'Login:'
               type: Label
             - class: Value
               data:
@@ -244,7 +244,7 @@ User registration form:
             content:
             - class: Label
               data:
-                text: 'Password:'
+                label: 'Password:'
               type: Label
             - class: Value
               data:
@@ -256,7 +256,7 @@ User registration form:
             content:
             - class: Label
               data:
-                text: 'Password (repeat):'
+                label: 'Password (repeat):'
               type: Label
             - class: Value
               data:
@@ -268,7 +268,7 @@ User registration form:
             content:
             - class: Label
               data:
-                text: 'Name:'
+                label: 'Name:'
               type: Label
             - class: Value
               data:
@@ -280,7 +280,7 @@ User registration form:
             content:
             - class: Label
               data:
-                text: 'Email:'
+                label: 'Email:'
               type: Label
             - class: Value
               data:

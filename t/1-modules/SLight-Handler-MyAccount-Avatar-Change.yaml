@@ -21,22 +21,22 @@ Display form:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Parent
           data:
             href: /_MyAccount/
-            text: My Account
+            label: My Account
           type: Link
         - class: Parent
           data:
             href: /_MyAccount/Avatar/
-            text: Avatar
+            label: Avatar
           type: Link
         - class: Current
           data:
             href: /_MyAccount/Avatar/Change.web
-            text: Change
+            label: Change
           type: Link
         type: Container
     object_data:
@@ -48,7 +48,7 @@ Display form:
             content:
             - class: Label
               data:
-                text: Avatar image
+                label: Avatar image
               type: Label
             - class: Value
               data:

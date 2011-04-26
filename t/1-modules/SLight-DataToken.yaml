@@ -20,7 +20,7 @@ mk_Container_token - with mixed strings and tokens:
   - Foo
   - class: bold
     data:
-      text: Bar
+      label: Bar
     type: Label
   - Baz
   type: Container
@@ -63,12 +63,12 @@ mk_Image_token:
   type: Image
 mk_Label_token:
   data:
-    text: This is an usual label
+    label: This is an usual label
   type: Label
 mk_Link_token:
   data:
     href: /foo/bar/baz.html
-    text: This is a link
+    label: This is a link
   type: Link
 mk_ListItem_token:
   content:

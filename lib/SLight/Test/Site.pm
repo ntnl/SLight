@@ -32,7 +32,7 @@ use Params::Validate qw( :all );
 
 # May be used only from t/?-*/*.t tests!
 
-my $SQL_VERSION = q{0.3};
+my $SQL_VERSION = q{0.4};
 
 my $test_dir;
 

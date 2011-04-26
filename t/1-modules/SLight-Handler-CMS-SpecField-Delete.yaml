@@ -8,7 +8,7 @@ Ask for existing Spec:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         type: Container
     object_data:
@@ -20,7 +20,7 @@ Ask for existing Spec:
           - class: Message
             content:
             - data:
-                text: 'Do you want to delete CMS Spec Field: ''About''? Please confirm.'
+                label: 'Do you want to delete CMS Spec Field: ''About''? Please confirm.'
               type: Label
             type: Container
           - class: Buttons

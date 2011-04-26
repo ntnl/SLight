@@ -92,7 +92,7 @@ CREATE TABLE Content_Spec_Field (
         -- This will be a textual description, intended for Site owner.
         -- SLight will push it trough L10N sub-system, each time it will output it.
 
-	`order`		SMALLINT NOT NULL,
+	`field_index` SMALLINT NOT NULL,
 
 	`datatype`  VARCHAR(64)  NOT NULL,
 		-- One of:
@@ -114,7 +114,7 @@ CREATE TABLE Content_Spec_Field (
 		--
 		--	Test
 
-	`default`   VARCHAR(255) NOT NULL,
+	`default_value` VARCHAR(255) NOT NULL,
         -- Default value used to initialize the Add form.
 
 	`translate` SMALLINT NOT NULL,

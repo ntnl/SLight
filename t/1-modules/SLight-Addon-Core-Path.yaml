@@ -6,12 +6,12 @@ Path with 1 element:
   - class: Root
     data:
       href: /
-      text: Test facility
+      label: Test facility
     type: Link
   - class: Selected
     data:
       href: /About/
-      text: About this page
+      label: About this page
     type: Link
   type: Container
 Path with 2 elements:
@@ -20,16 +20,16 @@ Path with 2 elements:
   - class: Root
     data:
       href: /
-      text: Test facility
+      label: Test facility
     type: Link
   - class: Parent
     data:
       href: /About/
-      text: About this page
+      label: About this page
     type: Link
   - class: Selected
     data:
       href: /About/Creator/
-      text: The creator
+      label: The creator
     type: Link
   type: Container

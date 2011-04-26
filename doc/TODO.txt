@@ -151,6 +151,11 @@
 [ ]     Dump utility
 [ ]     Import utility
 [ ]     Migrate utility
+[ ] CMS edit functions
+[ ]     Select templates from drop-down list
+[ ]     Select on-page index from drop-down menu
+[ ]     Ability to edit on-page-index
+[ ]     Preview in CMS add/edit forms.
 [ ] Bugs
 [ ]     Split 'content' into "objects before", "main object", "objects after" (with 'content' support maintained)
 [ ]     On CMS Delete dialog, the 'No' option redirects to the dialog (should redirect to the object's View action)
@@ -248,21 +253,17 @@
 =--= Sprint 3 - Command line CMS -
 
 [>] CMS Lists
-[>]     Headlines list (display titles of up to n child items, linking to their pages)
-[ ]     Blog-like list (display up to n child items in full form, with 'Read more' links)
+[X]     Headlines list (display titles of up to n child items, linking to their pages)
+[>]     Blog-like list (display up to n child items in full form, with 'Read more' links)
 [ ]     News-like list (display up to n summarized child items, with 'Read more' links)
 [ ]     Aggregator list (display up to n child items in full form, as if they ware parts of the page)
 [ ]     Gallery-like browser (display n items with in-place zoom support)
 [-] HTML/Template improvements
 [X]     Ability to use widgets as labels for Link (and some other widgets)
 [ ]     Use default HTML snippets, if a widget is not defined in template.
+[ ]     Use built-in template, if no other template can be reached.
 [ ]     Support for 'style' attribute in mk_*_token and bellow.
 [ ]     Support for 'id' attribute in mk_*_token and bellow.
-[ ] CMS edit functions
-[ ]     Select templates from drop-down list
-[ ]     Select on-page index from drop-down menu
-[ ]     Ability to edit on-page-index
-[ ]     Preview in CMS add/edit forms.
 [-] Bugs
 [X]     Remove 'generic' class names.
 [ ]     When DB can not be opened, try to display error using templates... (do not throw an internal error!)

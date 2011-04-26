@@ -23,22 +23,22 @@ Show dialog:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Parent
           data:
             href: /_Account/
-            text: Accounts
+            label: Accounts
           type: Link
         - class: Parent
           data:
             href: /_Account/beti/Account/
-            text: Beata
+            label: Beata
           type: Link
         - class: Current
           data:
             href: /_Account/beti/Account/Delete.web
-            text: Delete
+            label: Delete
           type: Link
         type: Container
     object_data:
@@ -50,7 +50,7 @@ Show dialog:
           - class: Message
             content:
             - data:
-                text: 'Do you want to delete Account: ''beti'' (name: ''Beata'')?
+                label: 'Do you want to delete Account: ''beti'' (name: ''Beata'')?
                   Please confirm.'
               type: Label
             type: Container

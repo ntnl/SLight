@@ -8,12 +8,12 @@ Ask for page:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Test
           data:
             href: /Download/
-            text: Download
+            label: Download
           type: Link
         type: Container
     object_data:
@@ -25,7 +25,7 @@ Ask for page:
           - class: Message
             content:
             - data:
-                text: Do you want to delete current page? Please confirm.
+                label: Do you want to delete current page? Please confirm.
               type: Label
             type: Container
           - class: Buttons

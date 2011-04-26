@@ -15,12 +15,13 @@ use strict; use warnings; # {{{
 
 use SLight::Core::Config;
 
+use SQL::Abstract;
 use Params::Validate qw{ :all };
 # }}}
 
 my $handler = undef;
 
-my $touch_file_path;
+my $__abstract;
 
 sub check { # {{{
     if (not $handler) {
@@ -33,7 +34,11 @@ sub check { # {{{
             db => SLight::Core::Config::get_option('data_root') .q{/db/slight.sqlite}
         );
 
-        $touch_file_path = $handler->touch_file_path();
+        # We're slowly switching to this,
+        # instead of in-house solution.
+        if (not $__abstract) {
+            $__abstract = SQL::Abstract->new();
+        }
 
 #        print STDERR "DB Initialized.\n";
 #        print STDERR "Touchfile: $touch_file_path\n";

@@ -1,34 +1,7 @@
-PRAGMA foreign_keys=OFF;
-BEGIN TRANSACTION;
-CREATE TABLE Email (
-	`id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it
+-- Content sub-system.
 
-    `status`    CHAR(1) NOT NULL,
-        
-    `email`     VARCHAR(255) NOT NULL,
+PRAGMA foreign_keys = ON;
 
-    `user_id` INTEGER,
-        -- ID of the User owning this email (NULL if it was not claimed - owned by some Guest)
-
-    FOREIGN KEY(`user_id`) REFERENCES User_Entity(`id`)
-);
-INSERT INTO "Email" VALUES(1,'A','agnes@test.test',NULL);
-INSERT INTO "Email" VALUES(2,'A','beata@test.test',NULL);
-INSERT INTO "Email" VALUES(3,'A','ela@test.test',NULL);
-INSERT INTO "Email" VALUES(4,'A','natka@test.test',NULL);
-INSERT INTO "Email" VALUES(5,'A','wanda@test.test',NULL);
-CREATE TABLE Email_Verification_Key (
-	`id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it
-
-    `Email_id`  INTEGER      NOT NULL,
-    `key`       VARCHAR(128) NOT NULL,  -- 'secret' key, known only to email owner
-
-    `metadata` TEXT,
-        -- Serialized with YAML.
-        -- A place where additional key-related information may be stored.
-
-    FOREIGN KEY(`Email_id`) REFERENCES Email(`id`)
-);
 CREATE TABLE Page_Entity (
 	`id`       INTEGER PRIMARY KEY,
 
@@ -41,6 +14,10 @@ CREATE TABLE Page_Entity (
 
     FOREIGN KEY (`parent_id`) REFERENCES Page_Entity (`id`) ON DELETE CASCADE
 );
+CREATE UNIQUE INDEX Page_Entity_id   ON Page_Entity (id);
+CREATE UNIQUE INDEX Page_Entity_path ON Page_Entity (parent_id, path);
+
+-- Content types subsystem
 CREATE TABLE Content_Spec (
 	`id`     	INTEGER PRIMARY KEY,
 
@@ -82,6 +59,8 @@ CREATE TABLE Content_Spec (
         -- Serialized with YAML.
         -- A place where modules can put 'their' stuff.
 );
+CREATE INDEX Content_Spec_module ON Content_Spec (owning_module);
+
 CREATE TABLE Content_Spec_Field (
 	`id`		INTEGER PRIMARY KEY,
 
@@ -160,6 +139,11 @@ CREATE TABLE Content_Spec_Field (
 	
     FOREIGN KEY(`Content_Spec_id`) REFERENCES Content_Spec(`id`) ON DELETE CASCADE
 );
+CREATE        INDEX Content_Spec_Field_Content_Spec_id ON Content_Spec_Field (Content_Spec_id);
+CREATE UNIQUE INDEX Content_Spec_Field_class           ON Content_Spec_Field (Content_Spec_id, class);
+
+-- Content system
+
 CREATE TABLE Content_Entity (
     `id` INTEGER PRIMARY KEY,
 
@@ -212,6 +196,8 @@ CREATE TABLE Content_Entity (
     FOREIGN KEY (`Email_id`)        REFERENCES Email(`id`) ON DELETE CASCADE,
 	FOREIGN KEY (`Content_Spec_id`) REFERENCES Content_Spec(`id`) ON DELETE CASCADE
 );
+CREATE UNIQUE INDEX Content_Entity_Page_Stuff ON Content_Entity (Page_Entity_id, on_page_index);
+
 CREATE TABLE Content_Entity_Data (
 	`Content_Entity_id` INTEGER NOT NULL,
 
@@ -227,6 +213,10 @@ CREATE TABLE Content_Entity_Data (
 	FOREIGN KEY(`Content_Entity_id`)     REFERENCES Content_Entity(`id`) ON DELETE CASCADE,
     FOREIGN KEY(`Content_Spec_Field_id`) REFERENCES Content_Spec_Field(`id`) ON DELETE CASCADE
 );
+CREATE UNIQUE INDEX Content_Entity_Data_index ON Content_Entity_Data (Content_Entity_id, Content_Spec_Field_id, language);
+
+-- This table will tend to grow, thus it's indexes may be sub-optimal.
+-- It should not be a problem, as it should not be used on regular basis.
 CREATE TABLE Content_Entity_Data_History (
     `id` INTEGER PRIMARY KEY,
 
@@ -247,6 +237,7 @@ CREATE TABLE Content_Entity_Data_History (
 	FOREIGN KEY(`Content_Entity_id`)     REFERENCES Content_Entity(`id`) ON DELETE CASCADE,
     FOREIGN KEY(`Content_Spec_Field_id`) REFERENCES Content_Spec_Field(`id`) ON DELETE CASCADE
 );
+
 CREATE TABLE Comment_Entity (
 	`id` INTEGER PRIMARY KEY,
 
@@ -268,6 +259,9 @@ CREATE TABLE Comment_Entity (
     FOREIGN KEY (`parent_id`) REFERENCES Comment_Entity (`id`) ON DELETE CASCADE,
     FOREIGN KEY (`Email_id`)  REFERENCES Email(`id`) ON DELETE CASCADE
 );
+CREATE INDEX Comment_Entity_parent ON Comment_Entity (`parent_id`);
+CREATE INDEX Comment_Entity_email  ON Comment_Entity (`Email_id`);
+
 CREATE TABLE Asset_Entity (
 	`id` INTEGER PRIMARY KEY,
 
@@ -285,7 +279,8 @@ CREATE TABLE Asset_Entity (
 
 	FOREIGN KEY (`Email_id`) REFERENCES Email(`id`) ON DELETE CASCADE
 );
-INSERT INTO "Asset_Entity" VALUES(1,3,'2011-04-26 14:27:37','',6700,'image/gif','');
+CREATE INDEX Asset_Entity_email ON Asset_Entity (`Email_id`);
+
 CREATE TABLE Asset_2_Content (
     `Asset_Entity_id` INTEGER,
 
@@ -293,6 +288,8 @@ CREATE TABLE Asset_2_Content (
 
     FOREIGN KEY (`Content_Entity_id`) REFERENCES Content_Entity (`id`) ON DELETE CASCADE
 );
+CREATE UNIQUE INDEX Asset_2_Content_unique ON Asset_2_Content (`Asset_Entity_id`, `Content_Entity_id`);
+CREATE        INDEX Asset_2_Content_target ON Asset_2_Content (`Content_Entity_id`);
 CREATE TABLE Asset_2_Content_Field (
     `Asset_Entity_id` INTEGER,
 
@@ -303,90 +300,8 @@ CREATE TABLE Asset_2_Content_Field (
     FOREIGN KEY (`Content_Entity_id`)     REFERENCES Content_Entity (`id`) ON DELETE CASCADE,
     FOREIGN KEY (`Content_Spec_Field_id`) REFERENCES Content_Spec_Field (`id`) ON DELETE CASCADE
 );
-CREATE TABLE User_Entity (
-	`id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it
-
-	`login` VARCHAR(64) NOT NULL,
-		-- User's login
-
-    `status` VARCHAR(10) NOT NULL,
-
-    `name`      VARCHAR(128),
-
-    `pass_enc` VARCHAR(512),
-
-    `Email_id` INTEGER NOT NULL,
-        -- Primary email owned and used by the User.
-
-    `avatar_Asset_id` INTEGER,
-        -- User's 'Avatar' image.
-
-    FOREIGN KEY(`Email_id`)        REFERENCES Email(`id`),
-    FOREIGN KEY(`avatar_Asset_id`) REFERENCES Asset_Entity(`id`)
-);
-INSERT INTO "User_Entity" VALUES(1,'aga','Enabled','Agnieszka','d27d225b94bf7be57d1c3d4d73f96fc0fd3c57d89d175ce336c226b0f27e9f27fed2dc7a7c6324228ff40a25e8fbef49f7cfb8656d0074a6d1c6c901406aa53e',1,NULL);
-INSERT INTO "User_Entity" VALUES(2,'beti','Enabled','Beata','9983885b17ec71fc68184d464d99150f38eeb542cc94be3f348cd202a4b19cdf25b8de3e20d5eb670851ba76ebe8b11a559cdd0e0fdd54a8716e62fcab6344f5',2,NULL);
-INSERT INTO "User_Entity" VALUES(3,'ela','Enabled','Elżbieta','4d0146efcd56c02c2d2d0cf587974b0427715d9bcf0bd79bed0a76d7e691654cd8200d2ba60481bb5a481e37911f35be31204ecdcac7bd1ba440e36fc77bad04',3,1);
-INSERT INTO "User_Entity" VALUES(4,'nataly','Guest','Natalia','e212af1edb9a37b6deb062f4864bc31d654173b4c551bd8d0875aa283fa12994e26d944722f95ed2c1098b107c3135330e98f6375b91311f26b61c39557cada3',4,NULL);
-INSERT INTO "User_Entity" VALUES(5,'wanda','Disabled','Wanda L.','e8d42198a43571d76bf2999e39c4a817fe83caef95e4c36ad1304b08270b065eece36ce313066702ccd507b2d3a743bfae99630cb351052a70d835d00a5016d7',5,NULL);
-CREATE TABLE System_Access (
-    user_type       VARCHAR(16) NOT NULL,
-        -- One of: 'system', 'guest', 'authenticated'
-
-    handler_family VARCHAR(128) NOT NULL,
-    handler_class  VARCHAR(128) NOT NULL,
-    handler_action VARCHAR(128) NOT NULL,
-        -- Asterisk (*) means 'any' and suits as a wild-card.
-        -- 'handler_object' is not present, as this table only outlines basic access rights.
-
-    policy VARCHAR(16) NOT NULL
-        -- One of: GRANTED, DENIED
-);
-CREATE TABLE User_Access (
-    User_id INTEGER NOT NULL,
-
-    handler_family VARCHAR(128) NOT NULL,
-    handler_class  VARCHAR(128) NOT NULL,
-    handler_action VARCHAR(128) NOT NULL,
-        -- Asterisk (*) means 'any' and suits as a wild-card.
-
-    handler_object VARCHAR(128) NOT NULL,
-
-    policy VARCHAR(16) NOT NULL,
-        -- One of: GRANTED, DENIED
-
-    FOREIGN KEY(`User_id`) REFERENCES User_Entity(`id`)
-);
-CREATE TABLE Cache_Reference (
-    id INTEGER NOT NULL,
-        -- Referenced (numerical) ID.
-
-    namespace VARCHAR(255) NOT NULL,
-        -- Namespace name
-
-    key VARCHAR(255) NOT NULL
-        -- Key.
-);
-CREATE UNIQUE INDEX Email_email ON Email (email);
-CREATE UNIQUE INDEX EVK_key ON Email_Verification_Key (key);
-CREATE UNIQUE INDEX Page_Entity_id   ON Page_Entity (id);
-CREATE UNIQUE INDEX Page_Entity_path ON Page_Entity (parent_id, path);
-CREATE INDEX Content_Spec_module ON Content_Spec (owning_module);
-CREATE INDEX Content_Spec_Field_Content_Spec_id ON Content_Spec_Field (Content_Spec_id);
-CREATE UNIQUE INDEX Content_Spec_Field_class           ON Content_Spec_Field (Content_Spec_id, class);
-CREATE UNIQUE INDEX Content_Entity_Page_Stuff ON Content_Entity (Page_Entity_id, on_page_index);
-CREATE UNIQUE INDEX Content_Entity_Data_index ON Content_Entity_Data (Content_Entity_id, Content_Spec_Field_id, language);
-CREATE INDEX Comment_Entity_parent ON Comment_Entity (`parent_id`);
-CREATE INDEX Comment_Entity_email  ON Comment_Entity (`Email_id`);
-CREATE INDEX Asset_Entity_email ON Asset_Entity (`Email_id`);
-CREATE UNIQUE INDEX Asset_2_Content_unique ON Asset_2_Content (`Asset_Entity_id`, `Content_Entity_id`);
-CREATE INDEX Asset_2_Content_target ON Asset_2_Content (`Content_Entity_id`);
 CREATE UNIQUE INDEX Asset_2_Content_Field_unique  ON Asset_2_Content_Field (`Asset_Entity_id`, `Content_Entity_id`, `Content_Spec_Field_id`);
-CREATE INDEX Asset_2_Content_Field_target  ON Asset_2_Content_Field (`Content_Entity_id`, `Content_Spec_Field_id`);
-CREATE INDEX Asset_2_Content_Field_targets ON Asset_2_Content_Field (`Content_Entity_id`);
-CREATE UNIQUE INDEX User_Entity_login ON User_Entity (login);
-CREATE INDEX User_Entity_email ON User_Entity (Email_id);
-CREATE UNIQUE INDEX System_Access_target ON System_Access (`user_type`, `handler_family`, `handler_class`, `handler_action`);
-CREATE UNIQUE INDEX User_Access_target ON User_Access (`User_id`, `handler_family`, `handler_class`, `handler_action`, `handler_object`);
-CREATE INDEX Cache_Reference_id ON Cache_Reference (id);
-COMMIT;
+CREATE        INDEX Asset_2_Content_Field_target  ON Asset_2_Content_Field (`Content_Entity_id`, `Content_Spec_Field_id`);
+CREATE        INDEX Asset_2_Content_Field_targets ON Asset_2_Content_Field (`Content_Entity_id`);
+/* Add links to other stuff, as needed... */
+

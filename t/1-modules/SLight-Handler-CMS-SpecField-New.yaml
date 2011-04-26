@@ -8,7 +8,7 @@ Get form:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         type: Container
     object_data:
@@ -20,7 +20,7 @@ Get form:
             content:
             - class: Label
               data:
-                text: 'Class:'
+                label: 'Class:'
               type: Label
             - class: Value
               data:
@@ -32,7 +32,7 @@ Get form:
             content:
             - class: Label
               data:
-                text: 'Caption:'
+                label: 'Caption:'
               type: Label
             - class: Value
               data:
@@ -44,7 +44,7 @@ Get form:
             content:
             - class: Label
               data:
-                text: 'Order:'
+                label: 'Order:'
               type: Label
             - class: Value
               data:
@@ -56,7 +56,7 @@ Get form:
             content:
             - class: Label
               data:
-                text: 'Data type:'
+                label: 'Data type:'
               type: Label
             - class: Value
               data:
@@ -91,7 +91,7 @@ Get form:
             content:
             - class: Label
               data:
-                text: 'Localization:'
+                label: 'Localization:'
               type: Label
             - class: Value
               data:
@@ -108,7 +108,7 @@ Get form:
             content:
             - class: Label
               data:
-                text: 'Display on page:'
+                label: 'Display on page:'
               type: Label
             - class: Value
               data:
@@ -127,7 +127,7 @@ Get form:
             content:
             - class: Label
               data:
-                text: 'Display on list:'
+                label: 'Display on list:'
               type: Label
             - class: Value
               data:
@@ -146,7 +146,7 @@ Get form:
             content:
             - class: Label
               data:
-                text: 'Display label:'
+                label: 'Display label:'
               type: Label
             - class: Value
               data:
@@ -167,7 +167,7 @@ Get form:
             content:
             - class: Label
               data:
-                text: 'Is required:'
+                label: 'Is required:'
               type: Label
             - class: Value
               data:
@@ -184,7 +184,7 @@ Get form:
             content:
             - class: Label
               data:
-                text: 'Maximum length:'
+                label: 'Maximum length:'
               type: Label
             - class: Value
               data:

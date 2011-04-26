@@ -5,7 +5,7 @@ Menu on 1-st level page:
   - class: Other
     data:
       href: /About/Authors/
-      text: Authors
+      label: Authors
     type: Link
   type: Container
 Menu on root: ~

@@ -6,38 +6,38 @@ full_blown_example:
     content:
     - class: c1
       data:
-        text: Beata
+        label: Beata
       type: Label
     - class: c2
       data:
-        text: Zlublina
+        label: Zlublina
       type: Label
     - class: c3
       data:
-        text: Beti
+        label: Beti
       type: Label
     - data:
         href: http://website.of.beti.pl
-        text: Website of Beti
+        label: Website of Beti
       type: Link
     type: ListItem
   - class: Second Evel
     content:
     - class: c1
       data:
-        text: Ela
+        label: Ela
       type: Label
     - class: c2
       data:
-        text: Gwinner
+        label: Gwinner
       type: Label
     - class: c3
       data:
-        text: Crea
+        label: Crea
       type: Label
     - data:
         href: http://www.ela.pl
-        text: www-ELA-pl
+        label: www-ELA-pl
       type: Link
     type: ListItem
   type: List

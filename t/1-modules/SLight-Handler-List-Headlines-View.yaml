@@ -1,5 +1,5 @@
 ---
-Root page:
+Headlines on front page:
   content:
     addon_data:
       Core::Path:
@@ -54,8 +54,28 @@ Root page:
             type: Container
           type: Container
         type: Container
+      ob3:
+        class: SLight_Object O-SL_List_Headlines
+        content:
+        - - class: Item
+            data:
+              href: /About/
+              label: About
+            type: Link
+          - class: Item
+            data:
+              href: /Docs/
+              label: Docs
+            type: Link
+          - class: Item
+            data:
+              href: /Download/
+              label: Download
+            type: Link
+        type: Container
     object_order:
     - ob1
+    - ob3
     template: Default
   mime_type: ~
   response: CONTENT

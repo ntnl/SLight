@@ -8,7 +8,7 @@ Get the welcome message (note, that DB is empty):
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         type: Container
     object_data:
@@ -20,7 +20,7 @@ Get the welcome message (note, that DB is empty):
           - class: Message
             content:
             - data:
-                text: Welcome to SLight Content Management System. This instalation
+                label: Welcome to SLight Content Management System. This instalation
                   has no content.
               type: Label
             type: Container

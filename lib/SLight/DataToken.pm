@@ -350,23 +350,6 @@ sub mk_Status_token { # {{{
 
     return \%P;
 } # }}}
-sub mk_Label_token { # {{{
-    my %P = validate(
-        @_,
-        {
-            id    => { type=>SCALAR, optional=>1 },
-            class => { type=>SCALAR, optional=>1 },
-            style => { type=>HASHREF, optional=>1 },
-
-            text  => { type=>SCALAR }
-        }
-    );
-
-    $P{'type'} = 'Label';
-    $P{'data'}->{'text'} = delete $P{'text'};
-
-    return \%P;
-} # }}}
 sub mk_Text_token { # {{{
     my %P = validate(
         @_,
@@ -385,6 +368,28 @@ sub mk_Text_token { # {{{
     return \%P;
 } # }}}
 
+sub mk_Label_token { # {{{
+    my %P = validate(
+        @_,
+        {
+            id    => { type=>SCALAR, optional=>1 },
+            class => { type=>SCALAR, optional=>1 },
+            style => { type=>HASHREF, optional=>1 },
+
+            label => { type=>SCALAR | ARRAYREF, optional=>1 },
+            text  => { type=>SCALAR | ARRAYREF, optional=>1 }, # Note: Use 'label', 'text' is deprecated and left only for backward compatibility!
+        }
+    );
+
+   
+
+    $P{'type'} = 'Label';
+    $P{'data'}->{'label'} = ( delete $P{'label'} or delete $P{'text'} );
+
+    assert_defined($P{'data'}->{'label'});
+
+    return \%P;
+} # }}}
 sub mk_Link_token { # {{{
     my %P = validate(
         @_,
@@ -393,14 +398,17 @@ sub mk_Link_token { # {{{
             class => { type=>SCALAR, optional=>1 },
             style => { type=>HASHREF, optional=>1 },
 
-            text => { type=>SCALAR | ARRAYREF | HASHREF },
             href => { type=>SCALAR },
+            label => { type=>SCALAR | ARRAYREF, optional=>1 },
+            text  => { type=>SCALAR | ARRAYREF, optional=>1 }, # Note: Use 'label', 'text' is deprecated and left only for backward compatibility!
         }
     );
 
     $P{'type'} = 'Link';
-    $P{'data'}->{'text'} = delete $P{'text'};
-    $P{'data'}->{'href'} = delete $P{'href'};
+    $P{'data'}->{'label'} = ( delete $P{'label'} or delete $P{'text'} );
+    $P{'data'}->{'href'}  = delete $P{'href'};
+
+    assert_defined($P{'data'}->{'label'});
 
     return \%P;
 } # }}}

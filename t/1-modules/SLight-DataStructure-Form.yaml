@@ -6,7 +6,7 @@ full_blown_example:
     content:
     - class: Label
       data:
-        text: Sample string entry
+        label: Sample string entry
       type: Label
     - class: Value
       data:
@@ -15,14 +15,14 @@ full_blown_example:
       type: Entry
     - class: Error
       data:
-        text: String has issues
+        label: String has issues
       type: Label
     type: Container
   - class: F-t_password PasswordEntry
     content:
     - class: Label
       data:
-        text: Sample password entry
+        label: Sample password entry
       type: Label
     - class: Value
       data:
@@ -31,14 +31,14 @@ full_blown_example:
       type: PasswordEntry
     - class: Error
       data:
-        text: Password has issues
+        label: Password has issues
       type: Label
     type: Container
   - class: F-t_text TextEntry
     content:
     - class: Label
       data:
-        text: Sample text entry
+        label: Sample text entry
       type: Label
     - class: Value
       data:
@@ -47,14 +47,14 @@ full_blown_example:
       type: TextEntry
     - class: Error
       data:
-        text: Text has issues
+        label: Text has issues
       type: Label
     type: Container
   - class: F-t_select SelectEntry
     content:
     - class: Label
       data:
-        text: Sample select entry
+        label: Sample select entry
       type: Label
     - class: Value
       data:
@@ -70,14 +70,14 @@ full_blown_example:
       type: SelectEntry
     - class: Error
       data:
-        text: Select has issues
+        label: Select has issues
       type: Label
     type: Container
   - class: F-t_file FileEntry
     content:
     - class: Label
       data:
-        text: Sample file entry
+        label: Sample file entry
       type: Label
     - class: Value
       data:
@@ -85,7 +85,7 @@ full_blown_example:
       type: FileEntry
     - class: Error
       data:
-        text: File has issues
+        label: File has issues
       type: Label
     type: Container
   - class: F-t_check Check
@@ -97,17 +97,17 @@ full_blown_example:
       type: Check
     - class: Label
       data:
-        text: Sample check
+        label: Sample check
       type: Label
     - class: Error
       data:
-        text: Check has issues
+        label: Check has issues
       type: Label
     type: Container
   - content:
     - class: F-Normal Label
       data:
-        text: Sample label
+        label: Sample label
       type: Label
     type: Container
   - content:

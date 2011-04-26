@@ -22,27 +22,27 @@ Display dialog:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Parent
           data:
             href: /_Account/
-            text: Accounts
+            label: Accounts
           type: Link
         - class: Parent
           data:
             href: /_Account/ela/Account/
-            text: Elżbieta
+            label: Elżbieta
           type: Link
         - class: Parent
           data:
             href: /_Account/ela/Avatar/
-            text: Avatar
+            label: Avatar
           type: Link
         - class: Current
           data:
             href: /_Account/ela/Avatar/Delete.web
-            text: Delete
+            label: Delete
           type: Link
         type: Container
     object_data:
@@ -54,7 +54,7 @@ Display dialog:
           - class: Message
             content:
             - data:
-                text: 'Do you want to delete avatar for Account: ''ela''? Please confirm.'
+                label: 'Do you want to delete avatar for Account: ''ela''? Please confirm.'
               type: Label
             type: Container
           - class: Buttons

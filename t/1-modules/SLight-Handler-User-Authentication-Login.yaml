@@ -8,12 +8,12 @@ Login form:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Current
           data:
             href: /_Authentication/Login.web
-            text: Log-in
+            label: Log-in
           type: Link
         type: Container
     object_data:
@@ -26,7 +26,7 @@ Login form:
             content:
             - class: Label
               data:
-                text: Login
+                label: Login
               type: Label
             - class: Value
               data:
@@ -38,7 +38,7 @@ Login form:
             content:
             - class: Label
               data:
-                text: Password
+                label: Password
               type: Label
             - class: Value
               data:
@@ -67,12 +67,12 @@ Sending form with bad login/pass:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Current
           data:
             href: /_Authentication/Login.web
-            text: Log-in
+            label: Log-in
           type: Link
         type: Container
     object_data:
@@ -85,7 +85,7 @@ Sending form with bad login/pass:
             content:
             - class: Label
               data:
-                text: Login
+                label: Login
               type: Label
             - class: Value
               data:
@@ -97,7 +97,7 @@ Sending form with bad login/pass:
             content:
             - class: Label
               data:
-                text: Password
+                label: Password
               type: Label
             - class: Value
               data:
@@ -106,7 +106,7 @@ Sending form with bad login/pass:
               type: PasswordEntry
             - class: Error
               data:
-                text: Login/Password combination is incorrect.
+                label: Login/Password combination is incorrect.
               type: Label
             type: Container
           data:

@@ -50,12 +50,12 @@ my @tests = (
                 use_in_path  => 20,
 
                 _data => { #             .-- ids explicitly added, to ensure, that fields get inserted in the RIGHT order.
-                    full_name  => { id=>10, datatype => q{String}, caption => q{Name},       order => 1, default => q{},   max_length =>  75, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
-                    nick       => { id=>20, datatype => q{String}, caption => q{Nick},       order => 2, default => q{},   max_length =>  45, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
-                    chest_size => { id=>30, datatype => q{Int},    caption => q{Chest (cm)}, order => 3, default => q{90}, max_length => 250, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
-                    waist_size => { id=>40, datatype => q{Int},    caption => q{Waist (cm)}, order => 4, default => q{60}, max_length => 250, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
-                    hips_size  => { id=>50, datatype => q{Int},    caption => q{Hips (cm)},  order => 5, default => q{90}, max_length => 250, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
-                    cup_size   => { id=>60, datatype => q{String}, caption => q{Cup size},   order => 6, default => q{A},  max_length =>   1, translate => 0, optional => 0, display_on_page => 1, display_on_list => 0, display_label => 1 },
+                    full_name  => { id=>10, datatype => q{String}, caption => q{Name},       field_index => 1, default_value => q{},   max_length =>  75, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+                    nick       => { id=>20, datatype => q{String}, caption => q{Nick},       field_index => 2, default_value => q{},   max_length =>  45, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+                    chest_size => { id=>30, datatype => q{Int},    caption => q{Chest (cm)}, field_index => 3, default_value => q{90}, max_length => 250, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+                    waist_size => { id=>40, datatype => q{Int},    caption => q{Waist (cm)}, field_index => 4, default_value => q{60}, max_length => 250, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+                    hips_size  => { id=>50, datatype => q{Int},    caption => q{Hips (cm)},  field_index => 5, default_value => q{90}, max_length => 250, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+                    cup_size   => { id=>60, datatype => q{String}, caption => q{Cup size},   field_index => 6, default_value => q{A},  max_length =>   1, translate => 0, optional => 0, display_on_page => 1, display_on_list => 0, display_label => 1 },
                 },
             ),
         },

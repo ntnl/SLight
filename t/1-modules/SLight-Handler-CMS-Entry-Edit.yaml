@@ -11,12 +11,12 @@ Open content edit form:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Test
           data:
             href: /About/
-            text: About
+            label: About
           type: Link
         type: Container
     object_data:
@@ -27,14 +27,14 @@ Open content edit form:
           - content:
             - class: F-Label Label
               data:
-                text: Article
+                label: Article
               type: Label
             type: Container
           - class: F-content.title Entry
             content:
             - class: Label
               data:
-                text: Title (en)
+                label: Title (en)
               type: Label
             - class: Value
               data:
@@ -46,7 +46,7 @@ Open content edit form:
             content:
             - class: Label
               data:
-                text: Article (en)
+                label: Article (en)
               type: Label
             - class: Value
               data:
@@ -58,7 +58,7 @@ Open content edit form:
             content:
             - class: Label
               data:
-                text: Comment write policy
+                label: Comment write policy
               type: Label
             - class: Value
               data:
@@ -81,7 +81,7 @@ Open content edit form:
             content:
             - class: Label
               data:
-                text: Comment display policy
+                label: Comment display policy
               type: Label
             - class: Value
               data:

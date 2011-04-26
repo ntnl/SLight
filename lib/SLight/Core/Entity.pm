@@ -191,6 +191,10 @@ sub new { # {{{
             # If defined, means that '_data' items are based on key AND 'language' column.
             # In this case, '_data_lang' is mandatory.
 
+        joined_fields => {},
+
+        join_key_fields => {},
+
 #        fetch_cb => $P{'get_cb'},
 #        store_cb => $P{'put_cb'},
 #            # Callbacks run when entries enter/leave the storage
@@ -206,6 +210,16 @@ sub new { # {{{
 
     if (not ref $self->{'child_key'}) {
         $self->{'child_key'} = [ $self->{'child_key'} ];
+    }
+
+    if ($P{'joined_fields'}) {
+        foreach my $table (keys %{ $P{'joined_fields'} }) {
+            foreach my $field (@{ $P{'joined_fields'}->{$table} }) {
+                $self->{'joined_fields'}->{$field} = $table;
+            }
+
+            $self->{'join_key_fields'}->{$table} = $P{'join_key_fields'}->{$table};
+        }
     }
 
     $self->{'_really_all_fields'} = [ 'id', @{ $self->{'_all_fields'} } ];
@@ -622,12 +636,31 @@ sub get_ENTITYs_fields_where { # {{{
 
     my $where = $self->_make_where(%P);
 
-    my %fields = map { $_ => 1 } @{ $P{'_fields'} or [] };
-    $fields{'id'} = 1;
+    my %fields = (
+        $self->{'base_table'} .q{.id} => 1
+    );
+
+    my %join_tables;
+    foreach my $field (@{ $P{'_fields'} or [] }) {
+        if (my $table = $self->{'joined_fields'}->{$field}) {
+            #$fields{$table .q{.}. $field} = 1;
+            $fields{$field} = 1;
+
+            $join_tables{$table} = 1;
+        }
+        else {
+            $fields{$field} = 1;
+        }
+    }
+
+    my @tables = ( $self->{'base_table'} );
+    foreach my $table (keys %join_tables) {
+        push @tables, q{ LEFT JOIN }, $table, q{ON}, $table. q{.id=}. $self->{'base_table'}.q{.}.$self->{'join_key_fields'}->{$table};
+    }
 
     my $sth = SLight::Core::DB::run_select(
         columns => [ keys %fields ],
-        from    => $self->{'base_table'},
+        from    => \@tables,
         where   => $where,
         debug   => $P{'_debug'},
     );

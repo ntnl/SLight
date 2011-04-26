@@ -5,21 +5,21 @@ Show languages (default):
   - class: en-Current
     data:
       href: /en.web
-      text: En
+      label: En
     type: Link
   - class: de-Other
     data:
       href: /de.web
-      text: De
+      label: De
     type: Link
   - class: fr-Other
     data:
       href: /fr.web
-      text: Fr
+      label: Fr
     type: Link
   - class: pl-Other
     data:
       href: /pl.web
-      text: Pl
+      label: Pl
     type: Link
   type: Container

@@ -90,8 +90,8 @@ is (
         use_in_path  => 1,
 
         _data => {
-            label   => { datatype => q{String}, caption => q{Label},   order => 1, default => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
-            summary => { datatype => q{Text},   caption => q{Summary}, order => 2, default => q{},           max_length => 987, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
+            label   => { datatype => q{String}, caption => q{Label},   field_index => 1, default_value => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+            summary => { datatype => q{Text},   caption => q{Summary}, field_index => 2, default_value => q{},           max_length => 987, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
             #                                                  '--- later changed to 'Overview'.                            '--- later changed to '789'
         },
     ),
@@ -107,9 +107,9 @@ is (
         class => 'Stuff',
 
         _data => {
-            brand => { datatype => q{String}, caption => q{Brand},          order => 1, default => q{}, max_length => 75, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 0 },
-            model => { datatype => q{String}, caption => q{Model},          order => 2, default => q{}, max_length => 75, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 0 },
-            bps   => { datatype => q{Int},    caption => q{Balls per sec.}, order => 3, default => q{}, max_length => 50, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+            brand => { datatype => q{String}, caption => q{Brand},          field_index => 1, default_value => q{}, max_length => 75, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 0 },
+            model => { datatype => q{String}, caption => q{Model},          field_index => 2, default_value => q{}, max_length => 75, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 0 },
+            bps   => { datatype => q{Int},    caption => q{Balls per sec.}, field_index => 3, default_value => q{}, max_length => 50, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
         },
     ),
     3,
@@ -125,11 +125,11 @@ is (
         class => 'Gal',
 
         _data => {
-            name       => { datatype => q{String}, caption => q{Name},       order => 1, default => q{},   max_length =>  75, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
-            chest_size => { datatype => q{Int},    caption => q{Chest (cm)}, order => 2, default => q{90}, max_length => 250, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
-            waist_size => { datatype => q{Int},    caption => q{Waist (cm)}, order => 3, default => q{60}, max_length => 250, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
-            hips_size  => { datatype => q{Int},    caption => q{Hips (cm)},  order => 4, default => q{90}, max_length => 250, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
-            cup_size   => { datatype => q{String}, caption => q{Cup size},   order => 5, default => q{A},  max_length =>   1, translate => 0, optional => 0, display_on_page => 1, display_on_list => 0, display_label => 1 },
+            name       => { datatype => q{String}, caption => q{Name},       field_index => 1, default_value => q{},   max_length =>  75, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+            chest_size => { datatype => q{Int},    caption => q{Chest (cm)}, field_index => 2, default_value => q{90}, max_length => 250, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+            waist_size => { datatype => q{Int},    caption => q{Waist (cm)}, field_index => 3, default_value => q{60}, max_length => 250, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+            hips_size  => { datatype => q{Int},    caption => q{Hips (cm)},  field_index => 4, default_value => q{90}, max_length => 250, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+            cup_size   => { datatype => q{String}, caption => q{Cup size},   field_index => 5, default_value => q{A},  max_length =>   1, translate => 0, optional => 0, display_on_page => 1, display_on_list => 0, display_label => 1 },
         },
     ),
     4,
@@ -189,7 +189,7 @@ is (
             label => undef,
 
             # This will be added:
-            caption => { id=>2, datatype => q{String}, caption => q{Label}, order => 1, default => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+            caption => { id=>2, datatype => q{String}, caption => q{Label}, field_index => 1, default_value => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
         }
     ),
     undef,
@@ -223,8 +223,8 @@ is_deeply (
         use_in_path  => 1,
 
         _data => {
-            caption => { id=>2, datatype => q{String}, caption => q{Label},    order => 1, default => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
-            summary => { id=>1, datatype => q{Text},   caption => q{Overview}, order => 2, default => q{},           max_length => 789, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
+            caption => { id=>2, datatype => q{String}, caption => q{Label},    field_index => 1, default_value => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+            summary => { id=>1, datatype => q{Text},   caption => q{Overview}, field_index => 2, default_value => q{},           max_length => 789, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
         },
         _data_order => [qw( caption summary )],
 
@@ -265,8 +265,8 @@ is_deeply(
             use_in_path  => 1,
 
             _data => {
-                caption => { id=>2, datatype => q{String}, caption => q{Label},    order => 1, default => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
-                summary => { id=>1, datatype => q{Text},   caption => q{Overview}, order => 2, default => q{},           max_length => 789, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
+                caption => { id=>2, datatype => q{String}, caption => q{Label},    field_index => 1, default_value => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+                summary => { id=>1, datatype => q{Text},   caption => q{Overview}, field_index => 2, default_value => q{},           max_length => 789, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
             },
             _data_order => [qw( caption summary )],
 
@@ -300,8 +300,8 @@ is_deeply(
             use_in_path  => 1,
 
             _data => {
-                caption => { id=>2, datatype => q{String}, caption => q{Label},    order => 1, default => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
-                summary => { id=>1, datatype => q{Text},   caption => q{Overview}, order => 2, default => q{},           max_length => 789, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
+                caption => { id=>2, datatype => q{String}, caption => q{Label},    field_index => 1, default_value => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+                summary => { id=>1, datatype => q{Text},   caption => q{Overview}, field_index => 2, default_value => q{},           max_length => 789, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
             },
             _data_order => [qw( caption summary )],
 
@@ -322,9 +322,9 @@ is_deeply(
             use_in_path  => undef,
 
             _data => {
-                brand => { id=>5, datatype => q{String}, caption => q{Brand},          order => 1, default => q{}, max_length => 75, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 0 },
-                model => { id=>4, datatype => q{String}, caption => q{Model},          order => 2, default => q{}, max_length => 75, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 0 },
-                bps   => { id=>3, datatype => q{Int},    caption => q{Balls per sec.}, order => 3, default => q{}, max_length => 50, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
+                brand => { id=>5, datatype => q{String}, caption => q{Brand},          field_index => 1, default_value => q{}, max_length => 75, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 0 },
+                model => { id=>4, datatype => q{String}, caption => q{Model},          field_index => 2, default_value => q{}, max_length => 75, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 0 },
+                bps   => { id=>3, datatype => q{Int},    caption => q{Balls per sec.}, field_index => 3, default_value => q{}, max_length => 50, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
             },
             _data_order => [qw( brand model bps )],
 
@@ -371,7 +371,7 @@ is_deeply(
         version => 2,
 
         _fields      => [qw( caption class )],
-        _data_fields => [qw( caption order )],
+        _data_fields => [qw( caption field_index )],
     ),
     [
         {
@@ -382,8 +382,8 @@ is_deeply(
             class => 'Folder',
 
             _data => {
-                caption => { caption => q{Label},    order => 1 },
-                summary => { caption => q{Overview}, order => 2 },
+                caption => { caption => q{Label},    field_index => 1 },
+                summary => { caption => q{Overview}, field_index => 2 },
             },
             _data_order => [qw( caption summary )],
 

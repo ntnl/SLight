@@ -8,12 +8,12 @@ List of accounts:
         - class: Root
           data:
             href: /
-            text: Test facility
+            label: Test facility
           type: Link
         - class: Current
           data:
             href: /_Account/
-            text: Accounts
+            label: Accounts
           type: Link
         type: Container
       Core::Toolbox:
@@ -36,7 +36,7 @@ List of accounts:
             - content:
               - data:
                   href: /_Account/aga/Account/
-                  text: aga
+                  label: aga
                 type: Link
               data:
                 colspan: 0
@@ -44,7 +44,7 @@ List of accounts:
               type: TableCell
             - content:
               - data:
-                  text: Enabled
+                  label: Enabled
                 type: Label
               data:
                 colspan: 0
@@ -52,7 +52,7 @@ List of accounts:
               type: TableCell
             - content:
               - data:
-                  text: Agnieszka
+                  label: Agnieszka
                 type: Label
               data:
                 colspan: 0
@@ -92,7 +92,7 @@ List of accounts:
             - content:
               - data:
                   href: /_Account/beti/Account/
-                  text: beti
+                  label: beti
                 type: Link
               data:
                 colspan: 0
@@ -100,7 +100,7 @@ List of accounts:
               type: TableCell
             - content:
               - data:
-                  text: Enabled
+                  label: Enabled
                 type: Label
               data:
                 colspan: 0
@@ -108,7 +108,7 @@ List of accounts:
               type: TableCell
             - content:
               - data:
-                  text: Beata
+                  label: Beata
                 type: Label
               data:
                 colspan: 0
@@ -148,7 +148,7 @@ List of accounts:
             - content:
               - data:
                   href: /_Account/ela/Account/
-                  text: ela
+                  label: ela
                 type: Link
               data:
                 colspan: 0
@@ -156,7 +156,7 @@ List of accounts:
               type: TableCell
             - content:
               - data:
-                  text: Enabled
+                  label: Enabled
                 type: Label
               data:
                 colspan: 0
@@ -164,7 +164,7 @@ List of accounts:
               type: TableCell
             - content:
               - data:
-                  text: Elżbieta
+                  label: Elżbieta
                 type: Label
               data:
                 colspan: 0
@@ -204,7 +204,7 @@ List of accounts:
             - content:
               - data:
                   href: /_Account/nataly/Account/
-                  text: nataly
+                  label: nataly
                 type: Link
               data:
                 colspan: 0
@@ -212,7 +212,7 @@ List of accounts:
               type: TableCell
             - content:
               - data:
-                  text: Guest
+                  label: Guest
                 type: Label
               data:
                 colspan: 0
@@ -220,7 +220,7 @@ List of accounts:
               type: TableCell
             - content:
               - data:
-                  text: Natalia
+                  label: Natalia
                 type: Label
               data:
                 colspan: 0
@@ -260,7 +260,7 @@ List of accounts:
             - content:
               - data:
                   href: /_Account/wanda/Account/
-                  text: wanda
+                  label: wanda
                 type: Link
               data:
                 colspan: 0
@@ -268,7 +268,7 @@ List of accounts:
               type: TableCell
             - content:
               - data:
-                  text: Disabled
+                  label: Disabled
                 type: Label
               data:
                 colspan: 0
@@ -276,7 +276,7 @@ List of accounts:
               type: TableCell
             - content:
               - data:
-                  text: Wanda L.
+                  label: Wanda L.
                 type: Label
               data:
                 colspan: 0

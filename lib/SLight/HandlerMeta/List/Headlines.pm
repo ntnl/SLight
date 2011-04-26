@@ -13,7 +13,7 @@ package SLight::HandlerMeta::List::Headlines;
 ################################################################################
 use strict; use warnings; # {{{
 
-use SLight::API::ContentSpec qw( get_ContentSpecs_where get_ContentSpec );
+use SLight::API::ContentSpec qw( get_ContentSpecs_where get_ContentSpec add_ContentSpec );
 use SLight::Core::L10N qw( TR );
 
 use Carp::Assert::More qw( assert_defined );
@@ -30,52 +30,46 @@ sub new { # {{{
 } # }}}
 
 sub get_spec { # {{{
-    my ( $self, $spec_id, $save ) = @_;
+    my ( $self, $spec_id ) = @_;
 
-    return {
-        '_data_order' => [
-            'name',
-            'short_name',
-            'count_limit',
-        ],
+    # Parameters are ignored.
+
+    my $headlines_list_spec = {
         'owning_module' => 'List::Headlines',
         '_data' => {
             'name' => {
                 'display_on_page' => '2',
-                'default' => '',
+                'default_value' => '',
                 'display_on_list' => '2',
                 'optional' => '1',
                 'caption' => 'Name',
                 'display_label' => '1',
-                'order' => 1,
+                'field_index' => 1,
                 'translate' => '1',
-                'id' => '10',
                 'max_length' => '128',
                 'datatype' => 'String'
             },
             'short_name' => {
                 'display_on_page' => '2',
-                'default' => '',
+                'default_value' => '',
                 'display_on_list' => '2',
                 'optional' => '1',
                 'caption' => 'Short name',
                 'display_label' => '1',
-                'order' => 2,
+                'field_index' => 2,
                 'translate' => '1',
-                'id' => '10',
                 'max_length' => '128',
                 'datatype' => 'String'
             },
             'count_limit' => {
                 'display_on_page' => '2',
-                'default' => '',
+                'default_value' => '',
                 'display_on_list' => '2',
                 'optional' => '1',
                 'caption' => 'Maximal headlines count',
                 'display_label' => '1',
-                'order' => 3,
+                'field_index' => 3,
                 'translate' => '0',
-                'id' => '10',
                 'max_length' => '1',
                 'datatype' => 'Int'
             },
@@ -89,8 +83,28 @@ sub get_spec { # {{{
         'use_in_path'  => undef,
         'use_in_menu'  => '10',
         'metadata'     => {},
-        'class'        => 'Content'
+        'class'        => 'SL_List_Headlines'
     };
+    
+    # Check, if there is a correct entry in Spec DB.
+    my $stored_specs = get_ContentSpecs_where(
+        owning_module => 'List::Headlines',
+        version       => 0,
+    );
+
+    if (scalar @{ $stored_specs }) {
+#        warn "Stored";
+
+#        use Data::Dumper; warn Dumper $stored_specs;
+
+        return $stored_specs->[0];
+    }
+
+    my $added_spec_id = add_ContentSpec(%{ $headlines_list_spec });
+
+#    warn "Saved";
+
+    return get_ContentSpec($added_spec_id);
 } # }}}
 
 # vim: fdm=marker
