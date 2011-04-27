@@ -44,7 +44,16 @@ sub analyze_path { # {{{
 
     $self->set_template( 'Default' );
 
+    my $bread_crumbs = $self->bread_crumbs($path->[0]);
+
+    $self->set_breadcrumb_path($bread_crumbs);
+
     return $self->response_content(); 
+} # }}}
+
+# Virtual
+sub bread_crumbs { # {{{
+    return;
 } # }}}
 
 # vim: fdm=marker
