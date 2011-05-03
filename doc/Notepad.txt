@@ -974,3 +974,21 @@ RPC data format
             </items>
         </SLight>
 
+
+New Content Data structure.
+
+ Page Entity Data   Content Spec <----- Content Spec Field
+   | ($language)       |                   |
+   V                   V                   V
+  Page Entity <--- Content Entity <--- Content Entity Field <--($language)-- Content Entity Data
+                       ^
+                       |
+                    Email entity
+
+ API::Page        <-- manage content structure
+ API::Content     <-- manage content items
+ API::ContentSpec <-- manage content's specs
+ API::ContentData <-- manage content's data
+
+ API::ContentModel <-- One (high-level) API to rule them all ;)
+

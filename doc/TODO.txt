@@ -279,6 +279,11 @@
 [ ]         Update Page PathHandler Breadcrumb generation
 [ ]     Add 'order by' to Handler::List::* (so lists control how to sort)
 [ ]         Add 'order by' to Headlines Form
+[ ]         Ability to fetch only fields for lists or pages.
+[>]     Extract 'Content_Entity_Field' from 'Content_Entity_Data'
+[X]         Forge SQL
+[ ]         Update Content.pm
+[ ]         Implement ContentData.pm for handling data. (?)
 [-] CMS Lists
 [ ]     In-progress refactoring
 [ ]         Move 'base' Form elements from Headlines to common class.

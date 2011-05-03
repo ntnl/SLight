@@ -15,6 +15,9 @@ CREATE TABLE Page_Entity (
     `menu_order` INTEGER NOT NULL DEFAULT 0,
         -- Order in menu, ascending (zero is first).
 
+    `languages` VARCHAR(94) NOT NULL DEFAULT '',
+        -- Lists languages, with which the Page Entry is described.
+
     FOREIGN KEY (`parent_id`) REFERENCES Page_Entity (`id`) ON DELETE CASCADE
 );
 CREATE UNIQUE INDEX Page_Entity_id   ON Page_Entity (id);
@@ -177,19 +180,19 @@ CREATE TABLE Content_Entity (
         -- Owner's Email ID.
 		-- This may lead to an User account if the entity was written by a User
 
-	`status` CHAR(1) NOT NULL,
-		-- V = visible
-        -- A = archived (does not appear on lists, but is otherwise fully accessible)
-        -- H = hidden (only visible to owner)
-
     `Page_Entity_id` INTEGER NOT NULL,
         -- ID of Page on which this object is located.
 
     `on_page_index` SMALLINT DEFAULT 0 NOT NULL,
         -- Location on page.
         --  <0 means that the object is BEFORE the main object
-        --   0 means, that this IS the main object
+        --   0 means, that this IS the main Page object
         --  >0 means, that the object is AFTER the main object
+
+	`status` CHAR(1) NOT NULL,
+		-- V = visible
+        -- A = archived (does not appear on lists, but is otherwise fully accessible)
+        -- H = hidden (only visible to owner)
 
 	`comment_write_policy` SMALLINT NOT NULL DEFAULT 0,
 		-- Defines policy for making comments (replies, opinions, etc):
@@ -215,17 +218,32 @@ CREATE TABLE Content_Entity (
         -- Serialized with YAML.
         -- A place where modules can put 'their' stuff.
 
+    `languages` VARCHAR(94) NOT NULL DEFAULT '',
+        -- Lists languages, into which the entry is translated into.
+
     FOREIGN KEY (`Page_Entity_id`)  REFERENCES Page_Entity (`id`) ON DELETE CASCADE,
     FOREIGN KEY (`Email_id`)        REFERENCES Email(`id`) ON DELETE CASCADE,
 	FOREIGN KEY (`Content_Spec_id`) REFERENCES Content_Spec(`id`) ON DELETE CASCADE
 );
 CREATE UNIQUE INDEX Content_Entity_Page_Stuff ON Content_Entity (Page_Entity_id, on_page_index);
 
-CREATE TABLE Content_Entity_Data (
-	`Content_Entity_id` INTEGER NOT NULL,
+CREATE TABLE Content_Entity_Field (
+    `id` INTEGER PRIMARY KEY,
+	
+    `Content_Entity_id` INTEGER NOT NULL,
 
     `Content_Spec_Field_id` INTEGER NOT NULL,
 		-- this is the primary index column from Content_Spec_Field.
+
+	FOREIGN KEY(`Content_Entity_id`)     REFERENCES Content_Entity(`id`) ON DELETE CASCADE,
+    FOREIGN KEY(`Content_Spec_Field_id`) REFERENCES Content_Spec_Field(`id`) ON DELETE CASCADE
+);
+CREATE UNIQUE INDEX Content_Entity_Field_index ON Content_Entity_Field (Content_Spec_Field_id, Content_Entity_id);
+
+CREATE TABLE Content_Entity_Data (
+    `id` INTEGER PRIMARY KEY,
+
+    `Content_Entity_Field_id` INTEGER NOT NULL,
 
 	`language` CHAR(5) NOT NULL,
         -- 2 (pl) or 5 (pl_pl) character language code, if the field is translatable.
@@ -233,20 +251,16 @@ CREATE TABLE Content_Entity_Data (
 
 	`value`	TEXT NOT NULL,
 
-	FOREIGN KEY(`Content_Entity_id`)     REFERENCES Content_Entity(`id`) ON DELETE CASCADE,
-    FOREIGN KEY(`Content_Spec_Field_id`) REFERENCES Content_Spec_Field(`id`) ON DELETE CASCADE
+    FOREIGN KEY(`Content_Entity_Field_id`) REFERENCES Content_Entity_Field(`id`) ON DELETE CASCADE,
 );
-CREATE UNIQUE INDEX Content_Entity_Data_index ON Content_Entity_Data (Content_Entity_id, Content_Spec_Field_id, language);
+CREATE UNIQUE INDEX Content_Entity_Data_index ON Content_Entity_Data (Content_Entity_Field_id, language);
 
 -- This table will tend to grow, thus it's indexes may be sub-optimal.
 -- It should not be a problem, as it should not be used on regular basis.
 CREATE TABLE Content_Entity_Data_History (
     `id` INTEGER PRIMARY KEY,
 
-	`Content_Entity_id` INTEGER NOT NULL,
-
-    `Content_Spec_Field_id` INTEGER NOT NULL,
-		-- this is the primary index column from Content_Spec_Field.
+	`Content_Entity_Field_id` INTEGER NOT NULL,
 
 	`language` CHAR(5) NOT NULL,
         -- 2 (pl) or 5 (pl_pl) character language code, if the field is translatable.
@@ -316,12 +330,12 @@ CREATE        INDEX Asset_2_Content_target ON Asset_2_Content (`Content_Entity_i
 CREATE TABLE Asset_2_Content_Field (
     `Asset_Entity_id` INTEGER,
 
-    `Content_Entity_id` INTEGER NOT NULL,
+    `Content_Entity_Field_id` INTEGER NOT NULL,
     `Content_Spec_Field_id` INTEGER,
 
-    FOREIGN KEY (`Asset_Entity_id`)       REFERENCES Asset_Entity (`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`Content_Entity_id`)     REFERENCES Content_Entity (`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`Content_Spec_Field_id`) REFERENCES Content_Spec_Field (`id`) ON DELETE CASCADE
+    FOREIGN KEY (`Asset_Entity_id`)         REFERENCES Asset_Entity (`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`Content_Entity_Field_id`) REFERENCES Content_Entity_Field (`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`Content_Spec_Field_id`)   REFERENCES Content_Spec_Field (`id`) ON DELETE CASCADE
 );
 CREATE UNIQUE INDEX Asset_2_Content_Field_unique  ON Asset_2_Content_Field (`Asset_Entity_id`, `Content_Entity_id`, `Content_Spec_Field_id`);
 CREATE        INDEX Asset_2_Content_Field_target  ON Asset_2_Content_Field (`Content_Entity_id`, `Content_Spec_Field_id`);
