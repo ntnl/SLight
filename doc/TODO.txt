@@ -175,7 +175,13 @@
     Most, if not all, commonly spotted CMS features are usable.
 
 =--= Sprint .. - ....-..-..
-    
+
+[ ] Refactoring
+[ ]     Core::Entity routines returning lists should support progressive fetching with sorting and paging of content.
+[ ]         Fetch only data needed to sort IDs.
+[ ]         Fetch only data from the given window.
+[ ]     API::Page
+[ ]         Ability to return owning_module and ID of main content element, so it's dead-simple to evaluate if Use has permissions to it.
 [ ] Forum-related Handler objects
 [ ]     SLight::Handler::Forum::Root
 [ ]         SLight::Handler::Forum::Root::New
@@ -252,9 +258,30 @@
 
 =--= Sprint 3 - Command line CMS -
 
-[>] CMS Lists
+[>] Refactoring
+[X]     Add 'menu_order' (integer) to Page_Entity, for use in menus. Items in menu will be sorted from lowest to highest.
+[ ]     Drop 'order_by' and 'use_as_*' from 'Content_Spec' and related stuff. Fields in Entries will remain, so their content can be copied.
+[ ]     Add 'title', 'menu' and 'breadcrumb' as Page properties (with special l10n support).
+[ ]         Forge SQL
+[ ]         Implement extra L10N support in SLight::Core::Entity (_l10n_lang selector)
+[ ]             Core::Entity should have build-in l10n support (not as generic data)
+[ ]             Entities with l10n content (Page, Content) should have a 'languages' string field, that shows what languages are defined in that Entity.
+[ ]             add_ENTITY
+[ ]             update_ENTITY
+[ ]             get_ENTITY
+[ ]             get_ENTITYs
+[ ]             get_ENTITYs_fields_where
+[ ]         Update Root Menu Addon
+[ ]         Update Menu Addon
+[ ]         Update Sub Menu Addon
+[ ]         Update Page PathHandler Breadcrumb generation
+[ ]     Add 'order by' to Handler::List::* (so lists control how to sort)
+[ ]         Add 'order by' to Headlines Form
+[-] CMS Lists
+[ ]     In-progress refactoring
+[ ]         Move 'base' Form elements from Headlines to common class.
 [X]     Headlines list (display titles of up to n child items, linking to their pages)
-[>]     Blog-like list (display up to n child items in full form, with 'Read more' links)
+[-]     Blog-like list (display up to n child items in full form, with 'Read more' links)
 [ ]     News-like list (display up to n summarized child items, with 'Read more' links)
 [ ]     Aggregator list (display up to n child items in full form, as if they ware parts of the page)
 [ ]     Gallery-like browser (display n items with in-place zoom support)
@@ -270,6 +297,7 @@
 [ ]     Drop DB connection when major errors (especially internal!) happen.
 [?]     Remove white space right after and before [bbcode] tags
 [ ]     Do not show email field, if User is logged in.
+[ ]     Old session files are not deleted. They must be cleaned up!
 [ ] Release to the public
 [ ]     Make package
 [ ]     Beta-test
@@ -309,371 +337,4 @@
 [X]     Beta-test
 [X]     Upload package for public consumption
 [X]     Spread the news :)
-
-=--= Milestone 4 - User management - ....-..-..
-
-[X] User API
-[X]     SLight::API::User
-[X]         add_User
-[X]         update_User
-[X]         get_User
-[X]         get_Users
-[X]         get_User_ids_where
-[X]         get_Users_where
-[X]         delete_User
-[X]         is_User_registered
-[X]         check_User_pass
-[X] PathHandler objects
-[X]     SLight::PathHandler::Authentication ([X] Test [X] Implementation)
-[X]     SLight::PathHandler::MyAccount      ([X] Test [X] Implementation)
-[X]     SLight::PathHandler::Account        ([X] Test [X] Implementation)
-[X]     SLight::PathHandler::Permissions
-[X]         Test
-[X]         Implementation
-[X]     SLight::PathHandler::Avatar
-[X]         Test
-[X]         Implementation
-[X] User-related Handler objects
-[X]     SLight::Handler::User::Authentication (allow the User to authenticate itself)
-[X]         SLight::Handler::User::Authentication::Login (form + the actual authentication)
-[X]             Implementation
-[X]             Test
-[X]         SLight::Handler::User::Authentication::Logout (view - instant action)
-[X]             Implementation
-[X]             Test
-[X]         SLight::Handler::User::Authentication::Register (allow a guest to register an account)
-[X]             Form
-[X]             Sending email + confirmation page
-[X]             Verification + account setup
-[X]             Thank you page
-[X]             Automated test
-[X]         SLight::Handler::User::Authentication::ActivateAccount
-[X]             Verification - negative (show error)
-[X]             Verification - positive (activate account)
-[X]             Verification - neutral (account already active)
-[X]             Thank you page
-[X]             Automated test
-[X]         SLight::Handler::User::Authentication::Password
-[X]             Password recovery form
-[X]             Send recovery link + confirmation page
-[X]             New password form
-[X]             Password reset
-[X]             Automated test
-[X]     SLight::Handler::System::Permissions (system-wide authorization settings)
-[X]         SLight::Handler::System::Permissions::View
-[X]             Implement: handle_view
-[X]             Implement: handle_system
-[X]             Implement: handle_guest
-[X]             Implement: handle_authenticated
-[X]             Test
-[X]         SLight::Handler::System::Permissions::Change
-[X]             Implement: handle_set
-[X]             Implement: handle_clear
-[X]             Test
-[X]     SLight::Handler::Account (allow site owner to manage User accounts)
-[X]         SLight::Handler::Account::List::View
-[X]             Implementation
-[X]             Test
-[X]         SLight::Handler::Account::Account::View
-[X]             Implementation
-[X]             Test
-[X]         SLight::Handler::Account::Account::New
-[X]             Form - show
-[X]             Form - save
-[X]             Test
-[X]         SLight::Handler::Account::Account::Edit
-[X]             Form - show
-[X]             Form - save
-[X]             Test
-[X]         SLight::Handler::Account::Account::Delete
-[X]             Show dialog
-[X]             Perform the deletion
-[X]             Test
-[X]         SLight::Handler::Account::Account::Password
-[X]             Form - show
-[X]             Form - save
-[X]             Test
-[X]         SLight::Handler::Account::Permissions::View
-[X]             Implementation
-[X]             Test
-[X]         SLight::Handler::Account::Permissions::Change
-[X]             Implementation
-[X]             Test
-[X]         SLight::Handler::Account::Avatar::View
-[X]             Implementation
-[X]             Test
-[X]         SLight::Handler::Account::Avatar::Change
-[X]             Form - view
-[X]             Form - save
-[X]             Test
-[X]         SLight::Handler::Account::Avatar::Delete
-[X]             Show dialog
-[X]             Perform the deletion
-[X]             Test
-[X]     SLight::Handler::User::Avatar (return image, or redirect to Gravatar)
-[X]         SLight::Handler::User::Avatar::View
-[X]             Implementation
-[X]             Test
-[X]     SLight::Handler::MyAccount (allow the User to manage his account)
-[X]         SLight::HandlerBase::MyAccount
-[X]             Get User's data
-[X]             Handle non-logged-in User
-[X]             Handle disabled user
-[X]         SLight::Handler::MyAccount::MyData::View (ex: Profile::Overview)
-[X]             Implementation
-[X]             Test
-[X]         SLight::Handler::MyAccount::MyData::Edit (ex: Profile::Edit)
-[X]             Show form
-[X]             Change data + redirect to overview.
-[X]             Write automated test
-[X]         SLight::Handler::MyAccount::MyData::Password
-[X]             Display form
-[X]             Perform password change
-[X]             Test
-[X]         SLight::Handler::MyAccount::Avatar::View
-[X]             Implementation
-[X]             Test
-[X]         SLight::Handler::MyAccount::Avatar::Change
-[X]             Form
-[X]             Perform avatar change
-[X]             Test
-[X]         SLight::Handler::MyAccount::Avatar::Delete
-[X]             Show dialog
-[X]             Perform the deletion
-[X]             Test
-[X] DataStructure
-[X]     SLight::DataStructure::Form (ex CoMe...GenericForm)
-[X]         Implement
-[X]         Test
-[X]     SLight::DataStructure::List (ex CoMe...GenericGrid)
-[X]         Implement
-[X]         Test
-[X]     DataStructure::List::Table::Properties
-[X]         Rename to DataStructure::Properties
-[X]         Write test
-[X] SLight::Handler::Test::Handler
-[X]     Implementation
-[X]     Test
-[X] SLight::Handler::Error
-[X]     SLight::Handler::Error::NotFound <-- Resource not found)
-[X]             Implementation
-[X]             Test
-[X]     SLight::Handler::Error::InternalError <-- Something bad happen. Try reloading.
-[X]             Implementation
-[X]             Test
-[X]     SLight::Handler::Error::AuthRequired <-- You must log-in to access this page.
-[X]             Implementation
-[X]             Test
-[X]     SLight::Handler::Error::AccessDenied <-- You can not do the stuff you intended.
-[X]             Implementation
-[X]             Test
-[X] Addon
-[X]     SLight::Addon::User::Panel
-[X]         Implementation
-[X]         Test
-[X]         Avatar support
-[X]         Link to MyData
-[X]     SLight::Addon::User::Info
-[X]         Implementation
-[X]         Test
-[X]         Link to MyData
-[X] SLight API
-[X]     SLight::API::EVK
-[X]     Avatar
-[X]         Set avatar
-[X]         Get avatar
-[X]         Delete avatar
-[X]     Permissions
-[X]         set_User_access
-[X]         set_System_access
-[X]         clear_User_access
-[X]         clear_System_access
-[X]         get_User_assess
-[X]         get_System_access
-[X]         can_User_access
-[X] Core functionality
-[X]     Email sending
-[X]         Implementation
-[X]         Automated test
-[X]     Check for permissions, emit SLight::Handler::Error::AccessDenied as needed.
-[X] SLight::HandlerMeta
-[X] Version bump to 0.0.3
-[X] Add '2011' to copyright notice.
-[X] Bugs:
-[X]     s/Lightweight Content Manager System/Lightweight Content Management System/gs
-[X]     Breadcrumbs are missing on:
-[X]         Authentication pages.
-[X]             Login
-[X]             Password
-[X]             Register
-[X]         MyAccount pages.
-[X]             Avatar::Change
-[X]             Avatar::Delete
-[X]             Avatar::View
-[X]             MyData::Edit
-[X]             MyData::View
-[X]             Password::View
-[X]         Account pages.
-[X]             Account::Delete
-[X]             Account::Edit
-[X]             Account::New
-[X]             Account::Password
-[X]             Account::View
-[X]             Avatar::Change
-[X]             Avatar::Delete
-[X]             Avatar::View
-[X]             List::View
-[X]             Permissions::View
-[X]     Compilation errors in Addons kill the whole page!
-[X]     User remains not logged-in in some places in User::Authentication (check and fix this)
-[X]     Duplicated code - unify Account.pm into AccountForm.pm
-
-    Definition of done:
-
-        Users can create accounts, reset their passwords.
-        Groups can be managed.
-        Permissions can be managed.
-
-=--= Milestone 3 - Basic CMS - ....-..-..
-
-[X] Validator
-[X]     SLight::Validator.pm
-[X]     SLight::Validator::Disk.pm
-[X]     SLight::Validator::Net.pm
-[X]     SLight::Validator::Simple.pm
-[X]     SLight::Validator::User.pm
-[X] Core
-[X]     Cache
-[X]     Entity - add support to 'IN' in '*_where' functions
-[X]     Add per-page (object, actually) thingy of it's title (long + short) set by object (during edit) or by one of it's sub-pages too :) Will be cool :)
-[X]         Make Object/Action Handlers _append_ to the path, but _only_ one element.
-[X]         Make PathHandlers generate path for a page
-[X]         Add 'order_by', 'use_as_title', 'use_in_menu' and 'use_in_path' support to ContentSpec, so Page PathHandler, as well as knows what to use.
-[X]             Fix SQL
-[X]             Fix API
-[X]             Fix CMS::SpecList (should display which fields are used for what purpose)
-[X]             Fix CMS::Spec display and form (should display and allow to change roles)
-[X]         Make Page PathHandler use 'use_as_title' and 'use_in_path'
-[X]         Menu and Submenu should use 'order_by'
-[X] API
-[X]     ContentSpec store
-[X]         'cms_usage' column support
-[X]         Add 'class' to Spec, so each SLight_Object can have an O-$class (so it's easier to hack CSS)
-[X]     Content store
-[X]     Asset store
-[X]     Page API refactoring ('page' to 'Page')
-[X] PathHandler
-[X]     Test Framework
-[X]     SLight::PathHandler::CMS_Spec
-[X]     SLight::PathHandler::Test
-[X] Handler Object Test Framework
-[X] CMS Handler objects
-[X]     SLight::Handler::Test::Foo
-[X]     SLight::Handler::Core::AssetList
-[X]         SLight::Handler::Core::AssetList::View <-- list Assets
-[X]     SLight::Handler::Core::Asset
-[X]         SLight::Handler::Core::Asset::View <-- return information about an Asset (size, mime type, when it was uploaded, by who)
-[X]         SLight::Handler::Core::Asset::Download <-- sent Asset data to the User
-[X]         SLight::Handler::Core::Asset::Thumb    <-- generate a thumbnail image for given Asset
-[X]         SLight::Handler::Core::Asset::Delete
-[X]     SLight::Handler::Core::Empty
-[X]         SLight::Handler::Core::Empty::View
-[X]         SLight::Handler::Core::Empty::AddContent
-[X]         SLight::Handler::Core::Empty::Delete
-[X]     SLight::Handler::CMS::Welcome
-[X]         SLight::Handler::CMS::Welcome::View
-[X]     SLight::Handler::CMS::SpecList
-[X]         SLight::Handler::CMS::SpecList::View
-[X]     SLight::Handler::CMS::Spec
-[X]         SLight::Handler::CMS::Spec::View
-[X]         SLight::Handler::CMS::Spec::New
-[X]         SLight::Handler::CMS::Spec::Edit
-[X]         SLight::Handler::CMS::Spec::Delete
-[X]     SLight::Handler::CMS::SpecField
-[X]         SLight::Handler::CMS::SpecField::View
-[X]         SLight::Handler::CMS::SpecField::New
-[X]         SLight::Handler::CMS::SpecField::Edit
-[X]         SLight::Handler::CMS::SpecField::Delete
-[X]     SLight::Handler::CMS::Entry
-[X]         SLight::Handler::CMS::Entry::View
-[X]         SLight::Handler::CMS::Entry::New
-[X]         SLight::Handler::CMS::Entry::Edit
-[X]         SLight::Handler::CMS::Entry::Delete
-[X]         SLight::Handler::CMS::Entry::AddContent
-[X]             Display what handler owns the module type
-[X] Output:
-[X]     SLight::OutputFactory
-[X]     HTML Template/Generator libraries
-[X]     SLight::Output
-[X]     SLight::Output::HTML
-[X]     SLight::Output::TEST
-[X] DataStructure
-[X]     SLight::DataStructure
-[X]     SLight::DataStructure::Token (new!)
-[X]     SLight::DataStructure::Dialog (new!)
-[X]     SLight::DataStructure::Dialog::Notification (ex CoMe...GenericMessage)
-[X]     SLight::DataStructure::Dialog::YesNo (ex. CoMe...YesNo)
-[X] Addon
-[X]     SLight::Addon::Core::Toolbox
-[X]     SLight::Addon::Core::Path
-[X]     SLight::Addon::Core::Sysinfo
-[X]     SLight::Addon::Core::Language
-[X]     SLight::Addon::CMS::Rootmenu
-[X]     SLight::Addon::CMS::Menu
-[X]     SLight::Addon::CMS::Submenu
-[X] Development
-[X]     Handler test framework should support other (non-request) types of tests
-[X]         SQL Query based test - run sql query, output used as test result
-[X]         Callback based - run callback, use it's data it returns as test result
-[X]     Write script that uploads coverage metrics to the site
-[X]     Website update
-[X]     Package stuff
-[X] Bugs/Regressions
-[X]     Template displays UTF incorrectly ("ł" in the footer is screwed) when there are UTF-8 characters IN content added to template.
-[X]     Path does not put data trough Encode/Decode, nor does snippets of it!
-[X]     Assets are not replaced when object is edited (more like "nothing happens")
-
-    Definition of done:
-
-        Content can be managed (added, edited and deleted) trough browser.
-
-=--= Milestone 2 - Self-hosting - (2010-06-19) 2010-06-26
-
-[X] Core
-[X]     URI handling
-[X]     Request handler
-[X]     Web output handler
-[X]     DB abstraction module
-[X]     SQLite DB driver
-[X]     HTML template support (minimal, just load file)
-[X] API
-[X]     Session handling
-[X]     Page store and path handling
-[X] Interface
-[X]     CGI
-[X]     FCGI
-[X] Web page
-[X]     Prepare "templates"
-[X]     Set-up CGI
-[X] Packager based on Module::Build
-
-    Definition of done:
-
-        Pages are - in some way - served by SLight.
-
-=--= Milestone 1 - Concept - 2010-06-12
-
-[X] Write ToDo skeleton
-[X] Web page
-[X]     Make an initial web page
-[X]     Upload a static Web page.
-[X]     Organize a domain
-[X] Document the concepts
-[X] Document directory structure
-[X] Outline needed Perl Handler modules (and list which CoMe modules they replace)
-[X] Outline needed DataStructure modules (and list which CoMe modules they replace)
-
-    Definition of done:
-    
-        SLight officially exists "on the internet"
 

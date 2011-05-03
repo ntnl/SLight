@@ -36,9 +36,9 @@ our @EXPORT_OK = qw(
 our %EXPORT_TAGS = ( 'all' => [ @EXPORT_OK ] );
 
 my $_handler = SLight::Core::Entity->new( # {{{
-    base_table  => 'Page_Entity',
+    base_table => 'Page_Entity',
 
-    data_fields => [qw( path template )],
+    data_fields => [qw( path template menu_order )],
 
     is_a_tree => 1,
 ); # }}}
@@ -50,16 +50,12 @@ sub add_Page { # {{{
             parent_id => { type=>SCALAR | UNDEF },
             path      => { type=>SCALAR },
 
-            template => { type=>SCALAR, optional=>1 },
+            template   => { type=>SCALAR, optional=>1 },
+            menu_order => { type=>SCALAR, optional=>1 },
         }
     );
 
-    return $_handler->add_ENTITY(
-        parent_id => $P{'parent_id'},
-
-        path     => $P{'path'},
-        template => $P{'template'},
-    );
+    return $_handler->add_ENTITY(%P);
 } # }}}
 
 sub update_Page { # {{{
@@ -71,7 +67,8 @@ sub update_Page { # {{{
             parent_id => { type=>SCALAR, optional=>1 },
             path      => { type=>SCALAR, optional=>1 },
             
-            template => { type=>SCALAR, optional=>1 },
+            template   => { type=>SCALAR, optional=>1 },
+            menu_order => { type=>SCALAR, optional=>1 },
         }
     );
 
@@ -87,7 +84,8 @@ sub update_Pages { # {{{
             parent_id => { type=>SCALAR, optional=>1 },
             path      => { type=>SCALAR, optional=>1 },
             
-            template => { type=>SCALAR, optional=>1 },
+            template   => { type=>SCALAR, optional=>1 },
+            menu_order => { type=>SCALAR, optional=>1 },
         }
     );
 

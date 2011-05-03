@@ -80,15 +80,17 @@ my $page_3_id = add_Page(
 is ($page_3_id, 4, "add_Page (3/5)");
 
 my $page_4_id = add_Page(
-    parent_id => $page_3_id,
-    path      => 'Goo',
-    template  => 'Haevy',
+    parent_id  => $page_3_id,
+    path       => 'Goo',
+    template   => 'Haevy',
+    menu_order => 1,
 );
 is ($page_4_id, 5, "add_Page (4/5)");
 
 my $page_5_id = add_Page(
-    parent_id => $page_3_id,
-    path      => 'Bzz',
+    parent_id  => $page_3_id,
+    path       => 'Bzz',
+    menu_order => 2,
 );
 is ($page_5_id, 6, "add_Page (5/5)");
 
@@ -148,20 +150,22 @@ is_deeply(
 is_deeply(
     get_Page($page_1_id),
     {
-        id        => $page_1_id,
-        parent_id => $page_0_id,
-        path      => 'Foo',
-        template  => undef,
+        id         => $page_1_id,
+        parent_id  => $page_0_id,
+        path       => 'Foo',
+        template   => undef,
+        menu_order => 0,
     },
     'get_Page (1 after add)'
 );
 is_deeply(
     get_Page($page_4_id),
     {
-        id        => $page_4_id,
-        parent_id => $page_3_id,
-        path      => 'Goo',
-        template  => 'Haevy'
+        id         => $page_4_id,
+        parent_id  => $page_3_id,
+        path       => 'Goo',
+        template   => 'Haevy',
+        menu_order => 1,
     },
     'get_Page (4 after add)'
 );
@@ -188,16 +192,18 @@ is_deeply(
     ],
     [
         {
-            id        => $page_1_id,
-            parent_id => $page_4_id,
-            path      => 'Faz',
-            template  => 'Nested',
+            id         => $page_1_id,
+            parent_id  => $page_4_id,
+            path       => 'Faz',
+            template   => 'Nested',
+            menu_order => 0,
         },
         {
-            id        => $page_4_id,
-            parent_id => $page_3_id,
-            path      => 'Goo',
-            template  => 'Haevy'
+            id         => $page_4_id,
+            parent_id  => $page_3_id,
+            path       => 'Goo',
+            template   => 'Haevy',
+            menu_order => 1,
         },
     ],
     'get_Pages (1 and 4 after update)'
@@ -220,16 +226,18 @@ is_deeply(
     ],
     [
         {
-            id        => $page_4_id,
-            parent_id => $page_3_id,
-            path      => 'Goo',
-            template  => 'Altered',
+            id         => $page_4_id,
+            parent_id  => $page_3_id,
+            path       => 'Goo',
+            template   => 'Altered',
+            menu_order => 1,
         },
         {
-            id        => $page_5_id,
-            parent_id => $page_3_id,
-            path      => 'Bzz',
-            template  => 'Altered'
+            id         => $page_5_id,
+            parent_id  => $page_3_id,
+            path       => 'Bzz',
+            template   => 'Altered',
+            menu_order => 2,
         },
     ],
     'get_Pages (4 and 5 after updates)'
@@ -294,22 +302,25 @@ is_deeply(
     [ sort {$a->{'id'} <=> $b->{'id'}} @{ get_Pages([ $page_1_id, $page_2_id, $page_3_id, $page_4_id, $page_5_id ]) } ],
     [
         {
-            id        => $page_3_id,
-            parent_id => $page_0_id,
-            path      => 'Baz',
-            template  => 'Light',
+            id         => $page_3_id,
+            parent_id  => $page_0_id,
+            path       => 'Baz',
+            template   => 'Light',
+            menu_order => 0,
         },
         {
-            id        => $page_4_id,
-            parent_id => $page_3_id,
-            path      => 'Goo',
-            template  => 'Altered',
+            id         => $page_4_id,
+            parent_id  => $page_3_id,
+            path       => 'Goo',
+            template   => 'Altered',
+            menu_order => 1,
         },
         {
-            id        => $page_5_id,
-            parent_id => $page_3_id,
-            path      => 'Bzz',
-            template  => 'Altered'
+            id         => $page_5_id,
+            parent_id  => $page_3_id,
+            path       => 'Bzz',
+            template   => 'Altered',
+            menu_order => 2,
         },
     ],
     'delete_Page() check with get_Pages'
@@ -325,10 +336,11 @@ is_deeply(
     [ sort {$a->{'id'} <=> $b->{'id'}} @{ get_Pages([ $page_1_id, $page_2_id, $page_3_id, $page_4_id, $page_5_id ]) } ],
     [
         {
-            id        => $page_3_id,
-            parent_id => $page_0_id,
-            path      => 'Baz',
-            template  => 'Light',
+            id         => $page_3_id,
+            parent_id  => $page_0_id,
+            path       => 'Baz',
+            template   => 'Light',
+            menu_order => 0,
         },
     ],
     'delete_Pages() check with get_Pages'
