@@ -182,6 +182,7 @@
 [ ]         Fetch only data from the given window.
 [ ]     API::Page
 [ ]         Ability to return owning_module and ID of main content element, so it's dead-simple to evaluate if Use has permissions to it.
+[ ]     Drop 'order_by' and 'use_as_*' from 'Content_Spec' and related stuff. Fields in Entries will remain, so their content can be copied.
 [ ] Forum-related Handler objects
 [ ]     SLight::Handler::Forum::Root
 [ ]         SLight::Handler::Forum::Root::New
@@ -260,9 +261,8 @@
 
 [>] Refactoring
 [X]     Add 'menu_order' (integer) to Page_Entity, for use in menus. Items in menu will be sorted from lowest to highest.
-[ ]     Drop 'order_by' and 'use_as_*' from 'Content_Spec' and related stuff. Fields in Entries will remain, so their content can be copied.
-[ ]     Add 'title', 'menu' and 'breadcrumb' as Page properties (with special l10n support).
-[ ]         Forge SQL
+[>]     Add 'title', 'menu' and 'breadcrumb' as Page properties (with special l10n support).
+[X]         Forge SQL
 [ ]         Implement extra L10N support in SLight::Core::Entity (_l10n_lang selector)
 [ ]             Core::Entity should have build-in l10n support (not as generic data)
 [ ]             Entities with l10n content (Page, Content) should have a 'languages' string field, that shows what languages are defined in that Entity.
@@ -271,6 +271,8 @@
 [ ]             get_ENTITY
 [ ]             get_ENTITYs
 [ ]             get_ENTITYs_fields_where
+[ ]         Implement 'Fieldset' widget (groups form entries).
+[ ]         Update Content Entry Form: add new fields to 'page' section
 [ ]         Update Root Menu Addon
 [ ]         Update Menu Addon
 [ ]         Update Sub Menu Addon

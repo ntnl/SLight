@@ -3,7 +3,7 @@
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE Page_Entity (
-	`id`       INTEGER PRIMARY KEY,
+	`id` INTEGER PRIMARY KEY,
 
     `parent_id` INTEGER,
 		-- our parent, or NULL on top-level comments.
@@ -12,10 +12,33 @@ CREATE TABLE Page_Entity (
 
     `template` VARCHAR(128),
 
+    `menu_order` INTEGER NOT NULL DEFAULT 0,
+        -- Order in menu, ascending (zero is first).
+
     FOREIGN KEY (`parent_id`) REFERENCES Page_Entity (`id`) ON DELETE CASCADE
 );
 CREATE UNIQUE INDEX Page_Entity_id   ON Page_Entity (id);
 CREATE UNIQUE INDEX Page_Entity_path ON Page_Entity (parent_id, path);
+
+CREATE TABLE Page_Entity_Data (
+	`id` INTEGER PRIMARY KEY,
+
+    `Page_Entity_id` INTEGER NOT NULL,
+
+	`language` CHAR(5) NOT NULL,
+        -- 2 (pl) or 5 (pl_pl) character language code, if the field is translatable.
+        -- * if the field is not translatable.
+
+    `title` VARCHAR(256) NOT NULL,
+    `menu`  VARCHAR(128),
+        -- If not present, 'menu' will be used.
+
+    `breadcrumb` VARCHAR(128),
+        -- If not present, 'menu' will be used.
+
+    FOREIGN KEY (`Page_Entity_id`) REFERENCES Page_Entity (`id`) ON DELETE CASCADE,
+);
+CREATE UNIQUE INDEX Page_Entity_Language ON Page_Entity_Data (Page_Entity_id, language);
 
 -- Content types subsystem
 CREATE TABLE Content_Spec (

@@ -13,7 +13,9 @@ META.yml
 META.json
 Makefile.PL
 SLight-*.tar.gz
+*.tgz
+*.tar
 blib/
 t/1-modules/SLight-Output-HTML-Template/Two_part.yaml
 t/1-modules/SLight-Output-HTML-Template/foo.yaml
-
+SLight.yaml
