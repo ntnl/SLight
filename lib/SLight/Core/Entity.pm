@@ -176,7 +176,10 @@ sub new { # {{{
             # The entity can have assets assigned to it.
 
         has_owner => $P{'has_owner'},
-            # Entity is owned by signing them with Email_id
+            # Entity is owned by signing them with Email_id.
+
+        has_l10n => $P{'has_l10n'},
+            # This entity is backed up by fields with localized content.
 
         data_fields => $P{'data_fields'},
             # Other (not natively supported) data fields.
@@ -232,41 +235,6 @@ sub new { # {{{
 
     return $self;
 } # }}}
-
-# Notes to self :)
-#
-#
-# Comment
-# {
-#   base_table => 'Comment_Entity',
-#
-#   data_fields => [qw( added status title text )],
-#
-#   is_a_tree => 1,
-#   has_owner    => 1,
-#   has_assets   => 1,
-# }
-#
-# User
-# {
-#   base_table => 'User_Entity',
-#
-#   data_fields => [qw( login status name pass_enc )],
-#
-#   has_metadata => 1,
-#   has_owner    => 1,
-#   has_assets   => 1,
-#   has_comments => 1,
-# }
-#
-# Email Verification Key (EVK)
-# {
-#   base_table => 'Email_Verification_Key',
-#
-#   data_fields => [qw( key handler params )],
-#
-#   has_owner => 1,
-# }
 
 sub add_ENTITY { # {{{
     my ( $self, %P ) = @_;
@@ -836,6 +804,11 @@ sub _make_where { # {{{
 
 sub _add_data_to_entities { # {{{
     my ( $self, $entities, $fields, $_debug ) = @_;
+
+    # If there are no $fields to fetch, just skip the whole thing.
+    if ($fields and not scalar @{ $fields }) {
+        return;
+    }
 
     my $sth = SLight::Core::DB::run_select(
         columns => [

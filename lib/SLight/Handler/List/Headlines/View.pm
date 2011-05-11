@@ -30,13 +30,6 @@ sub handle_view { # {{{
 
 #    use Data::Dumper; warn Dumper $self;
 
-#    $self->push_data(
-#        SLight::DataStructure::Dialog::Notification->new(
-#            class => q{SLight_Notification},
-#            text  => q{It works!},
-#        )
-#    );
-
     # Get stuff 'bellow' this object in page structure.
     my $sub_pages = get_Page_fields_where(
         _fields => [qw( path )],
@@ -47,9 +40,13 @@ sub handle_view { # {{{
 #    use Data::Dumper; warn Dumper $sub_pages;
 
     my $contents = get_Contents_fields_where(
-        _fields => [qw( Page_Entity_id )],
+        _fields => [qw( Page_Entity_id order_by use_as_title )],
+
+        _data_fields => [],
 
         Page_Entity_id => [ map { $_->{'id'} } @{ $sub_pages } ],
+
+        _unfold => [qw( order_by use_as_title )],
     );
     my %content_hash = map { $_->{'Page_Entity_id'} => $_ } @{ $contents };
 

@@ -22,7 +22,7 @@ use Carp;
 use Carp::Assert::More qw( assert_defined assert_hashref assert_exists );
 use CGI::Minimal;
 use Cwd qw( getcwd );
-use Encode qw( decode_utf8 );
+use Encode qw( decode_utf8 encode_utf8 );
 use English qw( -no_match_vars );
 use File::Slurp qw( read_file );
 use Params::Validate qw( :all );
@@ -80,7 +80,7 @@ sub main { # {{{
 
     my $body = $self->$pass_method($response);
 
-    return $self->headers_string() .qq{\n} . ( $body or q{} );
+    return $self->headers_string() .qq{\n} . encode_utf8( $body or q{} );
 } # }}}
 
 # 'application/octet-stream'

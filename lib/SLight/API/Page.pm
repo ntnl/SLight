@@ -36,12 +36,60 @@ our @EXPORT_OK = qw(
 our %EXPORT_TAGS = ( 'all' => [ @EXPORT_OK ] );
 
 my $_handler = SLight::Core::Entity->new( # {{{
-    base_table => 'Page_Entity',
+    base_table  => 'Page_Entity',
+    child_table => 'Page_Entity_Data',
 
-    data_fields => [qw( path template menu_order )],
+    child_key => 'language',
+
+    data_fields       => [qw( path template menu_order )],
+    child_data_fields => [qw( language title menu breadcrumb )],
 
     is_a_tree => 1,
 ); # }}}
+
+#    parent_id => $page_0_id,
+#    path      => 'Baz',
+#    template  => 'Light',
+#
+#    L10N => {
+#        title      => { 'en' => 'Light page implementation' },
+#        menu       => { 'en' => 'Light', },
+#        breadcrumb => { 'en' => 'Light implementation', },
+#    }
+#
+# SLight::Core::Accessor->new(
+#   table => 'Page_Entity',
+#
+#   columns => [qw( path template menu_order )],
+#
+#   referenced => {
+#       L10N => {
+#           table   => 'Page_Entity_Data',
+#           columns => [qw( language title menu breadcrumb )],
+#
+#           unique_key => 'language',
+#       },
+#       Content => {
+#           table      => 'Content_Entity',
+#           columns    => [qw( id status )],
+#
+#           unique_key => 'id',
+#
+#           refers => {
+#               Spec => {
+#                   table   => 'Content_Spec',
+#                   columns => [qw( owning_module )],
+#               },
+#           },
+#       },
+#   },
+#
+#   refers_self => 1,
+# ):
+#
+# get_fields(
+#   _fields => [qw( path menu_order L10N.title L10N.menu Content.Spec.owning_module )],
+# );
 
 sub add_Page { # {{{
     my %P = validate (

@@ -76,6 +76,12 @@ my $page_3_id = add_Page(
     parent_id => $page_0_id,
     path      => 'Baz',
     template  => 'Light',
+
+    Data => {
+        title      => { 'en' => 'Light page implementation' },
+        menu       => { 'en' => 'Light', },
+        breadcrumb => { 'en' => 'Light implementation', },
+    },
 );
 is ($page_3_id, 4, "add_Page (3/5)");
 

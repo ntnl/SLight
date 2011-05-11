@@ -176,7 +176,7 @@
 
 =--= Sprint .. - ....-..-..
 
-[ ] Refactoring
+[ ] Refactoring of ContentModel.pm
 [ ]     Core::Entity routines returning lists should support progressive fetching with sorting and paging of content.
 [ ]         Fetch only data needed to sort IDs.
 [ ]         Fetch only data from the given window.
@@ -263,14 +263,9 @@
 [X]     Add 'menu_order' (integer) to Page_Entity, for use in menus. Items in menu will be sorted from lowest to highest.
 [>]     Add 'title', 'menu' and 'breadcrumb' as Page properties (with special l10n support).
 [X]         Forge SQL
-[ ]         Implement extra L10N support in SLight::Core::Entity (_l10n_lang selector)
-[ ]             Core::Entity should have build-in l10n support (not as generic data)
-[ ]             Entities with l10n content (Page, Content) should have a 'languages' string field, that shows what languages are defined in that Entity.
-[ ]             add_ENTITY
-[ ]             update_ENTITY
-[ ]             get_ENTITY
-[ ]             get_ENTITYs
-[ ]             get_ENTITYs_fields_where
+[>]         Replace SLight::Core::Entity with SLight::Core::Accessor - a tool, not a framework.
+[ ]             Use SQL::Abstract as SQL building routine.
+[ ]             Ability to define 'up' and 'down' relations across tables (get fields from joined tables).
 [ ]         Implement 'Fieldset' widget (groups form entries).
 [ ]         Update Content Entry Form: add new fields to 'page' section
 [ ]         Update Root Menu Addon
@@ -305,6 +300,7 @@
 [?]     Remove white space right after and before [bbcode] tags
 [ ]     Do not show email field, if User is logged in.
 [ ]     Old session files are not deleted. They must be cleaned up!
+[ ]     Default value for Date / DateTime fields should be "today"
 [ ] Release to the public
 [ ]     Make package
 [ ]     Beta-test

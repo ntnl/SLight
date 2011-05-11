@@ -136,8 +136,8 @@ sub new { # {{{
 
 #    warn "Seeking for template: ". ( join ", ", @names );
 
-    # Load base file. Try, untill some file is found.
-    foreach my $name (@names) {
+    # Load base file. Try, until some file is found.
+    foreach my $name (@names, 'Default') {
         # This function will call itself recursively, to append other files.
         $self->{'template'} = $self->load_and_parse(
             name => $name

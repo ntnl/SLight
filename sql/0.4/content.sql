@@ -39,7 +39,7 @@ CREATE TABLE Page_Entity_Data (
     `breadcrumb` VARCHAR(128),
         -- If not present, 'menu' will be used.
 
-    FOREIGN KEY (`Page_Entity_id`) REFERENCES Page_Entity (`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`Page_Entity_id`) REFERENCES Page_Entity (`id`) ON DELETE CASCADE
 );
 CREATE UNIQUE INDEX Page_Entity_Language ON Page_Entity_Data (Page_Entity_id, language);
 
@@ -229,7 +229,7 @@ CREATE UNIQUE INDEX Content_Entity_Page_Stuff ON Content_Entity (Page_Entity_id,
 
 CREATE TABLE Content_Entity_Field (
     `id` INTEGER PRIMARY KEY,
-	
+
     `Content_Entity_id` INTEGER NOT NULL,
 
     `Content_Spec_Field_id` INTEGER NOT NULL,
@@ -249,9 +249,15 @@ CREATE TABLE Content_Entity_Data (
         -- 2 (pl) or 5 (pl_pl) character language code, if the field is translatable.
         -- * if the field is not translatable.
 
-	`value`	TEXT NOT NULL,
+	`value` TEXT NOT NULL,
 
-    FOREIGN KEY(`Content_Entity_Field_id`) REFERENCES Content_Entity_Field(`id`) ON DELETE CASCADE,
+    `summary` TEXT NOT NULL,
+
+    `sort_index_aid` INTEGER NOT NULL DEFAULT 0,
+        -- This integer is used to aid quick pre-sorting of data. It should be created
+        -- by multiplication of first four characters from `value` column.
+
+    FOREIGN KEY(`Content_Entity_Field_id`) REFERENCES Content_Entity_Field(`id`) ON DELETE CASCADE
 );
 CREATE UNIQUE INDEX Content_Entity_Data_index ON Content_Entity_Data (Content_Entity_Field_id, language);
 
@@ -271,8 +277,7 @@ CREATE TABLE Content_Entity_Data_History (
     `event_time`	TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         -- Time when given value was set.
 
-	FOREIGN KEY(`Content_Entity_id`)     REFERENCES Content_Entity(`id`) ON DELETE CASCADE,
-    FOREIGN KEY(`Content_Spec_Field_id`) REFERENCES Content_Spec_Field(`id`) ON DELETE CASCADE
+    FOREIGN KEY(`Content_Entity_Field_id`) REFERENCES Content_Entity_Field(`id`) ON DELETE CASCADE
 );
 
 CREATE TABLE Comment_Entity (
@@ -337,8 +342,8 @@ CREATE TABLE Asset_2_Content_Field (
     FOREIGN KEY (`Content_Entity_Field_id`) REFERENCES Content_Entity_Field (`id`) ON DELETE CASCADE,
     FOREIGN KEY (`Content_Spec_Field_id`)   REFERENCES Content_Spec_Field (`id`) ON DELETE CASCADE
 );
-CREATE UNIQUE INDEX Asset_2_Content_Field_unique  ON Asset_2_Content_Field (`Asset_Entity_id`, `Content_Entity_id`, `Content_Spec_Field_id`);
-CREATE        INDEX Asset_2_Content_Field_target  ON Asset_2_Content_Field (`Content_Entity_id`, `Content_Spec_Field_id`);
-CREATE        INDEX Asset_2_Content_Field_targets ON Asset_2_Content_Field (`Content_Entity_id`);
+CREATE UNIQUE INDEX Asset_2_Content_Field_unique  ON Asset_2_Content_Field (`Asset_Entity_id`, `Content_Entity_Field_id`);
+CREATE        INDEX Asset_2_Content_Field_target  ON Asset_2_Content_Field (`Content_Entity_Field_id`);
+CREATE        INDEX Asset_2_Content_Field_targets ON Asset_2_Content_Field (`Content_Entity_Field_id`);
 /* Add links to other stuff, as needed... */
 

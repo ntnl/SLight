@@ -14,7 +14,9 @@ package SLight::API::Content;
 use strict; use warnings; # {{{
 use base 'Exporter';
 
+use SLight::Core::Config;
 use SLight::Core::Entity;
+use SLight::Core::DB;
 
 use Carp;
 use Carp::Assert::More qw( assert_integer );
@@ -23,14 +25,18 @@ use Params::Validate qw{ :all };
 
 our @EXPORT_OK = qw(
     add_Content
+
     update_Content
     update_Contents
+
     count_Contents_where
+
     get_Content
     get_Contents
     get_Content_ids_where
     get_Contents_where
     get_Contents_fields_where
+
     delete_Content
     delete_Contents
 );
@@ -112,25 +118,150 @@ sub count_Contents_where { # {{{
 sub get_Content { # {{{
     my ( $id ) = @_; # Fixme: use Params::Validate here!
 
-    return $_handler->get_ENTITY($id);
+    my $content_object = $_handler->get_ENTITY($id);
+
+    return $content_object;
 } # }}}
 
 sub get_Contents { # {{{
     my ( $ids ) = @_; # Fixme: use Params::Validate here!
 
-    return $_handler->get_ENTITYs($ids);
+    my $content_objects = $_handler->get_ENTITYs($ids);
+
+    return $content_objects;
 } # }}}
 
 sub get_Contents_where { # {{{
     my %P = @_; # Fixme: use Params::Validate here!
 
-    return $_handler->get_ENTITYs_where(%P);
+    my $unfold = $P{'_unfold'};
+
+    my $content_objects = $_handler->get_ENTITYs_where(%P);
+
+    if ($unfold) {
+        _unfold($content_objects, $P{'_data_lang'}, $unfold);
+    }
+
+    return $content_objects;
 } # }}}
 
 sub get_Contents_fields_where { # {{{
     my %P = @_; # Fixme: use Params::Validate here!
 
-    return $_handler->get_ENTITYs_fields_where(%P);
+    my $unfold = $P{'_unfold'};
+
+    my $content_objects = $_handler->get_ENTITYs_fields_where(%P);
+
+    if ($unfold) {
+        _unfold($content_objects, $P{'_data_lang'}, $unfold);
+    }
+
+    return $content_objects;
+} # }}}
+
+# This routing will add _uf_* keys to every object in $objects list.
+# It supports:
+#   _uf_order_by
+#   _uf_use_as_title
+#   _uf_use_in_menu
+#   _uf_use_in_path
+#
+# Note: this is more a prototype, that will be slow.
+# As soon as it does the right thing, it has to be re factored.
+#
+# Note: fields that are to be unfolded have to be added to _fields.
+# This is not done automatically for now.
+sub _unfold { # {{{
+    my ( $objects, $lang, $unfold ) = @_;
+
+    my $default_lang = SLight::Core::Config::get_option('lang')->[0];
+
+    my %need_fields;
+    my %need_fields_oids;
+
+    my %need_data_fields;
+    my %need_data_fields_oids;
+
+    #use Data::Dumper; warn Dumper $objects;
+
+    foreach my $object (@{ $objects }) {
+        my @langs = (
+            ( $lang or $default_lang ),
+            ( keys %{ $object->{'_data'} } ),
+            q{*}
+        );
+
+        foreach my $field (@{ $unfold }) {
+            my $spec = $object->{$field};
+
+            if (not defined $spec) {
+                $object->{ '_uf_' . $field } = $object->{'id'};
+            }
+            elsif ($spec =~ m{^\d+$}s) {
+                foreach my $lang (@langs) {
+                    if (exists $object->{'_data'}->{$lang}->{$spec}) {
+                        $object->{ '_uf_' . $field } = $object->{'_data'}->{$lang}->{$spec};
+                        last;
+                    }
+                }
+
+                if (not $object->{ '_uf_' . $field }) {
+                    $need_data_fields{$spec} = $object;
+                    $need_data_fields_oids{ $object->{'id'} } = 1;
+                }
+            }
+            else {
+                if (exists $object->{ $spec }) {
+                    $object->{ '_uf_' . $spec } = $object->{ $spec };
+                }
+                else {
+                    push @{ $need_fields{$spec} }, $object;
+                    $need_fields_oids{ $object->{'id'} } = 1;
+                }
+            }
+        }
+    }
+
+    if (keys %need_fields_oids) {
+        my $extras = get_Contents_fields_where(
+            _fields => [ keys %need_fields ],
+
+            _data_fields => [],
+
+            ids => [ keys %need_fields_oids ],
+        );
+        my %extras_hash;
+        foreach my $object (@{ $extras }) {
+            $extras_hash{ $object->{'id'} } = $object;
+        }
+
+#        use Data::Dumper; warn 'fields ' . Dumper %extras_hash;
+    }
+
+    if (keys %need_data_fields_oids) {
+        my $extras;
+        my $sth = SLight::Core::DB::run_query(
+            query => [
+                'SELECT Content_Entity_id, Content_Spec_Field_id, language, value FROM Content_Entity_Data WHERE Content_Entity_id IN ', [ keys %need_data_fields_oids ],
+                ' AND Content_Spec_Field_id IN ', [keys %need_data_fields]
+            ],
+            debug => 1,
+        );
+        while (my ($oid, $fid, $lang, $value) = $sth->fetchrow_array()) {
+            $extras->{$oid}->{$fid}->{$lang} = $value;
+        }
+
+        foreach my $field_id (keys %need_data_fields) {
+            foreach my $object (@{ $need_data_fields{$field_id} }) {
+                my $lang = '*';
+                $object->{'_data'}->{$lang}->{$field_id} = $extras->{$object->{'id'}}->{$field_id}->{$lang}; #FIXME!
+            }
+        }
+
+#        use Data::Dumper; warn 'data ' . Dumper $extras;
+    }
+
+    return;
 } # }}}
 
 sub get_Content_ids_where { # {{{
