@@ -87,6 +87,9 @@ sub serialize { # {{{
     }
 
     # Add some useful page-wide variables.
+    if ($self->{'metadata'}->{'title'}) {
+        $template->set_var('page_title', $self->{'metadata'}->{'title'});
+    }
     $template->set_var('web_root', SLight::Core::Config::get_option('web_root'));
     $template->set_var(
         'basehref',

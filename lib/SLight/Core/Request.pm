@@ -188,7 +188,7 @@ sub main { # {{{
 #            SLight::Core::Config::get_option(q{site_root}) .q{l10n/},
 #            $request_language
 #        );
-        
+
         task_switch("SLight::Core::Request preparation", "SLight::Core::Request path handling");
 
         $path_handler_object = $self->{'path_handler_factory'}->make(

@@ -76,12 +76,14 @@ sub respond { # {{{
         # Yes... as soon as it proves to be working - REFACTOR! Messy! FIXME!
     }
 
+#    use Data::Dumper; warn Dumper $response;
+
+    $output_object->set_meta($response->{'meta'});
+
     $output_object->queue_object_data(
         $P{'page'}->{'main_object'},
         $response->{'data'},
     );
-
-#    use Data::Dumper; warn Dumper $response;
 
     $response->{'meta'}->{'path_bar'} = [
         @{ ( $P{'page'}->{'breadcrumb_path'} or [] ) },

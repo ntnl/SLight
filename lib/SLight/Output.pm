@@ -49,6 +49,14 @@ sub list_addons { # {{{
     return qw( Core::Toolbox Core::Path Core::Sysinfo Core::Language Core::Debug CMS::Rootmenu CMS::Menu CMS::Submenu User::Info User::Panel );
 } # }}}
 
+sub set_meta { # {{{
+    my ( $self, $meta ) = @_;
+
+    $self->{'metadata'} = $meta;
+
+    return;
+} # }}}
+
 sub queue_addon_data { # {{{
     my ( $self, $addon, $data_structure ) = @_;
 
