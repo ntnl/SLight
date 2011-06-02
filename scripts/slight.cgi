@@ -24,9 +24,11 @@ require SLight::Interface::CGI;
 
 my $interface = SLight::Interface::CGI->new();
 
-print $interface->main(
+my $out = $interface->main(
     url => $ENV{'REQUEST_URI'},
     bin => $Bin,
 );
+
+print $out;
 
 # vim: fdm=marker

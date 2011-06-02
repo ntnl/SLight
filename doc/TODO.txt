@@ -177,7 +177,14 @@
 =--= Sprint .. - ....-..-..
 
 [ ] Refactoring of ContentModel.pm
-[ ]     Core::Entity routines returning lists should support progressive fetching with sorting and paging of content.
+[ ]     Migration to Core::Accessor
+[ ]         owner support
+[ ]         Update SLight/API/ContentSpec.pm
+[ ]         Update SLight/API/EVK.pm
+[ ]         Update SLight/API/Content.pm
+[ ]         Update SLight/API/User.pm
+[ ]         Update SLight/API/Asset.pm
+[ ]     Core::Accessor routines returning lists should support progressive fetching with sorting and paging of content.
 [ ]         Fetch only data needed to sort IDs.
 [ ]         Fetch only data from the given window.
 [ ]     API::Page
@@ -259,13 +266,24 @@
 
 =--= Sprint 3 - Command line CMS -
 
-[>] Refactoring
+[>] Contente/Page/Entity refactoring
 [X]     Add 'menu_order' (integer) to Page_Entity, for use in menus. Items in menu will be sorted from lowest to highest.
-[>]     Add 'title', 'menu' and 'breadcrumb' as Page properties (with special l10n support).
+[X]     Add 'title', 'menu' and 'breadcrumb' as Page properties (with special l10n support).
 [X]         Forge SQL
-[>]         Replace SLight::Core::Entity with SLight::Core::Accessor - a tool, not a framework.
-[ ]             Use SQL::Abstract as SQL building routine.
-[ ]             Ability to define 'up' and 'down' relations across tables (get fields from joined tables).
+[X]         Replace SLight::Core::Entity with SLight::Core::Accessor.
+[X]             Ability to define 'up' relations across tables (get fields from joined tables).
+[X]             add entity
+[X]             get entity
+[X]             get entity fields
+[X]             get entities
+[X]             get entities fields
+[X]             get entities ids where
+[X]             get entities fields where
+[X]             delete_ENTITY
+[X]             delete_ENTITIES
+[X]             metadata support
+[X]             Ability to define 'down' relations across tables (get fields from joined tables).
+[X]             Update SLight/API/Page.pm
 [ ]         Implement 'Fieldset' widget (groups form entries).
 [ ]         Update Content Entry Form: add new fields to 'page' section
 [ ]         Update Root Menu Addon
@@ -277,7 +295,7 @@
 [ ]         Ability to fetch only fields for lists or pages.
 [>]     Extract 'Content_Entity_Field' from 'Content_Entity_Data'
 [X]         Forge SQL
-[ ]         Update Content.pm
+[>]         Update Content.pm
 [ ]         Implement ContentData.pm for handling data. (?)
 [-] CMS Lists
 [ ]     In-progress refactoring

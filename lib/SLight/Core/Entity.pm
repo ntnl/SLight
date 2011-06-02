@@ -879,8 +879,6 @@ sub _attach_data_row { # {{{
 sub delete_ENTITY { # {{{
     my ( $self, $id ) = @_;
 
-    # To refactor this, or not to refactor - this is the question?
-    
     return $self->delete_ENTITYs( [$id] );
 } # }}}
 

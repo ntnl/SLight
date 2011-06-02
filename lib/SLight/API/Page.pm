@@ -14,7 +14,7 @@ package SLight::API::Page;
 use strict; use warnings; # {{{
 use base 'Exporter';
 
-use SLight::Core::Entity;
+use SLight::Core::Accessor;
 
 use Params::Validate qw( :all );
 # }}}
@@ -35,61 +35,20 @@ our @EXPORT_OK = qw(
 );
 our %EXPORT_TAGS = ( 'all' => [ @EXPORT_OK ] );
 
-my $_handler = SLight::Core::Entity->new( # {{{
-    base_table  => 'Page_Entity',
-    child_table => 'Page_Entity_Data',
+my $_handler = SLight::Core::Accessor->new( # {{{
+    table   => 'Page_Entity',
+    columns => [qw( id path template parent_id menu_order )],
 
-    child_key => 'language',
+    referenced => {
+        L10N => {
+            table   => 'Page_Entity_Data',
+            columns => [qw( title menu breadcrumb )],
+            key     => 'language',
+        },
+    },
 
-    data_fields       => [qw( path template menu_order )],
-    child_data_fields => [qw( language title menu breadcrumb )],
-
-    is_a_tree => 1,
+    refers_self => 1,
 ); # }}}
-
-#    parent_id => $page_0_id,
-#    path      => 'Baz',
-#    template  => 'Light',
-#
-#    L10N => {
-#        title      => { 'en' => 'Light page implementation' },
-#        menu       => { 'en' => 'Light', },
-#        breadcrumb => { 'en' => 'Light implementation', },
-#    }
-#
-# SLight::Core::Accessor->new(
-#   table => 'Page_Entity',
-#
-#   columns => [qw( path template menu_order )],
-#
-#   referenced => {
-#       L10N => {
-#           table   => 'Page_Entity_Data',
-#           columns => [qw( language title menu breadcrumb )],
-#
-#           unique_key => 'language',
-#       },
-#       Content => {
-#           table      => 'Content_Entity',
-#           columns    => [qw( id status )],
-#
-#           unique_key => 'id',
-#
-#           refers => {
-#               Spec => {
-#                   table   => 'Content_Spec',
-#                   columns => [qw( owning_module )],
-#               },
-#           },
-#       },
-#   },
-#
-#   refers_self => 1,
-# ):
-#
-# get_fields(
-#   _fields => [qw( path menu_order L10N.title L10N.menu Content.Spec.owning_module )],
-# );
 
 sub add_Page { # {{{
     my %P = validate (
@@ -100,6 +59,10 @@ sub add_Page { # {{{
 
             template   => { type=>SCALAR, optional=>1 },
             menu_order => { type=>SCALAR, optional=>1 },
+
+            'L10N.title'      => { type=>HASHREF, optional=>1 },
+            'L10N.menu'       => { type=>HASHREF, optional=>1 },
+            'L10N.breadcrumb' => { type=>HASHREF, optional=>1 },
         }
     );
 
@@ -117,6 +80,10 @@ sub update_Page { # {{{
             
             template   => { type=>SCALAR, optional=>1 },
             menu_order => { type=>SCALAR, optional=>1 },
+
+            'L10N.title'      => { type=>HASHREF, optional=>1 },
+            'L10N.menu'       => { type=>HASHREF, optional=>1 },
+            'L10N.breadcrumb' => { type=>HASHREF, optional=>1 },
         }
     );
 
@@ -134,17 +101,14 @@ sub update_Pages { # {{{
             
             template   => { type=>SCALAR, optional=>1 },
             menu_order => { type=>SCALAR, optional=>1 },
+
+            'L10N.title'      => { type=>HASHREF, optional=>1 },
+            'L10N.menu'       => { type=>HASHREF, optional=>1 },
+            'L10N.breadcrumb' => { type=>HASHREF, optional=>1 },
         }
     );
 
-    return $_handler->update_ENTITYs(
-        ids => $P{'ids'},
-
-        parent_id => $P{'parent_id'},
-
-        path     => $P{'path'},
-        template => $P{'template'},
-    );
+    return $_handler->update_ENTITIES(%P);
 } # }}}
 
 sub delete_Page { # {{{
@@ -168,19 +132,19 @@ sub get_Page { # {{{
 sub get_Pages { # {{{
     my ( $ids ) = @_;
 
-    return $_handler->get_ENTITYs($ids);
+    return $_handler->get_ENTITIES($ids);
 } # }}}
 
 sub get_Pages_where { # {{{
-    return $_handler->get_ENTITYs_where(@_);
+    return $_handler->get_ENTITIES_where(@_);
 } # }}}
 
 sub get_Page_ids_where { # {{{
-    return $_handler->get_ENTITY_ids_where(@_);
+    return $_handler->get_ENTITIES_ids_where(@_);
 } # }}}
 
 sub get_Page_fields_where { # {{{
-    return $_handler->get_ENTITYs_fields_where(@_);
+    return $_handler->get_ENTITIES_fields_where(@_);
 } # }}}
 
 sub get_Page_full_path { # {{{
@@ -210,13 +174,13 @@ sub get_Page_id_for_path { # {{{
     foreach my $part (@{ $path }) {
         if (not $part) { next; }
 
-        my $pages = SLight::API::Page::get_Page_fields_where(
+        my $pages = get_Page_fields_where(
             parent_id => $parent_id,
             path      => $part,
 
             _fields => [qw( id )],
 
-#            _debug  => 1,
+            _debug  => 1,
         );
 
         if (not $pages->[0]) {

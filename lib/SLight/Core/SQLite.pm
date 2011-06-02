@@ -59,6 +59,12 @@ sub new { # {{{
     return $self;
 } # }}}
 
+sub get_dbh { # {{{
+    my ( $self ) = @_;
+
+    return $self->{'dbh'};
+} # }}}
+
 sub disconnect { # {{{
     my ( $self ) = @_;
 

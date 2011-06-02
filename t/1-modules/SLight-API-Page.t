@@ -77,11 +77,9 @@ my $page_3_id = add_Page(
     path      => 'Baz',
     template  => 'Light',
 
-    Data => {
-        title      => { 'en' => 'Light page implementation' },
-        menu       => { 'en' => 'Light', },
-        breadcrumb => { 'en' => 'Light implementation', },
-    },
+    'L10N.title'      => { 'en' => 'Light page implementation' },
+    'L10N.menu'       => { 'en' => 'Light' },
+    'L10N.breadcrumb' => { 'en' => 'Light implementation' },
 );
 is ($page_3_id, 4, "add_Page (3/5)");
 
@@ -186,7 +184,7 @@ is(
         path      => 'Faz',
         template  => 'Nested',
     ),
-    undef,
+    $page_1_id,
     'update_Page()'
 );
 
@@ -300,7 +298,7 @@ is_deeply(
 
 is (
     delete_Page($page_1_id),
-    2,
+    undef,
     "delete_Page()"
 );
 
@@ -313,6 +311,10 @@ is_deeply(
             path       => 'Baz',
             template   => 'Light',
             menu_order => 0,
+
+            'L10N.title'      => { 'en' => 'Light page implementation' },
+            'L10N.menu'       => { 'en' => 'Light' },
+            'L10N.breadcrumb' => { 'en' => 'Light implementation' },
         },
         {
             id         => $page_4_id,
@@ -334,7 +336,7 @@ is_deeply(
 
 is (
     delete_Pages([ $page_4_id, $page_5_id ]),
-    2,
+    undef,
     "delete_Pages()"
 );
 
@@ -347,6 +349,10 @@ is_deeply(
             path       => 'Baz',
             template   => 'Light',
             menu_order => 0,
+
+            'L10N.title'      => { 'en' => 'Light page implementation' },
+            'L10N.menu'       => { 'en' => 'Light' },
+            'L10N.breadcrumb' => { 'en' => 'Light implementation' },
         },
     ],
     'delete_Pages() check with get_Pages'

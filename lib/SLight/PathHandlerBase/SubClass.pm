@@ -23,26 +23,26 @@ use base q{SLight::PathHandler};
 sub analyze_path { # {{{
     my ( $self, $path ) = @_;
 
-    if (scalar @{ $path } > 1) {
+    if (scalar @{ $path } > 2) {
         return $self->generic_error_page('NotFound');
     }
 
     my $object_class;
 
-    if (not scalar @{ $path }) {
-        $object_class = $self->default_class();
-    }
-    else {
+    if (scalar @{ $path }) {
         $object_class = $self->class_base() . q{::} . $path->[0];
 
         # FIXME: verify, that the object class does exist!
+    }
+    else {
+        $object_class = $self->default_class();
     }
 
     $self->set_objects(
         {
             o => {
                 class => $object_class,
-                oid   => undef,
+                oid   => $path->[1],
             },
         },
     );
@@ -53,7 +53,16 @@ sub analyze_path { # {{{
 
     $self->set_template( 'Default' );
 
+    my $bread_crumbs = $self->bread_crumbs($path->[0], $path->[1]);
+
+    $self->set_breadcrumb_path($bread_crumbs);
+
     return $self->response_content(); 
+} # }}}
+
+# Virtual
+sub bread_crumbs { # {{{
+    return;
 } # }}}
 
 # vim: fdm=marker
