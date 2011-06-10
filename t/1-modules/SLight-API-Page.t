@@ -77,9 +77,13 @@ my $page_3_id = add_Page(
     path      => 'Baz',
     template  => 'Light',
 
-    'L10N.title'      => { 'en' => 'Light page implementation' },
-    'L10N.menu'       => { 'en' => 'Light' },
-    'L10N.breadcrumb' => { 'en' => 'Light implementation' },
+    L10N => {
+        en => {
+            title      => 'Light page implementation',
+            menu       => 'Light',
+            breadcrumb => 'Light implementation',
+        },
+    },
 );
 is ($page_3_id, 4, "add_Page (3/5)");
 
@@ -159,6 +163,8 @@ is_deeply(
         path       => 'Foo',
         template   => undef,
         menu_order => 0,
+
+        L10N => {},
     },
     'get_Page (1 after add)'
 );
@@ -170,6 +176,8 @@ is_deeply(
         path       => 'Goo',
         template   => 'Haevy',
         menu_order => 1,
+
+        L10N => {},
     },
     'get_Page (4 after add)'
 );
@@ -201,6 +209,8 @@ is_deeply(
             path       => 'Faz',
             template   => 'Nested',
             menu_order => 0,
+
+            L10N => {},
         },
         {
             id         => $page_4_id,
@@ -208,6 +218,8 @@ is_deeply(
             path       => 'Goo',
             template   => 'Haevy',
             menu_order => 1,
+
+            L10N => {},
         },
     ],
     'get_Pages (1 and 4 after update)'
@@ -235,6 +247,8 @@ is_deeply(
             path       => 'Goo',
             template   => 'Altered',
             menu_order => 1,
+
+            L10N => {},
         },
         {
             id         => $page_5_id,
@@ -242,6 +256,8 @@ is_deeply(
             path       => 'Bzz',
             template   => 'Altered',
             menu_order => 2,
+
+            L10N => {},
         },
     ],
     'get_Pages (4 and 5 after updates)'
@@ -312,9 +328,13 @@ is_deeply(
             template   => 'Light',
             menu_order => 0,
 
-            'L10N.title'      => { 'en' => 'Light page implementation' },
-            'L10N.menu'       => { 'en' => 'Light' },
-            'L10N.breadcrumb' => { 'en' => 'Light implementation' },
+            L10N => {
+                en => {
+                    title      => 'Light page implementation',
+                    menu       => 'Light',
+                    breadcrumb => 'Light implementation',
+                },
+            },
         },
         {
             id         => $page_4_id,
@@ -322,6 +342,8 @@ is_deeply(
             path       => 'Goo',
             template   => 'Altered',
             menu_order => 1,
+
+            L10N => {},
         },
         {
             id         => $page_5_id,
@@ -329,6 +351,8 @@ is_deeply(
             path       => 'Bzz',
             template   => 'Altered',
             menu_order => 2,
+
+            L10N => {},
         },
     ],
     'delete_Page() check with get_Pages'
@@ -350,9 +374,13 @@ is_deeply(
             template   => 'Light',
             menu_order => 0,
 
-            'L10N.title'      => { 'en' => 'Light page implementation' },
-            'L10N.menu'       => { 'en' => 'Light' },
-            'L10N.breadcrumb' => { 'en' => 'Light implementation' },
+            L10N => {
+                en => {
+                    title      => 'Light page implementation',
+                    menu       => 'Light',
+                    breadcrumb => 'Light implementation',
+                },
+            },
         },
     ],
     'delete_Pages() check with get_Pages'

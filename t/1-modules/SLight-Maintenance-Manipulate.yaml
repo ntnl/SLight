@@ -1,6 +1,7 @@
 ---
 --cms-delete does it's job:
-- id: 4
+- L10N: {}
+  id: 4
   parent_id: 1
   path: Download
   template: ~

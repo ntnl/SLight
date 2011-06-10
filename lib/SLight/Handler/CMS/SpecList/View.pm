@@ -87,27 +87,6 @@ sub handle_view { # {{{
                 class   => 'SLight_int',
                 caption => TR('Amount of fields'),
             },
-            
-            {
-                name    => 'order_by',
-                class   => 'SLight_name',
-                caption => TR('Order field'),
-            },
-            {
-                name    => 'use_as_title',
-                class   => 'SLight_name',
-                caption => TR('Title field'),
-            },
-            {
-                name    => 'use_in_menu',
-                class   => 'SLight_name',
-                caption => TR('Menu field'),
-            },
-            {
-                name    => 'use_in_path',
-                class   => 'SLight_name',
-                caption => TR('Path field'),
-            },
         ]
     );
 
@@ -127,11 +106,6 @@ sub handle_view { # {{{
                 class         => $content_spec->{'class'},
 
                 field_count => scalar keys %{ $content_spec->{'_data'} },
-
-                order_by     => $self->make_field_label($content_spec, $content_spec->{'order_by'}),
-                use_as_title => $self->make_field_label($content_spec, $content_spec->{'use_as_title'}),
-                use_in_menu  => $self->make_field_label($content_spec, $content_spec->{'use_in_menu'}),
-                use_in_path  => $self->make_field_label($content_spec, $content_spec->{'use_in_path'}),
             },
         );
     }

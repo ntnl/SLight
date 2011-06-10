@@ -15,7 +15,7 @@ use strict; use warnings; # {{{
 use base 'Exporter';
 
 use SLight::Core::Config;
-use SLight::Core::Entity;
+use SLight::Core::Accessor;
 use SLight::Core::DB;
 
 use Carp;
@@ -42,36 +42,70 @@ our @EXPORT_OK = qw(
 );
 our %EXPORT_TAGS = ( 'all' => [ @EXPORT_OK ] );
 
-my $_handler = SLight::Core::Entity->new( # {{{
-    base_table       => 'Content_Entity',
-    child_table      => 'Content_Entity_Data',
+my $_handler = SLight::Core::Accessor->new( # {{{
+    table   => 'Content_Entity',
+    columns => [qw( status on_page_index comment_write_policy comment_read_policy added_time modified_time )],
 
-# Fixme: add added_time and modified_time to the list: (they are dynamically created, therefore tricky!
-    data_fields        => [qw( status Page_Entity_id on_page_index comment_write_policy comment_read_policy Content_Spec_id added_time modified_time )],
-    child_data_fields  => [qw( value )],
-    parent_data_fields => [qw( owning_module )],
-
-    joined_fields => {
-        Content_Spec => [qw( owning_module class order_by use_as_title use_in_menu use_in_path )]
+    refers => {
+        Spec => {
+            table   => 'Content_Spec',
+            columns => [qw( id owning_module class cms_usage )],
+        },
+        Page => {
+            table   => 'Page_Entity',
+            columns => [qw( id parent_id path menu_order )],
+        },
+        Owner => {
+            table   => 'Email',
+            columns => [qw( email user_id )],
+        },
     },
 
-    join_key_fields => {
-        Content_Spec => 'Content_Spec_id',
-    },
+    referenced => {
+        Data => {
+            table   => 'Content_Entity_Data',
+            columns => [qw( Content_Entity_id Content_Spec_Field_id language value )], # summary sort_index_aid
+            
+            cb => {
+                get => sub { # {{{
+                    my ( $items ) = @_;
 
-    child_key => [ 'language', 'Content_Spec_Field_id' ],
+                    my %data;
+                    foreach my $item (@{ $items }) {
+                        delete $item->{'id'};
+                        delete $item->{'Content_Entity_id'};
+
+                        $data{ delete $item->{'language'} }->{ delete $item->{'Content_Spec_Field_id'} } = $item;
+                    }
+                    return \%data;
+                }, # }}}
+                put => sub { # {{{
+                    my ( $parent_id, $data ) = @_;
+
+                    my @items;
+                    foreach my $language (keys %{ $data }) {
+                        foreach my $Content_Spec_Field_id (keys %{ $data->{$language} }) {
+                            push @items, {
+                                key => {
+                                    Content_Entity_id     => int $parent_id,
+                                    Content_Spec_Field_id => int $Content_Spec_Field_id,
+                                    language              => $language
+                                },
+                                val => $data->{ $language }->{ $Content_Spec_Field_id },
+                            };
+                        }
+                    }
+
+                    return @items;
+                } # }}}
+            }
+        },
+    },
 
     has_metadata => 1,
     has_owner    => 1,
     has_assets   => 1,
     has_comments => 1,
-
-#    # Yes, this implementation is not optimal, but will suit as a nice Proof Of Concept.
-#    # Once it setles, it can be refactored to address it's shortcommings.
-#    data_callback => {
-#        data_in  => \&_data_in_cb,
-#        data_out => \&_data_out_cb
-#    },
 
     cache_namespace => 'SLight::Core::Content'
 ); # }}}
@@ -102,7 +136,7 @@ sub update_Content { # {{{
 sub update_Contents { # {{{
     my %P = @_; # Fixme: use Params::Validate here!
 
-    return $_handler->update_ENTITYs(
+    return $_handler->update_ENTITIES(
         %P,
 
         modified_time => $_handler->timestamp_2_timedate(time),
@@ -112,13 +146,13 @@ sub update_Contents { # {{{
 sub count_Contents_where { # {{{
     my %P = @_; # Fixme: use Params::Validate here!
 
-    return $_handler->count_ENTITYs_where(%P);
+    return $_handler->count_ENTITIES_where(%P);
 } # }}}
 
 sub get_Content { # {{{
     my ( $id ) = @_; # Fixme: use Params::Validate here!
 
-    my $content_object = $_handler->get_ENTITY($id);
+    my $content_object = $_handler->get_ENTITY($id, 1);
 
     return $content_object;
 } # }}}
@@ -126,7 +160,7 @@ sub get_Content { # {{{
 sub get_Contents { # {{{
     my ( $ids ) = @_; # Fixme: use Params::Validate here!
 
-    my $content_objects = $_handler->get_ENTITYs($ids);
+    my $content_objects = $_handler->get_ENTITIES($ids);
 
     return $content_objects;
 } # }}}
@@ -136,7 +170,7 @@ sub get_Contents_where { # {{{
 
     my $unfold = $P{'_unfold'};
 
-    my $content_objects = $_handler->get_ENTITYs_where(%P);
+    my $content_objects = $_handler->get_ENTITIES_where(%P);
 
     if ($unfold) {
         _unfold($content_objects, $P{'_data_lang'}, $unfold);
@@ -150,7 +184,7 @@ sub get_Contents_fields_where { # {{{
 
     my $unfold = $P{'_unfold'};
 
-    my $content_objects = $_handler->get_ENTITYs_fields_where(%P);
+    my $content_objects = $_handler->get_ENTITIES_fields_where(%P);
 
     if ($unfold) {
         _unfold($content_objects, $P{'_data_lang'}, $unfold);
@@ -267,7 +301,7 @@ sub _unfold { # {{{
 sub get_Content_ids_where { # {{{
     my %P = @_; # Fixme: use Params::Validate here!
 
-    return $_handler->get_ENTITY_ids_where(%P);
+    return $_handler->get_ENTITIES_ids_where(%P);
 } # }}}
 
 sub delete_Content { # {{{

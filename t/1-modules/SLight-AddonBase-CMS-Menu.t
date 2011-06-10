@@ -25,8 +25,6 @@ use Test::More;
 
 plan tests =>
     + 1 # new()
-    + 1 # get_pages_and_objects()
-    + 1 # extract_fields()
 ;
 
 my $site_root = SLight::Test::Site::prepare_fake(
@@ -39,16 +37,6 @@ my $fake_addon = SLight::AddonBase::CMS::Menu->new();
 $fake_addon->{'url'}->{'lang'} = 'en';
 
 isa_ok($fake_addon, 'SLight::AddonBase::CMS::Menu');
-
-is_referenced_ok(
-    $fake_addon->get_pages_and_objects(1),
-    'get_pages_and_objects()'
-);
-
-is_referenced_ok(
-    [ $fake_addon->extract_fields(2) ],
-    'extract_fields()'
-);
 
 # vim: fdm=marker
 

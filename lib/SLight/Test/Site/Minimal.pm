@@ -33,6 +33,11 @@ sub build { # {{{
         parent_id => undef,
         path      => q{},
         template  => q{Default},
+
+        L10N => {
+            en => { menu => q{Test site},      title => q{Test site},      breadcrumb => q{Test site}, },
+            pl => { menu => q{Strona testowa}, title => q{Strona testowa}, breadcrumb => q{Strona testowa}, },
+        },
     );
 
     # Add 1-st level pages:
@@ -40,27 +45,52 @@ sub build { # {{{
         parent_id => $p0_id,
         path      => q{About},
         template  => q{Info},
+
+        L10N => {
+            en => { menu => q{About...},      title => q{About the test page},  breadcrumb => q{About the site}, },
+            pl => { menu => q{Informacje...}, title => q{Informacje o stronie}, breadcrumb => q{O stronie}, },
+        },
     );
     my $p2_id = SLight::API::Page::add_Page(
         parent_id => $p0_id,
         path      => q{Docs},
         template  => q{Doc},
+
+        L10N => {
+            en => { menu => q{Documentation}, title => q{Documentation}, breadcrumb => q{Documentation}, },
+            pl => { menu => q{Dokumentacja},  title => q{Dokumentacja},  breadcrumb => q{Dokumentacja}, },
+        },
     );
     my $p3_id = SLight::API::Page::add_Page(
         parent_id => $p0_id,
         path      => q{Download},
+
+        L10N => {
+            en => { menu => q{Download}, title => q{Download}, breadcrumb => q{Download}, },
+            pl => { menu => q{Pobierz},  title => q{Pobierz},  breadcrumb => q{Pobierz}, },
+        },
     );
 
     # Add 2-nd level pages:
     my $p4_id = SLight::API::Page::add_Page(
         parent_id => $p1_id,
         path      => q{Authors},
+
+        L10N => {
+            en => { menu => q{Authors}, title => q{Authors}, breadcrumb => q{Authors}, },
+            pl => { menu => q{Autorzy}, title => q{Autorzy}, breadcrumb => q{Autorzy}, },
+        },
     );
 
     # Add 3-rd level page:
     my $p5_id = SLight::API::Page::add_Page(
         parent_id => $p4_id,
         path      => q{Feedback},
+
+        L10N => {
+            en => { menu => q{Feedback}, title => q{Your feedback}, breadcrumb => q{Feedback}, },
+            pl => { menu => q{Opinie},   title => q{Wasze opinie},  breadcrumb => q{Opinie}, },
+        },
     );
 
     # Add some content specs:
@@ -75,8 +105,9 @@ sub build { # {{{
         class => 'Content',
 
         cms_usage   => 3,
-        order_by    => 11,
-        use_in_menu => 10,
+
+#        order_by    => 11,
+#        use_in_menu => 10,
 
         owning_module => q{CMS::Entry},
     );
@@ -126,14 +157,16 @@ sub build { # {{{
         status        => q{V},
         on_page_index => 0,
 
-        _data => {
+        email => q{test@example.test},
+
+        Data => {
             pl => {
-                10 => q{Strona testowa zrobiona},
-                11 => qq{---\n - Minimalna strona testowa, już nie taka minimalna ;)\n},
+                10 => { value => q{Strona testowa zrobiona}, },
+                11 => { value => qq{---\n - Minimalna strona testowa, już nie taka minimalna ;)\n}, },
             },
             en => {
-                10 => q{Test site is up},
-                11 => qq{---\n - Minimal test site, not such minimal any more ;)\n},
+                10 => { value => q{Test site is up}, },
+                11 => { value => qq{---\n - Minimal test site, not such minimal any more ;)\n}, },
             },
         }
     );
@@ -143,14 +176,16 @@ sub build { # {{{
 
         status => q{V},
 
-        _data => {
+        email => q{test@example.test},
+
+        Data => {
             pl => {
-                10 => q{Podstrona testowa},
-                11 => qq{---\n - Minimalna strona testowa, już nie taka minimalna ;)\n},
+                10 => { value => q{Podstrona testowa}, },
+                11 => { value => qq{---\n - Minimalna strona testowa, już nie taka minimalna ;)\n}, },
             },
             en => {
-                10 => q{Test sub-page},
-                11 => qq{---\n - Minimal test page, not such minimal any more ;)\n},
+                10 => { value => q{Test sub-page}, },
+                11 => { value => qq{---\n - Minimal test page, not such minimal any more ;)\n}, },
             },
         }
     );

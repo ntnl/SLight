@@ -116,18 +116,18 @@ is (
 
         on_page_index => 0,
 
-        _data => {
+        Data => {
             q{*} => {
-                $f_marker => q{BT-4},
-                $f_air    => q{CO2},
-                $f_bps    => q{6},
+                $f_marker => { value => q{BT-4}, },
+                $f_air    => { value => q{CO2}, },
+                $f_bps    => { value => q{6}, },
             },
-            en => {
-                $f_note => q{Good old-school marker},
+            q{en} => {
+                $f_note => { value => q{Good old-school marker}, },
             },
-            pl => {
-                $f_note => q{Stara, dobra konstrukcja},
-            },
+            q{pl} => {
+                $f_note => { value => q{Stara, dobra konstrukcja}, }
+            }
         },
 
         email => q{paintball@extreme.sports},
@@ -149,18 +149,18 @@ is (
 
         on_page_index => 1,
 
-        _data => {
+        Data => {
             q{*} => {
-                $f_marker => q{SP-1},
-                $f_air    => q{HP},
-                $f_bps    => q{10},
+                $f_marker => { value => q{SP-1}, },
+                $f_air    => { value => q{HP}, },
+                $f_bps    => { value => q{10}, },
             },
             en => {
-                $f_note => q{Good, affordable pneumatic marker},
+                $f_note => { value => q{Good, affordable pneumatic marker}, },
             },
             pl => {
-                $f_note => q{Niedrogi, marker pneumatyczny},
-            }
+                $f_note => { value => q{Niedrogi, marker pneumatyczny}, },
+            },
         },
 
         email => q{paintball@extreme.sports},
@@ -182,14 +182,14 @@ is (
 
         on_page_index => -1,
 
-        _data => {
+        Data => {
             q{*} => {
-                $f_name  => q{Agnes},
-                $f_chest => q{90},
-                $f_waist => q{60},
-                $f_hips  => q{90},
-                $f_cup   => q{C},
-            }
+                $f_name  => { value => q{Agnes}, },
+                $f_chest => { value => q{90}, },
+                $f_waist => { value => q{60}, },
+                $f_hips  => { value => q{90}, },
+                $f_cup   => { value => q{C}, },
+            },
         },
 
         email => q{gals@super.babes},
@@ -211,13 +211,13 @@ is (
 
         on_page_index => 0,
 
-        _data => {
+        Data => {
             q{*} => {
-                $f_name  => q{Wanda},
-                $f_chest => q{85},
-                $f_waist => q{65},
-                $f_hips  => q{85},
-                $f_cup   => q{B},
+                $f_name  => { value => q{Wanda}, },
+                $f_chest => { value => q{85}, },
+                $f_waist => { value => q{65}, },
+                $f_hips  => { value => q{85}, },
+                $f_cup   => { value => q{B}, },
             }
         },
 
@@ -240,12 +240,12 @@ is(
 
         status => q{A},
 
-        _data => {
+        Data => {
             q{*} => {
-                $f_chest => q{88},
-                $f_waist => q{54},
-                $f_hips  => q{85},
-            }
+                $f_chest => { value => q{188}, },
+                $f_waist => { value => q{154}, },
+                $f_hips  => { value => q{185}, },
+            },
         },
 
         metadata => {
@@ -261,19 +261,21 @@ is(
 
         status => q{V},
 
-        _data => {
+        Data => {
             q{*} => {
-                $f_chest => q{88},
-                $f_waist => q{54},
-                $f_hips  => q{85},
+                $f_chest => { value => q{88}, },
+                $f_waist => { value => q{54}, },
+                $f_hips  => { value => q{85}, },
             }
         },
+
+#        _debug => 1,
 
         metadata => {
             note_to_self => "Third entry - updated",
         }
     ),
-    undef,
+    $c3,
     q{update_Content (1/2)}
 );
 
@@ -302,9 +304,9 @@ is(
 #
 # run: get_Content
 #
-is_deeply(
-    [ get_Content(1234) ],
-    [ ],
+is(
+    get_Content(1234),
+    undef,
     q{get_Content (1/2) non-existing ID}
 );
 is_deeply(
@@ -312,25 +314,34 @@ is_deeply(
     {
         id => $c2,
 
-        Content_Spec_id => $ContentSpec_1{'id'},
-
         status => q{V},
-
-        Page_Entity_id => $p2,
 
         on_page_index => 1,
 
-        _data => {
+        'Page.id'         => $p2,
+        'Page.parent_id'  => 1,
+        'Page.path'       => 'Paintball',
+        'Page.menu_order' => 0,
+
+        'Spec.id'            => 1,
+        'Spec.class'         => 'TestStuff',
+        'Spec.owning_module' => 'Test::Test',
+        'Spec.cms_usage'     => 0,
+
+        'Owner.user_id' => undef,
+        'Owner.email'   => q{paintball@extreme.sports},
+
+        Data => {
             q{*} => {
-                $f_marker => q{SP-1},
-                $f_air    => q{HP},
-                $f_bps    => q{10},
+                $f_marker => { value => q{SP-1}, },
+                $f_air    => { value => q{HP}, },
+                $f_bps    => { value => q{10}, },
             },
             q{en} => {
-                $f_note => q{Good, affordable pneumatic marker},
+                $f_note => { value => q{Good, affordable pneumatic marker}, },
             },
             pl => {
-                $f_note => q{Niedrogi, marker pneumatyczny},
+                $f_note => { value => q{Niedrogi, marker pneumatyczny}, },
             },
         },
 	
@@ -339,8 +350,6 @@ is_deeply(
 
         added_time    => q{#DATE IS SANE#},
         modified_time => q{#DATE IS SANE#},
-
-        email => q{paintball@extreme.sports},
 
         metadata => {
             note_to_self => "Second entry",
@@ -361,60 +370,36 @@ is_deeply(
     _dates_are_sane(get_Contents( [$c2, $c3] ) ),
     [
         {
-            id => $c3,
-
-            Content_Spec_id => $ContentSpec_2{'id'},
-
-            status => q{V},
-
-            Page_Entity_id => $p3,
-
-            on_page_index => -1,
-
-            _data => {
-                q{*} => {
-                    $f_name  => q{Agnes},
-                    $f_chest => q{88},
-                    $f_waist => q{54},
-                    $f_hips  => q{85},
-                    $f_cup   => q{C},
-                }
-            },
-
-            comment_write_policy => 0,
-            comment_read_policy  => 0,
-
-            added_time    => q{#DATE IS SANE#},
-            modified_time => q{#DATE IS SANE#},
-
-            email => q{gals@super.babes},
-
-            metadata => {
-                note_to_self => "Third entry - updated",
-            }
-        },
-        {
             id => $c2,
 
-            Content_Spec_id => $ContentSpec_1{'id'},
-
             status => q{V},
-
-            Page_Entity_id => $p2,
 
             on_page_index => 1,
 
-            _data => {
+            'Page.id'         => $p2,
+            'Page.parent_id'  => 1,
+            'Page.path'       => 'Paintball',
+            'Page.menu_order' => 0,
+
+            'Spec.id'            => $ContentSpec_1{'id'},
+            'Spec.class'         => 'TestStuff',
+            'Spec.owning_module' => 'Test::Test',
+            'Spec.cms_usage'     => 0,
+
+            'Owner.user_id' => undef,
+            'Owner.email'   => q{paintball@extreme.sports},
+
+            Data => {
                 q{*} => {
-                    $f_marker => q{SP-1},
-                    $f_air    => q{HP},
-                    $f_bps    => q{10},
+                    $f_marker => { value => q{SP-1}, },
+                    $f_air    => { value => q{HP}, },
+                    $f_bps    => { value => q{10}, },
                 },
                 en => {
-                    $f_note => q{Good, affordable pneumatic marker},
+                    $f_note => { value => q{Good, affordable pneumatic marker}, },
                 },
                 pl => {
-                    $f_note => q{Niedrogi, marker pneumatyczny},
+                    $f_note => { value => q{Niedrogi, marker pneumatyczny}, },
                 }
             },
 
@@ -423,12 +408,50 @@ is_deeply(
 
             added_time    => q{#DATE IS SANE#},
             modified_time => q{#DATE IS SANE#},
-
-            email => q{paintball@extreme.sports},
 
             metadata => {
                 note_to_self => "Second entry",
             },
+        },
+        {
+            id => $c3,
+
+            status => q{V},
+
+            on_page_index => -1,
+
+            'Page.id'         => $p3,
+            'Page.parent_id'  => 1,
+            'Page.path'       => 'Gals',
+            'Page.menu_order' => 0,
+
+            'Spec.class'         => 'TestStuff',
+            'Spec.cms_usage'     => 0,
+            'Spec.id'            => $ContentSpec_2{'id'},
+            'Spec.owning_module' => 'Test::Test',
+
+            'Owner.email'   => q{gals@super.babes},
+            'Owner.user_id' => undef,
+
+            Data => {
+                q{*} => {
+                    $f_name  => { value => q{Agnes}, },
+                    $f_chest => { value => q{88}, },
+                    $f_waist => { value => q{54}, },
+                    $f_hips  => { value => q{85}, },
+                    $f_cup   => { value => q{C}, },
+                }
+            },
+
+            comment_write_policy => 0,
+            comment_read_policy  => 0,
+
+            added_time    => q{#DATE IS SANE#},
+            modified_time => q{#DATE IS SANE#},
+
+            metadata => {
+                note_to_self => "Third entry - updated",
+            }
         },
     ],
     q{get_Contents (2/2) - existing IDs}
@@ -494,21 +517,30 @@ is_deeply(
         {
             id => $c4,
 
-            Content_Spec_id => $ContentSpec_2{'id'},
-
             status => q{H},
-
-            Page_Entity_id => $p3,
 
             on_page_index => 0,
 
-            _data => {
+            'Page.id'         => $p3,
+            'Page.parent_id'  => 1,
+            'Page.path'       => 'Gals',
+            'Page.menu_order' => 0,
+
+            'Spec.class'         => 'TestStuff',
+            'Spec.cms_usage'     => 0,
+            'Spec.id'            => $ContentSpec_2{'id'},
+            'Spec.owning_module' => 'Test::Test',
+
+            'Owner.email'   => q{gals@super.babes},
+            'Owner.user_id' => undef,
+
+            Data => {
                 q{*} => {
-                    $f_name  => q{Wanda},
-                    $f_chest => q{85},
-                    $f_waist => q{65},
-                    $f_hips  => q{85},
-                    $f_cup   => q{B},
+                    $f_name  => { value => q{Wanda}, },
+                    $f_chest => { value => q{85}, },
+                    $f_waist => { value => q{65}, },
+                    $f_hips  => { value => q{85}, },
+                    $f_cup   => { value => q{B}, },
                 }
             },
 
@@ -517,8 +549,6 @@ is_deeply(
 
             added_time    => q{#DATE IS SANE#},
             modified_time => q{#DATE IS SANE#},
-
-            email => q{gals@super.babes},
 
             metadata => {
                 note_to_self => "Fourth entry",
@@ -536,8 +566,6 @@ is_deeply(
         status => q{A},
 
         _fields => [ qw( status ) ],
-
-        _data_lang => q{en},
     ),
     [],
     q{get_Contents_fields_where (1/2) - miss}
@@ -546,9 +574,7 @@ is_deeply(
     get_Contents_fields_where(
         status => q{H},
 
-        _fields => [ qw( status owning_module ) ],
-
-        _data_lang => q{en},
+        _fields => [ qw( status Spec.owning_module Data ) ],
     ),
     [
         {
@@ -556,19 +582,17 @@ is_deeply(
 
             status => q{H},
 
-            owning_module => q{Test::Test},
+            'Spec.owning_module' => 'Test::Test',
 
-            _data => {
+            Data => {
                 q{*} => {
-                    $f_name  => q{Wanda},
-                    $f_chest => q{85},
-                    $f_waist => q{65},
-                    $f_hips  => q{85},
-                    $f_cup   => q{B},
+                    $f_name  => { value => q{Wanda}, },
+                    $f_chest => { value => q{85}, },
+                    $f_waist => { value => q{65}, },
+                    $f_hips  => { value => q{85}, },
+                    $f_cup   => { value => q{B}, },
                 }
             },
-
-            metadata => {},
         }
     ],
     q{get_Contents_fields_where (2/2) - hit}
@@ -579,12 +603,12 @@ is_deeply(
 #
 is(
     delete_Content(1234),
-    1,
+    undef,
     q{delete_Content (1/2) - miss}
 );
 is(
     delete_Content($c2),
-    1,
+    undef,
     q{delete_Content (2/2) - hit}
 );
 
@@ -593,12 +617,12 @@ is(
 #
 is(
     delete_Contents( [ 123, 456 ] ),
-    2,
+    undef,
     q{delete_Contents (1/2) - miss}
 );
 is(
     delete_Contents( [ $c3, $c4 ] ),
-    2,
+    undef,
     q{delete_Contents (2/2) - hit}
 );
 
@@ -615,6 +639,8 @@ sub _date_is_sane { # {{{
 } # }}}
 sub _dates_are_sane {
     my ( $stuff ) = @_;
+
+#    use Data::Dumper; warn Dumper $stuff;
 
     foreach my $s (@{ $stuff }) {
         _date_is_sane($s);

@@ -1,12 +1,12 @@
 ---
-"Root (default) page":
+Avatar properties page:
   breadcrumb_path: []
   main_object: o
   object_order:
   - o
   objects:
     o:
-      class: MyAccount::MyData
+      class: MyAccount::Avatar
       oid: ~
   page_id: ~
   template: Default
@@ -21,17 +21,6 @@ My data page:
       oid: ~
   page_id: ~
   template: Default
-Avatar properties page:
-  breadcrumb_path: []
-  main_object: o
-  object_order:
-  - o
-  objects:
-    o:
-      class: MyAccount::Avatar
-      oid: ~
-  page_id: ~
-  template: Default
 "Non-existing page":
   breadcrumb_path: []
   main_object: NotFound
@@ -43,3 +32,14 @@ Avatar properties page:
       oid: ~
   page_id: ~
   template: Error
+"Root (default) page":
+  breadcrumb_path: []
+  main_object: o
+  object_order:
+  - o
+  objects:
+    o:
+      class: MyAccount::MyData
+      oid: ~
+  page_id: ~
+  template: Default

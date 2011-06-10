@@ -58,38 +58,6 @@ sub make_form { # {{{
         error   => $errors->{'class'},
     );
 
-    my @role_field_options = (
-        [ q{path},          TR('URL Part') ],
-        [ q{status},        TR('Status') ],
-        [ q{added_time},    TR('Added time') ],
-        [ q{modified_time}, TR('Modified time') ],
-    );
-
-    $form->add_SelectEntry(
-        name    => 'order_by',
-        caption => TR('Order field'),
-        value   => ( $self->{'options'}->{'order_by'} or q{} ),
-        options => \@role_field_options,
-    );
-    $form->add_SelectEntry(
-        name    => 'use_as_title',
-        caption => TR('Title field'),
-        value   => ( $self->{'options'}->{'use_as_title'} or q{} ),
-        options => \@role_field_options,
-    );
-    $form->add_SelectEntry(
-        name    => 'use_in_menu',
-        caption => TR('Menu field'),
-        value   => ( $self->{'options'}->{'use_in_menu'} or q{} ),
-        options => \@role_field_options,
-    );
-    $form->add_SelectEntry(
-        name    => 'use_in_path',
-        caption => TR('Path field'),
-        value   => ( $self->{'options'}->{'use_in_path'} or q{} ),
-        options => \@role_field_options,
-    );
-
     return;
 } # }}}
 
@@ -104,11 +72,6 @@ sub save_form { # {{{
         caption       => $self->{'options'}->{'caption'},
         class         => $self->{'options'}->{'class'},
         owning_module => q{CMS::Entry},
-
-        order_by     => $self->{'options'}->{'order_by'},
-        use_as_title => $self->{'options'}->{'use_as_title'},
-        use_in_menu  => $self->{'options'}->{'use_in_menu'},
-        use_in_path  => $self->{'options'}->{'use_in_path'},
 
         cms_usage => 3, # FIXME: should not be hard-coded.
     );

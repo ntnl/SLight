@@ -78,50 +78,6 @@ Display Spec:
                 label: '0'
               type: Label
             type: Container
-          - class: default
-            content:
-            - class: SL_Property_Caption
-              data:
-                label: 'Order field:'
-              type: Label
-            - class: SL_Property_Value
-              data:
-                label: 'Data field: Article'
-              type: Label
-            type: Container
-          - class: default
-            content:
-            - class: SL_Property_Caption
-              data:
-                label: 'Title field:'
-              type: Label
-            - class: SL_Property_Value
-              data:
-                label: Id
-              type: Label
-            type: Container
-          - class: default
-            content:
-            - class: SL_Property_Caption
-              data:
-                label: 'Menu field:'
-              type: Label
-            - class: SL_Property_Value
-              data:
-                label: 'Data field: Title'
-              type: Label
-            type: Container
-          - class: default
-            content:
-            - class: SL_Property_Caption
-              data:
-                label: 'Path field:'
-              type: Label
-            - class: SL_Property_Value
-              data:
-                label: Id
-              type: Label
-            type: Container
           data: {}
           type: Container
         type: Container

@@ -39,43 +39,14 @@ sub _process { # {{{
     my $pages = SLight::API::Page::get_Page_fields_where(
         parent_id => $page->{'parent_id'},
 
-        _fields => [qw( path )]
+        _fields => [qw( path menu_order L10N )]
     );
 
-    my @menu_items;
-    foreach my $sub_page (@{ $pages }) {
-        my $class = 'Other';
-
-        my ( $order_by, $use_in_menu ) = $self->extract_fields($sub_page->{'id'});
-
-        # FIXME! This will not work on 2-nd level page :(
-        if ($page->{'id'} == $sub_page->{'id'}) {
-            $class = 'Current';
-        }
-
-        my $menu_item = mk_Link_token(
-            class => $class,
-            href  => SLight::Core::URL::make_url(
-                path => [ $sub_page->{'path'} ],
-            ),
-            text => ( $use_in_menu or $sub_page->{'path'} ),
-        );
-
-        $menu_item->{'_sort'} = ( $order_by or $sub_page->{'path'} );
-
-        push @menu_items, $menu_item;
-    }
-
-    my @items_sorted;
-    foreach my $item (sort { $a->{'_sort'} cmp $b->{'_sort'} } @menu_items) {
-        delete $item->{'_sort'};
-
-        push @items_sorted, $item;
-    }
+    my $menu_items = $self->build_menu([], $pages);
 
     my $container = mk_Container_token(
         class   => 'SLight_Submenu_Addon',
-        content => \@items_sorted,
+        content => $menu_items,
     );
 
     return $container;

@@ -42,11 +42,7 @@ Field page:
           cms_usage: 3
           id: 1
           metadata: {}
-          order_by: '11'
           owning_module: CMS::Entry
-          use_as_title: ~
-          use_in_menu: '10'
-          use_in_path: ~
           version: 0
       oid: title
   page_id: ~
@@ -107,11 +103,7 @@ Spec page:
           cms_usage: 3
           id: 1
           metadata: {}
-          order_by: '11'
           owning_module: CMS::Entry
-          use_as_title: ~
-          use_in_menu: '10'
-          use_in_path: ~
           version: 0
       oid: '1'
     article:

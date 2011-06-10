@@ -78,9 +78,11 @@ sub SL_db_select { # {{{
 
     my $sth = $__dbh->prepare($stmt);
 
-    $sth->execute(@bind);
+    if ($sth->execute(@bind)) {
+        return $sth;
+    }
 
-    return $sth;
+    return;
 } # }}}
 
 sub run_query { # {{{

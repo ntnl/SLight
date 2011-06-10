@@ -5,12 +5,12 @@ Root menu:
   - class: Other
     data:
       href: /About/
-      label: Test sub-page
+      label: About...
     type: Link
   - class: Other
     data:
       href: /Docs/
-      label: Docs
+      label: Documentation
     type: Link
   - class: Other
     data:
@@ -24,12 +24,12 @@ Root menu - remains the same:
   - class: Current
     data:
       href: /About/
-      label: Test sub-page
+      label: About...
     type: Link
   - class: Other
     data:
       href: /Docs/
-      label: Docs
+      label: Documentation
     type: Link
   - class: Other
     data:

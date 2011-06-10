@@ -39,6 +39,11 @@ sub new { # {{{
 
             refers_self  => { type=>SCALAR, optional=>1, },
             has_metadata => { type=>SCALAR, optional=>1, }, # Rows from main table contain 'metadata' column
+            has_owner    => { type=>SCALAR, optional=>1, },
+            has_assets   => { type=>SCALAR, optional=>1, },
+            has_comments => { type=>SCALAR, optional=>1, },
+            
+            cache_namespace => { type=>SCALAR, optional=>1, },
         }
     );
     my %P = @_;
@@ -48,22 +53,36 @@ sub new { # {{{
 
         columns => $P{'columns'},
 
+        default_columns => [],
+
         refers_self  => ( $P{'refers_self'}  or 0 ),
         has_metadata => ( $P{'has_metadata'} or 0 ),
+        has_owner    => ( $P{'has_owner'} or 0 ),
+        has_assets   => ( $P{'has_assets'} or 0 ),
+        has_comments => ( $P{'has_comments'} or 0 ),
 
         _field_def => {},
+    };
+
+    # Sane default:
+    $self->{'_field_def'}->{'id'} = {
+        native => 1,
     };
 
     foreach my $column (@{ $self->{'columns'} }) {
         $self->{'_field_def'}->{$column} = {
             native => 1,
         };
+
+        push @{ $self->{'default_columns'} }, $column;
     }
 
     if ($self->{'has_metadata'}) {
         $self->{'_field_def'}->{'metadata'} = {
             native => 1,
         };
+
+        push @{ $self->{'default_columns'} }, 'metadata';
     }
 
     foreach my $opt (qw( referenced refers )) {
@@ -86,6 +105,10 @@ sub new { # {{{
         }
     }
 
+    
+
+#    use Data::Dumper; warn Dumper $self;
+
     return $self;
 } # }}}
 
@@ -102,7 +125,14 @@ sub _hook_refers { # {{{
 
             spec => $spec,
         };
+
+        push @{ $self->{'default_columns'} }, $namespace .q{.}. $field;
     }
+
+    $self->{'_field_def'}->{ $spec->{'_key_field'} } = {
+        native   => 1,
+        internal => 1,
+    };
 
     return;
 } # }}}
@@ -110,19 +140,19 @@ sub _hook_refers { # {{{
 sub _hook_referenced { # {{{
     my ( $self, $namespace, $spec ) = @_;
 
-    $spec->{'namespace'} = $namespace;
-    
-    $spec->{'_key_field'} = $self->{'table'} . q{_id};
-    
-    foreach my $field (@{ $spec->{'columns'} }) {
-        $self->{'_field_def'}->{$namespace .q{.}. $field} = {
-            referenced => 1,
+    my $callbacks = delete $spec->{'cb'};
 
-            _column => $field,
+    $spec->{'_accessor'} = SLight::Core::Accessor->new(%{ $spec });
 
-            spec => $spec,
-        };
-    }
+    $spec->{'cb'} = $callbacks;
+
+    $self->{'_field_def'}->{$namespace} = {
+        referenced => 1,
+
+        spec => $spec,
+    };
+
+    push @{ $self->{'default_columns'} }, $namespace;
 
     return;
 } # }}}
@@ -140,14 +170,22 @@ sub add_ENTITY { # {{{
         $P{'metadata'} = Dump($P{'metadata'});
     }
 
+    if ($self->{'has_owner'}) {
+        if (my $email = delete $P{'email'}) {
+            $P{'Email_id'} = SLight::Core::Email::get_email_id($email, 1);
+        }
+    }
+
     # Support for 'referencing' items.
     my @fields = keys %P;
     my %referencing_items;
     foreach my $field (@fields) {
+        assert_defined($self->{'_field_def'}->{$field}, 'Field configured: '. $field);
+
         if ($self->{'_field_def'}->{$field}->{'referenced'}) {
             my $value = delete $P{$field};
 
-            $referencing_items{ $self->{'_field_def'}->{$field}->{'spec'}->{'namespace'} }->{ $self->{'_field_def'}->{$field}->{'_column'} } = $value;
+            $referencing_items{ $field } = $value;
         }
     }
 
@@ -164,28 +202,16 @@ sub add_ENTITY { # {{{
 #    use Data::Dumper; warn Dumper \%referencing_items;
 
     if (scalar %referencing_items) {
-        foreach my $namespace (keys %referencing_items) {
-            my %rows;
+        foreach my $field (keys %referencing_items) {
+            my $spec = $self->{'_field_def'}->{$field}->{'spec'};
 
-            foreach my $column (keys %{ $referencing_items{$namespace} }) {
-                foreach my $key (keys %{ $referencing_items{$namespace}->{$column} }) {
-                    $rows{$key}->{$column} = $referencing_items{$namespace}->{$column}->{$key};
-                }
-            }
+            # Note: Reference to parent table should ALREADY be in the 'key' hash.
+            foreach my $item (&{ $spec->{'cb'}->{'put'} }( $entity_id, $referencing_items{$field} ) ) {
+#                use Data::Dumper; warn "Item: " . Dumper $item;
 
-            foreach my $row_key (keys %rows) {
-                my $row = $rows{$row_key};
-
-                $row->{ $self->{'referenced'}->{$namespace}->{'key'} } = $row_key;
-
-                $row->{ $self->{'referenced'}->{$namespace}->{'_key_field'} } = $entity_id;
-
-#                use Data::Dumper; warn Dumper $row;
-
-                SLight::Core::DB::run_insert(
-                    'into'   => $self->{'referenced'}->{$namespace}->{'table'},
-                    'values' => $row,
-                    'debug'  => $_debug,
+                $spec->{_accessor}->add_ENTITY(
+                    %{ $item->{'key'} },
+                    %{ $item->{'val'} }
                 );
             }
         }
@@ -200,8 +226,19 @@ sub update_ENTITY { # {{{
 #    use Data::Dumper; warn 'IN ' . Dumper \%P;
 
     my $_debug = delete $P{'_debug'};
+    
+    my $_skip_checks = delete $P{'_skip_checks'};
 
     my $entity_id = delete $P{'id'};
+
+    # Check if the entity exist at all.
+    if (not $_skip_checks) {
+        my $sth = SL_db_select($self->{'table'}, [qw( id )], { id => $entity_id });
+        my ( $exists ) = $sth->fetchrow_array();
+        if (not $exists) {
+            return;
+        }
+    }
 
     SLight::Core::DB::check();
 
@@ -209,18 +246,24 @@ sub update_ENTITY { # {{{
         $P{'metadata'} = Dump($P{'metadata'});
     }
 
+    if ($self->{'has_owner'}) {
+        if (my $email = delete $P{'email'}) {
+            $P{'Email_id'} = SLight::Core::Email::get_email_id($email, 1);
+        }
+    }
+
     # Support for 'referencing' items.
     my @fields = keys %P;
     my %referencing_items;
     foreach my $field (@fields) {
-        assert_defined($self->{'_field_def'}->{$field});
+        assert_defined($self->{'_field_def'}->{$field}, 'Field configured: '.$field);
 
 #        use Data::Dumper; warn Dumper $self->{'_field_def'}->{$field};
 
         if ($self->{'_field_def'}->{$field}->{'referenced'}) {
             my $value = delete $P{$field};
 
-            $referencing_items{ $self->{'_field_def'}->{$field}->{'spec'}->{'namespace'} }->{ $self->{'_field_def'}->{$field}->{'_column'} } = $value;
+            $referencing_items{ $field } = $value;
         }
     }
 
@@ -236,55 +279,35 @@ sub update_ENTITY { # {{{
 #    use Data::Dumper; warn Dumper \%referencing_items;
 
     if (scalar %referencing_items) {
-        foreach my $namespace (keys %referencing_items) {
-            my %rows;
+        foreach my $field (keys %referencing_items) {
+            my $spec = $self->{'_field_def'}->{$field}->{'spec'};
 
-            foreach my $column (keys %{ $referencing_items{$namespace} }) {
-                foreach my $key (keys %{ $referencing_items{$namespace}->{$column} }) {
-                    $rows{$key}->{$column} = $referencing_items{$namespace}->{$column}->{$key};
-                }
-            }
-            my $sth = SL_db_select(
-                $self->{'referenced'}->{$namespace}->{'table'},
-                [ $self->{'referenced'}->{$namespace}->{'key'} ],
-                {
-                    $self->{'referenced'}->{$namespace}->{'key'}        => { -in => [ keys %rows ] },
-                    $self->{'referenced'}->{$namespace}->{'_key_field'} => $entity_id,
-                }
-            );
-            my %keys_exist;
-            while (my ($key) = $sth->fetchrow_array()) {
-                $keys_exist{$key} = 1;
-            }
+            # This is implemented QUICK & DIRTY.
+            # Updates should not be that frequent, so this should be enough.
+            foreach my $item (&{ $spec->{'cb'}->{'put'} }( $entity_id, $referencing_items{$field} ) ) {
+#                use Data::Dumper; warn "Does it exist? " . Dumper $item->{'key'};
 
-            foreach my $row_key (keys %rows) {
-                my $row = $rows{$row_key};
+                # Does this item already exist?
+                # Note: Reference to parent table should ALREADY be in the 'key' hash.
+                my $existing = $spec->{_accessor}->get_ENTITIES_ids_where(
+                    %{ $item->{'key'} },
+                );
 
-                if ($keys_exist{$row_key}) {
-#                    use Data::Dumper; warn "Update referenced " . Dumper $row;
+#                use Data::Dumper; warn "Existing: " . Dumper $existing;
 
-                    SLight::Core::DB::run_update(
-                        'table'  => $self->{'referenced'}->{$namespace}->{'table'},
-                        'set'    => $row,
-                        'debug'  => $_debug,
-                        'where'  => [
-                            $self->{'referenced'}->{$namespace}->{'key'} . q{ = }, $row_key,
+                if (scalar @{ $existing }) {
+                    $spec->{_accessor}->update_ENTITIES(
+                        ids => $existing,
 
-                            q{ AND } . $self->{'referenced'}->{$namespace}->{'_key_field'} .q{ = }, $entity_id,
-                        ],
+                        %{ $item->{'val'} },
+        
+                        _debug => $_debug,
                     );
                 }
                 else {
-                    SLight::Core::DB::run_insert(
-                        'into'   => $self->{'referenced'}->{$namespace}->{'table'},
-                        'values' => {
-                            %{ $row },
-                            
-                            $self->{'referenced'}->{$namespace}->{'key'} => $row_key,
-
-                            $self->{'referenced'}->{$namespace}->{'_key_field'} => $entity_id,
-                        },
-                        'debug'  => $_debug,
+                    $spec->{_accessor}->add_ENTITY(
+                        %{ $item->{'key'} },
+                        %{ $item->{'val'} }
                     );
                 }
             }
@@ -301,7 +324,13 @@ sub update_ENTITIES { # {{{
     my $ids = delete $P{'ids'};
 
     foreach my $id (@{ $ids }) {
-        $self->update_ENTITY(%P, id=>$id);
+        $self->update_ENTITY(
+            %P,
+
+            _skip_checks => 1,
+
+            id => $id,
+        );
     }
 
     return;
@@ -313,21 +342,26 @@ sub get_ENTITY { # {{{
     assert_positive_integer($id);
 
     my ($sth, $select_meta) = $self->_select_ENTITIES(
-        _fields => [ keys %{ $self->{'_field_def'} } ],
+        _fields => $self->{'default_columns'},
 
         id => [ $id ],
+
+        _debug => $_debug,
     );
 
     my $entity = $sth->fetchrow_hashref();
 
-    # Nothing found in DB? Exis ASAP...
+    # Nothing found in DB? Exit ASAP...
     if (not $entity) {
+        if ($_debug) { print STDERR "Nothing found!\n"; }
         return;
     }
     
-#    use Data::Dumper; warn Dumper $entity;
+    my $entities = $self->_post_process_entities( [ $entity ], $select_meta);
+    
+#    use Data::Dumper; warn Dumper $entities->[0];
 
-    return @{ $self->_post_process_entities( [ $entity ], $select_meta) }->[0];
+    return $entities->[0];
 } # }}}
 
 sub get_ENTITY_fields { # {{{
@@ -351,7 +385,9 @@ sub get_ENTITY_fields { # {{{
     
 #    use Data::Dumper; warn Dumper $entity;
 
-    return @{ $self->_post_process_entities( [ $entity ], $select_meta) }->[0];
+    my $entities = $self->_post_process_entities( [ $entity ], $select_meta);
+    
+    return $entities->[0];
 } # }}}
 
 sub get_ENTITIES { # {{{
@@ -360,12 +396,29 @@ sub get_ENTITIES { # {{{
     assert_listref($ids);
 
     my ($sth, $select_meta) = $self->_select_ENTITIES(
-        _fields => [ keys %{ $self->{'_field_def'} } ],
+        _fields => $self->{'default_columns'},
 
         id => $ids,
     );
 
     my @entities; 
+    while (my $entity = $sth->fetchrow_hashref()) {
+        push @entities, $entity;
+    }
+
+    return $self->_post_process_entities(\@entities, $select_meta);
+} # }}}
+
+sub get_ENTITIES_where { # {{{
+    my ( $self, %P ) = @_;
+
+    my ($sth, $select_meta) = $self->_select_ENTITIES(
+        %P,
+        
+        _fields => $self->{'default_columns'},
+    );
+
+    my @entities;
     while (my $entity = $sth->fetchrow_hashref()) {
         push @entities, $entity;
     }
@@ -427,6 +480,13 @@ sub get_ENTITIES_ids_where { # {{{
     return \@ids;
 } # }}}
 
+sub count_ENTITIES_where { # {{{
+    my ( $self, %P ) = @_;
+
+    # Yes, there are faster algorythms, but there is no faster implementation ;)
+    return scalar @{ $self->get_ENTITIES_ids_where(%P) };
+} # }}}
+
 sub _select_ENTITIES { # {{{
     my ( $self, %P ) = @_;
 
@@ -483,13 +543,7 @@ sub _select_ENTITIES { # {{{
 
         if ($self->{'_field_def'}->{$field}->{'referenced'}) {
             # Will be done on second stage.
-            my $spec = $self->{'_field_def'}->{$field}->{'spec'};
-
-            $select_meta{'referenced'}->{ $spec->{'namespace'} }->{'spec'} = $spec;
-
-            push @{ $select_meta{'referenced'}->{ $spec->{'namespace'} }->{'fields'} }, $field;
-            
-            push @{ $select_meta{'referenced'}->{ $spec->{'namespace'} }->{'columns'} }, (sprintf q{`%s`.`%s` AS `%s`}, $spec->{'table'}, $self->{'_field_def'}->{$field}->{'_column'}, $field);
+            $select_meta{'referenced'}->{ $field } = 1;
 
             next;
         }
@@ -531,24 +585,25 @@ sub _post_process_entities { # {{{
 #        use Data::Dumper; warn Dumper $select_meta->{'referenced'};
 
         foreach my $namespace (keys %{ $select_meta->{'referenced'} }) {
-            my $spec = $select_meta->{'referenced'}->{$namespace}->{'spec'};
+            my $spec = $self->{'_field_def'}->{$namespace}->{'spec'};
 
 #            use Data::Dumper; warn Dumper $spec;
 
-            my %where = (
-                $self->{'table'} .q{_id} => { '-in' => [ keys %mapping ] },
+            my $entity_pool = $spec->{_accessor}->get_ENTITIES_fields_where(
+                _fields => $spec->{'columns'},
+
+                $self->{'table'} .q{_id} => [ keys %mapping ]
             );
 
-            my $sth = SL_db_select($spec->{'table'}, [ $self->{'table'} .q{_id}, $spec->{'key'}, @{ $select_meta->{'referenced'}->{ $namespace }->{'columns'} } ], \%where);
+#            use Data::Dumper; warn 'Pool: ' .  Dumper $entity_pool;
 
-            while (my $referenced = $sth->fetchrow_hashref()) {
-#                use Data::Dumper; warn Dumper $referenced;
+            foreach my $entity (@{ $entity_pool }) {
+                push @{ $mapping{ $entity->{ $self->{'table'} .q{_id} } }->{$namespace} }, $entity;
+            }
 
-                foreach my $column (@{ $select_meta->{'referenced'}->{ $namespace }->{'fields'} }) {
-                    my $key_value = $referenced->{ $spec->{'key'} };
-
-                    $mapping{ $referenced->{ $self->{'table'} .q{_id} } }->{ $column }->{ $key_value } = $referenced->{$column};
-                }
+            # Now, that ALL entities are sorted out...
+            foreach my $entity (@{ $entities }) {
+                $entity->{$namespace} = &{ $spec->{'cb'}->{'get'} }( $entity->{$namespace} );
             }
         }
     }
@@ -576,6 +631,37 @@ sub delete_ENTITYs { # {{{
     return;
 } # }}}
 
+################################################################################
+#                           Utility methods
+################################################################################
+
+
+sub timestamp_2_timedate { # {{{
+    my ( $self, $timestamp ) = @_;
+
+    my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime $timestamp;
+
+    return sprintf q{%04d-%02d-%02d %02d:%02d:%02d}, $year + 1900, $mon + 1, $mday, $hour, $min, $sec;
+} # }}}
+
+
+################################################################################
+#                           Internal routines
+################################################################################
+
+
+# Owner/Email handling.
+
+sub _pack_email { # {{{
+    my ( $self, $P ) = @_;
+    
+    # Get or assign ID of the email:
+    if ($P->{'email'}) {
+        $P->{'email_id'} = SLight::Core::Email::get_email_id(delete $P->{'email'}, 1);
+    }
+
+    return; # Works in place.
+} # }}}
 
 # vim: fdm=marker
 1;

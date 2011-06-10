@@ -42,8 +42,29 @@ my $_handler = SLight::Core::Accessor->new( # {{{
     referenced => {
         L10N => {
             table   => 'Page_Entity_Data',
-            columns => [qw( title menu breadcrumb )],
-            key     => 'language',
+            columns => [qw( Page_Entity_id language title menu breadcrumb )],
+            cb => {
+                get => sub { # {{{
+                    my ( $items ) = @_;
+
+                    my %data;
+                    foreach my $item (@{ $items }) { delete $item->{'id'}; delete $item->{'Page_Entity_id'}; $data{ delete $item->{'language'} } = $item; }
+                    return \%data;
+                }, # }}}
+                put => sub { # {{{
+                    my ( $parent_id, $data ) = @_;
+
+                    my @items;
+                    foreach my $language (keys %{ $data }) {
+                        push @items, {
+                            key => { Page_Entity_id => $parent_id, language => $language },
+                            val => $data->{$language},
+                        };
+                    }
+
+                    return @items;
+                } # }}}
+            }
         },
     },
 
@@ -60,9 +81,7 @@ sub add_Page { # {{{
             template   => { type=>SCALAR, optional=>1 },
             menu_order => { type=>SCALAR, optional=>1 },
 
-            'L10N.title'      => { type=>HASHREF, optional=>1 },
-            'L10N.menu'       => { type=>HASHREF, optional=>1 },
-            'L10N.breadcrumb' => { type=>HASHREF, optional=>1 },
+            'L10N' => { type=>HASHREF, optional=>1 },
         }
     );
 
@@ -81,9 +100,7 @@ sub update_Page { # {{{
             template   => { type=>SCALAR, optional=>1 },
             menu_order => { type=>SCALAR, optional=>1 },
 
-            'L10N.title'      => { type=>HASHREF, optional=>1 },
-            'L10N.menu'       => { type=>HASHREF, optional=>1 },
-            'L10N.breadcrumb' => { type=>HASHREF, optional=>1 },
+            L10N => { type=>HASHREF, optional=>1 },
         }
     );
 
@@ -102,9 +119,7 @@ sub update_Pages { # {{{
             template   => { type=>SCALAR, optional=>1 },
             menu_order => { type=>SCALAR, optional=>1 },
 
-            'L10N.title'      => { type=>HASHREF, optional=>1 },
-            'L10N.menu'       => { type=>HASHREF, optional=>1 },
-            'L10N.breadcrumb' => { type=>HASHREF, optional=>1 },
+            L10N => { type=>HASHREF, optional=>1 },
         }
     );
 

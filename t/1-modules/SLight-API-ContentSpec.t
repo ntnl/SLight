@@ -84,11 +84,6 @@ is (
 
         class => 'Folder',
 
-        order_by     => 1,
-        use_as_title => 1,
-        use_in_menu  => 1,
-        use_in_path  => 1,
-
         _data => {
             label   => { datatype => q{String}, caption => q{Label},   field_index => 1, default_value => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
             summary => { datatype => q{Text},   caption => q{Summary}, field_index => 2, default_value => q{},           max_length => 987, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
@@ -217,11 +212,6 @@ is_deeply (
 
         class => 'Folder',
 
-        order_by     => 1,
-        use_as_title => 1,
-        use_in_menu  => 1,
-        use_in_path  => 1,
-
         _data => {
             caption => { id=>2, datatype => q{String}, caption => q{Label},    field_index => 1, default_value => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
             summary => { id=>1, datatype => q{Text},   caption => q{Overview}, field_index => 2, default_value => q{},           max_length => 789, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
@@ -259,11 +249,6 @@ is_deeply(
 
             class => 'Folder',
 
-            order_by     => 1,
-            use_as_title => 1,
-            use_in_menu  => 1,
-            use_in_path  => 1,
-
             _data => {
                 caption => { id=>2, datatype => q{String}, caption => q{Label},    field_index => 1, default_value => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
                 summary => { id=>1, datatype => q{Text},   caption => q{Overview}, field_index => 2, default_value => q{},           max_length => 789, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
@@ -294,11 +279,6 @@ is_deeply(
 
             class => 'Folder',
 
-            order_by     => 1,
-            use_as_title => 1,
-            use_in_menu  => 1,
-            use_in_path  => 1,
-
             _data => {
                 caption => { id=>2, datatype => q{String}, caption => q{Label},    field_index => 1, default_value => q{New folder}, max_length => 128, translate => 1, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },
                 summary => { id=>1, datatype => q{Text},   caption => q{Overview}, field_index => 2, default_value => q{},           max_length => 789, translate => 1, optional => 1, display_on_page => 1, display_on_list => 0, display_label => 1 },
@@ -315,11 +295,6 @@ is_deeply(
             version       => 0,
 
             class => 'Stuff',
-
-            order_by     => undef,
-            use_as_title => undef,
-            use_in_menu  => undef,
-            use_in_path  => undef,
 
             _data => {
                 brand => { id=>5, datatype => q{String}, caption => q{Brand},          field_index => 1, default_value => q{}, max_length => 75, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 0 },

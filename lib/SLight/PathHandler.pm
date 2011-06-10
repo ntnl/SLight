@@ -182,5 +182,8 @@ sub generic_error_page { # {{{
     return $self->response_content(); 
 } # }}}
 
+# Virtual:
+sub get_path_target { my ( $self ) = @_; return; }
+
 # vim: fdm=marker
 1;

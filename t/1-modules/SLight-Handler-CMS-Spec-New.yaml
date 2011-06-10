@@ -40,66 +40,6 @@ New spec form:
                 value: ''
               type: Entry
             type: Container
-          - class: F-order_by SelectEntry
-            content:
-            - class: Label
-              data:
-                label: Order field
-              type: Label
-            - class: Value
-              data:
-                name: order_by
-                options: &1
-                - - path
-                  - URL Part
-                - - status
-                  - Status
-                - - added_time
-                  - Added time
-                - - modified_time
-                  - Modified time
-                value: ''
-              type: SelectEntry
-            type: Container
-          - class: F-use_as_title SelectEntry
-            content:
-            - class: Label
-              data:
-                label: Title field
-              type: Label
-            - class: Value
-              data:
-                name: use_as_title
-                options: *1
-                value: ''
-              type: SelectEntry
-            type: Container
-          - class: F-use_in_menu SelectEntry
-            content:
-            - class: Label
-              data:
-                label: Menu field
-              type: Label
-            - class: Value
-              data:
-                name: use_in_menu
-                options: *1
-                value: ''
-              type: SelectEntry
-            type: Container
-          - class: F-use_in_path SelectEntry
-            content:
-            - class: Label
-              data:
-                label: Path field
-              type: Label
-            - class: Value
-              data:
-                name: use_in_path
-                options: *1
-                value: ''
-              type: SelectEntry
-            type: Container
           data:
             action: /_CMS_Spec/Spec/New-save.web
             hidden: {}

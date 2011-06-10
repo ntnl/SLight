@@ -1,4 +1,4 @@
-package SLight::Handler::List::Base;
+package SLight::Handler::List::Aggregator::Delete;
 ################################################################################
 # 
 # SLight - Lightweight Content Management System.

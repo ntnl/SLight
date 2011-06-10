@@ -85,23 +85,6 @@ sub handle_view { # {{{
         value   => $spec->{'version'},
     );
 
-    $properties->add_Property(
-        caption => TR("Order field") . q{:},
-        value   => $self->make_field_label($spec, $spec->{'order_by'}),
-    );
-    $properties->add_Property(
-        caption => TR("Title field") . q{:},
-        value   => $self->make_field_label($spec, $spec->{'use_as_title'}),
-    );
-    $properties->add_Property(
-        caption => TR("Menu field") . q{:},
-        value   => $self->make_field_label($spec, $spec->{'use_in_menu'}),
-    );
-    $properties->add_Property(
-        caption => TR("Path field") . q{:},
-        value   => $self->make_field_label($spec, $spec->{'use_in_path'}),
-    );
-
     $self->push_data($properties);
 
     return;

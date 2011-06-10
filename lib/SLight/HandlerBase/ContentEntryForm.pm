@@ -56,6 +56,7 @@ sub build_form_guts { # {{{
             );
         }
         # Fixme! This should be a select entry!
+        # FIXME: This has to be editable!
         $form->add_Entry(
             caption => TR('Template file'),
             name    => 'page.template',
@@ -63,6 +64,8 @@ sub build_form_guts { # {{{
             error   => $P{'errors'}->{'page.template'},
         );
     }
+    
+    # Fixme: Add new stuff handled by Page!
 
     # Content must be signed, so if current User has not logged-in,
     # he must provide an email address, that will be used to sign this new entry.
@@ -173,7 +176,7 @@ sub _add_field_to_form { # {{{
             name => $cgi_field_name,
 
             caption => TR('Summary'),
-            value   => ( $self->{'options'}->{$cgi_field_name} or $P{'content'}->{'_data'}->{$field_name} or q{} ),
+            value   => ( $self->{'options'}->{$cgi_field_name} or $P{'content'}->{'Data'}->{$field_name} or q{} ),
             error   => $P{'errors'}->{$cgi_field_name},
         );
         if ($P{'content'}->{'id'}) {
@@ -218,7 +221,7 @@ sub _add_field_to_form { # {{{
             # Value will be initialized from DB data.
             $entry_value = SLight::DataType::decode_data(
                 type   => $field_spec->{'datatype'},
-                value  => ( $P{'content'}->{'_data'}->{$field_lang}->{$field_spec->{'id'}} or q{} ),
+                value  => ( $P{'content'}->{'Data'}->{$field_lang}->{$field_spec->{'id'}} or q{} ),
                 format => q{},
                 target => 'FORM',
             );

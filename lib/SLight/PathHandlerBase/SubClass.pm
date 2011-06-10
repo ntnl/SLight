@@ -62,7 +62,7 @@ sub analyze_path { # {{{
 
 # Virtual
 sub bread_crumbs { # {{{
-    return;
+    return [];
 } # }}}
 
 # vim: fdm=marker

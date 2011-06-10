@@ -17,7 +17,8 @@ INSERT INTO "Email" VALUES(2,'A','beata@test.test',NULL);
 INSERT INTO "Email" VALUES(3,'A','ela@test.test',NULL);
 INSERT INTO "Email" VALUES(4,'A','natka@test.test',NULL);
 INSERT INTO "Email" VALUES(5,'A','wanda@test.test',NULL);
-INSERT INTO "Email" VALUES(6,'A','test@test.test',NULL);
+INSERT INTO "Email" VALUES(6,'A','test@example.test',NULL);
+INSERT INTO "Email" VALUES(7,'A','test@test.test',NULL);
 CREATE TABLE Email_Verification_Key (
 	`id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it
 
@@ -30,8 +31,8 @@ CREATE TABLE Email_Verification_Key (
 
     FOREIGN KEY(`Email_id`) REFERENCES Email(`id`)
 );
-CREATE TABLE Page_Entity (
-	`id`       INTEGER PRIMARY KEY,
+CREATE TABLE Page_Entity ( -- {{{
+	`id` INTEGER PRIMARY KEY,
 
     `parent_id` INTEGER,
 		-- our parent, or NULL on top-level comments.
@@ -40,15 +41,51 @@ CREATE TABLE Page_Entity (
 
     `template` VARCHAR(128),
 
+    `menu_order` INTEGER NOT NULL DEFAULT 0,
+        -- Order in menu, ascending (zero is first).
+
+    `languages` VARCHAR(94) NOT NULL DEFAULT '',
+        -- Lists languages, with which the Page Entry is described.
+
     FOREIGN KEY (`parent_id`) REFERENCES Page_Entity (`id`) ON DELETE CASCADE
 );
-INSERT INTO "Page_Entity" VALUES(1,NULL,'','Default');
-INSERT INTO "Page_Entity" VALUES(2,1,'About','Info');
-INSERT INTO "Page_Entity" VALUES(3,1,'Docs','Doc');
-INSERT INTO "Page_Entity" VALUES(4,1,'Download',NULL);
-INSERT INTO "Page_Entity" VALUES(5,2,'Authors',NULL);
-INSERT INTO "Page_Entity" VALUES(6,5,'Feedback',NULL);
-CREATE TABLE Content_Spec (
+INSERT INTO "Page_Entity" VALUES(1,NULL,'','Default',0,'');
+INSERT INTO "Page_Entity" VALUES(2,1,'About','Info',0,'');
+INSERT INTO "Page_Entity" VALUES(3,1,'Docs','Doc',0,'');
+INSERT INTO "Page_Entity" VALUES(4,1,'Download',NULL,0,'');
+INSERT INTO "Page_Entity" VALUES(5,2,'Authors',NULL,0,'');
+INSERT INTO "Page_Entity" VALUES(6,5,'Feedback',NULL,0,'');
+CREATE TABLE Page_Entity_Data ( -- {{{
+	`id` INTEGER PRIMARY KEY,
+
+    `Page_Entity_id` INTEGER NOT NULL,
+
+	`language` CHAR(5) NOT NULL,
+        -- 2 (pl) or 5 (pl_pl) character language code, if the field is translatable.
+        -- * if the field is not translatable.
+
+    `title` VARCHAR(256) NOT NULL,
+    `menu`  VARCHAR(128),
+        -- If not present, 'menu' will be used.
+
+    `breadcrumb` VARCHAR(128),
+        -- If not present, 'menu' will be used.
+
+    FOREIGN KEY (`Page_Entity_id`) REFERENCES Page_Entity (`id`) ON DELETE CASCADE
+);
+INSERT INTO "Page_Entity_Data" VALUES(1,1,'en','Test site','Test site','Test site');
+INSERT INTO "Page_Entity_Data" VALUES(2,1,'pl','Strona testowa','Strona testowa','Strona testowa');
+INSERT INTO "Page_Entity_Data" VALUES(3,2,'en','About the test page','About...','About the site');
+INSERT INTO "Page_Entity_Data" VALUES(4,2,'pl','Informacje o stronie','Informacje...','O stronie');
+INSERT INTO "Page_Entity_Data" VALUES(5,3,'en','Documentation','Documentation','Documentation');
+INSERT INTO "Page_Entity_Data" VALUES(6,3,'pl','Dokumentacja','Dokumentacja','Dokumentacja');
+INSERT INTO "Page_Entity_Data" VALUES(7,4,'en','Download','Download','Download');
+INSERT INTO "Page_Entity_Data" VALUES(8,4,'pl','Pobierz','Pobierz','Pobierz');
+INSERT INTO "Page_Entity_Data" VALUES(9,5,'en','Authors','Authors','Authors');
+INSERT INTO "Page_Entity_Data" VALUES(10,5,'pl','Autorzy','Autorzy','Autorzy');
+INSERT INTO "Page_Entity_Data" VALUES(11,6,'en','Your feedback','Feedback','Feedback');
+INSERT INTO "Page_Entity_Data" VALUES(12,6,'pl','Wasze opinie','Opinie','Opinie');
+CREATE TABLE Content_Spec ( -- {{{
 	`id`     	INTEGER PRIMARY KEY,
 
 	`caption`	VARCHAR(128) NOT NULL,
@@ -71,28 +108,14 @@ CREATE TABLE Content_Spec (
         --  2 : can be used by CMS (as pages)
         --  3 : can be used by CMS (as pages and page additions)
 
-    `order_by` VARCHAR(128),
-        -- NULL     : unsorted (use their IDs)
-        -- $string  : Where $string is one of: status, added_time, modified_time (Content_Entity row)
-        -- $integer : Where $field is the Content_Spec_Field_id
-
-    `use_as_title` VARCHAR(128),
-        -- Same as `order_by`
-
-    `use_in_menu` VARCHAR(128),
-        -- Same as `order_by`
-
-    `use_in_path` VARCHAR(128),
-        -- Same as `order_by`
-
     `metadata` TEXT
         -- Serialized with YAML.
         -- A place where modules can put 'their' stuff.
 );
-INSERT INTO "Content_Spec" VALUES(1,'Article','CMS::Entry',0,'Content',3,'11',NULL,'10',NULL,NULL);
-INSERT INTO "Content_Spec" VALUES(2,'News','CMS::Entry',0,'Content',3,NULL,NULL,NULL,NULL,NULL);
-INSERT INTO "Content_Spec" VALUES(3,'Gal','CMS::Entry',0,'Person',1,NULL,NULL,NULL,NULL,NULL);
-CREATE TABLE Content_Spec_Field (
+INSERT INTO "Content_Spec" VALUES(1,'Article','CMS::Entry',0,'Content',3,NULL);
+INSERT INTO "Content_Spec" VALUES(2,'News','CMS::Entry',0,'Content',3,NULL);
+INSERT INTO "Content_Spec" VALUES(3,'Gal','CMS::Entry',0,'Person',1,NULL);
+CREATE TABLE Content_Spec_Field ( -- {{{
 	`id`		INTEGER PRIMARY KEY,
 
     `Content_Spec_id` INTEGER,
@@ -184,20 +207,15 @@ INSERT INTO "Content_Spec_Field" VALUES(36,3,'waist','Waist',7,'Int','',0,2,2,1,
 INSERT INTO "Content_Spec_Field" VALUES(37,3,'hips','Hips',8,'Int','',0,2,2,1,0,3);
 INSERT INTO "Content_Spec_Field" VALUES(38,3,'cup','Cup size',9,'String','',0,2,2,1,0,1);
 INSERT INTO "Content_Spec_Field" VALUES(39,3,'about','About',10,'Text','',1,2,2,1,0,10240);
-CREATE TABLE Content_Entity (
+CREATE TABLE Content_Entity ( -- {{{
     `id` INTEGER PRIMARY KEY,
 
     `Content_Spec_id` INTEGER NOT NULL,
         -- Which type describes this one.
 
-    `Email_id` INTEGER,
+    `Email_id` INTEGER NOT NULL,
         -- Owner's Email ID.
 		-- This may lead to an User account if the entity was written by a User
-
-	`status` CHAR(1) NOT NULL,
-		-- V = visible
-        -- A = archived (does not appear on lists, but is otherwise fully accessible)
-        -- H = hidden (only visible to owner)
 
     `Page_Entity_id` INTEGER NOT NULL,
         -- ID of Page on which this object is located.
@@ -205,8 +223,13 @@ CREATE TABLE Content_Entity (
     `on_page_index` SMALLINT DEFAULT 0 NOT NULL,
         -- Location on page.
         --  <0 means that the object is BEFORE the main object
-        --   0 means, that this IS the main object
+        --   0 means, that this IS the main Page object
         --  >0 means, that the object is AFTER the main object
+
+	`status` CHAR(1) NOT NULL,
+		-- V = visible
+        -- A = archived (does not appear on lists, but is otherwise fully accessible)
+        -- H = hidden (only visible to owner)
 
 	`comment_write_policy` SMALLINT NOT NULL DEFAULT 0,
 		-- Defines policy for making comments (replies, opinions, etc):
@@ -232,14 +255,19 @@ CREATE TABLE Content_Entity (
         -- Serialized with YAML.
         -- A place where modules can put 'their' stuff.
 
+    `languages` VARCHAR(94) NOT NULL DEFAULT '',
+        -- Lists languages, into which the entry is translated into.
+
     FOREIGN KEY (`Page_Entity_id`)  REFERENCES Page_Entity (`id`) ON DELETE CASCADE,
     FOREIGN KEY (`Email_id`)        REFERENCES Email(`id`) ON DELETE CASCADE,
 	FOREIGN KEY (`Content_Spec_id`) REFERENCES Content_Spec(`id`) ON DELETE CASCADE
 );
-INSERT INTO "Content_Entity" VALUES(1,1,NULL,'V',1,0,0,0,'2011-04-26 16:27:37','2011-04-26 16:27:37',NULL);
-INSERT INTO "Content_Entity" VALUES(2,1,NULL,'V',2,0,0,0,'2011-04-26 16:27:37','2011-04-26 16:27:37',NULL);
-CREATE TABLE Content_Entity_Data (
-	`Content_Entity_id` INTEGER NOT NULL,
+INSERT INTO "Content_Entity" VALUES(1,1,6,1,0,'V',0,0,'2011-06-10 23:11:27','2011-06-10 23:11:27',NULL,'');
+INSERT INTO "Content_Entity" VALUES(2,1,6,2,0,'V',0,0,'2011-06-10 23:11:27','2011-06-10 23:11:27',NULL,'');
+CREATE TABLE Content_Entity_Data ( -- {{{
+    `id` INTEGER PRIMARY KEY,
+
+    `Content_Entity_id` INTEGER NOT NULL,
 
     `Content_Spec_Field_id` INTEGER NOT NULL,
 		-- this is the primary index column from Content_Spec_Field.
@@ -248,34 +276,37 @@ CREATE TABLE Content_Entity_Data (
         -- 2 (pl) or 5 (pl_pl) character language code, if the field is translatable.
         -- * if the field is not translatable.
 
-	`value`	TEXT NOT NULL,
+	`value` TEXT NOT NULL,
 
-	FOREIGN KEY(`Content_Entity_id`)     REFERENCES Content_Entity(`id`) ON DELETE CASCADE,
+    `summary` TEXT NOT NULL DEFAULT '',
+
+    `sort_index_aid` INTEGER NOT NULL DEFAULT 0,
+        -- This integer is used to aid quick pre-sorting of data. It should be created
+        -- by multiplication of first four characters from `value` column.
+
+    FOREIGN KEY(`Content_Entity_id`) REFERENCES Content_Entity(`id`) ON DELETE CASCADE,
     FOREIGN KEY(`Content_Spec_Field_id`) REFERENCES Content_Spec_Field(`id`) ON DELETE CASCADE
 );
-INSERT INTO "Content_Entity_Data" VALUES(1,11,'en','---
+INSERT INTO "Content_Entity_Data" VALUES(1,1,11,'en','---
  - Minimal test site, not such minimal any more ;)
-');
-INSERT INTO "Content_Entity_Data" VALUES(1,10,'en','Test site is up');
-INSERT INTO "Content_Entity_Data" VALUES(1,11,'pl','---
+','',0);
+INSERT INTO "Content_Entity_Data" VALUES(2,1,10,'en','Test site is up','',0);
+INSERT INTO "Content_Entity_Data" VALUES(3,1,11,'pl','---
  - Minimalna strona testowa, już nie taka minimalna ;)
-');
-INSERT INTO "Content_Entity_Data" VALUES(1,10,'pl','Strona testowa zrobiona');
-INSERT INTO "Content_Entity_Data" VALUES(2,11,'en','---
+','',0);
+INSERT INTO "Content_Entity_Data" VALUES(4,1,10,'pl','Strona testowa zrobiona','',0);
+INSERT INTO "Content_Entity_Data" VALUES(5,2,11,'en','---
  - Minimal test page, not such minimal any more ;)
-');
-INSERT INTO "Content_Entity_Data" VALUES(2,10,'en','Test sub-page');
-INSERT INTO "Content_Entity_Data" VALUES(2,11,'pl','---
+','',0);
+INSERT INTO "Content_Entity_Data" VALUES(6,2,10,'en','Test sub-page','',0);
+INSERT INTO "Content_Entity_Data" VALUES(7,2,11,'pl','---
  - Minimalna strona testowa, już nie taka minimalna ;)
-');
-INSERT INTO "Content_Entity_Data" VALUES(2,10,'pl','Podstrona testowa');
-CREATE TABLE Content_Entity_Data_History (
+','',0);
+INSERT INTO "Content_Entity_Data" VALUES(8,2,10,'pl','Podstrona testowa','',0);
+CREATE TABLE Content_Entity_Data_History ( -- {{{
     `id` INTEGER PRIMARY KEY,
 
-	`Content_Entity_id` INTEGER NOT NULL,
-
-    `Content_Spec_Field_id` INTEGER NOT NULL,
-		-- this is the primary index column from Content_Spec_Field.
+	`Content_Entity_Data_id` INTEGER NOT NULL,
 
 	`language` CHAR(5) NOT NULL,
         -- 2 (pl) or 5 (pl_pl) character language code, if the field is translatable.
@@ -286,10 +317,9 @@ CREATE TABLE Content_Entity_Data_History (
     `event_time`	TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         -- Time when given value was set.
 
-	FOREIGN KEY(`Content_Entity_id`)     REFERENCES Content_Entity(`id`) ON DELETE CASCADE,
-    FOREIGN KEY(`Content_Spec_Field_id`) REFERENCES Content_Spec_Field(`id`) ON DELETE CASCADE
+    FOREIGN KEY(`Content_Entity_Data_id`) REFERENCES Content_Entity_Data(`id`) ON DELETE CASCADE
 );
-CREATE TABLE Comment_Entity (
+CREATE TABLE Comment_Entity ( -- {{{
 	`id` INTEGER PRIMARY KEY,
 
 	`parent_id` INTEGER,
@@ -310,7 +340,7 @@ CREATE TABLE Comment_Entity (
     FOREIGN KEY (`parent_id`) REFERENCES Comment_Entity (`id`) ON DELETE CASCADE,
     FOREIGN KEY (`Email_id`)  REFERENCES Email(`id`) ON DELETE CASCADE
 );
-CREATE TABLE Asset_Entity (
+CREATE TABLE Asset_Entity ( -- {{{
 	`id` INTEGER PRIMARY KEY,
 
     `Email_id` INTEGER,
@@ -327,19 +357,19 @@ CREATE TABLE Asset_Entity (
 
 	FOREIGN KEY (`Email_id`) REFERENCES Email(`id`) ON DELETE CASCADE
 );
-INSERT INTO "Asset_Entity" VALUES(1,3,'2011-04-26 14:27:37','',6700,'image/gif','');
-INSERT INTO "Asset_Entity" VALUES(2,6,'2011-04-26 14:27:38','SampleImage.png',13379,'image/png','Sample image for testing purposes.');
-CREATE TABLE Asset_2_Content (
+INSERT INTO "Asset_Entity" VALUES(1,3,'2011-06-10 21:11:27','',6700,'image/gif','');
+INSERT INTO "Asset_Entity" VALUES(2,7,'2011-06-10 21:11:27','SampleImage.png',13379,'image/png','Sample image for testing purposes.');
+CREATE TABLE Asset_2_Content ( -- {{{
     `Asset_Entity_id` INTEGER,
 
     `Content_Entity_id` INTEGER NOT NULL,
 
     FOREIGN KEY (`Content_Entity_id`) REFERENCES Content_Entity (`id`) ON DELETE CASCADE
 );
-CREATE TABLE Asset_2_Content_Field (
+CREATE TABLE Asset_2_Content_Field ( -- {{{
     `Asset_Entity_id` INTEGER,
 
-    `Content_Entity_id` INTEGER NOT NULL,
+    `Content_Entity_id`     INTEGER NOT NULL,
     `Content_Spec_Field_id` INTEGER,
 
     FOREIGN KEY (`Asset_Entity_id`)       REFERENCES Asset_Entity (`id`) ON DELETE CASCADE,
@@ -414,19 +444,19 @@ CREATE UNIQUE INDEX Email_email ON Email (email);
 CREATE UNIQUE INDEX EVK_key ON Email_Verification_Key (key);
 CREATE UNIQUE INDEX Page_Entity_id   ON Page_Entity (id);
 CREATE UNIQUE INDEX Page_Entity_path ON Page_Entity (parent_id, path);
+CREATE UNIQUE INDEX Page_Entity_Language ON Page_Entity_Data (Page_Entity_id, language);
 CREATE INDEX Content_Spec_module ON Content_Spec (owning_module);
 CREATE INDEX Content_Spec_Field_Content_Spec_id ON Content_Spec_Field (Content_Spec_id);
 CREATE UNIQUE INDEX Content_Spec_Field_class           ON Content_Spec_Field (Content_Spec_id, class);
 CREATE UNIQUE INDEX Content_Entity_Page_Stuff ON Content_Entity (Page_Entity_id, on_page_index);
-CREATE UNIQUE INDEX Content_Entity_Data_index ON Content_Entity_Data (Content_Entity_id, Content_Spec_Field_id, language);
+CREATE UNIQUE INDEX Content_Entity_Data_unique ON Content_Entity_Data (Content_Entity_id, Content_Spec_Field_id, language);
+CREATE INDEX Content_Entity_Data_fetch  ON Content_Entity_Data (Content_Entity_id, language);
 CREATE INDEX Comment_Entity_parent ON Comment_Entity (`parent_id`);
 CREATE INDEX Comment_Entity_email  ON Comment_Entity (`Email_id`);
 CREATE INDEX Asset_Entity_email ON Asset_Entity (`Email_id`);
 CREATE UNIQUE INDEX Asset_2_Content_unique ON Asset_2_Content (`Asset_Entity_id`, `Content_Entity_id`);
 CREATE INDEX Asset_2_Content_target ON Asset_2_Content (`Content_Entity_id`);
 CREATE UNIQUE INDEX Asset_2_Content_Field_unique  ON Asset_2_Content_Field (`Asset_Entity_id`, `Content_Entity_id`, `Content_Spec_Field_id`);
-CREATE INDEX Asset_2_Content_Field_target  ON Asset_2_Content_Field (`Content_Entity_id`, `Content_Spec_Field_id`);
-CREATE INDEX Asset_2_Content_Field_targets ON Asset_2_Content_Field (`Content_Entity_id`);
 CREATE UNIQUE INDEX User_Entity_login ON User_Entity (login);
 CREATE INDEX User_Entity_email ON User_Entity (Email_id);
 CREATE UNIQUE INDEX System_Access_target ON System_Access (`user_type`, `handler_family`, `handler_class`, `handler_action`);

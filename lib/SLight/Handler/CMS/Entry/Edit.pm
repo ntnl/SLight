@@ -33,7 +33,10 @@ sub handle_view { # {{{
 
     my $content = get_Content($oid);
 
-    my $content_spec = get_ContentSpec($content->{'Content_Spec_id'});
+    use Data::Dumper; warn "Content ($oid): " . Dumper $content;
+
+    # Is this needed after migration to Accessor?
+    my $content_spec = get_ContentSpec($content->{'Spec.id'});
 
     $self->set_class($content_spec->{'class'});
 
@@ -67,7 +70,7 @@ sub handle_save { # {{{
     my %content = (
         id => $oid,
 
-        _data => $data,
+        Data => $data,
 
         comment_write_policy => $self->{'options'}->{'meta.comment_write_policy'},
         comment_read_policy  => $self->{'options'}->{'meta.comment_read_policy'},

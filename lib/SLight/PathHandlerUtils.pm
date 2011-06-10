@@ -31,9 +31,9 @@ sub get_path_target { # {{{
     # Eval is here, because not all PathHandler objects implement this method yet. FIXME later.
     my $target = eval { return $path_handler_object->get_path_target($path); };
 
-#    if ($EVAL_ERROR) {
-#        warn $EVAL_ERROR;
-#    }
+    if ($EVAL_ERROR) {
+        warn $EVAL_ERROR;
+    }
 
     if ($target) {
         return $target;

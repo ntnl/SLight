@@ -40,14 +40,8 @@ my @tests = (
                 caption       => 'Woman',
                 owning_module => 'CMS::Entry',
                 version       => 0,
-                cms_usage     => 1,
 
                 class => 'Gal',
-
-                order_by     => 60, # Ought to be the boobs size :)
-                use_as_title => 10, # Full name
-                use_in_menu  => 20, # Nick
-                use_in_path  => 20,
 
                 _data => { #             .-- ids explicitly added, to ensure, that fields get inserted in the RIGHT order.
                     full_name  => { id=>10, datatype => q{String}, caption => q{Name},       field_index => 1, default_value => q{},   max_length =>  75, translate => 0, optional => 0, display_on_page => 1, display_on_list => 1, display_label => 1 },

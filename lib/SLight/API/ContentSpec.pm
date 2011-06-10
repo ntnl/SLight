@@ -32,6 +32,8 @@ our @EXPORT_OK = qw(
 );
 our %EXPORT_TAGS = ( 'all' => [ @EXPORT_OK ] );
 
+# TODO: Port to Accessor.pm
+
 my $_handler = SLight::Core::Entity->new( # {{{
     base_table  => 'Content_Spec',
     child_table => 'Content_Spec_Field',
@@ -40,7 +42,7 @@ my $_handler = SLight::Core::Entity->new( # {{{
 
     has_metadata => 1,
 
-    data_fields       => [qw( caption owning_module class cms_usage version order_by use_as_title use_in_menu use_in_path )],
+    data_fields       => [qw( caption owning_module class cms_usage version )],
     child_data_fields => [qw( id class field_index datatype caption default_value translate display_on_page display_on_list display_label optional max_length )],
 
     cache_namespage => 'SLight::API::ContentType',

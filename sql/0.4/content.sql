@@ -2,7 +2,7 @@
 
 PRAGMA foreign_keys = ON;
 
-CREATE TABLE Page_Entity (
+CREATE TABLE Page_Entity ( -- {{{
 	`id` INTEGER PRIMARY KEY,
 
     `parent_id` INTEGER,
@@ -22,8 +22,9 @@ CREATE TABLE Page_Entity (
 );
 CREATE UNIQUE INDEX Page_Entity_id   ON Page_Entity (id);
 CREATE UNIQUE INDEX Page_Entity_path ON Page_Entity (parent_id, path);
+-- }}}
 
-CREATE TABLE Page_Entity_Data (
+CREATE TABLE Page_Entity_Data ( -- {{{
 	`id` INTEGER PRIMARY KEY,
 
     `Page_Entity_id` INTEGER NOT NULL,
@@ -42,9 +43,10 @@ CREATE TABLE Page_Entity_Data (
     FOREIGN KEY (`Page_Entity_id`) REFERENCES Page_Entity (`id`) ON DELETE CASCADE
 );
 CREATE UNIQUE INDEX Page_Entity_Language ON Page_Entity_Data (Page_Entity_id, language);
+-- }}}
 
 -- Content types subsystem
-CREATE TABLE Content_Spec (
+CREATE TABLE Content_Spec ( -- {{{
 	`id`     	INTEGER PRIMARY KEY,
 
 	`caption`	VARCHAR(128) NOT NULL,
@@ -67,27 +69,14 @@ CREATE TABLE Content_Spec (
         --  2 : can be used by CMS (as pages)
         --  3 : can be used by CMS (as pages and page additions)
 
-    `order_by` VARCHAR(128),
-        -- NULL     : unsorted (use their IDs)
-        -- $string  : Where $string is one of: status, added_time, modified_time (Content_Entity row)
-        -- $integer : Where $field is the Content_Spec_Field_id
-
-    `use_as_title` VARCHAR(128),
-        -- Same as `order_by`
-
-    `use_in_menu` VARCHAR(128),
-        -- Same as `order_by`
-
-    `use_in_path` VARCHAR(128),
-        -- Same as `order_by`
-
     `metadata` TEXT
         -- Serialized with YAML.
         -- A place where modules can put 'their' stuff.
 );
 CREATE INDEX Content_Spec_module ON Content_Spec (owning_module);
+-- }}}
 
-CREATE TABLE Content_Spec_Field (
+CREATE TABLE Content_Spec_Field ( -- {{{
 	`id`		INTEGER PRIMARY KEY,
 
     `Content_Spec_id` INTEGER,
@@ -167,16 +156,17 @@ CREATE TABLE Content_Spec_Field (
 );
 CREATE        INDEX Content_Spec_Field_Content_Spec_id ON Content_Spec_Field (Content_Spec_id);
 CREATE UNIQUE INDEX Content_Spec_Field_class           ON Content_Spec_Field (Content_Spec_id, class);
+-- }}}
 
 -- Content system
 
-CREATE TABLE Content_Entity (
+CREATE TABLE Content_Entity ( -- {{{
     `id` INTEGER PRIMARY KEY,
 
     `Content_Spec_id` INTEGER NOT NULL,
         -- Which type describes this one.
 
-    `Email_id` INTEGER,
+    `Email_id` INTEGER NOT NULL,
         -- Owner's Email ID.
 		-- This may lead to an User account if the entity was written by a User
 
@@ -226,8 +216,9 @@ CREATE TABLE Content_Entity (
 	FOREIGN KEY (`Content_Spec_id`) REFERENCES Content_Spec(`id`) ON DELETE CASCADE
 );
 CREATE UNIQUE INDEX Content_Entity_Page_Stuff ON Content_Entity (Page_Entity_id, on_page_index);
+-- }}}
 
-CREATE TABLE Content_Entity_Field (
+CREATE TABLE Content_Entity_Data ( -- {{{
     `id` INTEGER PRIMARY KEY,
 
     `Content_Entity_id` INTEGER NOT NULL,
@@ -235,38 +226,31 @@ CREATE TABLE Content_Entity_Field (
     `Content_Spec_Field_id` INTEGER NOT NULL,
 		-- this is the primary index column from Content_Spec_Field.
 
-	FOREIGN KEY(`Content_Entity_id`)     REFERENCES Content_Entity(`id`) ON DELETE CASCADE,
-    FOREIGN KEY(`Content_Spec_Field_id`) REFERENCES Content_Spec_Field(`id`) ON DELETE CASCADE
-);
-CREATE UNIQUE INDEX Content_Entity_Field_index ON Content_Entity_Field (Content_Spec_Field_id, Content_Entity_id);
-
-CREATE TABLE Content_Entity_Data (
-    `id` INTEGER PRIMARY KEY,
-
-    `Content_Entity_Field_id` INTEGER NOT NULL,
-
 	`language` CHAR(5) NOT NULL,
         -- 2 (pl) or 5 (pl_pl) character language code, if the field is translatable.
         -- * if the field is not translatable.
 
 	`value` TEXT NOT NULL,
 
-    `summary` TEXT NOT NULL,
+    `summary` TEXT NOT NULL DEFAULT '',
 
     `sort_index_aid` INTEGER NOT NULL DEFAULT 0,
         -- This integer is used to aid quick pre-sorting of data. It should be created
         -- by multiplication of first four characters from `value` column.
 
-    FOREIGN KEY(`Content_Entity_Field_id`) REFERENCES Content_Entity_Field(`id`) ON DELETE CASCADE
+    FOREIGN KEY(`Content_Entity_id`) REFERENCES Content_Entity(`id`) ON DELETE CASCADE,
+    FOREIGN KEY(`Content_Spec_Field_id`) REFERENCES Content_Spec_Field(`id`) ON DELETE CASCADE
 );
-CREATE UNIQUE INDEX Content_Entity_Data_index ON Content_Entity_Data (Content_Entity_Field_id, language);
+CREATE UNIQUE INDEX Content_Entity_Data_unique ON Content_Entity_Data (Content_Entity_id, Content_Spec_Field_id, language);
+CREATE        INDEX Content_Entity_Data_fetch  ON Content_Entity_Data (Content_Entity_id, language);
+-- }}}
 
 -- This table will tend to grow, thus it's indexes may be sub-optimal.
 -- It should not be a problem, as it should not be used on regular basis.
-CREATE TABLE Content_Entity_Data_History (
+CREATE TABLE Content_Entity_Data_History ( -- {{{
     `id` INTEGER PRIMARY KEY,
 
-	`Content_Entity_Field_id` INTEGER NOT NULL,
+	`Content_Entity_Data_id` INTEGER NOT NULL,
 
 	`language` CHAR(5) NOT NULL,
         -- 2 (pl) or 5 (pl_pl) character language code, if the field is translatable.
@@ -277,10 +261,10 @@ CREATE TABLE Content_Entity_Data_History (
     `event_time`	TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         -- Time when given value was set.
 
-    FOREIGN KEY(`Content_Entity_Field_id`) REFERENCES Content_Entity_Field(`id`) ON DELETE CASCADE
-);
+    FOREIGN KEY(`Content_Entity_Data_id`) REFERENCES Content_Entity_Data(`id`) ON DELETE CASCADE
+); -- }}}
 
-CREATE TABLE Comment_Entity (
+CREATE TABLE Comment_Entity ( -- {{{
 	`id` INTEGER PRIMARY KEY,
 
 	`parent_id` INTEGER,
@@ -303,8 +287,9 @@ CREATE TABLE Comment_Entity (
 );
 CREATE INDEX Comment_Entity_parent ON Comment_Entity (`parent_id`);
 CREATE INDEX Comment_Entity_email  ON Comment_Entity (`Email_id`);
+-- }}}
 
-CREATE TABLE Asset_Entity (
+CREATE TABLE Asset_Entity ( -- {{{
 	`id` INTEGER PRIMARY KEY,
 
     `Email_id` INTEGER,
@@ -322,8 +307,9 @@ CREATE TABLE Asset_Entity (
 	FOREIGN KEY (`Email_id`) REFERENCES Email(`id`) ON DELETE CASCADE
 );
 CREATE INDEX Asset_Entity_email ON Asset_Entity (`Email_id`);
+-- }}}
 
-CREATE TABLE Asset_2_Content (
+CREATE TABLE Asset_2_Content ( -- {{{
     `Asset_Entity_id` INTEGER,
 
     `Content_Entity_id` INTEGER NOT NULL,
@@ -332,18 +318,21 @@ CREATE TABLE Asset_2_Content (
 );
 CREATE UNIQUE INDEX Asset_2_Content_unique ON Asset_2_Content (`Asset_Entity_id`, `Content_Entity_id`);
 CREATE        INDEX Asset_2_Content_target ON Asset_2_Content (`Content_Entity_id`);
-CREATE TABLE Asset_2_Content_Field (
+-- }}}
+
+CREATE TABLE Asset_2_Content_Field ( -- {{{
     `Asset_Entity_id` INTEGER,
 
-    `Content_Entity_Field_id` INTEGER NOT NULL,
+    `Content_Entity_id`     INTEGER NOT NULL,
     `Content_Spec_Field_id` INTEGER,
 
-    FOREIGN KEY (`Asset_Entity_id`)         REFERENCES Asset_Entity (`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`Content_Entity_Field_id`) REFERENCES Content_Entity_Field (`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`Content_Spec_Field_id`)   REFERENCES Content_Spec_Field (`id`) ON DELETE CASCADE
+    FOREIGN KEY (`Asset_Entity_id`)       REFERENCES Asset_Entity (`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`Content_Entity_id`)     REFERENCES Content_Entity (`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`Content_Spec_Field_id`) REFERENCES Content_Spec_Field (`id`) ON DELETE CASCADE
 );
-CREATE UNIQUE INDEX Asset_2_Content_Field_unique  ON Asset_2_Content_Field (`Asset_Entity_id`, `Content_Entity_Field_id`);
-CREATE        INDEX Asset_2_Content_Field_target  ON Asset_2_Content_Field (`Content_Entity_Field_id`);
-CREATE        INDEX Asset_2_Content_Field_targets ON Asset_2_Content_Field (`Content_Entity_Field_id`);
+CREATE UNIQUE INDEX Asset_2_Content_Field_unique  ON Asset_2_Content_Field (`Asset_Entity_id`, `Content_Entity_id`, `Content_Spec_Field_id`);
+-- }}}
+
 /* Add links to other stuff, as needed... */
 
+-- vim: fdm=marker

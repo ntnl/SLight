@@ -992,3 +992,19 @@ New Content Data structure.
 
  API::ContentModel <-- One (high-level) API to rule them all ;)
 
+
+
+
+
+t/1-modules/SLight-API-Permissions.t
+t/1-modules/SLight-Maintenance-Manipulate.t
+t/0-smoke/has_test.t
+t/0-smoke/critic.t
+
+t/1-modules/SLight-Handler-List-Headlines-View.t
+
+t/1-modules/SLight-Handler-CMS-Entry-Delete.t
+t/1-modules/SLight-Handler-CMS-Entry-AddContent.t
+t/1-modules/SLight-Handler-CMS-Entry-View.t
+t/1-modules/SLight-Handler-CMS-Entry-Edit.t
+

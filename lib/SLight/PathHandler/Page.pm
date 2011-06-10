@@ -16,7 +16,7 @@ use base q{SLight::PathHandler};
 
 my $VERSION = '0.0.4';
 
-use SLight::API::Content qw( get_Contents_where );
+use SLight::API::Content qw( get_Contents_where get_Contents_fields_where );
 use SLight::API::ContentSpec qw( get_ContentSpec );
 use SLight::API::Page qw( get_Page_id_for_path );
 use SLight::DataType;
@@ -46,22 +46,23 @@ sub get_path_target { # {{{
     my $page_id = get_Page_id_for_path($path);
 
     if ($page_id) {
-        my $content_objects = get_Contents_where(
-            Page_Entity_id => $page_id,
-            on_page_index  => 0,
+        my $content_objects = get_Contents_fields_where(
+            'Page.id' => $page_id,
+
+            on_page_index => 0,
+
+            _fields => [qw( id Spec.owning_module )],
         );
+
+#        use Data::Dumper; warn Dumper $content_objects;
 
         if ($content_objects and scalar @{ $content_objects } == 1) {
             my $content = $content_objects->[0];
 
 #            use Data::Dumper; warn Dumper $content;
 
-            my $content_spec = get_ContentSpec($content->{'Content_Spec_id'});
-            
-#            use Data::Dumper; warn Dumper $content_spec;
-
             return {
-                handler => $content_spec->{'owning_module'},
+                handler => $content->{'Spec.owning_module'},
                 id      => $content->{'id'},
             };
         }
@@ -100,11 +101,15 @@ sub analyze_path { # {{{
     }
 
 #    use Data::Dumper; warn 'breadcrumb_path: '. Dumper \@breadcrumb_path;
-#    warn $page_id;
+
+#    warn "Path: " . join ", ", @{ $path };
+#    warn "ID:   " . $page_id;
 
     $self->set_page_id($page_id);
 
     my $page = SLight::API::Page::get_Page($page_id);
+
+#    use Data::Dumper; warn 'Page: '. Dumper $page;
 
     # If there is no root page, return a nice 'Welcome' message :)
     if ($page_id == 1 and not $page) {
@@ -177,17 +182,23 @@ sub walk_the_path { # {{{
             return;
         }
 
-        $parent_id = $page_id = $pages->[0]->{'id'};
+        my $page = $pages->[0];
+
+        $parent_id = $page_id = $page_id;
 
         push @path_stack, $part;
 
-        my $path_label = $part;
-        my $content_objects = get_Contents_where(
-            Page_Entity_id => $page_id,
-            on_page_index  => 0,
+        my @langs = (
+            $self->{'url'}->{'lang'},
+            ( keys %{ $page->{'L10N'} } ),
+            q{*}
         );
-        if ($content_objects->[0]) {
-            $path_label = ( $self->extract_path_label($content_objects->[0]) or $path_label );
+
+        my $path_label = $part;
+        foreach my $lang (@langs) {
+            if ($page->{'L10N'}->{$lang}) {
+                $path_label = $page->{'L10N'}->{$lang}->{'breadcrumb'};
+            }
         }
 
         push @breadcrumb_path, {
@@ -208,64 +219,17 @@ sub walk_the_path { # {{{
     return ( $page_id, $last_template );
 } # }}}
 
-sub extract_path_label { # {{{
-    my ( $self, $content_object ) = @_;
-
-    my $path_label;
-
-    my $content_spec = get_ContentSpec($content_object->{'Content_Spec_id'});
-
-    my @langs = (
-        $self->{'url'}->{'lang'},
-        ( keys %{ $content_object->{'_data'} } ),
-        q{*}
-    );
-
-    if ($content_spec and $content_spec->{'use_in_path'}) {
-        if ($content_spec->{'use_in_path'} =~ m{\d}s) {
-            # Extract the data:
-            foreach my $lang (@langs) {
-                if ($content_object->{'_data'}->{$lang}->{ $content_spec->{'use_in_path'} }) {
-                    $path_label = $content_object->{'_data'}->{$lang}->{ $content_spec->{'use_in_path'} };
-                    last;
-                }
-            }
-
-            # FIXME: This is one big dirty, hairy and so on hack...!
-            my $field_class;
-            foreach my $_field_class (keys %{ $content_spec->{'_data'} }) {
-                if ($content_spec->{'_data'}->{$_field_class}->{'id'} == $content_spec->{'use_in_path'}) {
-                    $field_class = $_field_class;
-                }
-            }
-
-            # Decode it: (code from SLight::HandlerBase::CMS, FIXME: refactor to share!)
-            $path_label = SLight::DataType::decode_data(
-                type   => $content_spec->{'_data'}->{ $field_class }->{'datatype'},
-                value  => $path_label,
-                format => q{},
-                target => 'SNIP',
-            );
-
-#            use Data::Dumper; warn Dumper $path_label;
-        }
-        elsif ($content_object->{ $content_spec->{'use_in_path'} }) {
-            $path_label = $content_object->{ $content_spec->{'use_in_path'} };
-        }
-    }
-
-    return $path_label;
-} # }}}
-
 sub setup_aux_object { # {{{
     my ( $self, $page_id, $aux_object_id) = @_;
     
-    my $objects = get_Contents_where(
+    my $objects = get_Contents_fields_where(
         status => [qw( V A ) ],
 
         id => $aux_object_id,
 
-        Page_Entity_id => $page_id
+        Page_Entity_id => $page_id,
+
+        _fields => [qw( id on_page_index Spec.owning_module )],
     );
 
     if (scalar @{ $objects }) {
@@ -273,15 +237,13 @@ sub setup_aux_object { # {{{
 
         $self->set_main_object(q{ob} . $entry->{'id'});
 
-        my $content_spec = get_ContentSpec($entry->{'Content_Spec_id'});
-
         my $on_page_id = q{ob} . $entry->{'id'};
 
         $self->set_objects(
             {
                 $on_page_id => {
                     oid   => $entry->{'id'},
-                    class => $content_spec->{'owning_module'},
+                    class => $entry->{'Spec.owning_module'},
                 }
             }
         );
@@ -300,10 +262,12 @@ sub setup_aux_object { # {{{
 sub setup_objects { # {{{
     my ( $self, $page_id ) = @_;
 
-    my $objects = get_Contents_where(
+    my $objects = get_Contents_fields_where(
         status => [qw( V A ) ],
 
-        Page_Entity_id => $page_id
+        Page_Entity_id => $page_id,
+
+        _fields => [qw( id on_page_index Spec.owning_module )],
     );
 
     if (scalar @{ $objects }) {
@@ -319,11 +283,9 @@ sub setup_objects { # {{{
                 $found_main_object = 1;
             }
 
-            my $content_spec = get_ContentSpec($entry->{'Content_Spec_id'});
-
             $page_objects{ q{ob} . $entry->{'id'} } = {
                 oid   => $entry->{'id'},
-                class => $content_spec->{'owning_module'},
+                class => $entry->{'Spec.owning_module'},
             };
 
             push @object_ids, q{ob} . $entry->{'id'};

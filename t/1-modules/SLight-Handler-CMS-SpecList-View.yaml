@@ -129,46 +129,6 @@ One element list:
                 colspan: 0
                 rowspan: 0
               type: TableCell
-            - class: SLight_name
-              content:
-              - class: SLight_name
-                data:
-                  label: 'Data field: Cup size'
-                type: Label
-              data:
-                colspan: 0
-                rowspan: 0
-              type: TableCell
-            - class: SLight_name
-              content:
-              - class: SLight_name
-                data:
-                  label: 'Data field: Name'
-                type: Label
-              data:
-                colspan: 0
-                rowspan: 0
-              type: TableCell
-            - class: SLight_name
-              content:
-              - class: SLight_name
-                data:
-                  label: 'Data field: Nick'
-                type: Label
-              data:
-                colspan: 0
-                rowspan: 0
-              type: TableCell
-            - class: SLight_name
-              content:
-              - class: SLight_name
-                data:
-                  label: 'Data field: Nick'
-                type: Label
-              data:
-                colspan: 0
-                rowspan: 0
-              type: TableCell
             type: TableRow
           type: Table
         type: Container

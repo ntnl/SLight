@@ -1,4 +1,4 @@
-package SLight::Handler::List::Blog;
+package SLight::Handler::List::Blog::AddContent;
 ################################################################################
 # 
 # SLight - Lightweight Content Management System.

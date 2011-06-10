@@ -45,7 +45,7 @@ plan tests =>
 #
 #   Foo (id, name)
 #       Bar (id, name, Foo_id)
-#           Bar_Data (id, Bar_id, field, type, value)
+#           Bar_Data (id, Bar_id, field, language, type, value)
 #           Baz (id, name, Bar_id)
 
 # Prepare test database... {{{
@@ -61,7 +61,7 @@ SLight::Core::DB::run_query(
     query => q{CREATE TABLE Bar ( id INTEGER PRIMARY KEY, name VARCHAR(128), Foo_id INTEGER, metadata TEXT )},
 );
 SLight::Core::DB::run_query(
-    query => q{CREATE TABLE Bar_Data ( id INTEGER PRIMARY KEY, Bar_id INTEGER, field VARCHAR(64), value VARCHAR(64), type VARCHAR(64) )},
+    query => q{CREATE TABLE Bar_Data ( id INTEGER PRIMARY KEY, Bar_id INTEGER, field VARCHAR(64), language VARCHAR(2), value VARCHAR(64), type VARCHAR(64) )},
 );
 SLight::Core::DB::run_query(
     query => q{CREATE TABLE Baz ( id INTEGER PRIMARY KEY, name VARCHAR(128), Bar_id INTEGER )},
@@ -91,8 +91,40 @@ my $Bar = SLight::Core::Accessor->new(
     referenced => {
         Data => {
             table   => 'Bar_Data',
-            key     => 'field',
-            columns => [qw( value type )],
+            columns => [qw( id Bar_id field language value type )],
+
+            cb => {
+                get => sub {
+                    my ( $items ) = @_;
+
+#                    use Data::Dumper; warn 'items(get): ' . Dumper $items;
+
+                    my %data;
+                    foreach my $item (@{ $items }) {
+                        delete $item->{'id'};
+                        delete $item->{'Bar_id'};
+
+                        $data{ delete $item->{'field'} }->{ delete $item->{'language'} } = $item;
+                    }
+
+                    return \%data;
+                },
+                put => sub {
+                    my ( $parent_id, $data ) = @_;
+
+                    my @items;
+                    foreach my $field (keys %{ $data }) {
+                        foreach my $language (keys %{ $data->{$field} }) {
+                            push @items, {
+                                key => { Bar_id => $parent_id, field => $field, language => $language },
+                                val => $data->{$field}->{$language},
+                            };
+                        }
+                    }
+
+                    return @items;
+                }
+            }
         },
     },
 
@@ -101,7 +133,7 @@ my $Bar = SLight::Core::Accessor->new(
 isa_ok($Bar, qw{SLight::Core::Accessor});
 
 my $Baz = SLight::Core::Accessor->new(
-    table => 'Baz',
+    table   => 'Baz',
     columns => [qw(id name Bar_id)],
 );
 isa_ok($Baz, qw{SLight::Core::Accessor});
@@ -132,6 +164,8 @@ is(
         name => 'First Bar',
 
         Foo_id => 1,
+
+        Data => {},
     ),
     1,
     q{add_Entity into Bar}
@@ -142,15 +176,10 @@ is(
 
         Foo_id => 2,
 
-        'Data.value' => {
-            'alpha' => "First",
-            'beta'  => "2",
-            'gamma' => undef,
-        },
-        'Data.type' => {
-            'alpha' => "String",
-            'beta'  => "Integer",
-            'gamma' => "Empty",
+        Data => {
+            'alpha' => { q{en} => { value => "First", type => 'String', }, },
+            'beta'  => {  q{*} => { value => "2",     type => 'Integer', }, },
+            'gamma' => {  q{*} => { value => undef,   type => 'Empty', }, },
         },
 
         metadata => {
@@ -182,9 +211,11 @@ is_deeply(
         'F.id'   => 1,
         'F.name' => 'First Foo',
 
+        Data => {},
+
         metadata => undef,
     },
-    q{get_ENTITY from Bar},
+    q{get_ENTITY from Bar (1)},
 );
 is_deeply(
     $Bar->get_ENTITY( 2 ),
@@ -195,22 +226,17 @@ is_deeply(
         'F.id'   => 2,
         'F.name' => 'Second Fu',
 
-        'Data.value' => {
-            'alpha' => "First",
-            'beta'  => "2",
-            'gamma' => undef,
-        },
-        'Data.type' => {
-            'alpha' => "String",
-            'beta'  => "Integer",
-            'gamma' => "Empty",
+        Data => {
+            'alpha' => { q{en} => { value => "First", type => 'String', }, },
+            'beta'  => {  q{*} => { value => "2",     type => 'Integer', }, },
+            'gamma' => {  q{*} => { value => undef,   type => 'Empty', }, },
         },
 
         metadata => {
             entity => 'Second',
         },
     },
-    q{get_ENTITY from Bar},
+    q{get_ENTITY from Bar (2)},
 );
 
 is_deeply(
@@ -241,7 +267,7 @@ is_deeply(
     q{get_ENTITY_fields from Bar (1)},
 );
 is_deeply(
-    $Bar->get_ENTITIES_fields( [ 1, 2, 123 ], [qw( name F.name Data.value )] ),
+    $Bar->get_ENTITIES_fields( [ 1, 2, 123 ], [ qw( name F.name ), 'Data' ] ),
     [
         {
             id => 1,
@@ -249,6 +275,8 @@ is_deeply(
             name => 'First Bar',
 
             'F.name' => 'First Foo',
+
+            Data => {},
         },
         {
             id => 2,
@@ -257,10 +285,10 @@ is_deeply(
 
             'F.name' => 'Second Fu',
 
-            'Data.value' => {
-                'alpha' => "First",
-                'beta'  => "2",
-                'gamma' => undef,
+            Data => {
+                'alpha' => { q{en} => { value => "First", type => 'String', }, },
+                'beta'  => {  q{*} => { value => "2",     type => 'Integer', }, },
+                'gamma' => {  q{*} => { value => undef,   type => 'Empty', }, },
             },
         },
     ],
@@ -331,9 +359,9 @@ $Bar->update_ENTITY(
     id   => 2,
     name => 'Bar number two',
     
-    'Data.value' => {
-        'theta' => '4 - Theta',
-    }
+    'Data' => {
+        'theta' => { q{en} => { value => '4 - Theta', }, },
+    },
 );
 is_deeply(
     $Bar->get_ENTITY( 2 ),
@@ -344,17 +372,11 @@ is_deeply(
         'F.id'   => 2,
         'F.name' => 'Foo number two',
 
-        'Data.value' => {
-            'alpha' => "First",
-            'beta'  => "2",
-            'theta' => '4 - Theta',
-            'gamma' => undef,
-        },
-        'Data.type' => {
-            'alpha' => "String",
-            'beta'  => "Integer",
-            'gamma' => "Empty",
-            'theta' => undef,
+        'Data' => {
+            'alpha' => { q{en} => { value => "First",     type=>"String" }, },
+            'theta' => { q{en} => { value => "4 - Theta", type=>undef }, },
+            'beta'  => {  q{*} => { value => "2", type => 'Integer' }, },
+            'gamma' => {  q{*} => { value => undef, type => 'Empty' }, },
         },
 
         metadata => {
@@ -363,11 +385,6 @@ is_deeply(
     },
     q{update_ENTITY from Bar},
 );
-# Maybe, if I set:
-#   'Data.*' => {
-#       field => undef,
-#   },
-# then it will delete the row?
 
 note(q{}); #####################################################################
 note('Deleting stuff');
