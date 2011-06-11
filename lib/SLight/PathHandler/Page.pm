@@ -16,6 +16,7 @@ use base q{SLight::PathHandler};
 
 my $VERSION = '0.0.4';
 
+use SLight::Core::Config;
 use SLight::API::Content qw( get_Contents_where get_Contents_fields_where );
 use SLight::API::ContentSpec qw( get_ContentSpec );
 use SLight::API::Page qw( get_Page_id_for_path );
@@ -72,7 +73,7 @@ sub get_path_target { # {{{
 } # }}}
 
 sub analyze_path { # {{{
-    my ( $self, $path ) = @_;
+    my ( $self, $path, $lang ) = @_;
 
     assert_defined($path, "Path is defined");
 
@@ -88,7 +89,7 @@ sub analyze_path { # {{{
     }
 
     if (scalar @{ $path }) {
-        ( $page_id, $last_template ) = $self->walk_the_path($path);
+        ( $page_id, $last_template ) = $self->walk_the_path($path, $lang);
 
         if (not $page_id) {
             return $self->page_does_not_exist();
@@ -157,7 +158,7 @@ sub cms_db_is_empty { # {{{
 # Purpose:
 #   Descend into the tree, to find the page pointed by path in URL.
 sub walk_the_path { # {{{
-    my ( $self, $path ) = @_;
+    my ( $self, $path, $lang ) = @_;
 
     my $parent_id = 1;
 
@@ -184,13 +185,13 @@ sub walk_the_path { # {{{
 
         my $page = $pages->[0];
 
-        $parent_id = $page_id = $page_id;
+        $parent_id = $page_id = $page->{'id'};
 
         push @path_stack, $part;
 
         my @langs = (
-            $self->{'url'}->{'lang'},
-            ( keys %{ $page->{'L10N'} } ),
+            $lang,
+            @{ SLight::Core::Config::get_option('lang') },
             q{*}
         );
 

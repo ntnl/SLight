@@ -292,7 +292,7 @@ sub handle_save { # {{{
 
         status => q{V},
 
-        _data => $data,
+        Data => $data,
 
         comment_write_policy => $self->{'options'}->{'meta.comment_write_policy'},
         comment_read_policy  => $self->{'options'}->{'meta.comment_read_policy'},
@@ -308,6 +308,9 @@ sub handle_save { # {{{
         );
 
         $content{'on_page_index'} = scalar @{ $content_ids } + 1;
+    }
+    if ($self->{'options'}->{'meta.email'}) {
+        $content{'email'} = $self->{'options'}->{'meta.email'};
     }
 
     my $content_id = add_Content(%content);

@@ -27,9 +27,7 @@ sub handle_view { # {{{
 
     my $content = get_Content($oid);
 
-    my $content_spec = get_ContentSpec($content->{'Content_Spec_id'});
-
-    $self->set_class($content_spec->{'class'});
+    $self->set_class($content->{'Spec.class'});
 
     my $dialog = SLight::DataStructure::Dialog::YesNo->new(
         message => TF("Do you want to delete '%s'? Please confirm.", undef, $content->{'id'}), # FIXME: use title field instead!

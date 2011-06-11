@@ -16,6 +16,8 @@ use base 'Exporter';
 
 use SLight::Core::Config;
 
+use Carp qw( confess );
+use English qw( -no_match_vars );
 use SQL::Abstract;
 use Params::Validate qw{ :all };
 # }}}
@@ -71,18 +73,26 @@ sub disconnect { # {{{
 # Parameters:
 #   $table, \@fields, \%where, \@order
 sub SL_db_select { # {{{
-    my($stmt, @bind) = $__abstract->select(@_);
+    my $sth = eval {
+        my($stmt, @bind) = $__abstract->select(@_);
 
-#    use Data::Dumper; warn Dumper \@_;
-#    warn $stmt;
+#        use Data::Dumper; warn Dumper \@_;
+#        warn $stmt;
 
-    my $sth = $__dbh->prepare($stmt);
+        my $sth = $__dbh->prepare($stmt);
 
-    if ($sth->execute(@bind)) {
-        return $sth;
+        if ($sth->execute(@bind)) {
+            return $sth;
+        }
+
+        return;
+    };
+
+    if (not $sth or $EVAL_ERROR) {
+        confess("SL_db_select INTERNAL ERROR: " . ( $EVAL_ERROR or 'Unknown' ));
     }
 
-    return;
+    return $sth;
 } # }}}
 
 sub run_query { # {{{

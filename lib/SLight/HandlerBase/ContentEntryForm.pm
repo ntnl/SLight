@@ -176,7 +176,7 @@ sub _add_field_to_form { # {{{
             name => $cgi_field_name,
 
             caption => TR('Summary'),
-            value   => ( $self->{'options'}->{$cgi_field_name} or $P{'content'}->{'Data'}->{$field_name} or q{} ),
+            value   => ( $self->{'options'}->{$cgi_field_name} or $P{'content'}->{'Data'}->{$field_name}->{'value'} or q{} ),
             error   => $P{'errors'}->{$cgi_field_name},
         );
         if ($P{'content'}->{'id'}) {
@@ -221,7 +221,7 @@ sub _add_field_to_form { # {{{
             # Value will be initialized from DB data.
             $entry_value = SLight::DataType::decode_data(
                 type   => $field_spec->{'datatype'},
-                value  => ( $P{'content'}->{'Data'}->{$field_lang}->{$field_spec->{'id'}} or q{} ),
+                value  => ( $P{'content'}->{'Data'}->{$field_lang}->{$field_spec->{'id'}}->{'value'} or q{} ),
                 format => q{},
                 target => 'FORM',
             );
@@ -301,7 +301,7 @@ sub slurp_content_form_data { # {{{
             $field_lang = $self->{'url'}->{'lang'};
         }
 
-        $data{ $field_lang }->{ $field_spec->{'id'} } = SLight::DataType::encode_data(
+        $data{ $field_lang }->{ $field_spec->{'id'} }->{'value'} = SLight::DataType::encode_data(
             type  => $field_spec->{'datatype'},
             value => ( $self->{'options'}->{$cgi_name} or q{} )
         );

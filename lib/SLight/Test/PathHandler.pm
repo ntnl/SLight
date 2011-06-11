@@ -77,7 +77,7 @@ sub _run_test { # {{{
 
     assert_listref($t->{'path'}, "Path is an ARRAY ref");
 
-    return $handler->analyze_path($t->{'path'});
+    return $handler->analyze_path($t->{'path'}, 'en');
 } # }}}
 
 # vim: fdm=marker

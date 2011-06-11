@@ -284,15 +284,15 @@
 [X]             metadata support
 [X]             Ability to define 'down' relations across tables (get fields from joined tables).
 [X]             Update SLight/API/Page.pm
-[ ]         Update Content Entry Form: add new fields to 'page' section
-[ ]         Update Root Menu Addon
-[ ]         Update Menu Addon
-[ ]         Update Sub Menu Addon
-[ ]         Update Page PathHandler Breadcrumb generation
-[>]     Extract 'Content_Entity_Field' from 'Content_Entity_Data'
+[X]         Update Root Menu Addon
+[X]         Update Menu Addon
+[X]         Update Sub Menu Addon
+[X]         Update Page PathHandler Breadcrumb generation
+[>]         Update Content Entry Form: add new fields to 'page' section
+[X]     Refactor Content API.
 [X]         Forge SQL
 [X]         Update Content.pm
-[>]         Fix regressions
+[X]         Fix regressions
 [-] CMS Lists
 [ ]     In-progress refactoring
 [ ]         Move 'base' Form elements from Headlines to common class.

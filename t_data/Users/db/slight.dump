@@ -302,7 +302,7 @@ CREATE TABLE Asset_Entity ( -- {{{
 
 	FOREIGN KEY (`Email_id`) REFERENCES Email(`id`) ON DELETE CASCADE
 );
-INSERT INTO "Asset_Entity" VALUES(1,3,'2011-06-10 21:11:26','',6700,'image/gif','');
+INSERT INTO "Asset_Entity" VALUES(1,3,'2011-06-11 20:49:04','',6700,'image/gif','');
 CREATE TABLE Asset_2_Content ( -- {{{
     `Asset_Entity_id` INTEGER,
 

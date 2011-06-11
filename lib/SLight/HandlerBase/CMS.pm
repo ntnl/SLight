@@ -41,13 +41,15 @@ my %display_methods = (
 sub ContentData_2_details { # {{{
     my ( $self, $content, $content_spec ) = @_;
 
-    my $item_path = get_Page_full_path($content->{'Page_Entity_id'});
+    my $item_path = get_Page_full_path($content->{'Page.id'});
 
     my @container_contents = $self->display_ContentData_for_page(
         $content, $content_spec,
         $item_path,
         0,            # thumb mode OFF
     );
+
+#    use Data::Dumper; warn Dumper \@container_contents;
 
     # Display detailed information about assets.
     my $asset_ids = get_Asset_ids_on_Content($content->{'id'});
@@ -119,13 +121,13 @@ sub ContentData_2_details { # {{{
 sub display_ContentData_for_page { # {{{
     my ( $self, $content, $content_spec, $item_path, $thumb_mode ) = @_;
 
-#    use Data::Dumper; warn Dumper $content_spec;
+#    use Data::Dumper; warn Dumper $content, $content_spec;
 
     my @container_contents;
 
     my @langs = (
         $self->{'url'}->{'lang'},
-        ( keys %{ $content->{'_data'} } ),
+        ( keys %{ $content->{'Data'} } ),
         q{*}
     );
 
@@ -161,16 +163,16 @@ sub display_ContentData_for_page { # {{{
             }
         }
         else {
-#            use Data::Dumper; warn q{$content->{'_data'} : }. Dumper $content->{'_data'};
+#            use Data::Dumper; warn q{$content->{'Data'} : }. Dumper $content->{'Data'};
 
             # I think, that there is a better way to do this. Will refactor this, when the whole thing works. (small fixme)
             foreach my $field_lang ( @langs ) {
 #                warn q{ lang / ID: } . $field_lang . q{ / } . $field->{'id'};
 
-                if (defined $content->{'_data'}->{$field_lang}->{ $field->{'id'} }) {
+                if (defined $content->{'Data'}->{$field_lang}->{ $field->{'id'} }) {
                     my $value = SLight::DataType::decode_data(
                         type   => $field->{'datatype'},
-                        value  => $content->{'_data'}->{$field_lang}->{ $field->{'id'} },
+                        value  => $content->{'Data'}->{$field_lang}->{ $field->{'id'} }->{'value'},
                         format => q{},
                         target => 'MAIN',
                     );

@@ -33,7 +33,7 @@ sub get_spec { # {{{
 
     assert_defined($spec_id);
 
-    use Data::Dumper; warn Dumper get_ContentSpec($spec_id);
+    #use Data::Dumper; warn Dumper get_ContentSpec($spec_id);
 
     return get_ContentSpec($spec_id);
 } # }}}

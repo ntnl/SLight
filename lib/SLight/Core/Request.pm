@@ -216,7 +216,7 @@ sub main { # {{{
     # Request was properly initialized :)
     # Can move to Stage II - what was requested?
     my $page_content = eval {
-        return $path_handler_object->analyze_path($P{'url'}->{'path'});
+        return $path_handler_object->analyze_path($P{'url'}->{'path'}, $P{'url'}->{'lang'});
     };
 
     if ($EVAL_ERROR or not $page_content) {

@@ -33,7 +33,7 @@ sub handle_view { # {{{
 
     my $content = get_Content($oid);
 
-    use Data::Dumper; warn "Content ($oid): " . Dumper $content;
+#    use Data::Dumper; warn "Content ($oid): " . Dumper $content;
 
     # Is this needed after migration to Accessor?
     my $content_spec = get_ContentSpec($content->{'Spec.id'});
@@ -48,7 +48,7 @@ sub handle_save { # {{{
 
     my $content = get_Content($oid);
 
-    my $content_spec = get_ContentSpec($content->{'Content_Spec_id'});
+    my $content_spec = get_ContentSpec($content->{'Spec.id'});
 
     $self->set_class($content_spec->{'class'});
 

@@ -514,12 +514,22 @@ sub _select_ENTITIES { # {{{
             
             $where{ $spec->{'namespace'} . q{.id = } } = \$spec->{'_key_field'};
 
-            $where{ $field } = { '-in' => $P{$field} };
+            if ($P{$field} and ref $P{$field}) {
+                $where{ $field } = { '-in' => $P{$field} };
+            }
+            else {
+                $where{ $field } = $P{$field};
+            }
 
             next;
         }
 
-        $where{ $self->{'table'} .q{.}. $field } = { '-in' => $P{$field} };
+        if ($P{$field} and ref $P{$field}) {
+            $where{ $self->{'table'} .q{.}. $field } = { '-in' => $P{$field} };
+        }
+        else {
+            $where{ $self->{'table'} .q{.}. $field } = $P{$field};
+        }
     }
 
     foreach my $field (@{ $fields }) {
