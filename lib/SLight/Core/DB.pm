@@ -73,24 +73,14 @@ sub disconnect { # {{{
 # Parameters:
 #   $table, \@fields, \%where, \@order
 sub SL_db_select { # {{{
-    my $sth = eval {
-        my($stmt, @bind) = $__abstract->select(@_);
+    my($stmt, @bind) = $__abstract->select(@_);
 
-#        use Data::Dumper; warn Dumper \@_;
-#        warn $stmt;
+#    use Data::Dumper; warn Dumper \@_;
+#    warn $stmt;
 
-        my $sth = $__dbh->prepare($stmt);
+    my $sth = $__dbh->prepare($stmt);
 
-        if ($sth->execute(@bind)) {
-            return $sth;
-        }
-
-        return;
-    };
-
-    if (not $sth or $EVAL_ERROR) {
-        confess("SL_db_select INTERNAL ERROR: " . ( $EVAL_ERROR or 'Unknown' ));
-    }
+    $sth->execute(@bind);
 
     return $sth;
 } # }}}

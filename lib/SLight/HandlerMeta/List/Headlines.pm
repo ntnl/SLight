@@ -77,11 +77,7 @@ sub get_spec { # {{{
         'caption' => TR(q{List: Headlines}),
 
         'version'      => '0',
-        'order_by'     => '11',
         'cms_usage'    => '3',
-        'use_as_title' => undef,
-        'use_in_path'  => undef,
-        'use_in_menu'  => '10',
         'metadata'     => {},
         'class'        => 'SL_List_Headlines'
     };

@@ -32,34 +32,21 @@ sub handle_view { # {{{
 
     # Get stuff 'bellow' this object in page structure.
     my $sub_pages = get_Page_fields_where(
-        _fields => [qw( path )],
+        _fields => [qw( path L10N )],
 
         parent_id => $self->{'page'}->{'page_id'},
     );
 
 #    use Data::Dumper; warn Dumper $sub_pages;
 
-    my $contents = get_Contents_fields_where(
-        _fields => [qw( Page_Entity_id order_by use_as_title )],
-
-        _data_fields => [],
-
-        Page_Entity_id => [ map { $_->{'id'} } @{ $sub_pages } ],
-
-        _unfold => [qw( order_by use_as_title )],
-    );
-    my %content_hash = map { $_->{'Page_Entity_id'} => $_ } @{ $contents };
-
-#    use Data::Dumper; warn Dumper \%content_hash;
-
     my @objects;
 
     # FIXME: sorting is lame...
     foreach my $page (sort { $a->{'path'} cmp $b->{'path'} } @{ $sub_pages }) {
-        my $content_object = ( $content_hash{ $page->{'id'} } or {} );
+        my $value = ( $self->get_l10n_value($page->{'L10N'}) or { title=> $page->{'path'} } );
 
         push @objects, mk_Link_token(
-            text  => $page->{'path'},
+            text  => $value->{'title'},
             class => q{Item},
             href  => $self->build_url(
                 add_to_path => [ $page->{'path'} ],

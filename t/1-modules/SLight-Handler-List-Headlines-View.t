@@ -40,6 +40,8 @@ add_Content(
 
     on_page_index => 2,
 
+    email => q{test@example.test},
+
     comment_write_policy => 0,
     comment_read_policy  => 0,
 

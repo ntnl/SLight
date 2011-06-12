@@ -301,6 +301,27 @@ sub add_notification { # {{{
 ################################################################################
 
 # Purpose:
+#   This function returns the best suitable value from language-value hash(ref) passed to it.
+sub get_l10n_value { # {{{
+    my ( $self, $data ) = @_;
+
+    my @langs = (
+        $self->{'url'}->{'lang'},
+        keys %{ $data },
+        q{*},
+    );
+
+    foreach my $lang (@langs) {
+        if (exists $data->{$lang}) {
+            return $data->{$lang};
+        }
+    }
+
+    # Normally this will not happen (unless the given hashref was empty.
+    return;
+} # }}}
+
+# Purpose:
 #   Build an SLight URL.
 #   By default, the new URL will be based on the URL that is currently being viewed.
 #   This base can then be altered in many ways.

@@ -47,7 +47,7 @@ sub sql_connect { # {{{
 
     my $options = {
         AutoCommit => 1,
-        PrintError => 1
+        RaiseError => 1,
     };
     my $dbh = DBI->connect("dbi:". $P{'dbi'}, $P{'user'}, $P{'pass'}, $options);
 

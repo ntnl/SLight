@@ -34,7 +34,7 @@ sub handle_view { # {{{
 #    );
 
     my $content = get_Content($oid);
-    
+
     my $content_spec = get_ContentSpec($content->{'Spec.id'});
 
     $self->set_class($content_spec->{'class'});

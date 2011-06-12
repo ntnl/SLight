@@ -293,14 +293,14 @@
 [X]         Forge SQL
 [X]         Update Content.pm
 [X]         Fix regressions
-[-] CMS Lists
+[>] CMS Lists
 [ ]     In-progress refactoring
 [ ]         Move 'base' Form elements from Headlines to common class.
 [ ]         Add 'order by' to Handler::List::* (so lists control how to sort)
 [ ]             Add 'order by' to Headlines Form
 [ ]             Ability to fetch only fields for lists or pages.
 [X]     Headlines list (display titles of up to n child items, linking to their pages)
-[-]     Blog-like list (display up to n child items in full form, with 'Read more' links)
+[>]     Blog-like list (display up to n child items in full form, with 'Read more' links)
 [ ]     News-like list (display up to n summarized child items, with 'Read more' links)
 [ ]     Aggregator list (display up to n child items in full form, as if they ware parts of the page)
 [ ]     Gallery-like browser (display n items with in-place zoom support)
@@ -319,6 +319,7 @@
 [ ]     Do not show email field, if User is logged in.
 [ ]     Old session files are not deleted. They must be cleaned up!
 [ ]     Default value for Date / DateTime fields should be "today"
+[ ]     Page/Content form: make title, menu and breadcrumb optional - use 'Path' (or other property) as default.
 [ ] Release to the public
 [ ]     Make package
 [ ]     Beta-test
