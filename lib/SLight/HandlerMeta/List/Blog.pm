@@ -1,4 +1,4 @@
-package SLight::HandlerMeta::List::Headlines;
+package SLight::HandlerMeta::List::Blog;
 ################################################################################
 # 
 # SLight - Lightweight Content Management System.
@@ -27,18 +27,6 @@ sub get_spec { # {{{
     my $headlines_list_spec = {
         'owning_module' => 'List::Headlines',
         '_data' => {
-            'count_limit' => {
-                'display_on_page' => '2',
-                'default_value'   => '',
-                'display_on_list' => '2',
-                'optional'        => '1',
-                'caption'         => 'Maximal items to display',
-                'display_label'   => '1',
-                'field_index'     => 3,
-                'translate'       => '0',
-                'max_length'      => '1',
-                'datatype'        => 'Int'
-            },
         },
         'caption' => TR(q{List: Headlines}),
 
@@ -52,7 +40,7 @@ sub get_spec { # {{{
     # If not, add proper one.
     return $self->check_spec(
         owning_module => 'List::Headlines',
-        version       => 1,
+        version       => 0,
         spec          => $headlines_list_spec,
     );
 
@@ -60,3 +48,4 @@ sub get_spec { # {{{
 
 # vim: fdm=marker
 1;
+

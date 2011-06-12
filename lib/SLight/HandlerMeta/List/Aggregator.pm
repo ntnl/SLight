@@ -1,4 +1,4 @@
-package SLight::HandlerMeta::List::Headlines;
+package SLight::HandlerMeta::List::Aggregator;
 ################################################################################
 # 
 # SLight - Lightweight Content Management System.
@@ -22,7 +22,7 @@ use Carp::Assert::More qw( assert_defined );
 sub get_spec { # {{{
     my ( $self, $spec_id ) = @_;
 
-    # Parameters are ignored. For now.
+    # Parameters are ignored For now..
 
     my $headlines_list_spec = {
         'owning_module' => 'List::Headlines',
@@ -39,6 +39,18 @@ sub get_spec { # {{{
                 'max_length'      => '1',
                 'datatype'        => 'Int'
             },
+            'read_more' => {
+                'display_on_page' => '2',
+                'default_value'   => 'Read more...',
+                'display_on_list' => '2',
+                'optional'        => '1',
+                'caption'         => 'Action link text',
+                'display_label'   => '1',
+                'field_index'     => 2,
+                'translate'       => '1',
+                'max_length'      => '128',
+                'datatype'        => 'String'
+            },
         },
         'caption' => TR(q{List: Headlines}),
 
@@ -52,7 +64,7 @@ sub get_spec { # {{{
     # If not, add proper one.
     return $self->check_spec(
         owning_module => 'List::Headlines',
-        version       => 1,
+        version       => 0,
         spec          => $headlines_list_spec,
     );
 

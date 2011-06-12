@@ -1000,5 +1000,3 @@ t/1-modules/SLight-API-Permissions.t
 t/0-smoke/critic.t
 t/1-modules/SLight-Maintenance-Manipulate.t
 
-t/1-modules/SLight-Handler-List-Headlines-View.t
-

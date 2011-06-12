@@ -300,9 +300,9 @@
 [ ]             Add 'order by' to Headlines Form
 [ ]             Ability to fetch only fields for lists or pages.
 [X]     Headlines list (display titles of up to n child items, linking to their pages)
-[>]     Blog-like list (display up to n child items in full form, with 'Read more' links)
+[>]     Aggregator list (display up to n child items in full form, as if they ware parts of the page)
+[ ]     Blog-like list (display up to n child items in full form, with 'Read more' links)
 [ ]     News-like list (display up to n summarized child items, with 'Read more' links)
-[ ]     Aggregator list (display up to n child items in full form, as if they ware parts of the page)
 [ ]     Gallery-like browser (display n items with in-place zoom support)
 [-] HTML/Template improvements
 [X]     Ability to use widgets as labels for Link (and some other widgets)
