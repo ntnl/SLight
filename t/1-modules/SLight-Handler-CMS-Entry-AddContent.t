@@ -54,8 +54,11 @@ my @tests = (
             'handler' => 'CMS::Entry',
             'spec_id' => 1,
 
-            'page.path'     => q{Test1},
-            'page.template' => q{},
+            'page.path'       => q{Test1},
+            'page.template'   => q{},
+            'page.title'      => q{Sample article title},
+            'page.breadcrumb' => q{Article},
+            'page.menu'       => q{Menu},
 
             'meta.email' => q{agnes@test.test},
 
@@ -117,8 +120,11 @@ my @tests = (
 
             'meta.email' => q{agnes@test.test},
 
-            'page.path'     => q{Woman},
-            'page.template' => q{},
+            'page.path'       => q{Woman},
+            'page.template'   => q{},
+            'page.title'      => q{Teysty Gal},
+            'page.breadcrumb' => q{Teysty},
+            'page.menu'       => q{Gal},
 
             'content.name'         => 'Teysty',
             'content.pic'          => 'This is me',

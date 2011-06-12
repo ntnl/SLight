@@ -266,7 +266,7 @@
 
 =--= Sprint 3 - Command line CMS -
 
-[>] Contente/Page/Entity refactoring
+[X] Contente/Page/Entity refactoring
 [X]     Add 'menu_order' (integer) to Page_Entity, for use in menus. Items in menu will be sorted from lowest to highest.
 [X]     Add 'title', 'menu' and 'breadcrumb' as Page properties (with special l10n support).
 [X]         Forge SQL
@@ -288,7 +288,7 @@
 [X]         Update Menu Addon
 [X]         Update Sub Menu Addon
 [X]         Update Page PathHandler Breadcrumb generation
-[>]         Update Content Entry Form: add new fields to 'page' section
+[X]         Update Content Entry Form: add new fields to 'page' section
 [X]     Refactor Content API.
 [X]         Forge SQL
 [X]         Update Content.pm

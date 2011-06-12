@@ -63,6 +63,26 @@ sub build_form_guts { # {{{
             value   => ( $self->{'options'}->{'page.template'} or $page->{'template'} or q{}),
             error   => $P{'errors'}->{'page.template'},
         );
+
+        # Those are language-dependant.
+        $form->add_Entry(
+            caption => TR('Page title'),
+            name    => 'page.title',
+            value   => ( $self->{'options'}->{'page.title'} or $page->{'L10N'}->{ $lang }->{'title'} or q{}),
+            error   => $P{'errors'}->{'page.title'},
+        );
+        $form->add_Entry(
+            caption => TR('Breadcrumb label'),
+            name    => 'page.breadcrumb',
+            value   => ( $self->{'options'}->{'page.breadcrumb'} or $page->{'L10N'}->{ $lang }->{'breadcrumb'} or q{}),
+            error   => $P{'errors'}->{'page.breadcrumb'},
+        );
+        $form->add_Entry(
+            caption => TR('Menu label'),
+            name    => 'page.menu',
+            value   => ( $self->{'options'}->{'page.menu'} or $page->{'L10N'}->{ $lang }->{'menu'} or q{}),
+            error   => $P{'errors'}->{'page.menu'},
+        );
     }
     
     # Fixme: Add new stuff handled by Page!
@@ -326,7 +346,12 @@ sub mk_validator_metadata { # {{{
         if ($self->{'page'}->{'page_id'}) {
             $validator_metadata{'page.path'} = { type=>'FileName' };
         }
+
         $validator_metadata{'page.template'} = { type=>'FileName', optional=>1, };
+        
+        $validator_metadata{'page.title'}      = { type=>'String' };
+        $validator_metadata{'page.breadcrumb'} = { type=>'String' };
+        $validator_metadata{'page.menu'}       = { type=>'String' };
     }
 
     if (not $P{'content'} and not $self->{'user'}->{'email'}) {

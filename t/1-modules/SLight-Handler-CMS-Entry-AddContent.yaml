@@ -171,6 +171,42 @@ AddContent form - as New:
                 value: ''
               type: Entry
             type: Container
+          - class: F-page.title Entry
+            content:
+            - class: Label
+              data:
+                label: Page title
+              type: Label
+            - class: Value
+              data:
+                name: page.title
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-page.breadcrumb Entry
+            content:
+            - class: Label
+              data:
+                label: Breadcrumb label
+              type: Label
+            - class: Value
+              data:
+                name: page.breadcrumb
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-page.menu Entry
+            content:
+            - class: Label
+              data:
+                label: Menu label
+              type: Label
+            - class: Value
+              data:
+                name: page.menu
+                value: ''
+              type: Entry
+            type: Container
           - class: F-meta.email Entry
             content:
             - class: Label
@@ -720,6 +756,42 @@ Getting a girl - form:
             - class: Value
               data:
                 name: page.template
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-page.title Entry
+            content:
+            - class: Label
+              data:
+                label: Page title
+              type: Label
+            - class: Value
+              data:
+                name: page.title
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-page.breadcrumb Entry
+            content:
+            - class: Label
+              data:
+                label: Breadcrumb label
+              type: Label
+            - class: Value
+              data:
+                name: page.breadcrumb
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-page.menu Entry
+            content:
+            - class: Label
+              data:
+                label: Menu label
+              type: Label
+            - class: Value
+              data:
+                name: page.menu
                 value: ''
               type: Entry
             type: Container

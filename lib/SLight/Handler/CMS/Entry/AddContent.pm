@@ -262,9 +262,11 @@ sub handle_save { # {{{
             path => ( $self->{'options'}->{'page.path'} or q{} ),
         );
 
-        if ($self->{'options'}->{'page.template'}) {
-            $page{'template'} = $self->{'options'}->{'page.template'};
-        }
+        $page{'template'} = $self->{'options'}->{'page.template'};
+
+        $page{'L10N'}->{ $self->{'url'}->{'lang'} }->{'title'}      = $self->{'options'}->{'page.title'};
+        $page{'L10N'}->{ $self->{'url'}->{'lang'} }->{'breadcrumb'} = $self->{'options'}->{'page.breadcrumb'};
+        $page{'L10N'}->{ $self->{'url'}->{'lang'} }->{'menu'}       = $self->{'options'}->{'page.menu'};
 
 #        use Data::Dumper; die Dumper($self->{'page'});
 
