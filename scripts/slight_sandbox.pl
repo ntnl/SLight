@@ -22,12 +22,13 @@ use File::Copy::Recursive qw( dircopy );
 use File::Path qw( remove_tree );
 # }}}
 
-my $site = $ARGV[0];
-assert_defined($site, "Site given on command line!");
+my $site = ( $ARGV[0] or 'Minimal' );
+my $dst_dir = ( $ARGV[1] or 'sandbox' );
+
 assert_like($site, qr{^[A-Z][A-Za-z0-9]+$}s, "Site name OK.");
 
-my $source      = $Bin . '/../t_data/' . $site . q{/};
-my $destination = $Bin . '/../sandbox/';
+my $source      = $Bin . q{/../t_data/} . $site . q{/};
+my $destination = $Bin . q{/../} . $dst_dir q{/};
 
 assert_is(-d $source,      1, "Source existst: $source");
 assert_is(-d $destination, 1, "Destination exists: $destination");

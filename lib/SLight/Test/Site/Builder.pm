@@ -24,6 +24,7 @@ use File::Slurp qw( write_file );
 # }}}
 
 my %sites = ( # FIXME: Actually support this!
+    'Default'        => [qw( Default )],
     'Minimal'        => [qw( Minimal )],
     'Users'          => [qw( Users )],
     'EmailTemplates' => [qw( EmailTemplates )],
