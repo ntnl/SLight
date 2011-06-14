@@ -73,10 +73,14 @@ sub S_process_object { # {{{
         printf STDERR "%s object failed to compile.\n", $pkg .q{::}. $handler .q{::}. $action;
         print STDERR $EVAL_ERROR;
 
-        return mk_Label_token(
+        return {
             class => 'SLight_Error',
-            text  => TF("%s failed.", undef, $pkg .q{::}. $handler .q{::}. $action),
-        );
+            data  => [
+                mk_Label_token(
+                    text  => TF("%s failed.", undef, $pkg .q{::}. $handler .q{::}. $action),
+                ),
+            ],
+        };
     }
 
     my $result = eval {
@@ -96,10 +100,14 @@ sub S_process_object { # {{{
         printf STDERR "%s object failed to run.\n", $pkg .q{::}. $handler .q{::}. $action;
         print STDERR $EVAL_ERROR;
 
-        return mk_Label_token(
+        return {
             class => 'SLight_Error',
-            text  => TF("%s failed.", undef, $pkg .q{::}. $handler .q{::}. $action),
-        );
+            data  => [
+                mk_Label_token(
+                    text  => TF("%s failed.", undef, $pkg .q{::}. $handler .q{::}. $action),
+                ),
+            ],
+        };
     }
 
     # Fixme! actually check, if this is a derivative from SLight::DataStructure (!)

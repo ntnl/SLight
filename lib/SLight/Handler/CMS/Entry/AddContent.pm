@@ -85,7 +85,7 @@ sub handle_view { # {{{
                         step    => 'form',
                         options => {
                             target  => q{New},
-                            handler => q{CMS::Entry},
+                            handler => q{Core::Empty},
                         },
                     ),
                 ),
@@ -97,7 +97,7 @@ sub handle_view { # {{{
                         step    => 'form',
                         options => {
                             target => 'Current',
-                            handler => q{CMS::Entry},
+                            handler => q{Core::Empty},
                         },
                     ),
                 )

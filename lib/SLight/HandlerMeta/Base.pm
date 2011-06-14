@@ -1,4 +1,4 @@
-package SLight::HandlerMeta::List;
+package SLight::HandlerMeta::Base;
 ################################################################################
 # 
 # SLight - Lightweight Content Management System.

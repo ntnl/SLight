@@ -42,13 +42,18 @@ sub analyze_path { # {{{
 
     $self->set_main_object('o');
 
-    $self->set_template( 'Default' );
+    $self->set_template( $self->template() );
 
     my $bread_crumbs = $self->bread_crumbs($path->[0]);
 
     $self->set_breadcrumb_path($bread_crumbs);
 
     return $self->response_content(); 
+} # }}}
+
+# Default:
+sub template { # {{{
+    return 'Default';
 } # }}}
 
 # Virtual

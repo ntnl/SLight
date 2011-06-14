@@ -43,12 +43,28 @@ our @EXPORT_OK = qw(
     mk_TableCell_token
 
     mk_ProgressBar_token
+    
+    mk_Data_token
 );
 our %EXPORT_TAGS = (
     'all' => [ @EXPORT_OK ],
 );
 
 # Functions that create valid hashref-s for DataStructure.
+
+sub mk_Data_token { # {{{
+    my %P = validate(
+        @_,
+        {
+            id   => { type=>SCALAR },
+            data => { type=>HASHREF, optional=>1 },
+        }
+    );
+
+    $P{'type'} = 'Data';
+
+    return \%P;
+} # }}}
 
 sub mk_Container_token { # {{{
     my %P = validate(

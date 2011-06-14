@@ -749,6 +749,9 @@ sub process_layout_element { # {{{
     if ($element->{'class'}) {
         $element_variables{'Class'} = $element->{'class'};
     }
+    if ($element->{'id'}) {
+        $element_variables{'Id'} = $element->{'id'};
+    }
 
     if ($element->{'content'}) {
         foreach my $child_element (@{ $element->{'content'} }) {

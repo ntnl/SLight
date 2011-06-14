@@ -12,7 +12,7 @@ package SLight::HandlerMeta::List::Aggregator;
 # 
 ################################################################################
 use strict; use warnings; # {{{
-use base 'SLight::HandlerMeta::List';
+use base 'SLight::HandlerMeta::Base';
 
 use SLight::Core::L10N qw( TR );
 
@@ -62,12 +62,13 @@ sub get_spec { # {{{
 
     # Check, if there is a correct entry in Spec DB.
     # If not, add proper one.
+    #
+    # This is a temporal workaround. Will be improved when needed.
     return $self->check_spec(
         owning_module => 'List::Headlines',
         version       => 0,
         spec          => $headlines_list_spec,
     );
-
 } # }}}
 
 # vim: fdm=marker
