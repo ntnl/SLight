@@ -112,6 +112,16 @@ sub analyze_path { # {{{
 
 #    use Data::Dumper; warn 'Page: '. Dumper $page;
 
+    if ($page) {
+        foreach my $lang ($lang, keys %{ $page->{'L10N'} }, q{*}) {
+            if (exists $page->{'L10N'}->{$lang}) {
+                $self->set_title($page->{'L10N'}->{$lang}->{'title'});
+
+                last;
+            }
+        }
+    }
+
     # If there is no root page, return a nice 'Welcome' message :)
     if ($page_id == 1 and not $page) {
         $self->cms_db_is_empty();

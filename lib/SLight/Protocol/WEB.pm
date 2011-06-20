@@ -78,6 +78,16 @@ sub respond { # {{{
 
 #    use Data::Dumper; warn Dumper $response;
 
+    # Every page should have some kind of a title...
+    if (not $response->{'meta'}->{'title'}) {
+        if ($P{'page'}->{'title'}) {
+            $response->{'meta'}->{'title'} = $P{'page'}->{'title'};
+        }
+        else {
+            $response->{'meta'}->{'title'} = SLight::Core::Config::get_option('name');
+        }
+    }
+
     $output_object->set_meta($response->{'meta'});
 
     $output_object->queue_object_data(

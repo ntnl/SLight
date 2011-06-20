@@ -26,6 +26,8 @@ sub new { # {{{
     my $self = {
         page_id => undef,
 
+        title => undef, # Optional.
+
         template => undef,
 
         objects => {},
@@ -79,6 +81,12 @@ sub set_breadcrumb_path { # {{{
     return $self->{'breadcrumb_path'} = $breadcrumb_path;
 } # }}}
 
+sub set_title { # {{{
+    my ( $self, $title ) = @_;
+
+    return $self->{'title'} = $title;
+} # }}}
+
 sub set_template { # {{{
     my ( $self, $template ) = @_;
 
@@ -120,6 +128,7 @@ sub response_content { # {{{
         breadcrumb_path => $self->{'breadcrumb_path'},
 
         template => $self->{'template'},
+        title    => $self->{'title'},
 
         objects      => $self->{'objects'},
         object_order => $self->{'object_order'},
