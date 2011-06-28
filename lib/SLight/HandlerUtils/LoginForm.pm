@@ -50,6 +50,17 @@ sub build { # {{{
         error   => ( $errors->{'pass'} ),
     );
 
+    $form->add_Link(
+        href  => q{/_Authentication/Register.web},
+        text  => TR("Register account..."),
+        class => 'SL_Register_Action',
+    );
+    $form->add_Link(
+        href  => q{/_Authentication/Register.web},
+        text  => TR("Forgot password?"),
+        class => 'SL_Password_Action',
+    );
+
     return $form;
 } # }}}
 

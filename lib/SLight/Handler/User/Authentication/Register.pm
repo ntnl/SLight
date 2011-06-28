@@ -136,6 +136,8 @@ sub handle_request { # {{{
             login => $self->{'options'}->{'u-login'},
             key   => $activation_key,
         },
+
+        add_domain => 1,
     );
 
     SLight::API::Email::send_registration(
@@ -144,6 +146,19 @@ sub handle_request { # {{{
         name              => ( $self->{'options'}->{'u-name'} or $self->{'options'}->{'u-login'} ),
         confirmation_link => $activate_url,
     );
+
+    my $mailback = SLight::Core::Config::get_option('mailback');
+    warn $mailback;
+    if ($mailback) {
+        SLight::API::Email::send_notification(
+            email => $mailback,
+            name  => 'Webmaster',
+
+            notifications => [
+                q{New User account registered: } . $self->{'options'}->{'u-login'} .q{ using email: } . $self->{'options'}->{'u-email'},
+            ]
+        );
+    }
 
     # Redirect to 'Thank you' page.
     my $target_url = $self->build_url(

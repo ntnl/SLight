@@ -99,6 +99,8 @@ sub handle_request { # {{{
             login => $self->{'options'}->{'user'},
             key   => $pass_key,
         },
+
+        add_domain => 1,
     );
 
     SLight::API::Email::send_notification(
@@ -117,6 +119,8 @@ sub handle_request { # {{{
         action  => 'Password',
         step    => 'requested',
         options => {},
+
+        add_domain => 1,
     );
 
     $self->redirect($target_url);
@@ -207,6 +211,8 @@ sub handle_change { # {{{
             action  => 'View',
             step    => 'view',
             options => {},
+
+            add_domain => 1,
         );
 
         $self->redirect($target_url);
@@ -291,6 +297,8 @@ sub password_form { # {{{
         step    => q{post},
 
         options => {},
+
+        add_domain => 1,
     );
 
     my $form = SLight::DataStructure::Form->new(

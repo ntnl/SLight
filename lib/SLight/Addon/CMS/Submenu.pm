@@ -15,7 +15,7 @@ use strict; use warnings; # {{{
 use base q{SLight::AddonBase::CMS::Menu};
 
 use SLight::Core::L10N qw( TR TF );
-use SLight::API::Page;
+use SLight::API::Page qw( get_Page get_Page_full_path );
 use SLight::Core::URL;
 use SLight::Core::Config;
 use SLight::DataToken qw( mk_Link_token mk_Container_token );
@@ -30,7 +30,7 @@ sub _process { # {{{
         return;
     }
 
-    my $page = SLight::API::Page::get_Page($self->{'page_id'});
+    my $page = get_Page($self->{'page_id'});
 
     if (not $page->{'parent_id'} or $page->{'parent_id'} == 1) {
         return;
@@ -42,7 +42,7 @@ sub _process { # {{{
         _fields => [qw( path menu_order L10N )]
     );
 
-    my $menu_items = $self->build_menu([], $pages);
+    my $menu_items = $self->build_menu(get_Page_full_path($page->{'parent_id'}), $pages);
 
     my $container = mk_Container_token(
         class   => 'SLight_Submenu_Addon',

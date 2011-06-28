@@ -46,8 +46,6 @@ use SLight::DataToken qw( mk_Link_token );
 #     return [ sort { ( $a->{'s'} <=> $b->{'s'} ) or ( $a->{'s'} cmp $b->{'s'} ) } @pages_and_objects ];
 # } # }}}
 
-
-
 sub build_menu { # {{{
     my ( $self, $base_path, $pages ) = @_;
 

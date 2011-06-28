@@ -23,6 +23,12 @@ use File::Slurp qw( read_file );
 use Params::Validate qw( :all );
 # }}}
 
+sub list_addons { # {{{
+    # FIXME: actually check in the template!
+    # FIXME: this should be implemented by the child classes, probably!
+    return qw( Core::Toolbox Core::Path Core::Sysinfo Core::Language Core::Debug CMS::Rootmenu CMS::Menu CMS::Submenu User::Info User::Panel );
+} # }}}
+
 sub process_object_data { # {{{
     my ( $self, $oid, $data_structure ) = @_;
 

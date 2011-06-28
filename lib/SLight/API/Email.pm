@@ -95,7 +95,7 @@ sub send_notification { # {{{
             notifications => { type=>ARRAYREF },
         }
     );
-    
+
     my $text = _load_template(q{notification});
 
     $P{'notifications'} = join "\n", @{ $P{'notifications'} };

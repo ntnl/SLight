@@ -322,5 +322,30 @@ sub add_Action { # {{{
     return;
 } # }}}
 
+sub add_Link { # {{{
+    my $self = shift;
+    my %P = validate(
+        @_,
+        {
+            text  => { type=>SCALAR },
+            href  => { type=>SCALAR },
+            class => { type=>SCALAR, optional=>1 },
+        }
+    );
+
+    my $class = q{};
+    if ($P{'class'}) {
+        $class = 'F-' . $P{'class'} . q{ };
+    }
+
+    push @{ $self->{'FormContent'} }, mk_Link_token(
+        class => $class . q{Link},
+        text  => $P{'text'},
+        href  => $P{'href'},
+    );
+
+    return;
+} # }}}
+
 # vim: fdm=marker
 1;

@@ -57,7 +57,9 @@ sub serialize { # {{{
     );
     
     foreach my $object_id (@{ $object_order }) {
-        $json_data{'data'}->{$object_id} = $self->{'JSON'}->{'objects'}->{$object_id}->{'content'}->[0];
+        if ($self->{'JSON'}->{'objects'}->{$object_id}) {
+            $json_data{'data'}->{$object_id} = $self->{'JSON'}->{'objects'}->{$object_id}->{'content'}->[0];
+        }
     }
 
     return (
