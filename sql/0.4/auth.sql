@@ -3,10 +3,10 @@
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE User_Entity (
-	`id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it
+    `id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it
 
-	`login` VARCHAR(64) NOT NULL,
-		-- User's login
+    `login` VARCHAR(64) NOT NULL,
+        -- User's login
 
     `status` VARCHAR(10) NOT NULL,
 
@@ -25,6 +25,19 @@ CREATE TABLE User_Entity (
 );
 CREATE UNIQUE INDEX User_Entity_login ON User_Entity (login);
 CREATE        INDEX User_Entity_email ON User_Entity (Email_id);
+
+CREATE TABLE User_Data (
+    `id` INTEGER PRIMARY KEY, -- must be an integer, to have AUTOINCREMENT on it
+
+    User_id INTEGER NOT NULL,
+
+    data_key   VARCHAR(128) NOT NULL,
+    data_value TEXT,
+        -- Serialized using either JSON
+
+    FOREIGN KEY(`User_id`) REFERENCES User_Entity(`id`)
+);
+CREATE UNIQUE INDEX User_Data_Key ON User_Data (User_id, Data_key);
 
 -- Two tables bellow define what functionality can be used by given User.
 

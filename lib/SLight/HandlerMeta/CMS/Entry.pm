@@ -12,21 +12,12 @@ package SLight::HandlerMeta::CMS::Entry;
 # 
 ################################################################################
 use strict; use warnings; # {{{
+use base 'SLight::HandlerMeta::Base';
 
 use SLight::API::ContentSpec qw( get_ContentSpecs_where get_ContentSpec );
 
 use Carp::Assert::More qw( assert_defined );
 # }}}
-
-sub new { # {{{
-    my ( $class ) = @_;
-
-    my $self = {};
-
-    bless $self, $class;
-
-    return $self;
-} # }}}
 
 sub get_spec { # {{{
     my ( $self, $spec_id, $save ) = @_;

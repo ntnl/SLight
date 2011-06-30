@@ -12,7 +12,6 @@ package SLight::HandlerMeta;
 # 
 ################################################################################
 use strict; use warnings; # {{{
-use base q{SLight::Core::Factory};
 
 use Carp;
 use English qw( -no_match_vars );

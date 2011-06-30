@@ -24,8 +24,8 @@ sub get_spec { # {{{
 
     # Parameters are ignored For now..
 
-    my $headlines_list_spec = {
-        'owning_module' => 'List::Headlines',
+    my $list_spec = {
+        'owning_module' => 'List::Aggregator',
         '_data' => {
             'count_limit' => {
                 'display_on_page' => '2',
@@ -52,12 +52,12 @@ sub get_spec { # {{{
                 'datatype'        => 'String'
             },
         },
-        'caption' => TR(q{List: Headlines}),
+        'caption' => TR(q{List: Aggregator}),
 
         'version'      => '0',
         'cms_usage'    => '3',
         'metadata'     => {},
-        'class'        => 'SL_List_Headlines'
+        'class'        => 'SL_List_Aggregator'
     };
 
     # Check, if there is a correct entry in Spec DB.
@@ -65,9 +65,9 @@ sub get_spec { # {{{
     #
     # This is a temporal workaround. Will be improved when needed.
     return $self->check_spec(
-        owning_module => 'List::Headlines',
+        owning_module => 'List::Aggregator',
         version       => 0,
-        spec          => $headlines_list_spec,
+        spec          => $list_spec,
     );
 } # }}}
 

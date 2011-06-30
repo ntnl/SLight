@@ -1,4 +1,4 @@
-package SLight::HandlerBase::List::View;
+package SLight::HandlerMeta::List;
 ################################################################################
 # 
 # SLight - Lightweight Content Management System.
@@ -12,14 +12,12 @@ package SLight::HandlerBase::List::View;
 # 
 ################################################################################
 use strict; use warnings; # {{{
-use base q{SLight::HandlerBase::CMS};
+use base 'SLight::HandlerMeta::Base';
 
-use SLight::Core::L10N qw( TR TF );
+use SLight::Core::L10N qw( TR );
 
-use Params::Validate qw( :all );
+use Carp::Assert::More qw( assert_defined );
 # }}}
-
-
 
 # vim: fdm=marker
 1;

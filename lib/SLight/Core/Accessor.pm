@@ -42,7 +42,7 @@ sub new { # {{{
             has_owner    => { type=>SCALAR, optional=>1, },
             has_assets   => { type=>SCALAR, optional=>1, },
             has_comments => { type=>SCALAR, optional=>1, },
-            
+
             cache_namespace => { type=>SCALAR, optional=>1, },
         }
     );
@@ -98,14 +98,12 @@ sub new { # {{{
             $self->_hook_refers($namespace, $self->{'refers'}->{$namespace});
         }
     }
-    
+
     if ($self->{'referenced'}) {
         foreach my $namespace (keys %{ $self->{'referenced'} }) {
             $self->_hook_referenced($namespace, $self->{'referenced'}->{$namespace});
         }
     }
-
-    
 
 #    use Data::Dumper; warn Dumper $self;
 
@@ -300,7 +298,7 @@ sub update_ENTITY { # {{{
                         ids => $existing,
 
                         %{ $item->{'val'} },
-        
+
                         _debug => $_debug,
                     );
                 }
@@ -356,9 +354,9 @@ sub get_ENTITY { # {{{
         if ($_debug) { print STDERR "Nothing found!\n"; }
         return;
     }
-    
+
     my $entities = $self->_post_process_entities( [ $entity ], $select_meta);
-    
+
 #    use Data::Dumper; warn Dumper $entities->[0];
 
     return $entities->[0];
@@ -382,11 +380,11 @@ sub get_ENTITY_fields { # {{{
     if (not $entity) {
         return;
     }
-    
+
 #    use Data::Dumper; warn Dumper $entity;
 
     my $entities = $self->_post_process_entities( [ $entity ], $select_meta);
-    
+
     return $entities->[0];
 } # }}}
 
@@ -414,7 +412,7 @@ sub get_ENTITIES_where { # {{{
 
     my ($sth, $select_meta) = $self->_select_ENTITIES(
         %P,
-        
+
         _fields => $self->{'default_columns'},
     );
 
@@ -493,7 +491,7 @@ sub _select_ENTITIES { # {{{
     SLight::Core::DB::check();
 
     my $fields = delete $P{'_fields'};
-    
+
     my $_debug = delete $P{'_debug'};
 
     my @columns = ( $self->{'table'} . q{.`id`} );
@@ -511,7 +509,7 @@ sub _select_ENTITIES { # {{{
             my $spec = $self->{'_field_def'}->{$field}->{'spec'};
 
             $tables{ $spec->{'table'} . q{ AS }. $spec->{'namespace'} } = 1;
-            
+
             $where{ $spec->{'namespace'} . q{.id = } } = \$spec->{'_key_field'};
 
             if ($P{$field} and ref $P{$field}) {
@@ -543,7 +541,7 @@ sub _select_ENTITIES { # {{{
             my $spec = $self->{'_field_def'}->{$field}->{'spec'};
 
             $tables{ $spec->{'table'} . q{ AS }. $spec->{'namespace'} } = 1;
-            
+
             $where{ $spec->{'namespace'} . q{.id = } } = \$spec->{'_key_field'};
 
             push @columns, $field . q{ AS `}. $field .q{`};

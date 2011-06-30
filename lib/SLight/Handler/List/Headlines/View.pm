@@ -58,7 +58,7 @@ sub handle_view { # {{{
         class => q{SL_List_Headlines},
         token => \@objects,
     );
-    
+
     $self->push_data($container);
 
     return;
