@@ -1,6 +1,6 @@
 package SLight::DataStructure::List;
 ################################################################################
-# 
+#
 # SLight - Lightweight Content Management System.
 #
 # Copyright (C) 2010-2011 Bartłomiej /Natanael/ Syguła
@@ -9,13 +9,12 @@ package SLight::DataStructure::List;
 # It is licensed, and can be distributed under the same terms as Perl itself.
 #
 # More information on: http://slight-cms.org/
-# 
+#
 ################################################################################
-
 use strict; use warnings; # {{{
 use base 'SLight::DataStructure';
 
-use SLight::DataToken qw( mk_List_token mk_ListItem_token );
+use SLight::DataToken qw( mk_List_token mk_Label_token mk_ListItem_token );
 
 use Carp::Assert::More qw( assert_defined );
 use Params::Validate qw( :all );
@@ -35,14 +34,18 @@ sub _new { # {{{
     my %P = validate(
         @_,
         {
-            class   => { type=>SCALAR, optional=>1 },
             columns => { type=>ARRAYREF },
+
+            class    => { type=>SCALAR, optional=>1 },
+            captions => { type=>SCALAR, optional=>1 },
         }
     );
 
     $self->{'Items'} = [];
 
     $self->{'Columns'} = $P{'columns'};
+
+    $self->{'captions'} = $P{'captions'};
 
     $self->set_data(
         $self->_make_container( $P{'class'}, $self->{'Items'} )
@@ -79,12 +82,19 @@ sub add_Row { # {{{
             data  => { type=>HASHREF },
         }
     );
-    
+
 #    use Data::Dumper; warn Dumper $P{'data'};
 
     my @fields;
     foreach my $column (@{ $self->{'Columns'} }) {
         if (defined $P{'data'}->{ $column->{'name'} }) {
+            if ($self->{'captions'}) {
+                push @fields, mk_Label_token(
+                    class => 'SL_Label',
+                    text  => $column->{'caption'},
+                );
+            }
+
             push @fields, @{
                 $self->make_label_if_text(
                     object => $P{'data'}->{ $column->{'name'} },

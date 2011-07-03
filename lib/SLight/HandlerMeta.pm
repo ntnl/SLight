@@ -15,147 +15,98 @@ use strict; use warnings; # {{{
 
 use Carp;
 use English qw( -no_match_vars );
+use File::Slurp qw( read_dir );
 use Params::Validate qw( :all );
 # }}}
 
 # Purpose:
 #   Meta information related to Handlers.
 
+my $_cached_handlers_list;
+
 sub get_handlers_list { # {{{
-    return [
-        {
-            class => q{Account}, # {{{
-            objects => [
-                {
-                    class => q{Account},
-                    actions => [qw( Delete Edit New Password View )],
-                },
-                {
-                    class => q{Avatar},
-                    actions => [qw( Change Delete View )],
-                },
-                {
-                    class => q{List},
-                    actions => [qw( View )],
-                },
-                {
-                    class => q{Permissions},
-                    actions => [qw( Change View )],
-                },
-            ], # }}}
-        },
-        {
-            class => q{List}, # {{{
-            objects => [
-                {
-                    class => q{Headlines},
-                    actions => [qw( View Settings AddContent Delete )],
-                },
-                {
-                    class => q{Aggregator},
-                    actions => [qw( View Settings AddContent Delete )],
-                },
-                {
-                    class => q{Blog},
-                    actions => [qw( View Settings AddContent Delete )],
-                },
-                {
-                    class => q{News},
-                    actions => [qw( View Settings AddContent Delete )],
-                },
-                {
-                    class => q{Gallery},
-                    actions => [qw( View Zoom Settings AddContent Delete )],
-                },
-            ], # }}}
-        },
-        {
-            class => q{CMS}, # {{{
-            objects => [
-                {
-                    class => q{Entry},
-                    actions => [qw( AddContent Delete Edit View )],
-                },
-                {
-                    class => q{Spec},
-                    actions => [qw( Delete Edit New View )],
-                },
-                {
-                    class => q{SpecField},
-                    actions => [qw( Delete Edit New View )],
-                },
-                {
-                    class => q{SpecList},
-                    actions => [qw( View )],
-                },
-                {
-                    class => q{Welcome},
-                    actions => [qw( AddContent View )],
+    if ($_cached_handlers_list) {
+        return $_cached_handlers_list;
+    }
+
+    return $_cached_handlers_list = _find_handlers();
+} # }}}
+
+sub _find_handlers { # {{{
+    my %handler_action_pool;
+
+    foreach my $path (@INC) {
+        if (not -d $path) {
+            next;
+        }
+
+        my @dirs = read_dir($path);
+
+        foreach my $item (@dirs) {
+            if ($item eq 'SLight' and -d $path .q{/}. $item .q{/Handler}) {
+                _harvest_handler_actions($path .q{/}. $item, \%handler_action_pool);
+            }
+        }
+    }
+
+    my @handlers_list;
+    foreach my $handler (keys %handler_action_pool) {
+        my $handler_entry = {
+            class   => $handler,
+            objects => [],
+        };
+
+        foreach my $object (keys %{ $handler_action_pool{$handler} }) {
+            my $object_entry = {
+                class   => $object,
+                actions => $handler_action_pool{$handler}->{$object}->{'actions'},
+            };
+
+            push @{ $handler_entry->{'objects'} }, $object_entry;
+        }
+
+        push @handlers_list, $handler_entry;
+    }
+
+#    use YAML::Syck; warn Dump \@handlers_list;
+
+    return \@handlers_list;
+} # }}}
+
+sub _harvest_handler_actions { # {{{
+    my ( $dir, $pool ) = @_;
+
+    my @handlers = read_dir($dir .q{/Handler});
+
+    foreach my $handler (@handlers) {
+        if (not -d $dir .q{/Handler/} . $handler) {
+            next;
+        }
+
+        my @objects = read_dir($dir .q{/Handler/} . $handler);
+
+        foreach my $object (@objects) {
+            if (not -d $dir .q{/Handler/} . $handler . q{/} . $object) {
+                next;
+            }
+
+            if (not $pool->{$handler}->{$object}->{'actions'}) {
+                $pool->{$handler}->{$object}->{'actions'} = [];
+            }
+
+            my @actions = read_dir($dir .q{/Handler/} . $handler . q{/} . $object);
+
+            foreach my $action (@actions) {
+                if ($action =~ m{^(.+?)\.pm$}s) {
+                    my $class = $1;
+
+                    push @{ $pool->{$handler}->{$object}->{'actions'} }, $class;
                 }
-            ], # }}}
-        },
-        {
-            class => q{Core}, # {{{
-            objects => [
-                {
-                    class => 'Asset',
-                    actions => [qw( Delete Download Thumb View )],
-                },
-                {
-                    class => 'AssetList',
-                    actions => [qw( View )],
-                },
-                {
-                    class => 'Empty',
-                    actions => [qw( AddContent Delete View )],
-                },
-            ], # }}}
-        },
-        {
-            class => q{MyAccount}, # {{{
-            objects => [
-                {
-                    class => 'Avatar',
-                    actions => [qw( Change Delete View )],
-                },
-                {
-                    class => 'MyData',
-                    actions => [qw( Edit View )],
-                },
-                {
-                    class => 'Password',
-                    actions => [qw( View )],
-                }
-            ], # }}}
-        },
-        {
-            class => q{System}, # {{{
-            objects => [
-                {
-                    class => 'Permissions',
-                    actions => [qw( View Change )],
-                },
-            ], # }}}
-        },
-        {
-            class => q{Test}, # {{{
-            objects => [
-                {
-                    class => 'Foo',
-                    actions => [qw( View )],
-                }
-            ], # }}}
-        },
-        {
-            class => q{User}, # {{{
-            objects => [
-                {
-                    class => 'Authentication',
-                    actions => [qw( ActivateAccount Login Logout Password Register )],
-                },
-            ], # }}}
-        },
-    ];
+            }
+        }
+    }
+
+    return;
 } # }}}
 
 # vim: fdm=marker

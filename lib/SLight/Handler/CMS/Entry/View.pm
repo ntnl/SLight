@@ -33,14 +33,14 @@ sub handle_view { # {{{
 #        )
 #    );
 
-    my $content = get_Content($oid);
+    my $Content = get_Content($oid);
 
-    my $content_spec = get_ContentSpec($content->{'Spec.id'});
+    my $Spec = get_ContentSpec($Content->{'Spec.id'});
 
-    $self->set_class($content_spec->{'class'});
+    $self->set_class($Spec->{'class'});
 
     $self->push_data(
-        $self->ContentData_2_details($content, $content_spec)
+        $self->render_cms_page($Content, $Spec)
     );
 
     my $dump;
@@ -49,7 +49,7 @@ sub handle_view { # {{{
         $self->push_data(
             SLight::DataStructure::Dialog::Notification->new(
                 class => q{SLight_Notification},
-                text  => q{<pre>} . ( Dumper $content ) . q{</pre>},
+                text  => q{<pre>} . ( Dumper $Content ) . q{</pre>},
             )
         );
     }

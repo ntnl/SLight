@@ -305,16 +305,28 @@ sub add_notification { # {{{
 sub get_l10n_value { # {{{
     my ( $self, $data ) = @_;
 
+    my %spool;
+    if ($data->{ '*' }) {
+        %spool = %{ $data->{ '*' } };
+    }
+
     my @langs = (
         $self->{'url'}->{'lang'},
         keys %{ $data },
-        q{*},
     );
 
     foreach my $lang (@langs) {
         if (exists $data->{$lang}) {
-            return $data->{$lang};
+            foreach my $k (keys %{ $data->{$lang} }) {
+                $spool{$k} = $data->{$lang}->{$k};
+            }
+
+            last;
         }
+    }
+
+    if (keys %spool) {
+        return \%spool;
     }
 
     # Normally this will not happen (unless the given hashref was empty.
@@ -411,7 +423,7 @@ sub make_toolbox { # {{{
             path_handler => { type=>SCALAR, optional=>1, default=>$self->{'url'}->{'path_handler'} },
             path         => { type=>SCALAR, optional=>1, default=>$self->{'url'}->{'path'} },
             add_to_path  => { type=>ARRAYREF, optional=>1 },
-            
+
             options  => { type=>HASHREF, optional=>1 },
 
             action => { type=>SCALAR, optional=>1, default=>$self->{'url'}->{'action'} },
@@ -420,7 +432,7 @@ sub make_toolbox { # {{{
             page   => { type=>SCALAR, optional=>1, default=>$self->{'url'}->{'page'} },
 
             protocol => { type=>SCALAR, optional=>1, default=>$self->{'url'}->{'protocol'} },
-            
+
             user_id => { type=>SCALAR, optional=>1 },
         }
     );

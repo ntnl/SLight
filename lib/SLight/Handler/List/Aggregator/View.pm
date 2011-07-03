@@ -41,7 +41,7 @@ sub handle_view { # {{{
 #    use Data::Dumper; warn Dumper $sub_pages;
 
     my $contents = get_Contents_fields_where(
-        _fields => [qw( Page.id Data Spec.id )],
+        _fields => [qw( Page.id Data Spec.id added_time modified_time )],
 
         Page_Entity_id => [ map { $_->{'id'} } @{ $sub_pages } ],
 
@@ -77,19 +77,22 @@ sub handle_view { # {{{
 
 #            push @parts, mk_Text_token( text => '<pre>'. ( Dumper $spec ) .'</pre>' );
 
-            foreach my $field_name (@{ $spec->{'_data_order'} }) {
-                my $field = $spec->{'_data'}->{$field_name};
+            push @parts, $self->render_cms_object(
+                Content => $content_object,
 
-                if (not $field->{'display_on_list'}) {
-                    next;
-                }
+                Data => $content_data,
+                Spec => $spec,
 
-#                push @parts, mk_Text_token( text => '<pre>'. ( Dumper $field ) .'</pre>' );
+                filter_cb => sub {
+                    my ( $field ) = @_;
 
-                my $value = $content_data->{ $field->{'id'} }->{'value'};
+                    if (not $field->{'display_on_list'}) {
+                        return;
+                    }
 
-                push @parts, mk_Text_token( text => $value ); # FIXME - probably different tokens should be used.
-            }
+                    return 1;
+                },
+            );
         }
 
         push @parts, mk_Link_token(

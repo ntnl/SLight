@@ -30,6 +30,29 @@ use YAML::Syck qw( LoadFile );
 my $session;
 my $session_id;
 
+# Check if session with given ID is still usable (exist, and has not expired).
+sub is_live_session { # {{{
+    my ( $id ) = @_;
+
+    if (not is_valid_session_id($id)) {
+        return;
+    }
+
+    my $file = session_filename($id);
+
+    if (not -f $file) {
+        return;
+    }
+
+    my $_session = LoadFile( $file );
+
+    if ($_session->{'expires'} and $_session->{'expires'} > time) {
+        return 1;
+    }
+
+    return;
+} # }}}
+
 # Start a new session.
 sub start { # {{{
     reset_module();
@@ -65,7 +88,7 @@ sub restore { # {{{
         $session_id = $id;
     }
 
-    my $file = session_filename();
+    my $file = session_filename($session_id);
 
     if (-f $file) {
         # We should gracefully fail - session will not work,
@@ -105,7 +128,7 @@ sub validate_session { # {{{
 
 # Store session data on HDD.
 sub save { # {{{
-    my $file = session_filename();
+    my $file = session_filename($session_id);
     
 #    # Debug:
 #    open my $dh, ">", $file ."-Dumper";
@@ -126,7 +149,7 @@ sub drop { # {{{
         return;
     }
 
-    my $file = session_filename();
+    my $file = session_filename($session_id);
 
     if ($file) {
         unlink $file;
@@ -176,23 +199,25 @@ sub new_session_id { # {{{
 # Returns false (undef) in other case.
 sub is_valid_session_id { # {{{
     my ( $tmp_session_id ) = @_;
-    
+
     # Empty ID is not valid.
     if (not $tmp_session_id) { return; }
-    
+
     my $hex8  = qr{[0-9A-F]{8,8}}s;
     my $hex4  = qr{[0-9A-F]{4,4}}s;
     my $hex12 = qr{[0-9A-F]{12,12}}s;
 
     # ID looks like UUID.
     if ($tmp_session_id =~ m{^$hex8-$hex4-$hex4-$hex4-$hex12$}s) { return 1; }
-    
+
     return;
 } # }}}
 
 # Returns path for the file, in which session is stored.
 sub session_filename { # {{{
-    return SLight::Core::Config::get_option('data_root') .q{/sessions/}. $session_id .q{.yaml};
+    my ($id) = @_;
+
+    return SLight::Core::Config::get_option('data_root') .q{/sessions/}. $id .q{.yaml};
 } # }}}
 
 # Reset session module before it can handle session in another request.

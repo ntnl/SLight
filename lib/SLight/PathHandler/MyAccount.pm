@@ -16,13 +16,11 @@ use base q{SLight::PathHandlerBase::SubClass};
 
 # }}}
 
-sub default_class { # {{{
-    return 'MyAccount::MyData';
-} # }}}
+sub default_class { return 'MyAccount::MyData'; }
 
-sub class_base { # {{{
-    return 'MyAccount';
-} # }}}
+sub class_base { return 'MyAccount'; }
+
+sub template_name { return 'MyAccount'; }
 
 # vim: fdm=marker
 1;

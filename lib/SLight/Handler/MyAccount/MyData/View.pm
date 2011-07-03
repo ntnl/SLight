@@ -58,7 +58,7 @@ sub handle_view { # {{{
     );
 
     $self->push_data($my_data);
-    
+
     return;
 } # }}}
 

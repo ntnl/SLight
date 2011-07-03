@@ -51,7 +51,7 @@ sub analyze_path { # {{{
 
     $self->set_main_object('o');
 
-    $self->set_template( 'Default' );
+    $self->set_template( $self->template_name() );
 
     my $bread_crumbs = $self->bread_crumbs($path->[0], $path->[1]);
 
@@ -64,6 +64,9 @@ sub analyze_path { # {{{
 sub bread_crumbs { # {{{
     return [];
 } # }}}
+
+# Default. Can be replaced in sub class.
+sub template_name { return 'Default'; }
 
 # vim: fdm=marker
 1;

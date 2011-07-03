@@ -28,31 +28,25 @@ use Params::Validate qw( :all );
 
 my %signatures_cache;
 
-my %display_methods = (
-    'Label' => 'display_Label',
-    'Text'  => 'display_Text',
-    'Link'  => 'display_Link',
-    'Email' => 'display_Email',
-);
-
 # Turn Content Data (content_hash + content_type), into something usefull.
 
 # Prepare detailed view of a Content element.
-sub ContentData_2_details { # {{{
-    my ( $self, $content, $content_spec ) = @_;
+sub render_cms_page { # {{{
+    my ( $self, $Content, $Spec ) = @_;
 
-    my $item_path = get_Page_full_path($content->{'Page.id'});
+    my $item_path = get_Page_full_path($Content->{'Page.id'});
 
-    my @container_contents = $self->display_ContentData_for_page(
-        $content, $content_spec,
-        $item_path,
-        0,            # thumb mode OFF
+    my @container_content = $self->render_cms_object(
+        Content => $Content,
+
+        Data => $self->get_l10n_value( $Content->{'Data'} ),
+        Spec => $Spec,
     );
 
 #    use Data::Dumper; warn Dumper \@container_contents;
 
     # Display detailed information about assets.
-    my $asset_ids = get_Asset_ids_on_Content($content->{'id'});
+    my $asset_ids = get_Asset_ids_on_Content($Content->{'id'});
     if (scalar @{ $asset_ids }) {
         my $assets_list = get_Assets($asset_ids);
 
@@ -91,7 +85,7 @@ sub ContentData_2_details { # {{{
             content => \@assets_list_contents
         );
 
-        push @container_contents, $assets_list;
+        push @container_content, $assets_list;
     }
 
 #    # Display number of comments.
@@ -108,105 +102,24 @@ sub ContentData_2_details { # {{{
 #    }
 
     # Add timebox.
-    push @container_contents, $self->make_timebox($content);
+    push @container_content, $self->make_timebox($Content);
 
     my $container = mk_Container_token(
         class   => 'Core',
-        content => \@container_contents,
+        content => \@container_content,
     );
 
     return $container;
 } # }}}
 
-sub display_ContentData_for_page { # {{{
-    my ( $self, $content, $content_spec, $item_path, $thumb_mode ) = @_;
+my %render_methods = (
+    'Label' => 'render_Label',
+    'Text'  => 'render_Text',
+    'Link'  => 'render_Link',
+    'Email' => 'render_Email',
+);
 
-#    use Data::Dumper; warn Dumper $content, $content_spec;
-
-    my @container_contents;
-
-    my @langs = (
-        $self->{'url'}->{'lang'},
-        ( keys %{ $content->{'Data'} } ),
-        q{*}
-    );
-
-#    use Data::Dumper; warn q{\@langs : }. Dumper \@langs;
-
-    foreach my $field_name (@{ $content_spec->{'_data_order'} }) {
-        my $field = $content_spec->{'_data'}->{$field_name};
-
-        if (not $field->{'display_on_page'}) {
-            next;
-        }
-        # Fixme: there should be an 'IF' what dictates, if it should be full, or just a summary.
-
-        my $signature = ( $signatures_cache{ $field->{'datatype'} } or $signatures_cache{ $field->{'datatype'} } = SLight::DataType::signature(type=>$field->{'datatype'}) );
-
-        my @inner_container_content;
-
-        if ($field->{'display_label'} == 0 or $field->{'display_label'} == 2) {
-            # Add label if 0 (always) or 2 (only pages)
-            my $label = mk_Label_token(
-                class => q{L-} . $field_name.' Label',
-                text  => ( $field->{'caption'} or q{} ),
-            );
-
-            push @inner_container_content, $label;
-        }
-
-        if ($signature->{'asset'}) {
-            my $value = $self->render_asset_field( $field, $content, $item_path, $thumb_mode );
-
-            if (defined $value) {
-                push @inner_container_content, $value;
-            }
-        }
-        else {
-#            use Data::Dumper; warn q{$content->{'Data'} : }. Dumper $content->{'Data'};
-
-            # I think, that there is a better way to do this. Will refactor this, when the whole thing works. (small fixme)
-            foreach my $field_lang ( @langs ) {
-#                warn q{ lang / ID: } . $field_lang . q{ / } . $field->{'id'};
-
-                if (defined $content->{'Data'}->{$field_lang}->{ $field->{'id'} }) {
-                    my $value = SLight::DataType::decode_data(
-                        type   => $field->{'datatype'},
-                        value  => $content->{'Data'}->{$field_lang}->{ $field->{'id'} }->{'value'},
-                        format => q{},
-                        target => 'MAIN',
-                    );
-
-                    my $display_method_name = $display_methods{$signature->{'display'}};
-                    assert_defined($display_method_name, q{Display method for '}. $signature->{'display'} .q{' is implemented});
-                    $value = $self->$display_method_name($field_name, $value);
-
-                    push @inner_container_content, $value;
-
-                    last;
-                }
-            }
-        }
-
-        if (scalar @inner_container_content == 1) {
-            # Special use case - only the value...
-            push @container_contents, $inner_container_content[0];
-        }
-        elsif (scalar @inner_container_content > 1) {
-            # Common use case - two things - must be put into container.
-            push @container_contents, mk_Container_token(
-                class   => q{C-} . $field_name .q{ Container},
-                content => \@inner_container_content,
-            );
-        }
-    }
-    
-#    use Data::Dumper; warn q{container_contents: }. Dumper \@container_contents;
-
-    return @container_contents;
-} # }}}
-
-sub display_Label { # {{{
+sub render_Label { # {{{
     my ( $self, $field_name, $value ) = @_;
 
     return mk_Label_token(
@@ -215,7 +128,7 @@ sub display_Label { # {{{
     );
 } # }}}
 
-sub display_Text { # {{{
+sub render_Text { # {{{
     my ( $self, $field_name, $value ) = @_;
 
 #    use Data::Dumper; warn "Text value: ". Dumper $value;
@@ -226,7 +139,7 @@ sub display_Text { # {{{
     );
 } # }}}
 
-sub display_Link { # {{{
+sub render_Link { # {{{
     my ( $self, $field_name, $value ) = @_;
 
     assert_defined($value, "Value not empty");
@@ -238,7 +151,7 @@ sub display_Link { # {{{
     );
 } # }}}
 
-sub display_Email { # {{{
+sub render_Email { # {{{
     my ( $self, $field_name, $value ) = @_;
 
     assert_defined($value, "Value may not be empty!");
@@ -250,81 +163,54 @@ sub display_Email { # {{{
     );
 } # }}}
 
-# Note:
-#   first textual field will beSLight a link to Overview.
-sub ContentData_2_item { # {{{
-    my ( $self, $ContentData, $comments_count, $assets_count, $childs_count ) = @_;
+sub render_cms_object { # {{{
+    my ( $self, %P ) = @_;
 
-    my $item_path = SLight::Core::Content::path_for_id($ContentData->{'content_hash'}->{'id'});
+    assert_defined($P{'Data'}, 'Data defined'); # The object's data
+    assert_defined($P{'Spec'}, 'Spec defined'); # The object's specification
+
+    if (not $P{'filter_cb'}) {
+        $P{'filter_cb'} = sub { my ($field, $value) = @_; return $value; }
+    }
 
     my @values;
 
-    # Default action is to show the overview of the item - it's summary, and summary of it's childs.
-    # But, if there are no childs, it's better to go streight to details.
-    # This seems more intuituve.
-    my $default_child_action = 'overview';
-    if (not $childs_count) {
-        $default_child_action = 'details';
-    }
+    foreach my $field_name (@{ $P{'Spec'}->{'_data_order'} }) {
+        my $field = $P{'Spec'}->{'_data'}->{$field_name};
 
-    my $overview_url = $self->build_url(
-        method  => 'GET',
-        handler => 'Content',
-        action  => $default_child_action,
-        options => {},
-        path    => $item_path,
-    );
-
-    my $title_field = $ContentData->{'content_type'}->{'role'}->{'title'};
-    my $overview_link = mk_Link_token(
-        class => 'Title '. $title_field,
-        text  => ( $ContentData->{'content_hash'}->{'data'}->{$title_field} or TR("Overview") ),
-        href  => $overview_url,
-    );
-    push @values, $overview_link;
-
-    foreach my $field_name (@{ $ContentData->{'content_type'}->{'fields_order'} }) {
-        if ($field_name eq $title_field) {
-            # Was already added, as title field, skip.
-            next;
-        }
-
-        my $field = $ContentData->{'content_type'}->{'fields'}->{$field_name};
-
-        # Skip fields, that have 'display' set to 2 (only pages) or 3 (only edit)
-        if ($field->{'display'} == 2 or $field->{'display'} == 3) {
+        if (not $P{'filter_cb'}->($field)) {
             next;
         }
 
         my $signature = ( $signatures_cache{ $field->{'datatype'} } or $signatures_cache{ $field->{'datatype'} } = SLight::DataType::signature(type=>$field->{'datatype'}) );
 
-        # Currently labels, but in future, maybe other widgets.
-
         my $value;
         if ($signature->{'asset'}) {
-            $value = $self->render_asset_field( $field_name, $ContentData, $item_path, 1 );
+            $value = $self->render_asset_field( $field_name, $P{'Data'}, 1 );
         }
-        elsif ($ContentData->{'content_hash'}->{'data'}->{$field_name})  {
+        elsif ($P{'Data'}->{ $field->{'id'} })  {
             my $text = SLight::DataType::decode_data(
                 type   => $field->{'datatype'},
-                value  => $ContentData->{'content_hash'}->{'data'}->{$field_name},
+                value  => $P{'Data'}->{ $field->{'id'} }->{'value'},
                 format => q{},
                 target => 'LIST',
             );
 
-            my $display_method_name = $display_methods{$signature->{'display'}};
-            confess_on_false($display_method_name, q{Display method for '}. $signature->{'display'} .q{' unknown!});
-            $value = $self->$display_method_name($field_name, $text);
+            my $render_method_name = $render_methods{ $signature->{'display'} };
+
+            assert_defined($render_method_name, q{Display method for '}. $signature->{'display'} .q{' unknown!});
+
+            $value = $self->$render_method_name($field_name, $text);
         }
 
         if (defined $value) {
             # Should we add a label to it?
-            if ($field->{'use_label'} == 0 or $field->{'use_label'} == 2) {
+            if ($field->{'display_label'} == 0 or $field->{'display_label'} == 2) {
                 my $label = mk_Label_token(
                     class => 'Label',
                     text  => ( $field->{'caption'} or q{} ),
                 );
-            
+
                 push @values, mk_Container_token(
                     class   => $field_name,
                     content => [ $label, $value ],
@@ -338,43 +224,34 @@ sub ContentData_2_item { # {{{
     }
 
     # Display count of assets (not including files attached to fields).
-    if ($assets_count) {
+    if ($P{'assets_count'}) {
         my $value = mk_Label_token(
             class => 'SLight_Assets',
-            text  => TF('Assets: %d', undef, $assets_count),
+            text  => TF('Assets: %d', undef, $P{'assets_count'}),
         );
         push @values, $value,
     }
 
     # Display number of comments.
-    if ($comments_count) {
+    if ($P{'comments_count'}) {
         my $value = mk_Label_token(
             class => 'SLight_Comments',
-            text  => TF('Comments: %d', undef, $comments_count),
+            text  => TF('Comments: %d', undef, $P{'comments_count'}),
         );
         push @values, $value,
     }
 
     # Add timebox.
-    push @values, $self->make_timebox($ContentData->{'content_hash'});
+    push @values, $self->make_timebox($P{'Content'});
 
     # Add toolbox, so actions can be used easily.
-    my $toolbox = $self->make_toolbox(
-        actions => [qw{ details add edit translate delete attach }],
-        pkg     => 'Content',
-        handler => 'Content',
-        path    => $item_path,
-    );
-    if ($toolbox) {
-        push @values, $toolbox,
-    }
+#    my $toolbox = $self->make_toolbox(
+#    );
+#    if ($toolbox) {
+#        push @values, $toolbox,
+#    }
 
-    my $ListItem = mk_ListItem_token(
-        class   => 'item',
-        content => \@values,
-    );
-
-    return $ListItem;
+    return @values;
 } # }}}
 
 # Very big warning:
@@ -539,32 +416,27 @@ sub render_asset_field { # {{{
 #   changed date/time, if it's different then added date/time
 #   child date/time, if it's different then added date/time
 sub make_timebox { # {{{
-    my ( $self, $content ) = @_;
+    my ( $self, $Content ) = @_;
+
+    assert_defined($Content->{'added_time'});
+    assert_defined($Content->{'modified_time'});
 
     my @dates = (
         mk_Label_token(
-            class => 'SLight_AddedTime',
-            text  => TF('Added: %s', undef, $content->{'added_time'}),
+            class => 'SL_AddedTime',
+            text  => TF('Added: %s', undef, $Content->{'added_time'}),
         )
     );
 
-    if ($content->{'modified_time'} ne $content->{'added_time'}) {
+    if ($Content->{'modified_time'} ne $Content->{'added_time'}) {
         push @dates, mk_Label_token(
-            class => 'SLight_ModifiedTime',
-            text  => TF('Modified: %s', undef, $content->{'modified_time'}),
+            class => 'SL_ModifiedTime',
+            text  => TF('Modified: %s', undef, $Content->{'modified_time'}),
         );
     }
 
-# To be implemented, maybe.
-#    if ($content->{'child_time'} ne $content->{'added_time'}) {
-#        push @dates, mk_Label_token(
-#            class => 'SLight_ChildTime',
-#            text  => TF('Changes inside: %s', undef, $content->{'child_time'}),
-#        );
-#    }
-
     return mk_Container_token(
-        class   => 'SLight_Timebox',
+        class   => 'SL_Timebox',
         content => \@dates,
     );
 } # }}}
@@ -573,7 +445,7 @@ sub make_timebox { # {{{
 #   Create main toolbox for CMS::Entry-based page.
 sub manage_toolbox { # {{{
     my ( $self, $oid ) = @_;
-    
+
     my @common_toolbox = (
         {
             caption => TR('Edit'),
@@ -598,7 +470,7 @@ sub manage_toolbox { # {{{
     else {
         $self->push_toolbox(
             urls => \@common_toolbox,
-            
+
             'add_to_path' => [ q{-ob-} . $oid ],
         );
     }
