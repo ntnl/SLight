@@ -3,7 +3,7 @@ Root page:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -12,19 +12,19 @@ Root page:
           type: Link
         type: Container
       Core::Toolbox:
-        class: SLight_Toolbox_Plugin
+        class: SL_Toolbox_Plugin
         content:
-        - class: SLight_AddContent_Action
+        - class: SL_AddContent_Action
           data:
             caption: Add Content
             href: /AddContent-en.web_test
           type: Action
-        - class: SLight_Edit_Action
+        - class: SL_Edit_Action
           data:
             caption: Edit
             href: /Edit-en.web_test
           type: Action
-        - class: SLight_Delete_Action
+        - class: SL_Delete_Action
           data:
             caption: Delete
             href: /Delete-en.web_test
@@ -32,7 +32,7 @@ Root page:
         type: Container
     object_data:
       ob1:
-        class: SLight_Object O-Content
+        class: SL_Object O-Content
         content:
         - class: Core
           content:
@@ -45,9 +45,9 @@ Root page:
               text:
               - Minimal test site, not such minimal any more ;)
             type: Text
-          - class: SLight_Timebox
+          - class: SL_Timebox
             content:
-            - class: SLight_AddedTime
+            - class: SL_AddedTime
               data:
                 label: 'Added: ##DATE(yyyy-mm-dd hh:mm:ss) IS SANE##'
               type: Label

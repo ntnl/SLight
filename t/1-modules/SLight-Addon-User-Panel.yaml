@@ -45,6 +45,16 @@ Not logged in:
           value: ''
         type: PasswordEntry
       type: Container
+    - class: F-SL_Register_Action Link
+      data:
+        href: /_Authentication/Register.web
+        label: Register account...
+      type: Link
+    - class: F-SL_Password_Action Link
+      data:
+        href: /_Authentication/Register.web
+        label: Forgot password?
+      type: Link
     data:
       action: /_Authentication/Login-authenticate.web
       hidden:

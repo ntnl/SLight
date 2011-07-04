@@ -6,7 +6,7 @@ Open content edit form:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -21,7 +21,7 @@ Open content edit form:
         type: Container
     object_data:
       ob2:
-        class: SLight_Object O-Content
+        class: SL_Object O-Content
         content:
         - content:
           - content:

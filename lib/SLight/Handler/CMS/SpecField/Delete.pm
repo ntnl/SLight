@@ -54,7 +54,7 @@ sub handle_view { # {{{
         ),
         no_caption => TR("No"),
 
-        class => 'SLight_Delete_Dialog',
+        class => 'SL_Delete_Dialog',
     );
 
     $self->push_data($dialog);

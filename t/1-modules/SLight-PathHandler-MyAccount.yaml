@@ -9,7 +9,7 @@ Avatar properties page:
       class: MyAccount::Avatar
       oid: ~
   page_id: ~
-  template: Default
+  template: MyAccount
 My data page:
   breadcrumb_path: []
   main_object: o
@@ -20,8 +20,8 @@ My data page:
       class: MyAccount::MyData
       oid: ~
   page_id: ~
-  template: Default
-"Non-existing page":
+  template: MyAccount
+Non-existing page:
   breadcrumb_path: []
   main_object: NotFound
   object_order:
@@ -32,7 +32,7 @@ My data page:
       oid: ~
   page_id: ~
   template: Error
-"Root (default) page":
+Root (default) page:
   breadcrumb_path: []
   main_object: o
   object_order:
@@ -42,4 +42,4 @@ My data page:
       class: MyAccount::MyData
       oid: ~
   page_id: ~
-  template: Default
+  template: MyAccount

@@ -1,7 +1,7 @@
 ---
 Empty path: ~
 Path with 1 element:
-  class: SLight_Path_Addon
+  class: SL_Path_Addon
   content:
   - class: Root
     data:
@@ -15,7 +15,7 @@ Path with 1 element:
     type: Link
   type: Container
 Path with 2 elements:
-  class: SLight_Path_Addon
+  class: SL_Path_Addon
   content:
   - class: Root
     data:

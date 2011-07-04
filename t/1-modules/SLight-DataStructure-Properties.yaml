@@ -1,6 +1,6 @@
 ---
 basic usage:
-  class: SLight_Properties
+  class: SL_Properties
   content:
   - class: default
     content:

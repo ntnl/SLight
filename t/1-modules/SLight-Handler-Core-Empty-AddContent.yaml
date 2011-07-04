@@ -3,7 +3,7 @@ Display Add Content form:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -18,7 +18,7 @@ Display Add Content form:
         type: Container
     object_data:
       e1:
-        class: SLight_Object O-AddContent
+        class: SL_Object O-AddContent
         content:
         - content:
           - content:
@@ -45,7 +45,7 @@ Display Add Content form:
             - class: link
               content:
               - data:
-                  href: /Download/AddContent-form.web?target=New&handler=CMS%3A%3AEntry
+                  href: /Download/AddContent-form.web?target=New&handler=Core%3A%3AEmpty
                   label: As new page
                 type: Link
               data:
@@ -55,7 +55,7 @@ Display Add Content form:
             - class: link
               content:
               - data:
-                  href: /Download/AddContent-form.web?target=Current&handler=CMS%3A%3AEntry
+                  href: /Download/AddContent-form.web?target=Current&handler=Core%3A%3AEmpty
                   label: Append here
                 type: Link
               data:

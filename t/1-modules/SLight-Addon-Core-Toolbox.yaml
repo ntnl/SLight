@@ -1,7 +1,7 @@
 ---
 Empty toolbox: ~
 One-element toolbox:
-  class: SLight_Toolbox_Plugin
+  class: SL_Toolbox_Plugin
   content:
   - class: FirstAndOnly
     data:
@@ -10,7 +10,7 @@ One-element toolbox:
     type: Action
   type: Container
 Two-elements toolbox:
-  class: SLight_Toolbox_Plugin
+  class: SL_Toolbox_Plugin
   content:
   - class: FirstOfTwo
     data:

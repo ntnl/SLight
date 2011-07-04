@@ -15,9 +15,7 @@ use strict; use warnings; # {{{
 use base q{SLight::PathHandlerBase::Single};
 # }}}
 
-sub object_class { # {{{
-    return 'System::Permissions';
-} # }}}
+sub object_class { return 'System::Permissions'; }
 
 # vim: fdm=marker
 1;

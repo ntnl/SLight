@@ -2,7 +2,7 @@
 from defaults:
   class: TestToolbox
   content:
-  - class: SLight_Foo_Action
+  - class: SL_Foo_Action
     data:
       caption: Foo
       href: /_Test/Foo-en.web
@@ -11,12 +11,12 @@ from defaults:
 from urls:
   class: TestToolbox
   content:
-  - class: SLight_Foo_Action
+  - class: SL_Foo_Action
     data:
       caption: Foo
       href: /_Test/Foo-en.web
     type: Action
-  - class: SLight_Bar_Action
+  - class: SL_Bar_Action
     data:
       caption: Bar
       href: /_Test/Bar/Bar-en.web

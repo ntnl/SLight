@@ -3,7 +3,7 @@ Fake AuthRequired error:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -13,9 +13,9 @@ Fake AuthRequired error:
         type: Container
     object_data:
       t1:
-        class: SLight_Object O-SL_Error_AuthRequired
+        class: SL_Object O-SL_Error_AuthRequired
         content:
-        - class: SLight_Dialog
+        - class: SL_Dialog
           content:
           - class: Message
             content:

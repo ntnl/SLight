@@ -3,7 +3,7 @@ Get the welcome message (note, that DB is empty):
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -13,9 +13,9 @@ Get the welcome message (note, that DB is empty):
         type: Container
     object_data:
       e1:
-        class: SLight_Object O-Welcome
+        class: SL_Object O-Welcome
         content:
-        - class: SLight_Dialog
+        - class: SL_Dialog
           content:
           - class: Message
             content:

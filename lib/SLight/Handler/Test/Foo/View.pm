@@ -29,7 +29,7 @@ sub handle_view { # {{{
 
     $self->push_data(
         SLight::DataStructure::Dialog::Notification->new(
-            class => q{SLight_Notification},
+            class => q{SL_Notification},
             text  => TF(q{Diagnosting message: '%s'}, undef, ($metadata->{'msg'} or 'None') ),
         )
     );

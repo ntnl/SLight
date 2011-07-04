@@ -77,7 +77,7 @@ sub serialize { # {{{
         'content',
         {
             type    => 'Container',
-            class   => 'SLight_Content',
+            class   => 'SL_Content',
             content => \@main_page_content
         }
     );

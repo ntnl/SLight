@@ -28,7 +28,7 @@ sub handle_view { # {{{
 
 #    $self->push_data(
 #        SLight::DataStructure::Dialog::Notification->new(
-#            class => q{SLight_Notification},
+#            class => q{SL_Notification},
 #            text  => q{This works!},
 #        )
 #    );
@@ -48,7 +48,7 @@ sub handle_view { # {{{
     if ($dump) {
         $self->push_data(
             SLight::DataStructure::Dialog::Notification->new(
-                class => q{SLight_Notification},
+                class => q{SL_Notification},
                 text  => q{<pre>} . ( Dumper $Content ) . q{</pre>},
             )
         );

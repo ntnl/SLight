@@ -3,7 +3,7 @@ Ask for confirmation of Asset deletion:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -12,19 +12,19 @@ Ask for confirmation of Asset deletion:
           type: Link
         type: Container
       Core::Toolbox:
-        class: SLight_Toolbox_Plugin
+        class: SL_Toolbox_Plugin
         content:
-        - class: SLight_AddContent_Action
+        - class: SL_AddContent_Action
           data:
             caption: Add Content
             href: /_Asset/Asset/2/AddContent-en.web_test
           type: Action
-        - class: SLight_Edit_Action
+        - class: SL_Edit_Action
           data:
             caption: Edit
             href: /_Asset/Asset/2/Edit-en.web_test
           type: Action
-        - class: SLight_Delete_Action
+        - class: SL_Delete_Action
           data:
             caption: Delete
             href: /_Asset/Asset/2/Delete-en.web_test
@@ -32,9 +32,9 @@ Ask for confirmation of Asset deletion:
         type: Container
     object_data:
       _asset:
-        class: SLight_Object O-Asset
+        class: SL_Object O-Asset
         content:
-        - class: SLight_Delete_Dialog
+        - class: SL_Delete_Dialog
           content:
           - class: Message
             content:

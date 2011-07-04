@@ -441,7 +441,7 @@ sub make_toolbox { # {{{
     return SLight::HandlerUtils::Toolbox::make_toolbox(
         %P,
 
-        class => 'SLight_Toolbox',
+        class => 'SL_Toolbox',
 
 #        login => $self->{'user'}->{'login'},
     );

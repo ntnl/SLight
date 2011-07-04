@@ -27,7 +27,7 @@ sub _new { # {{{
         @_,
         {
             caption => { type=>SCALAR, optional=>1, },
-            class   => { type=>SCALAR, optional=>1, default=>'SLight_Properties', },
+            class   => { type=>SCALAR, optional=>1, default=>'SL_Properties', },
         }
     );
 

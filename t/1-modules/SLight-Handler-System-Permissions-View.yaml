@@ -3,7 +3,7 @@ Levels list:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -13,7 +13,7 @@ Levels list:
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_System_Permissions
+        class: SL_Object O-SL_System_Permissions
         content:
         - content:
           - class: System
@@ -61,7 +61,7 @@ Levels list:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -71,7 +71,7 @@ Levels list:
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_System_Permissions
+        class: SL_Object O-SL_System_Permissions
         content:
         - content:
           - content:
@@ -100,14 +100,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=%2A&h_action=%2A
@@ -144,14 +144,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=%2A
@@ -188,14 +188,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=Delete
@@ -232,14 +232,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=Edit
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=Edit
@@ -276,14 +276,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=New
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=New
@@ -320,14 +320,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=Password
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=Password
@@ -364,14 +364,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Account&h_action=View
@@ -408,14 +408,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Avatar&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Avatar&h_action=%2A
@@ -452,14 +452,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Avatar&h_action=Change
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Avatar&h_action=Change
@@ -496,14 +496,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Avatar&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Avatar&h_action=Delete
@@ -540,14 +540,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Avatar&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Avatar&h_action=View
@@ -618,14 +618,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Permissions&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Permissions&h_action=%2A
@@ -662,14 +662,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Permissions&h_action=Change
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Permissions&h_action=Change
@@ -706,14 +706,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=authenticated&h_class=Permissions&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=authenticated&h_class=Permissions&h_action=View
@@ -750,14 +750,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=%2A&h_action=%2A
@@ -794,14 +794,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=Headlines&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=Headlines&h_action=%2A
@@ -838,14 +838,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=Headlines&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=Headlines&h_action=View
@@ -882,14 +882,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=Headlines&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=Headlines&h_action=Settings
@@ -926,14 +926,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=Headlines&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=Headlines&h_action=AddContent
@@ -970,14 +970,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=Headlines&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=Headlines&h_action=Delete
@@ -1014,14 +1014,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=Aggregator&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=Aggregator&h_action=%2A
@@ -1058,14 +1058,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=Aggregator&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=Aggregator&h_action=View
@@ -1102,14 +1102,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=Aggregator&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=Aggregator&h_action=Settings
@@ -1146,14 +1146,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=Aggregator&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=Aggregator&h_action=AddContent
@@ -1190,14 +1190,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=Aggregator&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=Aggregator&h_action=Delete
@@ -1234,14 +1234,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=Blog&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=Blog&h_action=%2A
@@ -1278,14 +1278,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=Blog&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=Blog&h_action=View
@@ -1322,14 +1322,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=Blog&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=Blog&h_action=Settings
@@ -1366,14 +1366,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=Blog&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=Blog&h_action=AddContent
@@ -1410,14 +1410,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=Blog&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=Blog&h_action=Delete
@@ -1454,14 +1454,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=News&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=News&h_action=%2A
@@ -1498,14 +1498,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=News&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=News&h_action=View
@@ -1542,14 +1542,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=News&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=News&h_action=Settings
@@ -1586,14 +1586,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=News&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=News&h_action=AddContent
@@ -1630,14 +1630,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=News&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=News&h_action=Delete
@@ -1674,14 +1674,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=Gallery&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=Gallery&h_action=%2A
@@ -1718,14 +1718,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=Gallery&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=Gallery&h_action=View
@@ -1762,14 +1762,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=Gallery&h_action=Zoom
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=Gallery&h_action=Zoom
@@ -1806,14 +1806,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=Gallery&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=Gallery&h_action=Settings
@@ -1850,14 +1850,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=Gallery&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=Gallery&h_action=AddContent
@@ -1894,14 +1894,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=authenticated&h_class=Gallery&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=authenticated&h_class=Gallery&h_action=Delete
@@ -1938,14 +1938,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=%2A&h_action=%2A
@@ -1982,14 +1982,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Entry&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Entry&h_action=%2A
@@ -2026,14 +2026,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Entry&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Entry&h_action=AddContent
@@ -2070,14 +2070,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Entry&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Entry&h_action=Delete
@@ -2114,14 +2114,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Entry&h_action=Edit
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Entry&h_action=Edit
@@ -2158,14 +2158,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Entry&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Entry&h_action=View
@@ -2202,14 +2202,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Spec&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Spec&h_action=%2A
@@ -2246,14 +2246,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Spec&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Spec&h_action=Delete
@@ -2290,14 +2290,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Spec&h_action=Edit
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Spec&h_action=Edit
@@ -2334,14 +2334,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Spec&h_action=New
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Spec&h_action=New
@@ -2378,14 +2378,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Spec&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Spec&h_action=View
@@ -2422,14 +2422,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=SpecField&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=SpecField&h_action=%2A
@@ -2466,14 +2466,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=SpecField&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=SpecField&h_action=Delete
@@ -2510,14 +2510,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=SpecField&h_action=Edit
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=SpecField&h_action=Edit
@@ -2554,14 +2554,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=SpecField&h_action=New
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=SpecField&h_action=New
@@ -2598,14 +2598,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=SpecField&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=SpecField&h_action=View
@@ -2642,14 +2642,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=SpecList&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=SpecList&h_action=%2A
@@ -2686,14 +2686,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=SpecList&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=SpecList&h_action=View
@@ -2730,14 +2730,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Welcome&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Welcome&h_action=%2A
@@ -2774,14 +2774,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Welcome&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Welcome&h_action=AddContent
@@ -2818,14 +2818,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=authenticated&h_class=Welcome&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=authenticated&h_class=Welcome&h_action=View
@@ -2862,14 +2862,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=authenticated&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=authenticated&h_class=%2A&h_action=%2A
@@ -2906,14 +2906,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=authenticated&h_class=Asset&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=authenticated&h_class=Asset&h_action=%2A
@@ -2950,14 +2950,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=authenticated&h_class=Asset&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=authenticated&h_class=Asset&h_action=Delete
@@ -2994,14 +2994,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=authenticated&h_class=Asset&h_action=Download
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=authenticated&h_class=Asset&h_action=Download
@@ -3038,14 +3038,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=authenticated&h_class=Asset&h_action=Thumb
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=authenticated&h_class=Asset&h_action=Thumb
@@ -3082,14 +3082,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=authenticated&h_class=Asset&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=authenticated&h_class=Asset&h_action=View
@@ -3126,14 +3126,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=authenticated&h_class=AssetList&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=authenticated&h_class=AssetList&h_action=%2A
@@ -3170,14 +3170,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=authenticated&h_class=AssetList&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=authenticated&h_class=AssetList&h_action=View
@@ -3214,14 +3214,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=authenticated&h_class=Empty&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=authenticated&h_class=Empty&h_action=%2A
@@ -3292,14 +3292,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=authenticated&h_class=Empty&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=authenticated&h_class=Empty&h_action=Delete
@@ -3404,14 +3404,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=System&level=authenticated&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=System&level=authenticated&h_class=%2A&h_action=%2A
@@ -3448,14 +3448,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=System&level=authenticated&h_class=Permissions&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=System&level=authenticated&h_class=Permissions&h_action=%2A
@@ -3492,14 +3492,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=System&level=authenticated&h_class=Permissions&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=System&level=authenticated&h_class=Permissions&h_action=View
@@ -3536,14 +3536,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=System&level=authenticated&h_class=Permissions&h_action=Change
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=System&level=authenticated&h_class=Permissions&h_action=Change
@@ -3580,14 +3580,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Test&level=authenticated&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Test&level=authenticated&h_class=%2A&h_action=%2A
@@ -3677,7 +3677,7 @@ Levels list:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -3687,7 +3687,7 @@ Levels list:
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_System_Permissions
+        class: SL_Object O-SL_System_Permissions
         content:
         - content:
           - content:
@@ -3716,14 +3716,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=%2A&h_action=%2A
@@ -3760,14 +3760,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=%2A
@@ -3804,14 +3804,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=Delete
@@ -3848,14 +3848,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=Edit
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=Edit
@@ -3892,14 +3892,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=New
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=New
@@ -3936,14 +3936,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=Password
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=Password
@@ -3980,14 +3980,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Account&h_action=View
@@ -4024,14 +4024,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Avatar&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Avatar&h_action=%2A
@@ -4068,14 +4068,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Avatar&h_action=Change
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Avatar&h_action=Change
@@ -4112,14 +4112,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Avatar&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Avatar&h_action=Delete
@@ -4156,14 +4156,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Avatar&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Avatar&h_action=View
@@ -4234,14 +4234,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Permissions&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Permissions&h_action=%2A
@@ -4278,14 +4278,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Permissions&h_action=Change
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Permissions&h_action=Change
@@ -4322,14 +4322,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=guest&h_class=Permissions&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=guest&h_class=Permissions&h_action=View
@@ -4366,14 +4366,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=%2A&h_action=%2A
@@ -4410,14 +4410,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=Headlines&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=Headlines&h_action=%2A
@@ -4454,14 +4454,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=Headlines&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=Headlines&h_action=View
@@ -4498,14 +4498,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=Headlines&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=Headlines&h_action=Settings
@@ -4542,14 +4542,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=Headlines&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=Headlines&h_action=AddContent
@@ -4586,14 +4586,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=Headlines&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=Headlines&h_action=Delete
@@ -4630,14 +4630,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=Aggregator&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=Aggregator&h_action=%2A
@@ -4674,14 +4674,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=Aggregator&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=Aggregator&h_action=View
@@ -4718,14 +4718,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=Aggregator&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=Aggregator&h_action=Settings
@@ -4762,14 +4762,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=Aggregator&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=Aggregator&h_action=AddContent
@@ -4806,14 +4806,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=Aggregator&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=Aggregator&h_action=Delete
@@ -4850,14 +4850,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=Blog&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=Blog&h_action=%2A
@@ -4894,14 +4894,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=Blog&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=Blog&h_action=View
@@ -4938,14 +4938,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=Blog&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=Blog&h_action=Settings
@@ -4982,14 +4982,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=Blog&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=Blog&h_action=AddContent
@@ -5026,14 +5026,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=Blog&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=Blog&h_action=Delete
@@ -5070,14 +5070,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=News&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=News&h_action=%2A
@@ -5114,14 +5114,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=News&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=News&h_action=View
@@ -5158,14 +5158,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=News&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=News&h_action=Settings
@@ -5202,14 +5202,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=News&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=News&h_action=AddContent
@@ -5246,14 +5246,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=News&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=News&h_action=Delete
@@ -5290,14 +5290,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=Gallery&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=Gallery&h_action=%2A
@@ -5334,14 +5334,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=Gallery&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=Gallery&h_action=View
@@ -5378,14 +5378,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=Gallery&h_action=Zoom
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=Gallery&h_action=Zoom
@@ -5422,14 +5422,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=Gallery&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=Gallery&h_action=Settings
@@ -5466,14 +5466,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=Gallery&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=Gallery&h_action=AddContent
@@ -5510,14 +5510,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=guest&h_class=Gallery&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=guest&h_class=Gallery&h_action=Delete
@@ -5554,14 +5554,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=%2A&h_action=%2A
@@ -5598,14 +5598,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Entry&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Entry&h_action=%2A
@@ -5642,14 +5642,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Entry&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Entry&h_action=AddContent
@@ -5686,14 +5686,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Entry&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Entry&h_action=Delete
@@ -5730,14 +5730,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Entry&h_action=Edit
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Entry&h_action=Edit
@@ -5774,14 +5774,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Entry&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Entry&h_action=View
@@ -5818,14 +5818,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Spec&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Spec&h_action=%2A
@@ -5862,14 +5862,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Spec&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Spec&h_action=Delete
@@ -5906,14 +5906,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Spec&h_action=Edit
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Spec&h_action=Edit
@@ -5950,14 +5950,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Spec&h_action=New
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Spec&h_action=New
@@ -5994,14 +5994,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Spec&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Spec&h_action=View
@@ -6038,14 +6038,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=SpecField&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=SpecField&h_action=%2A
@@ -6082,14 +6082,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=SpecField&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=SpecField&h_action=Delete
@@ -6126,14 +6126,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=SpecField&h_action=Edit
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=SpecField&h_action=Edit
@@ -6170,14 +6170,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=SpecField&h_action=New
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=SpecField&h_action=New
@@ -6214,14 +6214,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=SpecField&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=SpecField&h_action=View
@@ -6258,14 +6258,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=SpecList&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=SpecList&h_action=%2A
@@ -6302,14 +6302,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=SpecList&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=SpecList&h_action=View
@@ -6346,14 +6346,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Welcome&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Welcome&h_action=%2A
@@ -6390,14 +6390,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Welcome&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Welcome&h_action=AddContent
@@ -6434,14 +6434,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=guest&h_class=Welcome&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=guest&h_class=Welcome&h_action=View
@@ -6478,14 +6478,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=guest&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=guest&h_class=%2A&h_action=%2A
@@ -6522,14 +6522,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=guest&h_class=Asset&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=guest&h_class=Asset&h_action=%2A
@@ -6566,14 +6566,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=guest&h_class=Asset&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=guest&h_class=Asset&h_action=Delete
@@ -6610,14 +6610,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=guest&h_class=Asset&h_action=Download
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=guest&h_class=Asset&h_action=Download
@@ -6654,14 +6654,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=guest&h_class=Asset&h_action=Thumb
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=guest&h_class=Asset&h_action=Thumb
@@ -6698,14 +6698,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=guest&h_class=Asset&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=guest&h_class=Asset&h_action=View
@@ -6742,14 +6742,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=guest&h_class=AssetList&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=guest&h_class=AssetList&h_action=%2A
@@ -6786,14 +6786,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=guest&h_class=AssetList&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=guest&h_class=AssetList&h_action=View
@@ -6830,14 +6830,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=guest&h_class=Empty&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=guest&h_class=Empty&h_action=%2A
@@ -6908,14 +6908,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=guest&h_class=Empty&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=guest&h_class=Empty&h_action=Delete
@@ -7020,14 +7020,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=System&level=guest&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=System&level=guest&h_class=%2A&h_action=%2A
@@ -7064,14 +7064,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=System&level=guest&h_class=Permissions&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=System&level=guest&h_class=Permissions&h_action=%2A
@@ -7108,14 +7108,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=System&level=guest&h_class=Permissions&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=System&level=guest&h_class=Permissions&h_action=View
@@ -7152,14 +7152,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=System&level=guest&h_class=Permissions&h_action=Change
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=System&level=guest&h_class=Permissions&h_action=Change
@@ -7196,14 +7196,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Test&level=guest&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Test&level=guest&h_class=%2A&h_action=%2A
@@ -7293,7 +7293,7 @@ Levels list:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -7303,7 +7303,7 @@ Levels list:
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_System_Permissions
+        class: SL_Object O-SL_System_Permissions
         content:
         - content:
           - content:
@@ -7332,14 +7332,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=%2A&h_action=%2A
@@ -7376,14 +7376,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Account&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Account&h_action=%2A
@@ -7420,14 +7420,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Account&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Account&h_action=Delete
@@ -7464,14 +7464,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Account&h_action=Edit
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Account&h_action=Edit
@@ -7508,14 +7508,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Account&h_action=New
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Account&h_action=New
@@ -7552,14 +7552,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Account&h_action=Password
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Account&h_action=Password
@@ -7596,14 +7596,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Account&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Account&h_action=View
@@ -7640,14 +7640,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Avatar&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Avatar&h_action=%2A
@@ -7684,14 +7684,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Avatar&h_action=Change
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Avatar&h_action=Change
@@ -7728,14 +7728,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Avatar&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Avatar&h_action=Delete
@@ -7772,14 +7772,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Avatar&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Avatar&h_action=View
@@ -7816,14 +7816,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=List&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Clear
                     href: /_Permissions/Change-clear-en.web_test?h_family=Account&level=system&h_class=List&h_action=%2A
@@ -7860,14 +7860,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Permissions&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Permissions&h_action=%2A
@@ -7904,14 +7904,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Permissions&h_action=Change
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Permissions&h_action=Change
@@ -7948,14 +7948,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Account&level=system&h_class=Permissions&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Account&level=system&h_class=Permissions&h_action=View
@@ -7992,14 +7992,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=%2A&h_action=%2A
@@ -8036,14 +8036,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=Headlines&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=Headlines&h_action=%2A
@@ -8080,14 +8080,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=Headlines&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=Headlines&h_action=View
@@ -8124,14 +8124,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=Headlines&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=Headlines&h_action=Settings
@@ -8168,14 +8168,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=Headlines&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=Headlines&h_action=AddContent
@@ -8212,14 +8212,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=Headlines&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=Headlines&h_action=Delete
@@ -8256,14 +8256,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=Aggregator&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=Aggregator&h_action=%2A
@@ -8300,14 +8300,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=Aggregator&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=Aggregator&h_action=View
@@ -8344,14 +8344,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=Aggregator&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=Aggregator&h_action=Settings
@@ -8388,14 +8388,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=Aggregator&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=Aggregator&h_action=AddContent
@@ -8432,14 +8432,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=Aggregator&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=Aggregator&h_action=Delete
@@ -8476,14 +8476,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=Blog&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=Blog&h_action=%2A
@@ -8520,14 +8520,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=Blog&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=Blog&h_action=View
@@ -8564,14 +8564,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=Blog&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=Blog&h_action=Settings
@@ -8608,14 +8608,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=Blog&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=Blog&h_action=AddContent
@@ -8652,14 +8652,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=Blog&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=Blog&h_action=Delete
@@ -8696,14 +8696,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=News&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=News&h_action=%2A
@@ -8740,14 +8740,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=News&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=News&h_action=View
@@ -8784,14 +8784,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=News&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=News&h_action=Settings
@@ -8828,14 +8828,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=News&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=News&h_action=AddContent
@@ -8872,14 +8872,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=News&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=News&h_action=Delete
@@ -8916,14 +8916,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=Gallery&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=Gallery&h_action=%2A
@@ -8960,14 +8960,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=Gallery&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=Gallery&h_action=View
@@ -9004,14 +9004,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=Gallery&h_action=Zoom
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=Gallery&h_action=Zoom
@@ -9048,14 +9048,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=Gallery&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=Gallery&h_action=Settings
@@ -9092,14 +9092,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=Gallery&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=Gallery&h_action=AddContent
@@ -9136,14 +9136,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=List&level=system&h_class=Gallery&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=List&level=system&h_class=Gallery&h_action=Delete
@@ -9180,14 +9180,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=%2A&h_action=%2A
@@ -9224,14 +9224,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Entry&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Entry&h_action=%2A
@@ -9268,14 +9268,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Entry&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Entry&h_action=AddContent
@@ -9312,14 +9312,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Entry&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Entry&h_action=Delete
@@ -9356,14 +9356,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Entry&h_action=Edit
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Entry&h_action=Edit
@@ -9400,14 +9400,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Entry&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Entry&h_action=View
@@ -9444,14 +9444,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Spec&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Spec&h_action=%2A
@@ -9488,14 +9488,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Spec&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Spec&h_action=Delete
@@ -9532,14 +9532,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Spec&h_action=Edit
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Spec&h_action=Edit
@@ -9576,14 +9576,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Spec&h_action=New
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Spec&h_action=New
@@ -9620,14 +9620,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Spec&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Spec&h_action=View
@@ -9664,14 +9664,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=SpecField&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=SpecField&h_action=%2A
@@ -9708,14 +9708,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=SpecField&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=SpecField&h_action=Delete
@@ -9752,14 +9752,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=SpecField&h_action=Edit
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=SpecField&h_action=Edit
@@ -9796,14 +9796,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=SpecField&h_action=New
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=SpecField&h_action=New
@@ -9840,14 +9840,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=SpecField&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=SpecField&h_action=View
@@ -9884,14 +9884,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=SpecList&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=SpecList&h_action=%2A
@@ -9928,14 +9928,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=SpecList&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=SpecList&h_action=View
@@ -9972,14 +9972,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Welcome&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Welcome&h_action=%2A
@@ -10016,14 +10016,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Welcome&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Welcome&h_action=AddContent
@@ -10060,14 +10060,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=CMS&level=system&h_class=Welcome&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=CMS&level=system&h_class=Welcome&h_action=View
@@ -10104,14 +10104,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=system&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=system&h_class=%2A&h_action=%2A
@@ -10148,14 +10148,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=system&h_class=Asset&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=system&h_class=Asset&h_action=%2A
@@ -10192,14 +10192,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=system&h_class=Asset&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=system&h_class=Asset&h_action=Delete
@@ -10236,14 +10236,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=system&h_class=Asset&h_action=Download
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=system&h_class=Asset&h_action=Download
@@ -10280,14 +10280,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=system&h_class=Asset&h_action=Thumb
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=system&h_class=Asset&h_action=Thumb
@@ -10324,14 +10324,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=system&h_class=Asset&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=system&h_class=Asset&h_action=View
@@ -10368,14 +10368,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=system&h_class=AssetList&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=system&h_class=AssetList&h_action=%2A
@@ -10412,14 +10412,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=system&h_class=AssetList&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=system&h_class=AssetList&h_action=View
@@ -10456,14 +10456,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=system&h_class=Empty&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=system&h_class=Empty&h_action=%2A
@@ -10500,14 +10500,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=system&h_class=Empty&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Clear
                     href: /_Permissions/Change-clear-en.web_test?h_family=Core&level=system&h_class=Empty&h_action=AddContent
@@ -10544,14 +10544,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Core&level=system&h_class=Empty&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=system&h_class=Empty&h_action=Delete
@@ -10588,14 +10588,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Core&level=system&h_class=Empty&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Clear
                     href: /_Permissions/Change-clear-en.web_test?h_family=Core&level=system&h_class=Empty&h_action=View
@@ -10632,14 +10632,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=MyAccount&level=system&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Clear
                     href: /_Permissions/Change-clear-en.web_test?h_family=MyAccount&level=system&h_class=%2A&h_action=%2A
@@ -10676,14 +10676,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=System&level=system&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=System&level=system&h_class=%2A&h_action=%2A
@@ -10720,14 +10720,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=System&level=system&h_class=Permissions&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=System&level=system&h_class=Permissions&h_action=%2A
@@ -10764,14 +10764,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=System&level=system&h_class=Permissions&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=System&level=system&h_class=Permissions&h_action=View
@@ -10808,14 +10808,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=System&level=system&h_class=Permissions&h_action=Change
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=System&level=system&h_class=Permissions&h_action=Change
@@ -10852,14 +10852,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Permissions/Change-grant-en.web_test?h_family=Test&level=system&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Test&level=system&h_class=%2A&h_action=%2A
@@ -10896,14 +10896,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=Test&level=system&h_class=Foo&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Clear
                     href: /_Permissions/Change-clear-en.web_test?h_family=Test&level=system&h_class=Foo&h_action=%2A
@@ -10940,14 +10940,14 @@ Levels list:
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Permissions/Change-deny-en.web_test?h_family=User&level=system&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Clear
                     href: /_Permissions/Change-clear-en.web_test?h_family=User&level=system&h_class=%2A&h_action=%2A

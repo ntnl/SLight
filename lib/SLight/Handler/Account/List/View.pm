@@ -81,13 +81,13 @@ sub handle_view { # {{{
                             },
                             {
                                 caption => TR('Avatar'),
-                                class   => q{SLight_Avatar_Action},
+                                class   => q{SL_Avatar_Action},
                                 action  => 'View',
                                 path   => [ $user_data->{'login'}, 'Avatar' ],
                             },
                             {
                                 caption => TR('Permissions'),
-                                class   => q{SLight_Permissions_Action},
+                                class   => q{SL_Permissions_Action},
                                 action  => 'View',
                                 path    => [ $user_data->{'login'}, 'Permissions' ],
                             },

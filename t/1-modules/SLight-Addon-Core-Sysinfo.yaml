@@ -1,6 +1,6 @@
 ---
 Default result:
-  class: SLight_Sysinfo_Addon
+  class: SL_Sysinfo_Addon
   content:
   - data:
       label: 'Generated in: $gen_time$s'

@@ -28,89 +28,7 @@ use Params::Validate qw( :all );
 
 my %signatures_cache;
 
-# Turn Content Data (content_hash + content_type), into something usefull.
-
-# Prepare detailed view of a Content element.
-sub render_cms_page { # {{{
-    my ( $self, $Content, $Spec ) = @_;
-
-    my $item_path = get_Page_full_path($Content->{'Page.id'});
-
-    my @container_content = $self->render_cms_object(
-        Content => $Content,
-
-        Data => $self->get_l10n_value( $Content->{'Data'} ),
-        Spec => $Spec,
-    );
-
-#    use Data::Dumper; warn Dumper \@container_contents;
-
-    # Display detailed information about assets.
-    my $asset_ids = get_Asset_ids_on_Content($Content->{'id'});
-    if (scalar @{ $asset_ids }) {
-        my $assets_list = get_Assets($asset_ids);
-
-        my @assets_list_contents;
-        foreach my $asset_meta (@{ $assets_list }) {
-            my $download_link = $self->build_url(
-                path_handler => 'Asset',
-                path         => [ $asset_meta->{'id'} ],
-                action       => 'Download',
-            );
-
-            my $hr_size = human_readable_size($asset_meta->{'byte_size'});
-
-            my $item = mk_ListItem_token(
-                class   => 'Asset',
-                content => [
-                    mk_Link_token(
-                        text => ( $asset_meta->{'filename'} or TR('Unknown') ),
-                        href => $download_link
-                    ),
-                    mk_Label_token(
-                        text  => ( $asset_meta->{'summary'} or q{-} ),
-                        class =>'Summary'
-                    ),
-                    mk_Label_token(
-                        text  => $hr_size,
-                        class => 'Size'
-                    ),
-                ],
-            );
-            push @assets_list_contents, $item;
-        }
-
-        my $asset_list = mk_List_token(
-            class   => 'Assets',
-            content => \@assets_list_contents
-        );
-
-        push @container_content, $assets_list;
-    }
-
-#    # Display number of comments.
-#    my $comments_count = SLight::Core::Comment::get_count(
-#        handler => [ 'Content' ],
-#        object  => [ $ContentData->{'content_hash'}->{'id'} ],
-#    );
-#    if ($comments_count) {
-#        my $value = mk_Label_token(
-#            class => 'SLight_Comments',
-#            text  => TF('Comments: %d', undef, $comments_count),
-#        );
-#        push @container_contents, $value;
-#    }
-
-    # Add timebox.
-    push @container_content, $self->make_timebox($Content);
-
-    my $container = mk_Container_token(
-        class   => 'Core',
-        content => \@container_content,
-    );
-
-    return $container;
-} # }}}
+# Turn Content Data (content_hash + content_type), into something useful.
 
 my %render_methods = (
     'Label' => 'render_Label',
@@ -170,7 +88,7 @@ sub render_cms_object { # {{{
     assert_defined($P{'Spec'}, 'Spec defined'); # The object's specification
 
     if (not $P{'filter_cb'}) {
-        $P{'filter_cb'} = sub { my ($field, $value) = @_; return $value; }
+        $P{'filter_cb'} = sub { my ($field) = @_; return 1; }
     }
 
     my @values;
@@ -226,7 +144,7 @@ sub render_cms_object { # {{{
     # Display count of assets (not including files attached to fields).
     if ($P{'assets_count'}) {
         my $value = mk_Label_token(
-            class => 'SLight_Assets',
+            class => 'SL_Assets',
             text  => TF('Assets: %d', undef, $P{'assets_count'}),
         );
         push @values, $value,
@@ -235,14 +153,16 @@ sub render_cms_object { # {{{
     # Display number of comments.
     if ($P{'comments_count'}) {
         my $value = mk_Label_token(
-            class => 'SLight_Comments',
+            class => 'SL_Comments',
             text  => TF('Comments: %d', undef, $P{'comments_count'}),
         );
         push @values, $value,
     }
 
-    # Add timebox.
-    push @values, $self->make_timebox($P{'Content'});
+    # Add timebox, bot only if there was anything to show!.
+    if (scalar @values) {
+        push @values, $self->make_timebox($P{'Content'});
+    }
 
     # Add toolbox, so actions can be used easily.
 #    my $toolbox = $self->make_toolbox(
@@ -254,71 +174,83 @@ sub render_cms_object { # {{{
     return @values;
 } # }}}
 
-# Very big warning:
-#   This function uses Pager in quite un-optimal way.
-#   Refactoring is recommended at first occasion!
-sub ContentList_2_list { # {{{
-    my ( $self, $ContentList, $page ) = @_;
+# Prepare detailed view of a Content element.
+sub render_cms_page { # {{{
+    my ( $self, $Content, $Spec ) = @_;
 
-    confess_on_false($page, "Parameter: 'page' must be grater then zero!");
+    my $item_path = get_Page_full_path($Content->{'Page.id'});
 
-    # Prepare data needed for Pager to work.
-    my @entry_ids;
-    my %entry_pool;
-    foreach my $ContentData (sort { SLight::Core::Content::sort_callback($a->{'content_hash'}, $a->{'content_type'}, $b->{'content_hash'}, $b->{'content_type'}) } @{ $ContentList }) {
-        my $id = $ContentData->{'content_hash'}->{'id'};
+    my @container_content = $self->render_cms_object(
+        Content => $Content,
 
-        push @entry_ids, $id;
+        Data => $self->get_l10n_value( $Content->{'Data'} ),
+        Spec => $Spec,
+    );
 
-        $entry_pool{$id} = $ContentData;
+#    use Data::Dumper; warn Dumper \@container_content;
+
+    # Display detailed information about assets.
+    my $asset_ids = get_Asset_ids_on_Content($Content->{'id'});
+    if (scalar @{ $asset_ids }) {
+        my $assets_list = get_Assets($asset_ids);
+
+        my @assets_list_contents;
+        foreach my $asset_meta (@{ $assets_list }) {
+            my $download_link = $self->build_url(
+                path_handler => 'Asset',
+                path         => [ $asset_meta->{'id'} ],
+                action       => 'Download',
+            );
+
+            my $hr_size = human_readable_size($asset_meta->{'byte_size'});
+
+            my $item = mk_ListItem_token(
+                class   => 'Asset',
+                content => [
+                    mk_Link_token(
+                        text => ( $asset_meta->{'filename'} or TR('Unknown') ),
+                        href => $download_link
+                    ),
+                    mk_Label_token(
+                        text  => ( $asset_meta->{'summary'} or q{-} ),
+                        class =>'Summary'
+                    ),
+                    mk_Label_token(
+                        text  => $hr_size,
+                        class => 'Size'
+                    ),
+                ],
+            );
+            push @assets_list_contents, $item;
+        }
+
+        my $asset_list = mk_List_token(
+            class   => 'Assets',
+            content => \@assets_list_contents
+        );
+
+        push @container_content, $assets_list;
     }
 
-    my $pager = SLight::Pager::SortedIds->new(
-        page_size => 10,
+#    # Display number of comments.
+#    my $comments_count = SLight::Core::Comment::get_count(
+#        handler => [ 'Content' ],
+#        object  => [ $ContentData->{'content_hash'}->{'id'} ],
+#    );
+#    if ($comments_count) {
+#        my $value = mk_Label_token(
+#            class => 'SL_Comments',
+#            text  => TF('Comments: %d', undef, $comments_count),
+#        );
+#        push @container_contents, $value;
+#    }
 
-        skeleton => \@entry_ids,
-
-        fetch_callback => sub {
-            my ( $ids ) = @_;
-
-            # Fetch counts of comments and assets for ids on the list.
-            my $comments_per_item = SLight::Core::Comment::get_counts_per_object(
-                handler => [ 'Content' ],
-                object  => $ids,
-            );
-            my $assets_per_item = SLight::API::Asset::get_counts_per_object(
-                parent => 'content',
-                object => $ids,
-            );
-            my $childs_per_item = SLight::Core::Content::get_counts(
-                ids => $ids,
-            );
-  
-            # Process the list, display items along with additional info related to them.
-            my @list_items;
-            foreach my $entry_id (@{ $ids }) {
-                my $ContentData = $entry_pool{$entry_id};
-  
-                push @list_items, $self->ContentData_2_item(
-                    $ContentData,
-                    ( $comments_per_item->{$entry_id}    or 0),
-                    ( $assets_per_item->{$entry_id} or 0),
-                    ( $childs_per_item->{$entry_id}      or 0)
-                );
-            }
-
-            return \@list_items;
-        },
+    my $container = mk_Container_token(
+        class   => 'Core',
+        content => \@container_content,
     );
 
-    my $items = $pager->get_page($page);
-
-    $self->set_pager($pager->pager_plugin_meta_data()); 
-
-    return mk_List_token(
-        class   => 'content',
-        content => $items,
-    );
+    return $container;
 } # }}}
 
 sub render_asset_field { # {{{
@@ -409,7 +341,7 @@ sub render_asset_field { # {{{
     return $value;
 } # }}}
 
-# Return 'SLight_Timebox' container.
+# Return 'SL_Timebox' container.
 #
 # Timebox displays up to three dates (each with time):
 #   added date/time
@@ -476,6 +408,75 @@ sub manage_toolbox { # {{{
     }
 
     return;
+} # }}}
+
+# # # Probably obsolete: # # #
+
+# Very big warning:
+#   This function uses Pager in quite un-optimal way.
+#   Refactoring is recommended at first occasion!
+sub ContentList_2_list { # {{{
+    my ( $self, $ContentList, $page ) = @_;
+
+    confess_on_false($page, "Parameter: 'page' must be grater then zero!");
+
+    # Prepare data needed for Pager to work.
+    my @entry_ids;
+    my %entry_pool;
+    foreach my $ContentData (sort { SLight::Core::Content::sort_callback($a->{'content_hash'}, $a->{'content_type'}, $b->{'content_hash'}, $b->{'content_type'}) } @{ $ContentList }) {
+        my $id = $ContentData->{'content_hash'}->{'id'};
+
+        push @entry_ids, $id;
+
+        $entry_pool{$id} = $ContentData;
+    }
+
+    my $pager = SLight::Pager::SortedIds->new(
+        page_size => 10,
+
+        skeleton => \@entry_ids,
+
+        fetch_callback => sub {
+            my ( $ids ) = @_;
+
+            # Fetch counts of comments and assets for ids on the list.
+            my $comments_per_item = SLight::Core::Comment::get_counts_per_object(
+                handler => [ 'Content' ],
+                object  => $ids,
+            );
+            my $assets_per_item = SLight::API::Asset::get_counts_per_object(
+                parent => 'content',
+                object => $ids,
+            );
+            my $childs_per_item = SLight::Core::Content::get_counts(
+                ids => $ids,
+            );
+  
+            # Process the list, display items along with additional info related to them.
+            my @list_items;
+            foreach my $entry_id (@{ $ids }) {
+                my $ContentData = $entry_pool{$entry_id};
+  
+                push @list_items, $self->ContentData_2_item(
+                    $ContentData,
+                    ( $comments_per_item->{$entry_id}    or 0),
+                    ( $assets_per_item->{$entry_id} or 0),
+                    ( $childs_per_item->{$entry_id}      or 0)
+                );
+            }
+
+            return \@list_items;
+        },
+    );
+
+    my $items = $pager->get_page($page);
+
+    $self->set_pager($pager->pager_plugin_meta_data()); 
+
+    return mk_List_token(
+        class   => 'content',
+        content => $items,
+    );
 } # }}}
 
 # vim: fdm=marker

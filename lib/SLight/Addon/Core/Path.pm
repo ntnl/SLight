@@ -50,7 +50,7 @@ sub _process { # {{{
     }
 
     my $container = mk_Container_token(
-        class   => 'SLight_Path_Addon',
+        class   => 'SL_Path_Addon',
         content => \@path_items,
     );
 

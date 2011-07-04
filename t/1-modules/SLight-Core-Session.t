@@ -114,7 +114,7 @@ is (SLight::Core::Session::is_valid_session_id('$%^TGBI*()N^&*H*()$#%%^'), undef
 
 SLight::Core::Session::save();
 
-ok (-f SLight::Core::Session::session_filename(), 'session_filename');
+ok (-f SLight::Core::Session::session_filename( SLight::Core::Session::session_id() ), 'session_filename');
 
 is (ref SLight::Core::Session::validate_session([]), 'HASH', "validate_session - must be a hash!");
 is (ref SLight::Core::Session::validate_session({ expires=>1234}), 'HASH', "validate_session - has expired!");
@@ -122,6 +122,6 @@ is (ref SLight::Core::Session::validate_session({ expires=>1234}), 'HASH', "vali
 # Drop session.
 SLight::Core::Session::drop();
 
-is (-f SLight::Core::Session::session_filename(), undef, 'drop() was successful');
+is (-f SLight::Core::Session::session_filename( SLight::Core::Session::session_id() ), undef, 'drop() was successful');
 
 # vim: fdm=marker

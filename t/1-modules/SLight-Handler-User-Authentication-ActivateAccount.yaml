@@ -3,7 +3,7 @@ Activate already active account:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -13,9 +13,9 @@ Activate already active account:
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_ActivateAccount_User
+        class: SL_Object O-SL_ActivateAccount_User
         content:
-        - class: SLight_Dialog
+        - class: SL_Dialog
           content:
           - class: Message
             content:
@@ -55,7 +55,7 @@ Display 'Thank you' page:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -70,9 +70,9 @@ Display 'Thank you' page:
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_Register_User
+        class: SL_Object O-SL_Register_User
         content:
-        - class: SLight_Dialog
+        - class: SL_Dialog
           content:
           - class: Message
             content:
@@ -98,7 +98,7 @@ Try to activate fake account:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -108,9 +108,9 @@ Try to activate fake account:
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_ActivateAccount_User
+        class: SL_Object O-SL_ActivateAccount_User
         content:
-        - class: SLight_Dialog
+        - class: SL_Dialog
           content:
           - class: Message
             content:

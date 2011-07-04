@@ -26,7 +26,7 @@ sub _new { # {{{
         @_,
         {
             text  => { type=>SCALAR | ARRAYREF },
-            class => { type=>SCALAR, optional=>1, default=>'SLight_Dialog' },
+            class => { type=>SCALAR, optional=>1, default=>'SL_Dialog' },
         }
     );
 

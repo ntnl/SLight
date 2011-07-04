@@ -36,7 +36,7 @@ Email information page:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -46,9 +46,9 @@ Email information page:
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_MyAccount_MyData
+        class: SL_Object O-SL_MyAccount_MyData
         content:
-        - class: SLight_Dialog
+        - class: SL_Dialog
           content:
           - class: Message
             content:
@@ -64,7 +64,7 @@ Email information page:
         type: Container
     object_order:
     - o
-    template: Default
+    template: MyAccount
   mime_type: ~
   response: CONTENT
 Email verification:
@@ -74,7 +74,7 @@ Email verified:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -84,9 +84,9 @@ Email verified:
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_MyAccount_MyData
+        class: SL_Object O-SL_MyAccount_MyData
         content:
-        - class: SLight_Dialog
+        - class: SL_Dialog
           content:
           - class: Message
             content:
@@ -102,14 +102,14 @@ Email verified:
         type: Container
     object_order:
     - o
-    template: Default
+    template: MyAccount
   mime_type: ~
   response: CONTENT
 Open My Data form:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -129,7 +129,7 @@ Open My Data form:
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_MyAccount_MyData
+        class: SL_Object O-SL_MyAccount_MyData
         content:
         - class: SL_MyAccount_MyData
           content:
@@ -165,14 +165,14 @@ Open My Data form:
         type: Container
     object_order:
     - o
-    template: Default
+    template: MyAccount
   mime_type: ~
   response: CONTENT
 Send My Data form (bad input):
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -192,7 +192,7 @@ Send My Data form (bad input):
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_MyAccount_MyData
+        class: SL_Object O-SL_MyAccount_MyData
         content:
         - class: SL_MyAccount_MyData
           content:
@@ -236,7 +236,7 @@ Send My Data form (bad input):
         type: Container
     object_order:
     - o
-    template: Default
+    template: MyAccount
   mime_type: ~
   response: CONTENT
 Send My Data form (good input):

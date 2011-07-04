@@ -52,7 +52,7 @@ sub handle_view { # {{{
     if (not scalar @{ $specs }) {
         $self->push_data(
             SLight::DataStructure::Dialog::Notification->new(
-                class => q{SLight_Notification},
+                class => q{SL_Notification},
                 text  => TR('No specs.'),
             )
         );
@@ -64,27 +64,27 @@ sub handle_view { # {{{
         columns => [
             {
                 name    => 'caption',
-                class   => 'SLight_main_name',
+                class   => 'SL_MainName',
                 caption => TR('Caption'),
             },
             {
                 name    => 'owning_module',
-                class   => 'SLight_name',
+                class   => 'SL_Name',
                 caption => TR('Owner'),
             },
             {
                 name    => 'class',
-                class   => 'SLight_name',
+                class   => 'SL_Name',
                 caption => TR('Class'),
             },
             {
                 name    => 'version',
-                class   => 'SLight_int',
+                class   => 'SL_Int',
                 caption => TR('Version'),
             },
             {
                 name    => 'field_count',
-                class   => 'SLight_int',
+                class   => 'SL_Int',
                 caption => TR('Amount of fields'),
             },
         ]

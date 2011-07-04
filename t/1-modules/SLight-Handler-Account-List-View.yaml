@@ -3,7 +3,7 @@ List of accounts:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -17,9 +17,9 @@ List of accounts:
           type: Link
         type: Container
       Core::Toolbox:
-        class: SLight_Toolbox_Plugin
+        class: SL_Toolbox_Plugin
         content:
-        - class: SLight_New_Action
+        - class: SL_New_Action
           data:
             caption: Add new Account
             href: /_Account/add/Account/New-en.web_test
@@ -27,7 +27,7 @@ List of accounts:
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_AccountList
+        class: SL_Object O-SL_AccountList
         content:
         - class: SL_AccountList
           content:
@@ -59,24 +59,24 @@ List of accounts:
                 rowspan: 0
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Edit_Action
+                - class: SL_Edit_Action
                   data:
                     caption: Edit
                     href: /_Account/aga/Account/Edit-en.web_test
                   type: Action
-                - class: SLight_Avatar_Action
+                - class: SL_Avatar_Action
                   data:
                     caption: Avatar
                     href: /_Account/aga/Avatar/en.web_test
                   type: Action
-                - class: SLight_Permissions_Action
+                - class: SL_Permissions_Action
                   data:
                     caption: Permissions
                     href: /_Account/aga/Permissions/en.web_test
                   type: Action
-                - class: SLight_Delete_Action
+                - class: SL_Delete_Action
                   data:
                     caption: Delete
                     href: /_Account/aga/Account/Delete-en.web_test
@@ -115,24 +115,24 @@ List of accounts:
                 rowspan: 0
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Edit_Action
+                - class: SL_Edit_Action
                   data:
                     caption: Edit
                     href: /_Account/beti/Account/Edit-en.web_test
                   type: Action
-                - class: SLight_Avatar_Action
+                - class: SL_Avatar_Action
                   data:
                     caption: Avatar
                     href: /_Account/beti/Avatar/en.web_test
                   type: Action
-                - class: SLight_Permissions_Action
+                - class: SL_Permissions_Action
                   data:
                     caption: Permissions
                     href: /_Account/beti/Permissions/en.web_test
                   type: Action
-                - class: SLight_Delete_Action
+                - class: SL_Delete_Action
                   data:
                     caption: Delete
                     href: /_Account/beti/Account/Delete-en.web_test
@@ -171,24 +171,24 @@ List of accounts:
                 rowspan: 0
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Edit_Action
+                - class: SL_Edit_Action
                   data:
                     caption: Edit
                     href: /_Account/ela/Account/Edit-en.web_test
                   type: Action
-                - class: SLight_Avatar_Action
+                - class: SL_Avatar_Action
                   data:
                     caption: Avatar
                     href: /_Account/ela/Avatar/en.web_test
                   type: Action
-                - class: SLight_Permissions_Action
+                - class: SL_Permissions_Action
                   data:
                     caption: Permissions
                     href: /_Account/ela/Permissions/en.web_test
                   type: Action
-                - class: SLight_Delete_Action
+                - class: SL_Delete_Action
                   data:
                     caption: Delete
                     href: /_Account/ela/Account/Delete-en.web_test
@@ -227,24 +227,24 @@ List of accounts:
                 rowspan: 0
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Edit_Action
+                - class: SL_Edit_Action
                   data:
                     caption: Edit
                     href: /_Account/nataly/Account/Edit-en.web_test
                   type: Action
-                - class: SLight_Avatar_Action
+                - class: SL_Avatar_Action
                   data:
                     caption: Avatar
                     href: /_Account/nataly/Avatar/en.web_test
                   type: Action
-                - class: SLight_Permissions_Action
+                - class: SL_Permissions_Action
                   data:
                     caption: Permissions
                     href: /_Account/nataly/Permissions/en.web_test
                   type: Action
-                - class: SLight_Delete_Action
+                - class: SL_Delete_Action
                   data:
                     caption: Delete
                     href: /_Account/nataly/Account/Delete-en.web_test
@@ -283,24 +283,24 @@ List of accounts:
                 rowspan: 0
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Edit_Action
+                - class: SL_Edit_Action
                   data:
                     caption: Edit
                     href: /_Account/wanda/Account/Edit-en.web_test
                   type: Action
-                - class: SLight_Avatar_Action
+                - class: SL_Avatar_Action
                   data:
                     caption: Avatar
                     href: /_Account/wanda/Avatar/en.web_test
                   type: Action
-                - class: SLight_Permissions_Action
+                - class: SL_Permissions_Action
                   data:
                     caption: Permissions
                     href: /_Account/wanda/Permissions/en.web_test
                   type: Action
-                - class: SLight_Delete_Action
+                - class: SL_Delete_Action
                   data:
                     caption: Delete
                     href: /_Account/wanda/Account/Delete-en.web_test

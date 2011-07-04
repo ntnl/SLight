@@ -3,7 +3,7 @@
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -28,7 +28,7 @@
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_Account_Permissions
+        class: SL_Object O-SL_Account_Permissions
         content:
         - content:
           - content:
@@ -57,14 +57,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=%2A&h_action=%2A
@@ -101,14 +101,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=%2A
@@ -145,14 +145,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=Delete
@@ -189,14 +189,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=Edit
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=Edit
@@ -233,14 +233,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=New
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=New
@@ -277,14 +277,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=Password
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=Password
@@ -321,14 +321,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=View
@@ -365,14 +365,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Avatar&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Avatar&h_action=%2A
@@ -409,14 +409,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Avatar&h_action=Change
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Avatar&h_action=Change
@@ -453,14 +453,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Avatar&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Avatar&h_action=Delete
@@ -497,14 +497,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Avatar&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Avatar&h_action=View
@@ -575,14 +575,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Permissions&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Permissions&h_action=%2A
@@ -619,14 +619,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Permissions&h_action=Change
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Permissions&h_action=Change
@@ -663,14 +663,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Permissions&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Permissions&h_action=View
@@ -707,14 +707,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=%2A&h_action=%2A
@@ -751,14 +751,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=Headlines&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=Headlines&h_action=%2A
@@ -795,14 +795,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=Headlines&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=Headlines&h_action=View
@@ -839,14 +839,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=Headlines&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=Headlines&h_action=Settings
@@ -883,14 +883,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=Headlines&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=Headlines&h_action=AddContent
@@ -927,14 +927,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=Headlines&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=Headlines&h_action=Delete
@@ -971,14 +971,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=Aggregator&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=Aggregator&h_action=%2A
@@ -1015,14 +1015,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=Aggregator&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=Aggregator&h_action=View
@@ -1059,14 +1059,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=Aggregator&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=Aggregator&h_action=Settings
@@ -1103,14 +1103,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=Aggregator&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=Aggregator&h_action=AddContent
@@ -1147,14 +1147,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=Aggregator&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=Aggregator&h_action=Delete
@@ -1191,14 +1191,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=Blog&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=Blog&h_action=%2A
@@ -1235,14 +1235,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=Blog&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=Blog&h_action=View
@@ -1279,14 +1279,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=Blog&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=Blog&h_action=Settings
@@ -1323,14 +1323,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=Blog&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=Blog&h_action=AddContent
@@ -1367,14 +1367,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=Blog&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=Blog&h_action=Delete
@@ -1411,14 +1411,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=News&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=News&h_action=%2A
@@ -1455,14 +1455,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=News&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=News&h_action=View
@@ -1499,14 +1499,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=News&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=News&h_action=Settings
@@ -1543,14 +1543,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=News&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=News&h_action=AddContent
@@ -1587,14 +1587,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=News&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=News&h_action=Delete
@@ -1631,14 +1631,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=Gallery&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=Gallery&h_action=%2A
@@ -1675,14 +1675,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=Gallery&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=Gallery&h_action=View
@@ -1719,14 +1719,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=Gallery&h_action=Zoom
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=Gallery&h_action=Zoom
@@ -1763,14 +1763,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=Gallery&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=Gallery&h_action=Settings
@@ -1807,14 +1807,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=Gallery&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=Gallery&h_action=AddContent
@@ -1851,14 +1851,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=List&h_class=Gallery&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=List&h_class=Gallery&h_action=Delete
@@ -1895,14 +1895,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=%2A&h_action=%2A
@@ -1939,14 +1939,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Entry&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Entry&h_action=%2A
@@ -1983,14 +1983,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Entry&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Entry&h_action=AddContent
@@ -2027,14 +2027,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Entry&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Entry&h_action=Delete
@@ -2071,14 +2071,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Entry&h_action=Edit
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Entry&h_action=Edit
@@ -2115,14 +2115,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Entry&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Entry&h_action=View
@@ -2159,14 +2159,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Spec&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Spec&h_action=%2A
@@ -2203,14 +2203,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Spec&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Spec&h_action=Delete
@@ -2247,14 +2247,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Spec&h_action=Edit
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Spec&h_action=Edit
@@ -2291,14 +2291,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Spec&h_action=New
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Spec&h_action=New
@@ -2335,14 +2335,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Spec&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Spec&h_action=View
@@ -2379,14 +2379,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecField&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecField&h_action=%2A
@@ -2423,14 +2423,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecField&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecField&h_action=Delete
@@ -2467,14 +2467,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecField&h_action=Edit
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecField&h_action=Edit
@@ -2511,14 +2511,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecField&h_action=New
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecField&h_action=New
@@ -2555,14 +2555,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecField&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecField&h_action=View
@@ -2599,14 +2599,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecList&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecList&h_action=%2A
@@ -2643,14 +2643,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecList&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecList&h_action=View
@@ -2687,14 +2687,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Welcome&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Welcome&h_action=%2A
@@ -2731,14 +2731,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Welcome&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Welcome&h_action=AddContent
@@ -2775,14 +2775,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Welcome&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Welcome&h_action=View
@@ -2819,14 +2819,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Core&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Core&h_class=%2A&h_action=%2A
@@ -2863,14 +2863,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Asset&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Asset&h_action=%2A
@@ -2907,14 +2907,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Asset&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Asset&h_action=Delete
@@ -2951,14 +2951,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Asset&h_action=Download
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Asset&h_action=Download
@@ -2995,14 +2995,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Asset&h_action=Thumb
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Asset&h_action=Thumb
@@ -3039,14 +3039,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Asset&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Asset&h_action=View
@@ -3083,14 +3083,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Core&h_class=AssetList&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Core&h_class=AssetList&h_action=%2A
@@ -3127,14 +3127,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Core&h_class=AssetList&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Core&h_class=AssetList&h_action=View
@@ -3171,14 +3171,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Empty&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Empty&h_action=%2A
@@ -3249,14 +3249,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Empty&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Empty&h_action=Delete
@@ -3361,14 +3361,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=System&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=System&h_class=%2A&h_action=%2A
@@ -3405,14 +3405,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=System&h_class=Permissions&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=System&h_class=Permissions&h_action=%2A
@@ -3449,14 +3449,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=System&h_class=Permissions&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=System&h_class=Permissions&h_action=View
@@ -3493,14 +3493,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=System&h_class=Permissions&h_action=Change
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=System&h_class=Permissions&h_action=Change
@@ -3537,14 +3537,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/wanda/Permissions/Change-grant-en.web_test?h_family=Test&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/wanda/Permissions/Change-deny-en.web_test?h_family=Test&h_class=%2A&h_action=%2A
@@ -3634,7 +3634,7 @@
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -3659,7 +3659,7 @@
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_Account_Permissions
+        class: SL_Object O-SL_Account_Permissions
         content:
         - content:
           - content:
@@ -3688,14 +3688,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=%2A&h_action=%2A
@@ -3732,14 +3732,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=%2A
@@ -3776,14 +3776,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=Delete
@@ -3820,14 +3820,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=Edit
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=Edit
@@ -3864,14 +3864,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=New
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=New
@@ -3908,14 +3908,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=Password
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=Password
@@ -3952,14 +3952,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Account&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Account&h_action=View
@@ -3996,14 +3996,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Avatar&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Avatar&h_action=%2A
@@ -4040,14 +4040,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Avatar&h_action=Change
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Avatar&h_action=Change
@@ -4084,14 +4084,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Avatar&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Avatar&h_action=Delete
@@ -4128,14 +4128,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Avatar&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Avatar&h_action=View
@@ -4206,14 +4206,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Permissions&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Permissions&h_action=%2A
@@ -4250,14 +4250,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Permissions&h_action=Change
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Permissions&h_action=Change
@@ -4294,14 +4294,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Account&h_class=Permissions&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Account&h_class=Permissions&h_action=View
@@ -4338,14 +4338,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=%2A&h_action=%2A
@@ -4382,14 +4382,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=Headlines&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=Headlines&h_action=%2A
@@ -4426,14 +4426,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=Headlines&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=Headlines&h_action=View
@@ -4470,14 +4470,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=Headlines&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=Headlines&h_action=Settings
@@ -4514,14 +4514,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=Headlines&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=Headlines&h_action=AddContent
@@ -4558,14 +4558,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=Headlines&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=Headlines&h_action=Delete
@@ -4602,14 +4602,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=Aggregator&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=Aggregator&h_action=%2A
@@ -4646,14 +4646,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=Aggregator&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=Aggregator&h_action=View
@@ -4690,14 +4690,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=Aggregator&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=Aggregator&h_action=Settings
@@ -4734,14 +4734,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=Aggregator&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=Aggregator&h_action=AddContent
@@ -4778,14 +4778,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=Aggregator&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=Aggregator&h_action=Delete
@@ -4822,14 +4822,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=Blog&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=Blog&h_action=%2A
@@ -4866,14 +4866,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=Blog&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=Blog&h_action=View
@@ -4910,14 +4910,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=Blog&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=Blog&h_action=Settings
@@ -4954,14 +4954,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=Blog&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=Blog&h_action=AddContent
@@ -4998,14 +4998,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=Blog&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=Blog&h_action=Delete
@@ -5042,14 +5042,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=News&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=News&h_action=%2A
@@ -5086,14 +5086,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=News&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=News&h_action=View
@@ -5130,14 +5130,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=News&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=News&h_action=Settings
@@ -5174,14 +5174,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=News&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=News&h_action=AddContent
@@ -5218,14 +5218,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=News&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=News&h_action=Delete
@@ -5262,14 +5262,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=Gallery&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=Gallery&h_action=%2A
@@ -5306,14 +5306,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=Gallery&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=Gallery&h_action=View
@@ -5350,14 +5350,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=Gallery&h_action=Zoom
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=Gallery&h_action=Zoom
@@ -5394,14 +5394,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=Gallery&h_action=Settings
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=Gallery&h_action=Settings
@@ -5438,14 +5438,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=Gallery&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=Gallery&h_action=AddContent
@@ -5482,14 +5482,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=List&h_class=Gallery&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=List&h_class=Gallery&h_action=Delete
@@ -5526,14 +5526,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=%2A&h_action=%2A
@@ -5570,14 +5570,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Entry&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Entry&h_action=%2A
@@ -5614,14 +5614,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Entry&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Entry&h_action=AddContent
@@ -5658,14 +5658,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Entry&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Entry&h_action=Delete
@@ -5702,14 +5702,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Entry&h_action=Edit
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Entry&h_action=Edit
@@ -5746,14 +5746,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Entry&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Entry&h_action=View
@@ -5790,14 +5790,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Spec&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Spec&h_action=%2A
@@ -5834,14 +5834,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Spec&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Spec&h_action=Delete
@@ -5878,14 +5878,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Spec&h_action=Edit
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Spec&h_action=Edit
@@ -5922,14 +5922,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Spec&h_action=New
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Spec&h_action=New
@@ -5966,14 +5966,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Spec&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Spec&h_action=View
@@ -6010,14 +6010,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecField&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecField&h_action=%2A
@@ -6054,14 +6054,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecField&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecField&h_action=Delete
@@ -6098,14 +6098,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecField&h_action=Edit
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecField&h_action=Edit
@@ -6142,14 +6142,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecField&h_action=New
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecField&h_action=New
@@ -6186,14 +6186,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecField&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecField&h_action=View
@@ -6230,14 +6230,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecList&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecList&h_action=%2A
@@ -6274,14 +6274,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=SpecList&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=SpecList&h_action=View
@@ -6318,14 +6318,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Welcome&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Welcome&h_action=%2A
@@ -6362,14 +6362,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Welcome&h_action=AddContent
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Welcome&h_action=AddContent
@@ -6406,14 +6406,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=CMS&h_class=Welcome&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=CMS&h_class=Welcome&h_action=View
@@ -6450,14 +6450,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Core&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Core&h_class=%2A&h_action=%2A
@@ -6494,14 +6494,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Asset&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Asset&h_action=%2A
@@ -6538,14 +6538,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Asset&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Asset&h_action=Delete
@@ -6582,14 +6582,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Asset&h_action=Download
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Asset&h_action=Download
@@ -6626,14 +6626,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Asset&h_action=Thumb
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Asset&h_action=Thumb
@@ -6670,14 +6670,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Asset&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Asset&h_action=View
@@ -6714,14 +6714,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Core&h_class=AssetList&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Core&h_class=AssetList&h_action=%2A
@@ -6758,14 +6758,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Core&h_class=AssetList&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Core&h_class=AssetList&h_action=View
@@ -6802,14 +6802,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Empty&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Empty&h_action=%2A
@@ -6880,14 +6880,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Core&h_class=Empty&h_action=Delete
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Core&h_class=Empty&h_action=Delete
@@ -6992,14 +6992,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=System&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=System&h_class=%2A&h_action=%2A
@@ -7036,14 +7036,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=System&h_class=Permissions&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=System&h_class=Permissions&h_action=%2A
@@ -7080,14 +7080,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=System&h_class=Permissions&h_action=View
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=System&h_class=Permissions&h_action=View
@@ -7124,14 +7124,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=System&h_class=Permissions&h_action=Change
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=System&h_class=Permissions&h_action=Change
@@ -7168,14 +7168,14 @@
                 rowspan: '0'
               type: TableCell
             - content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Grant access
                     href: /_Account/nataly/Permissions/Change-grant-en.web_test?h_family=Test&h_class=%2A&h_action=%2A
                   type: Action
-                - class: SLight_Change_Action
+                - class: SL_Change_Action
                   data:
                     caption: Deny access
                     href: /_Account/nataly/Permissions/Change-deny-en.web_test?h_family=Test&h_class=%2A&h_action=%2A

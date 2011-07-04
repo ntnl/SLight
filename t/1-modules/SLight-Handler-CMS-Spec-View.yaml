@@ -3,7 +3,7 @@ Display Spec:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -12,24 +12,24 @@ Display Spec:
           type: Link
         type: Container
       Core::Toolbox:
-        class: SLight_Toolbox_Plugin
+        class: SL_Toolbox_Plugin
         content:
-        - class: SLight_New_Action
+        - class: SL_New_Action
           data:
             caption: Add new Spec
             href: /_CMS_Spec/Spec/New-en.web_test
           type: Action
-        - class: SLight_New_Action
+        - class: SL_New_Action
           data:
             caption: Add new Field
             href: /_CMS_Spec/Field/1/New-en.web_test
           type: Action
-        - class: SLight_Edit_Action
+        - class: SL_Edit_Action
           data:
             caption: Edit Spec
             href: /_CMS_Spec/Spec/1/Edit-en.web_test
           type: Action
-        - class: SLight_Delete_Action
+        - class: SL_Delete_Action
           data:
             caption: Delete Spec
             href: /_CMS_Spec/Spec/1/Delete-en.web_test
@@ -37,9 +37,9 @@ Display Spec:
         type: Container
     object_data:
       _spec:
-        class: SLight_Object O-CMS_Spec
+        class: SL_Object O-CMS_Spec
         content:
-        - class: SLight_Properties
+        - class: SL_Properties
           content:
           - class: caption
             data:
@@ -82,9 +82,9 @@ Display Spec:
           type: Container
         type: Container
       article:
-        class: SLight_Object O-CMS_Spec_Field
+        class: SL_Object O-CMS_Spec_Field
         content:
-        - class: SLight_Properties
+        - class: SL_Properties
           content:
           - class: caption
             data:
@@ -114,14 +114,14 @@ Display Spec:
             type: Container
           data: {}
           type: Container
-        - class: SLight_Toolbox
+        - class: SL_Toolbox
           content:
-          - class: SLight_Edit_Action
+          - class: SL_Edit_Action
             data:
               caption: Edit
               href: /_CMS_Spec/Field/1/article/Edit-en.web_test
             type: Action
-          - class: SLight_Delete_Action
+          - class: SL_Delete_Action
             data:
               caption: Delete
               href: /_CMS_Spec/Field/1/article/Delete-en.web_test
@@ -129,9 +129,9 @@ Display Spec:
           type: Container
         type: Container
       title:
-        class: SLight_Object O-CMS_Spec_Field
+        class: SL_Object O-CMS_Spec_Field
         content:
-        - class: SLight_Properties
+        - class: SL_Properties
           content:
           - class: caption
             data:
@@ -161,14 +161,14 @@ Display Spec:
             type: Container
           data: {}
           type: Container
-        - class: SLight_Toolbox
+        - class: SL_Toolbox
           content:
-          - class: SLight_Edit_Action
+          - class: SL_Edit_Action
             data:
               caption: Edit
               href: /_CMS_Spec/Field/1/title/Edit-en.web_test
             type: Action
-          - class: SLight_Delete_Action
+          - class: SL_Delete_Action
             data:
               caption: Delete
               href: /_CMS_Spec/Field/1/title/Delete-en.web_test

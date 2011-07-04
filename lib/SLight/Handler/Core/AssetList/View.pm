@@ -43,39 +43,39 @@ sub handle_view { # {{{
     if (not scalar @{ $asset_ids }) {
         $self->push_data(
             SLight::DataStructure::Dialog::Notification->new(
-                class => q{SLight_Notification},
+                class => q{SL_Notification},
                 text  => TR('No assets.'),
             )
         );
 
         return;
     }
-    
+
     my $table = SLight::DataStructure::List::Table->new(
         columns => [
             {
                 name    => 'thumb',
-                class   => 'SLight_thumb',
+                class   => 'SL_Thumb',
                 caption => q{},
             },
             {
                 name    => 'summary',
-                class   => 'SLight_main_name',
+                class   => 'SL_MainName',
                 caption => TR('Summary'),
             },
             {
                 name    => 'mime_type',
-                class   => 'SLight_mime',
+                class   => 'SL_Mime',
                 caption => TR('Mime type'),
             },
             {
                 name    => 'added',
-                class   => 'SLight_time',
+                class   => 'SL_Time',
                 caption => TR('Added'),
             },
             {
                 name    => 'actions',
-                class   => 'SLight_toolbox',
+                class   => 'SL_Toolbox',
                 caption => TR('Actions'),
             },
         ]

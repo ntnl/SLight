@@ -74,7 +74,7 @@ sub S_process_object { # {{{
         print STDERR $EVAL_ERROR;
 
         return {
-            class => 'SLight_Error',
+            class => 'SL_Error',
             data  => [
                 mk_Label_token(
                     text  => TF("%s failed.", undef, $pkg .q{::}. $handler .q{::}. $action),
@@ -101,7 +101,7 @@ sub S_process_object { # {{{
         print STDERR $EVAL_ERROR;
 
         return {
-            class => 'SLight_Error',
+            class => 'SL_Error',
             data  => [
                 mk_Label_token(
                     text  => TF("%s failed.", undef, $pkg .q{::}. $handler .q{::}. $action),
@@ -138,7 +138,7 @@ sub S_process_object { # {{{
     return {
         data => mk_Container_token(
             # TODO: add 'id' property to it, so every object has unique ID!
-            class   => 'SLight_Object O-' . $result->{'class'},
+            class   => 'SL_Object O-' . $result->{'class'},
             content => $result->{'data'}
         ),
         meta => $result->{'meta'}
@@ -161,7 +161,7 @@ sub S_process_addon { # {{{
         print STDERR $EVAL_ERROR;
 
         return mk_Label_token(
-            class => 'SLight_Error',
+            class => 'SL_Error',
             text  => TF("%s plugin failed.", undef, $pkg .q{::}. $addon),
         );
     }
@@ -179,7 +179,7 @@ sub S_process_addon { # {{{
         print STDERR $EVAL_ERROR;
 
         return mk_Label_token(
-            class => 'SLight_Error',
+            class => 'SL_Error',
             text  => TF("%s plugin failed.", undef, $pkg .q{::}. $addon),
         );
     }

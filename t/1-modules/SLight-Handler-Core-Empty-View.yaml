@@ -3,7 +3,7 @@ Display empty page:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -17,14 +17,14 @@ Display empty page:
           type: Link
         type: Container
       Core::Toolbox:
-        class: SLight_Toolbox_Plugin
+        class: SL_Toolbox_Plugin
         content:
-        - class: SLight_AddContent_Action
+        - class: SL_AddContent_Action
           data:
             caption: Add content
             href: /Download/AddContent-en.web_test
           type: Action
-        - class: SLight_Delete_Action
+        - class: SL_Delete_Action
           data:
             caption: Delete
             href: /Download/Delete-en.web_test
@@ -32,7 +32,7 @@ Display empty page:
         type: Container
     object_data:
       e1:
-        class: SLight_Object O-Empty
+        class: SL_Object O-Empty
         content: []
         type: Container
     object_order:

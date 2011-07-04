@@ -3,7 +3,7 @@ AddContent form - as Current:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -18,7 +18,7 @@ AddContent form - as Current:
         type: Container
     object_data:
       ob2:
-        class: SLight_Object O-AddContent
+        class: SL_Object O-AddContent
         content:
         - content:
           - content:
@@ -123,7 +123,7 @@ AddContent form - as New:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -138,7 +138,7 @@ AddContent form - as New:
         type: Container
     object_data:
       ob2:
-        class: SLight_Object O-AddContent
+        class: SL_Object O-AddContent
         content:
         - content:
           - content:
@@ -303,7 +303,7 @@ AddContent invitation:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -318,7 +318,7 @@ AddContent invitation:
         type: Container
     object_data:
       ob2:
-        class: SLight_Object O-AddContent
+        class: SL_Object O-AddContent
         content:
         - content:
           - content:
@@ -345,7 +345,7 @@ AddContent invitation:
             - class: link
               content:
               - data:
-                  href: /About/AddContent-form.web?target=New&handler=CMS%3A%3AEntry
+                  href: /About/AddContent-form.web?target=New&handler=Core%3A%3AEmpty
                   label: As new page
                 type: Link
               data:
@@ -355,7 +355,7 @@ AddContent invitation:
             - class: link
               content:
               - data:
-                  href: /About/AddContent-form.web?target=Current&handler=CMS%3A%3AEntry
+                  href: /About/AddContent-form.web?target=Current&handler=Core%3A%3AEmpty
                   label: Append here
                 type: Link
               data:
@@ -711,7 +711,7 @@ Getting a girl - form:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -726,7 +726,7 @@ Getting a girl - form:
         type: Container
     object_data:
       ob2:
-        class: SLight_Object O-AddContent
+        class: SL_Object O-AddContent
         content:
         - content:
           - content:
@@ -990,7 +990,7 @@ Getting a girl - form:
           type: Form
         type: Container
       ob4:
-        class: SLight_Object O-Content
+        class: SL_Object O-Content
         content:
         - class: Core
           content:
@@ -1003,22 +1003,22 @@ Getting a girl - form:
               text:
               - - This is extra content.
             type: Text
-          - class: SLight_Timebox
+          - class: SL_Timebox
             content:
-            - class: SLight_AddedTime
+            - class: SL_AddedTime
               data:
                 label: 'Added: ##DATE(yyyy-mm-dd hh:mm:ss) IS SANE##'
               type: Label
             type: Container
           type: Container
-        - class: SLight_Toolbox
+        - class: SL_Toolbox
           content:
-          - class: SLight_Edit_Action
+          - class: SL_Edit_Action
             data:
               caption: Edit
               href: /About/-ob-4/Edit-form-en.web_test
             type: Action
-          - class: SLight_Delete_Action
+          - class: SL_Delete_Action
             data:
               caption: Delete
               href: /About/-ob-4/Delete-form-en.web_test

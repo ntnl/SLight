@@ -3,7 +3,7 @@ Show field details:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -13,9 +13,9 @@ Show field details:
         type: Container
     object_data:
       _field:
-        class: SLight_Object O-CMS_Spec_Field
+        class: SL_Object O-CMS_Spec_Field
         content:
-        - class: SLight_Properties
+        - class: SL_Properties
           content:
           - class: caption
             data:
@@ -45,14 +45,14 @@ Show field details:
             type: Container
           data: {}
           type: Container
-        - class: SLight_Toolbox
+        - class: SL_Toolbox
           content:
-          - class: SLight_Edit_Action
+          - class: SL_Edit_Action
             data:
               caption: Edit
               href: /_CMS_Spec/Field/1/title/Edit-en.web_test
             type: Action
-          - class: SLight_Delete_Action
+          - class: SL_Delete_Action
             data:
               caption: Delete
               href: /_CMS_Spec/Field/1/title/Delete-en.web_test

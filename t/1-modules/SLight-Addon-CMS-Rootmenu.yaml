@@ -1,6 +1,6 @@
 ---
 Root menu:
-  class: SLight_Rootmenu_Addon
+  class: SL_Rootmenu_Addon
   content:
   - class: Other
     data:
@@ -19,7 +19,7 @@ Root menu:
     type: Link
   type: Container
 Root menu - remains the same:
-  class: SLight_Rootmenu_Addon
+  class: SL_Rootmenu_Addon
   content:
   - class: Current
     data:

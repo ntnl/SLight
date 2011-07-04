@@ -30,7 +30,7 @@ sub _process { # {{{
     }
 
     my %params = (
-        class => 'SLight_Toolbox_Plugin',
+        class => 'SL_Toolbox_Plugin',
 
         urls => $self->{'meta'}->{'toolbox'},
     );

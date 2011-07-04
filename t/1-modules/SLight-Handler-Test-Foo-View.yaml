@@ -3,7 +3,7 @@ Call the 'View' actio non 'Test::Foo' object:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -13,9 +13,9 @@ Call the 'View' actio non 'Test::Foo' object:
         type: Container
     object_data:
       ob1:
-        class: SLight_Object O-Debug
+        class: SL_Object O-Debug
         content:
-        - class: SLight_Notification
+        - class: SL_Notification
           content:
           - class: Message
             content:
@@ -29,9 +29,9 @@ Call the 'View' actio non 'Test::Foo' object:
           type: Container
         type: Container
       ob2:
-        class: SLight_Object O-Debug
+        class: SL_Object O-Debug
         content:
-        - class: SLight_Notification
+        - class: SL_Notification
           content:
           - class: Message
             content:

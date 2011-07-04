@@ -3,7 +3,7 @@ Empty list:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -17,9 +17,9 @@ Empty list:
           type: Link
         type: Container
       Core::Toolbox:
-        class: SLight_Toolbox_Plugin
+        class: SL_Toolbox_Plugin
         content:
-        - class: SLight_New_Action
+        - class: SL_New_Action
           data:
             caption: Add new Spec
             href: /_CMS_Spec/Spec/New-en.web_test
@@ -27,9 +27,9 @@ Empty list:
         type: Container
     object_data:
       l1:
-        class: SLight_Object O-Generic
+        class: SL_Object O-Generic
         content:
-        - class: SLight_Notification
+        - class: SL_Notification
           content:
           - class: Message
             content:
@@ -51,7 +51,7 @@ One element list:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -65,9 +65,9 @@ One element list:
           type: Link
         type: Container
       Core::Toolbox:
-        class: SLight_Toolbox_Plugin
+        class: SL_Toolbox_Plugin
         content:
-        - class: SLight_New_Action
+        - class: SL_New_Action
           data:
             caption: Add new Spec
             href: /_CMS_Spec/Spec/New-en.web_test
@@ -75,11 +75,11 @@ One element list:
         type: Container
     object_data:
       l1:
-        class: SLight_Object O-Generic
+        class: SL_Object O-Generic
         content:
         - content:
           - content:
-            - class: SLight_main_name
+            - class: SL_MainName
               content:
               - data:
                   href: /_CMS_Spec/Spec/1/
@@ -89,9 +89,9 @@ One element list:
                 colspan: 0
                 rowspan: 0
               type: TableCell
-            - class: SLight_name
+            - class: SL_Name
               content:
-              - class: SLight_name
+              - class: SL_Name
                 data:
                   label: CMS::Entry
                 type: Label
@@ -99,9 +99,9 @@ One element list:
                 colspan: 0
                 rowspan: 0
               type: TableCell
-            - class: SLight_name
+            - class: SL_Name
               content:
-              - class: SLight_name
+              - class: SL_Name
                 data:
                   label: Gal
                 type: Label
@@ -109,9 +109,9 @@ One element list:
                 colspan: 0
                 rowspan: 0
               type: TableCell
-            - class: SLight_int
+            - class: SL_Int
               content:
-              - class: SLight_int
+              - class: SL_Int
                 data:
                   label: 0
                 type: Label
@@ -119,9 +119,9 @@ One element list:
                 colspan: 0
                 rowspan: 0
               type: TableCell
-            - class: SLight_int
+            - class: SL_Int
               content:
-              - class: SLight_int
+              - class: SL_Int
                 data:
                   label: 6
                 type: Label

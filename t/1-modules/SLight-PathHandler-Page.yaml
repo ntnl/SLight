@@ -13,6 +13,7 @@
       oid: ~
   page_id: 3
   template: Doc
+  title: Documentation
 2-nd level page:
   breadcrumb_path:
   - class: Test
@@ -30,6 +31,7 @@
       oid: ~
   page_id: 5
   template: Default
+  title: Authors
 Root page:
   breadcrumb_path: []
   main_object: ob1
@@ -41,3 +43,4 @@ Root page:
       oid: 1
   page_id: 1
   template: Default
+  title: Test site

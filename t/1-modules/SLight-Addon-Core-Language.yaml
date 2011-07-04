@@ -1,6 +1,6 @@
 ---
 Show languages (default):
-  class: SLight_Language_Addon
+  class: SL_Language_Addon
   content:
   - class: en-Current
     data:

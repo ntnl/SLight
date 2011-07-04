@@ -3,7 +3,7 @@ Get form:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -13,7 +13,7 @@ Get form:
         type: Container
     object_data:
       _field:
-        class: SLight_Object O-CMS_Spec_Field
+        class: SL_Object O-CMS_Spec_Field
         content:
         - content:
           - class: F-class Entry

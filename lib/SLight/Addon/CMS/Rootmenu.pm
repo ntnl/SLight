@@ -35,7 +35,7 @@ sub _process { # {{{
     my $menu_items = $self->build_menu([], $pages);
 
     my $container = mk_Container_token(
-        class   => 'SLight_Rootmenu_Addon',
+        class   => 'SL_Rootmenu_Addon',
         content => $menu_items,
     );
 

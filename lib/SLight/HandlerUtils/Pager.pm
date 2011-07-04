@@ -126,7 +126,7 @@ sub make_pager { # {{{
 
     # Make and return container for the widget.
     my $pager_container = $self->{'response'}->make_Container(
-        class   => 'SLight_Pager',
+        class   => 'SL_Pager',
         content => \@pager_elements,
     );
 

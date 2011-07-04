@@ -18,3 +18,4 @@ Root page:
       oid: 2
   page_id: ~
   template: Default
+  title: 'Test for path: /'

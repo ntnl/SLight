@@ -26,7 +26,7 @@ Open confirmation dialog:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -40,19 +40,19 @@ Open confirmation dialog:
           type: Link
         type: Container
       Core::Toolbox:
-        class: SLight_Toolbox_Plugin
+        class: SL_Toolbox_Plugin
         content:
-        - class: SLight_AddContent_Action
+        - class: SL_AddContent_Action
           data:
             caption: Add Content
             href: /About/AddContent-en.web_test
           type: Action
-        - class: SLight_Edit_Action
+        - class: SL_Edit_Action
           data:
             caption: Edit
             href: /About/Edit-en.web_test
           type: Action
-        - class: SLight_Delete_Action
+        - class: SL_Delete_Action
           data:
             caption: Delete
             href: /About/Delete-en.web_test
@@ -60,9 +60,9 @@ Open confirmation dialog:
         type: Container
     object_data:
       ob2:
-        class: SLight_Object O-Content
+        class: SL_Object O-Content
         content:
-        - class: SLight_Delete_Dialog
+        - class: SL_Delete_Dialog
           content:
           - class: Message
             content:

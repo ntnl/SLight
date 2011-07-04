@@ -3,7 +3,7 @@
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -23,9 +23,9 @@
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_Account_Data
+        class: SL_Object O-SL_Account_Data
         content:
-        - class: SLight_Properties
+        - class: SL_Properties
           content:
           - class: default
             content:
@@ -94,7 +94,7 @@
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -114,9 +114,9 @@
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_Account_Data
+        class: SL_Object O-SL_Account_Data
         content:
-        - class: SLight_Properties
+        - class: SL_Properties
           content:
           - class: default
             content:
@@ -185,7 +185,7 @@
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -205,9 +205,9 @@
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_Account_Data
+        class: SL_Object O-SL_Account_Data
         content:
-        - class: SLight_Properties
+        - class: SL_Properties
           content:
           - class: default
             content:

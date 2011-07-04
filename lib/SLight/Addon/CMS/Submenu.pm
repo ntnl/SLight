@@ -45,7 +45,7 @@ sub _process { # {{{
     my $menu_items = $self->build_menu(get_Page_full_path($page->{'parent_id'}), $pages);
 
     my $container = mk_Container_token(
-        class   => 'SLight_Submenu_Addon',
+        class   => 'SL_Submenu_Addon',
         content => $menu_items,
     );
 

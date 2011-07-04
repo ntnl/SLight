@@ -28,7 +28,7 @@ my $dst_dir = ( $ARGV[1] or 'sandbox' );
 assert_like($site, qr{^[A-Z][A-Za-z0-9]+$}s, "Site name OK.");
 
 my $source      = $Bin . q{/../t_data/} . $site . q{/};
-my $destination = $Bin . q{/../} . $dst_dir q{/};
+my $destination = $Bin . q{/../} . $dst_dir . q{/};
 
 assert_is(-d $source,      1, "Source existst: $source");
 assert_is(-d $destination, 1, "Destination exists: $destination");

@@ -3,7 +3,7 @@ Asset list with one asset:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -18,11 +18,11 @@ Asset list with one asset:
         type: Container
     object_data:
       l1:
-        class: SLight_Object O-Assets
+        class: SL_Object O-Assets
         content:
         - content:
           - content:
-            - class: SLight_thumb
+            - class: SL_Thumb
               content:
               - class: Asset
                 data:
@@ -33,9 +33,9 @@ Asset list with one asset:
                 colspan: 0
                 rowspan: 0
               type: TableCell
-            - class: SLight_main_name
+            - class: SL_MainName
               content:
-              - class: SLight_main_name
+              - class: SL_MainName
                 data:
                   label: Sample image for testing purposes.
                 type: Label
@@ -43,9 +43,9 @@ Asset list with one asset:
                 colspan: 0
                 rowspan: 0
               type: TableCell
-            - class: SLight_mime
+            - class: SL_Mime
               content:
-              - class: SLight_mime
+              - class: SL_Mime
                 data:
                   label: image/png
                 type: Label
@@ -53,9 +53,9 @@ Asset list with one asset:
                 colspan: 0
                 rowspan: 0
               type: TableCell
-            - class: SLight_time
+            - class: SL_Time
               content:
-              - class: SLight_time
+              - class: SL_Time
                 data:
                   label: '-'
                 type: Label
@@ -63,16 +63,16 @@ Asset list with one asset:
                 colspan: 0
                 rowspan: 0
               type: TableCell
-            - class: SLight_toolbox
+            - class: SL_Toolbox
               content:
-              - class: SLight_Toolbox
+              - class: SL_Toolbox
                 content:
-                - class: SLight_Download_Action
+                - class: SL_Download_Action
                   data:
                     caption: Download
                     href: /_Asset/Asset/1/Download-en.web_test
                   type: Action
-                - class: SLight_Delete_Action
+                - class: SL_Delete_Action
                   data:
                     caption: Delete
                     href: /_Asset/Asset/1/Delete-en.web_test
@@ -94,7 +94,7 @@ Empty Asset list:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -109,9 +109,9 @@ Empty Asset list:
         type: Container
     object_data:
       l1:
-        class: SLight_Object O-Assets
+        class: SL_Object O-Assets
         content:
-        - class: SLight_Notification
+        - class: SL_Notification
           content:
           - class: Message
             content:

@@ -128,12 +128,15 @@ sub response_content { # {{{
         breadcrumb_path => $self->{'breadcrumb_path'},
 
         template => $self->{'template'},
-        title    => $self->{'title'},
 
         objects      => $self->{'objects'},
         object_order => $self->{'object_order'},
         main_object  => $self->{'main_object'},
     };
+
+    if ($self->{'title'}) {
+        $content_response->{'title'} = $self->{'title'};
+    }
 
 #    use Data::Dumper; warn Dumper $content_response;
 

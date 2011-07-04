@@ -35,7 +35,7 @@ sub _process { # {{{
     );
 
     my $container = mk_Container_token(
-        class   => 'SLight_Sysinfo_Addon',
+        class   => 'SL_Sysinfo_Addon',
         content => \@info_items,
     );
 

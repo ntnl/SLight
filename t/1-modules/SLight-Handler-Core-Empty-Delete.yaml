@@ -3,7 +3,7 @@ Ask for page:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -18,9 +18,9 @@ Ask for page:
         type: Container
     object_data:
       e1:
-        class: SLight_Object O-Empty
+        class: SL_Object O-Empty
         content:
-        - class: SLight_Delete_Dialog
+        - class: SL_Delete_Dialog
           content:
           - class: Message
             content:

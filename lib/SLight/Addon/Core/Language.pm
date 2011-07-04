@@ -51,7 +51,7 @@ sub _process { # {{{
     }
 
     my $container = mk_Container_token(
-        class   => 'SLight_Language_Addon',
+        class   => 'SL_Language_Addon',
         content => \@language_items,
     );
 

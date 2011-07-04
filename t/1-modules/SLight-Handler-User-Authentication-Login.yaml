@@ -3,7 +3,7 @@ Login form:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -18,7 +18,7 @@ Login form:
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_User_Login
+        class: SL_Object O-SL_User_Login
         content:
         - class: SL_Login_Form
           content:
@@ -46,6 +46,16 @@ Login form:
                 value: ''
               type: PasswordEntry
             type: Container
+          - class: F-SL_Register_Action Link
+            data:
+              href: /_Authentication/Register.web
+              label: Register account...
+            type: Link
+          - class: F-SL_Password_Action Link
+            data:
+              href: /_Authentication/Register.web
+              label: Forgot password?
+            type: Link
           data:
             action: /_Authentication/Login-authenticate.web
             hidden:
@@ -62,7 +72,7 @@ Sending form with bad login/pass:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -77,7 +87,7 @@ Sending form with bad login/pass:
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_User_Login
+        class: SL_Object O-SL_User_Login
         content:
         - class: SL_Login_Form
           content:
@@ -109,6 +119,16 @@ Sending form with bad login/pass:
                 label: Login/Password combination is incorrect.
               type: Label
             type: Container
+          - class: F-SL_Register_Action Link
+            data:
+              href: /_Authentication/Register.web
+              label: Register account...
+            type: Link
+          - class: F-SL_Password_Action Link
+            data:
+              href: /_Authentication/Register.web
+              label: Forgot password?
+            type: Link
           data:
             action: /_Authentication/Login-authenticate.web
             hidden:

@@ -30,6 +30,8 @@ sub analyze_path { # {{{
 
     $self->set_template('Default');
 
+    $self->set_title(q{Test for path: /} . (join q{/}, @{ $path }) );
+
     if (scalar @{ $path }) {
         $self->set_objects(
             {
@@ -40,7 +42,7 @@ sub analyze_path { # {{{
                 },
             }
         );
-    
+
         $self->set_object_order([qw( t1 )]);
 
         $self->set_main_object('t1');

@@ -11,7 +11,7 @@ Show form:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -31,7 +31,7 @@ Show form:
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_Account_New
+        class: SL_Object O-SL_Account_New
         content:
         - content:
           - content:
@@ -134,7 +134,7 @@ Submit form (bad data):
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -154,7 +154,7 @@ Submit form (bad data):
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_Account_New
+        class: SL_Object O-SL_Account_New
         content:
         - content:
           - content:

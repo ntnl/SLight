@@ -3,7 +3,7 @@ Get Content Spec choice menu:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -13,7 +13,7 @@ Get Content Spec choice menu:
         type: Container
     object_data:
       e1:
-        class: SLight_Object O-AddContent
+        class: SL_Object O-AddContent
         content:
         - content:
           - content:
@@ -40,7 +40,7 @@ Get Content Spec choice menu:
             - class: link
               content:
               - data:
-                  href: /AddContent-form.web?target=New&handler=CMS%3A%3AEntry
+                  href: /AddContent-form.web?target=New&handler=Core%3A%3AEmpty
                   label: As new page
                 type: Link
               data:
@@ -50,7 +50,7 @@ Get Content Spec choice menu:
             - class: link
               content:
               - data:
-                  href: /AddContent-form.web?target=Current&handler=CMS%3A%3AEntry
+                  href: /AddContent-form.web?target=Current&handler=Core%3A%3AEmpty
                   label: Append here
                 type: Link
               data:
@@ -321,7 +321,7 @@ Get form:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -331,7 +331,7 @@ Get form:
         type: Container
     object_data:
       e1:
-        class: SLight_Object O-AddContent
+        class: SL_Object O-AddContent
         content:
         - content:
           - content:
@@ -349,6 +349,42 @@ Get form:
             - class: Value
               data:
                 name: page.template
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-page.title Entry
+            content:
+            - class: Label
+              data:
+                label: Page title
+              type: Label
+            - class: Value
+              data:
+                name: page.title
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-page.breadcrumb Entry
+            content:
+            - class: Label
+              data:
+                label: Breadcrumb label
+              type: Label
+            - class: Value
+              data:
+                name: page.breadcrumb
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-page.menu Entry
+            content:
+            - class: Label
+              data:
+                label: Menu label
+              type: Label
+            - class: Value
+              data:
+                name: page.menu
                 value: ''
               type: Entry
             type: Container

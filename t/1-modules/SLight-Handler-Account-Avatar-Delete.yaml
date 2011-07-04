@@ -17,7 +17,7 @@ Display dialog:
   content:
     addon_data:
       Core::Path:
-        class: SLight_Path_Addon
+        class: SL_Path_Addon
         content:
         - class: Root
           data:
@@ -47,7 +47,7 @@ Display dialog:
         type: Container
     object_data:
       o:
-        class: SLight_Object O-SL_Account_Avatar
+        class: SL_Object O-SL_Account_Avatar
         content:
         - class: SL_Delete_Dialog
           content:

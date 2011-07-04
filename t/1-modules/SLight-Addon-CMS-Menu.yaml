@@ -1,6 +1,6 @@
 ---
 Menu on 1-st level page:
-  class: SLight_Submenu_Addon
+  class: SL_Submenu_Addon
   content:
   - class: Other
     data:
