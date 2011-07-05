@@ -3,12 +3,12 @@
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE Page_Entity ( -- {{{
-	`id` INTEGER PRIMARY KEY,
+    `id` INTEGER PRIMARY KEY,
 
     `parent_id` INTEGER,
-		-- our parent, or NULL on top-level comments.
+        -- our parent, or NULL on top-level comments.
 
-	`path`      VARCHAR(127) NOT NULL,
+    `path`      VARCHAR(127) NOT NULL,
 
     `template` VARCHAR(128),
 
@@ -47,16 +47,16 @@ CREATE UNIQUE INDEX Page_Entity_Language ON Page_Entity_Data (Page_Entity_id, la
 
 -- Content types subsystem
 CREATE TABLE Content_Spec ( -- {{{
-	`id`     	INTEGER PRIMARY KEY,
+    `id`     	INTEGER PRIMARY KEY,
 
-	`caption`	VARCHAR(128) NOT NULL,
-		-- This will be a textual description, visible only to Site owner.
+    `caption`	VARCHAR(128) NOT NULL,
+        -- This will be a textual description, visible only to Site owner.
 
     `owning_module` VARCHAR(128) NOT NULL,
         -- Which module created this Spec and should be use to handle Entities derived from it.
 
-	`version` SMALLINT NOT NULL DEFAULT 0,
-		-- In case the same module can handle different versions of the content type...
+    `version` SMALLINT NOT NULL DEFAULT 0,
+        -- In case the same module can handle different versions of the content type...
 
     `class` VARCHAR(128) NOT NULL,
         -- Class used to differentiate objects, making it more easier to handle then in CSS.
@@ -113,10 +113,10 @@ CREATE TABLE Content_Spec_Field ( -- {{{
 		--
 		--	Test
 
-	`default_value` VARCHAR(255) NOT NULL,
+    `default_value` VARCHAR(255) NOT NULL,
         -- Default value used to initialize the Add form.
 
-	`translate` SMALLINT NOT NULL,
+    `translate` SMALLINT NOT NULL,
         -- 0 : Not translatable
         -- 1 : This field is translatable
 
@@ -151,7 +151,7 @@ CREATE TABLE Content_Spec_Field ( -- {{{
         --
         -- This value will be used to determine maximal size of file uploads too.
         -- But, for uploads - it's bytes, since files tend to be binary ;)
-	
+
     FOREIGN KEY(`Content_Spec_id`) REFERENCES Content_Spec(`id`) ON DELETE CASCADE
 );
 CREATE        INDEX Content_Spec_Field_Content_Spec_id ON Content_Spec_Field (Content_Spec_id);

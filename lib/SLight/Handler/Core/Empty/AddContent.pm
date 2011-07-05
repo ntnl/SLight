@@ -17,9 +17,7 @@ use base q{SLight::HandlerBase::ProxyAction};
 
 # This is just a proxy action for SLight::Handler::CMS::Entry::AddContent.
 
-sub target_object { # {{{
-    return q{CMS::Entry};
-} # }}}
+sub target_object { return q{CMS::Entry}; }
 
 # vim: fdm=marker
 1;

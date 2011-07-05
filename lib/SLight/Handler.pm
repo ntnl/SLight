@@ -376,9 +376,9 @@ sub build_url { # {{{
         path    => ( $P{'path'}    or $self->{'url'}->{'path'} or [] ),
         options => ( $P{'options'} or $self->{'url'}->{'options'} or {} ),
 
-        page    => ( $P{'page'}    or 1 ),
-        lang    => ( $P{'lang'}    or $self->{'user'}->{'lang'} or q{} ),
-        
+        page    => ( $P{'page'} or 1 ),
+        lang    => ( $P{'lang'} or $self->{'user'}->{'lang'} or q{} ),
+
         add_domain => ( $P{'add_domain'} or 0 ),
     );
 
@@ -388,7 +388,7 @@ sub build_url { # {{{
             @{ $P{'add_to_path'} }
         ];
     }
-    
+
     my $url = SLight::Core::URL::make_url(%parts);
 
     return $url;

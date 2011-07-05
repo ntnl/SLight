@@ -54,7 +54,8 @@ sub handle_view { # {{{
     my @objects;
 
     # FIXME: sorting is lame...
-    foreach my $page (sort { $a->{'path'} cmp $b->{'path'} } @{ $sub_pages }) {
+    # Generally it sorts alphabetically.
+    foreach my $page (sort { ( $b->{'menu_order'} cmp $b->{'menu_order'} ) or ( $a->{'path'} cmp $b->{'path'} ) } @{ $sub_pages }) {
         my $content_object = ( $content_hash{ $page->{'id'} } or {} );
 
         my @parts;
@@ -86,22 +87,14 @@ sub handle_view { # {{{
                 filter_cb => sub {
                     my ( $field ) = @_;
 
-                    if (not $field->{'display_on_list'}) {
-                        return;
+                    if ($field->{'display_on_page'}) {
+                        return 1;
                     }
 
-                    return 1;
+                    return;
                 },
             );
         }
-
-        push @parts, mk_Link_token(
-            text  => TR("Read more..."), # FIXME: Replace with text from property.
-            class => q{SL_More},
-            href  => $self->build_url(
-                add_to_path => [ $page->{'path'} ],
-            ),
-        );
 
         push @objects, mk_Container_token(
             class   => 'SL_Aggregator_Entry',

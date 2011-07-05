@@ -24,24 +24,24 @@ sub get_spec { # {{{
 
     # Parameters are ignored. For now.
 
-    my $headlines_list_spec = {
-        'owning_module' => 'List::Headlines',
+    my $gallery_list_spec = {
+        'owning_module' => 'List::Gallery',
         '_data' => {
         },
-        'caption' => TR(q{List: Headlines}),
+        'caption' => TR(q{List: Gallery}),
 
         'version'      => '0',
         'cms_usage'    => '3',
         'metadata'     => {},
-        'class'        => 'SL_List_Headlines'
+        'class'        => 'SL_List_Gallery'
     };
 
     # Check, if there is a correct entry in Spec DB.
     # If not, add proper one.
     return $self->check_spec(
-        owning_module => 'List::Headlines',
+        owning_module => 'List::Gallery',
         version       => 0,
-        spec          => $headlines_list_spec,
+        spec          => $gallery_list_spec,
     );
 
 } # }}}

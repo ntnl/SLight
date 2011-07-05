@@ -48,8 +48,8 @@ sub handle_view { # {{{
 
     my @objects;
 
-    # FIXME: sorting is lame...
-    foreach my $page (sort { $a->{'path'} cmp $b->{'path'} } @{ $sub_pages }) {
+    # Sort by time - most recent items first.
+    foreach my $page (sort { $a->{'id'} cmp $b->{'id'} } @{ $sub_pages }) {
         my $content_object = ( $content_hash{ $page->{'id'} } or {} );
 
         my @parts;
@@ -81,11 +81,11 @@ sub handle_view { # {{{
                 filter_cb => sub {
                     my ( $field ) = @_;
 
-                    if (not $field->{'display_on_list'}) {
-                        return;
+                    if ($field->{'display_on_list'}) {
+                        return 1;
                     }
 
-                    return 1;
+                    return;
                 },
             );
         }

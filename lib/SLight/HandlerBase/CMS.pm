@@ -104,7 +104,7 @@ sub render_cms_object { # {{{
 
         my $value;
         if ($signature->{'asset'}) {
-            $value = $self->render_asset_field( $field_name, $P{'Data'}, 1 );
+            $value = $self->render_asset_field( $field, $P{'Data'}, 1 );
         }
         elsif ($P{'Data'}->{ $field->{'id'} })  {
             my $text = SLight::DataType::decode_data(

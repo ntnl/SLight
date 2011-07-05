@@ -12,14 +12,16 @@ package SLight::HandlerBase::List::AddContent;
 # 
 ################################################################################
 use strict; use warnings; # {{{
-use base q{SLight::HandlerBase::List::Base};
+use base q{SLight::HandlerBase::ProxyAction};
 
 use SLight::Core::L10N qw( TR TF );
 
 use Params::Validate qw( :all );
 # }}}
 
+# This is just a proxy action for SLight::Handler::CMS::Entry::AddContent.
 
+sub target_object { return q{CMS::Entry}; }
 
 # vim: fdm=marker
 1;

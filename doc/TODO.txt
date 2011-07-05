@@ -183,12 +183,8 @@
 [ ]         Update SLight/API/Content.pm
 [ ]         Update SLight/API/User.pm
 [ ]         Update SLight/API/Asset.pm
-[ ]     Core::Accessor routines returning lists should support progressive fetching with sorting and paging of content.
-[ ]         Fetch only data needed to sort IDs.
-[ ]         Fetch only data from the given window.
 [ ]     API::Page
 [ ]         Ability to return owning_module and ID of main content element, so it's dead-simple to evaluate if Use has permissions to it.
-[ ]     Drop 'order_by' and 'use_as_*' from 'Content_Spec' and related stuff. Fields in Entries will remain, so their content can be copied.
 [ ] Forum-related Handler objects
 [ ]     SLight::Handler::Forum::Root
 [ ]         SLight::Handler::Forum::Root::New
@@ -252,7 +248,23 @@
 [ ]             Show dialog
 [ ]             Perform the deletion
 [ ]             Test
-[-] SLight::HandlerUtils::Pager
+[ ] SLight::HandlerUtils::Pager
+[ ]     Basic implementation
+[ ]     Add 'order by' to Handler::List::* (so lists control how to sort)
+[ ]     Integrating with lists
+[ ]         Headlines list
+[ ]         Aggregator list
+[ ]         Blog-like list
+[ ]         News-like list
+[ ] Various improvements
+[ ]     Page/Content form: make title, menu and breadcrumb optional - use 'Path' (or other property) as default.
+[ ] Template enging improvements
+[ ]     Use default HTML snippets, if a widget is not defined in template.
+[ ]     Use built-in template, if no other template can be reached.
+[ ]     Support for 'style' attribute in mk_*_token and bellow.
+[ ]     Implement 'Fieldset' widget (groups form entries).
+[ ] Bugfixes
+[ ]     Default value for Date / DateTime fields should be "today"
 [ ] Release to the public
 [ ]     Make package
 [ ]     Beta-test
@@ -292,33 +304,21 @@
 [X]         Forge SQL
 [X]         Update Content.pm
 [X]         Fix regressions
-[>] CMS Lists
-[ ]     In-progress refactoring
-[ ]         Move 'base' Form elements from Headlines to common class.
-[ ]         Add 'order by' to Handler::List::* (so lists control how to sort)
-[ ]             Add 'order by' to Headlines Form
-[ ]             Ability to fetch only fields for lists or pages.
+[X] CMS Lists
 [X]     Headlines list (display titles of up to n child items, linking to their pages)
-[>]     Aggregator list (display up to n child items in full form, as if they ware parts of the page)
-[ ]     Blog-like list (display up to n child items in full form, with 'Read more' links)
-[ ]     News-like list (display up to n summarized child items, with 'Read more' links)
-[ ]     Gallery-like browser (display n items with in-place zoom support)
-[-] HTML/Template improvements
+[X]     Aggregator list (display up to n child items in full form, as if they ware parts of the page)
+[X]     Blog-like list (display up to n child items in full form, with 'Read more' links)
+[X]     News-like list (display up to n summarized child items, with 'Read more' links)
+[X]     Gallery-like browser (display n items with in-place zoom support)
+[X] HTML/Template improvements
 [X]     Ability to use widgets as labels for Link (and some other widgets)
-[ ]     Use default HTML snippets, if a widget is not defined in template.
-[ ]     Use built-in template, if no other template can be reached.
-[ ]     Support for 'style' attribute in mk_*_token and bellow.
-[ ]     Implement 'Fieldset' widget (groups form entries).
-[-] Bugs
+[-] Bugs/Improvements
 [X]     Remove 'generic' class names.
 [X]     Support for 'id' attribute in mk_*_token and bellow.
 [ ]     When DB can not be opened, try to display error using templates... (do not throw an internal error!)
 [ ]     Drop DB connection when major errors (especially internal!) happen.
-[?]     Remove white space right after and before [bbcode] tags
 [ ]     Do not show email field, if User is logged in.
 [ ]     Old session files are not deleted. They must be cleaned up!
-[ ]     Default value for Date / DateTime fields should be "today"
-[ ]     Page/Content form: make title, menu and breadcrumb optional - use 'Path' (or other property) as default.
 [ ] Release to the public
 [ ]     Make package
 [ ]     Beta-test

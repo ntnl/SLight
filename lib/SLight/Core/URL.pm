@@ -150,10 +150,10 @@ sub make_url { # {{{
             path_handler => { type=>SCALAR,   optional=>1, default=>'Page' },
             path         => { type=>ARRAYREF, optional=>1, default=>[] },
 
-            action => { type=>SCALAR,  regex=>$re_perl_module, optional=>1, default=>'View'},
-            step   => { type=>SCALAR,  regex=>$re_step,        optional=>1, default=>'view' },
-            lang    => { type=>SCALAR, regex=>$re_language,    optional=>1 },
-            page    => { type=>SCALAR, regex=>qr{^\d+$}s,      optional=>1 }, ## no critic qw(Variables::ProhibitPunctuationVars)
+            action => { type=>SCALAR, regex=>$re_perl_module, optional=>1, default=>'View'},
+            step   => { type=>SCALAR, regex=>$re_step,        optional=>1, default=>'view' },
+            lang   => { type=>SCALAR, regex=>$re_language,    optional=>1 },
+            page   => { type=>SCALAR, regex=>qr{^\d+$}s,      optional=>1 }, ## no critic qw(Variables::ProhibitPunctuationVars)
 
             protocol => { type=>SCALAR, optional=>1, default=>'web' },
 
@@ -176,7 +176,7 @@ sub make_url { # {{{
     if ($P{'path_handler'} and $P{'path_handler'} ne 'Page') {
         $url .= q{_} . $P{'path_handler'} . q{/};
     }
-    
+
     if (scalar @{ $P{'path'} }) {
         $url .= join q{/}, @{ $P{'path'} };
         $url .= q{/};
