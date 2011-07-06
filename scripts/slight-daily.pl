@@ -11,22 +11,15 @@
 # More information on: http://slight-cms.org/
 # 
 ################################################################################
-
 use strict; use warnings; # {{{
 use FindBin qw( $Bin );
-use lib $Bin . q{/../../lib/};
+use lib $Bin . q{/../lib/};
 
-use SLight;
-
-use Test::More;
+use SLight::Maintenance::Daily;
 # }}}
 
-plan tests =>
-    1 # Version.
-;
+my $handler = SLight::Maintenance::Daily->new();
 
-# Yes, redicolous :)
-
-is (SLight::version(), '0.0.5', 'Version is OK');
+exit $handler->main();
 
 # vim: fdm=marker

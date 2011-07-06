@@ -65,31 +65,55 @@
 [ ]             Test
 [ ] Improve code sharing between 'Account' and 'MyAccount' Handler modules.
 [ ] Implement ability to verify, if a Handler exists (such check is hard at the moment).
-[ ] ...
 
-=--= Sprint .. - First final (1.0.0) release - ....-..-..
+=--= v1.0.0 - ""
 
 [ ] Development
-[ ]     Make sure (and fix) all built-in classes start with SL_*
+[ ]     ...
+[ ] Improvements
+[ ]     ...
+[ ] Bugs
+[ ]     ...
+[ ] Release to the public
+[ ]     Bump version
+[ ]     Build packages
+[ ]     Beta-test
+[ ]     Upload package for public consumption
+[ ]     Spread the news :)
 
-=--= Sprint .. - Full AJAX support - ....-..-..
-    
-[ ] Upgrade all applicable functionality to support AJAX
+=--= v0.0.9 - ""
 
-    Definition of done:
+[ ] Development
+[ ]     ...
+[ ] Improvements
+[ ]     ...
+[ ] Bugs
+[ ]     ...
+[ ] Release to the public
+[ ]     Bump version
+[ ]     Build packages
+[ ]     Beta-test
+[ ]     Upload package for public consumption
+[ ]     Spread the news :)
 
-        Adding, Editing, Deleting, Posting threads, responding - all working trough AJAX
+=--= v0.0.8 - ""
 
-=--= Sprint .. - Initial AJAX support - 
+[ ] Development
+[ ]     AJAX
+[ ]         Upgrade all applicable functionality to support AJAX
+[ ]     ...
+[ ] Improvements
+[ ]     ...
+[ ] Bugs
+[ ]     ...
+[ ] Release to the public
+[ ]     Bump version
+[ ]     Build packages
+[ ]     Beta-test
+[ ]     Upload package for public consumption
+[ ]     Spread the news :)
 
-[ ] AJAX Protocol object
-[ ] P.O.C. of some js/html changes
-
-    Definition of done:
-
-        At least one action works trough AJAX
-
-=--= Sprint 3 - Advanced CMS - ....-..-..
+=--= v0.0.7 - "Comments and Attachments"
 
 [ ] API
 [ ]     Comment store
@@ -168,12 +192,14 @@
 [ ]     Some API calls (Asset) should return login as well (not just email)
 [ ]     When there is a DB error (like when appending new content to a page) there is only 'Internal error' displayed. This should be handled better.
 [ ]     When appending new content to a page: on_page_index is not handled correctly
+[ ] Release to the public
+[ ]     Bump version
+[ ]     Build packages
+[ ]     Beta-test
+[ ]     Upload package for public consumption
+[ ]     Spread the news :)
 
-    Definition of done:
-
-    Most, if not all, commonly spotted CMS features are usable.
-
-=--= Sprint .. - ....-..-..
+=--= v0.0.6 - "Forum"
 
 [ ] Refactoring of ContentModel.pm
 [ ]     Migration to Core::Accessor
@@ -266,16 +292,13 @@
 [ ] Bugfixes
 [ ]     Default value for Date / DateTime fields should be "today"
 [ ] Release to the public
+[ ]     Bump version to 0.0.6
 [ ]     Make package
 [ ]     Beta-test
 [ ]     Upload package for public consumption
 [ ]     Spread the news :)
 
-    Definition of done:
-
-        Forum is complete.
-
-=--= Sprint 3 - Command line CMS -
+=--= v0.0.5 - "Lists and Objects"
 
 [X] Contente/Page/Entity refactoring
 [X]     Add 'menu_order' (integer) to Page_Entity, for use in menus. Items in menu will be sorted from lowest to highest.
@@ -312,14 +335,19 @@
 [X]     Gallery-like browser (display n items with in-place zoom support)
 [X] HTML/Template improvements
 [X]     Ability to use widgets as labels for Link (and some other widgets)
-[-] Bugs/Improvements
+[>] Bugs/Improvements
 [X]     Remove 'generic' class names.
 [X]     Support for 'id' attribute in mk_*_token and bellow.
-[ ]     When DB can not be opened, try to display error using templates... (do not throw an internal error!)
-[ ]     Drop DB connection when major errors (especially internal!) happen.
-[ ]     Do not show email field, if User is logged in.
-[ ]     Old session files are not deleted. They must be cleaned up!
-[ ] Release to the public
+[X]     Old session files are not deleted. They must be cleaned up!
+[X]     Drop DB connection when major errors (especially internal!) happen.
+[>]     Maintenance mode + script to enable/disable it.
+[>]     When DB can not be opened, try to display error using templates... (do not throw an internal error!)
+[>]     Send email when internal error is detected.
+[>]     Do not show email field, if User is logged in.
+[>]     L10N support in Template.pm (for example, try to load 'Default-en.html' before 'Default.html')
+[>]     Add-on optimization: process only add-ons that are defined in given template.
+[>] Release to the public
+[X]     Bump version to 0.0.5
 [ ]     Make package
 [ ]     Beta-test
 [ ]     Upload package for public consumption

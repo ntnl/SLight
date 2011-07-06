@@ -43,9 +43,7 @@ sub new { # {{{
     return $self;
 } # }}}
 
-sub list_addons { # {{{
-    return;
-} # }}}
+sub list_addons { return; }
 
 sub set_meta { # {{{
     my ( $self, $meta ) = @_;
@@ -72,7 +70,7 @@ sub serialize_queued_data { # {{{
 
     # P should contain: template and object_order (check this/FIXME!)
 
-    ($self->{'final_data'}, $self->{'final_mime'}) = $self->serialize($P{'object_order'}, $P{'template'});
+    ($self->{'final_data'}, $self->{'final_mime'}) = $self->serialize($P{'object_order'});
 
     return;
 } # }}}

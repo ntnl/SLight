@@ -14,7 +14,7 @@ package SLight::PathHandler::Page;
 use strict; use warnings; # {{{
 use base q{SLight::PathHandler};
 
-my $VERSION = '0.0.4';
+my $VERSION = '0.0.5';
 
 use SLight::Core::Config;
 use SLight::API::Content qw( get_Contents_where get_Contents_fields_where );

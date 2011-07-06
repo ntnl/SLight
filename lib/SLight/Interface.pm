@@ -18,7 +18,7 @@ use Time::HiRes qw( time );
 # }}}
 
 # Prepares a new Interface object, returns it.
-# Makre a Core::Request object
+# Make a Core::Request object
 sub new { # {{{
     my $class = shift;
     my %P = validate(
@@ -29,13 +29,19 @@ sub new { # {{{
 
     # Prototype of the object:
     my $self = {
-        request    => undef,
+        request => undef,
     };
 
     bless $self, $class;
 
+    $self->init();
+
     return $self;
 } # }}}
+
+# Child class can implement this method,
+# if it needs to do something after compile time, but before any request.
+sub init { }
 
 # Uses Core::Request to Do The Job (TM)
 # Returns string, that may be returned/saved/scrapped...

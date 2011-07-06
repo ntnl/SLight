@@ -993,10 +993,3 @@ New Content Data structure.
  API::ContentModel <-- One (high-level) API to rule them all ;)
 
 
-
-
-t/0-smoke/has_test.t
-t/1-modules/SLight-API-Permissions.t
-t/0-smoke/critic.t
-t/1-modules/SLight-Maintenance-Manipulate.t
-

@@ -27,7 +27,7 @@ use Params::Validate qw( :all );
 #   Change package to SLight::HandlerBase::CMS::EntryForm
 
 my %signatures_cache;
-    
+
 sub build_form_guts { # {{{
     my (  $self, %P ) = @_;
 
@@ -84,14 +84,14 @@ sub build_form_guts { # {{{
             error   => $P{'errors'}->{'page.menu'},
         );
     }
-    
+
     # Fixme: Add new stuff handled by Page!
 
     # Content must be signed, so if current User has not logged-in,
     # he must provide an email address, that will be used to sign this new entry.
     # Note/limitation:
     #   once created, this field can not be changed.
-    if (not $content and not $self->{'params'}->{'user'}->{'email'} and not $content->{'Email_id'}) {
+    if (not $content and not $self->{'params'}->{'user'}->{'email'} and not $content->{'Email.id'}) {
         $form->add_Entry(
             caption => TR('Email (internal use only)'),
             name    => 'meta.email',

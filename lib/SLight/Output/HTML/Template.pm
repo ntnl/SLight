@@ -125,7 +125,7 @@ sub new { # {{{
     };
 
     bless $self, $class;
-    
+
     my @names;
     if (ref $P{'name'}) {
         push @names, @{ $P{'name'} };
@@ -138,16 +138,28 @@ sub new { # {{{
 
     # Load base file. Try, until some file is found.
     foreach my $name (@names, 'Default') {
-        # This function will call itself recursively, to append other files.
+        # Try to load template matching given language.
+        if ($P{'lang'}) {
+            # This function will call itself recursively, to append other files.
+            $self->{'template'} = $self->load_and_parse(
+                name => $name,
+                lang => $P{'lang'},
+            );
+
+            if ($self->{'template'}) {
+                last;
+            }
+        }
+
         $self->{'template'} = $self->load_and_parse(
-            name => $name
+            name => $name,
         );
 
         if ($self->{'template'}) {
             last;
         }
     }
-    
+
     assert_defined($self->{'template'}, "Template file loaded");
 
     return $self;
@@ -161,13 +173,19 @@ sub load_and_parse { # {{{
         @_,
         {
             name => { type=>SCALAR },
+            lang => { type=>SCALAR, optional=>1, },
 
             is_part => { type=>SCALAR, optional=>1, },
         }
     );
 
-    my $html_filename = $self->{'dir'} .q{/}. $P{'name'} .q{.html};
-    my $yaml_filename = $self->{'dir'} .q{/}. $P{'name'} .q{.yaml};
+    my $l10n_part = q{};
+    if ($P{'lang'}) {
+        $l10n_part = q{-} . $P{'lang'};
+    }
+
+    my $html_filename = $self->{'dir'} .q{/}. $P{'name'} . $l10n_part .q{.html};
+    my $yaml_filename = $self->{'dir'} .q{/}. $P{'name'} . $l10n_part .q{.yaml};
 
 #    warn 'Is part: ' . ( $P{'is_part'} or 0 );
 #    warn 'Trying : ' . $html_filename;
@@ -206,12 +224,12 @@ sub load_and_parse { # {{{
     else {
         return;
     }
-    
+
     # Only the main template sets the 'source'...
     if (not $self->{'source'}) {
         $self->{'source'} = 'HTML';
     }
-    
+
     $html = decode('utf8', $html);
 
     my $template = $self->process_html_template(
@@ -250,9 +268,6 @@ sub process_html_template { # {{{
         'index' => [],
 
         'has_var'   => {},
-        'has_list'  => {},
-        'has_grid'  => {},
-        'has_form'  => {},
         'has_block' => {},
     );
 
@@ -281,12 +296,17 @@ sub process_html_template { # {{{
             );
 
             push @{ $template{'index'} }, \%token;
+
+            $template{'has_block'}->{ $block_name } = 1;
+        }
+        else {
+            $template{'has_var'}->{ $block_name } = 1;
         }
 
         # Append also the text after the block.
         # It can contain placeholders, so it must be procesed too.
         my $html_part = shift @parts;
-    
+
         if ($html_part) {
             $self->extract_placeholders(
                 template => \%template,
@@ -436,27 +456,25 @@ sub set_layout { # {{{
 # Returns true (1), if given 'thing' was defined in template.
 # If it is not defined, returns false (0).
 
-# Fixme!
-# This is NOT working! There must be some dictionary of things!
-# Currently it checks what was set by the user, not by templace!
-#
-#sub has_var { # {{{
-#    my $self = shift;
-#    my $name = shift;
-#
-#    # Fixme!
-#
-#    return 0;
-#} # }}}
-#
-#sub has_block { # {{{
-#    my $self = shift;
-#    my $name = shift;
-#
-#    # Fixme!
-#
-#    return 0;
-#} # }}}
+sub has_var { # {{{
+    my ( $self, $name ) = @_;
+
+    if ($self->{'template'}->{'has_var'}->{$name}) {
+        return 1;
+    }
+
+    return 0;
+} # }}}
+
+sub has_block { # {{{
+    my ( $self, $name ) = @_;
+
+    if ($self->{'template'}->{'has_block'}->{$name}) {
+        return 1;
+    }
+
+    return 0;
+} # }}}
 
 # Return HTML string, made from joining template and acumulated data.
 sub render { # {{{

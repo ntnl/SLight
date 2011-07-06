@@ -14,7 +14,7 @@ package SLight::PathHandler::Test;
 use strict; use warnings; # {{{
 use base q{SLight::PathHandler};
 
-my $VERSION = '0.0.4';
+my $VERSION = '0.0.5';
 
 use Carp::Assert::More qw( assert_defined );
 # }}}

@@ -100,6 +100,8 @@ sub render_cms_object { # {{{
             next;
         }
 
+#use Data::Dumper; warn Dumper $field;
+
         my $signature = ( $signatures_cache{ $field->{'datatype'} } or $signatures_cache{ $field->{'datatype'} } = SLight::DataType::signature(type=>$field->{'datatype'}) );
 
         my $value;
@@ -107,12 +109,17 @@ sub render_cms_object { # {{{
             $value = $self->render_asset_field( $field, $P{'Data'}, 1 );
         }
         elsif ($P{'Data'}->{ $field->{'id'} })  {
+#            use Data::Dumper; warn Dumper $P{'Data'}->{ $field->{'id'} }->{'value'};
+
             my $text = SLight::DataType::decode_data(
                 type   => $field->{'datatype'},
                 value  => $P{'Data'}->{ $field->{'id'} }->{'value'},
                 format => q{},
-                target => 'LIST',
+                target => 'MAIN',
+#                target => 'LIST',
             );
+
+#            use Data::Dumper; warn Dumper $text;
 
             my $render_method_name = $render_methods{ $signature->{'display'} };
 
@@ -120,6 +127,8 @@ sub render_cms_object { # {{{
 
             $value = $self->$render_method_name($field_name, $text);
         }
+
+#use Data::Dumper; warn Dumper $value;
 
         if (defined $value) {
             # Should we add a label to it?

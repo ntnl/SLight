@@ -36,7 +36,7 @@ sub check { # {{{
     if (not $handler) {
         # Hardcoded for now.
         # In future, it will allow to connect to PostgreSQL or MySQL.
-        
+
         require SLight::Core::SQLite;
 
         $handler = SLight::Core::SQLite->new(

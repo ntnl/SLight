@@ -13,7 +13,7 @@ package SLight::Maintenance::Install;
 ################################################################################
 use strict; use warnings; # {{{
 
-our $VERSION = 0.0.4;
+our $VERSION = 0.0.5;
 
 use Carp::Assert::More qw( assert_defined assert_is );
 

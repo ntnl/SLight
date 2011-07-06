@@ -88,6 +88,8 @@ sub respond { # {{{
         }
     }
 
+    $output_object->prepare($P{'page'}->{'template'});
+
     $output_object->set_meta($response->{'meta'});
 
     $output_object->queue_object_data(
@@ -136,7 +138,6 @@ sub respond { # {{{
     }
 
     $output_object->serialize_queued_data(
-        template     => $P{'page'}->{'template'},
         object_order => $P{'page'}->{'object_order'},
     );
 

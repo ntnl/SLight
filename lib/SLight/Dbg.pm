@@ -15,7 +15,7 @@ package SLight::Dbg;
 use strict; use warnings; # {{{
 use base 'Exporter';
 
-my $VERSION = '0.0.4';
+my $VERSION = '0.0.5';
 # }}}
 
 our @EXPORT_OK = qw(

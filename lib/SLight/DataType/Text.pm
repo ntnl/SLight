@@ -256,7 +256,7 @@ my %paired_tags = (
     code  => 1,
     size  => 1,
     color => 1,
-    
+
     youtube => 1,
 );
 

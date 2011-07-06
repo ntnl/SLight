@@ -23,10 +23,46 @@ use File::Slurp qw( read_file );
 use Params::Validate qw( :all );
 # }}}
 
+my %known_addons = (
+    'slight.core.path.addon'     => q{Core::Path},
+    'slight.core.language.addon' => q{Core::Language},
+    'slight.core.sysinfo.addon'  => q{Core::Sysinfo},
+    'slight.core.toolbox.addon'  => q{Core::Toolbox},
+    'slight.core.debug.addon'    => q{Core::Debug},
+
+    'slight.cms.rootmenu.addon' => q{CMS::Rootmenu},
+    'slight.cms.menu.addon'     => q{CMS::Menu},
+    'slight.cms.submenu.addon'  => q{CMS::Submenu},
+
+    'slight.user.info.addon'  => q{User::Info},
+    'slight.user.panel.addon' => q{User::Panel},
+);
+
+sub prepare { # {{{
+    my ( $self, $template_code ) = @_;
+
+    $self->{'template'} = SLight::Output::HTML::Template->new(
+        name => $template_code,
+        dir  => SLight::Core::Config::get_option('site_root') . q{/html/},
+    );
+
+    # If no template has been loaded, "do something" (FIXME) maybe auto-generate a template?
+
+    return;
+} # }}}
+
 sub list_addons { # {{{
-    # FIXME: actually check in the template!
-    # FIXME: this should be implemented by the child classes, probably!
-    return qw( Core::Toolbox Core::Path Core::Sysinfo Core::Language Core::Debug CMS::Rootmenu CMS::Menu CMS::Submenu User::Info User::Panel );
+    my ( $self ) = @_;
+
+    my @addons;
+
+    foreach my $block (keys %known_addons) {
+        if ($self->{'template'}->has_block($block)) {
+            push @addons, $known_addons{$block};
+        }
+    }
+
+    return @addons;
 } # }}}
 
 sub process_object_data { # {{{
@@ -55,23 +91,14 @@ sub process_addon_data { # {{{
 sub serialize { # {{{
     my ( $self, $object_order, $template_code ) = @_;
 
-#    my $template_file = SLight::Core::Config::get_option('site_root') . q{/html/} . $template_code . q{.html};
-#
-#    my $template = read_file($template_file);
-
-    my $template = SLight::Output::HTML::Template->new(
-        name => $template_code,
-        dir  => SLight::Core::Config::get_option('site_root') . q{/html/},
-    );
-
-    # If no template has been loaded, "do something" (FIXME) maybe auto-generate a template?
-
     my @main_page_content;
     foreach my $oid (@{ $object_order }) {
         push @main_page_content, $self->{'HTML'}->{'objects'}->{$oid};
     }
-    
+
 #    use Data::Dumper; warn Dumper \@main_page_content;
+
+    my $template = $self->{'template'};
 
     $template->set_layout(
         'content',

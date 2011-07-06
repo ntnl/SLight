@@ -21,7 +21,7 @@ use Params::Validate qw( :all );
 use URI::Escape;
 # }}}
 
-our $VERSION = '0.0.4';
+our $VERSION = '0.0.5';
 
 our @EXPORT_OK = qw(
     parse_url

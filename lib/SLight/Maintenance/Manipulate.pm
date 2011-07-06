@@ -13,7 +13,7 @@ package SLight::Maintenance::Manipulate;
 ################################################################################
 use strict; use warnings; # {{{
 
-my $VERSION = '0.0.4';
+my $VERSION = '0.0.5';
 
 use SLight::API::Content qw( add_Content update_Content get_Contents_where delete_Contents );
 use SLight::API::ContentSpec qw( get_ContentSpec );
@@ -43,7 +43,7 @@ sub main { # {{{
         'cms-set'    => q{},
         'cms-delete' => q{},
     );
-    
+
     if (not scalar @params) {
         push @params, q{--help};
     }

@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+package SLight::Maintenance::Daily;
 ################################################################################
 # 
 # SLight - Lightweight Content Management System.
@@ -11,22 +11,35 @@
 # More information on: http://slight-cms.org/
 # 
 ################################################################################
-
 use strict; use warnings; # {{{
-use FindBin qw( $Bin );
-use lib $Bin . q{/../../lib/};
 
-use SLight;
+our $VERSION = 0.0.5;
 
-use Test::More;
+use Carp::Assert::More qw( assert_defined );
+use Params::Validate qw( :all );
 # }}}
 
-plan tests =>
-    1 # Version.
-;
+sub new { # {{{
+    my ($class) = @_;
 
-# Yes, redicolous :)
+    my $self = {
+    };
 
-is (SLight::version(), '0.0.5', 'Version is OK');
+    bless $self, $class;
+
+    return $self;
+} # }}}
+
+sub main { # {{{
+    # Dev note:
+    #   Hardcoded, but in future can be dynamic or even configurable.
+
+    require SLight::Maintenance::Daily::Sessions;
+
+    SLight::Maintenance::Daily::Sessions::run();
+
+    return 0;
+} # }}}
 
 # vim: fdm=marker
+1;

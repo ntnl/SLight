@@ -23,8 +23,6 @@ use SLight::HandlerFactory;
 use SLight::PathHandlerFactory;
 use SLight::ProtocolFactory;
 
-# use SLight::Core::User;
-# use SLight::Core::User::Access;
 # use SLight::Core::Cache qw( Cache_Purge_Request );
 
 use Carp::Assert::More qw( assert_defined assert_like );
@@ -101,29 +99,56 @@ sub main { # {{{
 
 #    Cache_Purge_Request();
 
-    if ($P{'session_id'}) {
-        SLight::Core::Session::restore($P{'session_id'});
-    }
-    else {
-        SLight::Core::Session::start();
-    }
-
     # Start session. This way any access (read/write) made trough the request will be atomic.
     # ...and in the case of SQLite - probably faster.
-    SLight::Core::DB::check();
-    SLight::Core::DB::run_query( query=>'BEGIN TRANSACTION' );
+    my $db_is_ok = eval {
+        SLight::Core::DB::check();
+
+        SLight::Core::DB::run_query( query=>'BEGIN TRANSACTION' );
+
+        return 1;
+    };
+    if ($EVAL_ERROR or not $db_is_ok) {
+        # Introduce a delay...
+        sleep 1;
+
+        # ...disconnect...
+        SLight::Core::DB::disconnect();
+
+        # ...and retry.
+        $db_is_ok = eval {
+            SLight::Core::DB::check();
+
+            SLight::Core::DB::run_query( query=>'BEGIN TRANSACTION' );
+
+            return 1;
+        };
+        if ($EVAL_ERROR or not $db_is_ok) {
+            return $self->stage_error(
+                stage => 0,
+                ee    => $EVAL_ERROR,
+            );
+        }
+    }
 
     my $request_language = $P{'default_lang'};
 
     my $path_handler_object;
     my $protocol_object;
-    my $user_hash = SLight::Core::Session::part('user');
+    my $user_hash;
 
 #    use Data::Dumper; warn Dumper $user_hash;
 
     # Stage I, preparing for the request.
     my $stage_1_complete = eval {
         task_starts("SLight::Core::Request preparation");
+
+        if ($P{'session_id'}) {
+            SLight::Core::Session::restore($P{'session_id'});
+        }
+        else {
+            SLight::Core::Session::start();
+        }
 
         my $r_path_handler = $P{'url'}->{'path_handler'};
         my $r_path         = $P{'url'}->{'path'};
@@ -140,19 +165,9 @@ sub main { # {{{
 
 #        use Data::Dumper; warn 'Request.pm Url: '. Dumper $P{'url'};
 
-# Planed for M4
-#        # Check, if User is a Guest, or is a known User.
-#        $user_hash = $self->make_user_hash();
+        # Check, if User is a Guest, or is a known User.
+        $user_hash = $self->make_user_hash();
 
-# Planed for M4
-#        $access_granted = $self->check_grant(
-#            user_hash => $user_hash,
-#            pkg       => $r_pkg,
-#            handler   => $r_handler,
-#            action    => $r_action,
-#            method    => $P{'url'}->{'method'},
-#        );
-        
         # Language selection.
         # First: from URL
         # Second: from session
@@ -183,12 +198,6 @@ sub main { # {{{
         #   - once language is defined, URLs will have them (since new URLs are build using current one)
         $P{'url'}->{'lang'} = $request_language;
 
-# Planed for M3
-#        SLight::Core::L10N::init(
-#            SLight::Core::Config::get_option(q{site_root}) .q{l10n/},
-#            $request_language
-#        );
-
         task_switch("SLight::Core::Request preparation", "SLight::Core::Request path handling");
 
         $path_handler_object = $self->{'path_handler_factory'}->make(
@@ -212,7 +221,7 @@ sub main { # {{{
             ee    => $EVAL_ERROR,
         );
     }
-    
+
     # Request was properly initialized :)
     # Can move to Stage II - what was requested?
     my $page_content = eval {
@@ -225,10 +234,8 @@ sub main { # {{{
             ee    => $EVAL_ERROR,
         );
     }
-    
-    my $auth_check_ok = eval {
-#        use Data::Dumper; warn Dumper $page_content;
 
+    my $auth_check_ok = eval {
         # Check if User can access main object.
         my $access_main_object = $self->verify_access_to_object(
             $user_hash->{'id'},
@@ -288,10 +295,15 @@ sub main { # {{{
         );
     }
 
-    SLight::Core::Session::save();
+    my $cleanup_is_ok = eval {
+        SLight::Core::Session::save();
 
-    # DB Session can be finished.
-    SLight::Core::DB::run_query( query=>'COMMIT' ); # warn "E";
+        # DB Session can be finished.
+        SLight::Core::DB::run_query( query=>'COMMIT' ); # warn "E";
+    };
+    if ($EVAL_ERROR or not $cleanup_is_ok) {
+        print STDERR "Reques did not end cleanly: " . ($EVAL_ERROR or q{unknown problem}) . "\n";
+    }
 
     return $response_result;
 } # }}}
@@ -302,6 +314,7 @@ sub make_user_hash { # {{{
     my ( $self ) = @_;
 
     my $user_hash = SLight::Core::Session::part( 'user' );
+
     if ($user_hash) {
         if ($user_hash->{'login'}) {
             my $user_data = SLight::Core::User::get_data( user=>$user_hash->{'login'} );
@@ -323,79 +336,6 @@ sub make_user_hash { # {{{
     return $user_hash;
 } # }}}
 
-# Check if User can access handler/action.
-# Returns true (1) if he CAN, and false (0) if this is not allowed.
-sub check_grant { # {{{
-    my $self = shift;
-    my %P = validate(
-        @_,
-        {
-            user_hash => { type=>HASHREF },
-
-            pkg       => { type=>SCALAR },
-            handler   => { type=>SCALAR },
-            action    => { type=>SCALAR },
-            method    => { type=>SCALAR },
-        }
-    );
-
-#    use Data::Dumper; warn Dumper \%P;
-    
-#    warn "Remove this hack!"; return 1;
-    
-    $P{'action'} = ucfirst $P{'action'};
-
-    # In some tests, there is no need to check this...
-    # Setting this variable will bypass authorization routines.
-    if ($ENV{'SLIGHT_SKIP_AUTH'}) {
-        return 1;
-    }
-
-    # At this point, grants must be checked.
-    my %grant = SLight::Core::User::Access::get_effective_user_access_rights(
-        login   => $P{'user_hash'}->{'login'},
-
-        pkg     => $P{'pkg'},
-        handler => $P{'handler'},
-        action  => $P{'action'},
-    );
-
-    if ($grant{ ucfirst lc $P{'method'} }) {
-        # Granted - can use this method :)
-        return 1;
-    }
-
-    # There is no reason, to allow this User to access the page...
-    return 0;
-} # }}}
-
-# Standard, built-in, replies.
-
-sub built_in_reply { # {{{
-    my $self = shift;
-    my %P = validate(
-        @_,
-        {
-            title    => { type=>SCALAR },
-            response => { type=>HASHREF },
-        }
-    );
-
-    # One big FIXME?!?
-
-    return {
-        meta => {
-            title => $P{'title'},
-        },
-
-        primary   => $P{'response'},
-        secondary => {},
-
-        template => 'Default',
-        redirect => q{},
-    };
-} # }}}
-
 # TODO: Needs some love!
 sub stage_error { # {{{
     my ( $self, %P ) = @_;
@@ -404,6 +344,8 @@ sub stage_error { # {{{
 
     # DB Session shoule be cancelled, as changes may be inconsistent.
     SLight::Core::DB::run_query( query=>'ROLLBACK' ); # warn "R";
+
+    SLight::Core::DB::disconnect();
 
 #    warn "Stage: ". $P{'stage'};
 #    warn $P{'ee'};
@@ -421,11 +363,6 @@ sub stage_error { # {{{
 #            $message .= TR("Enable 'debug' config option to see full error message");
 #        }
 #    }
-#
-#    return $self->built_in_reply(
-#        title    => TR('Internal error'),
-#        response => $response->get_data(),
-#    );
 
     return {
         response => 'ERROR',

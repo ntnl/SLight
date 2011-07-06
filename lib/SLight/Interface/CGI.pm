@@ -30,6 +30,30 @@ use Params::Validate qw( :all );
 
 my $session_cookie = 'SLightSesId';
 
+sub init { # {{{
+    my ( $self ) = @_;
+
+    # Set-up CGI library, so We can mix GET and POST style parameters...
+    CGI::Minimal::allow_hybrid_post_get(1);
+
+    # Load configuration
+    SLight::Core::Config::initialize( getcwd() );
+
+    # Load low-level 'Maintenance' and 'Error' responses.
+    my $site_root = SLight::Core::Config::get_option(q{site_root});
+    foreach my $type (qw( Error Maintenance )) {
+        foreach my $proto (qw( web yaml )) {
+            my $source_path = $site_root . q{/response/} . $type .q{.}. $proto;
+
+            if (-f $source_path) {
+                $self->{'internal_response'}->{$type}->{$proto} = read_file($source_path);
+            }
+        }
+    }
+
+    return;
+} # }}}
+
 sub main { # {{{
     my $self = shift;
     my %P = validate(
@@ -42,27 +66,24 @@ sub main { # {{{
 
 #    use Data::Dumper; warn Dumper \%ENV;
 
-#    warn <STDIN>;
+    # Check and react to maintenance flag as soon as possible.
+    my $maintenance_file_path = SLight::Core::Config::get_option('site_root') . q{var/maintenance.txt};
+    if (-f $maintenance_file_path) {
+        #
+        # Maintenance mode is enabled.
+        #
+        my $mode = read_file($maintenance_file_path);
 
-    # Default values:
-    my $output_type = 'THT';
+        if ($mode eq 'EXT') {
+            # This is just the external maintenance.
 
-    my $response = eval {
-        return $self->safe_main($P{'url'});
-    };
-
-    if (not $response) {
-        carp "Eval error: ". ( $EVAL_ERROR or 'none' );
-
-        my $msg = q{};
-        if (SLight::Core::Config::get_option('debug')) {
-            $msg = $EVAL_ERROR;
+            # As you can see, this mode is not implemented yet.
         }
-
-        return internal_error_response($msg);
+        else {
+            # Full maintenance.
+            return $self->internal_maintenance_response($P{'url'}, q{});
+        }
     }
-
-    assert_hashref($response, 'Response is a hashref');
 
     my %pass = (
         ERROR    => 'pass_ERROR',
@@ -71,36 +92,58 @@ sub main { # {{{
         REDIRECT => 'pass_REDIRECT',
     );
 
-#    warn "R: " . $response->{'response'};
-#    use Data::Dumper; warn Dumper $response;
+    my $body = eval {
+        my $main_response = $self->safe_main($P{'url'});
 
-    assert_exists(\%pass, $response->{'response'}, 'Response is supported');
+        assert_hashref($main_response, 'Response is a hashref');
 
-    my $pass_method = $pass{ $response->{'response'} };
+        assert_exists(\%pass, $main_response->{'response'}, 'Response is supported');
 
-    my $body = $self->$pass_method($response);
+        my $pass_method = $pass{ $main_response->{'response'} };
+
+        my $body = $self->$pass_method($P{'url'}, $main_response);
+
+        return $body;
+    };
+    if ($EVAL_ERROR or not defined $body) {
+        carp "Eval error: ". ( $EVAL_ERROR or 'none' );
+
+        my $msg = q{};
+        if (SLight::Core::Config::get_option('debug')) {
+            $msg = $EVAL_ERROR;
+        }
+
+        return $self->internal_error_response($P{'url'}, $msg);
+    }
 
     return $self->headers_string() .qq{\n} . encode_utf8( $body or q{} );
 } # }}}
 
 # 'application/octet-stream'
 
+# Purpose:
+#   Return a built-in notification about an internal error.
+#
+# Note:
+#   This is the worst thing that can happen!
+#   Avoid this response at all cost!
 sub pass_ERROR { # {{{
-    my ( $self, $result ) = @_;
+    my ( $self, $url, $result ) = @_;
 
+    $self->set_header(
+        name  => q{Status},
+        value => q{500}
+    );
     $self->set_header(
         name  => "content-type",
         value => q{text/plain; character-set: UTF-8}
     );
-    my $html = q{Internal error!}; # Fixme.
 
-#    use Data::Dumper; warn "Internal error: " . Dumper $result;
-
-    return $html;
+    return $self->internal_error_response('Internal error');
 } # }}}
 
 sub pass_REDIRECT { # {{{
-    my ( $self, $result ) = @_;
+    my ( $self, $url, $result ) = @_;
 
     $self->set_header(
         name  => "status",
@@ -115,7 +158,7 @@ sub pass_REDIRECT { # {{{
 } # }}}
 
 sub pass_CONTENT { # {{{
-    my ( $self, $result ) = @_;
+    my ( $self, $url, $result ) = @_;
 
     assert_defined($result->{'mime_type'}, q{Result's mime-type is defined.});
     assert_defined($result->{'content'},   q{Content is defined.});
@@ -129,8 +172,8 @@ sub pass_CONTENT { # {{{
 } # }}}
 
 sub pass_FILE { # {{{
-    my ( $self, $result ) = @_;
-    
+    my ( $self, $url, $result ) = @_;
+
     assert_defined($result->{'mime_type'}, q{Result's mime-type is defined.});
     assert_defined($result->{'path'},      q{File's path is defined.});
 
@@ -147,18 +190,13 @@ sub pass_FILE { # {{{
 sub safe_main { # {{{
     my ( $self, $raw_url ) = @_;
 
-    my $output_type = 'THT';
     my $url_string  = q{/Content/};
-
-    SLight::Core::Config::initialize( getcwd() );
-
-    CGI::Minimal::allow_hybrid_post_get(1);
 
     my $web_root = SLight::Core::Config::get_option(q{web_root});
 
     my $cgi = CGI::Minimal->new();
     if ($cgi->truncated) {
-        return internal_error_response("Form data has been truncated.");
+        return $self->internal_error_response($raw_url, "Form data has been truncated.");
     }
 
 #    use Data::Dumper; warn Dumper $cgi;
@@ -221,7 +259,7 @@ sub safe_main { # {{{
         options      => \%options,
         default_lang => $default_language,
     );
-    
+
 #    use Data::Dumper; warn 'safe_main R: '. Dumper $request_result;
 
     $self->set_cookie(
@@ -364,28 +402,103 @@ sub default_language_from_browser { # {{{
 # Corner case (crash, maintenance, server overload) handling.
 ################################################################################
 
-sub internal_error_response { # {{{
-    my ( $msg ) = @_;
+sub internal_maintenance_response { # {{{
+    my ( $self, $url, $msg ) = @_;
 
-    my $html = q{};
-
-    $html .= "Content-type: text/html\n";
-    $html .= "Status: 500 Internal Server error\n";
-    $html .= "\n";
-    $html .= "<html>";
-    $html .= "<head><title>Internal Server Error</title></head>\n";
-    $html .= "<body style='background-color: silver;'>";
-    $html .= "<div style='border: 1px solid red; background-color: white; padding: 10px; margin: 10px;'>";
-    $html .= "500 - <b>Internal Server Error</b> while preparing the response.";
-
-    if ($msg) {
-        $html .= q{<br><br><pre>}. $msg .q{</pre>};
+    my $out = _customized_internal_response('Maintenance', $url, $msg);
+    if ($out) {
+        return $out;
     }
 
-    $html .= "</div>";
-    $html .= "</html>";
+    $out .= "Content-type: text/html\n";
+    $out .= "Status: 503 Site under maintenance\n";
+    $out .= "\n";
+    $out .= "<html>";
+    $out .= "<head><title>Site under maintenance</title></head>\n";
+    $out .= "<body style='background-color: silver;'>";
+    $out .= "<div style='border: 1px solid #777; background-color: white; padding: 10px; margin: 10px;'>";
+    $out .= "503 - <b>Site under maintenance</b> - please return at later time.";
 
-    return $html;
+    if ($msg) {
+        $out .= q{<br><br><pre>}. $msg .q{</pre>};
+    }
+
+    $out .= "</div>";
+    $out .= "</html>";
+
+    return $out;
+} # }}}
+
+sub internal_error_response { # {{{
+    my ( $self, $url, $msg ) = @_;
+
+    my $home_email = SLight::Core::Config::get_option('mailback');
+    if ($home_email and $ENV{'REMOTE_ADDR'} ne '127.0.0.1') {
+        # Try to inform "HQ" that We have an internal error here..
+        eval {
+            require SLight::API::Email;
+
+            SLight::API::Email::send_notification(
+                email         => $home_email,
+                name          => q{Webmaster},
+                notifications => [
+                    q{Internal error happened!},
+                ],
+            );
+        };
+    }
+
+    my $out = _customized_internal_response('Error', $url, $msg);
+    if ($out) {
+        return $out;
+    }
+
+    $out .= "Content-type: text/html\n";
+    $out .= "Status: 500 Internal Server error\n";
+    $out .= "\n";
+    $out .= "<html>";
+    $out .= "<head><title>Internal Server Error</title></head>\n";
+    $out .= "<body style='background-color: silver;'>";
+    $out .= "<div style='border: 1px solid #777; background-color: white; padding: 10px; margin: 10px;'>";
+    $out .= "500 - <b>Internal Server Error</b> - please retry.";
+
+    if ($msg) {
+        $out .= q{<br><br><pre>}. $msg .q{</pre>};
+    }
+
+    $out .= "</div>";
+    $out .= "</html>";
+
+    return $out;
+} # }}}
+
+sub _customized_internal_response { # {{{
+    my ( $self, $type, $url, $msg ) = @_;
+
+    my $proto;
+    if ($url =~ m{/$}s) {
+        $proto = 'web';
+    }
+    elsif ($url =~ m{\.(web|json)$}s) {
+        $proto = $1;
+    }
+
+    if (not $self->{'internal_response'}->{$type}->{$proto}) {
+        return;
+    }
+
+    my $out = $self->{'internal_response'}->{$type}->{$proto};
+
+    if (defined $msg) {
+        # If message was provided, replace it in the "template".
+        $out =~ s{<!--\s*message_goes_here\s*-->}{$msg}gis;
+    }
+    else {
+        # Clear any message placeholders that are present in the "template".
+        $out =~ s{<!--\s*message_goes_here\s*-->}{}gi;
+    }
+
+    return $out;
 } # }}}
 
 # vim: fdm=marker
