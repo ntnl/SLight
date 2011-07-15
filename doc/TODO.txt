@@ -340,15 +340,15 @@
 [X]     Support for 'id' attribute in mk_*_token and bellow.
 [X]     Old session files are not deleted. They must be cleaned up!
 [X]     Drop DB connection when major errors (especially internal!) happen.
-[>]     Maintenance mode + script to enable/disable it.
-[>]     When DB can not be opened, try to display error using templates... (do not throw an internal error!)
-[>]     Send email when internal error is detected.
-[>]     Do not show email field, if User is logged in.
-[>]     L10N support in Template.pm (for example, try to load 'Default-en.html' before 'Default.html')
-[>]     Add-on optimization: process only add-ons that are defined in given template.
+[X]     Maintenance mode + script to enable/disable it.
+[X]     When DB can not be opened, try to display error using templates... (do not throw an internal error!)
+[X]     Send email when internal error is detected.
+[X]     Do not show email field, if User is logged in.
+[X]     L10N support in Template.pm (for example, try to load 'Default-en.html' before 'Default.html')
+[X]     Add-on optimization: process only add-ons that are defined in given template.
 [>] Release to the public
 [X]     Bump version to 0.0.5
-[ ]     Make package
+[>]     Make package
 [ ]     Beta-test
 [ ]     Upload package for public consumption
 [ ]     Spread the news :)

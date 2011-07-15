@@ -31,6 +31,9 @@ sub new { # {{{
 } # }}}
 
 sub main { # {{{
+    # Load configuration
+    SLight::Core::Config::initialize( getcwd() );
+
     # Dev note:
     #   Hardcoded, but in future can be dynamic or even configurable.
 

@@ -37,12 +37,25 @@ my %render_methods = (
     'Email' => 'render_Email',
 );
 
-sub render_Label { # {{{
+sub render_Integer { # {{{
     my ( $self, $field_name, $value ) = @_;
 
     return mk_Label_token(
         class => q{V-} . $field_name . q{ Value},
-        text  => ( $value or q{} ),
+        text  => ( $value or q{0} ),
+    );
+} # }}}
+
+sub render_Label { # {{{
+    my ( $self, $field_name, $value ) = @_;
+
+    if (not $value) {
+        return;
+    }
+
+    return mk_Label_token(
+        class => q{V-} . $field_name . q{ Value},
+        text  => $value,
     );
 } # }}}
 
@@ -51,9 +64,13 @@ sub render_Text { # {{{
 
 #    use Data::Dumper; warn "Text value: ". Dumper $value;
 
+    if (not $value) {
+        return;
+    }
+
     return mk_Text_token(
         class => q{V-} . $field_name . q{ Value},
-        text  => ( $value or q{} ),
+        text  => $value,
     );
 } # }}}
 
@@ -61,6 +78,10 @@ sub render_Link { # {{{
     my ( $self, $field_name, $value ) = @_;
 
     assert_defined($value, "Value not empty");
+
+    if (not $value) {
+        return;
+    }
 
     return mk_Link_token(
         class => q{V-} . $field_name . q{ Value},
@@ -108,7 +129,7 @@ sub render_cms_object { # {{{
         if ($signature->{'asset'}) {
             $value = $self->render_asset_field( $field, $P{'Data'}, 1 );
         }
-        elsif ($P{'Data'}->{ $field->{'id'} })  {
+        elsif ($P{'Data'}->{ $field->{'id'} } and defined $P{'Data'}->{ $field->{'id'} }->{'value'})  {
 #            use Data::Dumper; warn Dumper $P{'Data'}->{ $field->{'id'} }->{'value'};
 
             my $text = SLight::DataType::decode_data(
@@ -480,7 +501,7 @@ sub ContentList_2_list { # {{{
 
     my $items = $pager->get_page($page);
 
-    $self->set_pager($pager->pager_plugin_meta_data()); 
+    $self->set_pager($pager->pager_addon_meta_data()); 
 
     return mk_List_token(
         class   => 'content',

@@ -15,9 +15,10 @@ use strict; use warnings; # {{{
 use FindBin qw( $Bin );
 use lib $Bin . q{/../../lib/};
 
+use SLight::API::Permissions qw( set_System_access set_User_access );
+use SLight::HandlerMeta;
 use SLight::Test::Site;
 use SLight::Test::Handler qw( run_handler_tests );
-use SLight::API::Permissions qw( set_System_access set_User_access );
 
 use English qw( -no_match_vars );
 # }}}
@@ -25,6 +26,101 @@ use English qw( -no_match_vars );
 my $site_root = SLight::Test::Site::prepare_fake(
     test_dir => $Bin . q{/../},
     site     => 'Users'
+);
+
+SLight::HandlerMeta::set_handlers_list(
+    [
+        {
+            'objects' => [
+                {
+                    'actions' => [qw( Change View )],
+                    'class'   => 'Permissions',
+                }
+            ],
+            'class' => 'System',
+        },
+        {
+            'objects' => [
+                {
+                    'actions' => [qw( Register Logout Login Password ActivateAccount )],
+                    'class' => 'Authentication',
+                },
+                {
+                    'actions' => [qw( View )],
+                    'class' => 'Avatar',
+                }
+            ],
+            'class' => 'User',
+        },
+        {
+            'objects' => [
+                {
+                    'actions' => [qw( View )],
+                    'class' => 'List',
+                },
+                {
+                    'actions' => [qw( Change View )],
+                    'class' => 'Permissions',
+                },
+                {
+                    'actions' => [qw( Edit New Password View Delete )],
+                    'class' => 'Account',
+                },
+                {
+                    'actions' => [qw( Change View Delete )],
+                    'class' => 'Avatar',
+                }
+            ],
+            'class' => 'Account',
+        },
+        {
+            'objects' => [
+                {
+                    'actions' => [qw( View )],
+                    'class' => 'Password',
+                },
+                {
+                    'actions' => [qw( Edit View )],
+                    'class' => 'MyData',
+                },
+                {
+                    'actions' => [qw( Change View Delete )],
+                    'class' => 'Avatar',
+                }
+            ],
+            'class' => 'MyAccount',
+        },
+        {
+            'objects' => [
+                {
+                    'actions' => [qw( View )],
+                    'class' => 'Object',
+                },
+                {
+                    'actions' => [qw( View )],
+                    'class' => 'Foo',
+                }
+            ],
+            'class' => 'Test',
+        },
+        {
+            'objects' => [
+            {
+                'actions' => [qw( AddContent View Delete )],
+                'class'   => 'Empty',
+            },
+            {
+                'actions' => [qw( Thumb View Download Delete )],
+                'class'   => 'Asset',
+            },
+            {
+                'actions' => [qw( View )],
+                'class'   => 'AssetList',
+            }
+            ],
+                'class' => 'Core',
+        }
+    ]
 );
 
 # Set some permissions :)

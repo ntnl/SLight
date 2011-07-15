@@ -57,10 +57,14 @@ sub list_addons { # {{{
     my @addons;
 
     foreach my $block (keys %known_addons) {
+#        warn "Do We have $block?";
+
         if ($self->{'template'}->has_block($block)) {
             push @addons, $known_addons{$block};
         }
     }
+
+    warn "Addons found in template: ". join ", ", @addons;
 
     return @addons;
 } # }}}
@@ -113,7 +117,7 @@ sub serialize { # {{{
     foreach my $addon (keys %{ $self->{'HTML'}->{'addons'} }) {
         if ($self->{'HTML'}->{'addons'}->{$addon}) {
             $template->set_layout(
-                q{slight.} . lc($addon) .q{.plugin},
+                q{slight.} . ( lc $addon ) .q{.addon},
                 $self->{'HTML'}->{'addons'}->{$addon},
             );
         }

@@ -44,6 +44,8 @@ sub build_form_guts { # {{{
         text => $spec->{'caption'}
     );
 
+     my $edit_page_data = 0;
+
     # Used by 'AddContent' variant.
     if ($self->{'options'}->{'target'} and $self->{'options'}->{'target'} eq 'New') {
         # Add metadata required for the entry to be created.
@@ -55,6 +57,14 @@ sub build_form_guts { # {{{
                 error   => $P{'errors'}->{'page.path'},
             );
         }
+
+        $edit_page_data = 1;
+    }
+    elsif ($P{'page'}) {
+        $edit_page_data = 1;
+    }
+
+     if ($edit_page_data) {
         # Fixme! This should be a select entry!
         # FIXME: This has to be editable!
         $form->add_Entry(
@@ -63,22 +73,30 @@ sub build_form_guts { # {{{
             value   => ( $self->{'options'}->{'page.template'} or $page->{'template'} or q{}),
             error   => $P{'errors'}->{'page.template'},
         );
+        $form->add_Entry(
+            caption => TR('Page order index (less means earlier, more means later)'),
+            name    => 'page.order',
+            value   => ( $self->{'options'}->{'page.order'} or $page->{'menu_order'} or q{}),
+            error   => $P{'errors'}->{'page.order'},
+        );
+
+#        use Data::Dumper; warn Dumper $P{'page'};
 
         # Those are language-dependant.
         $form->add_Entry(
-            caption => TR('Page title'),
+            caption => TF('Page title (%s)', undef, $lang),
             name    => 'page.title',
             value   => ( $self->{'options'}->{'page.title'} or $page->{'L10N'}->{ $lang }->{'title'} or q{}),
             error   => $P{'errors'}->{'page.title'},
         );
         $form->add_Entry(
-            caption => TR('Breadcrumb label'),
+            caption => TF('Breadcrumb label (%s)', undef, $lang),
             name    => 'page.breadcrumb',
             value   => ( $self->{'options'}->{'page.breadcrumb'} or $page->{'L10N'}->{ $lang }->{'breadcrumb'} or q{}),
             error   => $P{'errors'}->{'page.breadcrumb'},
         );
         $form->add_Entry(
-            caption => TR('Menu label'),
+            caption => TF('Menu label (%s)', undef, $lang),
             name    => 'page.menu',
             value   => ( $self->{'options'}->{'page.menu'} or $page->{'L10N'}->{ $lang }->{'menu'} or q{}),
             error   => $P{'errors'}->{'page.menu'},
@@ -91,7 +109,7 @@ sub build_form_guts { # {{{
     # he must provide an email address, that will be used to sign this new entry.
     # Note/limitation:
     #   once created, this field can not be changed.
-    if (not $content and not $self->{'params'}->{'user'}->{'email'} and not $content->{'Email.id'}) {
+    if (not $content and not $self->{'user'}->{'id'}) {
         $form->add_Entry(
             caption => TR('Email (internal use only)'),
             name    => 'meta.email',
@@ -211,7 +229,7 @@ sub _add_field_to_form { # {{{
                 );
                 $P{'form'}->add_Check(
                     name => $cgi_field_name . q{-remove},
-    
+
                     caption => TR('Remove attachment'),
                     checked => 0,
                 );
@@ -321,6 +339,16 @@ sub slurp_content_form_data { # {{{
             $field_lang = $self->{'url'}->{'lang'};
         }
 
+        if (not defined $self->{'options'}->{$cgi_name}) {
+            $data{ $field_lang }->{ $field_spec->{'id'} }->{'value'} = undef;
+            next;
+        }
+
+        if (length $self->{'options'}->{$cgi_name} == 0) {
+            $data{ $field_lang }->{ $field_spec->{'id'} }->{'value'} = q{};
+            next;
+        }
+
         $data{ $field_lang }->{ $field_spec->{'id'} }->{'value'} = SLight::DataType::encode_data(
             type  => $field_spec->{'datatype'},
             value => ( $self->{'options'}->{$cgi_name} or q{} )
@@ -342,19 +370,28 @@ sub mk_validator_metadata { # {{{
         'meta.comment_read_policy'  => { type=>'Integer' },
     );
 
+    my $edit_page_data = 0;
     if ($self->{'options'}->{'target'} and $self->{'options'}->{'target'} eq 'New') {
         if ($self->{'page'}->{'page_id'}) {
             $validator_metadata{'page.path'} = { type=>'FileName' };
         }
 
-        $validator_metadata{'page.template'} = { type=>'FileName', optional=>1, };
-        
-        $validator_metadata{'page.title'}      = { type=>'String' };
-        $validator_metadata{'page.breadcrumb'} = { type=>'String' };
-        $validator_metadata{'page.menu'}       = { type=>'String' };
+        $validator_metadata{'page.template'} = { type=>'FileName', optional=>1 };
+
+        $edit_page_data = 1;
+    }
+    elsif ($P{'page'}) {
+        $edit_page_data = 1;
     }
 
-    if (not $P{'content'} and not $self->{'user'}->{'email'}) {
+    if ($edit_page_data) {
+        $validator_metadata{'page.order'}      = { type=>'Integer' };
+        $validator_metadata{'page.title'}      = { type=>'String' };
+        $validator_metadata{'page.breadcrumb'} = { type=>'String', optional=>1 };
+        $validator_metadata{'page.menu'}       = { type=>'String', optional=>1 };
+    }
+
+    if (not $P{'content'} and not $self->{'user'}->{'id'}) {
         $validator_metadata{'meta.email'} = { type=>'Email', max_length=>1024 };
     }
 

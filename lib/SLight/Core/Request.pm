@@ -14,6 +14,7 @@ package SLight::Core::Request;
 use strict; use warnings; # {{{
 
 use SLight::AddonFactory;
+use SLight::API::User;
 use SLight::API::Permissions qw( can_User_access );
 use SLight::Core::DB;
 use SLight::Core::L10N qw( TR TF );
@@ -317,7 +318,7 @@ sub make_user_hash { # {{{
 
     if ($user_hash) {
         if ($user_hash->{'login'}) {
-            my $user_data = SLight::Core::User::get_data( user=>$user_hash->{'login'} );
+            my $user_data = SLight::API::User::get_User_by_login( user=>$user_hash->{'login'} );
 
             $user_hash->{'email'} = $user_data->{'email'};
             $user_hash->{'name'}  = $user_data->{'name'};

@@ -30,18 +30,18 @@ sub _process { # {{{
     }
 
     my %params = (
-        class => 'SL_Toolbox_Plugin',
+        class => 'SL_Toolbox_Addon',
 
         urls => $self->{'meta'}->{'toolbox'},
     );
-    
+
     if ($self->{'user'}->{'id'}) {
         $params{'user_id'} = $self->{'user'}->{'id'};
     }
 
     return SLight::HandlerUtils::Toolbox::make_toolbox(
         %{ $self->{'url'} },
-        
+
         %params,
     );
 } # }}}

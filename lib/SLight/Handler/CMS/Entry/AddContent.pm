@@ -232,7 +232,7 @@ sub handle_save { # {{{
 
     if (keys %{ $errors }) {
         # Re-display the form.
-    
+
         my $form = SLight::DataStructure::Form->new(
             submit => TR('Add'),
             action => $self->build_url(
@@ -262,7 +262,8 @@ sub handle_save { # {{{
             path => ( $self->{'options'}->{'page.path'} or q{} ),
         );
 
-        $page{'template'} = $self->{'options'}->{'page.template'};
+        $page{'template'}   = $self->{'options'}->{'page.template'};
+        $page{'menu_order'} = $self->{'options'}->{'page.order'};
 
         $page{'L10N'}->{ $self->{'url'}->{'lang'} }->{'title'}      = $self->{'options'}->{'page.title'};
         $page{'L10N'}->{ $self->{'url'}->{'lang'} }->{'breadcrumb'} = $self->{'options'}->{'page.breadcrumb'};

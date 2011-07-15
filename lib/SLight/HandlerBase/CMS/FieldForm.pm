@@ -23,12 +23,13 @@ sub make_form { ## no critic (Subroutines::ProhibitExcessComplexity) {{{
 
     my $field_data = ( $metadata->{'spec'}->{'_data'}->{$oid} or {} );
 
+    use Data::Dumper; warn "Field form errors: ". Dumper $errors;
 #    use Data::Dumper; warn Dumper $field_data;
 #    use Data::Dumper; warn Dumper $metadata;
 
-    my $default_order = 0;
+    my $default_field_index = 0;
     if ($metadata->{'spec'}->{'_data'}) {
-        $default_order = scalar keys %{ $metadata->{'spec'}->{'_data'} };
+        $default_field_index = scalar keys %{ $metadata->{'spec'}->{'_data'} };
     }
 
     $form->add_Entry(
@@ -44,10 +45,10 @@ sub make_form { ## no critic (Subroutines::ProhibitExcessComplexity) {{{
         error   => ( $errors->{'caption'} or q{} ),
     );
     $form->add_Entry(
-        name    => 'order',
-        caption => TR('Order') . q{:},
-        value   => ( $self->{'options'}->{'order'} or $field_data->{'order'} or $default_order ),
-        error   => ( $errors->{'order'} or q{} ),
+        name    => 'field_index',
+        caption => TR('Field index') . q{:},
+        value   => ( $self->{'options'}->{'field_index'} or $field_data->{'field_index'} or $default_field_index ),
+        error   => ( $errors->{'field_index'} or q{} ),
     );
     $form->add_SelectEntry(
         name    => 'datatype',

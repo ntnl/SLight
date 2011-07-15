@@ -22,6 +22,14 @@ use Params::Validate qw( :all );
 use YAML::Syck;
 # }}}
 
+sub prepare { # {{{
+    my ( $self, $template ) = @_;
+
+    $self->{'TEST'}->{'template'} = $template;
+
+    return;
+} # }}}
+
 sub list_addons { # {{{
     # Fixme: tests should be able to overwrite this.
     return qw( Core::Toolbox Core::Path );
@@ -48,7 +56,7 @@ sub process_addon_data { # {{{
 } # }}}
 
 sub serialize { # {{{
-    my ( $self, $object_order, $template_code ) = @_;
+    my ( $self, $object_order ) = @_;
 
 #    use Data::Dumper; warn 'SERIALIZE: '. Dumper $self->{'TEST'};
 
@@ -56,7 +64,7 @@ sub serialize { # {{{
         'object_data'  => $self->{'TEST'}->{'objects'},
         'object_order' => $object_order,
         'addon_data'   => $self->{'TEST'}->{'addons'},
-        'template'     => $template_code,
+        'template'     => $self->{'TEST'}->{'template'},
     };
 
     # Want to dump 'out'?

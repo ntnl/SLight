@@ -34,13 +34,18 @@ my $session_id;
 sub is_live_session { # {{{
     my ( $id ) = @_;
 
+    warn "Is valid session?";
+
     if (not is_valid_session_id($id)) {
+        warn "Not valid ID!";
+
         return;
     }
 
     my $file = session_filename($id);
 
     if (not -f $file) {
+        warn "File does not exist: $file";
         return;
     }
 
@@ -49,6 +54,8 @@ sub is_live_session { # {{{
     if ($_session->{'expires'} and $_session->{'expires'} > time) {
         return 1;
     }
+
+    warn "Session expired\n";
 
     return;
 } # }}}
@@ -129,7 +136,7 @@ sub validate_session { # {{{
 # Store session data on HDD.
 sub save { # {{{
     my $file = session_filename($session_id);
-    
+
 #    # Debug:
 #    open my $dh, ">", $file ."-Dumper";
 #    use Data::Dumper; print $dh Dumper $session;

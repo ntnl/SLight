@@ -72,16 +72,16 @@ sub handle_view { # {{{
 #        push @parts, mk_Text_token( text => '<pre>'. ( Dumper $content_object ) .'</pre>' );
 
         if ($content_object->{'id'}) {
-            my $content_data = $self->get_l10n_value( $content_object->{'Data'} );
-
             my $spec = get_ContentSpec($content_object->{'Spec.id'});
 
 #            push @parts, mk_Text_token( text => '<pre>'. ( Dumper $spec ) .'</pre>' );
 
+            my $content_data = $self->get_l10n_value( $content_object->{'Data'} );
+
             push @parts, $self->render_cms_object(
                 Content => $content_object,
 
-                Data => $content_data,
+                Data => ( $content_data or {} ),
                 Spec => $spec,
 
                 filter_cb => sub {

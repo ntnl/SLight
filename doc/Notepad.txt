@@ -993,3 +993,94 @@ New Content Data structure.
  API::ContentModel <-- One (high-level) API to rule them all ;)
 
 
+
+
+
+    SLight v0.0.4 to v0.0.5 migration.
+
+Change block naming:
+    Run:
+        %s/plugin/addon/
+    in each HTML template.
+
+    Upgrade database to new schema:
+    Run:
+        $ sqlite3 SLight_data/db/slight.sqlite
+
+    Then in monitor run:
+        ALTER TABLE Page_Entity ADD COLUMN `menu_order` INTEGER NOT NULL DEFAULT 0;
+        ALTER TABLE Page_Entity ADD COLUMN `languages` VARCHAR(94) NOT NULL DEFAULT '';
+
+        CREATE TABLE Page_Entity_Data (
+            `id` INTEGER PRIMARY KEY,
+            `Page_Entity_id` INTEGER NOT NULL,
+            `language` CHAR(5) NOT NULL,
+            `title` VARCHAR(256) NOT NULL,
+            `menu`  VARCHAR(128),
+            `breadcrumb` VARCHAR(128),
+            FOREIGN KEY (`Page_Entity_id`) REFERENCES Page_Entity (`id`) ON DELETE CASCADE
+        );
+        CREATE UNIQUE INDEX Page_Entity_Language ON Page_Entity_Data (Page_Entity_id, language);
+
+        ALTER TABLE Content_Entity_Data ADD COLUMN `summary` TEXT NOT NULL DEFAULT '';
+        ALTER TABLE Content_Entity_Data ADD COLUMM `sort_index_aid` INTEGER NOT NULL DEFAULT 0;
+
+    Note: change '1' to proper ID from the Email table!
+
+        UPDATE Content_Entity SET Email_id = 1 WHERE Email_id IS NULL;
+
+        BEGIN TRANSACTION;
+        ALTER TABLE Content_Entity_Data RENAME TO tmp_Content_Entity_Data;
+        CREATE TABLE Content_Entity_Data (
+            `id` INTEGER PRIMARY KEY,
+            `Content_Entity_id` INTEGER NOT NULL,
+            `Content_Spec_Field_id` INTEGER NOT NULL,
+                -- this is the primary index column from Content_Spec_Field.
+            `language` CHAR(5) NOT NULL,
+                -- 2 (pl) or 5 (pl_pl) character language code, if the field is translatable.
+                -- * if the field is not translatable.
+            `value` TEXT NOT NULL,
+            `summary` TEXT NOT NULL DEFAULT '',
+            `sort_index_aid` INTEGER NOT NULL DEFAULT 0,
+                -- This integer is used to aid quick pre-sorting of data. It should be created
+                -- by multiplication of first four characters from `value` column.
+            FOREIGN KEY(`Content_Entity_id`) REFERENCES Content_Entity(`id`) ON DELETE CASCADE,
+            FOREIGN KEY(`Content_Spec_Field_id`) REFERENCES Content_Spec_Field(`id`) ON DELETE CASCADE
+        );
+        CREATE UNIQUE INDEX Content_Entity_Data_unique ON Content_Entity_Data (Content_Entity_id, Content_Spec_Field_id, language);
+        CREATE        INDEX Content_Entity_Data_fetch  ON Content_Entity_Data (Content_Entity_id, language);
+        INSERT INTO Content_Entity_Data (Content_Entity_id, Content_Spec_Field_id, language, value) SELECT Content_Entity_id, Content_Spec_Field_id, language, value FROM tmp_Content_Entity_Data;
+        DROP TABLE tmp_Content_Entity_Data;
+        COMMIT;
+
+        ALTER TABLE Content_Spec_Field ADD COLUMN `field_index` SMALLINT DEFAULT 0;
+        ALTER TABLE Content_Spec_Field ADD COLUMN `default_value` VARCHAR(255) DEFAULT '';
+
+        BEGIN TRANSACTION;
+        ALTER TABLE Content_Spec_Field RENAME TO tmp_Content_Spec_Field;
+        CREATE TABLE Content_Spec_Field (
+            `id`        INTEGER PRIMARY KEY,
+            `Content_Spec_id` INTEGER,
+            `class`    VARCHAR(64) NOT NULL,
+            `caption`   VARCHAR(128) NOT NULL,
+            `field_index` SMALLINT NOT NULL,
+            `datatype`  VARCHAR(64)  NOT NULL,
+            `default_value` VARCHAR(255) NOT NULL,
+            `translate` SMALLINT NOT NULL,
+            `display_on_page` SMALLINT NOT NULL DEFAULT 2,
+            `display_on_list` SMALLINT NOT NULL DEFAULT 2,
+            `display_label` SMALLINT NOT NULL DEFAULT 1,
+            `optional` SMALLINT NOT NULL DEFAULT 1,
+            `max_length` INTEGER NOT NULL DEFAULT 100,
+            FOREIGN KEY(`Content_Spec_id`) REFERENCES Content_Spec(`id`) ON DELETE CASCADE
+        );
+        INSERT INTO Content_Spec_Field
+            (id, Content_Spec_id, class, `caption`, `field_index`, `datatype`, `default_value`, `translate`, `display_on_page`,`display_on_list`, `display_label`, `optional`, `max_length`) 
+        SELECT
+            id, Content_Spec_id, class, `caption`, `order`,       `datatype`, `default`,       `translate`, `display_on_page`, `display_on_list`, `display_label`, `optional`, `max_length`
+        FROM tmp_Content_Spec_Field;
+        DROP TABLE tmp_Content_Spec_Field;
+        COMMIT;
+
+
+

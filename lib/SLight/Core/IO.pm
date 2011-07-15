@@ -118,7 +118,7 @@ sub unique_id { # {{{
 #   data : data to write
 sub safe_save_YAML { # {{{
     my ( $filename, $data ) = @_;
-    
+
     my $tmp_file_name = $filename ."-new-". $PID;
 
     # Make sure, that we are the only ones writing to that file.

@@ -19,7 +19,7 @@ use SLight::Output::HTML::Generator;
 #use Co\Me::Common::Cache qw( Cache_Fetch_File Cache_Fetch_YAML );
 
 use Carp::Assert::More qw( assert_defined );
-use Encode;
+use Encode qw( decode_utf8 );
 use File::Slurp qw( read_file );
 use Params::Validate qw( :all );
 use YAML::Syck qw( DumpFile LoadFile Dump );
@@ -48,7 +48,7 @@ use YAML::Syck qw( DumpFile LoadFile Dump );
 # %token = {
 #   type => ( TEXT | PLACEHOLDER | TEMPLATE | BLOCK ),
 #       # TEXT
-#       #   unparsable content, copied 1:1 from template to document.
+#       #   unchanged textual content, copied 1:1 from template to document.
 #       #
 #       # PLACEHOLDER
 #       #   simple variable
@@ -160,6 +160,8 @@ sub new { # {{{
         }
     }
 
+#    use Data::Dumper; warn Dumper $self->{'template'}->{'has_block'};
+
     assert_defined($self->{'template'}, "Template file loaded");
 
     return $self;
@@ -230,7 +232,7 @@ sub load_and_parse { # {{{
         $self->{'source'} = 'HTML';
     }
 
-    $html = decode('utf8', $html);
+    $html = decode_utf8($html);
 
     my $template = $self->process_html_template(
         html => $html,
@@ -244,6 +246,8 @@ sub load_and_parse { # {{{
 
 #    warn "Template: ". Dump $template;
 #    use Data::Dumper; warn "Template: ". Dumper $template;
+
+#    $self->parsed_fetch_index_check($template->{'index'});
 
     return $template;
 } # }}}
@@ -326,6 +330,7 @@ sub extract_placeholders { # {{{
         {
             template => { type=>HASHREF },
             html     => { type=>SCALAR },
+            lang     => { type=>SCALAR, optional=>1, },
         }
     );
 
@@ -347,6 +352,10 @@ sub extract_placeholders { # {{{
             );
 
             assert_defined ($sub_template, "Sub template: $placeholder found.");
+
+            $self->merge_has_things($P{'template'}, $sub_template);
+
+#            use Data::Dumper; warn Dumper $sub_template->{'has_block'};
 
             $token = {
                 type  => 'TEMPLATE',
@@ -375,6 +384,18 @@ sub extract_placeholders { # {{{
     return;
 } # }}}
 
+sub merge_has_things { # {{{
+    my ( $self, $pool, $addition ) = @_;
+
+    foreach my $has_ (qw( has_var has_block )) {
+        foreach my $key (keys %{ $addition->{$has_} }) {
+            $pool->{$has_}->{$key} = 1;
+        }
+    }
+
+    return;
+} # }}}
+
 # This function will confess, if placeholder/list/grid/form name is invalid.
 # This may mean that it contains unwelcome characters and such things.
 sub validate_name { # {{{
@@ -392,6 +413,10 @@ sub set_var { # {{{
     assert_defined($value, "Define what you want to set");
 
     $self->validate_name($name);
+
+#    if (not $self->{'template'}->{'has_var'}->{$name}) {
+#        warn "Variable: $name does not exist in template\n";
+#    }
 
     return $self->{'var_data'}->{$name} = $value;
 } # }}}
@@ -447,6 +472,10 @@ sub set_layout { # {{{
     assert_defined($value, "Define what you want to set");
 
     $self->validate_name($name);
+
+#    if (not $self->{'template'}->{'has_block'}->{$name}) {
+#        warn "Block: $name does not exist in template\n";
+#    }
 
 #    use Data::Dumper; warn Dumper $value;
 
@@ -550,7 +579,7 @@ sub process_block { # {{{
     my ( $self, $token, $data, $force ) = @_;
 
     my $name = $token->{'name'};
-    
+
 #    warn "Procesing block ($name):\n";
 #    warn Dump $token ."\n\n";
 
@@ -560,7 +589,7 @@ sub process_block { # {{{
 
 #    if ($data->{'grid_data'}->{$name}) {
 #    }
-    
+
     if ($data->{'layout_data'}->{$name}) {
         return $self->process_layout_block($token, $name, $data->{'layout_data'}->{$name}, $data);
     }
@@ -602,6 +631,14 @@ sub extract_definition { # {{{
     foreach my $block_token (@blocks) {
         if ($block_token->{'name'}) {
             $definition{ $block_token->{'name'} } = $block_token;
+        }
+
+        if ($block_token->{'template'}) {
+            my %sub_def = $self->extract_definition($block_token);
+
+            foreach my $key (keys %sub_def) {
+                $definition{$key} = $sub_def{$key};
+            }
         }
     }
 
@@ -683,6 +720,8 @@ sub process_layout_block { # {{{
 
     my $html = $self->process_layout_element(\%definition, $layout);
 
+#    if ($html eq q{}) { use Data::Dumper; warn Dumper $token; }
+
     return $html;
 } # }}}
 
@@ -750,14 +789,17 @@ sub process_layout_element { # {{{
         return $html;
     }
 
-    if (not defined  $element->{'type'}) {
-        use Data::Dumper; warn Dumper $element;
-    }
+#    if (not defined $element->{'type'}) {
+#        use Data::Dumper; warn Dumper $element;
+#    }
 
     assert_defined($element->{'type'}, 'Type of the element is known');
 
     if (not $definition->{ $element->{'type'} }) {
-        print STDERR "Layout element (". $element->{'type'} .") not defined in template!";
+        print STDERR "Layout element (". $element->{'type'} .") not defined in template!\n";
+
+        use Data::Dumper; warn Dumper $definition;
+
         return q{};
     }
 
@@ -1062,17 +1104,25 @@ sub _strip_templates_from_index { # {{{
     foreach my $token (@{ $index }) {
         if ($token->{'type'} eq 'TEMPLATE') {
             # Copy is required, as token will be changed.
-            my %copied_token = %{ $token };
+            my %copied_token = (
+                type => $token->{'type'},
+                name => $token->{'name'},
 
-            $copied_token{'template'} = {};
+                template => {}
+            );
 
             push @index_copy, \%copied_token;
         }
         elsif ($token->{'type'} eq 'BLOCK') {
             # Copy is required, as token will be changed.
-            my %copied_token = %{ $token };
+            my %copied_token = (
+                type => $token->{'type'},
+                name => $token->{'name'},
 
-            $copied_token{'template'}->{'index'} = $self->_strip_templates_from_index($token->{'template'}->{'index'});
+                template => {
+                    index => $self->_strip_templates_from_index($token->{'template'}->{'index'}),
+                }
+            );
 
             push @index_copy, \%copied_token;
         }
@@ -1088,7 +1138,7 @@ sub _strip_templates_from_index { # {{{
 # Go trough given index, and re-load any templates, that exist in it.
 sub parsed_fetch_index_check { # {{{
     my ( $self, $index ) = @_;
-    
+
     foreach my $token (@{ $index }) {
         if ($token->{'type'} eq 'TEMPLATE') {
             $token->{'template'} = $self->load_and_parse(

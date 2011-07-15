@@ -32,6 +32,14 @@ sub get_handlers_list { # {{{
     return $_cached_handlers_list = _find_handlers();
 } # }}}
 
+# Purpose:
+#   Intended to be used in tests, to mock-up Handlers in fake instance.
+sub set_handlers_list { # {{{
+    my ( $_cached_handlers_list ) = @_;
+
+    return $_cached_handlers_list;
+} # }}}
+
 sub _find_handlers { # {{{
     my %handler_action_pool;
 

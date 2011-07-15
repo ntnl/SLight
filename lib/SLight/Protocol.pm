@@ -138,7 +138,7 @@ sub S_process_object { # {{{
     return {
         data => mk_Container_token(
             # TODO: add 'id' property to it, so every object has unique ID!
-            class   => 'SL_Object O-' . $result->{'class'},
+            class   => 'SL_Object ' . $result->{'class'},
             content => $result->{'data'}
         ),
         meta => $result->{'meta'}
@@ -157,12 +157,12 @@ sub S_process_addon { # {{{
         return $self->{'addon_factory'}->make(pkg => $pkg, addon => $addon);
     };
     if ($EVAL_ERROR or not $addon_object) {
-        printf STDERR "%s plugin failed to compile.\n", $pkg .q{::}. $addon;
+        printf STDERR "%s addon failed to compile.\n", $pkg .q{::}. $addon;
         print STDERR $EVAL_ERROR;
 
         return mk_Label_token(
             class => 'SL_Error',
-            text  => TF("%s plugin failed.", undef, $pkg .q{::}. $addon),
+            text  => TF("%s addon failed.", undef, $pkg .q{::}. $addon),
         );
     }
 
@@ -175,12 +175,12 @@ sub S_process_addon { # {{{
         );
     };
     if ($EVAL_ERROR) {
-        printf STDERR "%s plugin failed to run.\n", $pkg .q{::}. $addon;
+        printf STDERR "%s addon failed to run.\n", $pkg .q{::}. $addon;
         print STDERR $EVAL_ERROR;
 
         return mk_Label_token(
             class => 'SL_Error',
-            text  => TF("%s plugin failed.", undef, $pkg .q{::}. $addon),
+            text  => TF("%s addon failed.", undef, $pkg .q{::}. $addon),
         );
     }
 

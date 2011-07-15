@@ -147,12 +147,19 @@ sub prepare_fake_dir { # {{{
 sub fake_config { # {{{
     my ( $site_root ) = @_;
 
+    my $test_site_dir = SLight::Core::Config::get_option('test_site_dir');
+
+    # Re-set config to 'factory defaults'.
+    SLight::Core::Config::apply_defaults();
+
     SLight::Core::Config::set_option('name',      q{Test facility});
-    SLight::Core::Config::set_option('domain',    q{foo.localdomain});
+    SLight::Core::Config::set_option('domain',    q{slight.test.localdomain});
     SLight::Core::Config::set_option('web_root',  q{/});
     SLight::Core::Config::set_option('site_root', $site_root);
     SLight::Core::Config::set_option('data_root', $site_root);
     SLight::Core::Config::set_option('lang',      [qw{ en de fr pl }]);
+
+    SLight::Core::Config::set_option('test_site_dir', $test_site_dir);
 
     # Connect to DB, for convenance.
     if (-f ($site_root . q{/db/slight.sqlite}) ) {

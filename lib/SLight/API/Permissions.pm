@@ -246,11 +246,18 @@ sub can_User_access { # {{{
 
     # Errors are always allowed to be viewed :)
     if ($P{'handler_family'} eq 'Error') {
+        if ($P{'_debug'}) {
+            print STDERR "can_User_access :: Error family always permitted.\n";
+        }
+
         return q{GRANTED};
     }
 
     if (SLight::Core::Config::get_option('skip_permissions')) {
-#        print STDERR q{Permssions check skipped due to config setting (skip_permissions: 1).};
+        if ($P{'_debug'}) {
+            print STDERR "can_User_access :: Permssions check skipped due to config setting (skip_permissions: 1).\n";
+        }
+
         return q{GRANTED};
     }
 
@@ -277,6 +284,10 @@ sub can_User_access { # {{{
             _debug => $P{'_debug'},
         );
         if ($system_access and $system_access eq 'DENIED') {
+            if ($P{'_debug'}) {
+                print STDERR "can_User_access :: DENIED by system level settings.\n";
+            }
+
             return q{DENIED};
         }
         elsif ($system_access and $system_access eq 'GRANTED') {
@@ -285,6 +296,10 @@ sub can_User_access { # {{{
     }
 
     if ($found_granted) {
+        if ($P{'_debug'}) {
+            print STDERR "can_User_access :: GRANTED by system level settings.\n";
+        }
+
         return q{GRANTED};
     }
 
@@ -308,6 +323,10 @@ sub can_User_access { # {{{
             );
 
             if ($system_access and $system_access eq 'DENIED') {
+                if ($P{'_debug'}) {
+                    print STDERR "can_User_access :: DENIED by user level settings.\n";
+                }
+
                 return 'DENIED';
             }
             elsif ($system_access and $system_access eq 'GRANTED') {
@@ -317,6 +336,10 @@ sub can_User_access { # {{{
     }
 
     if ($found_granted) {
+        if ($P{'_debug'}) {
+            print STDERR "can_User_access :: GRANTED by user level settings.\n";
+        }
+
         return q{GRANTED};
     }
 

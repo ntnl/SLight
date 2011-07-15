@@ -243,7 +243,7 @@ sub set_toolbox { # {{{
 } # }}}
 
 # This method adds element to Path Bar.
-# Path Bar may then be shown by PathBar Plugin.
+# Path Bar may then be shown by PathBar Addon.
 sub add_to_path_bar { # {{{
     my $self = shift;
     my %P = validate(

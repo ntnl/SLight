@@ -25,22 +25,28 @@ use File::Slurp qw( read_dir );
 our $VERSION = '0.0.5';
 
 # Defaults:
-my %config = (
-    name          => q{SLight},
-    domain        => q{localhost},
-    web_root      => q{/},
-    site_root     => q{./SLight_Site/}, # Site's RO files, managed by webmaster or a site admin, for the site to use.
-    data_root     => q{./SLight_Data/}, # Site's RW files, or data files, managed by the website itself.
-    test_site_dir => q{/tmp/},
-    lang          => [qw( en )],
-    debug         => 0, # Set to 1, to see more verbose error messages.
-    lib           => undef,
-    mailback      => undef,
+my %config;
 
-    skip_permissions => 0,
-);
+my $initialized = undef;
 
-my $initialized = 0;
+sub apply_defaults { # {{{
+    %config = (
+        name          => q{SLight},
+        domain        => q{localhost},
+        web_root      => q{/},
+        site_root     => q{./SLight_Site/}, # Site's RO files, managed by webmaster or a site admin, for the site to use.
+        data_root     => q{./SLight_Data/}, # Site's RW files, or data files, managed by the website itself.
+        test_site_dir => q{/tmp/},
+        lang          => [qw( en )],
+        debug         => 0, # Set to 1, to see more verbose error messages.
+        lib           => undef,
+        mailback      => undef,
+
+        skip_permissions => 0,
+    );
+
+    return;
+} # }}}
 
 sub initialize { # {{{
     my ( $path ) = @_;
@@ -48,6 +54,8 @@ sub initialize { # {{{
     if ($initialized) {
         return;
     }
+
+    apply_defaults();
 
     find_and_load($path);
 
@@ -105,6 +113,8 @@ sub set_option { # {{{
 
 sub get_option { # {{{
     my ( $option ) = @_;
+
+    assert_defined($initialized, 'Config sub-system initialized');
 
     return $config{$option};
 } # }}}

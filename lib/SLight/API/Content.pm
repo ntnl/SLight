@@ -19,7 +19,7 @@ use SLight::Core::Accessor;
 use SLight::Core::DB;
 
 use Carp;
-use Carp::Assert::More qw( assert_integer );
+use Carp::Assert::More qw( assert_integer assert_isa );
 use Params::Validate qw{ :all };
 # }}}
 
@@ -65,7 +65,7 @@ my $_handler = SLight::Core::Accessor->new( # {{{
         Data => {
             table   => 'Content_Entity_Data',
             columns => [qw( Content_Entity_id Content_Spec_Field_id language value )], # summary sort_index_aid
-            
+
             cb => {
                 get => sub { # {{{
                     my ( $items ) = @_;
@@ -85,6 +85,8 @@ my $_handler = SLight::Core::Accessor->new( # {{{
                     my @items;
                     foreach my $language (keys %{ $data }) {
                         foreach my $Content_Spec_Field_id (keys %{ $data->{$language} }) {
+                            assert_isa($data->{ $language }->{ $Content_Spec_Field_id }, 'HASH');
+
                             push @items, {
                                 key => {
                                     Content_Entity_id     => int $parent_id,
@@ -113,7 +115,7 @@ my $_handler = SLight::Core::Accessor->new( # {{{
 sub add_Content { # {{{
     my %P = @_; # Fixme: use Params::Validate here!
 
-    assert_integer($P{'Content_Spec_id'});
+    assert_integer($P{'Content_Spec_id'}, 'Content_Spec_id');
 
     return $_handler->add_ENTITY(
         %P,

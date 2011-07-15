@@ -84,9 +84,9 @@ SLight::Maintenance::Manipulate::main(q{--cms-get}, q{/}, q{--format}, q{xml},  
 SLight::Maintenance::Manipulate::main(q{--cms-get}, q{/}, q{--format}, q{yaml}, q{--output}, $pepper . 'get-yaml');
 SLight::Maintenance::Manipulate::main(q{--cms-get}, q{/}, q{--format}, q{json}, q{--output}, $pepper . 'get-json');
 
-is_referenced_ok(q{}.scalar read_file( $pepper . 'get-xml' ),  '--cms-get to XML');
-is_referenced_ok(q{}.scalar read_file( $pepper . 'get-yaml' ), '--cms-get to YAML');
-is_referenced_ok(q{}.scalar read_file( $pepper . 'get-json' ), '--cms-get to JSON');
+is_referenced_ok(q{}.scalar read_file( $pepper . 'get-xml' ),  'Option --cms-get to XML');
+is_referenced_ok(q{}.scalar read_file( $pepper . 'get-yaml' ), 'Option --cms-get to YAML');
+is_referenced_ok(q{}.scalar read_file( $pepper . 'get-json' ), 'Option --cms-get to JSON');
 
 
 
@@ -95,23 +95,25 @@ SLight::Maintenance::Manipulate::main(q{--cms-list}, q{/}, q{--format}, q{xml}, 
 SLight::Maintenance::Manipulate::main(q{--cms-list}, q{/}, q{--format}, q{yaml}, q{--output}, $pepper . 'list-yaml');
 SLight::Maintenance::Manipulate::main(q{--cms-list}, q{/}, q{--format}, q{json}, q{--output}, $pepper . 'list-json');
 
-is_referenced_ok(q{}.scalar read_file( $pepper . 'list-xml' ),  '--cms-list to XML');
-is_referenced_ok(q{}.scalar read_file( $pepper . 'list-yaml' ), '--cms-list to YAML');
-is_referenced_ok(q{}.scalar read_file( $pepper . 'list-json' ), '--cms-list to JSON');
+is_referenced_ok(q{}.scalar read_file( $pepper . 'list-xml' ),  'Option --cms-list to XML');
+is_referenced_ok(q{}.scalar read_file( $pepper . 'list-yaml' ), 'Option --cms-list to YAML');
+is_referenced_ok(q{}.scalar read_file( $pepper . 'list-json' ), 'Option --cms-list to JSON');
 
 
 
 # If it dies, the test will die too, so why bother to check?
 output_like(
     sub {
-        SLight::Maintenance::Manipulate::main(q{--cms-delete}, q{/Docs/});
+        eval {
+            SLight::Maintenance::Manipulate::main(q{--cms-delete}, q{/Docs/});
+        };
     },
     qr{status: OK},
     undef,
-    "--cms-delete outputs a response."
+    "Options --cms-delete outputs a response."
 );
 # Check, if the page 'Doc' was really deleted.
-is_referenced_ok(get_Pages_where(parent_id=>1), "--cms-delete does it's job");
+is_referenced_ok(get_Pages_where(parent_id=>1), "Option --cms-delete does it's job");
 
 
 set_fixed_time(1299511545);
@@ -130,6 +132,7 @@ write_file($pepper . q{set-xml}, q{<?xml version="1.0" encoding="utf-8" ?>
             <status>V</status>
             <comment_write_policy>0</comment_write_policy>
             <metadata/>
+            <Email_id>5</Email_id>
             <Data>
                 <en>
                     <article>Authors await your feedback ;)</article>
@@ -147,16 +150,17 @@ write_file($pepper . q{set-xml}, q{<?xml version="1.0" encoding="utf-8" ?>
 #SLight::Maintenance::Manipulate::main(q{--cms-set}, q{/About/Authors/Feedback/}, q{--format}, q{xml}, q{--input}, $pepper . q{set-xml});
 output_like(
     sub {
-        SLight::Maintenance::Manipulate::main(q{--cms-set}, q{/About/Authors/Feedback/}, q{--format}, q{xml}, q{--input}, $pepper . q{set-xml});
+        eval {
+            SLight::Maintenance::Manipulate::main(q{--cms-set}, q{/About/Authors/Feedback/}, q{--format}, q{xml}, q{--input}, $pepper . q{set-xml});
+        };
     },
     qr{\<status\>OK\<\/status\>},
     undef,
-    "--cms-set outputs a response."
+    "Option --cms-set outputs a response."
 );
-
 is_referenced_ok(
     get_Contents_where(Page_Entity_id => 6),
-    q{--cms-set XML - data OK}
+    q{Option --cms-set XML - data OK}
 );
 
 write_file($pepper . q{set-yaml}, q{--- 
@@ -170,6 +174,7 @@ Body:
       status: V
       comment_write_policy: 0
       metadata: \{ \}
+      Email_id: 5
       Data:
         en:
           article: Please fill the form
@@ -185,16 +190,18 @@ Body:
 
 output_like(
     sub {
-        SLight::Maintenance::Manipulate::main(q{--cms-set}, q{/About/Authors/Feedback/Form/}, q{--format}, q{yaml}, q{--input}, $pepper . q{set-yaml});
+        eval {
+            SLight::Maintenance::Manipulate::main(q{--cms-set}, q{/About/Authors/Feedback/Form/}, q{--format}, q{yaml}, q{--input}, $pepper . q{set-yaml});
+        };
     },
     qr{status: OK},
     undef,
-    "--cms-set YAML outputs a response."
+    "Option --cms-set YAML outputs a response."
 );
 
 is_referenced_ok(
     get_Contents_where(Page_Entity_id => 7),
-    q{--cms-set YAML - data OK}
+    q{Option --cms-set YAML - data OK}
 );
 
 
@@ -239,16 +246,18 @@ write_file($pepper . q{set-json}, '{
 
 output_like(
     sub {
-        SLight::Maintenance::Manipulate::main(q{--cms-set}, q{/About/Authors/Feedback/Form/}, q{--format}, q{json}, q{--input}, $pepper . q{set-json});
+        eval {
+            SLight::Maintenance::Manipulate::main(q{--cms-set}, q{/About/Authors/Feedback/Form/}, q{--format}, q{json}, q{--input}, $pepper . q{set-json});
+        };
     },
     qr{"status":"OK"},
     undef,
-    "--cms-set JSON outputs a response."
+    "Option --cms-set JSON outputs a response."
 );
 
 is_referenced_ok(
     get_Contents_where(Page_Entity_id => 7),
-    q{--cms-set JSON - data OK}
+    q{Option --cms-set JSON - data OK}
 );
 
 

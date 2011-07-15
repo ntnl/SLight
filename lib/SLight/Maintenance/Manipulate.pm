@@ -352,7 +352,7 @@ sub handle_cms_get { # {{{
     my %Content_Spec_cache;
     my %id_to_class_cache;
     foreach my $item (@{ $list }) {
-        my $Content_Spec_id = $item->{'Content_Spec_id'};
+        my $Content_Spec_id = $item->{'Spec.id'};
 
         # Harvest Content_Spec
         if (not $Content_Spec_cache{$Content_Spec_id}) {
@@ -368,20 +368,19 @@ sub handle_cms_get { # {{{
         }
 
         # Sanitize data
-        if ($item->{'_data'}) {
-            $item->{'Data'} = delete $item->{'_data'};
-
+        if ($item->{'Data'}) {
             foreach my $lang (keys %{ $item->{'Data'} }) {
                 my @ids = keys %{ $item->{'Data'}->{$lang} };
 
                 foreach my $field_id (@ids) {
-                    my $field_code = $id_to_class_cache{ $item->{'Content_Spec_id'} }->{$field_id};
+                    my $field_code = $id_to_class_cache{ $item->{'Spec.id'} }->{$field_id};
 
                     my $ddata = decode_data(
                         type   => $Content_Spec_cache{$Content_Spec_id}->{'Data'}->{$field_code}->{'datatype'},
-                        value  => delete $item->{'Data'}->{$lang}->{$field_id},
+                        value  => $item->{'Data'}->{$lang}->{$field_id}->{'value'},
                         target => 'FORM',
                     );
+                    delete $item->{'Data'}->{$lang}->{$field_id}->{'value'};
 
                     $item->{'Data'}->{$lang}->{ $field_code } = $ddata;
                 }
@@ -415,7 +414,7 @@ sub handle_cms_delete { # {{{
     my $page_id = get_Page_id_for_path( $path );
 
     delete_Page($page_id);
-    
+
     push_data(
         {
             Head => {
@@ -526,18 +525,17 @@ sub handle_cms_set { # {{{
 
             # Fix 'Data' key name.
             if ($Content_Entry->{'Data'}) {
-                $Content_Entry->{'_data'} = delete $Content_Entry->{'Data'};
 
                 # Fix _data IDs.
                 my $Content_Spec = get_ContentSpec($Content_Entry->{'Content_Spec_id'});
 
-                foreach my $lang (keys %{ $Content_Entry->{'_data'} }) {
-                    my @fields = keys %{ $Content_Entry->{'_data'}->{$lang} };
+                foreach my $lang (keys %{ $Content_Entry->{'Data'} }) {
+                    my @fields = keys %{ $Content_Entry->{'Data'}->{$lang} };
 
                     foreach my $field (@fields) {
                         my $field_id = $Content_Spec->{'_data'}->{$field}->{'id'};
 
-                        $Content_Entry->{'_data'}->{$lang}->{$field_id} = delete $Content_Entry->{'_data'}->{$lang}->{$field};
+                        $Content_Entry->{'Data'}->{$lang}->{$field_id}->{'value'} = delete $Content_Entry->{'Data'}->{$lang}->{$field};
                     }
                 }
 
@@ -562,7 +560,7 @@ sub handle_cms_set { # {{{
 #                warn "Adding content to $page_id!";
 
                 add_Content(
-                    Page_Entity_id => $page_id,
+                    'Page_Entity_id' => $page_id,
 
                     %{ $Content_Entry },
                 );

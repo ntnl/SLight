@@ -37,7 +37,7 @@ sub get_spec { # {{{
                 'field_index'     => 3,
                 'translate'       => '0',
                 'max_length'      => '1',
-                'datatype'        => 'Int'
+                'datatype'        => 'Int',
             },
             'read_more' => {
                 'display_on_page' => '2',

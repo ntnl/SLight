@@ -15,7 +15,10 @@ use strict; use warnings; # {{{
 use FindBin qw( $Bin );
 use lib $Bin . q{/../lib/};
 
-use SLight::Maintenance::Daily;
+use SLight::Core::Config;
+
+use Cwd qw( getcwd );
+use File::Slurp qw( write_file );
 # }}}
 
 my $VERSION = '0.0.5';
@@ -25,6 +28,9 @@ my $VERSION = '0.0.5';
 exit main();
 
 sub main { # {{{
+    # Load configuration
+    SLight::Core::Config::initialize( getcwd() );
+
     if ($ARGV[0] =~ m{on}is) {
         _enable();
     }
@@ -46,6 +52,22 @@ sub main { # {{{
     }
 
     return 0;
+} # }}}
+
+sub _enable { # {{{
+    write_file(SLight::Core::Config::get_option('data_root') . q{var/maintenance.txt}, "ON");
+
+    print "Maintenance mode ENABLED\n";
+
+    return 1;
+} # }}}
+
+sub _disable { # {{{
+    unlink SLight::Core::Config::get_option('data_root') . q{var/maintenance.txt};
+
+    print "Maintenance mode DISABLED\n";
+
+    return 1;
 } # }}}
 
 # vim: fdm=marker

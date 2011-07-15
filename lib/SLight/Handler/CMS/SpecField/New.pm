@@ -40,7 +40,7 @@ sub form_spec { # {{{
         validator_metadata => {
             'class'           => { type=>'ASCII' },
             'caption'         => { type=>'String' },
-            'order'           => { type=>'Integer' },
+            'field_index'     => { type=>'Integer' },
             'datatype'        => { type=>'ASCII' },
             'translate'       => { type=>'Integer' },
             'display_on_page' => { type=>'Integer' },
@@ -65,9 +65,9 @@ sub save_form { # {{{
         _data => {
             $self->{'options'}->{'class'} => {
                 caption         => $self->{'options'}->{'caption'},
-                order           => $self->{'options'}->{'order'},
+                field_index     => $self->{'options'}->{'field_index'},
                 datatype        => $self->{'options'}->{'datatype'},
-                default         => ( $self->{'options'}->{'default'} or q{} ),
+                default_value   => ( $self->{'options'}->{'default_value'} or q{} ),
                 translate       => $self->{'options'}->{'translate'},
                 display_on_page => $self->{'options'}->{'display_on_page'},
                 display_on_list => $self->{'options'}->{'display_on_list'},

@@ -46,7 +46,9 @@ sub init { # {{{
             my $source_path = $site_root . q{/response/} . $type .q{.}. $proto;
 
             if (-f $source_path) {
-                $self->{'internal_response'}->{$type}->{$proto} = read_file($source_path);
+                my $content = read_file($source_path);
+
+                $self->{'internal_response'}->{$type}->{$proto} = decode_utf8($content);
             }
         }
     }
@@ -67,7 +69,7 @@ sub main { # {{{
 #    use Data::Dumper; warn Dumper \%ENV;
 
     # Check and react to maintenance flag as soon as possible.
-    my $maintenance_file_path = SLight::Core::Config::get_option('site_root') . q{var/maintenance.txt};
+    my $maintenance_file_path = SLight::Core::Config::get_option('data_root') . q{var/maintenance.txt};
     if (-f $maintenance_file_path) {
         #
         # Maintenance mode is enabled.
@@ -405,13 +407,20 @@ sub default_language_from_browser { # {{{
 sub internal_maintenance_response { # {{{
     my ( $self, $url, $msg ) = @_;
 
-    my $out = _customized_internal_response('Maintenance', $url, $msg);
+    $self->set_header(
+        name  => q{Status},
+        value => q{503 Site under maintenance},
+    );
+    $self->set_header(
+        name  => q{Content-type},
+        value => 'text/html',
+    );
+
+    my $out = $self->_customized_internal_response('Maintenance', $url, $msg);
     if ($out) {
         return $out;
     }
 
-    $out .= "Content-type: text/html\n";
-    $out .= "Status: 503 Site under maintenance\n";
     $out .= "\n";
     $out .= "<html>";
     $out .= "<head><title>Site under maintenance</title></head>\n";
@@ -432,8 +441,17 @@ sub internal_maintenance_response { # {{{
 sub internal_error_response { # {{{
     my ( $self, $url, $msg ) = @_;
 
+    $self->set_header(
+        name  => q{Status},
+        value => q{500 Internal Server error},
+    );
+    $self->set_header(
+        name  => q{Content-type},
+        value => 'text/html',
+    );
+
     my $home_email = SLight::Core::Config::get_option('mailback');
-    if ($home_email and $ENV{'REMOTE_ADDR'} ne '127.0.0.1') {
+    if ($home_email and $ENV{'REMOTE_ADDR'} and $ENV{'REMOTE_ADDR'} ne '127.0.0.1') {
         # Try to inform "HQ" that We have an internal error here..
         eval {
             require SLight::API::Email;
@@ -448,14 +466,11 @@ sub internal_error_response { # {{{
         };
     }
 
-    my $out = _customized_internal_response('Error', $url, $msg);
+    my $out = $self->_customized_internal_response('Error', $url, $msg);
     if ($out) {
         return $out;
     }
 
-    $out .= "Content-type: text/html\n";
-    $out .= "Status: 500 Internal Server error\n";
-    $out .= "\n";
     $out .= "<html>";
     $out .= "<head><title>Internal Server Error</title></head>\n";
     $out .= "<body style='background-color: silver;'>";
@@ -475,11 +490,8 @@ sub internal_error_response { # {{{
 sub _customized_internal_response { # {{{
     my ( $self, $type, $url, $msg ) = @_;
 
-    my $proto;
-    if ($url =~ m{/$}s) {
-        $proto = 'web';
-    }
-    elsif ($url =~ m{\.(web|json)$}s) {
+    my $proto = 'web';
+    if ($url =~ m{\.(web|json)$}s) {
         $proto = $1;
     }
 
@@ -497,6 +509,16 @@ sub _customized_internal_response { # {{{
         # Clear any message placeholders that are present in the "template".
         $out =~ s{<!--\s*message_goes_here\s*-->}{}gi;
     }
+
+    my %mime_map = (
+        web  => 'text/html; character-set: utf-8',
+        json => 'application/json; character-set: utf-8',
+    );
+
+    $self->set_header(
+        name  => q{Content-type},
+        value => ($mime_map{$proto} or 'text/html')
+    );
 
     return $out;
 } # }}}

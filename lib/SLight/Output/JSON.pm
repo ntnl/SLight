@@ -22,6 +22,12 @@ use English qw( -no_match_vars );
 use Params::Validate qw( :all );
 # }}}
 
+sub prepare { # {{{
+    my ( $self, $object_order, $template_code ) = @_;
+
+    return;
+} # }}}
+
 sub process_object_data { # {{{
     my ( $self, $oid, $data_structure ) = @_;
 
@@ -55,7 +61,7 @@ sub serialize { # {{{
 
         data => {},
     );
-    
+
     foreach my $object_id (@{ $object_order }) {
         if ($self->{'JSON'}->{'objects'}->{$object_id}) {
             $json_data{'data'}->{$object_id} = $self->{'JSON'}->{'objects'}->{$object_id}->{'content'}->[0];
@@ -64,7 +70,6 @@ sub serialize { # {{{
 
     return (
         encode_json( \%json_data ),
-        q{text/plain; character-set: utf-8},
         q{application/json; character-set: utf-8}
     );
 } # }}}

@@ -1,26 +1,47 @@
 ---
---cms-delete does it's job:
-- L10N: {}
-  id: 4
-  parent_id: 1
-  path: Download
-  template: ~
-- id: 2
+Option --cms-delete does it's job:
+- L10N:
+    en:
+      breadcrumb: About the site
+      menu: About...
+      title: About the test page
+    pl:
+      breadcrumb: O stronie
+      menu: Informacje...
+      title: Informacje o stronie
+  id: 2
+  menu_order: 0
   parent_id: 1
   path: About
   template: Info
---cms-get to JSON: "{\"Head\":{\"status\":\"OK\",\"version\":\"0.1\"},\"Body\":{\"Content_Spec\":[{\"_data_order\":[\"title\",\"article\"],\"owning_module\":\"CMS::Entry\",\"version\":0,\"order_by\":\"11\",\"cms_usage\":3,\"use_as_title\":null,\"caption\":\"Article\",\"use_in_path\":null,\"use_in_menu\":\"10\",\"metadata\":{},\"id\":1,\"class\":\"Content\",\"Data\":{\"article\":{\"display_on_page\":2,\"display_on_list\":2,\"optional\":1,\"field_index\":2,\"caption\":\"Article\",\"display_label\":1,\"default_value\":\"\",\"translate\":1,\"id\":\"11\",\"max_length\":1024,\"datatype\":\"Text\"},\"title\":{\"display_on_page\":2,\"display_on_list\":2,\"optional\":1,\"field_index\":1,\"caption\":\"Title\",\"display_label\":1,\"default_value\":\"\",\"translate\":1,\"id\":\"10\",\"max_length\":128,\"datatype\":\"String\"}}}],\"Content\":[{\"comment_read_policy\":0,\"Content_Spec_id\":\"1\",\"on_page_index\":0,\"Page_Entity_id\":1,\"status\":\"V\",\"comment_write_policy\":0,\"modified_time\":\"2011-04-26
-  16:27:37\",\"added_time\":\"2011-04-26 16:27:37\",\"Email_id\":null,\"id\":\"1\",\"metadata\":{},\"Data\":{\"en\":{\"article\":\"Minimal
-  test site, not such minimal any more ;)\",\"title\":\"Test site is up\"},\"pl\":{\"article\":\"Minimalna
-  strona testowa, juÃ\NÂ¼ nie taka minimalna ;)\",\"title\":\"Strona testowa zrobiona\"}}}],\"Page\":[{\"template\":\"Default\",\"path\":\"/\",\"id\":1,\"parent_id\":0}]}}"
---cms-get to XML: "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<SLightRPC>\n  <Head>\n
-  \   <status>OK</status>\n    <version>0.1</version>\n  </Head>\n  <Body>\n    <Content_Spec>\n
-  \     <_data_order>title</_data_order>\n      <_data_order>title</_data_order>\n
+- L10N:
+    en:
+      breadcrumb: Download
+      menu: Download
+      title: Download
+    pl:
+      breadcrumb: Pobierz
+      menu: Pobierz
+      title: Pobierz
+  id: 4
+  menu_order: 0
+  parent_id: 1
+  path: Download
+  template: ~
+Option --cms-get to JSON: "{\"Head\":{\"status\":\"OK\",\"version\":\"0.1\"},\"Body\":{\"Content_Spec\":[{\"_data_order\":[\"title\",\"article\"],\"owning_module\":\"CMS::Entry\",\"version\":0,\"cms_usage\":3,\"caption\":\"Article\",\"id\":1,\"class\":\"Content\",\"metadata\":{},\"Data\":{\"article\":{\"display_on_page\":2,\"display_on_list\":2,\"optional\":1,\"field_index\":2,\"caption\":\"Article\",\"display_label\":1,\"default_value\":\"\",\"translate\":1,\"id\":\"11\",\"max_length\":1024,\"datatype\":\"Text\"},\"title\":{\"display_on_page\":2,\"display_on_list\":2,\"optional\":1,\"field_index\":1,\"caption\":\"Title\",\"display_label\":1,\"default_value\":\"\",\"translate\":1,\"id\":\"10\",\"max_length\":128,\"datatype\":\"String\"}}}],\"Content\":[{\"status\":\"V\",\"Page.parent_id\":null,\"comment_write_policy\":0,\"Spec.class\":\"Content\",\"Owner.user_id\":null,\"modified_time\":\"2011-06-11
+  22:49:04\",\"Owner.email\":\"test@example.test\",\"Spec.owning_module\":\"CMS::Entry\",\"Page.id\":1,\"Spec.id\":\"1\",\"id\":\"1\",\"metadata\":null,\"Spec.cms_usage\":3,\"comment_read_policy\":0,\"on_page_index\":0,\"Page.path\":\"\",\"added_time\":\"2011-06-11
+  22:49:04\",\"Page.menu_order\":0,\"Data\":{\"en\":{\"11\":{},\"article\":\"Minimal
+  test site, not such minimal any more ;)\",\"title\":\"Test site is up\",\"10\":{}},\"pl\":{\"11\":{},\"article\":\"Minimalna
+  strona testowa, juÃ\NÂ¼ nie taka minimalna ;)\",\"title\":\"Strona testowa zrobiona\",\"10\":{}}}}],\"Page\":[{\"L10N\":{\"en\":{\"breadcrumb\":\"Test
+  site\",\"menu\":\"Test site\",\"title\":\"Test site\"},\"pl\":{\"breadcrumb\":\"Strona
+  testowa\",\"menu\":\"Strona testowa\",\"title\":\"Strona testowa\"}},\"menu_order\":0,\"template\":\"Default\",\"path\":\"/\",\"id\":\"1\",\"parent_id\":0}]}}"
+Option --cms-get to XML: "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<SLightRPC>\n
+  \ <Head>\n    <status>OK</status>\n    <version>0.1</version>\n  </Head>\n  <Body>\n
+  \   <Content_Spec>\n      <_data_order>title</_data_order>\n      <_data_order>title</_data_order>\n
   \     <_data_order>title</_data_order>\n      <owning_module>CMS::Entry</owning_module>\n
-  \     <version>0</version>\n      <order_by>11</order_by>\n      <cms_usage>3</cms_usage>\n
-  \     <caption>Article</caption>\n      <use_in_menu>10</use_in_menu>\n      <metadata/>\n
-  \     <id>1</id>\n      <class>Content</class>\n      <Data>\n        <article>\n
-  \         <display_on_page>2</display_on_page>\n          <display_on_list>2</display_on_list>\n
+  \     <version>0</version>\n      <cms_usage>3</cms_usage>\n      <caption>Article</caption>\n
+  \     <id>1</id>\n      <class>Content</class>\n      <metadata/>\n      <Data>\n
+  \       <article>\n          <display_on_page>2</display_on_page>\n          <display_on_list>2</display_on_list>\n
   \         <optional>1</optional>\n          <field_index>2</field_index>\n          <caption>Article</caption>\n
   \         <display_label>1</display_label>\n          <translate>1</translate>\n
   \         <id>11</id>\n          <max_length>1024</max_length>\n          <datatype>Text</datatype>\n
@@ -29,24 +50,33 @@
   \         <field_index>1</field_index>\n          <caption>Title</caption>\n          <display_label>1</display_label>\n
   \         <translate>1</translate>\n          <id>10</id>\n          <max_length>128</max_length>\n
   \         <datatype>String</datatype>\n        </title>\n      </Data>\n    </Content_Spec>\n
-  \   <Content>\n      <comment_read_policy>0</comment_read_policy>\n      <Content_Spec_id>1</Content_Spec_id>\n
-  \     <on_page_index>0</on_page_index>\n      <Page_Entity_id>1</Page_Entity_id>\n
-  \     <status>V</status>\n      <comment_write_policy>0</comment_write_policy>\n
-  \     <modified_time>2011-04-26 16:27:37</modified_time>\n      <added_time>2011-04-26
-  16:27:37</added_time>\n      <id>1</id>\n      <metadata/>\n      <Data>\n        <en>\n
-  \         <article>Minimal test site, not such minimal any more ;)</article>\n          <title>Test
-  site is up</title>\n        </en>\n        <pl>\n          <article>Minimalna strona
-  testowa, juÅ¼ nie taka minimalna ;)</article>\n          <title>Strona testowa zrobiona</title>\n
-  \       </pl>\n      </Data>\n    </Content>\n    <Page>\n      <template>Default</template>\n
-  \     <path>/</path>\n      <id>1</id>\n      <parent_id>0</parent_id>\n    </Page>\n
-  \ </Body>\n</SLightRPC>\n\n"
---cms-get to YAML: "--- \nBody: \n  Content: \n    - \n      Content_Spec_id: 1\n
-  \     Data: \n        en: \n          article: Minimal test site, not such minimal
-  any more ;)\n          title: Test site is up\n        pl: \n          article:
-  Minimalna strona testowa, juÅ¼ nie taka minimalna ;)\n          title: Strona testowa
-  zrobiona\n      Email_id: ~\n      Page_Entity_id: '1'\n      added_time: 2011-04-26
-  16:27:37\n      comment_read_policy: '0'\n      comment_write_policy: '0'\n      id:
-  1\n      metadata: {}\n\n      modified_time: 2011-04-26 16:27:37\n      on_page_index:
+  \   <Content>\n      <status>V</status>\n      <comment_write_policy>0</comment_write_policy>\n
+  \     <Spec.class>Content</Spec.class>\n      <modified_time>2011-06-11 22:49:04</modified_time>\n
+  \     <Owner.email>test@example.test</Owner.email>\n      <Spec.owning_module>CMS::Entry</Spec.owning_module>\n
+  \     <Page.id>1</Page.id>\n      <Spec.id>1</Spec.id>\n      <id>1</id>\n      <Spec.cms_usage>3</Spec.cms_usage>\n
+  \     <comment_read_policy>0</comment_read_policy>\n      <on_page_index>0</on_page_index>\n
+  \     <added_time>2011-06-11 22:49:04</added_time>\n      <Page.menu_order>0</Page.menu_order>\n
+  \     <Data>\n        <en>\n          <11/>\n          <article>Minimal test site,
+  not such minimal any more ;)</article>\n          <title>Test site is up</title>\n
+  \         <10/>\n        </en>\n        <pl>\n          <11/>\n          <article>Minimalna
+  strona testowa, juÅ¼ nie taka minimalna ;)</article>\n          <title>Strona testowa
+  zrobiona</title>\n          <10/>\n        </pl>\n      </Data>\n    </Content>\n
+  \   <Page>\n      <L10N>\n        <en>\n          <breadcrumb>Test site</breadcrumb>\n
+  \         <menu>Test site</menu>\n          <title>Test site</title>\n        </en>\n
+  \       <pl>\n          <breadcrumb>Strona testowa</breadcrumb>\n          <menu>Strona
+  testowa</menu>\n          <title>Strona testowa</title>\n        </pl>\n      </L10N>\n
+  \     <menu_order>0</menu_order>\n      <template>Default</template>\n      <path>/</path>\n
+  \     <id>1</id>\n      <parent_id>0</parent_id>\n    </Page>\n  </Body>\n</SLightRPC>\n\n"
+Option --cms-get to YAML: "--- \nBody: \n  Content: \n    - \n      Data: \n        en:
+  \n          10: {}\n\n          11: {}\n\n          article: Minimal test site,
+  not such minimal any more ;)\n          title: Test site is up\n        pl: \n          10:
+  {}\n\n          11: {}\n\n          article: Minimalna strona testowa, juÅ¼ nie
+  taka minimalna ;)\n          title: Strona testowa zrobiona\n      Owner.email:
+  test@example.test\n      Owner.user_id: ~\n      Page.id: '1'\n      Page.menu_order:
+  '0'\n      Page.parent_id: ~\n      Page.path: ''\n      Spec.class: Content\n      Spec.cms_usage:
+  '3'\n      Spec.id: 1\n      Spec.owning_module: CMS::Entry\n      added_time: 2011-06-11
+  22:49:04\n      comment_read_policy: '0'\n      comment_write_policy: '0'\n      id:
+  1\n      metadata: ~\n      modified_time: 2011-06-11 22:49:04\n      on_page_index:
   '0'\n      status: V\n  Content_Spec: \n    - \n      Data: \n        article: \n
   \         caption: Article\n          datatype: Text\n          default_value: ''\n
   \         display_label: '1'\n          display_on_list: '2'\n          display_on_page:
@@ -57,33 +87,67 @@
   1\n          id: 10\n          max_length: '128'\n          optional: '1'\n          translate:
   '1'\n      _data_order: \n        - title\n        - article\n      caption: Article\n
   \     class: Content\n      cms_usage: '3'\n      id: '1'\n      metadata: {}\n\n
-  \     order_by: 11\n      owning_module: CMS::Entry\n      use_as_title: ~\n      use_in_menu:
-  10\n      use_in_path: ~\n      version: '0'\n  Page: \n    - \n      id: '1'\n
-  \     parent_id: 0\n      path: /\n      template: Default\nHead: \n  status: OK\n
-  \ version: '0.1'\n"
---cms-list to JSON: '{"Head":{"status":"OK","version":"0.1"},"Body":{"Page":[{"template":null,"path":"Download","id":"4","parent_id":1},{"template":"Doc","path":"Docs","id":"3","parent_id":1},{"template":"Info","path":"About","id":"2","parent_id":1}]}}'
---cms-list to XML: "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<SLightRPC>\n  <Head>\n
-  \   <status>OK</status>\n    <version>0.1</version>\n  </Head>\n  <Body>\n    <Page>\n
+  \     owning_module: CMS::Entry\n      version: '0'\n  Page: \n    - \n      L10N:
+  \n        en: \n          breadcrumb: Test site\n          menu: Test site\n          title:
+  Test site\n        pl: \n          breadcrumb: Strona testowa\n          menu: Strona
+  testowa\n          title: Strona testowa\n      id: 1\n      menu_order: '0'\n      parent_id:
+  0\n      path: /\n      template: Default\nHead: \n  status: OK\n  version: '0.1'\n"
+Option --cms-list to JSON: '{"Head":{"status":"OK","version":"0.1"},"Body":{"Page":[{"L10N":{"en":{"breadcrumb":"About
+  the site","menu":"About...","title":"About the test page"},"pl":{"breadcrumb":"O
+  stronie","menu":"Informacje...","title":"Informacje o stronie"}},"menu_order":0,"template":"Info","path":"About","id":"2","parent_id":1},{"L10N":{"en":{"breadcrumb":"Documentation","menu":"Documentation","title":"Documentation"},"pl":{"breadcrumb":"Dokumentacja","menu":"Dokumentacja","title":"Dokumentacja"}},"menu_order":0,"template":"Doc","path":"Docs","id":"3","parent_id":1},{"L10N":{"en":{"breadcrumb":"Download","menu":"Download","title":"Download"},"pl":{"breadcrumb":"Pobierz","menu":"Pobierz","title":"Pobierz"}},"menu_order":0,"template":null,"path":"Download","id":"4","parent_id":1}]}}'
+Option --cms-list to XML: "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<SLightRPC>\n
+  \ <Head>\n    <status>OK</status>\n    <version>0.1</version>\n  </Head>\n  <Body>\n
+  \   <Page>\n      <L10N>\n        <en>\n          <breadcrumb>About the site</breadcrumb>\n
+  \         <menu>About...</menu>\n          <title>About the test page</title>\n
+  \       </en>\n        <pl>\n          <breadcrumb>O stronie</breadcrumb>\n          <menu>Informacje...</menu>\n
+  \         <title>Informacje o stronie</title>\n        </pl>\n      </L10N>\n      <menu_order>0</menu_order>\n
+  \     <template>Info</template>\n      <path>About</path>\n      <id>2</id>\n      <parent_id>1</parent_id>\n
+  \   </Page>\n    <Page>\n      <L10N>\n        <en>\n          <breadcrumb>Documentation</breadcrumb>\n
+  \         <menu>Documentation</menu>\n          <title>Documentation</title>\n        </en>\n
+  \       <pl>\n          <breadcrumb>Dokumentacja</breadcrumb>\n          <menu>Dokumentacja</menu>\n
+  \         <title>Dokumentacja</title>\n        </pl>\n      </L10N>\n      <menu_order>0</menu_order>\n
+  \     <template>Doc</template>\n      <path>Docs</path>\n      <id>3</id>\n      <parent_id>1</parent_id>\n
+  \   </Page>\n    <Page>\n      <L10N>\n        <en>\n          <breadcrumb>Download</breadcrumb>\n
+  \         <menu>Download</menu>\n          <title>Download</title>\n        </en>\n
+  \       <pl>\n          <breadcrumb>Pobierz</breadcrumb>\n          <menu>Pobierz</menu>\n
+  \         <title>Pobierz</title>\n        </pl>\n      </L10N>\n      <menu_order>0</menu_order>\n
   \     <path>Download</path>\n      <id>4</id>\n      <parent_id>1</parent_id>\n
-  \   </Page>\n    <Page>\n      <template>Doc</template>\n      <path>Docs</path>\n
-  \     <id>3</id>\n      <parent_id>1</parent_id>\n    </Page>\n    <Page>\n      <template>Info</template>\n
-  \     <path>About</path>\n      <id>2</id>\n      <parent_id>1</parent_id>\n    </Page>\n
-  \ </Body>\n</SLightRPC>\n\n"
---cms-list to YAML: "--- \nBody: \n  Page: \n    - \n      id: 4\n      parent_id:
-  '1'\n      path: Download\n      template: ~\n    - \n      id: 3\n      parent_id:
-  '1'\n      path: Docs\n      template: Doc\n    - \n      id: 2\n      parent_id:
-  '1'\n      path: About\n      template: Info\nHead: \n  status: OK\n  version: '0.1'\n"
---cms-set JSON - data OK:
-- Content_Spec_id: 1
-  Email_id: ~
-  Page_Entity_id: 7
-  _data:
+  \   </Page>\n  </Body>\n</SLightRPC>\n\n"
+Option --cms-list to YAML: "--- \nBody: \n  Page: \n    - \n      L10N: \n        en:
+  \n          breadcrumb: About the site\n          menu: About...\n          title:
+  About the test page\n        pl: \n          breadcrumb: O stronie\n          menu:
+  Informacje...\n          title: Informacje o stronie\n      id: 2\n      menu_order:
+  '0'\n      parent_id: '1'\n      path: About\n      template: Info\n    - \n      L10N:
+  \n        en: \n          breadcrumb: Documentation\n          menu: Documentation\n
+  \         title: Documentation\n        pl: \n          breadcrumb: Dokumentacja\n
+  \         menu: Dokumentacja\n          title: Dokumentacja\n      id: 3\n      menu_order:
+  '0'\n      parent_id: '1'\n      path: Docs\n      template: Doc\n    - \n      L10N:
+  \n        en: \n          breadcrumb: Download\n          menu: Download\n          title:
+  Download\n        pl: \n          breadcrumb: Pobierz\n          menu: Pobierz\n
+  \         title: Pobierz\n      id: 4\n      menu_order: '0'\n      parent_id: '1'\n
+  \     path: Download\n      template: ~\nHead: \n  status: OK\n  version: '0.1'\n"
+Option --cms-set JSON - data OK:
+- Data:
     en:
-      '10': Feedback form.
-      '11': Please fill the feedback form
+      '10':
+        value: Feedback form.
+      '11':
+        value: Please fill the feedback form
     pl:
-      '10': Formularz.
-      '11': Prosimy wypelnij formularz komentarza
+      '10':
+        value: Formularz.
+      '11':
+        value: Prosimy wypelnij formularz komentarza
+  Owner.email: wanda@test.test
+  Owner.user_id: ~
+  Page.id: 7
+  Page.menu_order: 0
+  Page.parent_id: 6
+  Page.path: Form
+  Spec.class: Content
+  Spec.cms_usage: 3
+  Spec.id: 1
+  Spec.owning_module: CMS::Entry
   added_time: 2011-03-07 16:25:45
   comment_read_policy: 0
   comment_write_policy: 0
@@ -92,17 +156,28 @@
   modified_time: 2011-03-07 16:25:45
   on_page_index: 0
   status: A
---cms-set XML - data OK:
-- Content_Spec_id: 1
-  Email_id: ~
-  Page_Entity_id: 6
-  _data:
+Option --cms-set XML - data OK:
+- Data:
     en:
-      '10': Give Us feedback.
-      '11': Authors await your feedback ;)
+      '10':
+        value: Give Us feedback.
+      '11':
+        value: Authors await your feedback ;)
     pl:
-      '10': Przeslijcie nam feedback!
-      '11': Autorzy oczekuja na feedback ;)
+      '10':
+        value: Przeslijcie nam feedback!
+      '11':
+        value: Autorzy oczekuja na feedback ;)
+  Owner.email: wanda@test.test
+  Owner.user_id: ~
+  Page.id: 6
+  Page.menu_order: 0
+  Page.parent_id: 5
+  Page.path: Feedback
+  Spec.class: Content
+  Spec.cms_usage: 3
+  Spec.id: 1
+  Spec.owning_module: CMS::Entry
   added_time: 2011-03-07 16:25:45
   comment_read_policy: 0
   comment_write_policy: 0
@@ -111,17 +186,28 @@
   modified_time: 2011-03-07 16:25:45
   on_page_index: 0
   status: V
---cms-set YAML - data OK:
-- Content_Spec_id: 1
-  Email_id: ~
-  Page_Entity_id: 7
-  _data:
+Option --cms-set YAML - data OK:
+- Data:
     en:
-      '10': Feedback form.
-      '11': Please fill the form
+      '10':
+        value: Feedback form.
+      '11':
+        value: Please fill the form
     pl:
-      '10': Formularz.
-      '11': Prosimy wypelnij formularz
+      '10':
+        value: Formularz.
+      '11':
+        value: Prosimy wypelnij formularz
+  Owner.email: wanda@test.test
+  Owner.user_id: ~
+  Page.id: 7
+  Page.menu_order: 0
+  Page.parent_id: 6
+  Page.path: Form
+  Spec.class: Content
+  Spec.cms_usage: 3
+  Spec.id: 1
+  Spec.owning_module: CMS::Entry
   added_time: 2011-03-07 16:25:45
   comment_read_policy: 0
   comment_write_policy: 0

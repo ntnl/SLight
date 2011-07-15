@@ -16,7 +16,7 @@ use base q{SLight::HandlerBase::ContentEntryForm};
 
 use SLight::API::Content qw( get_Content update_Content );
 use SLight::API::ContentSpec qw( get_ContentSpecs_where get_ContentSpec );
-use SLight::API::Page;
+use SLight::API::Page qw( get_Page );
 use SLight::DataStructure::List::Table;
 use SLight::DataStructure::Form;
 use SLight::Core::L10N qw( TR );
@@ -66,6 +66,27 @@ sub handle_save { # {{{
     my $page_id = $self->{'page'}->{'page_id'};
 
 #    use Data::Dumper; warn Dumper $self->{'page'};
+
+    if ($content->{'on_page_index'} == 0) {
+        my %page = (
+            id => $page_id,
+
+            template   => $self->{'options'}->{'page.template'},
+            menu_order => $self->{'options'}->{'page.order'},
+
+            L10N => {
+                $self->{'url'}->{'lang'} => {
+                    title      => $self->{'options'}->{'page.title'},
+                    breadcrumb => $self->{'options'}->{'page.breadcrumb'},
+                    menu       => $self->{'options'}->{'page.menu'},
+                },
+            },
+        );
+
+#        use Data::Dumper; die Dumper(\%page);
+
+        SLight::API::Page::update_Page(%page);
+    }
 
     my %content = (
         id => $oid,
@@ -117,12 +138,19 @@ sub _form { # {{{
 
 #    use Data::Dumper; warn Dumper $errors;
 
-    $self->build_form_guts(
+    my %params = (
         form    => $form,
         spec    => $content_spec,
-        errors  => $errors,
         content => $content,
+        errors  => $errors,
     );
+    if ($content->{'on_page_index'} == 0) {
+        my $page = get_Page($content->{'Page.id'});
+
+        $params{'page'} = $page;
+    }
+
+    $self->build_form_guts(%params);
 
     $self->push_data($form);
 

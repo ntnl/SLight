@@ -11,7 +11,6 @@
 # More information on: http://slight-cms.org/
 # 
 ################################################################################
-
 use strict; use warnings; # {{{
 use FindBin qw( $Bin );
 use lib $Bin . q{/../../lib/};
@@ -288,6 +287,8 @@ is (
         handler_action => q{Baz},
 
         handler_object => q{Ob1},
+
+#        _debug => 1,
     ),
     'DENIED',
     q{can_User_access}
@@ -311,6 +312,8 @@ is (
         handler_action => q{In},
 
         handler_object => undef,
+
+#        _debug => 1,
     ),
     'GRANTED',
     q{can_User_access (guest)}
@@ -325,6 +328,8 @@ is (
         handler_action => q{Niom},
 
         handler_object => q{Niom},
+
+#        _debug => 1,
     ),
     'DENIED',
     q{can_User_access (user)}

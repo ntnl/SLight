@@ -101,8 +101,6 @@ sub analyze_path { # {{{
         $page_id = 1;
     }
 
-#    use Data::Dumper; warn 'breadcrumb_path: '. Dumper \@breadcrumb_path;
-
 #    warn "Path: " . join ", ", @{ $path };
 #    warn "ID:   " . $page_id;
 
@@ -183,7 +181,7 @@ sub walk_the_path { # {{{
             parent_id => $parent_id,
             path      => $part,
 
-            _fields => [qw( id template )],
+            _fields => [qw( id template L10N )],
         );
 
         if (not $pages->[0]) {
@@ -224,6 +222,8 @@ sub walk_the_path { # {{{
             $last_template = $pages->[0]->{'template'};
         }
     }
+
+#    use Data::Dumper; warn 'breadcrumb_path: '. Dumper \@breadcrumb_path;
 
     $self->set_breadcrumb_path(\@breadcrumb_path);
 
