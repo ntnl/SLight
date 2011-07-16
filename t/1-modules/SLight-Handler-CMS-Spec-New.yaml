@@ -13,7 +13,7 @@ New spec form:
         type: Container
     object_data:
       _spec:
-        class: SL_Object O-CMS_Spec
+        class: SL_Object CMS_Spec
         content:
         - content:
           - class: F-caption Entry

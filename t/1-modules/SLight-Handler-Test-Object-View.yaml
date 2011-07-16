@@ -13,7 +13,7 @@ Example test case:
         type: Container
     object_data:
       t1:
-        class: SL_Object O-Debug
+        class: SL_Object Debug
         content:
         - class: SL_Notification
           content:

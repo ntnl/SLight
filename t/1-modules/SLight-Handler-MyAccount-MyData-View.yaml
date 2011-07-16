@@ -13,7 +13,7 @@ Guest access:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_Error_AuthRequired
+        class: SL_Object SL_Error_AuthRequired
         content:
         - class: SL_Dialog
           content:
@@ -53,7 +53,7 @@ Guest access:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_MyAccount_MyData
+        class: SL_Object SL_MyAccount_MyData
         content:
         - class: SL_Properties
           content:
@@ -128,7 +128,7 @@ Guest access:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_MyAccount_MyData
+        class: SL_Object SL_MyAccount_MyData
         content:
         - class: SL_Properties
           content:
@@ -203,7 +203,7 @@ Guest access:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_MyAccount_MyData
+        class: SL_Object SL_MyAccount_MyData
         content:
         - class: SL_Dialog
           content:

@@ -3,7 +3,7 @@
   breadcrumb_path:
   - class: Test
     href: /Docs/
-    label: Docs
+    label: Dokumentacja
   main_object: e1
   object_order:
   - e1
@@ -18,10 +18,10 @@
   breadcrumb_path:
   - class: Test
     href: /About/
-    label: About
+    label: O stronie
   - class: Test
     href: /About/Authors/
-    label: Authors
+    label: Autorzy
   main_object: e1
   object_order:
   - e1

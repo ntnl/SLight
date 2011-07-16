@@ -43,7 +43,7 @@ Show dialog:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_Account_Delete
+        class: SL_Object SL_Account_Delete
         content:
         - class: SL_Delete_Dialog
           content:

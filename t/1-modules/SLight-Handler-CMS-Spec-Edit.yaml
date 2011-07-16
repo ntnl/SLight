@@ -16,7 +16,7 @@ Show edit form:
         type: Container
     object_data:
       _spec:
-        class: SL_Object O-CMS_Spec
+        class: SL_Object CMS_Spec
         content:
         - content:
           - class: F-caption Entry
@@ -50,7 +50,7 @@ Show edit form:
           type: Form
         type: Container
       article:
-        class: SL_Object O-CMS_Spec_Field
+        class: SL_Object CMS_Spec_Field
         content:
         - class: SL_Properties
           content:
@@ -97,7 +97,7 @@ Show edit form:
           type: Container
         type: Container
       title:
-        class: SL_Object O-CMS_Spec_Field
+        class: SL_Object CMS_Spec_Field
         content:
         - class: SL_Properties
           content:

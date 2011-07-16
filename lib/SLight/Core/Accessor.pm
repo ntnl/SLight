@@ -169,9 +169,11 @@ sub add_ENTITY { # {{{
     }
 
     if ($self->{'has_owner'}) {
-        if (my $email = delete $P{'email'}) {
-            $P{'Email_id'} = SLight::Core::Email::get_email_id($email, 1);
-        }
+        assert_defined($P{'email'});
+
+        my $email = delete $P{'email'};
+
+        $P{'Email_id'} = SLight::Core::Email::get_email_id($email, 1);
     }
 
     # Support for 'referencing' items.
@@ -224,7 +226,7 @@ sub update_ENTITY { # {{{
 #    use Data::Dumper; warn 'IN ' . Dumper \%P;
 
     my $_debug = delete $P{'_debug'};
-    
+
     my $_skip_checks = delete $P{'_skip_checks'};
 
     my $entity_id = delete $P{'id'};
@@ -351,7 +353,7 @@ sub get_ENTITY { # {{{
 
     # Nothing found in DB? Exit ASAP...
     if (not $entity) {
-        if ($_debug) { print STDERR "Nothing found!\n"; }
+        if ($_debug) { print STDERR "SLight::Core::Accessor: Nothing found!\n"; }
         return;
     }
 

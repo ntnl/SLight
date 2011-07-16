@@ -28,7 +28,7 @@
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_Account_Permissions
+        class: SL_Object SL_Account_Permissions
         content:
         - content:
           - content:
@@ -4143,7 +4143,7 @@
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_Account_Permissions
+        class: SL_Object SL_Account_Permissions
         content:
         - content:
           - content:

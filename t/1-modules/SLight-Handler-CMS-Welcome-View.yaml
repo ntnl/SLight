@@ -13,7 +13,7 @@ Get the welcome message (note, that DB is empty):
         type: Container
     object_data:
       e1:
-        class: SL_Object O-Welcome
+        class: SL_Object Welcome
         content:
         - class: SL_Dialog
           content:

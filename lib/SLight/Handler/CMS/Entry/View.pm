@@ -33,9 +33,11 @@ sub handle_view { # {{{
 #        )
 #    );
 
-    my $Content = get_Content($oid);
+    my $Content = get_Content($oid, 1);
 
-    use Data::Dumper; warn $oid . ": ". Dumper $Content;
+#    use Data::Dumper; warn $oid . ": ". Dumper $Content;
+
+#    warn $Content->{'Spec.id'};
 
     my $Spec = get_ContentSpec($Content->{'Spec.id'});
 

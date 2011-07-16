@@ -33,6 +33,8 @@ plan tests =>
 #    site     => 'Minimal'
 #);
 
+SLight::Core::Config::initialize($Bin);
+
 use SLight::HandlerUtils::Toolbox;
 
 is_referenced_ok(

@@ -13,12 +13,12 @@ Display Add Content form:
         - class: Test
           data:
             href: /Download/
-            label: Download
+            label: Pobierz
           type: Link
         type: Container
     object_data:
       e1:
-        class: SL_Object O-AddContent
+        class: SL_Object AddContent
         content:
         - content:
           - content:

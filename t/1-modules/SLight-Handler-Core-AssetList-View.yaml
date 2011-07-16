@@ -18,7 +18,7 @@ Asset list with one asset:
         type: Container
     object_data:
       l1:
-        class: SL_Object O-Assets
+        class: SL_Object Assets
         content:
         - content:
           - content:
@@ -109,7 +109,7 @@ Empty Asset list:
         type: Container
     object_data:
       l1:
-        class: SL_Object O-Assets
+        class: SL_Object Assets
         content:
         - class: SL_Notification
           content:

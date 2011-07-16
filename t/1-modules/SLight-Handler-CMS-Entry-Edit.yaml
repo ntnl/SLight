@@ -1,6 +1,6 @@
 ---
 Do the update (send form):
-  location: http://foo.localdomain/About/
+  location: http://slight.test.localdomain/About/
   response: REDIRECT
 Open content edit form:
   content:
@@ -16,12 +16,12 @@ Open content edit form:
         - class: Test
           data:
             href: /About/
-            label: About
+            label: O stronie
           type: Link
         type: Container
     object_data:
       ob2:
-        class: SL_Object O-Content
+        class: SL_Object Content
         content:
         - content:
           - content:
@@ -29,6 +29,66 @@ Open content edit form:
               data:
                 label: Article
               type: Label
+            type: Container
+          - class: F-page.template Entry
+            content:
+            - class: Label
+              data:
+                label: Template file
+              type: Label
+            - class: Value
+              data:
+                name: page.template
+                value: Info
+              type: Entry
+            type: Container
+          - class: F-page.order Entry
+            content:
+            - class: Label
+              data:
+                label: Page order index (less means earlier, more means later)
+              type: Label
+            - class: Value
+              data:
+                name: page.order
+                value: ''
+              type: Entry
+            type: Container
+          - class: F-page.title Entry
+            content:
+            - class: Label
+              data:
+                label: Page title (en)
+              type: Label
+            - class: Value
+              data:
+                name: page.title
+                value: About the test page
+              type: Entry
+            type: Container
+          - class: F-page.breadcrumb Entry
+            content:
+            - class: Label
+              data:
+                label: Breadcrumb label (en)
+              type: Label
+            - class: Value
+              data:
+                name: page.breadcrumb
+                value: About the site
+              type: Entry
+            type: Container
+          - class: F-page.menu Entry
+            content:
+            - class: Label
+              data:
+                label: Menu label (en)
+              type: Label
+            - class: Value
+              data:
+                name: page.menu
+                value: About...
+              type: Entry
             type: Container
           - class: F-content.title Entry
             content:

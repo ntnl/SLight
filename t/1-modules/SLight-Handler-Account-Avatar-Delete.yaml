@@ -47,14 +47,15 @@ Display dialog:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_Account_Avatar
+        class: SL_Object SL_Account_Avatar
         content:
         - class: SL_Delete_Dialog
           content:
           - class: Message
             content:
             - data:
-                label: 'Do you want to delete avatar for Account: ''ela''? Please confirm.'
+                label: 'Do you want to delete avatar for Account: ''ela''? Please
+                  confirm.'
               type: Label
             type: Container
           - class: Buttons

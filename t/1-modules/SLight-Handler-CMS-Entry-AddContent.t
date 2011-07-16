@@ -55,6 +55,7 @@ my @tests = (
             'spec_id' => 1,
 
             'page.path'       => q{Test1},
+            'page.order'      => q{100},
             'page.template'   => q{},
             'page.title'      => q{Sample article title},
             'page.breadcrumb' => q{Article},
@@ -69,9 +70,9 @@ my @tests = (
             'meta.comment_read_policy'  => 0,
         }
     },
-    
-    
-    
+
+
+
     {
         'name' => q{AddContent form - as Current},
         'url'  => q{/About/AddContent-form.web},
@@ -121,6 +122,7 @@ my @tests = (
             'meta.email' => q{agnes@test.test},
 
             'page.path'       => q{Woman},
+            'page.order'      => q{200},
             'page.template'   => q{},
             'page.title'      => q{Teysty Gal},
             'page.breadcrumb' => q{Teysty},
@@ -138,7 +140,7 @@ my @tests = (
             'content.waist'   => '58',
             'content.hips'    => '88',
             'content.cup'     => 'B',
-            
+
             'content.about' => "This is me :)\nAs you can see in the image.",
 
             'meta.comment_write_policy' => 0,

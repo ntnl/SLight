@@ -13,12 +13,12 @@ Ask for page:
         - class: Test
           data:
             href: /Download/
-            label: Download
+            label: Pobierz
           type: Link
         type: Container
     object_data:
       e1:
-        class: SL_Object O-Empty
+        class: SL_Object Empty
         content:
         - class: SL_Delete_Dialog
           content:

@@ -13,7 +13,7 @@ Show field details:
         type: Container
     object_data:
       _field:
-        class: SL_Object O-CMS_Spec_Field
+        class: SL_Object CMS_Spec_Field
         content:
         - class: SL_Properties
           content:

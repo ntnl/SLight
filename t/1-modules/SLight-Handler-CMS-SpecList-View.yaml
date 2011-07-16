@@ -17,7 +17,7 @@ Empty list:
           type: Link
         type: Container
       Core::Toolbox:
-        class: SL_Toolbox_Plugin
+        class: SL_Toolbox_Addon
         content:
         - class: SL_New_Action
           data:
@@ -27,7 +27,7 @@ Empty list:
         type: Container
     object_data:
       l1:
-        class: SL_Object O-Generic
+        class: SL_Object Generic
         content:
         - class: SL_Notification
           content:
@@ -65,7 +65,7 @@ One element list:
           type: Link
         type: Container
       Core::Toolbox:
-        class: SL_Toolbox_Plugin
+        class: SL_Toolbox_Addon
         content:
         - class: SL_New_Action
           data:
@@ -75,7 +75,7 @@ One element list:
         type: Container
     object_data:
       l1:
-        class: SL_Object O-Generic
+        class: SL_Object Generic
         content:
         - content:
           - content:

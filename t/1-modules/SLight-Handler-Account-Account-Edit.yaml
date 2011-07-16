@@ -72,7 +72,7 @@ Show form:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_Account_Edit
+        class: SL_Object SL_Account_Edit
         content:
         - content:
           - content:
@@ -164,7 +164,7 @@ Submit form (bad data):
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_Account_Edit
+        class: SL_Object SL_Account_Edit
         content:
         - content:
           - content:

@@ -152,9 +152,9 @@ sub count_Contents_where { # {{{
 } # }}}
 
 sub get_Content { # {{{
-    my ( $id ) = @_; # Fixme: use Params::Validate here!
+    my ( $id, $_debug ) = @_; # Fixme: use Params::Validate here!
 
-    my $content_object = $_handler->get_ENTITY($id, 1);
+    my $content_object = $_handler->get_ENTITY($id, $_debug);
 
     return $content_object;
 } # }}}

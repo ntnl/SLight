@@ -13,7 +13,7 @@ Get info about an Asset:
         type: Container
     object_data:
       _asset:
-        class: SL_Object O-Asset
+        class: SL_Object Asset
         content:
         - class: SL_Properties
           content:

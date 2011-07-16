@@ -39,6 +39,8 @@ my $_trunk_path;
 sub build_site { # {{{
     my ( $base_dir, $sql_dir, $print_cb, $site_name ) = @_;
 
+    SLight::Core::Config::initialize($base_dir);
+
     if (not $site_name) {
         foreach my $site (keys %sites) {
             # Each build will be done by separate process.
@@ -46,7 +48,7 @@ sub build_site { # {{{
             my $pid = fork;
 
             assert_defined($pid, "Fork works well");
-            
+
             if ($pid) {
                 waitpid($pid,0);
             }

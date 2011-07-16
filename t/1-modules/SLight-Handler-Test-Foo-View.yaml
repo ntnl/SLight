@@ -13,7 +13,7 @@ Call the 'View' actio non 'Test::Foo' object:
         type: Container
     object_data:
       ob1:
-        class: SL_Object O-Debug
+        class: SL_Object Debug
         content:
         - class: SL_Notification
           content:
@@ -29,7 +29,7 @@ Call the 'View' actio non 'Test::Foo' object:
           type: Container
         type: Container
       ob2:
-        class: SL_Object O-Debug
+        class: SL_Object Debug
         content:
         - class: SL_Notification
           content:

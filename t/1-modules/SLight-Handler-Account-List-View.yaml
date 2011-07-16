@@ -17,7 +17,7 @@ List of accounts:
           type: Link
         type: Container
       Core::Toolbox:
-        class: SL_Toolbox_Plugin
+        class: SL_Toolbox_Addon
         content:
         - class: SL_New_Action
           data:
@@ -27,7 +27,7 @@ List of accounts:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_AccountList
+        class: SL_Object SL_AccountList
         content:
         - class: SL_AccountList
           content:

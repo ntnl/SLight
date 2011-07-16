@@ -12,7 +12,7 @@ Headlines on front page:
           type: Link
         type: Container
       Core::Toolbox:
-        class: SL_Toolbox_Plugin
+        class: SL_Toolbox_Addon
         content:
         - class: SL_AddContent_Action
           data:
@@ -32,7 +32,7 @@ Headlines on front page:
         type: Container
     object_data:
       ob1:
-        class: SL_Object O-Content
+        class: SL_Object Content
         content:
         - class: Core
           content:
@@ -55,7 +55,7 @@ Headlines on front page:
           type: Container
         type: Container
       ob3:
-        class: SL_Object O-SL_List_Headlines
+        class: SL_Object SL_List_Headlines
         content:
         - - class: Item
             data:

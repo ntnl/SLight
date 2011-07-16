@@ -12,7 +12,7 @@ Root page:
           type: Link
         type: Container
       Core::Toolbox:
-        class: SL_Toolbox_Plugin
+        class: SL_Toolbox_Addon
         content:
         - class: SL_AddContent_Action
           data:
@@ -32,7 +32,7 @@ Root page:
         type: Container
     object_data:
       ob1:
-        class: SL_Object O-Content
+        class: SL_Object Content
         content:
         - class: Core
           content:

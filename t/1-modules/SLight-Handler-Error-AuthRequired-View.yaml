@@ -13,7 +13,7 @@ Fake AuthRequired error:
         type: Container
     object_data:
       t1:
-        class: SL_Object O-SL_Error_AuthRequired
+        class: SL_Object SL_Error_AuthRequired
         content:
         - class: SL_Dialog
           content:

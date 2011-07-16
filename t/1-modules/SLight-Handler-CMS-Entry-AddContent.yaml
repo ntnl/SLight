@@ -13,12 +13,12 @@ AddContent form - as Current:
         - class: Test
           data:
             href: /About/
-            label: About
+            label: O stronie
           type: Link
         type: Container
     object_data:
       ob2:
-        class: SL_Object O-AddContent
+        class: SL_Object AddContent
         content:
         - content:
           - content:
@@ -133,12 +133,12 @@ AddContent form - as New:
         - class: Test
           data:
             href: /About/
-            label: About
+            label: O stronie
           type: Link
         type: Container
     object_data:
       ob2:
-        class: SL_Object O-AddContent
+        class: SL_Object AddContent
         content:
         - content:
           - content:
@@ -171,11 +171,23 @@ AddContent form - as New:
                 value: ''
               type: Entry
             type: Container
+          - class: F-page.order Entry
+            content:
+            - class: Label
+              data:
+                label: Page order index (less means earlier, more means later)
+              type: Label
+            - class: Value
+              data:
+                name: page.order
+                value: ''
+              type: Entry
+            type: Container
           - class: F-page.title Entry
             content:
             - class: Label
               data:
-                label: Page title
+                label: Page title (en)
               type: Label
             - class: Value
               data:
@@ -187,7 +199,7 @@ AddContent form - as New:
             content:
             - class: Label
               data:
-                label: Breadcrumb label
+                label: Breadcrumb label (en)
               type: Label
             - class: Value
               data:
@@ -199,7 +211,7 @@ AddContent form - as New:
             content:
             - class: Label
               data:
-                label: Menu label
+                label: Menu label (en)
               type: Label
             - class: Value
               data:
@@ -313,12 +325,12 @@ AddContent invitation:
         - class: Test
           data:
             href: /About/
-            label: About
+            label: O stronie
           type: Link
         type: Container
     object_data:
       ob2:
-        class: SL_Object O-AddContent
+        class: SL_Object AddContent
         content:
         - content:
           - content:
@@ -721,12 +733,12 @@ Getting a girl - form:
         - class: Test
           data:
             href: /About/
-            label: About
+            label: O stronie
           type: Link
         type: Container
     object_data:
       ob2:
-        class: SL_Object O-AddContent
+        class: SL_Object AddContent
         content:
         - content:
           - content:
@@ -759,11 +771,23 @@ Getting a girl - form:
                 value: ''
               type: Entry
             type: Container
+          - class: F-page.order Entry
+            content:
+            - class: Label
+              data:
+                label: Page order index (less means earlier, more means later)
+              type: Label
+            - class: Value
+              data:
+                name: page.order
+                value: ''
+              type: Entry
+            type: Container
           - class: F-page.title Entry
             content:
             - class: Label
               data:
-                label: Page title
+                label: Page title (en)
               type: Label
             - class: Value
               data:
@@ -775,7 +799,7 @@ Getting a girl - form:
             content:
             - class: Label
               data:
-                label: Breadcrumb label
+                label: Breadcrumb label (en)
               type: Label
             - class: Value
               data:
@@ -787,7 +811,7 @@ Getting a girl - form:
             content:
             - class: Label
               data:
-                label: Menu label
+                label: Menu label (en)
               type: Label
             - class: Value
               data:
@@ -990,7 +1014,7 @@ Getting a girl - form:
           type: Form
         type: Container
       ob4:
-        class: SL_Object O-Content
+        class: SL_Object Content
         content:
         - class: Core
           content:
@@ -1032,11 +1056,11 @@ Getting a girl - form:
   mime_type: ~
   response: CONTENT
 Getting a girl - submit:
-  location: http://foo.localdomain/About/Woman/
+  location: http://slight.test.localdomain/About/Woman/
   response: REDIRECT
 Submit form - Current:
-  location: http://foo.localdomain/About/
+  location: http://slight.test.localdomain/About/
   response: REDIRECT
 Submit form - New:
-  location: http://foo.localdomain/About/Test1/
+  location: http://slight.test.localdomain/About/Test1/
   response: REDIRECT

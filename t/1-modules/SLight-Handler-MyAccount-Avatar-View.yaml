@@ -23,7 +23,7 @@ Off-site avatar (Gravatar):
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_MyAccount_Avatar
+        class: SL_Object SL_MyAccount_Avatar
         content:
         - content:
           - class: SL_Avatar
@@ -69,7 +69,7 @@ On-site avatar:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_MyAccount_Avatar
+        class: SL_Object SL_MyAccount_Avatar
         content:
         - content:
           - class: SL_Avatar

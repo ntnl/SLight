@@ -17,6 +17,8 @@ use base q{SLight::HandlerBase::List::View};
 use SLight::Core::L10N qw( TR TF );
 use SLight::API::Page qw( get_Page_fields_where );
 use SLight::API::Content qw( get_Contents_fields_where );
+use SLight::API::ContentSpec qw( get_ContentSpec );
+use SLight::DataToken qw( mk_Link_token mk_Label_token mk_Text_token mk_Container_token );
 use SLight::DataStructure::Token;
 
 use Params::Validate qw( :all );
@@ -31,7 +33,7 @@ sub handle_view { # {{{
 
     # Get stuff 'bellow' this object in page structure.
     my $sub_pages = get_Page_fields_where(
-        _fields => [qw( path )],
+        _fields => [qw( path L10N )],
 
         parent_id => $self->{'page'}->{'page_id'},
     );
@@ -57,8 +59,10 @@ sub handle_view { # {{{
 
         my @parts;
 
+        my $item_title = ( $self->get_l10n_value($page->{'L10N'}) or { title=> $page->{'path'} } );
+
         push @parts, mk_Link_token(
-            text  => $page->{'path'},
+            text  => $item_title->{'title'},
             class => q{SL_Title},
             href  => $self->build_url(
                 add_to_path => [ $page->{'path'} ],

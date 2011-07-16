@@ -13,7 +13,7 @@ Fake NotFound error:
         type: Container
     object_data:
       t1:
-        class: SL_Object O-SL_Error_NotFound
+        class: SL_Object SL_Error_NotFound
         content:
         - class: SL_Dialog
           content:

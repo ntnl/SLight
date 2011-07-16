@@ -16,6 +16,8 @@ use strict; use warnings; # {{{
 use FindBin qw{ $Bin };
 use lib $Bin .'/../../lib/';
 
+use SLight::Core::Config;
+
 use Test::More;
 use Test::Exception;
 use Test::FileReferenced;
@@ -32,6 +34,9 @@ plan tests =>
     + 2 # Action only
     + 2 # Everything
 ;
+
+SLight::Core::Config::initialize($Bin);
+SLight::Core::Config::apply_defaults($Bin);
 
 # Trash
 dies_ok { # fixme - make that a throws_ok!

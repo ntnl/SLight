@@ -46,7 +46,7 @@ Email information page:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_MyAccount_MyData
+        class: SL_Object SL_MyAccount_MyData
         content:
         - class: SL_Dialog
           content:
@@ -84,15 +84,15 @@ Email verified:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_MyAccount_MyData
+        class: SL_Object SL_MyAccount_MyData
         content:
         - class: SL_Dialog
           content:
           - class: Message
             content:
             - data:
-                label: Email setting has been changed. All emails will be sent to new
-                  address.
+                label: Email setting has been changed. All emails will be sent to
+                  new address.
               type: Label
             type: Container
           - class: Buttons
@@ -129,7 +129,7 @@ Open My Data form:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_MyAccount_MyData
+        class: SL_Object SL_MyAccount_MyData
         content:
         - class: SL_MyAccount_MyData
           content:
@@ -192,7 +192,7 @@ Send My Data form (bad input):
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_MyAccount_MyData
+        class: SL_Object SL_MyAccount_MyData
         content:
         - class: SL_MyAccount_MyData
           content:

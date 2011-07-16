@@ -12,7 +12,7 @@ Display Spec:
           type: Link
         type: Container
       Core::Toolbox:
-        class: SL_Toolbox_Plugin
+        class: SL_Toolbox_Addon
         content:
         - class: SL_New_Action
           data:
@@ -37,7 +37,7 @@ Display Spec:
         type: Container
     object_data:
       _spec:
-        class: SL_Object O-CMS_Spec
+        class: SL_Object CMS_Spec
         content:
         - class: SL_Properties
           content:
@@ -82,7 +82,7 @@ Display Spec:
           type: Container
         type: Container
       article:
-        class: SL_Object O-CMS_Spec_Field
+        class: SL_Object CMS_Spec_Field
         content:
         - class: SL_Properties
           content:
@@ -129,7 +129,7 @@ Display Spec:
           type: Container
         type: Container
       title:
-        class: SL_Object O-CMS_Spec_Field
+        class: SL_Object CMS_Spec_Field
         content:
         - class: SL_Properties
           content:

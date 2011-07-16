@@ -36,11 +36,11 @@ Open confirmation dialog:
         - class: Test
           data:
             href: /About/
-            label: About
+            label: O stronie
           type: Link
         type: Container
       Core::Toolbox:
-        class: SL_Toolbox_Plugin
+        class: SL_Toolbox_Addon
         content:
         - class: SL_AddContent_Action
           data:
@@ -60,7 +60,7 @@ Open confirmation dialog:
         type: Container
     object_data:
       ob2:
-        class: SL_Object O-Content
+        class: SL_Object Content
         content:
         - class: SL_Delete_Dialog
           content:

@@ -35,6 +35,13 @@ my @tests = (
         'name' => q{Do the update (send form)},
         'url'  => q{/About/Edit-save.web},
         'cgi'  => {
+            'page.template' => q{},
+            'page.order'    => q{},
+
+            'page.title'      => 'Page with updated content',
+            'page.breadcrumb' => 'Updated page',
+            'page.menu'       => 'Updated',
+
             'content.title'   => 'Updated content',
             'content.article' => 'This is an updated content.',
 
@@ -46,7 +53,7 @@ my @tests = (
 
 run_handler_tests(
     tests => \@tests,
-    
+
     strip_dates => 1,
 
     skip_permissions => 1,

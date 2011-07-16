@@ -46,7 +46,7 @@ Display form:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_Account_Avatar
+        class: SL_Object SL_Account_Avatar
         content:
         - content:
           - class: F-avatar FileEntry

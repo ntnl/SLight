@@ -18,7 +18,7 @@ Login form:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_User_Login
+        class: SL_Object SL_User_Login
         content:
         - class: SL_Login_Form
           content:
@@ -87,7 +87,7 @@ Sending form with bad login/pass:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_User_Login
+        class: SL_Object SL_User_Login
         content:
         - class: SL_Login_Form
           content:

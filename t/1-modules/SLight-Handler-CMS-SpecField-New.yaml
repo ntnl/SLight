@@ -13,7 +13,7 @@ Get form:
         type: Container
     object_data:
       _field:
-        class: SL_Object O-CMS_Spec_Field
+        class: SL_Object CMS_Spec_Field
         content:
         - content:
           - class: F-class Entry
@@ -40,15 +40,15 @@ Get form:
                 value: ''
               type: Entry
             type: Container
-          - class: F-order Entry
+          - class: F-field_index Entry
             content:
             - class: Label
               data:
-                label: 'Order:'
+                label: 'Field index:'
               type: Label
             - class: Value
               data:
-                name: order
+                name: field_index
                 value: '2'
               type: Entry
             type: Container

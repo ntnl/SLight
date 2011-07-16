@@ -13,14 +13,15 @@ Fake an AccessDenied error:
         type: Container
     object_data:
       t1:
-        class: SL_Object O-SL_Error_AccessDenied
+        class: SL_Object SL_Error_AccessDenied
         content:
         - class: SL_Dialog
           content:
           - class: Message
             content:
             - data:
-                label: 'You are not authorized to access this page (Error: Access denied).'
+                label: 'You are not authorized to access this page (Error: Access
+                  denied).'
               type: Label
             type: Container
           - class: Buttons

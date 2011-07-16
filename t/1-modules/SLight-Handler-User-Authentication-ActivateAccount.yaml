@@ -13,7 +13,7 @@ Activate already active account:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_ActivateAccount_User
+        class: SL_Object SL_ActivateAccount_User
         content:
         - class: SL_Dialog
           content:
@@ -70,7 +70,7 @@ Display 'Thank you' page:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_Register_User
+        class: SL_Object SL_Register_User
         content:
         - class: SL_Dialog
           content:
@@ -108,7 +108,7 @@ Try to activate fake account:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_ActivateAccount_User
+        class: SL_Object SL_ActivateAccount_User
         content:
         - class: SL_Dialog
           content:

@@ -9,11 +9,11 @@
   Data: 'Dear Test subject,
 
 
-    An account has been registered on foo.localdomain by using the e-mail address
-    test@subject.test.
+    An account has been registered on slight.test.localdomain by using the e-mail
+    address test@subject.test.
 
 
-    Please validate it by using the following link: http://foo.localdomain/_Authentication/ActivateAccount.web?key=0000029A-002C-0002-002C-0000000022B8&login=Fooley
+    Please validate it by using the following link: http://slight.test.localdomain/_Authentication/ActivateAccount.web?key=0000029A-002C-0002-002C-0000000022B8&login=Fooley
 
 
     Thank you,
@@ -65,7 +65,7 @@ Display 'Thank you' page:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_Register_User
+        class: SL_Object SL_Register_User
         content:
         - class: SL_Dialog
           content:
@@ -105,7 +105,7 @@ Send out bad data (crash test):
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_Register_User
+        class: SL_Object SL_Register_User
         content:
         - content:
           - content:
@@ -219,7 +219,7 @@ User registration form:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_Register_User
+        class: SL_Object SL_Register_User
         content:
         - content:
           - content:

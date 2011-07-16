@@ -13,7 +13,7 @@ Levels list:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_System_Permissions
+        class: SL_Object SL_System_Permissions
         content:
         - content:
           - class: System
@@ -71,7 +71,7 @@ Levels list:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_System_Permissions
+        class: SL_Object SL_System_Permissions
         content:
         - content:
           - content:
@@ -4171,7 +4171,7 @@ Levels list:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_System_Permissions
+        class: SL_Object SL_System_Permissions
         content:
         - content:
           - content:
@@ -8271,7 +8271,7 @@ Levels list:
         type: Container
     object_data:
       o:
-        class: SL_Object O-SL_System_Permissions
+        class: SL_Object SL_System_Permissions
         content:
         - content:
           - content:

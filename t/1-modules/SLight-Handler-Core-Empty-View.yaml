@@ -13,11 +13,11 @@ Display empty page:
         - class: Test
           data:
             href: /Download/
-            label: Download
+            label: Pobierz
           type: Link
         type: Container
       Core::Toolbox:
-        class: SL_Toolbox_Plugin
+        class: SL_Toolbox_Addon
         content:
         - class: SL_AddContent_Action
           data:
@@ -32,7 +32,7 @@ Display empty page:
         type: Container
     object_data:
       e1:
-        class: SL_Object O-Empty
+        class: SL_Object Empty
         content: []
         type: Container
     object_order:

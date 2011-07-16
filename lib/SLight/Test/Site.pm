@@ -49,6 +49,8 @@ sub prepare_place { # {{{
 
     $test_dir = $P{'test_dir'};
 
+    SLight::Core::Config::initialize($test_dir);
+
     my $site_root = prepare_fake_dir();
 
     fake_config($site_root);
@@ -66,6 +68,8 @@ sub prepare_empty { # {{{
     );
 
     $test_dir = $P{'test_dir'};
+
+    SLight::Core::Config::initialize($test_dir);
 
     my $site_root = prepare_fake_dir();
 
@@ -92,6 +96,8 @@ sub prepare_fake { # {{{
 
     $test_dir = $P{'test_dir'};
 
+    SLight::Core::Config::initialize($test_dir);
+
     my $src_dir = $test_dir .q{/../t_data/}. $P{'site'};
     assert_defined(-d $src_dir, "Fake site ($src_dir) exist.");
 
@@ -111,7 +117,9 @@ sub prepare_fake { # {{{
     return $site_root;
 } # }}}
 
-# Internal subroutines.
+################################################################################
+#                         Internal subroutines.                                #
+################################################################################
 
 # Turn SQLite Dump into DB.
 sub undump_db { # {{{

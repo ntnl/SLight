@@ -12,7 +12,7 @@ Ask for confirmation of Asset deletion:
           type: Link
         type: Container
       Core::Toolbox:
-        class: SL_Toolbox_Plugin
+        class: SL_Toolbox_Addon
         content:
         - class: SL_AddContent_Action
           data:
@@ -32,7 +32,7 @@ Ask for confirmation of Asset deletion:
         type: Container
     object_data:
       _asset:
-        class: SL_Object O-Asset
+        class: SL_Object Asset
         content:
         - class: SL_Delete_Dialog
           content:
