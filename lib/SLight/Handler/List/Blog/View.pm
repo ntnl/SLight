@@ -54,7 +54,7 @@ sub handle_view { # {{{
     my @objects;
 
     # Sort by time - most recent items first.
-    foreach my $page (sort { $a->{'id'} cmp $b->{'id'} } @{ $sub_pages }) {
+    foreach my $page (sort { $b->{'id'} cmp $a->{'id'} } @{ $sub_pages }) {
         my $content_object = ( $content_hash{ $page->{'id'} } or {} );
 
         my @parts;

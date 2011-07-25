@@ -42,7 +42,11 @@ sub _process { # {{{
         _fields => [qw( path menu_order L10N )]
     );
 
-    my $menu_items = $self->build_menu(get_Page_full_path($page->{'parent_id'}), $pages);
+    my $menu_items = $self->build_menu(
+        get_Page_full_path($page->{'parent_id'}),
+        $pages,
+        $self->{'page_id'},
+    );
 
     my $container = mk_Container_token(
         class   => 'SL_Submenu_Addon',

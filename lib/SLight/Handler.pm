@@ -36,7 +36,7 @@ sub new { # {{{
         meta  => {},
 
         redirect => undef,
-        
+
         upload => undef,
 
         read_only => 0,
@@ -61,14 +61,14 @@ sub handle { # {{{
             url     => { type=>HASHREF },
             user    => { type=>HASHREF },
             options => { type=>HASHREF },
-            
+
             oid      => { type=>SCALAR | UNDEF },
             metadata => { type=>HASHREF | UNDEF },
-            
+
             is_main_object => { type=>SCALAR },
         }
     );
-    
+
     $self->{'page'}    = $P{'page'};
     $self->{'url'}     = $P{'url'};
     $self->{'user'}    = $P{'user'};

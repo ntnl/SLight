@@ -54,7 +54,7 @@ sub build_form_guts { # {{{
                 caption => TR('Path element name'),
                 name    => 'page.path',
                 value   => ( $self->{'options'}->{'page.path'} or $page->{'path'} or q{}),
-                error   => $P{'errors'}->{'page.path'},
+                error   => delete $P{'errors'}->{'page.path'},
             );
         }
 
@@ -71,13 +71,13 @@ sub build_form_guts { # {{{
             caption => TR('Template file'),
             name    => 'page.template',
             value   => ( $self->{'options'}->{'page.template'} or $page->{'template'} or q{}),
-            error   => $P{'errors'}->{'page.template'},
+            error   => delete $P{'errors'}->{'page.template'},
         );
         $form->add_Entry(
             caption => TR('Page order index (less means earlier, more means later)'),
             name    => 'page.order',
             value   => ( $self->{'options'}->{'page.order'} or $page->{'menu_order'} or q{}),
-            error   => $P{'errors'}->{'page.order'},
+            error   => delete $P{'errors'}->{'page.order'},
         );
 
 #        use Data::Dumper; warn Dumper $P{'page'};
@@ -87,19 +87,19 @@ sub build_form_guts { # {{{
             caption => TF('Page title (%s)', undef, $lang),
             name    => 'page.title',
             value   => ( $self->{'options'}->{'page.title'} or $page->{'L10N'}->{ $lang }->{'title'} or q{}),
-            error   => $P{'errors'}->{'page.title'},
+            error   => delete $P{'errors'}->{'page.title'},
         );
         $form->add_Entry(
             caption => TF('Breadcrumb label (%s)', undef, $lang),
             name    => 'page.breadcrumb',
             value   => ( $self->{'options'}->{'page.breadcrumb'} or $page->{'L10N'}->{ $lang }->{'breadcrumb'} or q{}),
-            error   => $P{'errors'}->{'page.breadcrumb'},
+            error   => delete $P{'errors'}->{'page.breadcrumb'},
         );
         $form->add_Entry(
             caption => TF('Menu label (%s)', undef, $lang),
             name    => 'page.menu',
             value   => ( $self->{'options'}->{'page.menu'} or $page->{'L10N'}->{ $lang }->{'menu'} or q{}),
-            error   => $P{'errors'}->{'page.menu'},
+            error   => delete $P{'errors'}->{'page.menu'},
         );
     }
 
@@ -109,12 +109,12 @@ sub build_form_guts { # {{{
     # he must provide an email address, that will be used to sign this new entry.
     # Note/limitation:
     #   once created, this field can not be changed.
-    if (not $content and not $self->{'user'}->{'id'}) {
+    if (not $content and not $self->{'user'}->{'email'}) {
         $form->add_Entry(
             caption => TR('Email (internal use only)'),
             name    => 'meta.email',
             value   => ( $self->{'options'}->{'meta.email'} or q{} ),
-            error   => $P{'errors'}->{'meta.email'},
+            error   => delete $P{'errors'}->{'meta.email'},
         );
     }
 
@@ -142,7 +142,7 @@ sub build_form_guts { # {{{
         caption => TR('Comment write policy'),
         name    => 'meta.comment_write_policy',
         value   => ( $self->{'options'}->{'meta.comment_write_policy'} or $content->{'comment_write_policy'} or 0),
-        error   => $P{'errors'}->{'meta.comment_write_policy'},
+        error   => delete $P{'errors'}->{'meta.comment_write_policy'},
         options => [
             [ 0, TR(q{Disabled}) ],
             [ 1, TR(q{By registered users only (moderated)}) ],
@@ -155,13 +155,26 @@ sub build_form_guts { # {{{
         caption => TR('Comment display policy'),
         name    => 'meta.comment_read_policy',
         value   => ( $self->{'options'}->{'meta.comment_read_policy'} or $content->{'comment_read_policy'} or 0),
-        error   => $P{'errors'}->{'meta.comment_read_policy'},
+        error   => delete $P{'errors'}->{'meta.comment_read_policy'},
         options => [
             [ 0, TR(q{Comments are hidden}) ],
             [ 1, TR(q{Visible to registered users only}) ],
             [ 2, TR(q{Visible to everyone}) ],
         ]
     );
+
+    # Display errors, that have no fields.
+    # This is not a NORMAL situation, so it is reported to error log.
+    if (scalar keys %{ $P{'errors'} }) {
+        foreach my $key (keys %{ $P{'errors'} }) {
+            print STDERR "Error not connected to form: $key (" . $P{'errors'}->{$key} . ")\n";
+
+            $form->add_Label(
+                class => q{SL_Error},
+                text  => TR($key) . q{: }. $P{'errors'}->{$key},
+            );
+        }
+    }
 
     return;
 } # }}}
@@ -208,14 +221,14 @@ sub _add_field_to_form { # {{{
             name => $cgi_field_name .q{-data},
 
             caption => $field_spec->{'caption'},
-            error   => $P{'errors'}->{ $cgi_field_name .q{-data} },
+            error   => delete $P{'errors'}->{ $cgi_field_name .q{-data} },
         );
         $P{'form'}->add_Entry(
             name => $cgi_field_name,
 
             caption => TR('Summary'),
             value   => ( $self->{'options'}->{$cgi_field_name} or $P{'content'}->{'Data'}->{$field_name}->{'value'} or q{} ),
-            error   => $P{'errors'}->{$cgi_field_name},
+            error   => delete $P{'errors'}->{$cgi_field_name},
         );
         if ($P{'content'}->{'id'}) {
             my $asset_ids = get_Asset_ids_on_Content_Field($P{'content'}->{'id'}, $field_spec->{'id'});
@@ -270,7 +283,7 @@ sub _add_field_to_form { # {{{
 
             caption => ( sprintf "%s (%s)", $field_spec->{'caption'}, $lang_info ),
             value   => ( $entry_value or q{} ),
-            error   => $P{'errors'}->{$cgi_field_name},
+            error   => delete $P{'errors'}->{$cgi_field_name},
         );
     }
 
@@ -363,7 +376,7 @@ sub slurp_content_form_data { # {{{
 
 sub mk_validator_metadata { # {{{
     my ( $self, %P ) = @_;
-    
+
     # Prepare validation metadata.
     my %validator_metadata = (
         'meta.comment_write_policy' => { type=>'Integer' },
@@ -391,7 +404,9 @@ sub mk_validator_metadata { # {{{
         $validator_metadata{'page.menu'}       = { type=>'String', optional=>1 };
     }
 
-    if (not $P{'content'} and not $self->{'user'}->{'id'}) {
+#    use Data::Dumper; warn Dumper \%P, $self->{'user'};
+
+    if (not $P{'content'} and not $self->{'user'}->{'email'}) {
         $validator_metadata{'meta.email'} = { type=>'Email', max_length=>1024 };
     }
 

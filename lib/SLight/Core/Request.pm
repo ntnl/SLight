@@ -316,13 +316,13 @@ sub make_user_hash { # {{{
 
     my $user_hash = SLight::Core::Session::part( 'user' );
 
-    if ($user_hash) {
-        if ($user_hash->{'login'}) {
-            my $user_data = SLight::API::User::get_User_by_login( user=>$user_hash->{'login'} );
+    if ($user_hash and $user_hash->{'login'}) {
+        my $user_data = SLight::API::User::get_User_by_login( $user_hash->{'login'} );
 
-            $user_hash->{'email'} = $user_data->{'email'};
-            $user_hash->{'name'}  = $user_data->{'name'};
-        }
+#        use Data::Dumper; warn 'User data: ' . Dumper $user_data;
+
+        $user_hash->{'email'} = $user_data->{'email'};
+        $user_hash->{'name'}  = $user_data->{'name'};
     }
     else {
         $user_hash = {
@@ -333,6 +333,8 @@ sub make_user_hash { # {{{
             email => undef,
         };
     }
+
+#    use Data::Dumper; warn 'User hash: ' . Dumper $user_hash;
 
     return $user_hash;
 } # }}}

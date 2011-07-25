@@ -64,7 +64,18 @@ sub list_addons { # {{{
         }
     }
 
-    warn "Addons found in template: ". join ", ", @addons;
+    my $extra_addons = SLight::Core::Config::get_option('site_addons');
+    if ($extra_addons) {
+        foreach my $key (keys %{ $extra_addons }) {
+            my $block = q{slight.} . $key . q{.addon};
+
+            if ($self->{'template'}->has_block($block)) {
+                push @addons, $extra_addons->{$key};
+            }
+        }
+    }
+
+#    warn "Add-ons found in template: ". join ", ", @addons;
 
     return @addons;
 } # }}}
@@ -85,7 +96,7 @@ sub process_addon_data { # {{{
 #    use Data::Dumper; warn q{process_addon_data: } . Dumper $addon, $data_structure;
 
     my $addon_placeholder = $addon;
-    $addon_placeholder =~ s{::}{\.}s;
+    $addon_placeholder =~ s{::}{\.}sg;
 
     $self->{'HTML'}->{'addons'}->{$addon_placeholder} = $data_structure;
 

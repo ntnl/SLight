@@ -51,6 +51,11 @@ sub _find_handlers { # {{{
         my @dirs = read_dir($path);
 
         foreach my $item (@dirs) {
+            # Skip hidden files/directories.
+            if ($item =~ m{^\.}s) {
+                next;
+            }
+
             if ($item eq 'SLight' and -d $path .q{/}. $item .q{/Handler}) {
                 _harvest_handler_actions($path .q{/}. $item, \%handler_action_pool);
             }
@@ -87,6 +92,11 @@ sub _harvest_handler_actions { # {{{
     my @handlers = read_dir($dir .q{/Handler});
 
     foreach my $handler (@handlers) {
+        # Skip hidden files/directories.
+        if ($handler =~ m{^\.}s) {
+            next;
+        }
+
         if (not -d $dir .q{/Handler/} . $handler) {
             next;
         }
@@ -94,6 +104,11 @@ sub _harvest_handler_actions { # {{{
         my @objects = read_dir($dir .q{/Handler/} . $handler);
 
         foreach my $object (@objects) {
+            # Skip hidden files/directories.
+            if ($object =~ m{^\.}s) {
+                next;
+            }
+
             if (not -d $dir .q{/Handler/} . $handler . q{/} . $object) {
                 next;
             }

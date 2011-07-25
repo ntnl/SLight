@@ -118,7 +118,7 @@ sub main { # {{{
         return $self->internal_error_response($P{'url'}, $msg);
     }
 
-    return $self->headers_string() .qq{\n} . encode_utf8( $body or q{} );
+    return $self->headers_string() . qq{\n} . encode_utf8( $body or q{} );
 } # }}}
 
 # 'application/octet-stream'

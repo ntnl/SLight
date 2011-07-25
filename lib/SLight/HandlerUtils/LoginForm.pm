@@ -56,7 +56,7 @@ sub build { # {{{
         class => 'SL_Register_Action',
     );
     $form->add_Link(
-        href  => q{/_Authentication/Register.web},
+        href  => q{/_Authentication/Password.web},
         text  => TR("Forgot password?"),
         class => 'SL_Password_Action',
     );

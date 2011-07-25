@@ -34,7 +34,7 @@ my $session_id;
 sub is_live_session { # {{{
     my ( $id ) = @_;
 
-    warn "Is valid session?";
+#    warn "Is valid session?";
 
     if (not is_valid_session_id($id)) {
         warn "Not valid ID!";

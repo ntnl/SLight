@@ -20,6 +20,20 @@ use base q{SLight::PathHandler};
 #
 # Path must have either no (default object is returned), or one element.
 
+sub get_path_target { # {{{
+    my ( $self, $path ) = @_;
+
+    if ($path =~ m{^/([^/]+)/(([^/]+)/)?$}s) {
+        return {
+            handler => $self->class_base() . q{::} . $1,
+
+            id => ( $3 or 0 ),
+        };
+    }
+
+    return;
+} # }}}
+
 sub analyze_path { # {{{
     my ( $self, $path ) = @_;
 

@@ -39,6 +39,7 @@ sub apply_defaults { # {{{
         test_site_dir => q{/tmp/},
         lang          => [qw( en )],
         debug         => 0, # Set to 1, to see more verbose error messages.
+        site_addons   => undef,
         lib           => undef,
         mailback      => undef,
 

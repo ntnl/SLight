@@ -112,14 +112,18 @@ my @tests = (
         }
     },
     {
-        name => q{Getting a girl - submit},
-        url  => q{/About/AddContent-save.web},
-        cgi  => {
+        name    => q{Getting a girl - submit},
+        url     => q{/About/AddContent-save.web},
+        session => {
+            'user' => {
+                login => 'aga',
+                id    => 1,
+            },
+        },
+        cgi => {
             'target'  => 'New',
             'handler' => 'CMS::Entry',
             'spec_id' => 3,
-
-            'meta.email' => q{agnes@test.test},
 
             'page.path'       => q{Woman},
             'page.order'      => q{200},
@@ -162,7 +166,7 @@ my @tests = (
 
 run_handler_tests(
     tests => \@tests,
-    
+
     strip_dates => 1,
 
     skip_permissions => 1,

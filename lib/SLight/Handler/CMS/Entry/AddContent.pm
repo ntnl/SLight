@@ -312,7 +312,10 @@ sub handle_save { # {{{
 
         $content{'on_page_index'} = scalar @{ $content_ids } + 1;
     }
-    if ($self->{'options'}->{'meta.email'}) {
+    if ($self->{'user'}->{'email'}) {
+        $content{'email'} = $self->{'user'}->{'email'};
+    }
+    elsif ($self->{'options'}->{'meta.email'}) {
         $content{'email'} = $self->{'options'}->{'meta.email'};
     }
 

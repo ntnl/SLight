@@ -34,7 +34,7 @@ my @tests = (
     },
     {
         'name' => q{Submit form (bad data)},
-        'url'  => q{/_Account/add/Account/New-save.web},
+        'url'  => q{/_Account/add/Account/New-save-pl.web},
         'cgi'  => {
             'u-login'  => q{t3$t},
             'u-name'   => q{1234567890qwertyuiopasdfghjklzxcvbnm1qaz2wsx3edc4rfv5tgb6yhn7ujm8ik9ol0p},
@@ -47,13 +47,13 @@ my @tests = (
     },
     {
         'name' => q{Submit form (goot data)},
-        'url'  => q{/_Account/add/Account/New-save.web},
+        'url'  => q{/_Account/add/Account/New-save-pl.web},
         'cgi'  => {
             'u-login'  => q{NewUser},
             'u-name'   => q{Creted 4 Test},
             'u-email'  => q{foo@bar.test},
             'u-status' => q{Enabled},
-            
+
             'u-pass'        => q{FooBarBaz},
             'u-pass-repeat' => q{FooBarBaz},
         },

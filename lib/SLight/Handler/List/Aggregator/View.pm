@@ -53,9 +53,7 @@ sub handle_view { # {{{
 
     my @objects;
 
-    # FIXME: sorting is lame...
-    # Generally it sorts alphabetically.
-    foreach my $page (sort { ( $b->{'menu_order'} cmp $b->{'menu_order'} ) or ( $a->{'path'} cmp $b->{'path'} ) } @{ $sub_pages }) {
+    foreach my $page (sort { ( $a->{'menu_order'} cmp $b->{'menu_order'} ) or ( $a->{'path'} cmp $b->{'path'} ) } @{ $sub_pages }) {
         my $content_object = ( $content_hash{ $page->{'id'} } or {} );
 
         my @parts;

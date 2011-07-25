@@ -24,8 +24,6 @@ use Params::Validate qw( :all );
 # }}}
 
 sub run { # {{{
-    SLight::Core::Config::initialize( getcwd() );
-
     my $sessions_dir = SLight::Core::Config::get_option('data_root') . q{sessions/};
 
     my @files = read_dir($sessions_dir);

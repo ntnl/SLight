@@ -94,6 +94,7 @@ sub make_toolbox { # {{{
 
                 handler_object => $class_and_id->{'id'},
             );
+
             if ($access_policy ne q{GRANTED}) {
                 next;
             }

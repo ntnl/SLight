@@ -27,7 +27,7 @@ sub _process { # {{{
     my ( $self, %P ) = @_;
 
     my @info_items;
-    
+
     # The string: $gen_item$ should be replaced by Interface,
     # the Interface knows how much time was actually needed.
     push @info_items, mk_Label_token(

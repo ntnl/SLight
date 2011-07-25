@@ -53,7 +53,7 @@ Login form:
             type: Link
           - class: F-SL_Password_Action Link
             data:
-              href: /_Authentication/Register.web
+              href: /_Authentication/Password.web
               label: Forgot password?
             type: Link
           data:
@@ -126,7 +126,7 @@ Sending form with bad login/pass:
             type: Link
           - class: F-SL_Password_Action Link
             data:
-              href: /_Authentication/Register.web
+              href: /_Authentication/Password.web
               label: Forgot password?
             type: Link
           data:

@@ -4,8 +4,8 @@ Root menu:
   content:
   - class: Other
     data:
-      href: /About/
-      label: About...
+      href: /Download/
+      label: Download
     type: Link
   - class: Other
     data:
@@ -14,26 +14,26 @@ Root menu:
     type: Link
   - class: Other
     data:
-      href: /Download/
-      label: Download
+      href: /About/
+      label: About...
     type: Link
   type: Container
 Root menu - remains the same:
   class: SL_Rootmenu_Addon
   content:
-  - class: Current
+  - class: Other
     data:
-      href: /About/
-      label: About...
+      href: /Download/
+      label: Download
     type: Link
   - class: Other
     data:
       href: /Docs/
       label: Documentation
     type: Link
-  - class: Other
+  - class: Current
     data:
-      href: /Download/
-      label: Download
+      href: /About/
+      label: About...
     type: Link
   type: Container

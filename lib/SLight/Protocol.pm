@@ -147,10 +147,10 @@ sub S_process_object { # {{{
 
 sub S_process_addon { # {{{
     my ( $self, $class, $metadata ) = @_;
-    
+
 #    use Data::Dumper; warn "addon meta: " . Dumper $metadata;
 #    use Data::Dumper; warn "page: " . Dumper $self->{'page'};
-    
+
     my ($pkg, $addon) = ( $class =~ m{^(.+?)::(.+?)$}s );
 
     my $addon_object = eval {

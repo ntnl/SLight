@@ -921,7 +921,7 @@ sub process_element_Label { # {{{
 } # }}}
 sub process_element_Text { # {{{
     my ( $data ) = @_;
-    
+
     return (
         Text => SLight::Output::HTML::Generator::structure_to_html($data->{'text'})
     );

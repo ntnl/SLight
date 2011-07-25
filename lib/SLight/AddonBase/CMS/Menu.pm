@@ -22,54 +22,38 @@ use SLight::Core::L10N qw( TR TF );
 use SLight::DataToken qw( mk_Link_token );
 # }}}
 
-# Obsolete?
-# sub get_pages_and_objects { # {{{
-#     my ( $self, $parent_page_id ) = @_;
-# 
-#     my $pages = get_Page_fields_where(
-#         parent_id => $parent_page_id,
-# 
-#         _fields => [qw( path )]
-#     );
-# 
-#     my @pages_and_objects;
-# 
-#     foreach my $page (@{ $pages }) {
-#         my %entry = (
-#             s => 0,
-#             l => $page->{'path'},
-#         );
-# 
-#         push @pages_and_objects, \%entry;
-#     }
-# 
-#     return [ sort { ( $a->{'s'} <=> $b->{'s'} ) or ( $a->{'s'} cmp $b->{'s'} ) } @pages_and_objects ];
-# } # }}}
-
 sub build_menu { # {{{
-    my ( $self, $base_path, $pages ) = @_;
+    my ( $self, $base_path, $pages, $selected_page_id ) = @_;
 
     my $dfl = SLight::Core::Config::get_option('lang')->[0];
 
     my @menu_items;
-    foreach my $page (sort { $a->{'menu_order'} <=> $b->{'menu_order'} } @{ $pages }) {
+    foreach my $page (sort { $a->{'menu_order'} <=> $b->{'menu_order'} or $b->{'id'} <=> $a->{'id'} } @{ $pages }) {
         my $class = 'Other';
 
-        # FIXME! This will not work on 2-nd level page :(
-        if ($self->{'page_id'} == $page->{'id'}) {
+        if ($page->{'id'} == $selected_page_id) {
             $class = 'Current';
         }
 
-        my $l10n_node = ( $page->{'L10N'}->{ $self->{'url'}->{'lang'} } or $page->{'L10N'}->{ $dfl } or { menu => $page->{'path'} } );
+        my $label;
+        foreach my $lang (@{ SLight::Core::Config::get_option('lang') }, q{*}) {
+            warn "$lang?";
+            if ($page->{'L10N'}->{ $lang }->{'menu'}) {
+                $label = $page->{'L10N'}->{ $lang }->{'menu'};
+                last;
+            }
+        }
 
-#        use Data::Dumper; warn Dumper $l10n_node;
+        if (not $label) {
+            $label = $page->{'path'};
+        }
 
         my $menu_item = mk_Link_token(
             class => $class,
             href  => SLight::Core::URL::make_url(
                 path => [ @{ $base_path }, $page->{'path'} ],
             ),
-            text => $l10n_node->{'menu'},
+            text => $label,
         );
 
         push @menu_items, $menu_item;

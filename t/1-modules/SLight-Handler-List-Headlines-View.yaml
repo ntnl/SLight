@@ -59,8 +59,8 @@ Headlines on front page:
         content:
         - - class: Item
             data:
-              href: /About/
-              label: About the test page
+              href: /Download/
+              label: Download
             type: Link
           - class: Item
             data:
@@ -69,8 +69,8 @@ Headlines on front page:
             type: Link
           - class: Item
             data:
-              href: /Download/
-              label: Download
+              href: /About/
+              label: About the test page
             type: Link
         type: Container
     object_order:

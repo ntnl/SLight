@@ -52,7 +52,7 @@ Not logged in:
       type: Link
     - class: F-SL_Password_Action Link
       data:
-        href: /_Authentication/Register.web
+        href: /_Authentication/Password.web
         label: Forgot password?
       type: Link
     data:

@@ -34,7 +34,7 @@ my @tests = (
     },
     {
         'name' => q{Submit form (bad data)},
-        'url'  => q{/_Account/beti/Account/Edit-save.web},
+        'url'  => q{/_Account/beti/Account/Edit-save-pl.web},
         'cgi'  => {
             'u-name'   => q{1234567890qwertyuiopasdfghjklzxcvbnm1qaz2wsx3edc4rfv5tgb6yhn7ujm8ik9ol0p},
             'u-email'  => q{foo@bar@baz},
@@ -47,7 +47,7 @@ my @tests = (
     },
     {
         'name' => q{Submit form (good data)},
-        'url'  => q{/_Account/beti/Account/Edit-save.web},
+        'url'  => q{/_Account/beti/Account/Edit-save-pl.web},
         'cgi'  => {
             'u-name'   => q{Beate},
             'u-email'  => q{bb@bar.test},

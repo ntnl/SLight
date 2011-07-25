@@ -16,6 +16,7 @@ use strict; use warnings; # {{{
 our $VERSION = 0.0.5;
 
 use Carp::Assert::More qw( assert_defined );
+use Cwd qw( getcwd );
 use Params::Validate qw( :all );
 # }}}
 
@@ -27,13 +28,13 @@ sub new { # {{{
 
     bless $self, $class;
 
+    # Load configuration
+    SLight::Core::Config::initialize( getcwd() );
+
     return $self;
 } # }}}
 
 sub main { # {{{
-    # Load configuration
-    SLight::Core::Config::initialize( getcwd() );
-
     # Dev note:
     #   Hardcoded, but in future can be dynamic or even configurable.
 

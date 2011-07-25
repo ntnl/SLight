@@ -41,8 +41,7 @@ sub handle_view { # {{{
 
     my @objects;
 
-    # FIXME: sorting is lame...
-    foreach my $page (sort { $a->{'path'} cmp $b->{'path'} } @{ $sub_pages }) {
+    foreach my $page (sort { $b->{'id'} cmp $a->{'id'} } @{ $sub_pages }) {
         my $value = ( $self->get_l10n_value($page->{'L10N'}) or { title=> $page->{'path'} } );
 
         push @objects, mk_Link_token(

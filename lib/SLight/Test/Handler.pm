@@ -1,6 +1,6 @@
 package SLight::Test::Handler;
 ################################################################################
-# 
+#
 # SLight - Lightweight Content Management System.
 #
 # Copyright (C) 2010-2011 Bartłomiej /Natanael/ Syguła
@@ -9,7 +9,7 @@ package SLight::Test::Handler;
 # It is licensed, and can be distributed under the same terms as Perl itself.
 #
 # More information on: http://slight-cms.org/
-# 
+#
 ################################################################################
 
 use strict; use warnings; # {{{
@@ -22,8 +22,9 @@ our %EXPORT_TAGS = ('all' => [ @EXPORT_OK ]);
 use SLight::Core::Request;
 use SLight::Core::URL;
 use SLight::Test::Runner qw( run_tests );
+use SLight::PathHandler::Test;
 
-use Carp::Assert::More qw( assert_defined );
+use Carp::Assert::More qw( assert_defined assert_lacks );
 use Params::Validate qw( :all );
 use YAML::Syck qw( Dump Load );
 # }}}
@@ -108,8 +109,25 @@ sub _run_test { # {{{
         foreach my $part (keys %{ $t->{'session'} }) {
             SLight::Core::Session::part_set($part, $t->{'session'}->{$part});
         }
-        
+
         SLight::Core::Session::save();
+    }
+
+    if ($t->{'object'}) {
+        # In this case, Page content's are defined by the test case,
+        # not by looking at the URL.
+
+        assert_lacks($t, 'url', 'url is NOT defined');
+
+        SLight::PathHandler::Test::_set_objects(
+            objects => {
+                Test_Object_1 => $t->{'object'},
+            },
+            object_order => [ 'Test_Object_1' ],
+            main_object  => 'Test_Object_1',
+        );
+
+        $t->{'url'} = q{/_Test/};
     }
 
     assert_defined($t->{'url'});
@@ -130,6 +148,10 @@ sub _run_test { # {{{
 
     if ($opts->{'strip_dates'}) {
         $result = _strip_dates($result);
+    }
+
+    if ($t->{'object'}) {
+        SLight::PathHandler::Test::_clear_objects();
     }
 
     return $result;

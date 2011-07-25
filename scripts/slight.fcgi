@@ -39,8 +39,6 @@ while($request->Accept() >= 0) {
         bin => $Bin,
     );
 
-    utf8::encode($out);
-
     print $out;
 }
 

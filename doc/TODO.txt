@@ -63,135 +63,47 @@
 [ ]         SLight::Handler::Group::Users::Remove
 [ ]             Implement
 [ ]             Test
+[ ] Template engine improvements
+[ ]     Support for 'style' attribute in mk_*_token and bellow.
+[ ]     Implement 'Fieldset' widget (groups form entries).
 [ ] Improve code sharing between 'Account' and 'MyAccount' Handler modules.
 [ ] Implement ability to verify, if a Handler exists (such check is hard at the moment).
+[ ] Split 'content' into "objects before", "main object", "objects after" (with 'content' support maintained)
+
+=--= v?.?.? - ""
+
+[ ] Development
+[ ]     ...
+[ ] Improvements
+[ ]     ...
+[ ] Bugs
+[ ]     ...
+[ ] Release to the public
+[ ]     Bump version
+[ ]     Build packages
+[ ]     Beta-test
+[ ]     Upload package for public consumption
+[ ]     Spread the news :)
 
 =--= v1.0.0 - ""
-
-[ ] Development
-[ ]     ...
-[ ] Improvements
-[ ]     ...
-[ ] Bugs
-[ ]     ...
-[ ] Release to the public
-[ ]     Bump version
-[ ]     Build packages
-[ ]     Beta-test
-[ ]     Upload package for public consumption
-[ ]     Spread the news :)
-
-=--= v0.0.9 - ""
-
-[ ] Development
-[ ]     ...
-[ ] Improvements
-[ ]     ...
-[ ] Bugs
-[ ]     ...
-[ ] Release to the public
-[ ]     Bump version
-[ ]     Build packages
-[ ]     Beta-test
-[ ]     Upload package for public consumption
-[ ]     Spread the news :)
-
-=--= v0.0.8 - ""
 
 [ ] Development
 [ ]     AJAX
 [ ]         Upgrade all applicable functionality to support AJAX
 [ ]     ...
-[ ] Improvements
-[ ]     ...
-[ ] Bugs
-[ ]     ...
-[ ] Release to the public
-[ ]     Bump version
-[ ]     Build packages
-[ ]     Beta-test
-[ ]     Upload package for public consumption
-[ ]     Spread the news :)
-
-=--= v0.0.7 - "Comments and Attachments"
-
-[ ] API
-[ ]     Comment store
-[-] DataStructure
-[ ]     SLight::DataStructure::Table (ex CoMe...GenericTable)
-[ ]         Implement
-[ ]         Test
-[-]     SLight::DataStructure::Table::Properties (ex CoMe...GenericProperties)
-[ ]         Implement
-[ ]         Test
-[ ]     SLight::DataStructure::Form::Diff (CoMe...DiffForm)
-[ ]         Implement
-[ ]         Test
-[ ] CMS
-[ ]     SLight::Handler::CMS::Entry
-[ ]         SLight::Handler::CMS::Entry::Details <-- Display the object with all Assets and Comments shown on page.
-[ ]             Ability for the main object to instruct the Protocol, that it wants to replace aux objects with own stuff.
-[ ]             Replace aux objects with 'SLight::Handler::CMS::Entry::Assets' and 'SLight::Handler::CMS::Entry::Comments'
-[ ]             Test
-[ ]         SLight::Handler::CMS::Entry::Attach <-- attach a file to the object as an Asset
-[ ]             Form - show
-[ ]             Form - save
-[ ]             Test
-[ ]         SLight::Handler::CMS::Entry::Assets <-- detailed information about assets attached to the CMS object
-[ ]             Implement
-[ ]             Test
-[ ]         SLight::Handler::CMS::Entry::Comment <-- post a comment about the CMS object
-[ ]             Form - show
-[ ]             Form - save
-[ ]             Test
-[ ]         SLight::Handler::CMS::Entry::Comments <-- list comments from selected the CMS object
-[ ]             Implement
-[ ]             Test
-[ ]         SLight::Handler::CMS::Entry::Translate
-[ ]             Form - show
-[ ]             Form - save
-[ ]             Test
-[ ] SLight API
-[ ]     Content
-[ ]         Support 'login' and 'user_id' parameters, along with 'email', to sign the stuff.
-[ ]     Asset
-[ ]         Support 'login' and 'user_id' parameters, along with 'email', to sign the stuff.
-[ ] SLight::Addon::Core::Debug
-[ ]     Implementation
-[ ]     Test
-[ ] HTML templateing-related
-[ ]     Add 'delimiter' - either as a widget, or as sub-section to lists
-[ ] Development
-[ ]     In Handler tests - check if CGI parameters send in a request are the ones defined in previews one.
-[ ]     Built-in EVK support in Test::Handler
-[ ]     Built-in Email support in Test::Handler
-[ ]     Built-in SLight::IO::unique_id support in Test::Handler
-[ ]     Implement SLight::Dbg (with Dbg, a Dumper-like function)
-[ ]     Make sure, that every module has SLight::Dbg included in it (do there is always an 'warn Data::Dumper::Dumper' named D around)
-[ ]     Make a script, that creates fully usable sandbox from test site.
-[ ]     Intercept STDERR (when enabled) and handle it to Debug Addon
-[ ]     Create module with Validator 'magic' - common metadata (SLight User hash, etc)
 [ ] Migration/backup utility
 [ ]     Dump utility
 [ ]     Import utility
 [ ]     Migrate utility
-[ ] CMS edit functions
-[ ]     Select templates from drop-down list
-[ ]     Select on-page index from drop-down menu
-[ ]     Ability to edit on-page-index
-[ ]     Preview in CMS add/edit forms.
+[ ] Improvements
+[ ]     CMS edit functions
+[ ]         Select templates from drop-down list
+[ ]         Select on-page index from drop-down menu
+[ ]         Ability to edit on-page-index
+[ ]         Preview in CMS add/edit forms.
+[ ]     ...
 [ ] Bugs
-[ ]     Split 'content' into "objects before", "main object", "objects after" (with 'content' support maintained)
-[ ]     On CMS Delete dialog, the 'No' option redirects to the dialog (should redirect to the object's View action)
-[ ]     http://slight.notebook/_CMS_Spec/Field/1/Title/ is missing crumbs :(
-[ ]     Language selection is f...broken. Plugin needs to set different (more sane) classes too!
-[ ]     User must be able to chose position when adding new content to a page.
-[ ]     User must be able to change order of On-page (aux) content after added.
-[ ]     Move html templates from Minimal to HtmlTemplates
-[ ]     Implement the FIXME from SLight::Test::Site::Builder
-[ ]     Some API calls (Asset) should return login as well (not just email)
-[ ]     When there is a DB error (like when appending new content to a page) there is only 'Internal error' displayed. This should be handled better.
-[ ]     When appending new content to a page: on_page_index is not handled correctly
+[ ]     ...
 [ ] Release to the public
 [ ]     Bump version
 [ ]     Build packages
@@ -199,16 +111,14 @@
 [ ]     Upload package for public consumption
 [ ]     Spread the news :)
 
-=--= v0.0.6 - "Forum"
+=--= v?.?.? - "Forum"
 
 [ ] Refactoring of ContentModel.pm
 [ ]     Migration to Core::Accessor
 [ ]         owner support
 [ ]         Update SLight/API/ContentSpec.pm
 [ ]         Update SLight/API/EVK.pm
-[ ]         Update SLight/API/Content.pm
 [ ]         Update SLight/API/User.pm
-[ ]         Update SLight/API/Asset.pm
 [ ]     API::Page
 [ ]         Ability to return owning_module and ID of main content element, so it's dead-simple to evaluate if Use has permissions to it.
 [ ] Forum-related Handler objects
@@ -284,16 +194,98 @@
 [ ]         News-like list
 [ ] Various improvements
 [ ]     Page/Content form: make title, menu and breadcrumb optional - use 'Path' (or other property) as default.
-[ ] Template enging improvements
-[ ]     Use default HTML snippets, if a widget is not defined in template.
-[ ]     Use built-in template, if no other template can be reached.
-[ ]     Support for 'style' attribute in mk_*_token and bellow.
-[ ]     Implement 'Fieldset' widget (groups form entries).
+[ ]     BBCode to HTML converter should use 'b' and 'i' for [b] and [i] to be more SEO friendly.
 [ ] Bugfixes
-[ ]     Default value for Date / DateTime fields should be "today"
+[ ]     ...
 [ ] Release to the public
 [ ]     Bump version to 0.0.6
 [ ]     Make package
+[ ]     Beta-test
+[ ]     Upload package for public consumption
+[ ]     Spread the news :)
+
+=--= v?.?.? - "Comments and Attachments"
+
+[ ] Comment store
+[ ] CMS
+[ ]     SLight::Handler::CMS::Entry
+[ ]         SLight::Handler::CMS::Entry::Details <-- Display the object with all Assets and Comments shown on page.
+[ ]             Ability for the main object to instruct the Protocol, that it wants to replace aux objects with own stuff.
+[ ]             Replace aux objects with 'SLight::Handler::CMS::Entry::Assets' and 'SLight::Handler::CMS::Entry::Comments'
+[ ]             Test
+[ ]         SLight::Handler::CMS::Entry::Attach <-- attach a file to the object as an Asset
+[ ]             Form - show
+[ ]             Form - save
+[ ]             Test
+[ ]         SLight::Handler::CMS::Entry::Assets <-- detailed information about assets attached to the CMS object
+[ ]             Implement
+[ ]             Test
+[ ]         SLight::Handler::CMS::Entry::Comment <-- post a comment about the CMS object
+[ ]             Form - show
+[ ]             Form - save
+[ ]             Test
+[ ]         SLight::Handler::CMS::Entry::Comments <-- list comments from selected the CMS object
+[ ]             Implement
+[ ]             Test
+[ ]         SLight::Handler::CMS::Entry::Translate
+[ ]             Form - show
+[ ]             Form - save
+[ ]             Test
+[ ] SLight API
+[ ]     Content
+[ ]         Support 'login' and 'user_id' parameters, along with 'email', to sign the stuff.
+[ ]     Asset
+[ ]         Migrate to Accessor
+[ ]         Support 'login' and 'user_id' parameters, along with 'email', to sign the stuff.
+[ ] DataStructure
+[ ]     SLight::DataStructure::Table (ex CoMe...GenericTable)
+[ ]         Implement
+[ ]         Test
+[ ]     SLight::DataStructure::Table::Properties (ex CoMe...GenericProperties)
+[ ]         Implement
+[ ]         Test
+[ ]     SLight::DataStructure::Form::Diff (CoMe...DiffForm)
+[ ]         Implement
+[ ]         Test
+[ ] SLight::Addon::Core::Debug
+[ ]     Implementation
+[ ]     Test
+[ ] Template engine improvements
+[ ]     Use default HTML snippets, if a widget is not defined in template.
+[ ]     Use built-in template, if no other template can be reached.
+[ ]     Add 'delimiter' - either as a widget, or as sub-section to lists
+[ ]     Implement 'Comment' widget
+[ ]     Implement 'HTML' widget
+[ ]     Implement 'BBCode' widget
+[ ] Development
+[ ]     In Handler tests - check if CGI parameters send in a request are the ones defined in previews one.
+[ ]     Built-in EVK support in Test::Handler
+[ ]     Built-in Email support in Test::Handler
+[ ]     Built-in SLight::IO::unique_id support in Test::Handler
+[ ]     Implement SLight::Dbg (with Dbg, a Dumper-like function)
+[ ]     Make sure, that every module has SLight::Dbg included in it (do there is always an 'warn Data::Dumper::Dumper' named D around)
+[ ]     Make a script, that creates fully usable sandbox from test site.
+[ ]     Intercept STDERR (when enabled) and handle it to Debug Addon
+[ ]     Create module with Validator 'magic' - common metadata (SLight User hash, etc)
+[ ] Addon improvmenets
+[ ]     Implement ability to put addon configuration into template
+[ ]     Add 'Include' addon, that will fetch on-disk data.
+[ ] Bugs
+[ ]     Carp::Assert::More::assert_defined(undef, 'Type of the element is known') - should not kill the whole template!
+[ ]     On CMS Delete dialog, the 'No' option redirects to the dialog (should redirect to the object's View action)
+[ ]     http://slight.notebook/_CMS_Spec/Field/1/Title/ is missing crumbs :(
+[ ]     Language selection is f...broken. Plugin needs to set different (more sane) classes too!
+[ ]     User must be able to chose position when adding new content to a page.
+[ ]     User must be able to change order of On-page (aux) content after added.
+[ ]     Implement the FIXME from SLight::Test::Site::Builder
+[ ]     Some API calls (Asset) should return login as well (not just email)
+[ ]     When appending new content to a page: on_page_index is not handled correctly
+[ ]     Default value for Date / DateTime fields should be "today"
+[ ]     CMS Spec Path Handler does not generate breadcrumbs
+[ ]     Toolbox is not hidden in aux content objects.
+[ ] Release to the public
+[ ]     Bump version
+[ ]     Build packages
 [ ]     Beta-test
 [ ]     Upload package for public consumption
 [ ]     Spread the news :)
@@ -335,7 +327,7 @@
 [X]     Gallery-like browser (display n items with in-place zoom support)
 [X] HTML/Template improvements
 [X]     Ability to use widgets as labels for Link (and some other widgets)
-[>] Bugs/Improvements
+[X] Bugs/Improvements
 [X]     Remove 'generic' class names.
 [X]     Support for 'id' attribute in mk_*_token and bellow.
 [X]     Old session files are not deleted. They must be cleaned up!
@@ -346,16 +338,14 @@
 [X]     Do not show email field, if User is logged in.
 [X]     L10N support in Template.pm (for example, try to load 'Default-en.html' before 'Default.html')
 [X]     Add-on optimization: process only add-ons that are defined in given template.
+[X]     Email field not given to add_Content.
+[X]     Handler::List::Blog sorts in wrong order.
 [>] Release to the public
 [X]     Bump version to 0.0.5
+[X]     Beta-test
 [>]     Make package
-[ ]     Beta-test
 [ ]     Upload package for public consumption
 [ ]     Spread the news :)
-
-    Definition of done:
-
-        SLight can be used as CMS with no major limitations.
 
 =--= Sprint 2 - Command line CMS - (X 2011-02-27) 2011-03-06
 

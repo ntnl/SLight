@@ -16,8 +16,10 @@ use base q{SLight::PathHandler};
 
 my $VERSION = '0.0.5';
 
-use Carp::Assert::More qw( assert_defined );
+use Carp::Assert::More qw( assert_defined assert_exists );
 # }}}
+
+my $objects;
 
 sub analyze_path { # {{{
     my ( $self, $path ) = @_;
@@ -32,7 +34,13 @@ sub analyze_path { # {{{
 
     $self->set_title(q{Test for path: /} . (join q{/}, @{ $path }) );
 
-    if (scalar @{ $path }) {
+    if ($objects) {
+        # Path-analysis overwrite is active.
+        $self->set_objects($objects->{'objects'});
+        $self->set_object_order($objects->{'object_order'});
+        $self->set_main_object($objects->{'main_object'});
+    }
+    elsif (scalar @{ $path }) {
         $self->set_objects(
             {
                 t1 => {
@@ -69,6 +77,26 @@ sub analyze_path { # {{{
     }
 
     return $self->response_content();
+} # }}}
+
+# Subroutines, not methods!
+
+sub _set_objects { # {{{
+    my ( %P ) = @_;
+
+    assert_exists(\%P, 'objects');
+    assert_exists(\%P, 'object_order');
+    assert_exists(\%P, 'main_object');
+
+    $objects->{'objects'}      = $P{'objects'};
+    $objects->{'object_order'} = $P{'object_order'};
+    $objects->{'main_object'}  = $P{'main_object'};
+
+    return;
+} # }}}
+
+sub _clear_objects { # {{{
+    return $objects = undef;
 } # }}}
 
 # vim: fdm=marker

@@ -16,6 +16,7 @@ use base 'Exporter';
 
 use SLight::Core::Entity;
 
+use Carp::Assert qw( assert );
 use Carp::Assert::More qw( assert_exists assert_defined );
 use Digest::SHA qw( sha512_hex );
 use Params::Validate qw( :all );
@@ -138,6 +139,9 @@ sub get_User { # {{{
 #   Utility method, that wraps get_Users_where for ease of API use.
 sub get_User_by_login { # {{{
     my ( $login ) = @_;
+
+    assert_defined($login, 'login given');
+    assert(scalar @_ == 1, 'just login');
 
     my $users = $_handler->get_ENTITYs_where(
         login => $login,
