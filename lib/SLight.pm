@@ -1,6 +1,6 @@
 package SLight;
 ################################################################################
-# 
+#
 # SLight - Lightweight Content Management System.
 #
 # Copyright (C) 2010-2011 Bartłomiej /Natanael/ Syguła
@@ -9,7 +9,7 @@ package SLight;
 # It is licensed, and can be distributed under the same terms as Perl itself.
 #
 # More information on: http://slight-cms.org/
-# 
+#
 ################################################################################
 
 use strict; use warnings; # {{{

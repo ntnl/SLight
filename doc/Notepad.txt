@@ -1084,3 +1084,139 @@ Change block naming:
 
 
 
+    mkdir Handler/Forum/
+    mkdir Handler/Forum/Forum/
+    cp ~/Projekty/Web/CoMe-Forum/lib/CoMe/Pkg/Forum/Handler/Forum/Delete.pm   Handler/Forum/Forum/Delete.pm
+    cp ~/Projekty/Web/CoMe-Forum/lib/CoMe/Pkg/Forum/Handler/Forum/Edit.pm     Handler/Forum/Forum/Edit.pm
+    cp ~/Projekty/Web/CoMe-Forum/lib/CoMe/Pkg/Forum/Handler/Forum/New.pm      Handler/Forum/Forum/New.pm
+    cp ~/Projekty/Web/CoMe-Forum/lib/CoMe/Pkg/Forum/Handler/Forum/Overview.pm Handler/Forum/Forum/Overview.pm
+
+    mkdir Handler/Forum/Category/
+    cp ~/Projekty/Web/CoMe-Forum/lib/CoMe/Pkg/Forum/Handler/Category/Delete.pm   Handler/Forum/Category/Delete.pm
+    cp ~/Projekty/Web/CoMe-Forum/lib/CoMe/Pkg/Forum/Handler/Category/Edit.pm     Handler/Forum/Category/Edit.pm
+    cp ~/Projekty/Web/CoMe-Forum/lib/CoMe/Pkg/Forum/Handler/Category/New.pm      Handler/Forum/Category/New.pm
+    cp ~/Projekty/Web/CoMe-Forum/lib/CoMe/Pkg/Forum/Handler/Category/Overview.pm Handler/Forum/Category/Overview.pm
+
+    mkdir Handler/Forum/Thread/
+    cp ~/Projekty/Web/CoMe-Forum/lib/CoMe/Pkg/Forum/Handler/Thread/Delete.pm   Handler/Forum/Thread/Delete.pm
+    cp ~/Projekty/Web/CoMe-Forum/lib/CoMe/Pkg/Forum/Handler/Thread/Edit.pm     Handler/Forum/Thread/Edit.pm
+    cp ~/Projekty/Web/CoMe-Forum/lib/CoMe/Pkg/Forum/Handler/Thread/New.pm      Handler/Forum/Thread/New.pm
+    cp ~/Projekty/Web/CoMe-Forum/lib/CoMe/Pkg/Forum/Handler/Thread/Overview.pm Handler/Forum/Thread/Overview.pm
+
+    mkdir Handler/Forum/Reply/
+    cp ~/Projekty/Web/CoMe-Forum/lib/CoMe/Pkg/Forum/Handler/Reply/Delete.pm   Handler/Forum/Reply/Delete.pm
+    cp ~/Projekty/Web/CoMe-Forum/lib/CoMe/Pkg/Forum/Handler/Reply/Edit.pm     Handler/Forum/Reply/Edit.pm
+    cp ~/Projekty/Web/CoMe-Forum/lib/CoMe/Pkg/Forum/Handler/Reply/New.pm      Handler/Forum/Reply/New.pm
+    cp ~/Projekty/Web/CoMe-Forum/lib/CoMe/Pkg/Forum/Handler/Reply/Overview.pm Handler/Forum/Reply/Overview.pm
+    cp ~/Projekty/Web/CoMe-Forum/lib/CoMe/Pkg/Forum/Handler/Reply/Quote.pm    Handler/Forum/Reply/Quote.pm
+
+    cp ~/Projekty/Web/CoMe-Forum/lib/CoMe/Pkg/Forum/Handler/Forum.pm   HandlerBase/Forum.pm
+
+    mkdir HandlerBase/Forum/
+    cp ~/Projekty/Web/CoMe-Forum/lib/CoMe/Pkg/Forum/HandlerBase/Replay.pm HandlerBase/Forum/Reply.pm
+    cp ~/Projekty/Web/CoMe-Forum/lib/CoMe/Pkg/Forum/HandlerBase/Thread.pm HandlerBase/Forum/Thread.pm
+
+    mkdir HandlerBase/Forum/Category/
+    cp ~/Projekty/Web/CoMe-Forum/lib/CoMe/Pkg/Forum/HandlerBase/Category/Form.pm HandlerBase/Forum/Category/Form.pm
+
+    mkdir HandlerBase/Forum/Forum/
+    cp ~/Projekty/Web/CoMe-Forum/lib/CoMe/Pkg/Forum/HandlerBase/Forum/Form.pm HandlerBase/Forum/Forum/Form.pm
+
+    mkdir HandlerBase/Forum/Thread/
+    cp ~/Projekty/Web/CoMe-Forum/lib/CoMe/Pkg/Forum/HandlerBase/Thread/Form.pm HandlerBase/Forum/Thread/Form.pm
+
+
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-HandlerBase-Category-Form.t
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-HandlerBase-Forum-Form.t
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-HandlerBase-Reply.t
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-HandlerBase-Thread-Form.t
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-HandlerBase-Thread.t
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Category-Delete.t
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Category-Delete.yaml
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Category-Edit-result.yaml
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Category-Edit.t
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Category-Edit.yaml
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Category-New-result.yaml
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Category-New.t
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Category-New.yaml
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Category-Overview.t
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Category-Overview.yaml
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Forum-Delete.t
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Forum-Delete.yaml
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Forum-Edit.t
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Forum-Edit.yaml
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Forum-New.t
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Forum-New.yaml
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Forum-Overview.t
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Forum-Overview.yaml
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Reply-Delete.t
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Reply-Delete.yaml
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Reply-Edit-result.yaml
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Reply-Edit.t
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Reply-Edit.yaml
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Reply-New.t
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Reply-New.yaml
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Reply-Quote.t
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Reply-Quote.yaml
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler.t
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Thread-Delete.t
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Thread-Delete.yaml
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Thread-Edit-result.yaml
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Thread-Edit.t
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Thread-Edit.yaml
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Thread-New-result.yaml
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Thread-New.t
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Thread-New.yaml
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Thread-Overview-result.yaml
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Thread-Overview.t
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum-Handler-Thread-Overview.yaml
+cp ~/Projekty/Web/CoMe-Forum/t/1-modules/CoMe-Pkg-Forum.t
+
+
+t/1-modules/SLight-Handler-ForumBase-Category-Form.t
+t/1-modules/SLight-Handler-ForumBase-Forum-Form.t
+t/1-modules/SLight-Handler-ForumBase-Reply.t
+t/1-modules/SLight-Handler-ForumBase-Thread-Form.t
+t/1-modules/SLight-Handler-ForumBase-Thread.t
+t/1-modules/SLight-Handler-Forum-Category-Delete.t
+t/1-modules/SLight-Handler-Forum-Category-Delete.yaml
+t/1-modules/SLight-Handler-Forum-Category-Edit-result.yaml
+t/1-modules/SLight-Handler-Forum-Category-Edit.t
+t/1-modules/SLight-Handler-Forum-Category-Edit.yaml
+t/1-modules/SLight-Handler-Forum-Category-New-result.yaml
+t/1-modules/SLight-Handler-Forum-Category-New.t
+t/1-modules/SLight-Handler-Forum-Category-New.yaml
+t/1-modules/SLight-Handler-Forum-Category-View.t
+t/1-modules/SLight-Handler-Forum-Category-View.yaml
+t/1-modules/SLight-Handler-Forum-Forum-Delete.t
+t/1-modules/SLight-Handler-Forum-Forum-Delete.yaml
+t/1-modules/SLight-Handler-Forum-Forum-Edit.t
+t/1-modules/SLight-Handler-Forum-Forum-Edit.yaml
+t/1-modules/SLight-Handler-Forum-Forum-New.t
+t/1-modules/SLight-Handler-Forum-Forum-New.yaml
+t/1-modules/SLight-Handler-Forum-Forum-View.t
+t/1-modules/SLight-Handler-Forum-Forum-View.yaml
+t/1-modules/SLight-Handler-Forum-Reply-Delete.t
+t/1-modules/SLight-Handler-Forum-Reply-Delete.yaml
+t/1-modules/SLight-Handler-Forum-Reply-Edit-result.yaml
+t/1-modules/SLight-Handler-Forum-Reply-Edit.t
+t/1-modules/SLight-Handler-Forum-Reply-Edit.yaml
+t/1-modules/SLight-Handler-Forum-Reply-New.t
+t/1-modules/SLight-Handler-Forum-Reply-New.yaml
+t/1-modules/SLight-Handler-Forum-Reply-Quote.t
+t/1-modules/SLight-Handler-Forum-Reply-Quote.yaml
+t/1-modules/SLight-HandlerBase-Forum.t
+t/1-modules/SLight-Handler-Forum-Thread-Delete.t
+t/1-modules/SLight-Handler-Forum-Thread-Delete.yaml
+t/1-modules/SLight-Handler-Forum-Thread-Edit-result.yaml
+t/1-modules/SLight-Handler-Forum-Thread-Edit.t
+t/1-modules/SLight-Handler-Forum-Thread-Edit.yaml
+t/1-modules/SLight-Handler-Forum-Thread-New-result.yaml
+t/1-modules/SLight-Handler-Forum-Thread-New.t
+t/1-modules/SLight-Handler-Forum-Thread-New.yaml
+t/1-modules/SLight-Handler-Forum-Thread-View-result.yaml
+t/1-modules/SLight-Handler-Forum-Thread-View.t
+t/1-modules/SLight-Handler-Forum-Thread-View.yaml
+t/1-modules/CoMe-Pkg-Forum.t
+
+
